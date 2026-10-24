@@ -54,10 +54,10 @@ def calibration(regions,old):
     return scale,baselines
 
 
-def trace_region(gray,r,scale,baseline,old_r,old_base,field_function=isolated_field):
+def trace_region(gray,r,scale,baseline,old_r,old_base,field_function=isolated_field,smoothing_function=None):
     field,origin,paper,ink=field_function(gray,r)
     # Native-resolution antialias smoothing, substantially less than one legacy pixel.
-    field=ndi.gaussian_filter(field,.8)
+    field,sigma=(ndi.gaussian_filter(field,.8),.8) if smoothing_function is None else smoothing_function(field)
     binary=field>.5
     holes,_=ndi.label(~binary)
     for lab in range(1,holes.max()+1):
@@ -80,6 +80,7 @@ def trace_region(gray,r,scale,baseline,old_r,old_base,field_function=isolated_fi
     result=copy.deepcopy(old_r)
     result.pop('b',None)
     result.update(rec=curves_to_recording(curves),paper=paper,ink=ink)
+    if smoothing_function is not None:result['source_smoothing_sigma']=sigma
     return result
 
 

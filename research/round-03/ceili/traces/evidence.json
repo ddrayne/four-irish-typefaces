@@ -1,0 +1,1513 @@
+{
+  "face": "ceili",
+  "status": "research candidate; not release",
+  "source_hashes": {
+    "competition-advert-1.jpg": "0adeda27c189890fbd78619810cfc144ea3d5b910256971bf1c33a946d4baadc",
+    "competition-brochure-2.jpg": "57d14ab343c5942345f14f277be8e92a6182f4b1a6a90a1d9ae413563b26ef18"
+  },
+  "glyphs": [
+    {
+      "name": "a",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1154,
+        1450,
+        1228,
+        1511
+      ],
+      "labels": [
+        14
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "a.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1232,
+        1450,
+        1314,
+        1511
+      ],
+      "labels": [
+        15
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "a.alt2",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1316,
+        1449,
+        1384,
+        1510
+      ],
+      "labels": [
+        12
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "b",
+      "status": "candidate",
+      "source": "competition-brochure-2.jpg",
+      "source_id": "N45",
+      "box": [
+        975,
+        353,
+        1032,
+        429
+      ],
+      "labels": [
+        1
+      ],
+      "row_box": [
+        755,
+        340,
+        1430,
+        465
+      ],
+      "scale": 2.365017567188912,
+      "source_baseline": 428.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Brochure supplies a less damaged thin stroke or shoulder."
+    },
+    {
+      "name": "c",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1459,
+        1447,
+        1517,
+        1510
+      ],
+      "labels": [
+        7
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "d",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1525,
+        1425,
+        1592,
+        1509
+      ],
+      "labels": [
+        3
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "d.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1587,
+        1444,
+        1667,
+        1508
+      ],
+      "labels": [
+        6
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "e",
+      "status": "candidate",
+      "source": "competition-brochure-2.jpg",
+      "source_id": "N45",
+      "box": [
+        1229,
+        378,
+        1281,
+        431
+      ],
+      "labels": [
+        8
+      ],
+      "row_box": [
+        755,
+        340,
+        1430,
+        465
+      ],
+      "scale": 2.365017567188912,
+      "source_baseline": 428.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Brochure supplies a less damaged thin stroke or shoulder."
+    },
+    {
+      "name": "e.alt1",
+      "status": "candidate",
+      "source": "competition-brochure-2.jpg",
+      "source_id": "N45",
+      "box": [
+        1288,
+        378,
+        1359,
+        432
+      ],
+      "labels": [
+        9
+      ],
+      "row_box": [
+        755,
+        340,
+        1430,
+        465
+      ],
+      "scale": 2.365017567188912,
+      "source_baseline": 428.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Brochure supplies a less damaged thin stroke or shoulder."
+    },
+    {
+      "name": "f",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1826,
+        1447,
+        1889,
+        1534
+      ],
+      "labels": [
+        8
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "g",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1890,
+        1441,
+        1954,
+        1532
+      ],
+      "labels": [
+        5
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "h",
+      "status": "candidate",
+      "source": "competition-brochure-2.jpg",
+      "source_id": "N45",
+      "box": [
+        831,
+        457,
+        887,
+        533
+      ],
+      "labels": [
+        2
+      ],
+      "row_box": [
+        755,
+        450,
+        1430,
+        560
+      ],
+      "scale": 2.365017567188912,
+      "source_baseline": 536.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Brochure supplies a less damaged thin stroke or shoulder."
+    },
+    {
+      "name": "i",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        2024,
+        1439,
+        2047,
+        1508
+      ],
+      "labels": [
+        4,
+        10
+      ],
+      "row_box": [
+        1130,
+        1410,
+        2070,
+        1537
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1508.0,
+      "old_baseline": 565.9715033808582,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "j",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1154,
+        1556,
+        1179,
+        1642
+      ],
+      "labels": [
+        6,
+        17
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "j.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1186,
+        1562,
+        1239,
+        1625
+      ],
+      "labels": [
+        12
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "k",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1246,
+        1537,
+        1312,
+        1625
+      ],
+      "labels": [
+        4
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "l",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1307,
+        1537,
+        1370,
+        1625
+      ],
+      "labels": [
+        5
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "l.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1362,
+        1536,
+        1388,
+        1624
+      ],
+      "labels": [
+        3
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "m",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1398,
+        1562,
+        1487,
+        1623
+      ],
+      "labels": [
+        13
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "n",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1494,
+        1562,
+        1553,
+        1623
+      ],
+      "labels": [
+        14
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "n.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1560,
+        1562,
+        1621,
+        1623
+      ],
+      "labels": [
+        15
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "o",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1631,
+        1559,
+        1700,
+        1622
+      ],
+      "labels": [
+        7
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "p",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1700,
+        1561,
+        1773,
+        1648
+      ],
+      "labels": [
+        9
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "q",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1779,
+        1563,
+        1851,
+        1649
+      ],
+      "labels": [
+        16
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "r",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1858,
+        1561,
+        1919,
+        1623
+      ],
+      "labels": [
+        10
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "r.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1922,
+        1560,
+        1982,
+        1648
+      ],
+      "labels": [
+        8
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "s",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1992,
+        1561,
+        2050,
+        1622
+      ],
+      "labels": [
+        11
+      ],
+      "row_box": [
+        1130,
+        1525,
+        2070,
+        1680
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1622.0,
+      "old_baseline": 608.8035822314187,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "s.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1152,
+        1652,
+        1213,
+        1738
+      ],
+      "labels": [
+        4
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "t",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1209,
+        1672,
+        1280,
+        1736
+      ],
+      "labels": [
+        12
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "u",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1283,
+        1676,
+        1346,
+        1736
+      ],
+      "labels": [
+        18
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "v",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1356,
+        1677,
+        1422,
+        1736
+      ],
+      "labels": [
+        19
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "v.alt1",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1420,
+        1675,
+        1484,
+        1736
+      ],
+      "labels": [
+        15
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "w",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1488,
+        1674,
+        1571,
+        1734
+      ],
+      "labels": [
+        14
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "x",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1578,
+        1675,
+        1673,
+        1754
+      ],
+      "labels": [
+        16
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "y",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1673,
+        1675,
+        1736,
+        1755
+      ],
+      "labels": [
+        17
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "ampersand",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1749,
+        1652,
+        1851,
+        1735
+      ],
+      "labels": [
+        5
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "z",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1852,
+        1672,
+        1921,
+        1736
+      ],
+      "labels": [
+        13
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "parenleft",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1934,
+        1671,
+        1957,
+        1743
+      ],
+      "labels": [
+        11
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "DOTS",
+      "status": "retained",
+      "reason": "Loose punctuation cluster retained pending explicit piece-to-glyph mapping."
+    },
+    {
+      "name": "parenright",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        2018,
+        1664,
+        2042,
+        1742
+      ],
+      "labels": [
+        8,
+        10
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1735.0,
+      "old_baseline": 650.755481053038,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "zero",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1159,
+        1797,
+        1222,
+        1858
+      ],
+      "labels": [
+        12
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "one",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1229,
+        1798,
+        1250,
+        1856
+      ],
+      "labels": [
+        14
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "two",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1259,
+        1794,
+        1314,
+        1855
+      ],
+      "labels": [
+        9,
+        20
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "three",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1306,
+        1795,
+        1365,
+        1876
+      ],
+      "labels": [
+        11
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "four",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1366,
+        1797,
+        1436,
+        1876
+      ],
+      "labels": [
+        13
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "five",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1425,
+        1794,
+        1486,
+        1875
+      ],
+      "labels": [
+        10
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "six",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1485,
+        1776,
+        1545,
+        1854
+      ],
+      "labels": [
+        1
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "seven",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1548,
+        1793,
+        1602,
+        1875
+      ],
+      "labels": [
+        7
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "eight",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1602,
+        1776,
+        1660,
+        1853
+      ],
+      "labels": [
+        2
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "nine",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1666,
+        1792,
+        1726,
+        1870
+      ],
+      "labels": [
+        6
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "sterling",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1733,
+        1793,
+        1789,
+        1854
+      ],
+      "labels": [
+        8
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "dollar",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1797,
+        1785,
+        1849,
+        1859
+      ],
+      "labels": [
+        4
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "question",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1855,
+        1784,
+        1903,
+        1857
+      ],
+      "labels": [
+        3,
+        17
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "exclam",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1911,
+        1785,
+        1933,
+        1858
+      ],
+      "labels": [
+        5,
+        18
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.6,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    },
+    {
+      "name": "hyphen",
+      "status": "candidate",
+      "source": "competition-advert-1.jpg",
+      "source_id": "N46",
+      "box": [
+        1959,
+        1822,
+        1998,
+        1831
+      ],
+      "labels": [
+        16
+      ],
+      "row_box": [
+        1130,
+        1770,
+        2070,
+        1885
+      ],
+      "scale": 2.702316514421251,
+      "source_baseline": 1855.0,
+      "old_baseline": 696.4916276483807,
+      "smoothing_sigma": 0.8,
+      "topology_policy": "Preserve substantive unsmoothed source contours; reduce blur before tracing if needed.",
+      "note": "Larger original flyer; detached components retained together."
+    }
+  ],
+  "calibration": {
+    "competition-advert-1.jpg": {
+      "scale": 2.702316514421251,
+      "baselines": {
+        "0": 1508.0,
+        "1": 1622.0,
+        "2": 1735.0,
+        "3": 1855.0
+      }
+    },
+    "competition-brochure-2.jpg": {
+      "scale": 2.365017567188912,
+      "baselines": {
+        "0": 428.0,
+        "1": 536.0,
+        "2": 641.0,
+        "3": 748.5,
+        "4": 857.0
+      }
+    }
+  },
+  "limitations": [
+    "N46/N45 can share artwork or reproduction history; source fit is not independent authentication.",
+    "Legacy builder text-height regularisation and modern extensions remain.",
+    "Tuam accented entries supply accent geometry; final accents are assembled for text."
+  ],
+  "disable_legacy_repairs": [
+    "h"
+  ],
+  "disable_legacy_hairlines": [
+    "b",
+    "e",
+    "e.alt1"
+  ]
+}

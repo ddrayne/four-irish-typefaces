@@ -1,0 +1,152 @@
+[
+  {
+    "path": "ceili/audit-metrics.json",
+    "bytes": 40466,
+    "sha256": "19e0d3ccd4c61931f2fc354db9cb198261001c526e3b04aee91433f791cb2dbe"
+  },
+  {
+    "path": "ceili/brochure-proposal-metrics.json",
+    "bytes": 40471,
+    "sha256": "e0eec86ae715dec382dbf6e154a3d06bcff77f1f97cb40f308a322095748a8ad"
+  },
+  {
+    "path": "ceili/ceili-small.png",
+    "bytes": 75970,
+    "sha256": "10b6162eb88b3f6a673ec0d0dd6824bd3696f49b8361311d5bbed99eaac97457"
+  },
+  {
+    "path": "ceili/ceili.png",
+    "bytes": 162351,
+    "sha256": "f2b748b5696d4a80bfef3c67e6f92aec6a6d27ca451cba18123fc3d1a947d82f"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy2-Regular.otf",
+    "bytes": 78944,
+    "sha256": "78ec4fb166a15ff5af6ac9b8d0398e0367341e70a3942b305b3e7e4fba8db577"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy2-Regular.provenance.json",
+    "bytes": 37178,
+    "sha256": "409daca5f7e806d0f76b314cc07d601b5d1651b23a4fe97ba3cab41ad823c7b1"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy2-Regular.ttf",
+    "bytes": 131320,
+    "sha256": "250b30696a1e8d35790584ea4718333c79ed6d1bc537a0388e92ff1212cdb947"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy2-Regular.woff",
+    "bytes": 52544,
+    "sha256": "c8012059fda920c10105bbb4e23099dccf2135f74e9e467d1f158845d132d7f2"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy2-Regular.woff2",
+    "bytes": 40724,
+    "sha256": "13044be6c88ed373c3d0eea6dd2a4f6cc48c0cc8821905e823b45d20a3493a55"
+  },
+  {
+    "path": "ceili/fonts/spacing-adjustments.json",
+    "bytes": 252945,
+    "sha256": "b431a87c65b618bf2a1b0c39b1f31d6e7b24c4decc8dae6679094160e7744848"
+  },
+  {
+    "path": "ceili/traces/ceili.json",
+    "bytes": 521485,
+    "sha256": "be21285e1c9407959e0ee0a6c00cc0ae05f28c8a83d0c4d6e17c45212e4fcdef"
+  },
+  {
+    "path": "ceili/traces/evidence.json",
+    "bytes": 37172,
+    "sha256": "9abc2a3269680e8d1fb78f64f0525d05b3a313b324e205b5e190e5f8e63a3ff1"
+  },
+  {
+    "path": "ceili/traces/source-regions.json",
+    "bytes": 29369,
+    "sha256": "cb0fc183ca4cb1c8522c890e4895bc48f961cb31a8a5f00af5e6356d64ff6dab"
+  },
+  {
+    "path": "OFL.txt",
+    "bytes": 4498,
+    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+  },
+  {
+    "path": "pair-audit.json",
+    "bytes": 1150,
+    "sha256": "66df80d6cdb8c310977cfa5371738e861886efcc89cccbc3c2ac48cf760eb0db"
+  },
+  {
+    "path": "README.md",
+    "bytes": 8369,
+    "sha256": "1be72e6b9651d436e4f153ccd17575b502fc8caa366b4e6bfc6b3fe54a707ab6"
+  },
+  {
+    "path": "topology-audit.json",
+    "bytes": 23296,
+    "sha256": "29f90146271a47a6cb587e2fabe29395f237b76e888c27de5c6fa8d07bec4263"
+  },
+  {
+    "path": "tuam/audit-metrics.json",
+    "bytes": 35079,
+    "sha256": "3417506427870178958bedd1b85ed99b5368528e26404340282c33894d22cd57"
+  },
+  {
+    "path": "tuam/brochure-proposal-metrics.json",
+    "bytes": 36730,
+    "sha256": "1dfe021c9692700f7603ceafc23c70caebb062a93f70ec87bb0655ffcfd83575"
+  },
+  {
+    "path": "tuam/fonts/spacing-adjustments.json",
+    "bytes": 46092,
+    "sha256": "74347b0296076f33e0e0c8c7777d31694cd2a4b5f7a286a50bf9e408b5c75f05"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy2-Regular.otf",
+    "bytes": 54440,
+    "sha256": "fc48ebd0d0934ab807721564ae0b234b0ec9e71b78b61359f530b10c09b3ff0c"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy2-Regular.provenance.json",
+    "bytes": 30073,
+    "sha256": "5685375a4ee8ef15892a83a583cc4e21e40d2198db4e979eaa070ac1d8016b0e"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy2-Regular.ttf",
+    "bytes": 107400,
+    "sha256": "429921d054565712f40ba4a133c54abc01c2bed6c3a5b6c6b95e43cfda13d74a"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy2-Regular.woff",
+    "bytes": 45628,
+    "sha256": "563dcb19f012f311e51cfb0e8dd3fb8e7e9461d65f8473c91be235ea4b0476f4"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy2-Regular.woff2",
+    "bytes": 35616,
+    "sha256": "9d800adbc147badc82b3b48990eb2ab4c996b724048b69510142a23338457ae0"
+  },
+  {
+    "path": "tuam/traces/evidence.json",
+    "bytes": 31558,
+    "sha256": "dfc262f7db4b6789d4700d0ed6473f17a1c1fb362e0fa8321f41fed307709684"
+  },
+  {
+    "path": "tuam/traces/source-regions.json",
+    "bytes": 25163,
+    "sha256": "c16feaf4df3fc6d6ca088b64a9a897ebf0db8d461435f386c8f488dde28ea0df"
+  },
+  {
+    "path": "tuam/traces/tuam.json",
+    "bytes": 490368,
+    "sha256": "876b883433a293a837deaebb70760d407b0b8fdabdf4a21c7f2f92ce2c050679"
+  },
+  {
+    "path": "tuam/tuam-small.png",
+    "bytes": 83600,
+    "sha256": "9bfc73bde9c0c9f6c5fa949f29c3310c2ed6d835c4418edbe8d9e1061a075e28"
+  },
+  {
+    "path": "tuam/tuam.png",
+    "bytes": 177455,
+    "sha256": "51e5a4386b15815f551371d5f272ba6fe08ccb4ea559a774b376f7abbd6cbfa5"
+  }
+]

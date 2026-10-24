@@ -2,17 +2,27 @@
 
 ## Active state
 
-**Latest: [round 2](round-02/README.md).** Kilfane Study 2 adds named source marks;
-Carrick Study 1 reconstructs 40 source entries; Tuam Uncial Study 1 and Céilí Study 1
-retain the existing outlines. All four now include full-height collision protection.
-There are 81 passing tests, including 302,556 Latin character pairs per outline
-format with no intersections above the recorded tolerance. Continue from these
-latest candidates. The Study 1 account below is retained as the earlier ledger.
+**Latest: [round 3](round-03/README.md).** Tuam Uncial Study 2 reconstructs all 46
+trace entries from N46. Céilí Study 2 reconstructs 54/55 entries, using N45 for
+`b/e/e.alt1/h` and N46 for the others. The loose `DOTS` cluster remains legacy.
+Use Kilfane Study 2 and Carrick Study 1 from [round 2](round-02/README.md), unchanged.
+There are 103 passing tests. The four-family pair audit checks 302,556 Latin
+character pairs with no intersections above four square font units. This is not
+an optical spacing certification. The Study 1 account below is an earlier ledger.
 
 Next priorities: optical spacing and small-size rendering across applications;
 Kilfane's fused letters/zero/ambiguous lower marks; Carrick's e/f/x/y and marks;
-then higher-resolution Tuam and Céilí outline reconstruction from the original
-source leads. Do not equate a completed collision audit with finished typography.
+named Céilí punctuation components; Tuam's recomposed accent placement and source
+disagreements. N45 was additionally checked for Kilfane T/U/k/l and Carrick e/f/x/y:
+these still touch and do not provide clean isolated replacements.
+
+Round 3's native-size audit uses pixel-centred area coverage (`--coverage`); old
+polygon-fill scores cannot be directly compared with it. Higher overlap with N46
+is not independent validation: Tuam's aggregate N45 fit slightly decreases.
+Topology-aware smoothing preserves Céilí's exclamation dot and Tuam 8/9 openings.
+Tuam a/o/zero openings also appear in N45; Bolger fig.206 repeats the o opening.
+Read the per-entry exceptions and review decisions before changing them. The
+small-size proofs use actual TTF rasterization, not screenshots of every app.
 
 The user wants accurate reconstruction from original evidence, with repeated
 letter-by-letter inspection and no modern revival fonts used as design references.

@@ -1,5 +1,5 @@
 """Build a separate research Regular with optional explicitly named source marks."""
-import argparse,json,os
+import argparse,copy,json,os
 from pathlib import Path
 
 
@@ -23,6 +23,19 @@ def main():
     build2.FAMILY_STYLES[args.face]=['Regular']
 
     class OriginalStudy(build2.Font2):
+        def hairlines(self):
+            disabled=set(evidence.get('disable_legacy_hairlines',[]))
+            if disabled:
+                self.HAIRLINES=copy.deepcopy(self.HAIRLINES)
+                config=self.HAIRLINES.get(self.key,{})
+                config['pinch']=tuple(n for n in config.get('pinch',()) if n not in disabled)
+                config['bridge']={n:v for n,v in config.get('bridge',{}).items() if n not in disabled}
+            super().hairlines()
+
+        def repairs(self):
+            if self.key=='ceili' and 'h' in evidence.get('disable_legacy_repairs',[]):return
+            super().repairs()
+
         def kerning(self):
             super().kerning()
             from study_spacing import protect_kerning
@@ -38,7 +51,13 @@ def main():
 
         def mark_words(self,kind):
             description=super().mark_words(kind)
-            if piece_data is None:return description
+            if piece_data is None:
+                if self.key=='tuam' and kind in {'acute','grave','hungarumlaut'}:
+                    record=next((g for g in evidence['glyphs'] if g['name']=='uacute' and g['status']=='candidate'),None)
+                    if record:
+                        operation='taken' if kind=='acute' else 'constructed'
+                        return f'{self.MARK_WORDS[kind]} {operation} from the accent on uacute; mark source NIVAL {record["source"]}, region {record["box"]}'
+                return description
             word=self.MARK_WORDS[kind]
             direct={'acute':['acute'],'tilde':['tilde'],'dot':['dot'],'ring':['ring'],
                     'circumflex':['circumflex'],'dieresis':['dieresis.l','dieresis.r']}
@@ -73,7 +92,7 @@ def main():
     for name,(kind,construction) in list(provenance.items()):
         if piece_data is not None and name in piece_sources:
             provenance[name]=[kind,construction+'; named source pieces: NIVAL N516 '+piece_sources[name]]
-        g=updated.get(name) or updated.get(deps.get(name))
+        g=updated.get(deps.get(name,name))
         if not g:continue
         construction=construction.replace('the 1978 flyer','the NIVAL specimen').replace('the flyer’s','the NIVAL specimen’s')
         if kind=='flyer':kind='original-specimen'
