@@ -18,8 +18,7 @@ jobs:
           python -m venv .venv && .venv/bin/python -m pip install -q -r requirements.txt
       - name: The committed fonts pass the release checks
         run: make test
-      - name: A fresh build passes them too, and matches what is committed
+      - name: A fresh build is byte-identical to what is committed
         run: |
-          make fonts
-          FONTDIR=build/fonts make test
-          .venv/bin/python scripts/compare_builds.py fonts build/fonts
+          make release
+          git diff --stat --exit-code -- fonts css index.html

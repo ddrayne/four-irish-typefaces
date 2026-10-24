@@ -25,6 +25,9 @@ from symbols import make_symbols
 
 OUT = paths.FONTS
 VERSION = '2.000'
+RELEASE_DATE = '2026-10-19'          # stamped into head.created/modified, so a rebuild is byte-identical
+import calendar as _cal, time as _time
+os.environ.setdefault('SOURCE_DATE_EPOCH', str(_cal.timegm(_time.strptime(RELEASE_DATE, '%Y-%m-%d'))))  # fontTools saves honour it
 DIGITS = 'zero one two three four five six seven eight nine'.split()
 
 FONTS = {
@@ -1037,7 +1040,11 @@ class Font2:
         order = ['.notdef', 'space'] + sorted(n for n in self.final if n != 'space')
         fb = FontBuilder(1000, isTTF=is_ttf)
         fb.setupGlyphOrder(order); fb.setupCharacterMap(self.cm)
-        fb.updateHead(fontRevision=float(VERSION), macStyle=(1 if self.bold else 0) | (2 if self.italic else 0))
+        from fontTools.misc.timeTools import timestampSinceEpoch
+        import calendar, time
+        stamp = timestampSinceEpoch(calendar.timegm(time.strptime(RELEASE_DATE, '%Y-%m-%d')))
+        fb.updateHead(fontRevision=float(VERSION), macStyle=(1 if self.bold else 0) | (2 if self.italic else 0),
+                      created=stamp, modified=stamp)
         style = self.style_name; ps = cfg['ps'] + '-' + style.replace(' ', '')
         adv = dict(self.adv); adv['.notdef'] = 500
         notdef = SH.difference(SH.polygon([(50, 0), (450, 0), (450, 700), (50, 700)]),
