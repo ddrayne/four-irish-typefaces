@@ -12,7 +12,11 @@ const parts = [
   ['[data-wall]', './carrick.js'],
   ['[data-rub]', './kilfane.js'],
   ['[data-illum]', './tuam.js'],
-  ['[data-study]', './study.js', '#kilfane'],   // hidden until it has a study, so watch its section
+  // research studies stay hidden until they load, so watch each one's section
+  ['[data-study="ceili"]', './study.js', '#ceili'],
+  ['[data-study="carrick"]', './study.js', '#carrick'],
+  ['[data-study="kilfane"]', './study.js', '#kilfane'],
+  ['[data-study="tuam"]', './study.js', '#tuam'],
   ['.tester', './tester.js'],
   ['.glyphs', './glyphs.js'],
 ];
