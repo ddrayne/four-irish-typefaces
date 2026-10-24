@@ -8,8 +8,10 @@ sold as Letraset dry-transfer sheets.
 
 These fonts were digitised from a scan of the competition's "Four Irish Typefaces"
 flyer, then completed to roughly 400 characters each so they work on the web and in
-any app. As far as research could establish, no digital version of Céilí, Carrick or
-Kilfane existed before this.
+any app. Further original-source research, a source register and the separately
+named **Kilfane Study 1** candidate are in [research/](research/README.md).
+Agents continuing this work should start with [the handoff](research/HANDOFF.md).
+Modern revival fonts are excluded as design references for this research.
 
 The flyer shows each face in a single style. From version 2.000 each face is also a family:
 **Céilí** and **Kilfane** have Regular, Italic, Bold and Bold Italic, and **Carrick** and
@@ -95,6 +97,7 @@ with style pickers, stylistic-set toggles and character grids.
 | `scripts/` | The build: tracing, the styles, spacing, kerning, features, proofs, the test page |
 | `site/` | Sources of the test page at irish-typefaces.apps.drayne.xyz |
 | `tests/` | Checks every release must pass (`make test`) |
+| `research/` | Original-source catalogue, evidence metadata, agent handoff and separately named research candidates |
 | `OFL.txt`, `FONTLOG.txt` | The licence (SIL Open Font License 1.1) and the release history |
 
 | Family | Styles | Code points | Glyphs | WOFF2 per style | Features |
@@ -137,9 +140,11 @@ Install the OTF or TTF on your computer for desktop apps. Stylistic sets are und
 | Face | Designer | 1978 result | Notes |
 |---|---|---|---|
 | **Céilí** | Hermann Hecht (1923–1985) | First prize (£250 and a silver medallion) | Light calligraphic unicase with insular forms and old-style figures. Used for National Library of Ireland booklets and reportedly the *Glenroe* titles. |
-| **Carrick** | William Curran (1919–2016) | Second prize | A "chunky, lower case typeface". Fonts In Use lists it as having no uppercase. The name comes from *carraig*, "rock". |
-| **Kilfane** | William Curran | Joint third | Has upper and lower case, plus alternates. Named after a place in Co. Kilkenny. Reportedly used on the Series C Irish banknotes (Robert Ballagh, 1992–96). |
-| **Tuam Uncial** | Jarlath Hayes (1924–2001) | Fourth place / highly commended | Reportedly made by cutting up Helvetica Bold. Used on Clannad sleeves, the *Glenroe* credits and shopfronts. Hayes also designed the harp on Ireland's euro coins. |
+| **Carrick** | William Curran (1919–2016) | Highly Commended (£50) | A "chunky, lower case typeface". Fonts In Use lists it as having no uppercase. The name comes from *carraig*, "rock". |
+| **Kilfane** | William Curran | Commended (£25) | Has upper and lower case, plus alternates. Named after a place in Co. Kilkenny. Reportedly used on the Series C Irish banknotes (Robert Ballagh, 1992–96). |
+| **Tuam Uncial** | Jarlath Hayes (1924–2001) | Commended (£25) | Reportedly made by cutting up Helvetica Bold. Used on Clannad sleeves and shopfronts; the *Glenroe* attribution needs dated-frame verification. Hayes also designed the harp on Ireland's euro coins. |
+
+Award wording follows the [original competition brochure](https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/).
 
 ### The designers
 
@@ -148,8 +153,8 @@ Install the OTF or TTF on your computer for desktop apps. Stylistic sets are und
   the school primer *An Príméar*. His archive, including the original Kilfane and
   Carrick drawings, went to the National Irish Visual Arts Library (NIVAL) in 2025.
 - **Hermann Hecht.** Born in Bingen, he came to England in 1939. He was an assistant to
-  Hans Schleger and later taught at Croydon College of Art. His papers, with Ann
-  Hecht's, are at the V&A Archive of Art and Design.
+  Hans Schleger and later taught at Croydon College of Art. Custody of his Céilí
+  drawings remains unverified; see the [research leads](research/README.md).
 
 ### The competition and the sheets
 
@@ -168,10 +173,10 @@ Install the OTF or TTF on your computer for desktop apps. Stylistic sets are und
 
 - **Dates.** Some sources give 1973 or 1974 dates for the sheets, which is unresolved.
   Those dates may be copyright boilerplate.
-- **Existing digitisation.** The only earlier one is Tuam Uncial, revived commercially
-  as **Jarlath** by Signal Type Foundry: Max Phillips with the Hayes family, 2020–2025,
-  four styles. It is a refined interpretation, not a facsimile, so license it for
-  professional Tuam work.
+- **Existing digitisation.** Earlier projects include Tuam Uncial's **Jarlath** revival
+  by Signal Type Foundry and the Céilí-based **Caolchló GC** (2025). They are recorded
+  for historical context in the [source register](research/source-register.json),
+  and are not design references for the original-source reconstruction.
 
 > **Sources and caveat.** This environment could run web searches but could not open
 > pages or download images (network policy). The facts above come from search-result

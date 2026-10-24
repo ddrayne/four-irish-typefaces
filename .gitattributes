@@ -1,0 +1,2 @@
+# Preserve research artifact hashes across Windows and Unix checkouts.
+research/** text=auto eol=lf

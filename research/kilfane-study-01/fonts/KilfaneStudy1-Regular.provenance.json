@@ -1,0 +1,1830 @@
+{
+  "space": [
+    "made",
+    "word space"
+  ],
+  "A": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "B": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source B: NIVAL Kilfane-alphabet-specimen.jpg, region [223, 125, 316, 247]; research reconstruction"
+  ],
+  "C": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]; research reconstruction"
+  ],
+  "D": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source D: NIVAL Kilfane-alphabet-specimen.jpg, region [416, 125, 525, 245]; research reconstruction"
+  ],
+  "E": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "F": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source F: NIVAL Kilfane-alphabet-specimen.jpg, region [639, 128, 726, 246]; research reconstruction"
+  ],
+  "G": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source G: NIVAL Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]; research reconstruction"
+  ],
+  "H": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source H: NIVAL Kilfane-alphabet-specimen.jpg, region [830, 128, 931, 246]; research reconstruction"
+  ],
+  "I": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "J": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source J: NIVAL Kilfane-alphabet-specimen.jpg, region [978, 129, 1034, 263]; research reconstruction"
+  ],
+  "K": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source K: NIVAL Kilfane-alphabet-specimen.jpg, region [1043, 127, 1153, 248]; research reconstruction"
+  ],
+  "L": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source L: NIVAL Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]; research reconstruction"
+  ],
+  "M": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source M: NIVAL Kilfane-alphabet-specimen.jpg, region [180, 284, 335, 406]; research reconstruction"
+  ],
+  "N": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source N: NIVAL Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]; research reconstruction"
+  ],
+  "O": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "P": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source P: NIVAL Kilfane-alphabet-specimen.jpg, region [556, 285, 646, 405]; research reconstruction"
+  ],
+  "Q": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source Q: NIVAL Kilfane-alphabet-specimen.jpg, region [648, 284, 763, 415]; research reconstruction"
+  ],
+  "R": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source R: NIVAL Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]; research reconstruction"
+  ],
+  "S": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]; research reconstruction"
+  ],
+  "T": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "U": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "V": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source V: NIVAL Kilfane-alphabet-specimen.jpg, region [351, 443, 451, 566]; research reconstruction"
+  ],
+  "W": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]; research reconstruction"
+  ],
+  "X": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source X: NIVAL Kilfane-alphabet-specimen.jpg, region [603, 440, 710, 566]; research reconstruction"
+  ],
+  "Y": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]; research reconstruction"
+  ],
+  "Z": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]; research reconstruction"
+  ],
+  "a": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "b": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source b: NIVAL Kilfane-alphabet-specimen.jpg, region [177, 608, 266, 729]; research reconstruction"
+  ],
+  "c": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]; research reconstruction"
+  ],
+  "d": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source d: NIVAL Kilfane-alphabet-specimen.jpg, region [349, 616, 429, 728]; research reconstruction"
+  ],
+  "e": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "f": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source f: NIVAL Kilfane-alphabet-specimen.jpg, region [512, 640, 587, 750]; research reconstruction"
+  ],
+  "g": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]; research reconstruction"
+  ],
+  "h": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source h: NIVAL Kilfane-alphabet-specimen.jpg, region [658, 611, 748, 727]; research reconstruction"
+  ],
+  "i": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source i: NIVAL Kilfane-alphabet-specimen.jpg, region [743, 611, 777, 727]; research reconstruction"
+  ],
+  "j": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source j: NIVAL Kilfane-alphabet-specimen.jpg, region [761, 612, 816, 753]; research reconstruction"
+  ],
+  "k": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "l": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "m": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source m: NIVAL Kilfane-alphabet-specimen.jpg, region [946, 643, 1072, 728]; research reconstruction"
+  ],
+  "n": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]; research reconstruction"
+  ],
+  "o": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "p": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source p: NIVAL Kilfane-alphabet-specimen.jpg, region [198, 779, 283, 895]; research reconstruction"
+  ],
+  "q": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source q: NIVAL Kilfane-alphabet-specimen.jpg, region [292, 780, 377, 895]; research reconstruction"
+  ],
+  "r": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]; research reconstruction"
+  ],
+  "s": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]; research reconstruction"
+  ],
+  "t": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]; research reconstruction"
+  ],
+  "u": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "v": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source v: NIVAL competition-advert-2.jpg, region [1182, 1790, 1261, 1881]; research reconstruction"
+  ],
+  "w": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]; research reconstruction"
+  ],
+  "x": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source x: NIVAL Kilfane-alphabet-specimen.jpg, region [905, 779, 987, 868]; research reconstruction"
+  ],
+  "y": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]; research reconstruction"
+  ],
+  "z": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]; research reconstruction"
+  ],
+  "one": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source one: NIVAL Kilfane-alphabet-specimen.jpg, region [238, 946, 279, 1066]; research reconstruction"
+  ],
+  "two": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source two: NIVAL Kilfane-alphabet-specimen.jpg, region [292, 945, 369, 1065]; research reconstruction"
+  ],
+  "three": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source three: NIVAL Kilfane-alphabet-specimen.jpg, region [377, 947, 449, 1066]; research reconstruction"
+  ],
+  "four": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source four: NIVAL Kilfane-alphabet-specimen.jpg, region [455, 947, 535, 1065]; research reconstruction"
+  ],
+  "five": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source five: NIVAL Kilfane-alphabet-specimen.jpg, region [539, 947, 611, 1066]; research reconstruction"
+  ],
+  "six": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source six: NIVAL Kilfane-alphabet-specimen.jpg, region [622, 946, 701, 1066]; research reconstruction"
+  ],
+  "seven": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source seven: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 947, 775, 1064]; research reconstruction"
+  ],
+  "eight": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source eight: NIVAL Kilfane-alphabet-specimen.jpg, region [777, 944, 850, 1067]; research reconstruction"
+  ],
+  "nine": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source nine: NIVAL Kilfane-alphabet-specimen.jpg, region [860, 947, 936, 1066]; research reconstruction"
+  ],
+  "zero": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source zero: NIVAL Kilfane-alphabet-specimen.jpg, region [949, 945, 1031, 1066]; research reconstruction"
+  ],
+  "ampersand": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source ampersand: NIVAL Kilfane-alphabet-specimen.jpg, region [298, 1105, 398, 1224]; research reconstruction"
+  ],
+  "question": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source question: NIVAL Kilfane-alphabet-specimen.jpg, region [398, 1105, 464, 1223]; research reconstruction"
+  ],
+  "exclam": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source exclam: NIVAL Kilfane-alphabet-specimen.jpg, region [475, 1107, 496, 1222]; research reconstruction"
+  ],
+  "sterling": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source sterling: NIVAL Kilfane-alphabet-specimen.jpg, region [504, 1107, 571, 1223]; research reconstruction"
+  ],
+  "dollar": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source dollar: NIVAL Kilfane-alphabet-specimen.jpg, region [575, 1091, 644, 1237]; research reconstruction"
+  ],
+  "parenleft": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source parenleft: NIVAL Kilfane-alphabet-specimen.jpg, region [658, 1091, 698, 1237]; research reconstruction"
+  ],
+  "parenright": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source parenright: NIVAL Kilfane-alphabet-specimen.jpg, region [713, 1089, 749, 1235]; research reconstruction"
+  ],
+  "A.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "A.alt2": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "D.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source D.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [340, 1291, 452, 1423]; research reconstruction"
+  ],
+  "S.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]; research reconstruction"
+  ],
+  "T.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]; research reconstruction"
+  ],
+  "Y.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]; research reconstruction"
+  ],
+  "d.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source d.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [734, 1303, 816, 1422]; research reconstruction"
+  ],
+  "f.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source f.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [826, 1303, 895, 1422]; research reconstruction"
+  ],
+  "g.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]; research reconstruction"
+  ],
+  "l.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]; research reconstruction"
+  ],
+  "t.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]; research reconstruction"
+  ],
+  "y.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]; research reconstruction"
+  ],
+  "period": [
+    "made",
+    "the dot of the NIVAL specimen’s semicolon; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "comma": [
+    "made",
+    "the comma of the NIVAL specimen’s semicolon; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "quoteright": [
+    "made",
+    "the comma, raised; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "quoteleft": [
+    "made",
+    "the comma, raised and turned; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "quotedblleft": [
+    "made",
+    "two quotes; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "quotedblright": [
+    "made",
+    "two quotes; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "quotesingle": [
+    "made",
+    "wedge drawn to match"
+  ],
+  "quotedbl": [
+    "made",
+    "two wedges"
+  ],
+  "colon": [
+    "made",
+    "two of the dots of the NIVAL specimen’s semicolon; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "semicolon": [
+    "rebuilt",
+    "the comma of the NIVAL specimen’s semicolon, with the colon’s upper dot; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "ellipsis": [
+    "made",
+    "three periods; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "hyphen": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "endash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "emdash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "slash": [
+    "made",
+    "drawn to match"
+  ],
+  "uni204A": [
+    "made",
+    "the NIVAL specimen’s 7 at x-height, as in Gaelic type; source seven: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 947, 775, 1064]; research reconstruction"
+  ],
+  "Euro": [
+    "made",
+    "the NIVAL specimen’s C with two bars; source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]; research reconstruction"
+  ],
+  "dotlessi": [
+    "made",
+    "the NIVAL specimen’s i without its dot; source i: NIVAL Kilfane-alphabet-specimen.jpg, region [743, 611, 777, 727]; research reconstruction"
+  ],
+  "dotlessj": [
+    "made",
+    "the NIVAL specimen’s j without its dot; source j: NIVAL Kilfane-alphabet-specimen.jpg, region [761, 612, 816, 753]; research reconstruction"
+  ],
+  "ae": [
+    "made",
+    "a+e"
+  ],
+  "oe": [
+    "made",
+    "o+e"
+  ],
+  "AE": [
+    "made",
+    "A+E"
+  ],
+  "OE": [
+    "made",
+    "O+E"
+  ],
+  "oslash": [
+    "made",
+    "o+stroke"
+  ],
+  "Oslash": [
+    "made",
+    "O+stroke"
+  ],
+  "dcroat": [
+    "made",
+    "d+bar"
+  ],
+  "eth": [
+    "made",
+    "d+slanted bar"
+  ],
+  "Dcroat": [
+    "made",
+    "D+bar"
+  ],
+  "Eth": [
+    "made",
+    "D+bar"
+  ],
+  "hbar": [
+    "made",
+    "h+bar"
+  ],
+  "Hbar": [
+    "made",
+    "H+bar"
+  ],
+  "lslash": [
+    "made",
+    "l+slash"
+  ],
+  "Lslash": [
+    "made",
+    "L+slash"
+  ],
+  "tbar": [
+    "made",
+    "t+bar"
+  ],
+  "Tbar": [
+    "made",
+    "T+bar"
+  ],
+  "eng": [
+    "made",
+    "n+hook"
+  ],
+  "Eng": [
+    "made",
+    "N+hook"
+  ],
+  "thorn": [
+    "made",
+    "p+ascender"
+  ],
+  "Thorn": [
+    "made",
+    "P stem + lowered bowl"
+  ],
+  "ij": [
+    "made",
+    "i+j"
+  ],
+  "IJ": [
+    "made",
+    "I+J"
+  ],
+  "ldot": [
+    "made",
+    "l+dot"
+  ],
+  "Ldot": [
+    "made",
+    "L+dot"
+  ],
+  "kgreenlandic": [
+    "made",
+    "k trimmed"
+  ],
+  "napostrophe": [
+    "made",
+    "'+n"
+  ],
+  "longs": [
+    "made",
+    "f without crossbar"
+  ],
+  "germandbls": [
+    "made",
+    "long s + s ligature"
+  ],
+  "Agrave": [
+    "composite",
+    "A + grave made from the sheet’s acute; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Agrave.alt1": [
+    "composite",
+    "A.alt1 + grave made from the sheet’s acute; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Agrave.alt2": [
+    "composite",
+    "A.alt2 + grave made from the sheet’s acute; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "Aacute": [
+    "composite",
+    "A + the sheet’s own acute; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Aacute.alt1": [
+    "composite",
+    "A.alt1 + the sheet’s own acute; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Aacute.alt2": [
+    "composite",
+    "A.alt2 + the sheet’s own acute; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "Acircumflex": [
+    "composite",
+    "A + the sheet’s own circumflex; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Acircumflex.alt1": [
+    "composite",
+    "A.alt1 + the sheet’s own circumflex; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Acircumflex.alt2": [
+    "composite",
+    "A.alt2 + the sheet’s own circumflex; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "Atilde": [
+    "composite",
+    "A + the sheet’s own tilde; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Atilde.alt1": [
+    "composite",
+    "A.alt1 + the sheet’s own tilde; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Atilde.alt2": [
+    "composite",
+    "A.alt2 + the sheet’s own tilde; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "Adieresis": [
+    "composite",
+    "A + the sheet’s own diaeresis; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Adieresis.alt1": [
+    "composite",
+    "A.alt1 + the sheet’s own diaeresis; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Adieresis.alt2": [
+    "composite",
+    "A.alt2 + the sheet’s own diaeresis; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "Aring": [
+    "composite",
+    "A + the sheet’s own ring; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Aring.alt1": [
+    "composite",
+    "A.alt1 + the sheet’s own ring; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Aring.alt2": [
+    "composite",
+    "A.alt2 + the sheet’s own ring; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "Ccedilla": [
+    "composite",
+    "C + cedilla drawn to match; source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]; research reconstruction"
+  ],
+  "Egrave": [
+    "composite",
+    "E + grave made from the sheet’s acute; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "Eacute": [
+    "composite",
+    "E + the sheet’s own acute; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "Ecircumflex": [
+    "composite",
+    "E + the sheet’s own circumflex; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "Edieresis": [
+    "composite",
+    "E + the sheet’s own diaeresis; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "Igrave": [
+    "composite",
+    "I + grave made from the sheet’s acute; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "Iacute": [
+    "composite",
+    "I + the sheet’s own acute; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "Icircumflex": [
+    "composite",
+    "I + the sheet’s own circumflex; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "Idieresis": [
+    "composite",
+    "I + the sheet’s own diaeresis; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "Ntilde": [
+    "composite",
+    "N + the sheet’s own tilde; source N: NIVAL Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]; research reconstruction"
+  ],
+  "Ograve": [
+    "composite",
+    "O + grave made from the sheet’s acute; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "Oacute": [
+    "composite",
+    "O + the sheet’s own acute; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "Ocircumflex": [
+    "composite",
+    "O + the sheet’s own circumflex; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "Otilde": [
+    "composite",
+    "O + the sheet’s own tilde; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "Odieresis": [
+    "composite",
+    "O + the sheet’s own diaeresis; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "Ugrave": [
+    "composite",
+    "U + grave made from the sheet’s acute"
+  ],
+  "Uacute": [
+    "composite",
+    "U + the sheet’s own acute"
+  ],
+  "Ucircumflex": [
+    "composite",
+    "U + the sheet’s own circumflex"
+  ],
+  "Udieresis": [
+    "composite",
+    "U + the sheet’s own diaeresis"
+  ],
+  "Yacute": [
+    "composite",
+    "Y + the sheet’s own acute; source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]; research reconstruction"
+  ],
+  "Yacute.alt1": [
+    "composite",
+    "Y.alt1 + the sheet’s own acute; source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]; research reconstruction"
+  ],
+  "agrave": [
+    "composite",
+    "a + grave made from the sheet’s acute; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "aacute": [
+    "composite",
+    "a + the sheet’s own acute; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "acircumflex": [
+    "composite",
+    "a + the sheet’s own circumflex; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "atilde": [
+    "composite",
+    "a + the sheet’s own tilde; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "adieresis": [
+    "composite",
+    "a + the sheet’s own diaeresis; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "aring": [
+    "composite",
+    "a + the sheet’s own ring; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "ccedilla": [
+    "composite",
+    "c + cedilla drawn to match; source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]; research reconstruction"
+  ],
+  "egrave": [
+    "composite",
+    "e + grave made from the sheet’s acute; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "eacute": [
+    "composite",
+    "e + the sheet’s own acute; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "ecircumflex": [
+    "composite",
+    "e + the sheet’s own circumflex; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "edieresis": [
+    "composite",
+    "e + the sheet’s own diaeresis; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "igrave": [
+    "composite",
+    "dotlessi + grave made from the sheet’s acute"
+  ],
+  "iacute": [
+    "composite",
+    "dotlessi + the sheet’s own acute"
+  ],
+  "icircumflex": [
+    "composite",
+    "dotlessi + the sheet’s own circumflex"
+  ],
+  "idieresis": [
+    "composite",
+    "dotlessi + the sheet’s own diaeresis"
+  ],
+  "ntilde": [
+    "composite",
+    "n + the sheet’s own tilde; source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]; research reconstruction"
+  ],
+  "ograve": [
+    "composite",
+    "o + grave made from the sheet’s acute; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "oacute": [
+    "composite",
+    "o + the sheet’s own acute; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "ocircumflex": [
+    "composite",
+    "o + the sheet’s own circumflex; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "otilde": [
+    "composite",
+    "o + the sheet’s own tilde; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "odieresis": [
+    "composite",
+    "o + the sheet’s own diaeresis; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "ugrave": [
+    "composite",
+    "u + grave made from the sheet’s acute; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "uacute": [
+    "composite",
+    "u + the sheet’s own acute; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "ucircumflex": [
+    "composite",
+    "u + the sheet’s own circumflex; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "udieresis": [
+    "composite",
+    "u + the sheet’s own diaeresis; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "yacute": [
+    "composite",
+    "y + the sheet’s own acute; source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]; research reconstruction"
+  ],
+  "yacute.alt1": [
+    "composite",
+    "y.alt1 + the sheet’s own acute; source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]; research reconstruction"
+  ],
+  "ydieresis": [
+    "composite",
+    "y + the sheet’s own diaeresis; source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]; research reconstruction"
+  ],
+  "ydieresis.alt1": [
+    "composite",
+    "y.alt1 + the sheet’s own diaeresis; source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]; research reconstruction"
+  ],
+  "Amacron": [
+    "composite",
+    "A + the sheet’s own macron; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Amacron.alt1": [
+    "composite",
+    "A.alt1 + the sheet’s own macron; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Amacron.alt2": [
+    "composite",
+    "A.alt2 + the sheet’s own macron; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "amacron": [
+    "composite",
+    "a + the sheet’s own macron; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "Abreve": [
+    "composite",
+    "A + breve made from the sheet’s ring; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Abreve.alt1": [
+    "composite",
+    "A.alt1 + breve made from the sheet’s ring; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Abreve.alt2": [
+    "composite",
+    "A.alt2 + breve made from the sheet’s ring; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "abreve": [
+    "composite",
+    "a + breve made from the sheet’s ring; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "Aogonek": [
+    "composite",
+    "A + ogonek drawn to match; source A: NIVAL Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]; research reconstruction"
+  ],
+  "Aogonek.alt1": [
+    "composite",
+    "A.alt1 + ogonek drawn to match; source A.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]; research reconstruction"
+  ],
+  "Aogonek.alt2": [
+    "composite",
+    "A.alt2 + ogonek drawn to match; source A.alt2: NIVAL Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]; research reconstruction"
+  ],
+  "aogonek": [
+    "composite",
+    "a + ogonek drawn to match; source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]; research reconstruction"
+  ],
+  "Cacute": [
+    "composite",
+    "C + the sheet’s own acute; source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]; research reconstruction"
+  ],
+  "cacute": [
+    "composite",
+    "c + the sheet’s own acute; source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]; research reconstruction"
+  ],
+  "Ccircumflex": [
+    "composite",
+    "C + the sheet’s own circumflex; source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]; research reconstruction"
+  ],
+  "ccircumflex": [
+    "composite",
+    "c + the sheet’s own circumflex; source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]; research reconstruction"
+  ],
+  "Cdotaccent": [
+    "composite",
+    "C + the sheet’s own dot; source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]; research reconstruction"
+  ],
+  "cdotaccent": [
+    "composite",
+    "c + the sheet’s own dot; source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]; research reconstruction"
+  ],
+  "Ccaron": [
+    "composite",
+    "C + the sheet’s own caron; source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]; research reconstruction"
+  ],
+  "ccaron": [
+    "composite",
+    "c + the sheet’s own caron; source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]; research reconstruction"
+  ],
+  "Dcaron": [
+    "composite",
+    "D + the sheet’s own caron; source D: NIVAL Kilfane-alphabet-specimen.jpg, region [416, 125, 525, 245]; research reconstruction"
+  ],
+  "Dcaron.alt1": [
+    "composite",
+    "D.alt1 + the sheet’s own caron; source D.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [340, 1291, 452, 1423]; research reconstruction"
+  ],
+  "dcaron": [
+    "composite",
+    "d + apostrophe caron drawn to match; source d: NIVAL Kilfane-alphabet-specimen.jpg, region [349, 616, 429, 728]; research reconstruction"
+  ],
+  "dcaron.alt1": [
+    "composite",
+    "d.alt1 + apostrophe caron drawn to match; source d.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [734, 1303, 816, 1422]; research reconstruction"
+  ],
+  "Emacron": [
+    "composite",
+    "E + the sheet’s own macron; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "emacron": [
+    "composite",
+    "e + the sheet’s own macron; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "Ebreve": [
+    "composite",
+    "E + breve made from the sheet’s ring; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "ebreve": [
+    "composite",
+    "e + breve made from the sheet’s ring; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "Edotaccent": [
+    "composite",
+    "E + the sheet’s own dot; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "edotaccent": [
+    "composite",
+    "e + the sheet’s own dot; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "Eogonek": [
+    "composite",
+    "E + ogonek drawn to match; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "eogonek": [
+    "composite",
+    "e + ogonek drawn to match; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "Ecaron": [
+    "composite",
+    "E + the sheet’s own caron; source E: NIVAL Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]; research reconstruction"
+  ],
+  "ecaron": [
+    "composite",
+    "e + the sheet’s own caron; source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]; research reconstruction"
+  ],
+  "Gcircumflex": [
+    "composite",
+    "G + the sheet’s own circumflex; source G: NIVAL Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]; research reconstruction"
+  ],
+  "gcircumflex": [
+    "composite",
+    "g + the sheet’s own circumflex; source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]; research reconstruction"
+  ],
+  "gcircumflex.alt1": [
+    "composite",
+    "g.alt1 + the sheet’s own circumflex; source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]; research reconstruction"
+  ],
+  "Gbreve": [
+    "composite",
+    "G + breve made from the sheet’s ring; source G: NIVAL Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]; research reconstruction"
+  ],
+  "gbreve": [
+    "composite",
+    "g + breve made from the sheet’s ring; source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]; research reconstruction"
+  ],
+  "gbreve.alt1": [
+    "composite",
+    "g.alt1 + breve made from the sheet’s ring; source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]; research reconstruction"
+  ],
+  "Gdotaccent": [
+    "composite",
+    "G + the sheet’s own dot; source G: NIVAL Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]; research reconstruction"
+  ],
+  "gdotaccent": [
+    "composite",
+    "g + the sheet’s own dot; source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]; research reconstruction"
+  ],
+  "gdotaccent.alt1": [
+    "composite",
+    "g.alt1 + the sheet’s own dot; source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]; research reconstruction"
+  ],
+  "uni0122": [
+    "composite",
+    "G + comma below drawn to match; source G: NIVAL Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]; research reconstruction"
+  ],
+  "uni0123": [
+    "composite",
+    "g + turned comma drawn to match; source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]; research reconstruction"
+  ],
+  "uni0123.alt1": [
+    "composite",
+    "g.alt1 + turned comma drawn to match; source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]; research reconstruction"
+  ],
+  "Hcircumflex": [
+    "composite",
+    "H + the sheet’s own circumflex; source H: NIVAL Kilfane-alphabet-specimen.jpg, region [830, 128, 931, 246]; research reconstruction"
+  ],
+  "hcircumflex": [
+    "composite",
+    "h + the sheet’s own circumflex; source h: NIVAL Kilfane-alphabet-specimen.jpg, region [658, 611, 748, 727]; research reconstruction"
+  ],
+  "Itilde": [
+    "composite",
+    "I + the sheet’s own tilde; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "itilde": [
+    "composite",
+    "dotlessi + the sheet’s own tilde"
+  ],
+  "Imacron": [
+    "composite",
+    "I + the sheet’s own macron; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "imacron": [
+    "composite",
+    "dotlessi + the sheet’s own macron"
+  ],
+  "Ibreve": [
+    "composite",
+    "I + breve made from the sheet’s ring; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "ibreve": [
+    "composite",
+    "dotlessi + breve made from the sheet’s ring"
+  ],
+  "Iogonek": [
+    "composite",
+    "I + ogonek drawn to match; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "iogonek": [
+    "composite",
+    "i + ogonek drawn to match; source i: NIVAL Kilfane-alphabet-specimen.jpg, region [743, 611, 777, 727]; research reconstruction"
+  ],
+  "Idotaccent": [
+    "composite",
+    "I + the sheet’s own dot; source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]; research reconstruction"
+  ],
+  "Jcircumflex": [
+    "composite",
+    "J + the sheet’s own circumflex; source J: NIVAL Kilfane-alphabet-specimen.jpg, region [978, 129, 1034, 263]; research reconstruction"
+  ],
+  "jcircumflex": [
+    "composite",
+    "dotlessj + the sheet’s own circumflex"
+  ],
+  "uni0136": [
+    "composite",
+    "K + comma below drawn to match; source K: NIVAL Kilfane-alphabet-specimen.jpg, region [1043, 127, 1153, 248]; research reconstruction"
+  ],
+  "uni0137": [
+    "composite",
+    "k + comma below drawn to match"
+  ],
+  "Lacute": [
+    "composite",
+    "L + the sheet’s own acute; source L: NIVAL Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]; research reconstruction"
+  ],
+  "lacute": [
+    "composite",
+    "l + the sheet’s own acute"
+  ],
+  "lacute.alt1": [
+    "composite",
+    "l.alt1 + the sheet’s own acute; source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]; research reconstruction"
+  ],
+  "uni013B": [
+    "composite",
+    "L + comma below drawn to match; source L: NIVAL Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]; research reconstruction"
+  ],
+  "uni013C": [
+    "composite",
+    "l + comma below drawn to match"
+  ],
+  "uni013C.alt1": [
+    "composite",
+    "l.alt1 + comma below drawn to match; source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]; research reconstruction"
+  ],
+  "Lcaron": [
+    "composite",
+    "L + apostrophe caron drawn to match; source L: NIVAL Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]; research reconstruction"
+  ],
+  "lcaron": [
+    "composite",
+    "l + apostrophe caron drawn to match"
+  ],
+  "lcaron.alt1": [
+    "composite",
+    "l.alt1 + apostrophe caron drawn to match; source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]; research reconstruction"
+  ],
+  "Nacute": [
+    "composite",
+    "N + the sheet’s own acute; source N: NIVAL Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]; research reconstruction"
+  ],
+  "nacute": [
+    "composite",
+    "n + the sheet’s own acute; source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]; research reconstruction"
+  ],
+  "uni0145": [
+    "composite",
+    "N + comma below drawn to match; source N: NIVAL Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]; research reconstruction"
+  ],
+  "uni0146": [
+    "composite",
+    "n + comma below drawn to match; source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]; research reconstruction"
+  ],
+  "Ncaron": [
+    "composite",
+    "N + the sheet’s own caron; source N: NIVAL Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]; research reconstruction"
+  ],
+  "ncaron": [
+    "composite",
+    "n + the sheet’s own caron; source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]; research reconstruction"
+  ],
+  "Omacron": [
+    "composite",
+    "O + the sheet’s own macron; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "omacron": [
+    "composite",
+    "o + the sheet’s own macron; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "Obreve": [
+    "composite",
+    "O + breve made from the sheet’s ring; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "obreve": [
+    "composite",
+    "o + breve made from the sheet’s ring; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "Ohungarumlaut": [
+    "composite",
+    "O + double acute made from the sheet’s acute; source O: NIVAL Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]; research reconstruction"
+  ],
+  "ohungarumlaut": [
+    "composite",
+    "o + double acute made from the sheet’s acute; source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]; research reconstruction"
+  ],
+  "Racute": [
+    "composite",
+    "R + the sheet’s own acute; source R: NIVAL Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]; research reconstruction"
+  ],
+  "racute": [
+    "composite",
+    "r + the sheet’s own acute; source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]; research reconstruction"
+  ],
+  "uni0156": [
+    "composite",
+    "R + comma below drawn to match; source R: NIVAL Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]; research reconstruction"
+  ],
+  "uni0157": [
+    "composite",
+    "r + comma below drawn to match; source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]; research reconstruction"
+  ],
+  "Rcaron": [
+    "composite",
+    "R + the sheet’s own caron; source R: NIVAL Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]; research reconstruction"
+  ],
+  "rcaron": [
+    "composite",
+    "r + the sheet’s own caron; source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]; research reconstruction"
+  ],
+  "Sacute": [
+    "composite",
+    "S + the sheet’s own acute; source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]; research reconstruction"
+  ],
+  "Sacute.alt1": [
+    "composite",
+    "S.alt1 + the sheet’s own acute; source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]; research reconstruction"
+  ],
+  "sacute": [
+    "composite",
+    "s + the sheet’s own acute; source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]; research reconstruction"
+  ],
+  "Scircumflex": [
+    "composite",
+    "S + the sheet’s own circumflex; source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]; research reconstruction"
+  ],
+  "Scircumflex.alt1": [
+    "composite",
+    "S.alt1 + the sheet’s own circumflex; source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]; research reconstruction"
+  ],
+  "scircumflex": [
+    "composite",
+    "s + the sheet’s own circumflex; source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]; research reconstruction"
+  ],
+  "Scedilla": [
+    "composite",
+    "S + cedilla drawn to match; source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]; research reconstruction"
+  ],
+  "Scedilla.alt1": [
+    "composite",
+    "S.alt1 + cedilla drawn to match; source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]; research reconstruction"
+  ],
+  "scedilla": [
+    "composite",
+    "s + cedilla drawn to match; source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]; research reconstruction"
+  ],
+  "Scaron": [
+    "composite",
+    "S + the sheet’s own caron; source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]; research reconstruction"
+  ],
+  "Scaron.alt1": [
+    "composite",
+    "S.alt1 + the sheet’s own caron; source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]; research reconstruction"
+  ],
+  "scaron": [
+    "composite",
+    "s + the sheet’s own caron; source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]; research reconstruction"
+  ],
+  "uni0162": [
+    "composite",
+    "T + cedilla drawn to match"
+  ],
+  "uni0162.alt1": [
+    "composite",
+    "T.alt1 + cedilla drawn to match; source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]; research reconstruction"
+  ],
+  "uni0163": [
+    "composite",
+    "t + cedilla drawn to match; source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]; research reconstruction"
+  ],
+  "uni0163.alt1": [
+    "composite",
+    "t.alt1 + cedilla drawn to match; source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]; research reconstruction"
+  ],
+  "Tcaron": [
+    "composite",
+    "T + the sheet’s own caron"
+  ],
+  "Tcaron.alt1": [
+    "composite",
+    "T.alt1 + the sheet’s own caron; source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]; research reconstruction"
+  ],
+  "tcaron": [
+    "composite",
+    "t + the sheet’s own caron; source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]; research reconstruction"
+  ],
+  "tcaron.alt1": [
+    "composite",
+    "t.alt1 + apostrophe caron drawn to match; source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]; research reconstruction"
+  ],
+  "Utilde": [
+    "composite",
+    "U + the sheet’s own tilde"
+  ],
+  "utilde": [
+    "composite",
+    "u + the sheet’s own tilde; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "Umacron": [
+    "composite",
+    "U + the sheet’s own macron"
+  ],
+  "umacron": [
+    "composite",
+    "u + the sheet’s own macron; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "Ubreve": [
+    "composite",
+    "U + breve made from the sheet’s ring"
+  ],
+  "ubreve": [
+    "composite",
+    "u + breve made from the sheet’s ring; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "Uring": [
+    "composite",
+    "U + the sheet’s own ring"
+  ],
+  "uring": [
+    "composite",
+    "u + the sheet’s own ring; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "Uhungarumlaut": [
+    "composite",
+    "U + double acute made from the sheet’s acute"
+  ],
+  "uhungarumlaut": [
+    "composite",
+    "u + double acute made from the sheet’s acute; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "Uogonek": [
+    "composite",
+    "U + ogonek drawn to match"
+  ],
+  "uogonek": [
+    "composite",
+    "u + ogonek drawn to match; source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]; research reconstruction"
+  ],
+  "Wcircumflex": [
+    "composite",
+    "W + the sheet’s own circumflex; source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]; research reconstruction"
+  ],
+  "wcircumflex": [
+    "composite",
+    "w + the sheet’s own circumflex; source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]; research reconstruction"
+  ],
+  "Ycircumflex": [
+    "composite",
+    "Y + the sheet’s own circumflex; source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]; research reconstruction"
+  ],
+  "Ycircumflex.alt1": [
+    "composite",
+    "Y.alt1 + the sheet’s own circumflex; source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]; research reconstruction"
+  ],
+  "ycircumflex": [
+    "composite",
+    "y + the sheet’s own circumflex; source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]; research reconstruction"
+  ],
+  "ycircumflex.alt1": [
+    "composite",
+    "y.alt1 + the sheet’s own circumflex; source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]; research reconstruction"
+  ],
+  "Ydieresis": [
+    "composite",
+    "Y + the sheet’s own diaeresis; source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]; research reconstruction"
+  ],
+  "Ydieresis.alt1": [
+    "composite",
+    "Y.alt1 + the sheet’s own diaeresis; source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]; research reconstruction"
+  ],
+  "Zacute": [
+    "composite",
+    "Z + the sheet’s own acute; source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]; research reconstruction"
+  ],
+  "zacute": [
+    "composite",
+    "z + the sheet’s own acute; source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]; research reconstruction"
+  ],
+  "Zdotaccent": [
+    "composite",
+    "Z + the sheet’s own dot; source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]; research reconstruction"
+  ],
+  "zdotaccent": [
+    "composite",
+    "z + the sheet’s own dot; source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]; research reconstruction"
+  ],
+  "Zcaron": [
+    "composite",
+    "Z + the sheet’s own caron; source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]; research reconstruction"
+  ],
+  "zcaron": [
+    "composite",
+    "z + the sheet’s own caron; source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]; research reconstruction"
+  ],
+  "uni0218": [
+    "composite",
+    "S + comma below drawn to match; source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]; research reconstruction"
+  ],
+  "uni0218.alt1": [
+    "composite",
+    "S.alt1 + comma below drawn to match; source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]; research reconstruction"
+  ],
+  "uni0219": [
+    "composite",
+    "s + comma below drawn to match; source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]; research reconstruction"
+  ],
+  "uni021A": [
+    "composite",
+    "T + comma below drawn to match"
+  ],
+  "uni021A.alt1": [
+    "composite",
+    "T.alt1 + comma below drawn to match; source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]; research reconstruction"
+  ],
+  "uni021B": [
+    "composite",
+    "t + comma below drawn to match; source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]; research reconstruction"
+  ],
+  "uni021B.alt1": [
+    "composite",
+    "t.alt1 + comma below drawn to match; source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]; research reconstruction"
+  ],
+  "uni1E02": [
+    "composite",
+    "B + the sheet’s own dot; source B: NIVAL Kilfane-alphabet-specimen.jpg, region [223, 125, 316, 247]; research reconstruction"
+  ],
+  "uni1E03": [
+    "composite",
+    "b + the sheet’s own dot; source b: NIVAL Kilfane-alphabet-specimen.jpg, region [177, 608, 266, 729]; research reconstruction"
+  ],
+  "uni1E0A": [
+    "composite",
+    "D + the sheet’s own dot; source D: NIVAL Kilfane-alphabet-specimen.jpg, region [416, 125, 525, 245]; research reconstruction"
+  ],
+  "uni1E0A.alt1": [
+    "composite",
+    "D.alt1 + the sheet’s own dot; source D.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [340, 1291, 452, 1423]; research reconstruction"
+  ],
+  "uni1E0B": [
+    "composite",
+    "d + the sheet’s own dot; source d: NIVAL Kilfane-alphabet-specimen.jpg, region [349, 616, 429, 728]; research reconstruction"
+  ],
+  "uni1E0B.alt1": [
+    "composite",
+    "d.alt1 + the sheet’s own dot; source d.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [734, 1303, 816, 1422]; research reconstruction"
+  ],
+  "uni1E1E": [
+    "composite",
+    "F + the sheet’s own dot; source F: NIVAL Kilfane-alphabet-specimen.jpg, region [639, 128, 726, 246]; research reconstruction"
+  ],
+  "uni1E1F": [
+    "composite",
+    "f + the sheet’s own dot; source f: NIVAL Kilfane-alphabet-specimen.jpg, region [512, 640, 587, 750]; research reconstruction"
+  ],
+  "uni1E1F.alt1": [
+    "composite",
+    "f.alt1 + the sheet’s own dot; source f.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [826, 1303, 895, 1422]; research reconstruction"
+  ],
+  "uni1E40": [
+    "composite",
+    "M + the sheet’s own dot; source M: NIVAL Kilfane-alphabet-specimen.jpg, region [180, 284, 335, 406]; research reconstruction"
+  ],
+  "uni1E41": [
+    "composite",
+    "m + the sheet’s own dot; source m: NIVAL Kilfane-alphabet-specimen.jpg, region [946, 643, 1072, 728]; research reconstruction"
+  ],
+  "uni1E56": [
+    "composite",
+    "P + the sheet’s own dot; source P: NIVAL Kilfane-alphabet-specimen.jpg, region [556, 285, 646, 405]; research reconstruction"
+  ],
+  "uni1E57": [
+    "composite",
+    "p + the sheet’s own dot; source p: NIVAL Kilfane-alphabet-specimen.jpg, region [198, 779, 283, 895]; research reconstruction"
+  ],
+  "uni1E60": [
+    "composite",
+    "S + the sheet’s own dot; source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]; research reconstruction"
+  ],
+  "uni1E60.alt1": [
+    "composite",
+    "S.alt1 + the sheet’s own dot; source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]; research reconstruction"
+  ],
+  "uni1E61": [
+    "composite",
+    "s + the sheet’s own dot; source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]; research reconstruction"
+  ],
+  "uni1E6A": [
+    "composite",
+    "T + the sheet’s own dot"
+  ],
+  "uni1E6A.alt1": [
+    "composite",
+    "T.alt1 + the sheet’s own dot; source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]; research reconstruction"
+  ],
+  "uni1E6B": [
+    "composite",
+    "t + the sheet’s own dot; source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]; research reconstruction"
+  ],
+  "uni1E6B.alt1": [
+    "composite",
+    "t.alt1 + the sheet’s own dot; source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]; research reconstruction"
+  ],
+  "Wgrave": [
+    "composite",
+    "W + grave made from the sheet’s acute; source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]; research reconstruction"
+  ],
+  "wgrave": [
+    "composite",
+    "w + grave made from the sheet’s acute; source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]; research reconstruction"
+  ],
+  "Wacute": [
+    "composite",
+    "W + the sheet’s own acute; source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]; research reconstruction"
+  ],
+  "wacute": [
+    "composite",
+    "w + the sheet’s own acute; source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]; research reconstruction"
+  ],
+  "Wdieresis": [
+    "composite",
+    "W + the sheet’s own diaeresis; source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]; research reconstruction"
+  ],
+  "wdieresis": [
+    "composite",
+    "w + the sheet’s own diaeresis; source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]; research reconstruction"
+  ],
+  "Ygrave": [
+    "composite",
+    "Y + grave made from the sheet’s acute; source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]; research reconstruction"
+  ],
+  "Ygrave.alt1": [
+    "composite",
+    "Y.alt1 + grave made from the sheet’s acute; source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]; research reconstruction"
+  ],
+  "ygrave": [
+    "composite",
+    "y + grave made from the sheet’s acute; source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]; research reconstruction"
+  ],
+  "ygrave.alt1": [
+    "composite",
+    "y.alt1 + grave made from the sheet’s acute; source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]; research reconstruction"
+  ],
+  "plus": [
+    "made",
+    "bars"
+  ],
+  "minus": [
+    "made",
+    "bar"
+  ],
+  "equal": [
+    "made",
+    "bars"
+  ],
+  "multiply": [
+    "made",
+    "rotated plus"
+  ],
+  "divide": [
+    "made",
+    "bar + dots"
+  ],
+  "plusminus": [
+    "made",
+    "plus over bar"
+  ],
+  "less": [
+    "made",
+    "chevron"
+  ],
+  "greater": [
+    "made",
+    "chevron"
+  ],
+  "lessequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "greaterequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "notequal": [
+    "made",
+    "equal + slash"
+  ],
+  "approxequal": [
+    "made",
+    "two tildes"
+  ],
+  "logicalnot": [
+    "made",
+    "bar + drop"
+  ],
+  "numbersign": [
+    "made",
+    "sheared grid"
+  ],
+  "percent": [
+    "made",
+    "scaled zeros + slash"
+  ],
+  "perthousand": [
+    "made",
+    "percent + zero"
+  ],
+  "asterisk": [
+    "made",
+    "five arms"
+  ],
+  "at": [
+    "made",
+    "a in a ring"
+  ],
+  "bracketleft": [
+    "made",
+    "stem + arms"
+  ],
+  "bracketright": [
+    "made",
+    "mirror"
+  ],
+  "braceleft": [
+    "made",
+    "stroked curve"
+  ],
+  "braceright": [
+    "made",
+    "mirror"
+  ],
+  "bar": [
+    "made",
+    "rule"
+  ],
+  "brokenbar": [
+    "made",
+    "split rule"
+  ],
+  "backslash": [
+    "made",
+    "mirrored slash"
+  ],
+  "underscore": [
+    "made",
+    "rule"
+  ],
+  "asciicircum": [
+    "made",
+    "circumflex, raised"
+  ],
+  "asciitilde": [
+    "made",
+    "tilde at math axis"
+  ],
+  "exclamdown": [
+    "made",
+    "rotated !"
+  ],
+  "questiondown": [
+    "made",
+    "rotated ?"
+  ],
+  "cent": [
+    "made",
+    "c + bar"
+  ],
+  "yen": [
+    "made",
+    "Y + bars"
+  ],
+  "currency": [
+    "made",
+    "ring + spurs"
+  ],
+  "section": [
+    "made",
+    "two interlaced s"
+  ],
+  "paragraph": [
+    "made",
+    "bowl + two stems"
+  ],
+  "copyright": [
+    "made",
+    "ring + c"
+  ],
+  "registered": [
+    "made",
+    "ring + r"
+  ],
+  "trademark": [
+    "made",
+    "small T + M"
+  ],
+  "degree": [
+    "made",
+    "the sheet's ring"
+  ],
+  "ordfeminine": [
+    "made",
+    "small a + rule"
+  ],
+  "ordmasculine": [
+    "made",
+    "small o + rule"
+  ],
+  "onesuperior": [
+    "made",
+    "small figure"
+  ],
+  "twosuperior": [
+    "made",
+    "small figure"
+  ],
+  "threesuperior": [
+    "made",
+    "small figure"
+  ],
+  "fraction": [
+    "made",
+    "steep slash"
+  ],
+  "onequarter": [
+    "made",
+    "fraction"
+  ],
+  "onehalf": [
+    "made",
+    "fraction"
+  ],
+  "threequarters": [
+    "made",
+    "fraction"
+  ],
+  "mu": [
+    "made",
+    "u + descender"
+  ],
+  "periodcentered": [
+    "made",
+    "raised period"
+  ],
+  "bullet": [
+    "made",
+    "disc"
+  ],
+  "dagger": [
+    "made",
+    "stem + bar"
+  ],
+  "daggerdbl": [
+    "made",
+    "stem + two bars"
+  ],
+  "quotesinglbase": [
+    "made",
+    "comma; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "quotedblbase": [
+    "made",
+    "two commas; source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]; research reconstruction"
+  ],
+  "guilsinglright": [
+    "made",
+    "chevron from the sheet"
+  ],
+  "guilsinglleft": [
+    "made",
+    "chevron from the sheet"
+  ],
+  "guillemotright": [
+    "made",
+    "chevrons from the sheet"
+  ],
+  "guillemotleft": [
+    "made",
+    "chevrons from the sheet"
+  ],
+  "minute": [
+    "made",
+    "slanted wedge"
+  ],
+  "second": [
+    "made",
+    "two wedges"
+  ],
+  "gravecomb": [
+    "mark",
+    "grave made from the sheet’s acute"
+  ],
+  "acutecomb": [
+    "mark",
+    "the sheet’s own acute"
+  ],
+  "uni0302": [
+    "mark",
+    "the sheet’s own circumflex"
+  ],
+  "tildecomb": [
+    "mark",
+    "the sheet’s own tilde"
+  ],
+  "uni0304": [
+    "mark",
+    "the sheet’s own macron"
+  ],
+  "uni0306": [
+    "mark",
+    "breve made from the sheet’s ring"
+  ],
+  "uni0307": [
+    "mark",
+    "the sheet’s own dot"
+  ],
+  "uni0308": [
+    "mark",
+    "the sheet’s own diaeresis"
+  ],
+  "uni030A": [
+    "mark",
+    "the sheet’s own ring"
+  ],
+  "uni030B": [
+    "mark",
+    "double acute made from the sheet’s acute"
+  ],
+  "uni030C": [
+    "mark",
+    "the sheet’s own caron"
+  ],
+  "uni0312": [
+    "mark",
+    "turned comma drawn to match"
+  ],
+  "uni0326": [
+    "mark",
+    "comma below drawn to match"
+  ],
+  "uni0327": [
+    "mark",
+    "cedilla drawn to match"
+  ],
+  "uni0328": [
+    "mark",
+    "ogonek drawn to match"
+  ],
+  "grave": [
+    "made",
+    "spacing grave made from the sheet’s acute"
+  ],
+  "dieresis": [
+    "made",
+    "spacing the sheet’s own diaeresis"
+  ],
+  "macron": [
+    "made",
+    "spacing the sheet’s own macron"
+  ],
+  "acute": [
+    "made",
+    "spacing the sheet’s own acute"
+  ],
+  "cedilla": [
+    "made",
+    "spacing cedilla drawn to match"
+  ],
+  "circumflex": [
+    "made",
+    "spacing the sheet’s own circumflex"
+  ],
+  "caron": [
+    "made",
+    "spacing the sheet’s own caron"
+  ],
+  "breve": [
+    "made",
+    "spacing breve made from the sheet’s ring"
+  ],
+  "dotaccent": [
+    "made",
+    "spacing the sheet’s own dot"
+  ],
+  "ring": [
+    "made",
+    "spacing the sheet’s own ring"
+  ],
+  "ogonek": [
+    "made",
+    "spacing ogonek drawn to match"
+  ],
+  "tilde": [
+    "made",
+    "spacing the sheet’s own tilde"
+  ],
+  "hungarumlaut": [
+    "made",
+    "spacing double acute made from the sheet’s acute"
+  ]
+}
