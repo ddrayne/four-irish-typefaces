@@ -445,6 +445,16 @@ body::after {
 .t-all-rows .mono { display: block; color: var(--ink-2); margin-bottom: 4px; }
 .t-gloss { font-size: var(--s1); color: var(--ink-2); font-style: italic; border-top: 1px solid var(--rule); padding-top: 12px; }
 
+/* ------------------------------------------------------------------ shopfront */
+.shop { padding-bottom: clamp(60px, 8vw, 110px); }
+.shop .sec-ga { color: var(--green-text); }
+.shop-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 16px; }
+.shop-bar .txt { flex: 1 1 220px; }
+.shop-bar .swatch { border-color: var(--ink); }
+.shop-bar .swatch[aria-checked="true"] { box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--ink); }
+.shop-street { border-radius: 6px; overflow: hidden; box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .5); }
+.shop-canvas { display: block; width: 100%; }
+
 /* ------------------------------------------------------------------ glyphs */
 .glyphs { background: var(--paper-2); padding-bottom: clamp(60px, 8vw, 110px); }
 .glyphs .sec-ga { color: var(--green-text); }
