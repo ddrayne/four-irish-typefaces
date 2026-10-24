@@ -397,6 +397,35 @@
   </div>
 </section>
 
+<!-- ============================================================ poster -->
+<section class="poster" id="postaer" aria-labelledby="poster-h">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-ga f-carrick" lang="ga">déan póstaer</p>
+      <h2 class="sec-en" id="poster-h">Make a poster</h2>
+      <p class="sec-note">Two inks, as on a risograph: each is its own plate, a little out of register and grainy where the drum ran dry, and where they cross they print a third colour.</p>
+    </header>
+    <div class="poster-grid">
+      <div class="poster-controls">
+        <label class="field"><span>Headline</span><input id="poster-head" type="text" value="Céilí mór anocht" maxlength="40" spellcheck="false" autocomplete="off" data-poster-head></label>
+        <label class="field"><span>Line beneath</span><input id="poster-sub" type="text" value="Halla an pharóiste · a naoi a chlog" maxlength="60" spellcheck="false" autocomplete="off" data-poster-sub></label>
+        <label class="field"><span>Footer</span><input id="poster-foot" type="text" value="Fáilte roimh chách · Admission free" maxlength="60" spellcheck="false" autocomplete="off" data-poster-foot></label>
+        <div class="field-row">
+          <label class="field"><span>First ink's face</span><select id="poster-face-a" data-poster-face-a></select></label>
+          <label class="field"><span>Second ink's face</span><select id="poster-face-b" data-poster-face-b></select></label>
+        </div>
+        <div class="field"><span>Inks</span><div class="swatches" role="radiogroup" aria-label="Inks" data-poster-inks></div></div>
+        <div class="field"><span>Layout</span><div class="t-styles" role="radiogroup" aria-label="Layout" data-poster-layouts></div></div>
+        <div class="poster-actions">
+          <button type="button" class="btn btn-line" data-poster-shift>Print it again</button>
+          <button type="button" class="btn btn-ink" data-poster-save>Save the poster (PNG)</button>
+        </div>
+      </div>
+      <canvas class="poster-canvas" data-poster-canvas aria-label="A two-colour poster"></canvas>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ glyphs -->
 <section class="glyphs" id="litreacha" aria-labelledby="glyphs-h">
   <div class="wrap">

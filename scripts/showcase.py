@@ -396,7 +396,7 @@ def artifact():
     body = re.search(r'<body([^>]*)>(.*?)</body>', html, re.S)
     head = re.sub(r'<meta charset[^>]*>\s*|<meta name="viewport"[^>]*>\s*|<link rel="preload"[^>]*>\s*', '', head)
     head = head.replace('<title>Four Irish Typefaces</title>', '<title>Ceithre Chló</title>')
-    page = head.strip() + '\n' + f'<div id="page-root"{body.group(1)}>' + body.group(2) + '</div>\n'
+    page = head.strip() + '\n' + f'<div id="page-root" data-no-downloads{body.group(1)}>' + body.group(2) + '</div>\n'
     open(os.path.join(dest, 'index.html'), 'w', encoding='utf-8').write(page)
 
     def inline(css_path):
