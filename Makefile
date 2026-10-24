@@ -2,7 +2,7 @@
 PY      ?= .venv/bin/python
 FACES   ?= kilfane tuam carrick ceili
 
-.PHONY: help setup fonts release test validate specimen audit package site trace clean
+.PHONY: help setup fonts release test validate specimen audit package site showcase serve trace clean
 
 help:
 	@grep -E '^[a-z]+:.*## ' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
@@ -30,6 +30,12 @@ package:  ## the release ZIPs, into build/dist
 
 site: package  ## the test page app, into build/app
 	$(PY) scripts/site.py build/app build/fonts
+
+showcase:  ## the showcase website, into build/showcase (and build/showcase-artifact)
+	$(PY) scripts/showcase.py --artifact
+
+serve: showcase  ## build the showcase and serve it at http://localhost:8377
+	cd build/showcase && python3 -m http.server 8377
 
 trace:  ## re-trace sources/traced/*.json from the scan (slow; only for a new scan)
 	$(PY) scripts/trace3.py $(FACES)
