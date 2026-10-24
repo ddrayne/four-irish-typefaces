@@ -3,6 +3,57 @@ import numpy as np
 from scipy import ndimage as ndi
 
 
+def raster_coverage(polys, size, xform, samples=8):
+    """Even-odd area coverage, sampling around integer pixel centres.
+
+    Unlike ImageDraw's inclusive polygon edges, a ten-unit square retains its
+    area. Contours use the same centre-based coordinates as find_contours.
+    Supersampling estimates coverage; it adds no source-image information.
+    """
+    if not isinstance(samples,int) or samples<1:raise ValueError('positive integer samples required')
+    w,h=size;mask=np.zeros((h*samples,w*samples),bool)
+    for polygon in polys:
+        p=np.array([xform(q) for q in polygon],float)
+        if len(p)<3:continue
+        a=p;b=np.roll(p,-1,axis=0)
+        lo=max(0,int(np.ceil((p[:,1].min()+.5)*samples-.5)))
+        hi=min(h*samples,int(np.ceil((p[:,1].max()+.5)*samples-.5)))
+        for iy in range(lo,hi):
+            y=(iy+.5)/samples-.5
+            hit=(a[:,1]>y)!=(b[:,1]>y)
+            aa=a[hit];bb=b[hit]
+            xx=np.sort(aa[:,0]+(y-aa[:,1])*(bb[:,0]-aa[:,0])/(bb[:,1]-aa[:,1]))
+            for left,right in zip(xx[::2],xx[1::2]):
+                x0=max(0,int(np.ceil((left+.5)*samples-.5)))
+                x1=min(w*samples,int(np.ceil((right+.5)*samples-.5)))
+                if x1>x0:mask[iy,x0:x1]^=True
+    return mask.reshape(h,samples,w,samples).mean(axis=(1,3))
+
+
+def contour_topology(field, minimum_area=6):
+    """Counts of substantive outer and counter contours at coverage 0.5."""
+    from skimage import measure
+    positive=negative=0
+    for c in measure.find_contours(np.pad(field,2),.5):
+        area=.5*np.sum(c[:,1]*np.roll(c[:,0],-1)-c[:,0]*np.roll(c[:,1],-1))
+        if abs(area)<minimum_area:continue
+        positive+=area>0;negative+=area<0
+    return int(positive),int(negative)
+
+
+def smooth_preserving_topology(field):
+    """Use the strongest bounded blur that preserves observed components/holes.
+
+    Source openings are evidence, even if later judged reproduction damage. A
+    repair requires an explicit source decision instead of incidental smoothing.
+    """
+    expected=contour_topology(field)
+    for sigma in [.8,.6,.4,.2,0.]:
+        candidate=ndi.gaussian_filter(field,sigma) if sigma else field.copy()
+        if contour_topology(candidate)==expected:return candidate,sigma
+    raise AssertionError('unsmoothed field must preserve its own topology')
+
+
 def component_field(gray, region, pad=5):
     """Grayscale coverage for named components, excluding neighboring component ink.
 

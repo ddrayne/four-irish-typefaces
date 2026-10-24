@@ -13,7 +13,7 @@ from kilfane_study import calibration,isolated_field,PRIMARY,CHECK
 from source_study import register_translation
 
 
-def measure_font(gs,name,gray,r,scale,baseline,unit_scale=None,field_function=isolated_field):
+def measure_font(gs,name,gray,r,scale,baseline,unit_scale=None,field_function=isolated_field,raster_function=raster):
     rec=RecordingPen();gs[name].draw(rec)
     polys=flatten(rec.value,steps=30)
     xmin=min(p[0] for q in polys for p in q)
@@ -24,7 +24,7 @@ def measure_font(gs,name,gray,r,scale,baseline,unit_scale=None,field_function=is
     target=np.pad(target,pad);h,w=target.shape
     sx=scale/(SCALE['kilfane'] if unit_scale is None else unit_scale)
     fn=lambda p:((p[0]-xmin)*sx+r['box'][0]-origin[0]+pad, baseline-p[1]*sx-origin[1]+pad)
-    rendered=raster(polys,(w,h),fn)
+    rendered=raster_function(polys,(w,h),fn)
     rendered,offset=register_translation(rendered,target)
     iou=float((rendered&target).sum()/max((rendered|target).sum(),1))
     # Original crop stays unmodified apart from display padding.
