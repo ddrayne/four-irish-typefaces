@@ -17,12 +17,34 @@ def main():
     evidence=json.loads((args.traces/'evidence.json').read_text(encoding='utf-8'))
     piece_file=args.traces/'pieces.json'
     piece_data=json.loads(piece_file.read_text(encoding='utf-8')) if piece_file.exists() else None
+    punctuation_file=args.traces/'punctuation.json'
+    punctuation_data=json.loads(punctuation_file.read_text(encoding='utf-8')) if punctuation_file.exists() else None
+    if punctuation_data is not None and args.face!='ceili':raise ValueError('named punctuation is currently defined only for Ceili')
     cfg=build2.FONTS[args.face]
     build2.VERSION=f'2.{args.study:03d}'
     build2.FONTS[args.face]=dict(cfg,family=f'{cfg["family"]} Study {args.study}',ps=f'{cfg["ps"]}Study{args.study}')
     build2.FAMILY_STYLES[args.face]=['Regular']
 
     class OriginalStudy(build2.Font2):
+        def punctuation(self):
+            if punctuation_data is not None:
+                self.source_punctuation={}
+                for record in punctuation_data['pieces']:
+                    p=pathops.Path();replayRecording(record['rec'],p.getPen())
+                    self.source_punctuation[record['name']]=clean(p)
+            super().punctuation()
+            if punctuation_data is not None:
+                for name in ['period','comma','quoteleft','quoteright']:
+                    record=next(p for p in punctuation_data['pieces'] if p['name']==name)
+                    self.made[name]=f'named NIVAL N45 {name}; region {record["box"]}; text position adjusted'
+                self.made.update(colon='two NIVAL N45 periods; modern text placement',
+                    semicolon='NIVAL N45 comma and period; modern text placement',
+                    ellipsis='three NIVAL N45 periods; modern text spacing',
+                    quotedblleft='two NIVAL N45 opening quotes; modern text spacing',
+                    quotedblright='two NIVAL N45 closing quotes; modern text spacing',
+                    quotesingle='modern wedge; width calibrated to named NIVAL N45 period',
+                    quotedbl='two modern wedges; width calibrated to named NIVAL N45 period')
+
         def hairlines(self):
             disabled=set(evidence.get('disable_legacy_hairlines',[]))
             if disabled:
@@ -51,6 +73,15 @@ def main():
 
         def mark_words(self,kind):
             description=super().mark_words(kind)
+            if punctuation_data is not None:
+                if kind in {'commabelow','commaturned'}:
+                    return f'{self.MARK_WORDS[kind]}; modern transformation of the named NIVAL N45 comma'
+                if kind=='caronvert':
+                    return 'apostrophe caron; modern transformation of the named NIVAL N45 quoteright'
+                if kind=='dot':
+                    return 'dot; modern placement of the named NIVAL N45 period'
+                if kind=='dieresis':
+                    return 'diaeresis; modern scaled pair of the named NIVAL N45 period'
             if piece_data is None:
                 if self.key=='tuam' and kind in {'acute','grave','hungarumlaut'}:
                     record=next((g for g in evidence['glyphs'] if g['name']=='uacute' and g['status']=='candidate'),None)

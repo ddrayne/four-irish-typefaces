@@ -2,17 +2,25 @@
 
 ## Active state
 
-**Latest: [round 3](round-03/README.md).** Tuam Uncial Study 2 reconstructs all 46
+**Latest: [round 4](round-04/README.md), Céilí Study 3.** Four named original
+punctuation pieces replace the legacy cluster as construction inputs. Period,
+comma and opposed quotes come from N45; 64 derived glyphs change, including dotted
+letters and comma marks. Body outlines remain as in round 3. All 112 tests pass.
+The new Céilí audit includes 89,401 Latin-plus-punctuation pairs per outline format,
+plus stylistic-set checks. The four-family combined domain is now 312,996 pairs;
+the other three faces retain Latin-only audits. Default kerning is required.
+
+[Round 3](round-03/README.md): Tuam Uncial Study 2 reconstructs all 46
 trace entries from N46. Céilí Study 2 reconstructs 54/55 entries, using N45 for
 `b/e/e.alt1/h` and N46 for the others. The loose `DOTS` cluster remains legacy.
 Use Kilfane Study 2 and Carrick Study 1 from [round 2](round-02/README.md), unchanged.
-There are 103 passing tests. The four-family pair audit checks 302,556 Latin
+That checkpoint had 103 passing tests. Its four-family pair audit checks 302,556 Latin
 character pairs with no intersections above four square font units. This is not
 an optical spacing certification. The Study 1 account below is an earlier ledger.
 
 Next priorities: optical spacing and small-size rendering across applications;
 Kilfane's fused letters/zero/ambiguous lower marks; Carrick's e/f/x/y and marks;
-named Céilí punctuation components; Tuam's recomposed accent placement and source
+unassigned upper Céilí punctuation pieces; Tuam's recomposed accent placement and source
 disagreements. N45 was additionally checked for Kilfane T/U/k/l and Carrick e/f/x/y:
 these still touch and do not provide clean isolated replacements.
 

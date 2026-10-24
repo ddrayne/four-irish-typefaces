@@ -1,0 +1,24 @@
+{
+  "face": "ceili",
+  "calibration": {
+    "competition-brochure-2.jpg": {
+      "scale": 2.365017567188912,
+      "baselines": {
+        "0": 756.0,
+        "1": 752.483308960823,
+        "2": 764.8335074226926,
+        "3": 765.861291003449
+      }
+    },
+    "competition-advert-1.jpg": {
+      "scale": 2.702316514421251,
+      "baselines": {
+        "0": 1764.0,
+        "1": 1723.2686579741785,
+        "2": 1751.5095858987245,
+        "3": 1751.8265720953486
+      }
+    }
+  },
+  "note": "Baselines initialise isolated glyph comparisons inside the raster; they are not historical layout measurements. Uniform scale and full integer translation only."
+}

@@ -1,0 +1,33 @@
+{
+  "baseline": "34513873bf159eada2254f7157ce7bae939044f5",
+  "method": "Same Python 3.12 environment; Font2 construction, specimen_pieces, punctuation; SHA256 of sorted JSON path recordings and made provenance; all twelve released styles.",
+  "before": {
+    "kilfane/Regular": "0348c4b9a516af574e3ef1f1dba6bb3226d4f961799d29f0c846e36050799ff4",
+    "kilfane/Italic": "0348c4b9a516af574e3ef1f1dba6bb3226d4f961799d29f0c846e36050799ff4",
+    "kilfane/Bold": "96c5dd6bc3f15f39cce9fc2db3d73e0ec1763eb166d8f024d858495721819610",
+    "kilfane/Bold Italic": "96c5dd6bc3f15f39cce9fc2db3d73e0ec1763eb166d8f024d858495721819610",
+    "ceili/Regular": "927cf8de875d22a9ec1b203a1f437d61af66afbc80bbdd173082724f9d5e99ca",
+    "ceili/Italic": "927cf8de875d22a9ec1b203a1f437d61af66afbc80bbdd173082724f9d5e99ca",
+    "ceili/Bold": "9302a69a7521e19dbccaba86203f83abc8220a443035dc7d9905cf08dcd19305",
+    "ceili/Bold Italic": "9302a69a7521e19dbccaba86203f83abc8220a443035dc7d9905cf08dcd19305",
+    "carrick/Regular": "cddbc19b78d451ae77a630f35e1ba401dcd5f9fa783b89e95a2d11e2b823bc3a",
+    "carrick/Italic": "cddbc19b78d451ae77a630f35e1ba401dcd5f9fa783b89e95a2d11e2b823bc3a",
+    "tuam/Regular": "40aa201f52eacc8516d8e83fcbf49bae16d0bead1fa0481b429668484831ce0d",
+    "tuam/Italic": "40aa201f52eacc8516d8e83fcbf49bae16d0bead1fa0481b429668484831ce0d"
+  },
+  "after": {
+    "kilfane/Regular": "0348c4b9a516af574e3ef1f1dba6bb3226d4f961799d29f0c846e36050799ff4",
+    "kilfane/Italic": "0348c4b9a516af574e3ef1f1dba6bb3226d4f961799d29f0c846e36050799ff4",
+    "kilfane/Bold": "96c5dd6bc3f15f39cce9fc2db3d73e0ec1763eb166d8f024d858495721819610",
+    "kilfane/Bold Italic": "96c5dd6bc3f15f39cce9fc2db3d73e0ec1763eb166d8f024d858495721819610",
+    "ceili/Regular": "927cf8de875d22a9ec1b203a1f437d61af66afbc80bbdd173082724f9d5e99ca",
+    "ceili/Italic": "927cf8de875d22a9ec1b203a1f437d61af66afbc80bbdd173082724f9d5e99ca",
+    "ceili/Bold": "9302a69a7521e19dbccaba86203f83abc8220a443035dc7d9905cf08dcd19305",
+    "ceili/Bold Italic": "9302a69a7521e19dbccaba86203f83abc8220a443035dc7d9905cf08dcd19305",
+    "carrick/Regular": "cddbc19b78d451ae77a630f35e1ba401dcd5f9fa783b89e95a2d11e2b823bc3a",
+    "carrick/Italic": "cddbc19b78d451ae77a630f35e1ba401dcd5f9fa783b89e95a2d11e2b823bc3a",
+    "tuam/Regular": "40aa201f52eacc8516d8e83fcbf49bae16d0bead1fa0481b429668484831ce0d",
+    "tuam/Italic": "40aa201f52eacc8516d8e83fcbf49bae16d0bead1fa0481b429668484831ce0d"
+  },
+  "identical": true
+}
