@@ -119,6 +119,67 @@ def traced_data():
     return out, regions
 
 
+RESEARCH = os.path.join(paths.ROOT, 'research')
+
+
+def studies_data(faces):
+    """Research candidates under research/<study>/ (fonts/, metrics.json), shown beside
+    the release they are rebuilding. Only font files and numbers are used: no archive pixels."""
+    out = []
+    if not os.path.isdir(RESEARCH):
+        return out, []
+    try:
+        assets = json.load(open(os.path.join(RESEARCH, 'downloads.json'), encoding='utf-8'))['assets']
+    except (OSError, KeyError, ValueError):
+        assets = []
+    by_file = {os.path.basename(a['path']): a for a in assets if 'path' in a}
+    copies = []
+    for study in sorted(os.listdir(RESEARCH)):
+        root = os.path.join(RESEARCH, study)
+        metrics = os.path.join(root, 'metrics.json')
+        fontdir = os.path.join(root, 'fonts')
+        if not (os.path.isfile(metrics) and os.path.isdir(fontdir)):
+            continue
+        woff2 = sorted(f for f in os.listdir(fontdir) if f.endswith('-Regular.woff2'))
+        otf = sorted(f for f in os.listdir(fontdir) if f.endswith('-Regular.otf'))
+        if not woff2 or not otf:
+            continue
+        tt = TTFont(os.path.join(fontdir, otf[0]))
+        family = tt['name'].getDebugName(1)
+        version = tt['name'].getDebugName(5) or ''
+        face = next((k for k in ORDER if FONTS[k]['family'].split()[0].lower() in family.lower()), None)
+        if face is None:
+            continue
+        # glyph name -> (character, feature) from the release font of the same face
+        rel = TTFont(os.path.join(OTF, f'{FONTS[face]["ps"]}-Regular.otf'))
+        chars = {}
+        for cp, g in sorted(rel.getBestCmap().items()):
+            chars.setdefault(g, (chr(cp), None))
+        for tag, _, mapping in FONTS[face].get('sets', []):
+            for base, alt in mapping.items():
+                if base in chars:
+                    chars.setdefault(alt, (chars[base][0], tag))
+        m = json.load(open(metrics, encoding='utf-8'))
+        src = lambda fn: by_file.get(fn, {})
+        sources = []
+        for fn, sm in m.get('summary', {}).items():
+            a = src(fn)
+            sources.append(dict(id=a.get('source_id', fn), url=a.get('catalogue_url'), w=a.get('width'), h=a.get('height'),
+                                glyphs=sm.get('glyphs'), before=round(sm.get('before', 0), 4), after=round(sm.get('candidate', 0), 4),
+                                improved=sm.get('improved'), regressed=sm.get('regressed', [])))
+        glyphs = []
+        for g in m.get('glyphs', []):
+            ch, tag = chars.get(g['name'], (None, None))
+            if ch is None:
+                continue
+            glyphs.append(dict(n=g['name'], ch=ch, tag=tag, src=src(g['source']).get('source_id', g['source']),
+                               before=round(g['before']['iou'], 4), after=round(g['candidate']['iou'], 4)))
+        out.append(dict(id=study, face=face, family=family, version=version.replace('Version ', '').split(';')[0],
+                        file=woff2[0], sources=sources, glyphs=glyphs, limitations=m.get('limitations', [])))
+        copies.append(os.path.join(fontdir, woff2[0]))
+    return out, copies
+
+
 def build():
     if os.path.exists(DEST):
         shutil.rmtree(DEST)
@@ -131,10 +192,15 @@ def build():
             shutil.copy(os.path.join(WOFF2, fn), os.path.join(DEST, 'fonts', fn))
     shutil.copy(os.path.join(paths.ROOT, 'OFL.txt'), os.path.join(DEST, 'fonts', 'OFL.txt'))
     shutil.copy(paths.SCAN, os.path.join(DEST, 'img', 'flyer.jpg'))
-    open(os.path.join(DEST, 'css', 'faces.css'), 'w', encoding='utf-8').write(fontface_css())
     faces, names = face_data()
     glyphs, regions = traced_data()
-    site = dict(v=VERSION, order=ORDER, faces=faces, names=names, audit=audit_data(),
+    studies, copies = studies_data(faces)
+    css = fontface_css()
+    for st, fn in zip(studies, copies):
+        shutil.copy(fn, os.path.join(DEST, 'fonts', st['file']))
+        css += '@font-face{font-family:"%s";src:url("../fonts/%s") format("woff2");font-weight:400;font-style:normal;font-display:swap}\n' % (st['family'], st['file'])
+    open(os.path.join(DEST, 'css', 'faces.css'), 'w', encoding='utf-8').write(css)
+    site = dict(v=VERSION, order=ORDER, faces=faces, names=names, audit=audit_data(), studies=studies,
                 flyer=dict(w=803, h=1125, regions=regions))
     dump = lambda obj, fn: open(os.path.join(DEST, 'data', fn), 'w', encoding='utf-8').write(
         json.dumps(obj, ensure_ascii=False, separators=(',', ':')))
@@ -156,6 +222,7 @@ def artifact():
     head = re.search(r'<head>(.*?)</head>', html, re.S).group(1)
     body = re.search(r'<body([^>]*)>(.*?)</body>', html, re.S)
     head = re.sub(r'<meta charset[^>]*>\s*|<meta name="viewport"[^>]*>\s*|<link rel="preload"[^>]*>\s*', '', head)
+    head = head.replace('<title>Four Irish Typefaces</title>', '<title>Ceithre Chló</title>')
     page = head.strip() + '\n' + f'<div id="page-root"{body.group(1)}>' + body.group(2) + '</div>\n'
     open(os.path.join(dest, 'index.html'), 'w', encoding='utf-8').write(page)
 

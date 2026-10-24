@@ -12,12 +12,14 @@ const parts = [
   ['[data-wall]', './carrick.js'],
   ['[data-rub]', './kilfane.js'],
   ['[data-illum]', './tuam.js'],
+  ['[data-study]', './study.js', '#kilfane'],   // hidden until it has a study, so watch its section
   ['.tester', './tester.js'],
   ['.glyphs', './glyphs.js'],
 ];
-for (const [sel, mod] of parts) {
+for (const [sel, mod, near] of parts) {
   const el = $(sel);
-  onNear(el, () => import(mod).then((m) => m.init(el, data)).catch((err) => console.error(mod, err)));
+  if (!el) continue;
+  onNear(near ? $(near) : el, () => import(mod).then((m) => m.init(el, data)).catch((err) => console.error(mod, err)));
 }
 
 // Footer and other fitted lines.
