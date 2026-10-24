@@ -22,3 +22,7 @@ jobs:
         run: |
           make release
           git diff --stat --exit-code -- fonts css index.html
+      - name: The showcase site builds
+        run: |
+          make showcase
+          test -s build/showcase/index.html && test -s build/showcase/data/site.json && test -s build/showcase/img/social.png
