@@ -1,0 +1,57 @@
+[
+  {
+    "path": "fonts/KilfaneStudy1-Regular.otf",
+    "bytes": 102624,
+    "sha256": "49b1871427b325fef4bbf0eeb1abea25ef185b631e1a81137b005da83d7a9f5f"
+  },
+  {
+    "path": "fonts/KilfaneStudy1-Regular.provenance.json",
+    "bytes": 63949,
+    "sha256": "5246584a90eb091e616aeeadb1eb3dd973b505cee1f4cb2da29a5cbc413cd129"
+  },
+  {
+    "path": "fonts/KilfaneStudy1-Regular.ttf",
+    "bytes": 182936,
+    "sha256": "f461d955e7d2c9f2a4233c74ccc24e9e1faedeb18557c1ae6aaa5d2e57759dc2"
+  },
+  {
+    "path": "fonts/KilfaneStudy1-Regular.woff",
+    "bytes": 71240,
+    "sha256": "003ea3462c1021c1631b700f9136be1467efc8b3fbbfc2616d24cef0f106653b"
+  },
+  {
+    "path": "fonts/KilfaneStudy1-Regular.woff2",
+    "bytes": 52456,
+    "sha256": "39f62f8c2b206683ad39a5e29bcd70e023f808ef79f12bc7a37b3ea9a0a86762"
+  },
+  {
+    "path": "metrics.json",
+    "bytes": 53807,
+    "sha256": "4855f657d8c0a59497c15dc7d42c9a91c4e0fa6994cff9cb3cf6f88b660bd32d"
+  },
+  {
+    "path": "OFL.txt",
+    "bytes": 4498,
+    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+  },
+  {
+    "path": "text-proof.png",
+    "bytes": 135172,
+    "sha256": "e6548fec6ff3698aba6d42ddd7ce78bd4ab16e78318a293a62c4aaefb4e0672e"
+  },
+  {
+    "path": "traces/evidence.json",
+    "bytes": 34989,
+    "sha256": "06fcbf62b703e8c1ac84f5e91fe9bd6902a33394677ebc62aa7bb8e490db7d48"
+  },
+  {
+    "path": "traces/kilfane.json",
+    "bytes": 259430,
+    "sha256": "d5754f6bdb4eb63ff50ebd803a24eadea273a56a74fc504d3270eb443630f452"
+  },
+  {
+    "path": "traces/source-regions.json",
+    "bytes": 44228,
+    "sha256": "28d8000903ad4229a5b3bd604240dd533fbb5838f1b8f418ef91526ba46487ea"
+  }
+]

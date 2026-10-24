@@ -1,0 +1,366 @@
+{
+  "retrieved": "2026-10-24",
+  "sources": [
+    {
+      "id": "N44",
+      "title": "competition brochure 1",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/44/",
+      "note": "Competition brochure cover and exhibition information. Establishes the event and sponsors.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/competition-brochure-1.jpg"
+    },
+    {
+      "id": "N45",
+      "title": "competition brochure 2",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/",
+      "note": "Competition award list and winning alphabets. Best primary check of names and award wording.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/competition-brochure-2.jpg"
+    },
+    {
+      "id": "N46",
+      "title": "competition advert 1",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/46/",
+      "note": "Four Irish Typefaces sales flyer: all four alphabets, alternates, figures, marks, sheet codes and sizes. Same layout as the repository source.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/competition-advert-1.jpg"
+    },
+    {
+      "id": "N47",
+      "title": "competition advert 2",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/47/",
+      "note": "Large Carrick and Kilfane specimens. Kilfane shares blemishes with N516: useful additional reproduction, not an independent master.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/competition-advert-2.jpg"
+    },
+    {
+      "id": "N513",
+      "title": "Carrick alphabet specimen",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/513/",
+      "note": "Carrick alphabet specimen. Compare shape structure and counters; the catalogue does not establish this digital image as original outline artwork.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/Carrick-alphabet-specimen.jpg"
+    },
+    {
+      "id": "N514",
+      "title": "Carrick Letraset",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/514/",
+      "note": "Photograph of Carrick transfer sheets. Repeated letters help distinguish recurring forms from damage. Sheets overlap and some content is cropped.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/Carrick-Letraset.jpg"
+    },
+    {
+      "id": "N516",
+      "title": "Kilfane alphabet specimen",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/516/",
+      "note": "Kilfane alphabet and alternates; not established as a drawing master. Correlated reproduction history with N47.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/Kilfane-alphabet-specimen.jpg"
+    },
+    {
+      "id": "N517",
+      "title": "Kilfane Letraset",
+      "url": "https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/517/",
+      "note": "Photograph of Kilfane transfer sheets. Repeated letters and alternative capitals; perspective, overlap and cropping limit direct measurement.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "original-specimens/Kilfane-Letraset.jpg"
+    },
+    {
+      "id": "B1",
+      "title": "Mary Ann Bolger, Designing Modern Ireland (2017), volume 1",
+      "url": "https://researchonline.rca.ac.uk/3543/1/MABolger_PhD_Thesis_Vol1.pdf",
+      "note": "Printed pp. 278–280: competition context and sources; 73 entries, 24 exhibited. Footnotes provide archival and family research leads.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "sources/Bolger-2017-volume-1-text.pdf"
+    },
+    {
+      "id": "B2",
+      "title": "Mary Ann Bolger (2017), volume 2: illustrations",
+      "url": "https://researchonline.rca.ac.uk/3543/2/MABolger_PhD_Thesis_Vol2.pdf",
+      "note": "PDF pp. 157–164, figures 201–206: competition ephemera, 1974 book cover, Tuam development work and complete transfer sheet.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "sources/Bolger-2017-volume-2-illustrations.pdf"
+    },
+    {
+      "id": "V",
+      "title": "Della Varrilly, Irish-English Bilingualism and its Relation to Graphic Design (1982)",
+      "url": "https://thesis.ncad.ie/T188_Irish-English%20Bilingualism%20and%20its%20relation%20to%20Graphic%20Design_Della%20Varrilly_1982..pdf",
+      "note": "PDF pp. 94, 96, 98: figures 30–34 show Calli, Carrick, Tuam, Armóin and Kilfane. Printed pp. 73–76 discuss them. Near-contemporary criticism is opinion, not a redesign specification.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "sources/Varrilly-1982-bilingualism-and-graphic-design.pdf"
+    },
+    {
+      "id": "O",
+      "title": "Una O’Shea, An Irish Identity as Expressed Through Contemporary Graphic Design (1993)",
+      "url": "https://thesis.ncad.ie/T1218_An%20Irish%20Identity%20as%20Expressed%20Through%20Contemporary%20Graphic%20Design_NC00204528.pdf",
+      "note": "PDF p. 74, figure 23: another reproduction of competition alphabets. Useful corroboration; weaker outline evidence than the archive scans.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "sources/Irish-identity-contemporary-graphic-design.pdf"
+    },
+    {
+      "id": "K",
+      "title": "Eimear O’Keane, The Role of Design in the Revival of the Irish Language (2022)",
+      "url": "https://thesis.ncad.ie/T6365_%20The%20Role%20of%20Design%20in%20the%20Revival%20of%20the%20Irish%20Language_Eimear_O_Keane_CommunicationDesign_2022..docx.pdf",
+      "note": "PDF pp. 32–33 discuss Tuam and modern Irish design. Contextual secondary source; do not use its compressed chronology to date the original production.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "sources/OKeane-2022-design-and-Irish-language.pdf"
+    },
+    {
+      "id": "JPDF",
+      "title": "Signal Type Foundry: Jarlath specimen",
+      "url": "https://signalfoundry.com/media/pages/typefaces/jarlath/b33a81de89-1738147593/signal_jarlath.pdf",
+      "note": "Modern revival material. Recorded only to disambiguate historical sources; excluded from reconstruction and outline comparison.",
+      "status": "Read",
+      "role": "context_only_excluded_from_reconstruction",
+      "local_reference": "sources/Signal-Jarlath-specimen.pdf"
+    },
+    {
+      "id": "CPDF",
+      "title": "Gaelchló: Caolchló GC specimen",
+      "url": "https://www.gaelchlo.com/pdf/caolgc.pdf",
+      "note": "Modern revival material. Recorded only to disambiguate historical sources; excluded from reconstruction and outline comparison.",
+      "status": "Read",
+      "role": "context_only_excluded_from_reconstruction",
+      "local_reference": "sources/Gaelchlo-Caolchlo-GC-specimen.pdf"
+    },
+    {
+      "id": "H",
+      "title": "Klingspor Museum: Jarlath Hayes",
+      "url": "https://www.klingspor-museum.de/KlingsporKuenstler/Schriftdesigner/Hayes/JFHayes.pdf",
+      "note": "Short designer reference and specimen; its early date should be kept distinct from the confirmed 1978 competition.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "sources/Klingspor-Jarlath-Hayes.pdf"
+    },
+    {
+      "id": "HO",
+      "title": "Heritage Outlook, summer 2011",
+      "url": "https://www.heritagecouncil.ie/content/files/heritage_outlook_summer_2011_76mb.pdf",
+      "note": "Printed p. 37: KDW archive context and the 1978 competition poster; useful for following the archive trail.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": "sources/Heritage-Outlook-summer-2011.pdf"
+    },
+    {
+      "id": "NA",
+      "title": "NIVAL: William Curran Archive",
+      "url": "https://www.nival.ie/william-curran-archive/",
+      "note": "Primary archive overview; Curran biography, both typefaces, banknote use and access to material not all online.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "NC",
+      "title": "NIVAL special collections",
+      "url": "https://www.nival.ie/collections/list-of-special-collections/",
+      "note": "Further institutional trail: Kilkenny Design Workshops and Dolmen Press collections.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "NR",
+      "title": "NIVAL reproduction policy",
+      "url": "https://www.nival.ie/resources/reproduction-policy/",
+      "note": "Reference for obtaining additional scans and publishing collection images. Access does not assign copyright.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "NT",
+      "title": "NIVAL contact",
+      "url": "https://www.nival.ie/contact/",
+      "note": "Public research contact: nivalinfo@ncad.ie; arrange a reading-room visit or ask about scans.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "J",
+      "title": "Signal Type Foundry: Jarlath",
+      "url": "https://signalfoundry.com/typefaces/jarlath",
+      "note": "Designer’s own account explicitly describes changes to Tuam’s squareness, contrast and spacing, plus new styles.",
+      "status": "Read",
+      "role": "context_only_excluded_from_reconstruction",
+      "local_reference": null
+    },
+    {
+      "id": "C",
+      "title": "Gaelchló: Caolchló GC",
+      "url": "https://www.gaelchlo.com/caolgc.html",
+      "note": "Released in 2025, based on Hecht’s design; explicitly removes i/j dots and lowers insular s. Provides OpenType/WOFF downloads and stylistic sets.",
+      "status": "Read",
+      "role": "context_only_excluded_from_reconstruction",
+      "local_reference": null
+    },
+    {
+      "id": "CM",
+      "title": "Caolchló GC character map",
+      "url": "https://www.gaelchlo.com/mapai/caolmap.gif",
+      "note": "Modern revival material. Recorded only to disambiguate historical sources; excluded from reconstruction and outline comparison.",
+      "status": "Linked reference; not inspected",
+      "role": "context_only_excluded_from_reconstruction",
+      "local_reference": null
+    },
+    {
+      "id": "CU",
+      "title": "Gaelchló usage information",
+      "url": "https://www.gaelchlo.com/index.html",
+      "note": "Consult published usage and modification terms before using modern font software; it is not a source of unrestricted original outlines.",
+      "status": "Read",
+      "role": "context_only_excluded_from_reconstruction",
+      "local_reference": null
+    },
+    {
+      "id": "DI",
+      "title": "Dublin Inquirer: Irish font brought into the digital age (24 June 2020)",
+      "url": "https://www.dublininquirer.com/after-almost-50-years-a-renowned-irish-font-is-brought-into-the-digital-age/",
+      "note": "Interviews concerning Hayes, Susan Waine and Max Phillips. Useful evidence that the revival project predates its later retail listing.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "IT",
+      "title": "Irish Times: Master typographer and designer (2001)",
+      "url": "https://www.irishtimes.com/news/master-typographer-and-designer-1.313378",
+      "note": "Hayes obituary; biographical and usage context, not a tracing source.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "ZO",
+      "title": "100 Archive: Zoe (2021)",
+      "url": "https://www.100archive.com/projects/zoe",
+      "note": "Documents use of Jarlath beta in a design project.",
+      "status": "Read",
+      "role": "context_only_excluded_from_reconstruction",
+      "local_reference": null
+    },
+    {
+      "id": "FIUC",
+      "title": "Fonts In Use: Céili",
+      "url": "https://fontsinuse.com/typefaces/205971/ceili",
+      "note": "Links to Design no. 357 and reports NLI booklet/Glenroe use. Those applications need object-level confirmation.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "FIUK",
+      "title": "Fonts In Use: Kilfane",
+      "url": "https://fontsinuse.com/typefaces/248201/kilfane",
+      "note": "Links back to NIVAL. Its 1973 release date is not established by sheet boilerplate alone.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "AT",
+      "title": "ATypI: ReTyping Europe",
+      "url": "https://atypi.org/presentation/retyping-europe/",
+      "note": "Scholarly framing of modern Irish typography and transnational heritage.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "BK",
+      "title": "National Print Museum: Irish Type Design, Dermot McGuinne",
+      "url": "https://www.nationalprintmuseum.ie/product/irish-type-design-by-dermot-mcguinne/",
+      "note": "Second edition, 2010. Authoritative broader history; its relevance to specific missing 1978 glyphs still needs inspection.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "CB",
+      "title": "Central Bank of Ireland: Series C banknotes",
+      "url": "https://edit.centralbank.ie/consumer-hub/notes-and-coins/historical-banknotes/1990s---2000s",
+      "note": "Primary source for banknote applications associated with Kilfane. Verify any adaptations before treating lettering as font outlines.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "OT",
+      "title": "Microsoft OpenType: stylistic-set features",
+      "url": "https://learn.microsoft.com/en-us/typography/opentype/spec/features_pt",
+      "note": "Technical reference for preserving alternate glyphs in ss01–ss20.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "WF",
+      "title": "W3C: WOFF File Format 2.0",
+      "url": "https://www.w3.org/TR/WOFF2/",
+      "note": "Technical reference for web delivery; changing the wrapper does not improve outline fidelity.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "REPO",
+      "title": "ddrayne/four-irish-typefaces",
+      "url": "https://github.com/ddrayne/four-irish-typefaces",
+      "note": "Release 2.000 is the baseline. Subsequent Kilfane research is isolated in research/kilfane-study-01; see HANDOFF.md.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "DM",
+      "title": "Design magazine, no. 357, September 1978",
+      "url": "https://archive.org/details/sim_design_1978-09_357/page/n37/mode/2up",
+      "note": "Contemporary report/glyph-set lead linked by Fonts In Use. Archive metadata located, but PDF and JP2 files are marked private. Page content was not inspected.",
+      "status": "Located; not read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "NCADT",
+      "title": "Athbheochan: Type Revival and Ideas of Irishness",
+      "url": "https://www.ncad.ie/news/view/athbheochan-type-revival-and-ideas-of-irishness-max-phillips-and-mary-annbolger",
+      "note": "Max Phillips/Mary Ann Bolger event lead from the repository. Page returned 403 during this pass; no recording acquired.",
+      "status": "Unretrieved lead",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "YA",
+      "title": "Yale finding aid AOB 55",
+      "url": "https://ead-pdfs.library.yale.edu/345.pdf",
+      "note": "Box 5 lists New Letraset Typefaces 1978. Whether it contains these four faces is unverified; lower-priority physical catalogue lead.",
+      "status": "Holding lead; contents unverified",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    },
+    {
+      "id": "HC",
+      "title": "Screen Archive South East: Hecht Collection",
+      "url": "https://screenarchive.brighton.ac.uk/collection/1583/",
+      "note": "Verified magic-lantern collection. It does not establish custody of Céilí drawings. The repository’s V&A claim remains unverified.",
+      "status": "Read",
+      "role": "source_or_research_lead",
+      "local_reference": null
+    }
+  ],
+  "local_reference_note": "Paths identify files in the private/local research cache, not committed assets. See downloads.json and RIGHTS.md."
+}
