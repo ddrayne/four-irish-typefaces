@@ -1,0 +1,330 @@
+{
+  "face": "kilfane",
+  "summary": {
+    "Kilfane-alphabet-specimen.jpg": {
+      "entries": 8,
+      "before": 0.7980325118897408,
+      "candidate": 0.88044789419549,
+      "improved": 8,
+      "regressions": []
+    },
+    "competition-advert-2.jpg": {
+      "entries": 8,
+      "before": 0.8292424523306815,
+      "candidate": 0.876455188749421,
+      "improved": 8,
+      "regressions": []
+    }
+  },
+  "glyphs": [
+    {
+      "name": "acute",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8386167146974063,
+        "offset": [
+          0,
+          20
+        ]
+      },
+      "candidate": {
+        "iou": 0.9152,
+        "offset": [
+          1,
+          20
+        ]
+      },
+      "delta": 0.07658328530259373
+    },
+    {
+      "name": "tilde",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8810939357907254,
+        "offset": [
+          0,
+          -5
+        ]
+      },
+      "candidate": {
+        "iou": 0.92643391521197,
+        "offset": [
+          0,
+          -5
+        ]
+      },
+      "delta": 0.04533997942124468
+    },
+    {
+      "name": "dotaccent",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8442028985507246,
+        "offset": [
+          0,
+          24
+        ]
+      },
+      "candidate": {
+        "iou": 0.8731343283582089,
+        "offset": [
+          0,
+          24
+        ]
+      },
+      "delta": 0.02893142980748431
+    },
+    {
+      "name": "ring",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7068965517241379,
+        "offset": [
+          -1,
+          47
+        ]
+      },
+      "candidate": {
+        "iou": 0.837378640776699,
+        "offset": [
+          0,
+          48
+        ]
+      },
+      "delta": 0.1304820890525611
+    },
+    {
+      "name": "circumflex",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7253694581280788,
+        "offset": [
+          -1,
+          54
+        ]
+      },
+      "candidate": {
+        "iou": 0.8133514986376021,
+        "offset": [
+          1,
+          54
+        ]
+      },
+      "delta": 0.0879820405095233
+    },
+    {
+      "name": "dieresis",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8055555555555556,
+        "offset": [
+          0,
+          25
+        ]
+      },
+      "candidate": {
+        "iou": 0.8918918918918919,
+        "offset": [
+          0,
+          25
+        ]
+      },
+      "delta": 0.0863363363363363
+    },
+    {
+      "name": "guillemotright",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8002270147559591,
+        "offset": [
+          -1,
+          8
+        ]
+      },
+      "candidate": {
+        "iou": 0.8959795788130185,
+        "offset": [
+          1,
+          9
+        ]
+      },
+      "delta": 0.09575256405705934
+    },
+    {
+      "name": "guillemotleft",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7822979659153381,
+        "offset": [
+          0,
+          10
+        ]
+      },
+      "candidate": {
+        "iou": 0.8902132998745295,
+        "offset": [
+          0,
+          8
+        ]
+      },
+      "delta": 0.1079153339591914
+    },
+    {
+      "name": "acute",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8851802403204272,
+        "offset": [
+          1,
+          21
+        ]
+      },
+      "candidate": {
+        "iou": 0.9134751773049645,
+        "offset": [
+          2,
+          21
+        ]
+      },
+      "delta": 0.028294936984537333
+    },
+    {
+      "name": "tilde",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9106945975744212,
+        "offset": [
+          0,
+          -5
+        ]
+      },
+      "candidate": {
+        "iou": 0.919683257918552,
+        "offset": [
+          1,
+          -5
+        ]
+      },
+      "delta": 0.008988660344130817
+    },
+    {
+      "name": "dotaccent",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8717105263157895,
+        "offset": [
+          1,
+          25
+        ]
+      },
+      "candidate": {
+        "iou": 0.9310344827586207,
+        "offset": [
+          1,
+          25
+        ]
+      },
+      "delta": 0.05932395644283117
+    },
+    {
+      "name": "ring",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7096188747731398,
+        "offset": [
+          -1,
+          50
+        ]
+      },
+      "candidate": {
+        "iou": 0.7422907488986784,
+        "offset": [
+          1,
+          50
+        ]
+      },
+      "delta": 0.032671874125538625
+    },
+    {
+      "name": "circumflex",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.702176403207331,
+        "offset": [
+          1,
+          56
+        ]
+      },
+      "candidate": {
+        "iou": 0.7438725490196079,
+        "offset": [
+          2,
+          56
+        ]
+      },
+      "delta": 0.041696145812276875
+    },
+    {
+      "name": "dieresis",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8500797448165869,
+        "offset": [
+          1,
+          26
+        ]
+      },
+      "candidate": {
+        "iou": 0.9040139616055847,
+        "offset": [
+          1,
+          26
+        ]
+      },
+      "delta": 0.05393421678899779
+    },
+    {
+      "name": "guillemotright",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.851008794619762,
+        "offset": [
+          -2,
+          9
+        ]
+      },
+      "candidate": {
+        "iou": 0.9208715596330275,
+        "offset": [
+          1,
+          10
+        ]
+      },
+      "delta": 0.0698627650132655
+    },
+    {
+      "name": "guillemotleft",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8534704370179949,
+        "offset": [
+          0,
+          10
+        ]
+      },
+      "candidate": {
+        "iou": 0.9363997728563316,
+        "offset": [
+          1,
+          9
+        ]
+      },
+      "delta": 0.08292933583833673
+    }
+  ],
+  "limitations": [
+    "Additional reproductions can share source history. These are source-fit measurements, not authenticity scores.",
+    "Uniform source scaling and integer translation only; source-derived entries are not a blind holdout.",
+    "Semicolon excluded because the text builder changes its layout."
+  ]
+}

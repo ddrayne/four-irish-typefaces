@@ -3,6 +3,35 @@ import numpy as np
 from scipy import ndimage as ndi
 
 
+def component_field(gray, region, pad=5):
+    """Grayscale coverage for named components, excluding neighboring component ink.
+
+    Labels are calculated at the recorded threshold (130 by default). Background
+    pixels around the selected components retain antialiasing and counters.
+    """
+    rx0, ry0, rx1, ry1 = region['row_box']
+    labels, _ = ndi.label(np.asarray(gray)[ry0:ry1, rx0:rx1] < region.get('threshold', 130),
+                          structure=np.ones((3, 3)))
+    wanted = region['labels']
+    if not wanted or 0 in wanted or any(not np.any(labels == label) for label in wanted):
+        raise ValueError('source component labels no longer match the image')
+    own = np.isin(labels, wanted)
+    permitted = ndi.binary_dilation(own, iterations=3) & ((labels == 0) | own)
+    x0, y0, x1, y1 = region['box']
+    x0, y0 = max(rx0, x0-pad), max(ry0, y0-pad)
+    x1, y1 = min(rx1, x1+pad), min(ry1, y1+pad)
+    sl = np.s_[y0-ry0:y1-ry0, x0-rx0:x1-rx0]
+    a = np.asarray(gray)[y0:y1, x0:x1].astype(float)
+    core, allow = own[sl], permitted[sl]
+    background = labels[sl] == 0
+    if not core.any() or not background.any():
+        raise ValueError('component region needs both ink and paper')
+    paper = float(np.percentile(a[background], 80))
+    ink = float(np.percentile(a[core], 30))
+    field = np.where(allow, np.clip((paper-a)/max(paper-ink, 1), 0, 1), 0.)
+    return field, (x0, y0), paper, ink
+
+
 def line_regions(gray, box, names, threshold=130, min_area=12):
     """Group connected ink by overlapping x spans, preserving detached dots and holes.
 

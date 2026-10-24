@@ -2,12 +2,24 @@
 
 ## Active state
 
+**Latest: [round 2](round-02/README.md).** Kilfane Study 2 adds named source marks;
+Carrick Study 1 reconstructs 40 source entries; Tuam Uncial Study 1 and Céilí Study 1
+retain the existing outlines. All four now include full-height collision protection.
+There are 81 passing tests, including 302,556 Latin character pairs per outline
+format with no intersections above the recorded tolerance. Continue from these
+latest candidates. The Study 1 account below is retained as the earlier ledger.
+
+Next priorities: optical spacing and small-size rendering across applications;
+Kilfane's fused letters/zero/ambiguous lower marks; Carrick's e/f/x/y and marks;
+then higher-resolution Tuam and Céilí outline reconstruction from the original
+source leads. Do not equate a completed collision audit with finished typography.
+
 The user wants accurate reconstruction from original evidence, with repeated
 letter-by-letter inspection and no modern revival fonts used as design references.
 Work on one face at a time. Kilfane Regular is first because multiple historical
 reproductions are available. Research baseline: commit `b6af790` (release 2.000).
 
-The first candidate is committed in [kilfane-study-01/](kilfane-study-01/).
+The earlier first candidate is committed in [kilfane-study-01/](kilfane-study-01/).
 It is separately named **Kilfane Study 1**, version **2.001**, Regular only, in
 OTF, TTF, WOFF and WOFF2. It is a research candidate, not a replacement release.
 The existing released families and `sources/traced/` have not been modified.

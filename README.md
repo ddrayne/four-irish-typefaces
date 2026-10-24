@@ -9,7 +9,9 @@ sold as Letraset dry-transfer sheets.
 These fonts were digitised from a scan of the competition's "Four Irish Typefaces"
 flyer, then completed to roughly 400 characters each so they work on the web and in
 any app. Further original-source research, a source register and the separately
-named **Kilfane Study 1** candidate are in [research/](research/README.md).
+named candidates are in [research/](research/README.md). The latest
+[round 2](research/round-02/README.md) improves Kilfane's marks, Carrick's outlines
+and pair spacing across all four faces.
 Agents continuing this work should start with [the handoff](research/HANDOFF.md).
 Modern revival fonts are excluded as design references for this research.
 

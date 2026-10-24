@@ -1,0 +1,227 @@
+[
+  {
+    "path": "carrick/audit-metrics.json",
+    "bytes": 27602,
+    "sha256": "7372fc1e3b463a46bdb6286a080b2052e50af678c859ef6ff01217453707148a"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy1-Regular.otf",
+    "bytes": 63100,
+    "sha256": "d5c9bd187733a094fb7191cae739c3cc604898bc22db46de7e30666d8ce4c372"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy1-Regular.provenance.json",
+    "bytes": 28087,
+    "sha256": "7f7afa41deab2b239bf7ea2f26a832b654d7e7bbdd67493d014f26d800898154"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy1-Regular.ttf",
+    "bytes": 101120,
+    "sha256": "34b942ae220f37e96d1623656f285b100a9cc87c200416b851a8494bbf9512a7"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy1-Regular.woff",
+    "bytes": 44544,
+    "sha256": "3efc49933aba17dc5a660460855e4e2c3048cb286b10ea5467875c417cf72a4e"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy1-Regular.woff2",
+    "bytes": 34604,
+    "sha256": "83e128a874ee6d5c108342745b48fb66dc4bccef0a421d6ce4acef7270ab948e"
+  },
+  {
+    "path": "carrick/fonts/spacing-adjustments.json",
+    "bytes": 129653,
+    "sha256": "d84b0a555966ed9c7c57d9a640187edd600037b201fded276ce6483eda7008ad"
+  },
+  {
+    "path": "carrick/text-proof.png",
+    "bytes": 314208,
+    "sha256": "452deebc25f5c24b86403bbd8d2c3f266181ebbb1ea78c69d5ee295c1c973dcf"
+  },
+  {
+    "path": "carrick/traces/carrick.json",
+    "bytes": 488793,
+    "sha256": "fa6311876754c65b3dd22e9a3c46e76cfdb60517302f9c43d8fb30c8d37cc6bf"
+  },
+  {
+    "path": "carrick/traces/evidence.json",
+    "bytes": 21753,
+    "sha256": "383da06e936d8293079fe920dff2e1612e8363b3ca14abd39bb79c5e1cc7a0a2"
+  },
+  {
+    "path": "carrick/traces/source-regions.json",
+    "bytes": 21231,
+    "sha256": "7ba50fca9e3629ce8508d8d02cd1325b72dfb20b9b0e849393e827b2bc379408"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy1-Regular.otf",
+    "bytes": 72392,
+    "sha256": "28c467a2e544beb1a21848e38d95c9914bcc04cc3a47503e29dda25c70278409"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy1-Regular.provenance.json",
+    "bytes": 21050,
+    "sha256": "72da544cca0d1f17bf07730e9c760276cd6a4298f17bd7667c87647a8f590c8d"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy1-Regular.ttf",
+    "bytes": 115464,
+    "sha256": "4bb3b81bce8bcbb06b0163b0ae79c619249a126252069c8cb6512da31a5dfd8f"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy1-Regular.woff",
+    "bytes": 48184,
+    "sha256": "5190c6300c94b3abf4c847df4c6d1ea299d56c9586172e2f5b4c5cfcf5cba281"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy1-Regular.woff2",
+    "bytes": 37280,
+    "sha256": "36cd8520e3a51a15e45b54409036a061e8a943dfb1aa8e8b17e321e403f54169"
+  },
+  {
+    "path": "ceili/fonts/spacing-adjustments.json",
+    "bytes": 238923,
+    "sha256": "f165fc63553e2a23b3da956a5e3f510e8c71bffd17b069460a9f2a58634a102f"
+  },
+  {
+    "path": "ceili/text-proof.png",
+    "bytes": 171199,
+    "sha256": "028d17bc6ccfcd82388f0559ed31eebc2c6ae5eb1b460055ec81c0ed6ca69c5a"
+  },
+  {
+    "path": "ceili/traces/ceili.json",
+    "bytes": 161116,
+    "sha256": "5b75b9884885842d96286ca846c1412719813bb9f1a35daaee623c5212ffa057"
+  },
+  {
+    "path": "ceili/traces/evidence.json",
+    "bytes": 8137,
+    "sha256": "8f7483d2bce806aea5ceb6c522e4b40e47b09155c95d525396c45b29d6ac7391"
+  },
+  {
+    "path": "kilfane/fonts/KilfaneStudy2-Regular.otf",
+    "bytes": 111240,
+    "sha256": "b780ef3e11e074a3d767b838ca3ea2258a07944aae4536b48419a9ff97be1773"
+  },
+  {
+    "path": "kilfane/fonts/KilfaneStudy2-Regular.provenance.json",
+    "bytes": 72803,
+    "sha256": "89d9fab6d469abdb2d52f0a806b12f67c391dfd18f4aa883d7feaaaaf7ad54b9"
+  },
+  {
+    "path": "kilfane/fonts/KilfaneStudy2-Regular.ttf",
+    "bytes": 190172,
+    "sha256": "60d8035aceeb3c9e41a3d86e23de4c330e0e6f3dafc9821c3edc64e36119358e"
+  },
+  {
+    "path": "kilfane/fonts/KilfaneStudy2-Regular.woff",
+    "bytes": 73732,
+    "sha256": "5833829e7eeeeac90ef95549d4cf0cbe95ce03e572a741d8337b2cabe715b7e8"
+  },
+  {
+    "path": "kilfane/fonts/KilfaneStudy2-Regular.woff2",
+    "bytes": 54336,
+    "sha256": "4e995d991fecbd75e7c47a0b0f143fb1fb206463f0f4bfc20f94e58a547eedf5"
+  },
+  {
+    "path": "kilfane/fonts/spacing-adjustments.json",
+    "bytes": 495579,
+    "sha256": "189a2b44ad13248b353442bb33a391083f208cb1eb60ede8b0e1c24efa180140"
+  },
+  {
+    "path": "kilfane/mark-audit-metrics.json",
+    "bytes": 6486,
+    "sha256": "0a8817429e16aff70185d78df33aba6adbbebe4ee8cb11d3f95a0f3094a1a9c7"
+  },
+  {
+    "path": "kilfane/text-proof.png",
+    "bytes": 281859,
+    "sha256": "ef5c8f16a86bdcd73d5b6d9b4e7f38281550387428c3bde211cfac9fa6de155c"
+  },
+  {
+    "path": "kilfane/traces/evidence.json",
+    "bytes": 34989,
+    "sha256": "06fcbf62b703e8c1ac84f5e91fe9bd6902a33394677ebc62aa7bb8e490db7d48"
+  },
+  {
+    "path": "kilfane/traces/kilfane.json",
+    "bytes": 259430,
+    "sha256": "d5754f6bdb4eb63ff50ebd803a24eadea273a56a74fc504d3270eb443630f452"
+  },
+  {
+    "path": "kilfane/traces/mark-audit-regions.json",
+    "bytes": 5094,
+    "sha256": "aa3daedfacf6fcadfe1d5dda3a5058687ce93114b8a46ff83e15d9bfe343510e"
+  },
+  {
+    "path": "kilfane/traces/pieces.json",
+    "bytes": 52847,
+    "sha256": "23f12464d04c7dde8b1c8327abc744b7b1974be35d4d1f886a30371d35f23d53"
+  },
+  {
+    "path": "kilfane/traces/source-regions.json",
+    "bytes": 44228,
+    "sha256": "28d8000903ad4229a5b3bd604240dd533fbb5838f1b8f418ef91526ba46487ea"
+  },
+  {
+    "path": "OFL.txt",
+    "bytes": 4498,
+    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+  },
+  {
+    "path": "pair-audit.json",
+    "bytes": 24684,
+    "sha256": "645ddb7078402fc2468653002a8318daa4a31f7999cb334852c6d14d71054622"
+  },
+  {
+    "path": "README.md",
+    "bytes": 8403,
+    "sha256": "b3cb06f6ce21a34beaa24070a25a1e74e920b4274d7c6b86b6ea623104222bd9"
+  },
+  {
+    "path": "tuam/fonts/spacing-adjustments.json",
+    "bytes": 42613,
+    "sha256": "d8112f2b67c7cee3e6b089341defd9cfe2892301955c5c7c8b36a053a8cd6919"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy1-Regular.otf",
+    "bytes": 48028,
+    "sha256": "fce54f82deed48a774558f28679f1b87701daaede70ff6345d73950cdd5de63a"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy1-Regular.provenance.json",
+    "bytes": 16548,
+    "sha256": "f5e4ffd66857ee61de73987f25a6cf931f72a2553bc48666fff7d0415813c229"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy1-Regular.ttf",
+    "bytes": 88964,
+    "sha256": "824001b2248b24380ddc46c87f3abf8ff2b46ffdeaff9fe72833fcf0228a8bce"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy1-Regular.woff",
+    "bytes": 39968,
+    "sha256": "90229f5a200e5942aeb6d61b3e9a5a5707140d018b7257bbed730011c0038c7c"
+  },
+  {
+    "path": "tuam/fonts/TuamUncialStudy1-Regular.woff2",
+    "bytes": 31372,
+    "sha256": "904b49128c557168748b60974c7fef8455a771c9b3883209ff3270f2c15e94be"
+  },
+  {
+    "path": "tuam/text-proof.png",
+    "bytes": 189981,
+    "sha256": "66c0f7b2e4db1f5960e539a789a654f8de5b09d7f415eb164056c292adbdd83e"
+  },
+  {
+    "path": "tuam/traces/evidence.json",
+    "bytes": 6880,
+    "sha256": "efdbe297d7f4cbc4de928869b4cabe07d300ca00a26a27d1b45e23bbab9d4c34"
+  },
+  {
+    "path": "tuam/traces/tuam.json",
+    "bytes": 143194,
+    "sha256": "f638b358efc4de4bd31f0ea92f180388a59fad4df9d22a8a9bb67d30ae86448b"
+  }
+]

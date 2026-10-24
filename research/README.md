@@ -2,8 +2,10 @@
 
 Evidence collected on 24 October 2026 for faithful reconstruction of Kilfane,
 Carrick, Tuam Uncial and Céilí. Start with [the handoff](HANDOFF.md).
-The current experiment is [Kilfane Study 1](kilfane-study-01/README.md), a separately
-named Regular candidate. Released version 2.000 remains the baseline.
+The latest work is [round 2](round-02/README.md): new Kilfane marks, a Carrick
+reconstruction and spacing corrections in separately named candidates for all four
+faces. [Kilfane Study 1](kilfane-study-01/README.md) is preserved. Released version
+2.000 remains the baseline.
 
 ## Files
 
