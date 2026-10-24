@@ -22,6 +22,7 @@ import shapes as SH
 from marks import MarkSet
 from letters import make_letters, stem_at, clip
 from symbols import make_symbols
+import symbols2
 
 OUT = paths.FONTS
 VERSION = '2.000'
@@ -114,6 +115,7 @@ OTHER = {  # code point -> glyph built elsewhere
     0xE000: 'uniE000'}
 for i, d in enumerate(DIGITS):
     OTHER[0x30 + i] = d
+OTHER.update(symbols2.CODEPOINTS)
 # precomposed letters to build by decomposition
 COMPOSED = (list(range(0xC0, 0x100)) + list(range(0x100, 0x180)) + [0x218, 0x219, 0x21A, 0x21B] +
             [0x1E02, 0x1E03, 0x1E0A, 0x1E0B, 0x1E1E, 0x1E1F, 0x1E40, 0x1E41, 0x1E56, 0x1E57, 0x1E60, 0x1E61,
@@ -798,7 +800,8 @@ class Font2:
                 cm[cp] = g
         if cfg['unicase']:
             pairs = {0xC6: 'ae', 0xD8: 'oslash', 0xD0: 'eth', 0xDE: 'thorn', 0x110: 'dcroat', 0x126: 'hbar',
-                     0x132: 'ij', 0x13F: 'ldot', 0x141: 'lslash', 0x14A: 'eng', 0x152: 'oe', 0x166: 'tbar'}
+                     0x132: 'ij', 0x13F: 'ldot', 0x141: 'lslash', 0x14A: 'eng', 0x152: 'oe', 0x166: 'tbar',
+                     0x1E9E: 'germandbls'}
             cm.update(pairs)
             for cp in COMPOSED:
                 ch = chr(cp)
@@ -834,6 +837,7 @@ class Font2:
                  'brokenbar': 1.0, 'periodcentered': 0.8, 'bullet': 0.9, 'degree': 0.6, 'minute': 0.6, 'second': 0.6,
                  'guilsinglleft': 0.5, 'guilsinglright': 0.5, 'guillemotleft': 0.5, 'guillemotright': 0.5,
                  'asciicircum': 0.6, 'asciitilde': 0.8, 'fraction': -0.6}
+        fixed.update(symbols2.FIXED)
         for cp, kind in SPACING_MARKS.items():
             fixed[gname(cp)] = 0.45
         for n, p in P.items():
@@ -1131,6 +1135,7 @@ class Font2:
         self.made.update(make_letters(self))
         self.composites()
         self.made.update(make_symbols(self))
+        self.made.update(symbols2.make_symbols2(self))
         self.combining_and_spacing_marks()
         if self.italic:
             self.condense(); K *= CONDENSE
