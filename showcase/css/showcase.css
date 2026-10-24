@@ -355,6 +355,41 @@ body::after {
 .alt span:first-child { font-size: 2.6rem; line-height: 1.1; font-family: var(--kilfane); }
 .alt span:last-child { font-family: var(--mono); font-size: .7rem; opacity: .7; }
 
+/* A research study beside the release: two inks, overprinted */
+.study { margin-top: clamp(48px, 7vw, 88px); border-top: 1.5px solid var(--kilfane-fg); padding-top: 20px; }
+.study-text { max-width: 66ch; font-size: 1.05rem; }
+.study-sources { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: stretch; margin-block: 20px 16px; }
+.study-src { display: grid; gap: 4px; text-align: left; padding: 14px 18px; border-radius: 14px; border: 1.5px solid var(--plate-rule); background: transparent; cursor: pointer; min-width: min(100%, 300px); }
+.study-src[aria-checked="true"] { border-color: var(--kilfane-fg); background: rgba(255, 255, 255, .45); }
+.study-big { display: flex; align-items: baseline; gap: 10px; font-size: clamp(28px, 3.4vw, 42px); font-weight: 750; font-stretch: 112%; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.study-big span:first-child { color: #00804A; }
+.study-big b { color: #E0560F; }
+.study-link { align-self: center; }
+.study-body { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.study-zoom { position: sticky; top: calc(var(--mast-h) + 16px); margin: 0; display: grid; gap: 8px; padding: 14px; border-radius: 14px; border: 1.5px solid var(--kilfane-fg); background: #F7F5EE; }
+.study-zoom .sc-art { height: 300px; background-image: linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px); background-size: 20px 20px; }
+.study-zoom .sc-art span { font-size: 230px; line-height: 300px; }
+.study-zoom figcaption { display: grid; gap: 2px; }
+.study-zoom .study-big { font-size: 30px; }
+.study-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+.sc { cursor: pointer; font: inherit; color: inherit; }
+.sc[aria-pressed="true"] { border-color: var(--kilfane-fg); background: #F7F5EE; }
+.study-body[data-show="release"] .sc-s, .study-body[data-show="study"] .sc-r { visibility: hidden; }
+.study-body[data-show="release"] .sc-r, .study-body[data-show="study"] .sc-s { color: var(--kilfane-fg); }
+@media (max-width: 760px) { .study-body { grid-template-columns: minmax(0, 1fr); } .study-zoom { position: static; } .study-zoom .sc-art { height: 220px; } .study-zoom .sc-art span { font-size: 170px; line-height: 220px; } }
+.sc { display: grid; gap: 3px; justify-items: center; padding: 10px 6px 8px; border: 1px solid var(--plate-rule); border-radius: 10px; background: rgba(255, 255, 255, .35); }
+.sc-art { position: relative; display: block; width: 100%; height: 76px; isolation: isolate; }
+.sc-art span { position: absolute; inset: 0; text-align: center; font-size: 60px; line-height: 76px; mix-blend-mode: multiply; }
+.sc-r { color: #00A15A; }
+.sc-s { color: #FF6A1F; }
+.sc-k { font-size: .7rem; opacity: .75; }
+.sc-bar { position: relative; width: 80%; height: 6px; border-radius: 3px; background: rgba(0, 0, 0, .08); overflow: hidden; }
+.sc-bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; }
+.sc-bar .a { background: #00A15A; opacity: .5; height: 50%; }
+.sc-bar .b { background: #FF6A1F; top: 50%; }
+.sc-bar .b.worse { background: #B3261E; }
+.sc-v { font-size: .68rem; font-variant-numeric: tabular-nums; }
+
 /* Tuam Uncial: vellum, red lead and knotwork */
 .w-tuam { background: var(--tuam-bg); color: var(--tuam-fg); --plate-rule: var(--tuam-rule); --focus: var(--red-lead); }
 .w-tuam .world-name { color: var(--tuam-fg); }
