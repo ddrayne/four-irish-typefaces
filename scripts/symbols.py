@@ -1,0 +1,326 @@
+"""Symbols and extra punctuation drawn in each face's stroke weight."""
+import math
+import numpy as np
+import pathops
+import shapes as SH
+from glyphs import bounds, translate
+from marks import stroke_polyline, stroke_cubics, centre
+
+
+def embolden(p, d):
+    """Offset an outline by d units (negative thins it)."""
+    if abs(d) < 0.5:
+        return p
+    s = pathops.Path(p)
+    s.stroke(2 * abs(d), pathops.LineCap.ROUND_CAP, pathops.LineJoin.ROUND_JOIN, 4.0)
+    s.convertConicsToQuads()
+    return SH.union(p, s) if d > 0 else SH.difference(p, s)
+
+
+def scaled(p, k, S, target=0.82, S_to=None):
+    """Scale an outline (stems S thick) by k and re-embolden so its stems are about target*S_to."""
+    q = SH.transform(p, (k, 0, 0, k, 0, 0))
+    return embolden(q, (target * (S_to or S) - k * S) / 2)
+
+
+def inside_ring(p, cx, cy, r_in, gap):
+    """Shrink p about (cx, cy), if need be, until all of it sits gap inside a circle of radius r_in."""
+    from fontTools.pens.recordingPen import RecordingPen
+    from outline_util import flatten
+    rec = RecordingPen(); p.draw(rec)
+    far = max(math.hypot(x - cx, y - cy) for poly in flatten(rec.value, 16) for x, y in poly)
+    k = (r_in - gap) / far
+    if k >= 1:
+        return p
+    return SH.transform(p, (k, 0, 0, k, cx - k * cx, cy - k * cy))
+
+
+def bar(style, x0, x1, yc, t):
+    if style == 'round':
+        return SH.capsule(x0 + t / 2, x1 - t / 2, yc, t)
+    if style == 'chisel':
+        return SH.slanted_bar(x0, x1, yc, t, cut=0.22 * t)
+    return SH.polygon([(x0, yc - t / 2), (x1, yc - t / 2), (x1, yc + t / 2), (x0, yc + t / 2)])
+
+
+def vbar(style, xc, y0, y1, t):
+    p = bar(style, y0, y1, 0, t)
+    return SH.transform(p, (0, 1, 1, 0, xc, 0))
+
+
+def ring(cx, cy, r, t):
+    return SH.difference(SH.ellipse(cx, cy, r, r), SH.ellipse(cx, cy, r - t, r - t))
+
+
+def chevron(style, w, h, t, left=True):
+    pts = [(w, h), (0, h / 2), (w, 0)] if left else [(0, h), (w, h / 2), (0, 0)]
+    return stroke_polyline(pts, t, style)
+
+
+def _perimeter(p):
+    from fontTools.pens.recordingPen import RecordingPen
+    from outline_util import flatten
+    rec = RecordingPen(); p.draw(rec)
+    return sum(float(np.hypot(*np.diff(np.array(poly + poly[:1]), axis=0).T).sum()) for poly in flatten(rec.value, 16))
+
+
+def _holes(p):
+    from fontTools.pens.areaPen import AreaPen
+    from glyphs import contours
+    out = []
+    for c in contours(p):
+        ap = AreaPen(); c.draw(ap)
+        if ap.value < 0:
+            out.append(-ap.value)
+    return out
+
+
+def section(s, S, Ss, top):
+    """Two s interlaced so the lower bowl of one and the upper bowl of the other close into the
+    loop at the middle, their terminals tucked into each other's strokes. The overlap is found by
+    trial: the tidiest union (shortest outline) that keeps one clear loop, at the heaviest weight
+    that allows one (a heavy s is lightened, then narrowed, a step at a time)."""
+    def placements(s2, w, sh, pfs, dxs):
+        best = None
+        for pf in pfs:
+            for dxf in dxs:
+                u = SH.union(translate(s2, 0, pf * sh), translate(s2, dxf * w, 0))
+                hs = _holes(u)
+                if len(hs) != 1 or hs[0] < 0.06 * w * sh:
+                    continue
+                score = _perimeter(u) / (1 + pf)
+                if best is None or score < best[0]:
+                    best = (score, u, pf, dxf)
+        return best
+    for tgt in (0.90, 0.84, 0.78, 0.72, 0.66):
+        for kx in (1.0, 0.9):
+            s2 = scaled(s, 0.80, S, tgt, Ss)
+            if kx != 1.0:
+                s2 = SH.transform(s2, (kx, 0, 0, 1, 0, 0))
+            b = bounds(s2); w, sh = b[2] - b[0], b[3] - b[1]; s2 = translate(s2, -b[0], -b[1])
+            best = placements(s2, w, sh, np.arange(0.36, 0.77, 0.04), np.arange(-0.18, 0.181, 0.06))
+            if best:
+                _, _, pf, dxf = best
+                best = placements(s2, w, sh, np.arange(pf - 0.02, pf + 0.021, 0.02), np.arange(dxf - 0.03, dxf + 0.031, 0.03)) or best
+                u = best[1]; ub = bounds(u)
+                return translate(u, -ub[0], top - ub[3])
+    return None
+
+
+def drawn_section(H, W, t, style):
+    """A § drawn as one s-stroke and its half-turn: the lower curve of the first and the upper curve
+    of the second close into the loop at the middle. For a face whose own s is too black to interlace."""
+    m = t / 2; yc = H / 2; hl = 0.20 * H
+    segs = [((W - m, H - 0.05 * H), (0.88 * W, H - m), (0.50 * W, H - m)),
+            ((0.12 * W, H - m), (m, H - 0.05 * H), (m, H - 0.20 * H)),
+            ((m, H - 0.36 * H), (W - m, yc + 0.16 * H), (W - m, yc - 0.02 * H)),
+            ((W - m, yc - 0.15 * H), (0.86 * W, yc - hl), (0.50 * W, yc - hl)),
+            ((0.22 * W, yc - hl), (m + 0.02 * W, yc - hl + 0.06 * H), (m + 0.04 * W, yc - hl + 0.12 * H))]
+    a = stroke_cubics((W - m, H - 0.24 * H), segs, t, style)
+    return SH.union(a, SH.rotate(a, 180, W / 2, H / 2))
+
+
+def make_symbols(f):
+    P, S, xh, st = f.P, f.S, f.xh, f.style
+    # Small glyphs (superiors, fractions, the letters in ® and ©) in a bold are drawn lighter in
+    # proportion than its full-size letters, or their counters close: halfway to the regular's stem.
+    Ss = S if not f.bold else f.S_regular + 0.5 * (S - f.S_regular)
+    fig, asc, cap = f.fig, f.asc, f.cap
+    top = fig if f.cfg['lining'] else xh * 1.05      # height of "figure-size" symbols
+    t = f.hyphen_thick                                # bar weight for math and rules
+    yc = f.hyphen_yc                                  # math axis = hyphen centre
+    made = {}
+
+    def put(name, p, how):
+        P[name] = f.norm_x(p); made[name] = how
+
+    # ---------------------------------------------------------------- math
+    L = 0.95 * xh
+    put('plus', SH.union(bar(st, 0, L, yc, t), vbar(st, L / 2, yc - L / 2, yc + L / 2, t)), 'bars')
+    put('minus', bar(st, 0, L, yc, t), 'bar')
+    put('equal', SH.union(bar(st, 0, L, yc - 1.15 * t, t), bar(st, 0, L, yc + 1.15 * t, t)), 'bars')
+    put('multiply', SH.rotate(SH.union(bar(st, 0, 0.78 * L, yc, t), vbar(st, 0.39 * L, yc - 0.39 * L, yc + 0.39 * L, t)),
+                              45, 0.39 * L, yc), 'rotated plus')
+    dot = SH.transform(f.period, (0.85, 0, 0, 0.85, 0, 0)); db = bounds(dot); dw = db[2] - db[0]
+    put('divide', SH.union(bar(st, 0, L, yc, t), translate(dot, L / 2 - dw / 2 - db[0], yc + 1.4 * t - db[1]),
+                           translate(dot, L / 2 - dw / 2 - db[0], yc - 1.4 * t - db[3])), 'bar + dots')
+    put('plusminus', SH.union(bar(st, 0, L, yc + 0.18 * xh, t), vbar(st, L / 2, yc + 0.18 * xh - L / 2.2, yc + 0.18 * xh + L / 2.2, t),
+                              bar(st, 0, L, yc + 0.18 * xh - L / 2.2 - 1.6 * t, t)), 'plus over bar')
+    cw, chh = 0.66 * xh, 0.84 * xh
+    put('less', translate(chevron(st, cw, chh, t, True), 0, yc - chh / 2), 'chevron')
+    put('greater', translate(chevron(st, cw, chh, t, False), 0, yc - chh / 2), 'chevron')
+    put('lessequal', SH.union(translate(chevron(st, cw, 0.62 * chh, t, True), 0, yc - 0.18 * chh),
+                              bar(st, 0, cw, yc - 0.18 * chh - 1.6 * t, t)), 'chevron + bar')
+    put('greaterequal', SH.union(translate(chevron(st, cw, 0.62 * chh, t, False), 0, yc - 0.18 * chh),
+                                 bar(st, 0, cw, yc - 0.18 * chh - 1.6 * t, t)), 'chevron + bar')
+    eq = P['equal']; eb = bounds(eq)
+    put('notequal', SH.union(eq, stroke_polyline([(eb[0] + 0.25 * L, yc - 0.42 * L), (eb[0] + 0.75 * L, yc + 0.42 * L)], t, st)), 'equal + slash')
+    tw = bounds(f.marks['tilde']); tl = SH.transform(f.marks['tilde'], (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); tb = bounds(tl)
+    put('approxequal', SH.union(translate(tl, -tb[0], yc + 0.6 * t - tb[1]), translate(tl, -tb[0], yc - 0.6 * t - tb[3])), 'two tildes')
+    put('logicalnot', SH.union(bar(st, 0, L, yc + 0.06 * xh, t), vbar(st, L - t / 2, yc - 0.18 * xh, yc + 0.06 * xh + t / 2, t)), 'bar + drop')
+
+    # ---------------------------------------------------------------- ASCII extras
+    h = top; sh = math.tan(math.radians(12))
+    xs = [0.18 * xh, 0.48 * xh]
+    verts = [stroke_polyline([(x - sh * 0.0, 0), (x + sh * h, h)], 0.85 * t, st) for x in xs]
+    hb = [bar(st, -0.02 * xh, 0.72 * xh, y, 0.85 * t) for y in (0.33 * h, 0.66 * h)]
+    put('numbersign', SH.union(*verts, *hb), 'sheared grid')
+
+    # heavy faces keep the small zeros' own weight: re-emboldening would close their counters
+    z = scaled(P['zero'], 0.42, S, 0.78 if f.S_regular < 0.3 * xh else 0.42, Ss)
+    zb = bounds(z); zw, zh = zb[2] - zb[0], zb[3] - zb[1]
+    z_up = translate(z, -zb[0], top - zb[3]); z_dn = translate(z, -zb[0] + zw + 0.16 * xh, -zb[1])
+    sl = stroke_polyline([(0.05 * zw, 0), (zw + 0.16 * xh + 0.95 * zw, top)], 0.6 * t, st)
+    put('percent', SH.union(z_up, z_dn, sl), 'scaled zeros + slash')
+    pc = P['percent']; pb = bounds(pc)
+    put('perthousand', SH.union(pc, translate(z_dn, zw + 0.06 * xh, 0)), 'percent + zero')
+
+    # asterisk: five tapering arms
+    r = 0.29 * xh; cy = top - 0.30 * xh
+    arms = []
+    for k in range(5):
+        a = math.radians(90 + 72 * k)
+        arms.append(SH.wedge((0, cy), (r * math.cos(a), cy + r * math.sin(a)), 0.13 * S, 0.24 * S, rounded=(st == 'round')))
+    put('asterisk', SH.union(*arms), 'five arms')
+
+    # @: the face's own a inside an open ring
+    a = scaled(P['a'], 0.74, S, 0.85, Ss); ab = bounds(a)
+    R = 0.64 * xh + 0.25 * S; ccx = R; ccy = 0.42 * xh
+    a = translate(a, ccx - (ab[0] + ab[2]) / 2 + 0.02 * xh, ccy - (ab[1] + ab[3]) / 2)
+    put('at', SH.union(a, ring(ccx, ccy, R, 0.7 * t)), 'a in a ring')
+
+    pt, pbm = asc + 0.02 * xh, -0.30 * xh
+    sw = 0.62 * S; arm = 0.24 * xh
+    lb = SH.union(SH.polygon([(0, pbm), (sw, pbm), (sw, pt), (0, pt)]),
+                  SH.polygon([(0, pt - 0.55 * t), (arm, pt - 0.55 * t), (arm, pt), (0, pt)]),
+                  SH.polygon([(0, pbm), (arm, pbm), (arm, pbm + 0.55 * t), (0, pbm + 0.55 * t)]))
+    put('bracketleft', lb, 'stem + arms')
+    put('bracketright', SH.transform(lb, (-1, 0, 0, 1, 0, 0)), 'mirror')
+    mid = (pt + pbm) / 2; hh = (pt - pbm) / 2; bw = 0.20 * xh
+    segs = [((bw * 0.35, pt), (bw * 0.35, pt - 0.12 * hh), (bw * 0.35, pt - 0.35 * hh)),
+            ((bw * 0.35, mid + 0.30 * hh), (bw * 0.35, mid + 0.02 * hh), (0, mid)),
+            ((bw * 0.35, mid - 0.02 * hh), (bw * 0.35, mid - 0.30 * hh), (bw * 0.35, pbm + 0.35 * hh)),
+            ((bw * 0.35, pbm + 0.12 * hh), (bw * 0.35, pbm), (bw, pbm))]
+    # two halves stroked separately and joined at the tip: no self-overlapping join at the cusp
+    brace = SH.union(stroke_cubics((bw, pt), segs[:2], 0.62 * S, st),
+                     stroke_cubics((0, mid), segs[2:], 0.62 * S, st))
+    put('braceleft', brace, 'stroked curve')
+    put('braceright', SH.transform(brace, (-1, 0, 0, 1, 0, 0)), 'mirror')
+    put('bar', vbar(st, 0, pbm, pt, 0.45 * S), 'rule')
+    put('brokenbar', SH.union(vbar(st, 0, pbm, mid - 0.06 * xh, 0.45 * S), vbar(st, 0, mid + 0.06 * xh, pt, 0.45 * S)), 'split rule')
+    sl = P['slash']; slb = bounds(sl)
+    put('backslash', SH.transform(sl, (-1, 0, 0, 1, 0, 0)), 'mirrored slash')
+    put('underscore', bar('square', 0, 0.56 * 1000 * 0.9, -0.24 * xh, 0.55 * t), 'rule')
+    put('asciicircum', translate(SH.transform(f.marks['circumflex'], (1.35, 0, 0, 1.35, 0, 0)), 0, top * 0.62), 'circumflex, raised')
+    put('asciitilde', translate(SH.transform(f.marks['tilde'], (L / (tw[2] - tw[0]), 0, 0, 1.4, 0, 0)), 0, yc - 0.10 * xh), 'tilde at math axis')
+
+    # ---------------------------------------------------------------- Latin-1 symbols
+    def inverted(src):
+        b = bounds(P[src]); q = SH.rotate(P[src], 180, (b[0] + b[2]) / 2, (b[1] + b[3]) / 2)
+        qb = bounds(q); return translate(q, 0, xh - qb[3])
+    put('exclamdown', inverted('exclam'), 'rotated !'); put('questiondown', inverted('question'), 'rotated ?')
+    c = P['c']; cb = bounds(c)
+    put('cent', SH.union(c, vbar(st, (cb[0] + cb[2]) / 2 + 0.03 * xh, cb[1] - 0.14 * xh, cb[3] + 0.14 * xh, 0.4 * S)), 'c + bar')
+    # yen: a Y (roman alternate where the face has one) with two bars
+    if 'Y.alt1' in P:
+        y = P['Y.alt1']
+    else:
+        v = P['v.alt1'] if 'v.alt1' in P else P['v']; vb = bounds(v)
+        kk = top / (vb[3] - vb[1]) * 0.62
+        y = embolden(SH.transform(v, (kk, 0, 0, kk, 0, 0)), (Ss - kk * S) / 2 * 0.8)
+        yb = bounds(y); y = translate(y, 0, top - yb[3])
+        yb = bounds(y); cx = (yb[0] + yb[2]) / 2
+        y = SH.union(y, SH.polygon([(cx - 0.42 * S, 0), (cx + 0.42 * S, 0), (cx + 0.42 * S, yb[1] + 0.2 * (yb[3] - yb[1])), (cx - 0.42 * S, yb[1] + 0.2 * (yb[3] - yb[1]))]))
+    yb = bounds(y); ycx = (yb[0] + yb[2]) / 2
+    put('yen', SH.union(y, bar(st, ycx - 0.27 * xh, ycx + 0.27 * xh, 0.30 * top, 0.7 * t),
+                        bar(st, ycx - 0.27 * xh, ycx + 0.27 * xh, 0.30 * top - 1.7 * t, 0.7 * t)), 'Y + bars')
+    rr = 0.34 * xh
+    spurs = [stroke_polyline([(math.cos(a) * rr * 0.85, yc + math.sin(a) * rr * 0.85), (math.cos(a) * rr * 1.45, yc + math.sin(a) * rr * 1.45)], 0.55 * t, st)
+             for a in (math.radians(d) for d in (45, 135, 225, 315))]
+    put('currency', SH.union(ring(0, yc, rr, 0.6 * t), *spurs), 'ring + spurs')
+    sec = section(P['s'], S, Ss, top)
+    if sec is not None:
+        put('section', sec, 'two interlaced s')
+    else:
+        H = top + 0.30 * xh
+        put('section', translate(drawn_section(H, 0.58 * H, 0.64 * Ss, st), 0, top - H), 'drawn: an s-stroke and its half-turn')
+    bw2 = 0.34 * xh
+    bowl = SH.ellipse(bw2, top - 0.25 * top, bw2, 0.25 * top)
+    pil = SH.union(bowl, SH.polygon([(bw2, top), (bw2 * 2 + 0.35 * S, top), (bw2 * 2 + 0.35 * S, top - 0.5 * top), (bw2, top - 0.5 * top)]),
+                   vbar(st, bw2 * 2, -0.20 * xh, top, 0.42 * S), vbar(st, bw2 * 2 + 0.30 * xh, -0.20 * xh, top, 0.42 * S))
+    put('paragraph', pil, 'bowl + two stems')
+    R = 0.5 * top
+    cc = scaled(P['c'], 0.58, S, 0.62, Ss); ccb = bounds(cc)
+    rt = 0.42 * t + 0.1 * S                                       # the ring's weight
+    cc = inside_ring(translate(cc, R - (ccb[0] + ccb[2]) / 2, R - (ccb[1] + ccb[3]) / 2), R, R, R - rt, 0.45 * rt)
+    put('copyright', SH.union(ring(R, R, R, rt), cc), 'ring + c')
+    rsrc = P['R'] if not f.cfg['unicase'] else P['r']
+    rg = scaled(rsrc, 0.50 if not f.cfg['unicase'] else 0.62, S, 0.62, Ss); rgb = bounds(rg)
+    rg = inside_ring(translate(rg, R - (rgb[0] + rgb[2]) / 2, R - (rgb[1] + rgb[3]) / 2), R, R, R - rt, 0.45 * rt)
+    put('registered', SH.union(ring(R, R, R, rt), rg), 'ring + r')
+    tm_t = P['T.alt1'] if 'T.alt1' in P else (P['T'] if not f.cfg['unicase'] else P['t'])
+    tm_m = P['M'] if not f.cfg['unicase'] else P['m']
+    k = 0.42 if not f.cfg['unicase'] else 0.52
+    a1 = scaled(tm_t, k, S, 0.55, Ss); a2 = scaled(tm_m, k, S, 0.55, Ss); b1 = bounds(a1); b2 = bounds(a2)
+    tmx = SH.union(translate(a1, -b1[0], top - b1[3]), translate(a2, b1[2] - b1[0] - b2[0] + 0.04 * xh, top - b2[3]))
+    put('trademark', tmx, 'small T + M')
+    if 'ring' in getattr(f, 'piece', {}):
+        rg_ = f.piece['ring']; put('degree', translate(rg_, 0, top - bounds(rg_)[3]), 'the sheet\'s ring')
+    else:
+        put('degree', ring(0.15 * xh, top - 0.15 * xh, 0.15 * xh, 0.45 * t), 'small ring')
+    for name, src in (('ordfeminine', 'a'), ('ordmasculine', 'o')):
+        g = scaled(P[src], 0.55, S, 0.7, Ss); gb = bounds(g)
+        g = translate(g, -gb[0], top - gb[3]); gb = bounds(g)
+        put(name, SH.union(g, bar('square', gb[0], gb[2], gb[1] - 0.10 * xh, 0.45 * t)), f'small {src} + rule')
+    sup = {}
+    for name, src in (('onesuperior', 'one'), ('twosuperior', 'two'), ('threesuperior', 'three')):
+        g = scaled(P[src], 0.56, S, 0.7, Ss); gb = bounds(g)
+        sup[src] = g
+        put(name, translate(g, -gb[0], top - gb[3]), 'small figure')
+    fr = stroke_polyline([(0, -0.02 * top), (0.40 * xh, top * 1.0)], 0.45 * t, st)
+    put('fraction', fr, 'steep slash')
+    def frac(num, den):
+        n = scaled(P[num], 0.52, S, 0.7, Ss); d = scaled(P[den], 0.52, S, 0.7, Ss)
+        nb, dbb = bounds(n), bounds(d); fb = bounds(P['fraction'])
+        n = translate(n, -nb[0], top - nb[3])
+        fx = nb[2] - nb[0] - 0.12 * xh
+        fpath = translate(P['fraction'], fx - fb[0], 0)
+        d = translate(d, fx + (fb[2] - fb[0]) - 0.12 * xh - dbb[0], -dbb[1])
+        return SH.union(n, fpath, d)
+    put('onequarter', frac('one', 'four'), 'fraction'); put('onehalf', frac('one', 'two'), 'fraction')
+    put('threequarters', frac('three', 'four'), 'fraction')
+    u = P['u']; s0 = bounds(u)
+    from letters import stem_at
+    l0, l1 = stem_at(u, 0.4 * xh, 'left')
+    put('mu', SH.union(u, SH.polygon([(l0, -0.30 * xh), (l1, -0.30 * xh), (l1, 0.3 * xh), (l0, 0.3 * xh)])), 'u + descender')
+    put('periodcentered', translate(f.period, 0, yc - (bounds(f.period)[1] + bounds(f.period)[3]) / 2), 'raised period')
+    put('bullet', SH.ellipse(0, yc, 0.17 * xh, 0.17 * xh), 'disc')
+    dg = SH.union(vbar(st, 0, -0.18 * xh, top, 0.42 * S), bar(st, -0.21 * xh, 0.21 * xh, top - 0.30 * xh, 0.8 * t))
+    put('dagger', dg, 'stem + bar')
+    put('daggerdbl', SH.union(dg, bar(st, -0.21 * xh, 0.21 * xh, 0.10 * xh, 0.8 * t)), 'stem + two bars')
+
+    # ---------------------------------------------------------------- quotes, guillemets, primes
+    cm = P['comma']; cmb = bounds(cm)
+    put('quotesinglbase', cm, 'comma')
+    put('quotedblbase', SH.union(cm, translate(cm, (cmb[2] - cmb[0]) * 1.45, 0)), 'two commas')
+    pc = getattr(f, 'piece', {})
+    if 'guil.r1' in pc:
+        # the sheet's own chevrons, centred on the hyphen like the drawn ones
+        mirror = lambda p: SH.transform(p, (-1, 0, 0, 1, 0, 0))
+        mid = lambda p: translate(p, 0, yc - (bounds(p)[1] + bounds(p)[3]) / 2)
+        rr = SH.union(pc['guil.r1'], pc['guil.r2'])
+        ll = SH.union(pc['guil.l1'], pc['guil.l2']) if 'guil.l1' in pc else mirror(rr)
+        put('guilsinglright', mid(pc['guil.r1']), 'chevron from the sheet')
+        put('guilsinglleft', mid(pc['guil.l1'] if 'guil.l1' in pc else mirror(pc['guil.r1'])), 'chevron from the sheet')
+        put('guillemotright', mid(rr), 'chevrons from the sheet'); put('guillemotleft', mid(ll), 'chevrons from the sheet')
+    else:
+        gw, gh = 0.30 * xh, 0.52 * xh; gt = min(0.55 * S, 0.17 * xh)
+        gl = translate(chevron(st, gw, gh, gt, True), 0, yc - gh / 2); gr = translate(chevron(st, gw, gh, gt, False), 0, yc - gh / 2)
+        put('guilsinglleft', gl, 'chevron'); put('guilsinglright', gr, 'chevron')
+        put('guillemotleft', SH.union(gl, translate(gl, gw * 0.62 + gt, 0)), 'two chevrons')
+        put('guillemotright', SH.union(gr, translate(gr, gw * 0.62 + gt, 0)), 'two chevrons')
+    q = P['quotesingle']
+    pr = SH.transform(q, (1, 0, math.tan(math.radians(14)), 1, 0, 0))
+    put('minute', pr, 'slanted wedge')
+    put('second', SH.union(pr, translate(pr, (bounds(pr)[2] - bounds(pr)[0]) * 1.4, 0)), 'two wedges')
+    return made

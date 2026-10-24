@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four Irish Typefaces</title>
+<link rel="stylesheet" href="css/four-irish-typefaces.css">
+<style>
+:root { --ink:#1b1a17; --mute:#6e6a62; --rule:#dcd6ca; --paper:#faf8f3; --accent:#2f6b4f; }
+@media (prefers-color-scheme: dark) { :root { --ink:#ece8df; --mute:#a59f93; --rule:#3a3832; --paper:#171614; --accent:#7fc4a0; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width:1080px; margin:0 auto; padding:32px 20px 64px; }
+.hero h1 { font-family:"Céilí","Ceili",serif; font-weight:400; font-size:clamp(44px,9vw,104px); line-height:1; margin:8px 0 12px; }
+.hero p { max-width:720px; color:var(--mute); margin:6px 0; }
+.face { border-top:1px solid var(--rule); padding:28px 0 20px; }
+.f { font-family:var(--face), serif; }
+.face h2 { font-weight:400; font-size:clamp(40px,7vw,76px); margin:0; line-height:1.05; }
+.meta { margin:4px 0 0; color:var(--mute); font-size:14px; }
+.styles { margin:14px 0 4px; }
+.style-row { display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--rule); padding:2px 0 6px; }
+.style-row .f { font-size:clamp(28px,5.4vw,60px); line-height:1.2; overflow-wrap:anywhere; }
+.style-name { flex:0 0 92px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--mute); }
+.picks { display:inline-flex; flex-wrap:wrap; gap:4px 12px; }
+.note { max-width:720px; margin:6px 0 14px; }
+.tester { border:1px solid var(--rule); border-radius:10px; padding:12px 14px; }
+.controls { display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; color:var(--mute); margin-bottom:8px; align-items:center; }
+.controls input[type=range] { vertical-align:middle; width:140px; }
+.sample { font-size:44px; line-height:1.25; outline:none; min-height:1.3em; overflow-wrap:anywhere; }
+details { margin:14px 0 6px; } summary { cursor:pointer; color:var(--mute); font-size:14px; }
+.grid { display:flex; flex-wrap:wrap; margin-top:10px; border-left:1px solid var(--rule); border-top:1px solid var(--rule); font-size:30px; }
+.grid span { width:46px; height:52px; display:flex; align-items:center; justify-content:center; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.dl { font-size:14px; color:var(--mute); border-collapse:collapse; margin-top:10px; }
+.dl caption { text-align:left; padding-bottom:4px; } .dl th { text-align:left; font-weight:500; padding:2px 14px 2px 0; }
+.dl td { padding:2px 10px 2px 0; } a { color:var(--accent); }
+pre { background:rgba(127,127,127,.08); border:1px solid var(--rule); border-radius:8px; padding:12px; overflow:auto; font-size:13px; }
+footer { border-top:1px solid var(--rule); margin-top:28px; padding-top:16px; color:var(--mute); font-size:13px; }
+</style>
+</head>
+<body><main>
+<div class="hero">
+  <h1>four irish typefaces</h1>
+  <p>Céilí, Carrick, Kilfane and Tuam Uncial won the 1978 “Design an Irish Typeface” competition sponsored by Letraset,
+  Kilkenny Design Workshops and D. O’Sullivan Graphic Supplies, and were sold as Letraset dry-transfer sheets.
+  These digital versions were traced from the competition’s “Four Irish Typefaces” flyer and completed with
+  around 400 characters each, covering Irish (including traditional lenition dots and ⁊), Scottish Gaelic, Welsh
+  and the other Latin-script languages of Europe.</p>
+  <p>The sheet shows each face in one style. Version 2 adds, as new work drawn in 2026 from those regulars, an italic
+  for all four and a bold and bold italic for Céilí and Kilfane. Carrick and Tuam Uncial are already black.</p>
+</div>
+
+<section class="face" style="--face:'Céilí'">
+  <header>
+    <h2 class="f">Céilí</h2>
+    <p class="meta">Hermann Hecht · First prize, 1978 · 408 characters · Regular · Italic · Bold · Bold Italic</p>
+  </header>
+  <div class="styles"><div class="style-row"><span class="style-name">Regular</span><span class="f" style="font-weight:400;font-style:normal">Céilí mór anocht!</span></div><div class="style-row"><span class="style-name">Italic</span><span class="f" style="font-weight:400;font-style:italic">Céilí mór anocht!</span></div><div class="style-row"><span class="style-name">Bold</span><span class="f" style="font-weight:700;font-style:normal">Céilí mór anocht!</span></div><div class="style-row"><span class="style-name">Bold Italic</span><span class="f" style="font-weight:700;font-style:italic">Céilí mór anocht!</span></div></div>
+  <p class="note">The winner: a light, calligraphic unicase with insular letterforms and old-style figures.</p>
+  <div class="tester">
+    <div class="controls">
+      <span class="picks"><label><input type="radio" name="st-ceili" value="Regular" checked> Regular</label><label><input type="radio" name="st-ceili" value="Italic"> Italic</label><label><input type="radio" name="st-ceili" value="Bold"> Bold</label><label><input type="radio" name="st-ceili" value="Bold Italic"> Bold Italic</label></span>
+      <label>Size <input type="range" min="14" max="140" value="44" class="size"></label>
+      <label><input type="checkbox" data-feat="kern" checked> kerning</label>
+      <label><input type="checkbox" data-feat="ss01"> ss01 · Insular r and s</label><label><input type="checkbox" data-feat="ss02"> ss02 · Uncial A and N</label><label><input type="checkbox" data-feat="ss03"> ss03 · Alternate a d e j l v</label>
+    </div>
+    <div class="f sample" contenteditable="true" spellcheck="false">Is fearr Gaeilge bhriste ná Béarla cliste. A ċara, mo ġrá ṫú! Ciamar a tha thu? The quick brown fox jumps over the lazy dog — 1978.</div>
+  </div>
+  <details><summary>Character set</summary><div class="f grid"><span>!</span><span>&quot;</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>&#x27;</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>¡</span><span>¢</span><span>£</span><span>¤</span><span>¥</span><span>¦</span><span>§</span><span>¨</span><span>©</span><span>ª</span><span>«</span><span>¬</span><span>®</span><span>¯</span><span>°</span><span>±</span><span>²</span><span>³</span><span>´</span><span>µ</span><span>¶</span><span>·</span><span>¸</span><span>¹</span><span>º</span><span>»</span><span>¼</span><span>½</span><span>¾</span><span>¿</span><span>×</span><span>ß</span><span>à</span><span>á</span><span>â</span><span>ã</span><span>ä</span><span>å</span><span>æ</span><span>ç</span><span>è</span><span>é</span><span>ê</span><span>ë</span><span>ì</span><span>í</span><span>î</span><span>ï</span><span>ð</span><span>ñ</span><span>ò</span><span>ó</span><span>ô</span><span>õ</span><span>ö</span><span>÷</span><span>ø</span><span>ù</span><span>ú</span><span>û</span><span>ü</span><span>ý</span><span>þ</span><span>ÿ</span><span>ā</span><span>ă</span><span>ą</span><span>ć</span><span>ĉ</span><span>ċ</span><span>č</span><span>ď</span><span>đ</span><span>ē</span><span>ĕ</span><span>ė</span><span>ę</span><span>ě</span><span>ĝ</span><span>ğ</span><span>ġ</span><span>ģ</span><span>ĥ</span><span>ħ</span><span>ĩ</span><span>ī</span><span>ĭ</span><span>į</span><span>İ</span><span>ı</span><span>ĳ</span><span>ĵ</span><span>ķ</span><span>ĸ</span><span>ĺ</span><span>ļ</span><span>ľ</span><span>ŀ</span><span>ł</span><span>ń</span><span>ņ</span><span>ň</span><span>ŉ</span><span>ŋ</span><span>ō</span><span>ŏ</span><span>ő</span><span>œ</span><span>ŕ</span><span>ŗ</span><span>ř</span><span>ś</span><span>ŝ</span><span>ş</span><span>š</span><span>ţ</span><span>ť</span><span>ŧ</span><span>ũ</span><span>ū</span><span>ŭ</span><span>ů</span><span>ű</span><span>ų</span><span>ŵ</span><span>ŷ</span><span>ź</span><span>ż</span><span>ž</span><span>ſ</span><span>ș</span><span>ț</span><span>ȷ</span><span>ˆ</span><span>ˇ</span><span>˘</span><span>˙</span><span>˚</span><span>˛</span><span>˜</span><span>˝</span><span>ᵹ</span><span>ḃ</span><span>ḋ</span><span>ḟ</span><span>ṁ</span><span>ṗ</span><span>ṡ</span><span>ṫ</span><span>ẁ</span><span>ẃ</span><span>ẅ</span><span>ỳ</span><span>‐</span><span>‑</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>‚</span><span>“</span><span>”</span><span>„</span><span>†</span><span>‡</span><span>•</span><span>…</span><span>‰</span><span>′</span><span>″</span><span>‹</span><span>›</span><span>⁄</span><span>⁊</span><span>€</span><span>™</span><span>−</span><span>≈</span><span>≠</span><span>≤</span><span>≥</span><span>ꝺ</span><span>ꝼ</span><span>ꞃ</span><span>ꞅ</span><span>ꞇ</span></div></details>
+  <table class="dl"><caption>Download</caption><tr><th>Regular</th><td><a href="fonts/woff2/Ceili-Regular.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Ceili-Regular.woff" download>WOFF</a></td><td><a href="fonts/otf/Ceili-Regular.otf" download>OTF</a></td><td><a href="fonts/ttf/Ceili-Regular.ttf" download>TTF</a></td></tr><tr><th>Italic</th><td><a href="fonts/woff2/Ceili-Italic.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Ceili-Italic.woff" download>WOFF</a></td><td><a href="fonts/otf/Ceili-Italic.otf" download>OTF</a></td><td><a href="fonts/ttf/Ceili-Italic.ttf" download>TTF</a></td></tr><tr><th>Bold</th><td><a href="fonts/woff2/Ceili-Bold.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Ceili-Bold.woff" download>WOFF</a></td><td><a href="fonts/otf/Ceili-Bold.otf" download>OTF</a></td><td><a href="fonts/ttf/Ceili-Bold.ttf" download>TTF</a></td></tr><tr><th>Bold Italic</th><td><a href="fonts/woff2/Ceili-BoldItalic.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Ceili-BoldItalic.woff" download>WOFF</a></td><td><a href="fonts/otf/Ceili-BoldItalic.otf" download>OTF</a></td><td><a href="fonts/ttf/Ceili-BoldItalic.ttf" download>TTF</a></td></tr></table>
+</section>
+<section class="face" style="--face:'Carrick'">
+  <header>
+    <h2 class="f">Carrick</h2>
+    <p class="meta">William Curran · Second prize, 1978 · 400 characters · Regular · Italic</p>
+  </header>
+  <div class="styles"><div class="style-row"><span class="style-name">Regular</span><span class="f" style="font-weight:400;font-style:normal">Ceol ⁊ craic</span></div><div class="style-row"><span class="style-name">Italic</span><span class="f" style="font-weight:400;font-style:italic">Ceol ⁊ craic</span></div></div>
+  <p class="note">A chunky, lower-case-only display face; the name comes from carraig, “rock”.</p>
+  <div class="tester">
+    <div class="controls">
+      <span class="picks"><label><input type="radio" name="st-carrick" value="Regular" checked> Regular</label><label><input type="radio" name="st-carrick" value="Italic"> Italic</label></span>
+      <label>Size <input type="range" min="14" max="140" value="44" class="size"></label>
+      <label><input type="checkbox" data-feat="kern" checked> kerning</label>
+      
+    </div>
+    <div class="f sample" contenteditable="true" spellcheck="false">Is fearr Gaeilge bhriste ná Béarla cliste. A ċara, mo ġrá ṫú! Ciamar a tha thu? The quick brown fox jumps over the lazy dog — 1978.</div>
+  </div>
+  <details><summary>Character set</summary><div class="f grid"><span>!</span><span>&quot;</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>&#x27;</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>¡</span><span>¢</span><span>£</span><span>¤</span><span>¥</span><span>¦</span><span>§</span><span>¨</span><span>©</span><span>ª</span><span>«</span><span>¬</span><span>®</span><span>¯</span><span>°</span><span>±</span><span>²</span><span>³</span><span>´</span><span>µ</span><span>¶</span><span>·</span><span>¸</span><span>¹</span><span>º</span><span>»</span><span>¼</span><span>½</span><span>¾</span><span>¿</span><span>×</span><span>ß</span><span>à</span><span>á</span><span>â</span><span>ã</span><span>ä</span><span>å</span><span>æ</span><span>ç</span><span>è</span><span>é</span><span>ê</span><span>ë</span><span>ì</span><span>í</span><span>î</span><span>ï</span><span>ð</span><span>ñ</span><span>ò</span><span>ó</span><span>ô</span><span>õ</span><span>ö</span><span>÷</span><span>ø</span><span>ù</span><span>ú</span><span>û</span><span>ü</span><span>ý</span><span>þ</span><span>ÿ</span><span>ā</span><span>ă</span><span>ą</span><span>ć</span><span>ĉ</span><span>ċ</span><span>č</span><span>ď</span><span>đ</span><span>ē</span><span>ĕ</span><span>ė</span><span>ę</span><span>ě</span><span>ĝ</span><span>ğ</span><span>ġ</span><span>ģ</span><span>ĥ</span><span>ħ</span><span>ĩ</span><span>ī</span><span>ĭ</span><span>į</span><span>İ</span><span>ı</span><span>ĳ</span><span>ĵ</span><span>ķ</span><span>ĸ</span><span>ĺ</span><span>ļ</span><span>ľ</span><span>ŀ</span><span>ł</span><span>ń</span><span>ņ</span><span>ň</span><span>ŉ</span><span>ŋ</span><span>ō</span><span>ŏ</span><span>ő</span><span>œ</span><span>ŕ</span><span>ŗ</span><span>ř</span><span>ś</span><span>ŝ</span><span>ş</span><span>š</span><span>ţ</span><span>ť</span><span>ŧ</span><span>ũ</span><span>ū</span><span>ŭ</span><span>ů</span><span>ű</span><span>ų</span><span>ŵ</span><span>ŷ</span><span>ź</span><span>ż</span><span>ž</span><span>ſ</span><span>ș</span><span>ț</span><span>ȷ</span><span>ˆ</span><span>ˇ</span><span>˘</span><span>˙</span><span>˚</span><span>˛</span><span>˜</span><span>˝</span><span>ḃ</span><span>ḋ</span><span>ḟ</span><span>ṁ</span><span>ṗ</span><span>ṡ</span><span>ṫ</span><span>ẁ</span><span>ẃ</span><span>ẅ</span><span>ỳ</span><span>‐</span><span>‑</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>‚</span><span>“</span><span>”</span><span>„</span><span>†</span><span>‡</span><span>•</span><span>…</span><span>‰</span><span>′</span><span>″</span><span>‹</span><span>›</span><span>⁄</span><span>⁊</span><span>€</span><span>™</span><span>−</span><span>≈</span><span>≠</span><span>≤</span><span>≥</span><span>ꝺ</span><span>ꞇ</span></div></details>
+  <table class="dl"><caption>Download</caption><tr><th>Regular</th><td><a href="fonts/woff2/Carrick-Regular.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Carrick-Regular.woff" download>WOFF</a></td><td><a href="fonts/otf/Carrick-Regular.otf" download>OTF</a></td><td><a href="fonts/ttf/Carrick-Regular.ttf" download>TTF</a></td></tr><tr><th>Italic</th><td><a href="fonts/woff2/Carrick-Italic.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Carrick-Italic.woff" download>WOFF</a></td><td><a href="fonts/otf/Carrick-Italic.otf" download>OTF</a></td><td><a href="fonts/ttf/Carrick-Italic.ttf" download>TTF</a></td></tr></table>
+</section>
+<section class="face" style="--face:'Kilfane'">
+  <header>
+    <h2 class="f">Kilfane</h2>
+    <p class="meta">William Curran · Joint third prize, 1978 · 402 characters · Regular · Italic · Bold · Bold Italic</p>
+  </header>
+  <div class="styles"><div class="style-row"><span class="style-name">Regular</span><span class="f" style="font-weight:400;font-style:normal">Banc Ceannais na hÉireann</span></div><div class="style-row"><span class="style-name">Italic</span><span class="f" style="font-weight:400;font-style:italic">Banc Ceannais na hÉireann</span></div><div class="style-row"><span class="style-name">Bold</span><span class="f" style="font-weight:700;font-style:normal">Banc Ceannais na hÉireann</span></div><div class="style-row"><span class="style-name">Bold Italic</span><span class="f" style="font-weight:700;font-style:italic">Banc Ceannais na hÉireann</span></div></div>
+  <p class="note">The only one of the four with true capitals. Reportedly used on the Series C Irish pound notes.</p>
+  <div class="tester">
+    <div class="controls">
+      <span class="picks"><label><input type="radio" name="st-kilfane" value="Regular" checked> Regular</label><label><input type="radio" name="st-kilfane" value="Italic"> Italic</label><label><input type="radio" name="st-kilfane" value="Bold"> Bold</label><label><input type="radio" name="st-kilfane" value="Bold Italic"> Bold Italic</label></span>
+      <label>Size <input type="range" min="14" max="140" value="44" class="size"></label>
+      <label><input type="checkbox" data-feat="kern" checked> kerning</label>
+      <label><input type="checkbox" data-feat="ss01"> ss01 · Roman forms</label><label><input type="checkbox" data-feat="ss02"> ss02 · Insular forms</label>
+    </div>
+    <div class="f sample" contenteditable="true" spellcheck="false">Is fearr Gaeilge bhriste ná Béarla cliste. A ċara, mo ġrá ṫú! Ciamar a tha thu? The quick brown fox jumps over the lazy dog — 1978.</div>
+  </div>
+  <details><summary>Character set</summary><div class="f grid"><span>!</span><span>&quot;</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>&#x27;</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>¡</span><span>¢</span><span>£</span><span>¤</span><span>¥</span><span>¦</span><span>§</span><span>¨</span><span>©</span><span>ª</span><span>«</span><span>¬</span><span>®</span><span>¯</span><span>°</span><span>±</span><span>²</span><span>³</span><span>´</span><span>µ</span><span>¶</span><span>·</span><span>¸</span><span>¹</span><span>º</span><span>»</span><span>¼</span><span>½</span><span>¾</span><span>¿</span><span>À</span><span>Á</span><span>Â</span><span>Ã</span><span>Ä</span><span>Å</span><span>Æ</span><span>Ç</span><span>È</span><span>É</span><span>Ê</span><span>Ë</span><span>Ì</span><span>Í</span><span>Î</span><span>Ï</span><span>Ð</span><span>Ñ</span><span>Ò</span><span>Ó</span><span>Ô</span><span>Õ</span><span>Ö</span><span>×</span><span>Ø</span><span>Ù</span><span>Ú</span><span>Û</span><span>Ü</span><span>Ý</span><span>Þ</span><span>ß</span><span>à</span><span>á</span><span>â</span><span>ã</span><span>ä</span><span>å</span><span>æ</span><span>ç</span><span>è</span><span>é</span><span>ê</span><span>ë</span><span>ì</span><span>í</span><span>î</span><span>ï</span><span>ð</span><span>ñ</span><span>ò</span><span>ó</span><span>ô</span><span>õ</span><span>ö</span><span>÷</span><span>ø</span><span>ù</span><span>ú</span><span>û</span><span>ü</span><span>ý</span><span>þ</span><span>ÿ</span><span>Ā</span><span>ā</span><span>Ă</span><span>ă</span><span>Ą</span><span>ą</span><span>Ć</span><span>ć</span><span>Ĉ</span><span>ĉ</span><span>Ċ</span><span>ċ</span><span>Č</span><span>č</span><span>Ď</span><span>ď</span><span>Đ</span><span>đ</span><span>Ē</span><span>ē</span><span>Ĕ</span><span>ĕ</span><span>Ė</span><span>ė</span><span>Ę</span><span>ę</span><span>Ě</span><span>ě</span><span>Ĝ</span><span>ĝ</span><span>Ğ</span><span>ğ</span><span>Ġ</span><span>ġ</span><span>Ģ</span><span>ģ</span><span>Ĥ</span><span>ĥ</span><span>Ħ</span><span>ħ</span><span>Ĩ</span><span>ĩ</span><span>Ī</span><span>ī</span><span>Ĭ</span><span>ĭ</span><span>Į</span><span>į</span><span>İ</span><span>ı</span><span>Ĳ</span><span>ĳ</span><span>Ĵ</span><span>ĵ</span><span>Ķ</span><span>ķ</span><span>ĸ</span><span>Ĺ</span><span>ĺ</span><span>Ļ</span><span>ļ</span><span>Ľ</span><span>ľ</span><span>Ŀ</span><span>ŀ</span><span>Ł</span><span>ł</span><span>Ń</span><span>ń</span><span>Ņ</span><span>ņ</span><span>Ň</span><span>ň</span><span>ŉ</span><span>Ŋ</span><span>ŋ</span><span>Ō</span><span>ō</span><span>Ŏ</span><span>ŏ</span><span>Ő</span><span>ő</span><span>Œ</span><span>œ</span><span>Ŕ</span><span>ŕ</span><span>Ŗ</span><span>ŗ</span><span>Ř</span><span>ř</span><span>Ś</span><span>ś</span><span>Ŝ</span><span>ŝ</span><span>Ş</span><span>ş</span><span>Š</span><span>š</span><span>Ţ</span><span>ţ</span><span>Ť</span><span>ť</span><span>Ŧ</span><span>ŧ</span><span>Ũ</span><span>ũ</span><span>Ū</span><span>ū</span><span>Ŭ</span><span>ŭ</span><span>Ů</span><span>ů</span><span>Ű</span><span>ű</span><span>Ų</span><span>ų</span><span>Ŵ</span><span>ŵ</span><span>Ŷ</span><span>ŷ</span><span>Ÿ</span><span>Ź</span><span>ź</span><span>Ż</span><span>ż</span><span>Ž</span><span>ž</span><span>ſ</span><span>Ș</span><span>ș</span><span>Ț</span><span>ț</span><span>ȷ</span><span>ˆ</span><span>ˇ</span><span>˘</span><span>˙</span><span>˚</span><span>˛</span><span>˜</span><span>˝</span><span>ᵹ</span><span>Ḃ</span><span>ḃ</span><span>Ḋ</span><span>ḋ</span><span>Ḟ</span><span>ḟ</span><span>Ṁ</span><span>ṁ</span><span>Ṗ</span><span>ṗ</span><span>Ṡ</span><span>ṡ</span><span>Ṫ</span><span>ṫ</span><span>Ẁ</span><span>ẁ</span><span>Ẃ</span><span>ẃ</span><span>Ẅ</span><span>ẅ</span><span>Ỳ</span><span>ỳ</span><span>‐</span><span>‑</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>‚</span><span>“</span><span>”</span><span>„</span><span>†</span><span>‡</span><span>•</span><span>…</span><span>‰</span><span>′</span><span>″</span><span>‹</span><span>›</span><span>⁄</span><span>⁊</span><span>€</span><span>™</span><span>−</span><span>≈</span><span>≠</span><span>≤</span><span>≥</span><span>Ꝺ</span><span>ꝺ</span><span>Ᵹ</span><span>Ꞇ</span><span>ꞇ</span></div></details>
+  <table class="dl"><caption>Download</caption><tr><th>Regular</th><td><a href="fonts/woff2/Kilfane-Regular.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Kilfane-Regular.woff" download>WOFF</a></td><td><a href="fonts/otf/Kilfane-Regular.otf" download>OTF</a></td><td><a href="fonts/ttf/Kilfane-Regular.ttf" download>TTF</a></td></tr><tr><th>Italic</th><td><a href="fonts/woff2/Kilfane-Italic.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Kilfane-Italic.woff" download>WOFF</a></td><td><a href="fonts/otf/Kilfane-Italic.otf" download>OTF</a></td><td><a href="fonts/ttf/Kilfane-Italic.ttf" download>TTF</a></td></tr><tr><th>Bold</th><td><a href="fonts/woff2/Kilfane-Bold.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Kilfane-Bold.woff" download>WOFF</a></td><td><a href="fonts/otf/Kilfane-Bold.otf" download>OTF</a></td><td><a href="fonts/ttf/Kilfane-Bold.ttf" download>TTF</a></td></tr><tr><th>Bold Italic</th><td><a href="fonts/woff2/Kilfane-BoldItalic.woff2" download>WOFF2</a></td><td><a href="fonts/woff/Kilfane-BoldItalic.woff" download>WOFF</a></td><td><a href="fonts/otf/Kilfane-BoldItalic.otf" download>OTF</a></td><td><a href="fonts/ttf/Kilfane-BoldItalic.ttf" download>TTF</a></td></tr></table>
+</section>
+<section class="face" style="--face:'Tuam Uncial'">
+  <header>
+    <h2 class="f">Tuam Uncial</h2>
+    <p class="meta">Jarlath Hayes · Fourth place, highly commended, 1978 · 398 characters · Regular · Italic</p>
+  </header>
+  <div class="styles"><div class="style-row"><span class="style-name">Regular</span><span class="f" style="font-weight:400;font-style:normal">Fáilte go Tuaim</span></div><div class="style-row"><span class="style-name">Italic</span><span class="f" style="font-weight:400;font-style:italic">Fáilte go Tuaim</span></div></div>
+  <p class="note">A heavy, square uncial reportedly made by cutting up Helvetica Bold; seen on Clannad sleeves and the Glenroe credits. Its hairline cuts are part of the design.</p>
+  <div class="tester">
+    <div class="controls">
+      <span class="picks"><label><input type="radio" name="st-tuam" value="Regular" checked> Regular</label><label><input type="radio" name="st-tuam" value="Italic"> Italic</label></span>
+      <label>Size <input type="range" min="14" max="140" value="44" class="size"></label>
+      <label><input type="checkbox" data-feat="kern" checked> kerning</label>
+      
+    </div>
+    <div class="f sample" contenteditable="true" spellcheck="false">Is fearr Gaeilge bhriste ná Béarla cliste. A ċara, mo ġrá ṫú! Ciamar a tha thu? The quick brown fox jumps over the lazy dog — 1978.</div>
+  </div>
+  <details><summary>Character set</summary><div class="f grid"><span>!</span><span>&quot;</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>&#x27;</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>¡</span><span>¢</span><span>£</span><span>¤</span><span>¥</span><span>¦</span><span>§</span><span>¨</span><span>©</span><span>ª</span><span>«</span><span>¬</span><span>®</span><span>¯</span><span>°</span><span>±</span><span>²</span><span>³</span><span>´</span><span>µ</span><span>¶</span><span>·</span><span>¸</span><span>¹</span><span>º</span><span>»</span><span>¼</span><span>½</span><span>¾</span><span>¿</span><span>×</span><span>ß</span><span>à</span><span>á</span><span>â</span><span>ã</span><span>ä</span><span>å</span><span>æ</span><span>ç</span><span>è</span><span>é</span><span>ê</span><span>ë</span><span>ì</span><span>í</span><span>î</span><span>ï</span><span>ð</span><span>ñ</span><span>ò</span><span>ó</span><span>ô</span><span>õ</span><span>ö</span><span>÷</span><span>ø</span><span>ù</span><span>ú</span><span>û</span><span>ü</span><span>ý</span><span>þ</span><span>ÿ</span><span>ā</span><span>ă</span><span>ą</span><span>ć</span><span>ĉ</span><span>ċ</span><span>č</span><span>ď</span><span>đ</span><span>ē</span><span>ĕ</span><span>ė</span><span>ę</span><span>ě</span><span>ĝ</span><span>ğ</span><span>ġ</span><span>ģ</span><span>ĥ</span><span>ħ</span><span>ĩ</span><span>ī</span><span>ĭ</span><span>į</span><span>İ</span><span>ı</span><span>ĳ</span><span>ĵ</span><span>ķ</span><span>ĸ</span><span>ĺ</span><span>ļ</span><span>ľ</span><span>ŀ</span><span>ł</span><span>ń</span><span>ņ</span><span>ň</span><span>ŉ</span><span>ŋ</span><span>ō</span><span>ŏ</span><span>ő</span><span>œ</span><span>ŕ</span><span>ŗ</span><span>ř</span><span>ś</span><span>ŝ</span><span>ş</span><span>š</span><span>ţ</span><span>ť</span><span>ŧ</span><span>ũ</span><span>ū</span><span>ŭ</span><span>ů</span><span>ű</span><span>ų</span><span>ŵ</span><span>ŷ</span><span>ź</span><span>ż</span><span>ž</span><span>ſ</span><span>ș</span><span>ț</span><span>ȷ</span><span>ˆ</span><span>ˇ</span><span>˘</span><span>˙</span><span>˚</span><span>˛</span><span>˜</span><span>˝</span><span>ḃ</span><span>ḋ</span><span>ḟ</span><span>ṁ</span><span>ṗ</span><span>ṡ</span><span>ṫ</span><span>ẁ</span><span>ẃ</span><span>ẅ</span><span>ỳ</span><span>‐</span><span>‑</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>‚</span><span>“</span><span>”</span><span>„</span><span>†</span><span>‡</span><span>•</span><span>…</span><span>‰</span><span>′</span><span>″</span><span>‹</span><span>›</span><span>⁄</span><span>⁊</span><span>€</span><span>™</span><span>−</span><span>≈</span><span>≠</span><span>≤</span><span>≥</span><span>ꞇ</span></div></details>
+  <table class="dl"><caption>Download</caption><tr><th>Regular</th><td><a href="fonts/woff2/TuamUncial-Regular.woff2" download>WOFF2</a></td><td><a href="fonts/woff/TuamUncial-Regular.woff" download>WOFF</a></td><td><a href="fonts/otf/TuamUncial-Regular.otf" download>OTF</a></td><td><a href="fonts/ttf/TuamUncial-Regular.ttf" download>TTF</a></td></tr><tr><th>Italic</th><td><a href="fonts/woff2/TuamUncial-Italic.woff2" download>WOFF2</a></td><td><a href="fonts/woff/TuamUncial-Italic.woff" download>WOFF</a></td><td><a href="fonts/otf/TuamUncial-Italic.otf" download>OTF</a></td><td><a href="fonts/ttf/TuamUncial-Italic.ttf" download>TTF</a></td></tr></table>
+</section>
+<section class="face">
+  <h3>Use on a website</h3>
+<pre>&lt;link rel="stylesheet" href="css/four-irish-typefaces.css"&gt;
+
+h1     { font-family: "Céilí", "Ceili", serif; }
+.sign  { font-family: "Carrick", serif; }
+p.note { font-family: "Kilfane", serif; font-feature-settings: "ss01"; }  /* roman forms */
+
+&lt;p class="kilfane"&gt;Tír gan teanga, &lt;b&gt;tír gan anam&lt;/b&gt;, &lt;i&gt;mar a deirtear&lt;/i&gt;.&lt;/p&gt;
+/* &lt;b&gt;, &lt;i&gt;, font-weight: 700 and font-style: italic pick the drawn styles */</pre>
+</section>
+<footer>Original designs 1978: Hermann Hecht (Céilí), William Curran (Carrick, Kilfane), Jarlath Hayes (Tuam Uncial).
+Digitised 2026 from the printed specimen sheet; glyphs not shown on the sheet, and the italic and bold styles, were drawn to match each face.<br>
+Fonts copyright 2026 Dan Drayne, released under the <a href="OFL.txt">SIL Open Font License 1.1</a>: use them for anything,
+share and adapt them, but don’t sell the fonts on their own.</footer>
+</main>
+<script>
+document.querySelectorAll('.face .tester').forEach(t => {
+  const sample = t.querySelector('.sample');
+  const size = t.querySelector('.size');
+  const boxes = t.querySelectorAll('input[data-feat]');
+  const picks = t.querySelectorAll('.picks input');
+  const apply = () => {
+    sample.style.fontSize = size.value + 'px';
+    const st = ([...picks].find(p => p.checked) || { value: 'Regular' }).value;
+    sample.style.fontWeight = st.includes('Bold') ? 700 : 400;
+    sample.style.fontStyle = st.includes('Italic') ? 'italic' : 'normal';
+    const feats = [...boxes].map(b => `"${b.dataset.feat}" ${b.checked ? 1 : 0}`);
+    sample.style.fontFeatureSettings = feats.join(', ');
+  };
+  size.addEventListener('input', apply); [...boxes, ...picks].forEach(b => b.addEventListener('change', apply)); apply();
+});
+</script>
+</body>
+</html>

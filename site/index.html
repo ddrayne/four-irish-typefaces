@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four Irish Typefaces</title>
+<meta name="description" content="Céilí, Carrick, Kilfane and Tuam Uncial, winners of a 1978 Irish typeface competition, revived as web fonts. Rub letters down, test them, inspect every character against the 1978 flyer, and download them.">
+<meta name="theme-color" content="#f3eee3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121416" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Four Irish Typefaces">
+<meta property="og:description" content="Céilí, Carrick, Kilfane and Tuam Uncial: four winners of a 1978 Irish typeface competition, revived as web fonts.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://irish-typefaces.apps.drayne.xyz/">
+<meta property="og:image" content="https://irish-typefaces.apps.drayne.xyz/img/social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/icon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<link rel="preload" href="fonts/woff2/Ceili-Regular.woff2?v={{V}}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/woff2/Kilfane-Regular.woff2?v={{V}}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/woff2/Carrick-Regular.woff2?v={{V}}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/woff2/TuamUncial-Regular.woff2?v={{V}}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/four-irish-typefaces.css?v={{V}}">
+<link rel="stylesheet" href="css/site.css?v={{V}}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="crumb" href="https://apps.drayne.xyz/"><span class="crumb-mark" aria-hidden="true">d.</span><b>drayne</b><span class="crumb-sep">/</span>apps</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#sheet">Rub down</a>
+      <a href="#tester">Tester</a>
+      <a href="#styles">Styles</a>
+      <a href="#characters">Characters</a>
+      <a href="#accents">Accents</a>
+      <a href="#story">Story</a>
+      <a href="#download">Download</a>
+    </nav>
+    <span class="ver">v{{V}}</span>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">Design an Irish Typeface · 1978</p>
+      <h1 id="hero-h" class="f-ceili hero-title" aria-label="four irish typefaces">four irish typefaces</h1>
+      <p class="lead">Céilí, Carrick, Kilfane and Tuam Uncial won a 1978 competition for a new Irish typeface
+        and were sold as dry-transfer lettering, rubbed onto the page one letter at a time. Here they are again
+        as fonts for the web and the desktop, traced letter by letter from the competition’s flyer, and now with
+        the italics and bolds they never had.</p>
+      <div class="cta">
+        <a class="btn" href="downloads/four-irish-typefaces-fonts-v{{V}}.zip" download>Download the fonts</a>
+        <a class="btn ghost" href="#web">Use on a website</a>
+      </div>
+      <p class="cta-note">{{SIZE_FONTS}} ZIP · WOFF2, WOFF, OTF and TTF · free under the
+        <a href="OFL.txt">SIL Open Font License 1.1</a></p>
+    </div>
+    <figure class="flyer">
+      <button class="flyer-btn" type="button" data-open-flyer aria-label="Open the 1978 flyer">
+        <img src="img/flyer.jpg" width="803" height="1125" alt="The 1978 flyer: Four Irish Typefaces, showing the alphabets of Kilfane, Tuam Uncial, Carrick and Céilí, with Letraset sheet numbers and sizes.">
+      </button>
+      <figcaption>The source: the 1978 flyer, scanned at about 97 dpi. <button type="button" class="linklike" data-open-flyer>Look closer</button></figcaption>
+    </figure>
+  </div>
+  <div class="wrap">
+    <ul class="faces" aria-label="The four typefaces">
+      {{FACE_TILES}}
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="sheet" aria-labelledby="sheet-h">
+  <div class="wrap">
+    <div class="block-head">
+      <h2 id="sheet-h" class="h2 f-kilfane">Rub them down</h2>
+      <p class="block-lead">In 1978 these letters came on sheets of transfer film. You laid the sheet on the page
+        and rubbed each letter down with a pencil, placing them by eye. Pick letters off the sheet or type on the
+        board. <em>Hand-set</em> adds the small wobble of letters placed by hand: on the flyer they sit up to a
+        quarter of a millimetre off their line.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Typeface" data-tabs="sheet">{{TABS}}</div>
+    <div class="sheet-grid">
+      <div class="sheet" id="sheet-film" aria-label="Transfer sheet">
+        <div class="sheet-head">
+          <span class="sheet-code" id="sheet-code">S53909</span>
+          <span class="sheet-name" id="sheet-name">Kilfane · 30 pt · 7.5 mm</span>
+          <span class="sheet-how" aria-hidden="true">Rub down with a blunt point</span>
+        </div>
+        <div class="sheet-body" id="sheet-body"></div>
+      </div>
+      <div class="board">
+        <div class="board-tools">
+          <label class="ctl">Size <input type="range" id="board-size" min="32" max="168" value="96" step="2"><output id="board-size-out" for="board-size">96</output></label>
+          <label class="switch"><input type="checkbox" id="board-hand" checked><span>Hand-set</span></label>
+          <span class="tool-gap"></span>
+          <button type="button" class="tool" id="board-undo" aria-label="Remove the last letter">Undo</button>
+          <button type="button" class="tool" id="board-clear">Clear</button>
+          <button type="button" class="tool" id="board-copy">Copy text</button>
+          <button type="button" class="tool" id="board-save">Save image</button>
+        </div>
+        <div class="board-paper" id="board-paper">
+          <div class="board-line" id="board-line" aria-live="polite"></div>
+          <textarea class="board-input" id="board-input" aria-label="Type on the board" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+        </div>
+        <p class="board-hint">Click the board to type. Your text stays on this device only.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="tester" aria-labelledby="tester-h">
+  <div class="wrap">
+    <div class="block-head">
+      <h2 id="tester-h" class="h2 f-carrick">Set some text</h2>
+      <p class="block-lead">Type anything or pick a language. Each face notes any character it doesn’t have. The blue
+        lines mark the baseline and x-height, as on a drawing board.</p>
+    </div>
+    <div class="tester-bar">
+      <label class="field grow"><span class="field-label">Text</span>
+        <input type="text" id="tester-text" value="Is fearr Gaeilge bhriste ná Béarla cliste" lang="ga"></label>
+      <label class="field"><span class="field-label">Sample</span>
+        <select id="tester-preset">{{PRESET_OPTIONS}}</select></label>
+      <label class="field"><span class="field-label">Size <output id="tester-size-out" for="tester-size">64</output></span>
+        <input type="range" id="tester-size" min="16" max="200" value="64" step="2"></label>
+      <div class="field"><span class="field-label" id="tester-style-l">Style</span>
+        <div class="chips" role="group" aria-labelledby="tester-style-l" id="tester-style">{{STYLE_CHIPS}}</div></div>
+      <label class="switch"><input type="checkbox" id="tester-guides" checked><span>Guidelines</span></label>
+    </div>
+    <div class="rows">{{TESTER_ROWS}}</div>
+  </div>
+</section>
+
+<section class="block" id="styles" aria-labelledby="styles-h">
+  <div class="wrap">
+    <div class="block-head">
+      <h2 id="styles-h" class="h2 f-kilfane">Four faces, twelve fonts</h2>
+      <p class="block-lead">The flyer shows each face in a single style, and in 1978 that was all there was. The styles
+        below are new: drawn in 2026 from the regulars, by rule, then checked letter by letter. Céilí and Kilfane have a
+        bold and a bold italic, and every face has an italic. Carrick and Tuam Uncial are black already.</p>
+    </div>
+    <div class="fams">{{FAMILY_ROWS}}</div>
+    <div class="two fam-how">
+      <div class="prose">
+        <h3>The bolds</h3>
+        <p>Each bold is its regular drawn again with a wider pen, in the face’s own contrast: Céilí’s broad flat nib
+          spreads its strokes across, Kilfane’s rounder pen nearly as much up and down. Corners stay sharp, and the
+          x-height, capitals and ascenders stay put, so a bold word sits level in a regular line.</p>
+        <p>A wider pen closes every narrow space at once, so the small counters (the lenses of the $, the ring of å)
+          were drawn again with a lighter pen, and the openings that make a letter (the tails of Kilfane’s g and y)
+          were eased open. One gap closes by choice: in the bold, the tip of Céilí’s 6 meets its stem.</p>
+      </div>
+      <div class="prose">
+        <h3>The italics</h3>
+        <p>Each italic is its regular narrowed by four per cent, with its stems restored, and sloped eight degrees
+          about the middle of the x-height. A slope moves both sides of a letter alike, so the regular’s spacing and
+          kerning carry over exactly, and accents land as they do upright. They are sloped romans, as display faces
+          usually have: no cursive letters were invented for designers who never drew them.</p>
+        <h3>No bold for Carrick or Tuam Uncial</h3>
+        <p>Their stems are already more than a third of the x-height. A heavier cut would fill their counters and, in
+          Tuam Uncial, the fine cuts that are part of Jarlath Hayes’s design. In these two, bold text keeps the one
+          weight: the browser is told so, and never smears a fake bold over them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="characters" aria-labelledby="chars-h">
+  <div class="wrap">
+    <div class="block-head">
+      <h2 id="chars-h" class="h2 f-ceili">Every character</h2>
+      <p class="block-lead">Around 400 characters in each face. Select one to see where it came from. Those marked
+        with a red dot were printed on the 1978 flyer: lay the font over the scan and see how closely it follows the
+        print.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Typeface" data-tabs="chars">{{TABS}}</div>
+    <div class="chars-bar">
+      <div class="chips" role="group" aria-label="Show">
+        <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="flyer" aria-pressed="false">On the flyer</button>
+        <button type="button" class="chip" data-filter="L" aria-pressed="false">Letters</button>
+        <button type="button" class="chip" data-filter="acc" aria-pressed="false">Accented</button>
+        <button type="button" class="chip" data-filter="N" aria-pressed="false">Figures</button>
+        <button type="button" class="chip" data-filter="PS" aria-pressed="false">Punctuation and signs</button>
+        <button type="button" class="chip" data-filter="alt" aria-pressed="false">Alternates</button>
+      </div>
+      <div class="chips" role="group" aria-label="Style" id="chars-style">{{STYLE_CHIPS}}</div>
+      <label class="field search"><span class="visually-hidden">Find a character</span>
+        <input type="search" id="chars-find" placeholder="Find: a letter, or a name like “acute”"></label>
+    </div>
+    <div class="chars-grid">
+      <div class="chars" id="chars" role="listbox" aria-label="Characters" tabindex="0"></div>
+      <aside class="inspect" id="inspect" aria-live="polite">
+        <div class="inspect-empty">Select a character.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="accents" aria-labelledby="acc-h">
+  <div class="wrap">
+    <div class="block-head">
+      <h2 id="acc-h" class="h2 f-kilfane">The accents were on the flyer all along</h2>
+      <p class="block-lead">Beside Kilfane’s and Carrick’s alphabets the flyer prints a small cluster of marks. Earlier
+        versions of these fonts kept it as an ornament. It is the transfer sheet’s set of loose accents, in the face’s
+        own style: the fada, the dot of the séimhiú, the diaeresis, ring, circumflex, háček and tilde, guillemets and
+        two rules. Since version 1.200 every accented letter in both faces is made from them, and the dashes take
+        their weight from the rules.</p>
+    </div>
+    <div class="acc-grid">
+      <figure class="acc" data-acc="kilfane"><div class="acc-art"></div>
+        <figcaption><b class="f-kilfane acc-name">Kilfane</b><ol class="acc-legend"></ol></figcaption></figure>
+      <figure class="acc" data-acc="carrick"><div class="acc-art"></div>
+        <figcaption><b class="f-carrick acc-name">Carrick</b><ol class="acc-legend"></ol></figcaption></figure>
+    </div>
+    <div class="acc-result">
+      <p class="acc-sample f-kilfane" lang="ga">Á É Í Ó Ú á é í ó ú ḃ ċ ḋ ġ ṁ ṡ ṫ ä ö ñ å ž « »</p>
+      <p class="acc-sample f-carrick" lang="ga">á é í ó ú ḃ ċ ḋ ġ ṁ ṡ ṫ ä ö ñ å â « »</p>
+    </div>
+    <div class="acc-more">
+      <p><b class="f-tuam">Tuam Uncial</b> prints its own fadas on the flyer, on á é í ó ú: a long flat bar set close
+        to the letter. The font keeps that bar and that tight setting.</p>
+      <p><b class="f-ceili">Céilí</b> has no accent set on the flyer. Its fadas are drawn in its own pen stroke, and its
+        dots come from the flyer’s punctuation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="story" aria-labelledby="story-h">
+  <div class="wrap two">
+    <div class="prose">
+      <div class="block-head">
+        <h2 id="story-h" class="h2 f-tuam">The competition</h2>
+      </div>
+      <p>Letraset, Kilkenny Design Workshops and D. O’Sullivan Graphic Supplies of 66 Lower Camden Street, Dublin,
+        sponsored a competition for a new Irish typeface. Hermann Hecht’s Céilí took first prize, William Curran won
+        second with Carrick and joint third with Kilfane, and Jarlath Hayes’s Tuam Uncial was highly commended.</p>
+      <p>Each winner was issued on two transfer sheets, numbered S53909 to S53916. The flyer gives every sheet’s size
+        in points and its letter height in millimetres. As far as this research found, Céilí, Carrick and Kilfane had
+        never been digitised before.</p>
+      <div class="table-wrap">
+        <table class="sheets">
+          <caption>The eight sheets, as listed on the flyer</caption>
+          <thead><tr><th scope="col">Sheet</th><th scope="col">Typeface</th><th scope="col">Size</th><th scope="col">Letter height</th></tr></thead>
+          <tbody>{{SHEET_ROWS}}</tbody>
+        </table>
+      </div>
+      <p class="fine">This history was gathered from published sources online and has not been checked against the
+        original documents. Please verify it before citing it.</p>
+    </div>
+    <div class="prose">
+      <h3>The designers</h3>
+      <dl class="people">
+        <div><dt class="f-ceili">Hermann Hecht</dt><dd>1923–1985 · Céilí, first prize</dd></div>
+        <div><dt class="f-carrick">William Curran</dt><dd>1919–2016 · Carrick, second prize, and Kilfane, joint third</dd></div>
+        <div><dt class="f-tuam">Jarlath Hayes</dt><dd>1924–2001 · Tuam Uncial, highly commended</dd></div>
+      </dl>
+      <h3>Sources</h3>
+      <ul class="sources">
+        <li><a href="https://fontsinuse.com/typefaces/205971/ceili">Fonts In Use: Céilí</a></li>
+        <li><a href="https://fontsinuse.com/typefaces/248202/carrick">Fonts In Use: Carrick</a></li>
+        <li><a href="https://fontsinuse.com/typefaces/248201/kilfane">Fonts In Use: Kilfane</a></li>
+        <li><a href="https://fontsinuse.com/typefaces/248203/tuam-uncial">Fonts In Use: Tuam Uncial</a></li>
+        <li><a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/">NIVAL: the competition brochure</a></li>
+        <li><a href="https://www.nival.ie/william-curran-archive/">NIVAL: William Curran archive</a></li>
+        <li><a href="https://www.dublininquirer.com/after-almost-50-years-a-renowned-irish-font-is-brought-into-the-digital-age/">Dublin Inquirer (2020) on the Tuam revival</a></li>
+        <li><a href="https://www.irishtimes.com/news/master-typographer-and-designer-1.313378">Irish Times obituary of Jarlath Hayes</a></li>
+        <li><a href="https://signalfoundry.com/typefaces/jarlath">Signal Type Foundry: Jarlath</a></li>
+        <li><a href="https://atypi.org/presentation/retyping-europe/">ATypI: Transnational heritage and alternative futures</a></li>
+        <li><a href="https://catalogue.nli.ie/Record/vtls000883198">Dermot McGuinne, Irish Type Design (2nd ed., 2010)</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="making" aria-labelledby="making-h">
+  <div class="wrap two">
+    <div class="prose">
+      <div class="block-head">
+        <h2 id="making-h" class="h2 f-carrick">How they were made</h2>
+      </div>
+      <ol class="steps">
+        <li>Each letter was cut out of the flyer scan, where it stands only 20 to 35 pixels tall. Letters that touched
+          were separated along measured cut lines.</li>
+        <li>The edge of each letter was traced at sub-pixel precision and redrawn the way a type designer redraws from
+          a scan: stems and bars as true straight lines, curves with as few points as possible, corners and serifs
+          kept sharp.</li>
+        <li>Every one of the {{N_FLYER}} glyphs printed on the flyer was then checked against the scan, one at a time.
+          After registration the outlines follow the print to within about a quarter of a pixel, a mean overlap of
+          {{MEAN_MATCH}}. The <a href="#characters">character inspector</a> shows each comparison.</li>
+        <li>That check found what earlier versions had missed: the sheet’s own accent set, Tuam Uncial’s tight
+          fadas, and a Céilí h whose right leg printed starved. Its stem and wider shoulder are now the flyer’s own.</li>
+        <li>Everything not on the flyer, from æ, ð, þ and ß to ⁊ and the symbols, was drawn from each face’s own
+          parts. The fonts were spaced, kerned, given mark positioning, and checked with Font Bakery and the
+          OpenType Sanitizer that browsers use.</li>
+        <li>In 2026 each face became a family: an italic for all four, and a bold and bold italic for Céilí and
+          Kilfane, drawn from the regulars (see <a href="#styles">Styles</a>). Every bold was then compared with its
+          regular, letter by letter, for counters lost or strokes run together.</li>
+      </ol>
+    </div>
+    <div class="prose">
+      <h3>How close to the flyer</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Face</th><th scope="col">Glyphs on the flyer</th><th scope="col">Mean overlap</th></tr></thead>
+          <tbody>{{MATCH_ROWS}}</tbody>
+        </table>
+      </div>
+      <p class="fine">Overlap is intersection over union of the filled letter and the print, after the letter is
+        registered on the scan. 1.000 would be identical. The rest is the scan’s own blur and the ink spread of a
+        photocopy at 97 dpi.</p>
+      <h3>A sharper source would help</h3>
+      <p>A 600 to 1200 dpi rescan of the flyer, or scans of the transfer sheets or Curran’s drawings at the National
+        Irish Visual Arts Library, would sharpen every outline. The tracing and build scripts in the full package can
+        be rerun on a new scan.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="web" aria-labelledby="web-h">
+  <div class="wrap two">
+    <div class="prose">
+      <div class="block-head">
+        <h2 id="web-h" class="h2 f-ceili">Use them on a website</h2>
+      </div>
+      <p>Link the stylesheet from this site and use the family names. The fonts are WOFF2 with a WOFF fallback, sent
+        with long-lived caching and open cross-origin headers, so any site may link them directly.</p>
+      <div class="code">
+        <div class="code-bar"><span>HTML and CSS</span><button type="button" class="copy" data-copy="#snippet">Copy</button></div>
+<pre id="snippet"><code>&lt;link rel="stylesheet" href="<span id="css-url">https://irish-typefaces.apps.drayne.xyz/css/four-irish-typefaces.css</span>"&gt;
+
+h1    { font-family: "Céilí", "Ceili", serif; }
+.sign { font-family: "Carrick", serif; }
+.note { font-family: "Kilfane", serif;
+        font-feature-settings: "ss01"; }  /* roman forms */
+
+&lt;p class="note"&gt;Tír gan teanga, &lt;b&gt;tír gan anam&lt;/b&gt;.&lt;/p&gt;
+/* &lt;b&gt;, &lt;i&gt;, font-weight: 700 and font-style: italic
+   pick the drawn bolds and italics */</code></pre>
+      </div>
+      <p>The stylesheet declares all twelve fonts, and a browser fetches only the styles a page uses. Or download the
+        fonts and host them yourself: the ZIP has the same stylesheet with relative paths.</p>
+    </div>
+    <div class="prose">
+      <h3>Your browser</h3>
+      <p id="check-verdict" class="verdict">Checking…</p>
+      <div class="table-wrap">
+        <table class="check">
+          <thead><tr><th scope="col">Face</th><th scope="col">Styles loaded</th><th scope="col">Format</th><th scope="col">Size</th></tr></thead>
+          <tbody id="check-rows"></tbody>
+        </table>
+      </div>
+      <p class="kern-demo"><span class="f-kilfane" id="kern-a">P. F. V, LV</span><span class="f-kilfane kern-off" id="kern-b" aria-hidden="true">P. F. V, LV</span></p>
+      <p class="fine" id="kern-result">Kerning: checking…</p>
+    </div>
+  </div>
+</section>
+
+<section class="block download" id="download" aria-labelledby="dl-h">
+  <div class="wrap">
+    <h2 id="dl-h" class="h2 f-tuam">Download</h2>
+    <div class="dl-grid">
+      <a class="dl" href="downloads/four-irish-typefaces-fonts-v{{V}}.zip" download>
+        <b>The fonts</b><span>{{SIZE_FONTS}} · WOFF2, WOFF, OTF, TTF, the web stylesheet and a README</span></a>
+      <a class="dl" href="downloads/four-irish-typefaces-v{{V}}.zip" download data-full>
+        <b>Full package</b><span>{{SIZE_FULL}} · adds the PDF specimen, validation reports and the build scripts</span></a>
+      <a class="dl" href="downloads/Four-Irish-Typefaces-specimen.pdf">
+        <b>Specimen PDF</b><span>{{SIZE_PDF}} · thirteen pages: the flyer, the history, every character, each family</span></a>
+    </div>
+    <p class="licence">{{LICENCE}}</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Typeface designs by Hermann Hecht, William Curran and Jarlath Hayes, 1978. Digitised in 2026 from the printed
+      flyer; the italics and bolds were drawn in 2026 from the regulars. Version {{V}}.</p>
+    <p>Jarlath, Signal Type Foundry’s revival of Tuam Uncial, is a separate commercial product and is not part of this
+      project.</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="The 1978 flyer">
+  <div class="lightbox-bar">
+    <span>The 1978 flyer</span>
+    <span class="lightbox-zoom"><button type="button" data-zoom="-1" aria-label="Zoom out">−</button><button type="button" data-zoom="1" aria-label="Zoom in">+</button></span>
+    <button type="button" class="lightbox-close" aria-label="Close">Close</button>
+  </div>
+  <div class="lightbox-view" id="lightbox-view"><img src="img/flyer.jpg" width="803" height="1125" alt="The 1978 flyer, enlarged."></div>
+</dialog>
+
+<script type="application/json" id="config">{{CONFIG}}</script>
+<script src="js/site.js?v={{V}}" defer></script>
+</body>
+</html>

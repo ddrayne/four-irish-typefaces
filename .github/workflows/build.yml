@@ -1,0 +1,25 @@
+name: Build and check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Tools
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ttfautohint
+          python -m venv .venv && .venv/bin/python -m pip install -q -r requirements.txt
+      - name: The committed fonts pass the release checks
+        run: make test
+      - name: A fresh build passes them too, and matches what is committed
+        run: |
+          make fonts
+          FONTDIR=build/fonts make test
+          .venv/bin/python scripts/compare_builds.py fonts build/fonts

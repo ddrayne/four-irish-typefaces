@@ -1,0 +1,56 @@
+FONTLOG for Four Irish Typefaces
+================================
+
+This file provides detailed information on the Four Irish Typefaces font software. This
+information should be distributed along with the fonts and any derivative works.
+
+
+Basic font information
+----------------------
+
+Céilí, Carrick, Kilfane and Tuam Uncial won the 1978 "Design an Irish Typeface" competition
+sponsored by Letraset, Kilkenny Design Workshops and D. O'Sullivan Graphic Supplies, and were sold
+as Letraset dry-transfer sheets. These fonts were digitised in 2026 from a scan of the
+competition's "Four Irish Typefaces" flyer, completed to about 400 characters each, and extended
+with styles the originals never had. See README.md for how they were made and how faithful they
+are, and docs/validation/ for the evidence.
+
+  Céilí        Hermann Hecht, 1978 (first prize)
+  Carrick      William Curran, 1978 (second prize)
+  Kilfane      William Curran, 1978 (joint third prize)
+  Tuam Uncial  Jarlath Hayes, 1978 (fourth place, highly commended)
+
+The fonts are released under the SIL Open Font License 1.1 (OFL.txt). No Reserved Font Names are
+declared.
+
+
+ChangeLog
+---------
+
+2.000 (2026-10-19)
+- Families: an italic for every face, and a bold and bold italic for Céilí and Kilfane, drawn from
+  the regulars (a wider pen in each face's contrast; a narrowed, sloped roman). Style-linked
+  (name table, OS/2 and head style bits, STAT), with shared line metrics per family.
+- Céilí: hairlines the scan lost restored in b, e and e.alt1.
+- The section sign redrawn in every face; Tuam Uncial's © and ® letters kept clear of the ring.
+
+1.200 (2026-10)
+- Every glyph on the flyer audited against the scan (224 glyphs, mean overlap 0.948).
+- Kilfane's and Carrick's accents taken from the accent sets printed on the flyer; the private-use
+  "ornament" removed. Céilí's h rebuilt from more of the flyer's drawing; Tuam Uncial's fadas set
+  as on the flyer; smaller fixes; 1.2 em default line height.
+
+1.100 (2026-10)
+- Every traced letter redrawn: true straight stems and bars, smooth curves with few points,
+  sharp corners. Céilí's h rebuilt; a toner speck removed from Kilfane's O.
+
+1.000 (2026-10)
+- First release: the four regulars, about 400 characters each, kerning, mark positioning and the
+  sheets' alternates as stylistic sets.
+
+
+Acknowledgements
+----------------
+
+Original designs: Hermann Hecht, William Curran and Jarlath Hayes (1978).
+Digitisation: Dan Drayne, 2026.
