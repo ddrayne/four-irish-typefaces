@@ -54,8 +54,8 @@ def calibration(regions,old):
     return scale,baselines
 
 
-def trace_region(gray,r,scale,baseline,old_r,old_base):
-    field,origin,paper,ink=isolated_field(gray,r)
+def trace_region(gray,r,scale,baseline,old_r,old_base,field_function=isolated_field):
+    field,origin,paper,ink=field_function(gray,r)
     # Native-resolution antialias smoothing, substantially less than one legacy pixel.
     field=ndi.gaussian_filter(field,.8)
     binary=field>.5

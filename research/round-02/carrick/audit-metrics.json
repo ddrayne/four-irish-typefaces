@@ -1,0 +1,1470 @@
+{
+  "face": "carrick",
+  "summary": {
+    "Carrick-alphabet-specimen.jpg": {
+      "entries": 39,
+      "before": 0.7598652150919394,
+      "candidate": 0.9468545448334188,
+      "improved": 39,
+      "regressions": []
+    },
+    "competition-advert-2.jpg": {
+      "entries": 37,
+      "before": 0.782376211255724,
+      "candidate": 0.95383660276242,
+      "improved": 37,
+      "regressions": []
+    }
+  },
+  "glyphs": [
+    {
+      "name": "a",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7765641695357949,
+        "offset": [
+          -7,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9574853638137719,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.18092119427797704
+    },
+    {
+      "name": "b",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7910416882176476,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9563911580970688,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.16534946987942112
+    },
+    {
+      "name": "c",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7967904098994586,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9569551427276847,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.16016473282822608
+    },
+    {
+      "name": "d",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8799145299145299,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9575117370892019,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.077597207174672
+    },
+    {
+      "name": "g",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8283035136882949,
+        "offset": [
+          -3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9439644828413727,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.11566096915307778
+    },
+    {
+      "name": "h",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8629935513067089,
+        "offset": [
+          4,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9564254062038404,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.09343185489713157
+    },
+    {
+      "name": "i",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8618996798292423,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9544498948843728,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.0925502150551305
+    },
+    {
+      "name": "j",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7672652942035334,
+        "offset": [
+          1,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9415164909894593,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.17425119678592593
+    },
+    {
+      "name": "k",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8468583599574014,
+        "offset": [
+          5,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9617325977227374,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": 0.11487423776533601
+    },
+    {
+      "name": "l",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8631827254581745,
+        "offset": [
+          5,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9608038201352964,
+        "offset": [
+          0,
+          -3
+        ]
+      },
+      "delta": 0.09762109467712188
+    },
+    {
+      "name": "m",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7737314463237832,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9478303747534517,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "delta": 0.17409892842966845
+    },
+    {
+      "name": "n",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8215425531914894,
+        "offset": [
+          -8,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.940282948622487,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.11874039543099757
+    },
+    {
+      "name": "o",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8341836734693877,
+        "offset": [
+          -4,
+          -4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9474358974358974,
+        "offset": [
+          1,
+          -3
+        ]
+      },
+      "delta": 0.11325222396650969
+    },
+    {
+      "name": "p",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8591775786813691,
+        "offset": [
+          4,
+          -5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9518057128476155,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.09262813416624638
+    },
+    {
+      "name": "q",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8577132486388385,
+        "offset": [
+          -3,
+          -4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9578281497100686,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.10011490107123011
+    },
+    {
+      "name": "r",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8453176162409954,
+        "offset": [
+          7,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9554571863328262,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.11013957009183073
+    },
+    {
+      "name": "s",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8045537897310513,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.93774385072095,
+        "offset": [
+          0,
+          -3
+        ]
+      },
+      "delta": 0.13319006098989872
+    },
+    {
+      "name": "t",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7524724093449907,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9458608750393452,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.19338846569435453
+    },
+    {
+      "name": "u",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7799520262593107,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.952722920406942,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.17277089414763125
+    },
+    {
+      "name": "v",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8156156156156156,
+        "offset": [
+          -5,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.955077783604265,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.1394621679886494
+    },
+    {
+      "name": "w",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8273899848254932,
+        "offset": [
+          -4,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9600214938205266,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.1326315089950334
+    },
+    {
+      "name": "z",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9014973840880389,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9328563566318107,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.031358972543771735
+    },
+    {
+      "name": "one",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7297356828193833,
+        "offset": [
+          -9,
+          13
+        ]
+      },
+      "candidate": {
+        "iou": 0.950905902980713,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.2211702201613297
+    },
+    {
+      "name": "two",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.602501624431449,
+        "offset": [
+          -8,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9391522333637192,
+        "offset": [
+          0,
+          -3
+        ]
+      },
+      "delta": 0.3366506089322703
+    },
+    {
+      "name": "three",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.5258005873304433,
+        "offset": [
+          -4,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9329742669060442,
+        "offset": [
+          -1,
+          -3
+        ]
+      },
+      "delta": 0.4071736795756009
+    },
+    {
+      "name": "four",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6431541431541431,
+        "offset": [
+          -10,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9519311502938707,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.30877700713972756
+    },
+    {
+      "name": "five",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.5106730115567641,
+        "offset": [
+          -3,
+          6
+        ]
+      },
+      "candidate": {
+        "iou": 0.9303556308213379,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": 0.41968261926457373
+    },
+    {
+      "name": "six",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6363636363636364,
+        "offset": [
+          -3,
+          14
+        ]
+      },
+      "candidate": {
+        "iou": 0.94848,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.31211636363636364
+    },
+    {
+      "name": "seven",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7170549860205032,
+        "offset": [
+          -2,
+          17
+        ]
+      },
+      "candidate": {
+        "iou": 0.9498889163169588,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.2328339302964556
+    },
+    {
+      "name": "eight",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7093203453619659,
+        "offset": [
+          -5,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9486815990927133,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.23936125373074746
+    },
+    {
+      "name": "nine",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6906154628687691,
+        "offset": [
+          -8,
+          11
+        ]
+      },
+      "candidate": {
+        "iou": 0.950993831391364,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.2603783685225949
+    },
+    {
+      "name": "zero",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6929824561403509,
+        "offset": [
+          -2,
+          12
+        ]
+      },
+      "candidate": {
+        "iou": 0.9470250116513904,
+        "offset": [
+          1,
+          -4
+        ]
+      },
+      "delta": 0.2540425555110395
+    },
+    {
+      "name": "ampersand",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6512575687005123,
+        "offset": [
+          0,
+          6
+        ]
+      },
+      "candidate": {
+        "iou": 0.9391624221844935,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.2879048534839812
+    },
+    {
+      "name": "question",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6158701532912534,
+        "offset": [
+          0,
+          14
+        ]
+      },
+      "candidate": {
+        "iou": 0.937514410883099,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.32164425759184556
+    },
+    {
+      "name": "exclam",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7594529364440868,
+        "offset": [
+          2,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9392106938255887,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.1797577573815019
+    },
+    {
+      "name": "sterling",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6170177748518763,
+        "offset": [
+          4,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.931282722513089,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.3142649476612127
+    },
+    {
+      "name": "dollar",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6916635420572429,
+        "offset": [
+          -3,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9287205008829668,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.23705695882572386
+    },
+    {
+      "name": "parenleft",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8622394913458142,
+        "offset": [
+          0,
+          12
+        ]
+      },
+      "candidate": {
+        "iou": 0.9312920089619119,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.06905251761609765
+    },
+    {
+      "name": "parenright",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.831078737426292,
+        "offset": [
+          2,
+          9
+        ]
+      },
+      "candidate": {
+        "iou": 0.9375963020030816,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.10651756457678963
+    },
+    {
+      "name": "a",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7875298718227243,
+        "offset": [
+          -8,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9653591441670912,
+        "offset": [
+          0,
+          3
+        ]
+      },
+      "delta": 0.17782927234436696
+    },
+    {
+      "name": "b",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7988076085927889,
+        "offset": [
+          -3,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9648814749780509,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": 0.166073866385262
+    },
+    {
+      "name": "c",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8011984490659148,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9567901234567902,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.1555916743908754
+    },
+    {
+      "name": "d",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8955297361165814,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.965650493774152,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": 0.07012075765757064
+    },
+    {
+      "name": "g",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8448789202064311,
+        "offset": [
+          -3,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9599824098504838,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.1151034896440527
+    },
+    {
+      "name": "h",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8740541100860371,
+        "offset": [
+          4,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9673033707865168,
+        "offset": [
+          1,
+          -4
+        ]
+      },
+      "delta": 0.09324926070047979
+    },
+    {
+      "name": "i",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8871349644830308,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9641561766588436,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.07702121217581281
+    },
+    {
+      "name": "j",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7810713810979663,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9446249033255993,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.16355352222763309
+    },
+    {
+      "name": "k",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8543168972909764,
+        "offset": [
+          7,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9617719092748376,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.1074550119838612
+    },
+    {
+      "name": "l",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8776966478592765,
+        "offset": [
+          6,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9634785753028385,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.08578192744356206
+    },
+    {
+      "name": "m",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.792064368541453,
+        "offset": [
+          2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9633010937358764,
+        "offset": [
+          1,
+          4
+        ]
+      },
+      "delta": 0.17123672519442334
+    },
+    {
+      "name": "n",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8319592628516004,
+        "offset": [
+          -8,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9572754572754573,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.12531619442385689
+    },
+    {
+      "name": "o",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8516959064327485,
+        "offset": [
+          -4,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9389978213507625,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.08730191491801398
+    },
+    {
+      "name": "p",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8815595363540569,
+        "offset": [
+          6,
+          -5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9649163036000917,
+        "offset": [
+          2,
+          1
+        ]
+      },
+      "delta": 0.0833567672460348
+    },
+    {
+      "name": "q",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8638414969730325,
+        "offset": [
+          -2,
+          -5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9581935793004313,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.09435208232739878
+    },
+    {
+      "name": "r",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8536148890479599,
+        "offset": [
+          9,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9623804730749874,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.10876558402702752
+    },
+    {
+      "name": "s",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8283267827063447,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9452436194895592,
+        "offset": [
+          1,
+          -5
+        ]
+      },
+      "delta": 0.1169168367832144
+    },
+    {
+      "name": "t",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7620734908136483,
+        "offset": [
+          -1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.95300373670595,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.19093024589230168
+    },
+    {
+      "name": "u",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7886169475871623,
+        "offset": [
+          -1,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9457196867404807,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.1571027391533184
+    },
+    {
+      "name": "v",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8290233837689134,
+        "offset": [
+          -4,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9523433801483352,
+        "offset": [
+          2,
+          1
+        ]
+      },
+      "delta": 0.12331999637942181
+    },
+    {
+      "name": "w",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8426752144156632,
+        "offset": [
+          -3,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9622751579970832,
+        "offset": [
+          2,
+          1
+        ]
+      },
+      "delta": 0.11959994358142001
+    },
+    {
+      "name": "z",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9184420772303595,
+        "offset": [
+          1,
+          -4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9426215715968366,
+        "offset": [
+          1,
+          -4
+        ]
+      },
+      "delta": 0.02417949436647704
+    },
+    {
+      "name": "one",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7563400284033273,
+        "offset": [
+          -9,
+          17
+        ]
+      },
+      "candidate": {
+        "iou": 0.953752642706131,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.19741261430280377
+    },
+    {
+      "name": "two",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.60581035245539,
+        "offset": [
+          -8,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9475973487986744,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.34178699634328435
+    },
+    {
+      "name": "five",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.5164075993091537,
+        "offset": [
+          -2,
+          8
+        ]
+      },
+      "candidate": {
+        "iou": 0.9389005937559854,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.42249299444683175
+    },
+    {
+      "name": "six",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.6488657332030826,
+        "offset": [
+          -2,
+          15
+        ]
+      },
+      "candidate": {
+        "iou": 0.949268009856501,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.30040227665341834
+    },
+    {
+      "name": "seven",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.733778462592022,
+        "offset": [
+          -1,
+          18
+        ]
+      },
+      "candidate": {
+        "iou": 0.9545660036166366,
+        "offset": [
+          1,
+          4
+        ]
+      },
+      "delta": 0.22078754102461462
+    },
+    {
+      "name": "eight",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7201454839361487,
+        "offset": [
+          -6,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9593548387096774,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.23920935477352867
+    },
+    {
+      "name": "nine",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7062733208955224,
+        "offset": [
+          -8,
+          11
+        ]
+      },
+      "candidate": {
+        "iou": 0.9562577833125778,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.2499844624170554
+    },
+    {
+      "name": "zero",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7071771333194241,
+        "offset": [
+          -2,
+          12
+        ]
+      },
+      "candidate": {
+        "iou": 0.9539137833238798,
+        "offset": [
+          1,
+          -5
+        ]
+      },
+      "delta": 0.24673665000445566
+    },
+    {
+      "name": "ampersand",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.6604272419627749,
+        "offset": [
+          0,
+          8
+        ]
+      },
+      "candidate": {
+        "iou": 0.9488006190353366,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.2883733770725617
+    },
+    {
+      "name": "question",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.6176470588235294,
+        "offset": [
+          0,
+          16
+        ]
+      },
+      "candidate": {
+        "iou": 0.945363198660247,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.32771613983671755
+    },
+    {
+      "name": "exclam",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7696601941747573,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9538771980397809,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.1842170038650236
+    },
+    {
+      "name": "sterling",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.6295403165033912,
+        "offset": [
+          5,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.94351630867144,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.31397599216804883
+    },
+    {
+      "name": "dollar",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7115604295179346,
+        "offset": [
+          -4,
+          -4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9331884057971015,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.22162797627916686
+    },
+    {
+      "name": "parenleft",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8671106882334285,
+        "offset": [
+          1,
+          11
+        ]
+      },
+      "candidate": {
+        "iou": 0.9419115163796015,
+        "offset": [
+          2,
+          -2
+        ]
+      },
+      "delta": 0.07480082814617295
+    },
+    {
+      "name": "parenright",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.851063829787234,
+        "offset": [
+          1,
+          10
+        ]
+      },
+      "candidate": {
+        "iou": 0.9514155889549109,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.1003517591676768
+    }
+  ],
+  "limitations": [
+    "Additional reproductions can share source history. These are source-fit measurements, not authenticity scores.",
+    "Uniform source scaling and integer translation only; source-derived entries are not a blind holdout.",
+    "Semicolon excluded because the text builder changes its layout."
+  ]
+}

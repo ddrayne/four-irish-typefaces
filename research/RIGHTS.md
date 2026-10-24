@@ -17,8 +17,8 @@ These links document the publication decision; this is not a claim of a licence
 grant from the historical designers or archives.
 
 Keep retrieved media and generated source-image comparisons under ignored `build/`.
-The committed `text-proof.png` contains only text rendered from the new candidate,
-not archival image pixels. The local illustrated review and research ZIP contain
+The committed `text-proof.png` files contain only text rendered from project fonts,
+not archival image pixels. The local illustrated reviews and research ZIP contain
 external images and are not part of this commit.
 
 This pass does not remove or retrospectively clear source images already present

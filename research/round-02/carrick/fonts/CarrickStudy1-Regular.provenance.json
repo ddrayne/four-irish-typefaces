@@ -1,0 +1,1046 @@
+{
+  "space": [
+    "made",
+    "word space"
+  ],
+  "a": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "b": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source b: NIVAL Carrick-alphabet-specimen.jpg, region [253, 125, 377, 258]"
+  ],
+  "c": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "d": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source d: NIVAL Carrick-alphabet-specimen.jpg, region [466, 123, 579, 256]"
+  ],
+  "e": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "f": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "g": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "h": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source h: NIVAL Carrick-alphabet-specimen.jpg, region [844, 125, 962, 255]"
+  ],
+  "i": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source i: NIVAL Carrick-alphabet-specimen.jpg, region [963, 126, 1020, 259]"
+  ],
+  "j": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source j: NIVAL Carrick-alphabet-specimen.jpg, region [993, 127, 1083, 287]"
+  ],
+  "k": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source k: NIVAL Carrick-alphabet-specimen.jpg, region [1076, 125, 1204, 259]"
+  ],
+  "l": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "m": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source m: NIVAL Carrick-alphabet-specimen.jpg, region [223, 332, 389, 434]"
+  ],
+  "n": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "o": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "p": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source p: NIVAL Carrick-alphabet-specimen.jpg, region [614, 332, 734, 455]"
+  ],
+  "q": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source q: NIVAL Carrick-alphabet-specimen.jpg, region [737, 331, 838, 459]"
+  ],
+  "r": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "s": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "t": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "u": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "v": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source v: NIVAL Carrick-alphabet-specimen.jpg, region [280, 504, 383, 603]"
+  ],
+  "w": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "x": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "y": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "z": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "one": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source one: NIVAL Carrick-alphabet-specimen.jpg, region [173, 677, 226, 780]"
+  ],
+  "two": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source two: NIVAL Carrick-alphabet-specimen.jpg, region [237, 683, 320, 776]"
+  ],
+  "three": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source three: NIVAL Carrick-alphabet-specimen.jpg, region [328, 680, 416, 776]"
+  ],
+  "four": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source four: NIVAL Carrick-alphabet-specimen.jpg, region [415, 680, 505, 778]"
+  ],
+  "five": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source five: NIVAL Carrick-alphabet-specimen.jpg, region [503, 679, 589, 782]"
+  ],
+  "six": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source six: NIVAL Carrick-alphabet-specimen.jpg, region [592, 680, 693, 779]"
+  ],
+  "seven": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source seven: NIVAL Carrick-alphabet-specimen.jpg, region [694, 681, 775, 783]"
+  ],
+  "eight": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source eight: NIVAL Carrick-alphabet-specimen.jpg, region [775, 669, 872, 781]"
+  ],
+  "nine": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source nine: NIVAL Carrick-alphabet-specimen.jpg, region [876, 680, 971, 781]"
+  ],
+  "zero": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source zero: NIVAL Carrick-alphabet-specimen.jpg, region [973, 681, 1082, 778]"
+  ],
+  "ampersand": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source ampersand: NIVAL Carrick-alphabet-specimen.jpg, region [178, 848, 294, 959]"
+  ],
+  "question": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source question: NIVAL Carrick-alphabet-specimen.jpg, region [278, 847, 360, 960]"
+  ],
+  "exclam": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source exclam: NIVAL Carrick-alphabet-specimen.jpg, region [368, 848, 407, 960]"
+  ],
+  "sterling": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source sterling: NIVAL Carrick-alphabet-specimen.jpg, region [413, 844, 492, 954]"
+  ],
+  "dollar": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source dollar: NIVAL Carrick-alphabet-specimen.jpg, region [488, 827, 584, 971]"
+  ],
+  "parenleft": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source parenleft: NIVAL Carrick-alphabet-specimen.jpg, region [598, 839, 634, 966]"
+  ],
+  "parenright": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source parenright: NIVAL Carrick-alphabet-specimen.jpg, region [661, 838, 694, 966]"
+  ],
+  "period": [
+    "made",
+    "the dot of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "comma": [
+    "made",
+    "the comma of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quoteright": [
+    "made",
+    "the comma, raised; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quoteleft": [
+    "made",
+    "the comma, raised and turned; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotedblleft": [
+    "made",
+    "two quotes; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotedblright": [
+    "made",
+    "two quotes; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotesingle": [
+    "made",
+    "wedge drawn to match"
+  ],
+  "quotedbl": [
+    "made",
+    "two wedges"
+  ],
+  "colon": [
+    "made",
+    "two of the dots of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "semicolon": [
+    "rebuilt",
+    "the comma of the NIVAL specimen’s semicolon, with the colon’s upper dot; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "ellipsis": [
+    "made",
+    "three periods; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "hyphen": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "endash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "emdash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "slash": [
+    "made",
+    "drawn to match"
+  ],
+  "uni204A": [
+    "made",
+    "the NIVAL specimen’s 7 at x-height, as in Gaelic type; base source seven: NIVAL Carrick-alphabet-specimen.jpg, region [694, 681, 775, 783]"
+  ],
+  "Euro": [
+    "made",
+    "the NIVAL specimen’s c with two bars; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "dotlessi": [
+    "made",
+    "the NIVAL specimen’s i without its dot; base source i: NIVAL Carrick-alphabet-specimen.jpg, region [963, 126, 1020, 259]"
+  ],
+  "dotlessj": [
+    "made",
+    "the NIVAL specimen’s j without its dot; base source j: NIVAL Carrick-alphabet-specimen.jpg, region [993, 127, 1083, 287]"
+  ],
+  "ae": [
+    "made",
+    "a+e"
+  ],
+  "oe": [
+    "made",
+    "o+e"
+  ],
+  "oslash": [
+    "made",
+    "o+stroke"
+  ],
+  "dcroat": [
+    "made",
+    "d+bar"
+  ],
+  "eth": [
+    "made",
+    "d+slanted bar"
+  ],
+  "hbar": [
+    "made",
+    "h+bar"
+  ],
+  "lslash": [
+    "made",
+    "l+slash"
+  ],
+  "tbar": [
+    "made",
+    "t+bar"
+  ],
+  "eng": [
+    "made",
+    "n+hook"
+  ],
+  "thorn": [
+    "made",
+    "p+ascender"
+  ],
+  "ij": [
+    "made",
+    "i+j"
+  ],
+  "ldot": [
+    "made",
+    "l+dot"
+  ],
+  "kgreenlandic": [
+    "made",
+    "k trimmed"
+  ],
+  "napostrophe": [
+    "made",
+    "'+n"
+  ],
+  "longs": [
+    "made",
+    "f without crossbar"
+  ],
+  "germandbls": [
+    "made",
+    "long s + s ligature"
+  ],
+  "agrave": [
+    "composite",
+    "a + grave made from the sheet’s acute; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "aacute": [
+    "composite",
+    "a + the sheet’s own acute; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "acircumflex": [
+    "composite",
+    "a + the sheet’s own circumflex; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "atilde": [
+    "composite",
+    "a + the sheet’s own tilde; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "adieresis": [
+    "composite",
+    "a + the sheet’s own diaeresis; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "aring": [
+    "composite",
+    "a + the sheet’s own ring; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "ccedilla": [
+    "composite",
+    "c + cedilla drawn to match; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "egrave": [
+    "composite",
+    "e + grave made from the sheet’s acute"
+  ],
+  "eacute": [
+    "composite",
+    "e + the sheet’s own acute"
+  ],
+  "ecircumflex": [
+    "composite",
+    "e + the sheet’s own circumflex"
+  ],
+  "edieresis": [
+    "composite",
+    "e + the sheet’s own diaeresis"
+  ],
+  "igrave": [
+    "composite",
+    "dotlessi + grave made from the sheet’s acute"
+  ],
+  "iacute": [
+    "composite",
+    "dotlessi + the sheet’s own acute"
+  ],
+  "icircumflex": [
+    "composite",
+    "dotlessi + the sheet’s own circumflex"
+  ],
+  "idieresis": [
+    "composite",
+    "dotlessi + the sheet’s own diaeresis"
+  ],
+  "ntilde": [
+    "composite",
+    "n + the sheet’s own tilde; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "ograve": [
+    "composite",
+    "o + grave made from the sheet’s acute; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "oacute": [
+    "composite",
+    "o + the sheet’s own acute; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "ocircumflex": [
+    "composite",
+    "o + the sheet’s own circumflex; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "otilde": [
+    "composite",
+    "o + the sheet’s own tilde; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "odieresis": [
+    "composite",
+    "o + the sheet’s own diaeresis; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "ugrave": [
+    "composite",
+    "u + grave made from the sheet’s acute; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uacute": [
+    "composite",
+    "u + the sheet’s own acute; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "ucircumflex": [
+    "composite",
+    "u + the sheet’s own circumflex; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "udieresis": [
+    "composite",
+    "u + the sheet’s own diaeresis; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "yacute": [
+    "composite",
+    "y + the sheet’s own acute"
+  ],
+  "ydieresis": [
+    "composite",
+    "y + the sheet’s own diaeresis"
+  ],
+  "amacron": [
+    "composite",
+    "a + the sheet’s own macron; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "abreve": [
+    "composite",
+    "a + breve made from the sheet’s ring; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "aogonek": [
+    "composite",
+    "a + ogonek drawn to match; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "cacute": [
+    "composite",
+    "c + the sheet’s own acute; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "ccircumflex": [
+    "composite",
+    "c + the sheet’s own circumflex; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "cdotaccent": [
+    "composite",
+    "c + the sheet’s own dot; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "ccaron": [
+    "composite",
+    "c + caron made from the sheet’s circumflex; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "dcaron": [
+    "composite",
+    "d + apostrophe caron drawn to match; base source d: NIVAL Carrick-alphabet-specimen.jpg, region [466, 123, 579, 256]"
+  ],
+  "emacron": [
+    "composite",
+    "e + the sheet’s own macron"
+  ],
+  "ebreve": [
+    "composite",
+    "e + breve made from the sheet’s ring"
+  ],
+  "edotaccent": [
+    "composite",
+    "e + the sheet’s own dot"
+  ],
+  "eogonek": [
+    "composite",
+    "e + ogonek drawn to match"
+  ],
+  "ecaron": [
+    "composite",
+    "e + caron made from the sheet’s circumflex"
+  ],
+  "gcircumflex": [
+    "composite",
+    "g + the sheet’s own circumflex; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "gbreve": [
+    "composite",
+    "g + breve made from the sheet’s ring; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "gdotaccent": [
+    "composite",
+    "g + the sheet’s own dot; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "uni0123": [
+    "composite",
+    "g + turned comma drawn to match; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "hcircumflex": [
+    "composite",
+    "h + the sheet’s own circumflex; base source h: NIVAL Carrick-alphabet-specimen.jpg, region [844, 125, 962, 255]"
+  ],
+  "itilde": [
+    "composite",
+    "dotlessi + the sheet’s own tilde"
+  ],
+  "imacron": [
+    "composite",
+    "dotlessi + the sheet’s own macron"
+  ],
+  "ibreve": [
+    "composite",
+    "dotlessi + breve made from the sheet’s ring"
+  ],
+  "iogonek": [
+    "composite",
+    "i + ogonek drawn to match; base source i: NIVAL Carrick-alphabet-specimen.jpg, region [963, 126, 1020, 259]"
+  ],
+  "jcircumflex": [
+    "composite",
+    "dotlessj + the sheet’s own circumflex"
+  ],
+  "uni0137": [
+    "composite",
+    "k + comma below drawn to match; base source k: NIVAL Carrick-alphabet-specimen.jpg, region [1076, 125, 1204, 259]"
+  ],
+  "lacute": [
+    "composite",
+    "l + the sheet’s own acute; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "uni013C": [
+    "composite",
+    "l + comma below drawn to match; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "lcaron": [
+    "composite",
+    "l + apostrophe caron drawn to match; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "nacute": [
+    "composite",
+    "n + the sheet’s own acute; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "uni0146": [
+    "composite",
+    "n + comma below drawn to match; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "ncaron": [
+    "composite",
+    "n + caron made from the sheet’s circumflex; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "omacron": [
+    "composite",
+    "o + the sheet’s own macron; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "obreve": [
+    "composite",
+    "o + breve made from the sheet’s ring; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "ohungarumlaut": [
+    "composite",
+    "o + double acute made from the sheet’s acute; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "racute": [
+    "composite",
+    "r + the sheet’s own acute; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "uni0157": [
+    "composite",
+    "r + comma below drawn to match; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "rcaron": [
+    "composite",
+    "r + caron made from the sheet’s circumflex; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "sacute": [
+    "composite",
+    "s + the sheet’s own acute; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "scircumflex": [
+    "composite",
+    "s + the sheet’s own circumflex; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "scedilla": [
+    "composite",
+    "s + cedilla drawn to match; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "scaron": [
+    "composite",
+    "s + caron made from the sheet’s circumflex; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "uni0163": [
+    "composite",
+    "t + cedilla drawn to match; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "tcaron": [
+    "composite",
+    "t + caron made from the sheet’s circumflex; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "utilde": [
+    "composite",
+    "u + the sheet’s own tilde; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "umacron": [
+    "composite",
+    "u + the sheet’s own macron; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "ubreve": [
+    "composite",
+    "u + breve made from the sheet’s ring; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uring": [
+    "composite",
+    "u + the sheet’s own ring; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uhungarumlaut": [
+    "composite",
+    "u + double acute made from the sheet’s acute; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uogonek": [
+    "composite",
+    "u + ogonek drawn to match; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "wcircumflex": [
+    "composite",
+    "w + the sheet’s own circumflex; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "ycircumflex": [
+    "composite",
+    "y + the sheet’s own circumflex"
+  ],
+  "zacute": [
+    "composite",
+    "z + the sheet’s own acute; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "zdotaccent": [
+    "composite",
+    "z + the sheet’s own dot; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "zcaron": [
+    "composite",
+    "z + caron made from the sheet’s circumflex; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "uni0219": [
+    "composite",
+    "s + comma below drawn to match; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "uni021B": [
+    "composite",
+    "t + comma below drawn to match; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "uni1E03": [
+    "composite",
+    "b + the sheet’s own dot; base source b: NIVAL Carrick-alphabet-specimen.jpg, region [253, 125, 377, 258]"
+  ],
+  "uni1E0B": [
+    "composite",
+    "d + the sheet’s own dot; base source d: NIVAL Carrick-alphabet-specimen.jpg, region [466, 123, 579, 256]"
+  ],
+  "uni1E1F": [
+    "composite",
+    "f + the sheet’s own dot"
+  ],
+  "uni1E41": [
+    "composite",
+    "m + the sheet’s own dot; base source m: NIVAL Carrick-alphabet-specimen.jpg, region [223, 332, 389, 434]"
+  ],
+  "uni1E57": [
+    "composite",
+    "p + the sheet’s own dot; base source p: NIVAL Carrick-alphabet-specimen.jpg, region [614, 332, 734, 455]"
+  ],
+  "uni1E61": [
+    "composite",
+    "s + the sheet’s own dot; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "uni1E6B": [
+    "composite",
+    "t + the sheet’s own dot; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "wgrave": [
+    "composite",
+    "w + grave made from the sheet’s acute; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "wacute": [
+    "composite",
+    "w + the sheet’s own acute; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "wdieresis": [
+    "composite",
+    "w + the sheet’s own diaeresis; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "ygrave": [
+    "composite",
+    "y + grave made from the sheet’s acute"
+  ],
+  "plus": [
+    "made",
+    "bars"
+  ],
+  "minus": [
+    "made",
+    "bar"
+  ],
+  "equal": [
+    "made",
+    "bars"
+  ],
+  "multiply": [
+    "made",
+    "rotated plus"
+  ],
+  "divide": [
+    "made",
+    "bar + dots"
+  ],
+  "plusminus": [
+    "made",
+    "plus over bar"
+  ],
+  "less": [
+    "made",
+    "chevron"
+  ],
+  "greater": [
+    "made",
+    "chevron"
+  ],
+  "lessequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "greaterequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "notequal": [
+    "made",
+    "equal + slash"
+  ],
+  "approxequal": [
+    "made",
+    "two tildes"
+  ],
+  "logicalnot": [
+    "made",
+    "bar + drop"
+  ],
+  "numbersign": [
+    "made",
+    "sheared grid"
+  ],
+  "percent": [
+    "made",
+    "scaled zeros + slash"
+  ],
+  "perthousand": [
+    "made",
+    "percent + zero"
+  ],
+  "asterisk": [
+    "made",
+    "five arms"
+  ],
+  "at": [
+    "made",
+    "a in a ring"
+  ],
+  "bracketleft": [
+    "made",
+    "stem + arms"
+  ],
+  "bracketright": [
+    "made",
+    "mirror"
+  ],
+  "braceleft": [
+    "made",
+    "stroked curve"
+  ],
+  "braceright": [
+    "made",
+    "mirror"
+  ],
+  "bar": [
+    "made",
+    "rule"
+  ],
+  "brokenbar": [
+    "made",
+    "split rule"
+  ],
+  "backslash": [
+    "made",
+    "mirrored slash"
+  ],
+  "underscore": [
+    "made",
+    "rule"
+  ],
+  "asciicircum": [
+    "made",
+    "circumflex, raised"
+  ],
+  "asciitilde": [
+    "made",
+    "tilde at math axis"
+  ],
+  "exclamdown": [
+    "made",
+    "rotated !"
+  ],
+  "questiondown": [
+    "made",
+    "rotated ?"
+  ],
+  "cent": [
+    "made",
+    "c + bar"
+  ],
+  "yen": [
+    "made",
+    "Y + bars"
+  ],
+  "currency": [
+    "made",
+    "ring + spurs"
+  ],
+  "section": [
+    "made",
+    "two interlaced s"
+  ],
+  "paragraph": [
+    "made",
+    "bowl + two stems"
+  ],
+  "copyright": [
+    "made",
+    "ring + c"
+  ],
+  "registered": [
+    "made",
+    "ring + r"
+  ],
+  "trademark": [
+    "made",
+    "small T + M"
+  ],
+  "degree": [
+    "made",
+    "the sheet's ring"
+  ],
+  "ordfeminine": [
+    "made",
+    "small a + rule"
+  ],
+  "ordmasculine": [
+    "made",
+    "small o + rule"
+  ],
+  "onesuperior": [
+    "made",
+    "small figure"
+  ],
+  "twosuperior": [
+    "made",
+    "small figure"
+  ],
+  "threesuperior": [
+    "made",
+    "small figure"
+  ],
+  "fraction": [
+    "made",
+    "steep slash"
+  ],
+  "onequarter": [
+    "made",
+    "fraction"
+  ],
+  "onehalf": [
+    "made",
+    "fraction"
+  ],
+  "threequarters": [
+    "made",
+    "fraction"
+  ],
+  "mu": [
+    "made",
+    "u + descender"
+  ],
+  "periodcentered": [
+    "made",
+    "raised period"
+  ],
+  "bullet": [
+    "made",
+    "disc"
+  ],
+  "dagger": [
+    "made",
+    "stem + bar"
+  ],
+  "daggerdbl": [
+    "made",
+    "stem + two bars"
+  ],
+  "quotesinglbase": [
+    "made",
+    "comma; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotedblbase": [
+    "made",
+    "two commas; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "guilsinglright": [
+    "made",
+    "chevron from the sheet"
+  ],
+  "guilsinglleft": [
+    "made",
+    "chevron from the sheet"
+  ],
+  "guillemotright": [
+    "made",
+    "chevrons from the sheet"
+  ],
+  "guillemotleft": [
+    "made",
+    "chevrons from the sheet"
+  ],
+  "minute": [
+    "made",
+    "slanted wedge"
+  ],
+  "second": [
+    "made",
+    "two wedges"
+  ],
+  "gravecomb": [
+    "mark",
+    "grave made from the sheet’s acute"
+  ],
+  "acutecomb": [
+    "mark",
+    "the sheet’s own acute"
+  ],
+  "uni0302": [
+    "mark",
+    "the sheet’s own circumflex"
+  ],
+  "tildecomb": [
+    "mark",
+    "the sheet’s own tilde"
+  ],
+  "uni0304": [
+    "mark",
+    "the sheet’s own macron"
+  ],
+  "uni0306": [
+    "mark",
+    "breve made from the sheet’s ring"
+  ],
+  "uni0307": [
+    "mark",
+    "the sheet’s own dot"
+  ],
+  "uni0308": [
+    "mark",
+    "the sheet’s own diaeresis"
+  ],
+  "uni030A": [
+    "mark",
+    "the sheet’s own ring"
+  ],
+  "uni030B": [
+    "mark",
+    "double acute made from the sheet’s acute"
+  ],
+  "uni030C": [
+    "mark",
+    "caron made from the sheet’s circumflex"
+  ],
+  "uni0312": [
+    "mark",
+    "turned comma drawn to match"
+  ],
+  "uni0326": [
+    "mark",
+    "comma below drawn to match"
+  ],
+  "uni0327": [
+    "mark",
+    "cedilla drawn to match"
+  ],
+  "uni0328": [
+    "mark",
+    "ogonek drawn to match"
+  ],
+  "grave": [
+    "made",
+    "spacing grave made from the sheet’s acute"
+  ],
+  "dieresis": [
+    "made",
+    "spacing the sheet’s own diaeresis"
+  ],
+  "macron": [
+    "made",
+    "spacing the sheet’s own macron"
+  ],
+  "acute": [
+    "made",
+    "spacing the sheet’s own acute"
+  ],
+  "cedilla": [
+    "made",
+    "spacing cedilla drawn to match"
+  ],
+  "circumflex": [
+    "made",
+    "spacing the sheet’s own circumflex"
+  ],
+  "caron": [
+    "made",
+    "spacing caron made from the sheet’s circumflex"
+  ],
+  "breve": [
+    "made",
+    "spacing breve made from the sheet’s ring"
+  ],
+  "dotaccent": [
+    "made",
+    "spacing the sheet’s own dot"
+  ],
+  "ring": [
+    "made",
+    "spacing the sheet’s own ring"
+  ],
+  "ogonek": [
+    "made",
+    "spacing ogonek drawn to match"
+  ],
+  "tilde": [
+    "made",
+    "spacing the sheet’s own tilde"
+  ],
+  "hungarumlaut": [
+    "made",
+    "spacing double acute made from the sheet’s acute"
+  ]
+}

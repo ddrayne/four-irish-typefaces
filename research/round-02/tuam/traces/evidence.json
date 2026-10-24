@@ -1,0 +1,243 @@
+{
+  "face": "tuam",
+  "status": "spacing study; historical outlines remain the existing reconstruction",
+  "source_trace_sha256": "519c7df019ef3e1df2a4d85cfa2dd844c3f2c8b11aa1c1460ab7acbc5132eda9",
+  "glyphs": [
+    {
+      "name": "a",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "b",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "c",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "d",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "e",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "f",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "g",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "h",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "i",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "j",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "k",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "l",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "m",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "n",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "o",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "p",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "q",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "r",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "s",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "t",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "u",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "v",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "w",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "x",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "y",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "z",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "one",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "two",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "three",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "four",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "five",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "six",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "seven",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "eight",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "nine",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "zero",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "sterling",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "dollar",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "ampersand",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "question",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "exclam",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "aacute",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "eacute",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "iacute",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "oacute",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    },
+    {
+      "name": "uacute",
+      "status": "retained",
+      "reason": "Baseline traced outline unchanged in this spacing study"
+    }
+  ],
+  "limitations": [
+    "No new outline reconstruction for this face in round 2.",
+    "Full-height spacing protection is a modern functional correction."
+  ],
+  "source_trace_hash_scope": "SHA-256 of source input file bytes in the Windows research checkout; line endings may differ in other checkouts.",
+  "source_trace_canonical_json_sha256": "fb72d9fbf13dc57a3339110d14d16ce263803b6c84960857ee656f7e422b1689"
+}
