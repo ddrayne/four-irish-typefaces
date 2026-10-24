@@ -11,6 +11,11 @@ export function init(root, data) {
   const out = $('[data-t-out]', root);
   const text = $('[data-t-text]', root);
   const gloss = $('[data-t-gloss]', root);
+  const study = $('[data-t-study]', root);
+  const studyWrap = $('[data-t-study-wrap]', root);
+  const studyLabel = $('[data-t-study-label]', root);
+  // the latest research study of a face, if any (Regular only)
+  const latest = (k) => { const s = data.studies?.[k]; return s ? s.studies[s.studies.length - 1].family : null; };
   let face = 'kilfane', style = 'Regular', sets = new Set(), pi = 0;
   if (innerWidth < 640) size.value = String(Math.round(innerWidth / 7));
 
@@ -26,9 +31,16 @@ export function init(root, data) {
 
   function build() {
     const f = data.faces[face];
+    const anyStudy = FACES.some(latest);
+    studyWrap.hidden = !anyStudy;
+    studyLabel.textContent = all.checked ? 'Research studies' : latest(face) || 'No study yet';
+    study.disabled = !all.checked && !latest(face);
     stylesHost.replaceChildren();
-    if (!f.styles.includes(style)) style = 'Regular';
-    f.styles.forEach((s) => radio(stylesHost, s, s === style, () => { style = s; apply(); }));
+    if (!f.styles.includes(style) || (study.checked && !study.disabled)) style = 'Regular';
+    f.styles.forEach((s) => {
+      const b = radio(stylesHost, s, s === style, () => { style = s; apply(); });
+      if (study.checked && !study.disabled && s !== 'Regular') { b.disabled = true; b.title = 'The studies are Regular only'; }
+    });
     setsHost.replaceChildren();
     sets = new Set([...sets].filter((t) => f.sets.some((s) => s.tag === t)));
     f.sets.forEach((s) => {
@@ -42,8 +54,9 @@ export function init(root, data) {
   }
 
   function css(k) {
-    const [w, st] = STYLE[data.faces[k].styles.includes(style) ? style : 'Regular'];
-    return { fontFamily: `"${FAMILY[k]}", Georgia, serif`, fontWeight: w, fontStyle: st };
+    const useStudy = study.checked && latest(k);
+    const [w, st] = STYLE[!useStudy && data.faces[k].styles.includes(style) ? style : 'Regular'];
+    return { fontFamily: `"${useStudy ? latest(k) : FAMILY[k]}", "${FAMILY[k]}", Georgia, serif`, fontWeight: w, fontStyle: st };
   }
   function apply() {
     const px = `${size.value}px`;
@@ -54,7 +67,7 @@ export function init(root, data) {
       if (!rows) { rows = document.createElement('div'); rows.className = 't-all-rows'; out.appendChild(rows); }
       rows.replaceChildren(...FACES.map((k) => {
         const d = document.createElement('div');
-        const lab = document.createElement('span'); lab.className = 'mono'; lab.textContent = FAMILY[k];
+        const lab = document.createElement('span'); lab.className = 'mono'; lab.textContent = study.checked && latest(k) ? latest(k) : FAMILY[k];
         const p = document.createElement('div'); p.textContent = text.textContent;
         Object.assign(p.style, css(k), { fontSize: `${Math.min(+size.value, 120)}px`, lineHeight: 1.12, overflowWrap: 'anywhere' });
         d.append(lab, p);
@@ -67,7 +80,8 @@ export function init(root, data) {
     }
   }
   size.addEventListener('input', apply);
-  all.addEventListener('change', apply);
+  all.addEventListener('change', build);
+  study.addEventListener('change', build);
   text.addEventListener('input', () => { gloss.textContent = ''; });
   $('[data-t-proverb]', root).addEventListener('click', () => {
     pi = (pi + 1) % PROVERBS.length;
