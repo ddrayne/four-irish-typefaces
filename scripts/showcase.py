@@ -223,10 +223,11 @@ def studies_data(faces):
                 for fn, sm in mm.get('summary', {}).items():
                     a = src(fn)
                     sid = a.get('source_id', fn)
+                    regressed = [r['name'] if isinstance(r, dict) else r for r in sm.get('regressed', sm.get('regressions', []))]
                     sources[(sid, kind)] = dict(id=sid, kind=kind, study=f['family'], url=a.get('catalogue_url'), w=a.get('width'), h=a.get('height'),
                                                n=sm.get('glyphs', sm.get('entries')), before=round(sm.get('before', 0), 4),
                                                after=round(sm.get('candidate', 0), 4), improved=sm.get('improved'),
-                                               regressed=sm.get('regressed', sm.get('regressions', [])))
+                                               regressed=regressed, method=mm.get('raster_method'))
                 for g in mm.get('glyphs', []):
                     ch, tag = chars[face].get(g['name'], (None, None))
                     if ch is None:

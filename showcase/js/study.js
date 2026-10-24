@@ -45,7 +45,7 @@ export async function init(root, data) {
     ${outlines ? `<div class="study-sources" role="radiogroup" aria-label="Compared with"></div>
       <div class="study-body"><figure class="study-zoom" aria-live="polite"></figure><div class="study-grid"></div></div>` : ''}
     <div class="study-pairs"></div>
-    <p class="toy-note">Scores measure how well each version fits reproductions that share a printing history, so they are not independent originals and not proof of authenticity. Archive images are not reproduced here.</p>`;
+    <p class="toy-note">Scores measure how well each version fits reproductions that share a printing history, so they are not independent originals and not proof of authenticity.${info.sources.some((s) => s.method) ? ' The latest round samples each pixel by its covered area, so its scores are not directly comparable with earlier rounds.' : ''} Archive images are not reproduced here.</p>`;
 
   if (outlines) outlineFit(root, info, face, latest);
   spacing(root, info, face, latest);
@@ -75,10 +75,13 @@ function outlineFit(root, info, face, latest) {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'study-src'; b.setAttribute('role', 'radio');
     b.setAttribute('aria-checked', String(s === pick));
-    const reg = s.regressed?.length ? ` · fits worse: ${s.regressed.join(', ')}` : '';
+    const r = s.regressed || [];
+    const reg = r.length ? ` · fit worse: ${r.slice(0, 6).join(', ')}${r.length > 6 ? ` and ${r.length - 6} more` : ''}` : '';
+    const down = s.after < s.before;
+    b.classList.toggle('down', down);
     b.innerHTML = `<span class="mono">${KIND[s.kind] || s.kind} · against NIVAL ${s.id}</span>` +
-      `<span class="study-big"><span>${s.before.toFixed(3)}</span><span aria-hidden="true">→</span><b>${s.after.toFixed(3)}</b></span>` +
-      `<span class="mono">mean overlap · ${s.improved} of ${s.n} fit better${reg}</span>`;
+      `<span class="study-big"><span>${s.before.toFixed(3)}</span><span aria-hidden="true">${down ? '↘' : '→'}</span><b>${s.after.toFixed(3)}</b></span>` +
+      `<span class="mono">mean overlap${down ? ', slightly lower' : ''} · ${s.improved} of ${s.n} fit better${reg}</span>`;
     b.addEventListener('click', () => {
       pick = s;
       [...srcHost.querySelectorAll('.study-src')].forEach((c) => c.setAttribute('aria-checked', String(c === b)));
