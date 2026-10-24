@@ -446,6 +446,15 @@ body::after {
   background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px); background-size: 20px 20px; }
 .g-big-name { font-weight: 600; }
 .g-big-code { color: var(--ink-2); }
+.g-across { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; width: 100%; margin-block: 4px 6px; }
+.g-mini { display: grid; justify-items: center; gap: 2px; padding: 8px 4px 6px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; min-width: 0; }
+button.g-mini { cursor: pointer; }
+button.g-mini:hover:not(:disabled), .g-mini.on { border-color: var(--ink); }
+.g-mini:disabled { opacity: .45; cursor: default; }
+.g-mini > span:first-child { font-size: 40px; line-height: 1.15; }
+.g-mini .mono { font-size: .62rem; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.g-mini.alt { grid-column: span 2; }
+@media (max-width: 760px) { .g-across { grid-column: 1 / -1; } }
 @media (max-width: 760px) {
   .g-layout { grid-template-columns: minmax(0, 1fr); }
   .g-big { position: static; grid-row: 1; grid-template-columns: 120px minmax(0, 1fr); align-items: center; column-gap: 14px; }
