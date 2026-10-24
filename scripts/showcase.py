@@ -344,8 +344,8 @@ def build():
     if os.path.exists(DEST):
         shutil.rmtree(DEST)
     shutil.copytree(SRC, DEST, ignore=shutil.ignore_patterns('README.md'))
-    os.makedirs(os.path.join(DEST, 'fonts'), exist_ok=True)
-    os.makedirs(os.path.join(DEST, 'data'), exist_ok=True)
+    for sub in ('fonts', 'data', 'img'):       # generated folders, not in git
+        os.makedirs(os.path.join(DEST, sub), exist_ok=True)
     for k in ORDER:
         for style in FAMILY_STYLES[k]:
             fn = f'{FONTS[k]["ps"]}-{style.replace(" ", "")}.woff2'
