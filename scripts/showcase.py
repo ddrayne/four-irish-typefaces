@@ -244,6 +244,80 @@ def studies_data(faces):
     return out, copies
 
 
+def social(dest):
+    """The link preview (1200 x 630), the favicon and the touch icon, all drawn from
+    the fonts: the title printed in two overprinting inks, as in the page's hero."""
+    import io
+    from PIL import Image, ImageChops, ImageDraw, ImageFont
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    ttf = lambda k: os.path.join(paths.ROOT, 'fonts', 'ttf', f'{FONTS[k]["ps"]}-Regular.ttf')
+    def woff2(fn, size):
+        f = TTFont(os.path.join(SRC, 'vendor', 'fonts', fn)); f.flavor = None
+        buf = io.BytesIO(); f.save(buf); buf.seek(0)
+        return ImageFont.truetype(buf, size)
+    paper, ink, green, orange = (231, 230, 218), (21, 22, 15), (0, 159, 88), (255, 106, 31)
+    W, H = 1200, 630
+    sans = woff2('archivo-latin-standard-normal.woff2', 50)
+    try:
+        sans.set_variation_by_axes([780, 118])
+    except Exception:
+        pass
+    mono = woff2('fragment-mono-latin-400-normal.woff2', 22)
+
+    # the title: each letter in the next face, green and orange plates slightly out of register
+    size = 188
+    fonts = {k: ImageFont.truetype(ttf(k), size) for k in ORDER}
+    cycle = ['ceili', 'carrick', 'kilfane', 'tuam']
+    plates = []
+    for colour, (dx, dy) in ((green, (-5, -3)), (orange, (5, 3))):
+        im = Image.new('RGB', (W, H), (255, 255, 255))
+        d = ImageDraw.Draw(im)
+        for li, (line, top) in enumerate((('ceithre', 86), ('chló', 262))):
+            x = 52
+            for i, ch in enumerate(line):
+                f = fonts[cycle[(i + li * 2) % 4]]     # the hero's own pattern
+                d.text((x + dx, top + dy), ch, font=f, fill=colour)
+                x += f.getlength(ch)
+        plates.append(im)
+    art = ImageChops.multiply(ImageChops.multiply(*plates), Image.new('RGB', (W, H), paper))
+    # paper tooth
+    import random
+    rnd = random.Random(1978)
+    px = art.load()
+    for _ in range(26000):
+        x, y = rnd.randrange(W), rnd.randrange(H)
+        r, g, b_ = px[x, y]; k = rnd.choice((-9, 7))
+        px[x, y] = (max(0, min(255, r + k)), max(0, min(255, g + k)), max(0, min(255, b_ + k)))
+    d = ImageDraw.Draw(art)
+    for cx in (30, W - 30):            # crop marks
+        d.line((cx - 11, 30, cx + 11, 30), fill=ink, width=2); d.line((cx, 19, cx, 41), fill=ink, width=2)
+    d.text((58, 52), 'DESIGN AN IRISH TYPEFACE · 1978', font=mono, fill=(80, 82, 70))
+    d.text((W - 58, 52), 'SHEETS S53909–S53916', font=mono, fill=(80, 82, 70), anchor='ra')
+    d.text((W - 58, 452), 'Four Irish', font=sans, fill=ink, anchor='ra')
+    d.text((W - 58, 510), 'Typefaces', font=sans, fill=ink, anchor='ra')
+    d.text((58, 572), 'Céilí · Carrick · Kilfane · Tuam Uncial · free under the OFL', font=mono, fill=(80, 82, 70))
+    art.save(os.path.join(dest, 'img', 'social.png'), optimize=True)
+
+    # favicon: Céilí's c, pink on the green of its plate
+    f = TTFont(os.path.join(paths.ROOT, 'fonts', 'otf', f'{FONTS["ceili"]["ps"]}-Regular.otf'))
+    gs = f.getGlyphSet(); g = gs[f.getBestCmap()[ord('c')]]
+    upm = f['head'].unitsPerEm
+    from fontTools.pens.boundsPen import BoundsPen
+    bp = BoundsPen(gs); g.draw(bp); x0, y0, x1, y1 = bp.bounds
+    scale = 40 / max(x1 - x0, y1 - y0)
+    w, h = (x1 - x0) * scale, (y1 - y0) * scale
+    pen = SVGPathPen(gs, ntos=lambda v: f'{v:.2f}'.rstrip('0').rstrip('.'))
+    g.draw(TransformPen(pen, (scale, 0, 0, -scale, 32 - w / 2 - x0 * scale, 32 + h / 2 + y0 * scale)))
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0B4631"/>'
+           f'<path fill="#FF73B6" d="{pen.getCommands()}"/></svg>\n')
+    open(os.path.join(dest, 'img', 'icon.svg'), 'w').write(svg)
+    icon = Image.new('RGB', (180, 180), (11, 70, 49))
+    cf = ImageFont.truetype(ttf('ceili'), 150)
+    ImageDraw.Draw(icon).text((90, 92), 'c', font=cf, fill=(255, 115, 182), anchor='mm')
+    icon.save(os.path.join(dest, 'img', 'apple-touch-icon.png'), optimize=True)
+
+
 def build():
     if os.path.exists(DEST):
         shutil.rmtree(DEST)
@@ -270,8 +344,17 @@ def build():
         json.dumps(obj, ensure_ascii=False, separators=(',', ':')))
     dump(site, 'site.json')
     dump(glyphs, 'traced.json')
+    social(DEST)
+    # copies keep their source modes; a web server needs to read every file
+    for dirpath, dirs, files in os.walk(DEST):
+        for n in dirs: os.chmod(os.path.join(dirpath, n), 0o755)
+        for n in files: os.chmod(os.path.join(dirpath, n), 0o644)
+    # SITE_URL (where the site is served) makes the link-preview addresses absolute,
+    # which most sharing services require; without it they stay relative.
+    site_url = os.environ.get('SITE_URL', '').rstrip('/')
     html = open(os.path.join(DEST, 'index.html'), encoding='utf-8').read()
-    open(os.path.join(DEST, 'index.html'), 'w', encoding='utf-8').write(html.replace('{{V}}', VERSION))
+    html = html.replace('{{V}}', VERSION).replace('{{SITE}}', site_url + '/' if site_url else '')
+    open(os.path.join(DEST, 'index.html'), 'w', encoding='utf-8').write(html)
     print('built', DEST)
 
 
