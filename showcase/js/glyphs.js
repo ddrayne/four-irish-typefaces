@@ -8,6 +8,7 @@ export function init(root, data) {
   const name = $('[data-g-name]', root);
   const code = $('[data-g-code]', root);
   const copy = $('[data-g-copy]', root);
+  const across = $('[data-g-across]', root);
   let face = 'kilfane', picked = 0xE1;
 
   FACES.forEach((k) => {
@@ -31,7 +32,39 @@ export function init(root, data) {
     name.textContent = data.names[hex(cp)] || 'Unnamed';
     code.textContent = `U+${hex(cp)}`;
     for (const c of grid.children) c.setAttribute('aria-pressed', String(+c.dataset.cp === cp));
+    acrossFaces(cp);
   }
+
+  // The same character in every face, the current face's alternates for it, and the
+  // research study's drawing where one exists. Tap a face to switch to it.
+  function acrossFaces(cp) {
+    const ch = String.fromCodePoint(cp);
+    const tiles = [];
+    for (const k of FACES) {
+      const has = data.faces[k].cps.includes(cp);
+      tiles.push(`<button type="button" class="g-mini${k === face ? ' on' : ''}" data-face="${k}" ${has ? '' : 'disabled'} title="${FAMILY[k]}">` +
+        `<span class="f-${k}">${has ? ch : '·'}</span><span class="mono">${FAMILY[k]}</span></button>`);
+    }
+    const f = data.faces[face];
+    const lower = ch.toLowerCase(), upper = ch.toUpperCase();
+    for (const set of f.sets) {
+      const hit = [...set.chars].some((c) => c === ch || (f.unicase && (c === lower || c === upper)));
+      if (hit) tiles.push(`<span class="g-mini alt"><span class="f-${face}" style="font-feature-settings:'${set.tag}' 1">${ch}</span><span class="mono">${set.tag} · ${set.label}</span></span>`);
+    }
+    const st = data.studies?.[face];
+    if (st && f.cps.includes(cp)) {
+      const fam = st.studies[st.studies.length - 1].family;
+      tiles.push(`<span class="g-mini alt"><span style="font-family:'${fam}',serif">${ch}</span><span class="mono">${fam}</span></span>`);
+    }
+    across.innerHTML = tiles.join('');
+  }
+  across.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-face]');
+    if (!b || b.disabled || b.dataset.face === face) return;
+    face = b.dataset.face;
+    [...facesHost.children].forEach((c, i) => c.setAttribute('aria-checked', String(FACES[i] === face)));
+    build();
+  });
 
   function build() {
     const q = find.value.trim().toUpperCase();
