@@ -315,7 +315,7 @@ body::after {
 .toy-title > span:last-child { font-weight: 750; font-stretch: 125%; text-transform: uppercase; letter-spacing: .05em; font-size: var(--s-1); }
 .toy-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .toy-note { margin-top: 12px; font-size: var(--s-1); max-width: 70ch; opacity: .85; }
-.styles-strip { margin-top: clamp(40px, 6vw, 72px); border-top: 1px solid var(--plate-rule); }
+.styles-strip { margin-top: clamp(40px, 6vw, 72px); border-top: 1px solid var(--plate-rule); content-visibility: auto; contain-intrinsic-size: auto 420px; }
 .styles-strip p { font-size: clamp(32px, 6.4vw, 88px); line-height: 1.15; padding-block: .12em; border-bottom: 1px solid var(--plate-rule); white-space: nowrap; overflow: hidden; text-overflow: clip; }
 @media (max-width: 760px) {
   .world-head { grid-template-columns: minmax(0, 1fr); }

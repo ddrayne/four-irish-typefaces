@@ -8,7 +8,7 @@ data generated from the fonts and sources:
 
   data/site.json    per face: styles, character map, stylistic sets; Unicode names;
                     the flyer audit (overlap per glyph); where each face sits on the flyer
-  data/traced.json  every traced flyer glyph as an SVG path in scan pixels, with its points
+  data/traced.json  every traced flyer glyph as an SVG path in scan pixels (the page reads the points back from it)
 
 --artifact also writes build/showcase-artifact/: the same site with the page split
 into the form the Artifact viewer expects and the fonts inlined as data URIs.
@@ -112,7 +112,7 @@ def traced_data():
             xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
             if not xs:
                 continue
-            glyphs.append(dict(n=g['name'], d=''.join(d), b=[round(min(xs), 1), round(min(ys), 1), round(max(xs), 1), round(max(ys), 1)], p=pts))
+            glyphs.append(dict(n=g['name'], d=''.join(d), b=[round(min(xs), 1), round(min(ys), 1), round(max(xs), 1), round(max(ys), 1)]))
         out[k] = glyphs
         regions[k] = [min(g['b'][0] for g in glyphs), min(g['b'][1] for g in glyphs),
                       max(g['b'][2] for g in glyphs), max(g['b'][3] for g in glyphs)]
