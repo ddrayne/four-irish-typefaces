@@ -14,6 +14,7 @@ const parts = [
   ['[data-illum]', './tuam.js'],
   ['.tester', './tester.js'],
   ['.shop', './shopfront.js'],
+  ['.poster', './poster.js'],
   ['.glyphs', './glyphs.js'],
 ];
 for (const [sel, mod, near] of parts) {

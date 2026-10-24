@@ -461,6 +461,18 @@ body::after {
 .shop-street { border-radius: 6px; overflow: hidden; box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .5); }
 .shop-canvas { display: block; width: 100%; }
 
+/* ------------------------------------------------------------------ poster */
+.poster { background: var(--paper-2); padding-bottom: clamp(60px, 8vw, 110px); }
+.poster .sec-ga { color: var(--orange-text); }
+.poster-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(20px, 4vw, 56px); align-items: start; }
+.poster-controls { display: grid; gap: 16px; }
+.field { display: grid; gap: 6px; font-size: var(--s-1); font-weight: 650; }
+.field input, .field select { min-height: 44px; border-radius: 12px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); padding: 0 14px; font: inherit; font-size: 1rem; font-weight: 400; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.poster-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.poster-canvas { width: 100%; max-width: min(100%, calc((100svh - var(--mast-h) - 40px) * .75)); justify-self: center; aspect-ratio: 3 / 4; display: block; position: sticky; top: calc(var(--mast-h) + 20px); box-shadow: 0 2px 0 rgba(0, 0, 0, .08), 0 30px 60px -30px rgba(0, 0, 0, .5); background: #F2EEE3; }
+@media (max-width: 860px) { .poster-grid { grid-template-columns: minmax(0, 1fr); } .poster-canvas { order: -1; position: static; } }
+
 /* ------------------------------------------------------------------ glyphs */
 .glyphs { background: var(--paper-2); padding-bottom: clamp(60px, 8vw, 110px); }
 .glyphs .sec-ga { color: var(--green-text); }
