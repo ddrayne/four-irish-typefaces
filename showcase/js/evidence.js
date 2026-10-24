@@ -10,6 +10,14 @@ const el = (name, attrs = {}) => {
   for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
   return n;
 };
+function pointsOf(d) {
+  const pts = [];
+  for (const [, op, args] of d.matchAll(/([MLCQZ])([^MLCQZ]*)/g)) {
+    const n = args.trim() ? args.trim().split(/[\s,]+/).map(Number) : [];
+    for (let i = 0; i + 1 < n.length; i += 2) pts.push([n[i], n[i + 1], (op === 'C' && i < 4) || (op === 'Q' && i < 2) ? 0 : 1]);
+  }
+  return pts;
+}
 const pad = (b, f, min = 0) => {
   const w = b[2] - b[0], h = b[3] - b[1];
   const p = Math.max(min, Math.max(w, h) * f);
@@ -23,7 +31,11 @@ const scoreColour = (s) => {
 };
 
 export async function init(section, data) {
+  const img = $('image', section);
+  img.setAttribute('href', img.dataset.href);     // the scan loads with this section, not with the page
   const traced = await fetch('data/traced.json').then((r) => r.json());
+  // each glyph's points, read back from its path data: [x, y, on-curve]
+  for (const face of Object.keys(traced)) for (const gl of traced[face]) gl.p = pointsOf(gl.d);
   const { regions, w: FW, h: FH } = data.flyer;
   const svg = $('.ev-svg', section);
   const stage = $('[data-ev-stage]', section);

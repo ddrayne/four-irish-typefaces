@@ -31,7 +31,7 @@ repository, so the site always shows the current release:
 - `data/site.json`: each face's styles, character map and stylistic sets, Unicode
   names, the per-glyph overlap scores from `docs/validation/flyer-glyph-audit.md`, and
   where each face sits on the flyer
-- `data/traced.json`: every traced flyer glyph as an SVG path in scan pixels, with its points
+- `data/traced.json`: every traced flyer glyph as an SVG path in scan pixels
 
 Nothing in this folder is generated. There is no bundler: the page is plain HTML, CSS
 and ES modules, and each part's script loads only when it scrolls near.
