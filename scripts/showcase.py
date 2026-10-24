@@ -319,6 +319,27 @@ def social(dest):
     icon.save(os.path.join(dest, 'img', 'apple-touch-icon.png'), optimize=True)
 
 
+def fonts_zip(dest):
+    """The twelve fonts in every format, with the stylesheet, licence, log and README:
+    what most people want, without the sources and research. Fixed timestamps, so the
+    same release always gives the same file."""
+    import zipfile
+    name = f'four-irish-typefaces-{VERSION}-fonts.zip'
+    os.makedirs(os.path.join(dest, 'downloads'), exist_ok=True)
+    files = []
+    for fmt in ('otf', 'ttf', 'woff', 'woff2'):
+        d = os.path.join(paths.ROOT, 'fonts', fmt)
+        files += [os.path.join('fonts', fmt, f) for f in sorted(os.listdir(d))]
+    files += ['css/four-irish-typefaces.css', 'OFL.txt', 'FONTLOG.txt', 'README.md']
+    with zipfile.ZipFile(os.path.join(dest, 'downloads', name), 'w', zipfile.ZIP_DEFLATED) as z:
+        for rel in files:
+            info = zipfile.ZipInfo(f'four-irish-typefaces/{rel}', date_time=(2026, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            z.writestr(info, open(os.path.join(paths.ROOT, rel), 'rb').read())
+    return f'downloads/{name}'
+
+
 def build():
     if os.path.exists(DEST):
         shutil.rmtree(DEST)
@@ -346,6 +367,7 @@ def build():
     dump(site, 'site.json')
     dump(glyphs, 'traced.json')
     social(DEST)
+    zip_href = fonts_zip(DEST)
     # copies keep their source modes; a web server needs to read every file
     for dirpath, dirs, files in os.walk(DEST):
         for n in dirs: os.chmod(os.path.join(dirpath, n), 0o755)
@@ -354,7 +376,7 @@ def build():
     # which most sharing services require; without it they stay relative.
     site_url = os.environ.get('SITE_URL', '').rstrip('/')
     html = open(os.path.join(DEST, 'index.html'), encoding='utf-8').read()
-    html = html.replace('{{V}}', VERSION).replace('{{SITE}}', site_url + '/' if site_url else '')
+    html = html.replace('{{V}}', VERSION).replace('{{SITE}}', site_url + '/' if site_url else '').replace('{{ZIP}}', zip_href)
     open(os.path.join(DEST, 'index.html'), 'w', encoding='utf-8').write(html)
     print('built', DEST)
 
@@ -367,6 +389,9 @@ def artifact():
         shutil.rmtree(dest)
     shutil.copytree(DEST, dest)
     html = open(os.path.join(dest, 'index.html'), encoding='utf-8').read()
+    # the viewer blocks downloads, so the download button points at GitHub there
+    html = re.sub(r'href="downloads/[^"]+\.zip"', 'href="https://github.com/ddrayne/four-irish-typefaces/tree/main/fonts"', html)
+    shutil.rmtree(os.path.join(dest, 'downloads'), ignore_errors=True)
     head = re.search(r'<head>(.*?)</head>', html, re.S).group(1)
     body = re.search(r'<body([^>]*)>(.*?)</body>', html, re.S)
     head = re.sub(r'<meta charset[^>]*>\s*|<meta name="viewport"[^>]*>\s*|<link rel="preload"[^>]*>\s*', '', head)
