@@ -356,26 +356,40 @@ body::after {
 .alt span:last-child { font-family: var(--mono); font-size: .7rem; opacity: .7; }
 
 /* A research study beside the release: two inks, overprinted */
-.study { margin-top: clamp(48px, 7vw, 88px); border-top: 1.5px solid var(--kilfane-fg); padding-top: 20px; }
+.study { margin-top: clamp(48px, 7vw, 88px); border-top: 1.5px solid currentColor; padding-top: 20px; }
 .study-text { max-width: 66ch; font-size: 1.05rem; }
 .study-sources { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: stretch; margin-block: 20px 16px; }
 .study-src { display: grid; gap: 4px; text-align: left; padding: 14px 18px; border-radius: 14px; border: 1.5px solid var(--plate-rule); background: transparent; cursor: pointer; min-width: min(100%, 300px); }
-.study-src[aria-checked="true"] { border-color: var(--kilfane-fg); background: rgba(255, 255, 255, .45); }
+.study-src[aria-checked="true"] { border-color: currentColor; background: rgba(255, 255, 255, .45); }
+.study-links { margin: -4px 0 16px; display: flex; flex-wrap: wrap; gap: 4px 12px; }
 .study-big { display: flex; align-items: baseline; gap: 10px; font-size: clamp(28px, 3.4vw, 42px); font-weight: 750; font-stretch: 112%; font-variant-numeric: tabular-nums; line-height: 1.05; }
 .study-big span:first-child { color: #00804A; }
 .study-big b { color: #E0560F; }
 .study-link { align-self: center; }
 .study-body { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
-.study-zoom { position: sticky; top: calc(var(--mast-h) + 16px); margin: 0; display: grid; gap: 8px; padding: 14px; border-radius: 14px; border: 1.5px solid var(--kilfane-fg); background: #F7F5EE; }
+.study-zoom { position: sticky; top: calc(var(--mast-h) + 16px); margin: 0; display: grid; gap: 8px; padding: 14px; border-radius: 14px; border: 1.5px solid currentColor; background: #F7F5EE; color: #15160F; }
 .study-zoom .sc-art { height: 300px; background-image: linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px); background-size: 20px 20px; }
 .study-zoom .sc-art span { font-size: 230px; line-height: 300px; }
 .study-zoom figcaption { display: grid; gap: 2px; }
 .study-zoom .study-big { font-size: 30px; }
 .study-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
 .sc { cursor: pointer; font: inherit; color: inherit; }
-.sc[aria-pressed="true"] { border-color: var(--kilfane-fg); background: #F7F5EE; }
+.sc[aria-pressed="true"] { border-color: currentColor; background: #F7F5EE; }
 .study-body[data-show="release"] .sc-s, .study-body[data-show="study"] .sc-r { visibility: hidden; }
-.study-body[data-show="release"] .sc-r, .study-body[data-show="study"] .sc-s { color: var(--kilfane-fg); }
+.study-body[data-show="release"] .sc-r, .study-body[data-show="study"] .sc-s { color: #15160F; }
+.study-pairs { margin-top: 36px; }
+.pairs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 32px; border-top: 1px solid var(--plate-rule); padding-top: 16px; }
+.pairs-title { font-size: var(--s2); font-weight: 750; font-stretch: 112%; letter-spacing: -.01em; }
+.pairs-stat { display: grid; gap: 2px; }
+.pairs-text { max-width: 66ch; margin-block: 10px 16px; font-size: .98rem; opacity: .9; }
+.pairs-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .pairs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pair { margin: 0; display: grid; justify-items: start; gap: 2px; padding: 10px 12px; border: 1px solid var(--plate-rule); border-radius: 12px; }
+.pair canvas { display: block; max-width: 100%; height: auto; }
+.pair-k { font-size: .66rem; text-transform: uppercase; opacity: .7; }
+.pair figcaption { font-size: 1.05rem; font-weight: 650; margin-top: 2px; order: -1; }
+.w-ceili .study-big span:first-child { color: var(--ceili-mint); }
+.w-ceili .study-big b { color: var(--ceili-pink); }
 @media (max-width: 760px) { .study-body { grid-template-columns: minmax(0, 1fr); } .study-zoom { position: static; } .study-zoom .sc-art { height: 220px; } .study-zoom .sc-art span { font-size: 170px; line-height: 220px; } }
 .sc { display: grid; gap: 3px; justify-items: center; padding: 10px 6px 8px; border: 1px solid var(--plate-rule); border-radius: 10px; background: rgba(255, 255, 255, .35); }
 .sc-art { position: relative; display: block; width: 100%; height: 76px; isolation: isolate; }

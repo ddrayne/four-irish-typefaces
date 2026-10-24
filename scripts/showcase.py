@@ -120,63 +120,127 @@ def traced_data():
 
 
 RESEARCH = os.path.join(paths.ROOT, 'research')
+METRICS = ('metrics.json', 'audit-metrics.json', 'mark-audit-metrics.json')
+# letters of ordinary Irish and English text, for choosing spacing examples
+TEXT_LETTERS = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚ')
 
 
 def studies_data(faces):
-    """Research candidates under research/<study>/ (fonts/, metrics.json), shown beside
-    the release they are rebuilding. Only font files and numbers are used: no archive pixels."""
-    out = []
+    """The original-source research candidates under research/ (any folder holding
+    fonts/<Name>-Regular.otf), grouped by face, shown beside the release they rebuild.
+
+    Per face: every study (latest last), the outline-fit measurements of each (merged,
+    later studies replacing earlier entries for the same glyph and source), and the
+    pair-collision audit. Only font files and numbers are used: no archive pixels."""
     if not os.path.isdir(RESEARCH):
-        return out, []
+        return {}, []
     try:
         assets = json.load(open(os.path.join(RESEARCH, 'downloads.json'), encoding='utf-8'))['assets']
     except (OSError, KeyError, ValueError):
         assets = []
     by_file = {os.path.basename(a['path']): a for a in assets if 'path' in a}
-    copies = []
-    for study in sorted(os.listdir(RESEARCH)):
-        root = os.path.join(RESEARCH, study)
-        metrics = os.path.join(root, 'metrics.json')
-        fontdir = os.path.join(root, 'fonts')
-        if not (os.path.isfile(metrics) and os.path.isdir(fontdir)):
-            continue
-        woff2 = sorted(f for f in os.listdir(fontdir) if f.endswith('-Regular.woff2'))
-        otf = sorted(f for f in os.listdir(fontdir) if f.endswith('-Regular.otf'))
-        if not woff2 or not otf:
-            continue
-        tt = TTFont(os.path.join(fontdir, otf[0]))
-        family = tt['name'].getDebugName(1)
-        version = tt['name'].getDebugName(5) or ''
-        face = next((k for k in ORDER if FONTS[k]['family'].split()[0].lower() in family.lower()), None)
-        if face is None:
-            continue
-        # glyph name -> (character, feature) from the release font of the same face
-        rel = TTFont(os.path.join(OTF, f'{FONTS[face]["ps"]}-Regular.otf'))
-        chars = {}
+    src = lambda fn: by_file.get(fn, {})
+
+    # glyph name -> (character, feature), from each face's release font
+    chars = {}
+    for k in ORDER:
+        rel = TTFont(os.path.join(OTF, f'{FONTS[k]["ps"]}-Regular.otf'))
+        cm = {}
         for cp, g in sorted(rel.getBestCmap().items()):
-            chars.setdefault(g, (chr(cp), None))
-        for tag, _, mapping in FONTS[face].get('sets', []):
+            if g not in cm or (chr(cp).islower() and not chr(cm[g][0]).islower()):
+                cm[g] = (cp, None)
+        for tag, _, mapping in FONTS[k].get('sets', []):
             for base, alt in mapping.items():
-                if base in chars:
-                    chars.setdefault(alt, (chars[base][0], tag))
-        m = json.load(open(metrics, encoding='utf-8'))
-        src = lambda fn: by_file.get(fn, {})
-        sources = []
-        for fn, sm in m.get('summary', {}).items():
-            a = src(fn)
-            sources.append(dict(id=a.get('source_id', fn), url=a.get('catalogue_url'), w=a.get('width'), h=a.get('height'),
-                                glyphs=sm.get('glyphs'), before=round(sm.get('before', 0), 4), after=round(sm.get('candidate', 0), 4),
-                                improved=sm.get('improved'), regressed=sm.get('regressed', [])))
-        glyphs = []
-        for g in m.get('glyphs', []):
-            ch, tag = chars.get(g['name'], (None, None))
-            if ch is None:
+                if base in cm:
+                    cm.setdefault(alt, (cm[base][0], tag))
+        chars[k] = {g: (chr(cp), tag) for g, (cp, tag) in cm.items()}
+
+    found = []
+    for dirpath, _, files in os.walk(RESEARCH):
+        if os.path.basename(dirpath) != 'fonts':
+            continue
+        for fn in files:
+            if not fn.endswith('-Regular.otf') or not os.path.exists(os.path.join(dirpath, fn[:-4] + '.woff2')):
                 continue
-            glyphs.append(dict(n=g['name'], ch=ch, tag=tag, src=src(g['source']).get('source_id', g['source']),
-                               before=round(g['before']['iou'], 4), after=round(g['candidate']['iou'], 4)))
-        out.append(dict(id=study, face=face, family=family, version=version.replace('Version ', '').split(';')[0],
-                        file=woff2[0], sources=sources, glyphs=glyphs, limitations=m.get('limitations', [])))
-        copies.append(os.path.join(fontdir, woff2[0]))
+            tt = TTFont(os.path.join(dirpath, fn))
+            family = tt['name'].getDebugName(1) or fn
+            plain = lambda t: unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower().replace(' ', '')
+            face = next((k for k in ORDER if plain(family).startswith(plain(FONTS[k]['family']))), None)
+            m = re.search(r'Study\s*(\d+)', family)
+            if face is None or not m:
+                continue
+            found.append(dict(face=face, n=int(m.group(1)), family=family, otf=os.path.join(dirpath, fn),
+                              woff2=fn[:-4] + '.woff2', woff2_path=os.path.join(dirpath, fn[:-4] + '.woff2'),
+                              root=os.path.dirname(dirpath), round=os.path.relpath(os.path.dirname(dirpath), RESEARCH),
+                              version=(tt['name'].getDebugName(5) or '').replace('Version ', '').split(';')[0]))
+
+    # the collision audit, by font file name
+    pairs = {}
+    for dirpath, _, files in os.walk(RESEARCH):
+        if 'pair-audit.json' in files:
+            pa = json.load(open(os.path.join(dirpath, 'pair-audit.json'), encoding='utf-8'))
+            for f in pa.get('fonts', []):
+                worst, seen = [], set()
+                for w in f.get('worst', []):
+                    key = round(w['area'])          # same overlap: the same shapes under other names
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    worst.append(dict(text=w['text'], area=round(w['area'])))
+                pairs[os.path.basename(f['font'])] = dict(tested=f.get('pairs_tested'), collisions=f.get('collisions'), worst=worst[:12])
+
+    out, copies = {}, []
+    for face in ORDER:
+        mine = sorted((f for f in found if f['face'] == face), key=lambda f: (f['n'], f['round']))
+        if not mine:
+            continue
+        studies, glyphs, sources = [], {}, {}
+        for f in mine:
+            spacing = os.path.join(os.path.dirname(f['otf']), 'spacing-adjustments.json')
+            changes = json.load(open(spacing, encoding='utf-8')).get('changes', []) if os.path.exists(spacing) else []
+            nspace = len(changes)
+            # the corrected pairs that turn up in ordinary text, worst first
+            common, seen = [], set()
+            for c in sorted(changes, key=lambda c: c.get('measured_gap', 0)):
+                l, r = chars[face].get(c['left'], (None, None)), chars[face].get(c['right'], (None, None))
+                if not (l[0] and r[0]) or l[1] or r[1] or c.get('measured_gap', 0) >= 0:
+                    continue
+                if not (l[0] in TEXT_LETTERS and r[0] in TEXT_LETTERS):
+                    continue
+                key = (l[0] + r[0]).lower() if FONTS[face]['unicase'] else l[0] + r[0]
+                if key in seen:
+                    continue
+                seen.add(key)
+                common.append(dict(text=l[0] + r[0], gap=round(c['measured_gap'], 1), before=c.get('before'), after=c.get('after')))
+            measured = []
+            for mf in METRICS:
+                path = os.path.join(f['root'], mf)
+                if not os.path.exists(path):
+                    continue
+                mm = json.load(open(path, encoding='utf-8'))
+                kind = 'marks' if mf.startswith('mark') else 'outlines'
+                measured.append(kind)
+                for fn, sm in mm.get('summary', {}).items():
+                    a = src(fn)
+                    sid = a.get('source_id', fn)
+                    sources[(sid, kind)] = dict(id=sid, kind=kind, study=f['family'], url=a.get('catalogue_url'), w=a.get('width'), h=a.get('height'),
+                                               n=sm.get('glyphs', sm.get('entries')), before=round(sm.get('before', 0), 4),
+                                               after=round(sm.get('candidate', 0), 4), improved=sm.get('improved'),
+                                               regressed=sm.get('regressed', sm.get('regressions', [])))
+                for g in mm.get('glyphs', []):
+                    ch, tag = chars[face].get(g['name'], (None, None))
+                    if ch is None:
+                        continue
+                    sid = src(g['source']).get('source_id', g['source'])
+                    glyphs[(g['name'], sid)] = dict(n=g['name'], ch=ch, tag=tag, src=sid, study=f['family'],
+                                                    before=round(g['before']['iou'], 4), after=round(g['candidate']['iou'], 4))
+            studies.append(dict(family=f['family'], version=f['version'], file=f['woff2'], round=f['round'],
+                                measured=measured, spacing_changes=nspace, common_pairs=common[:8],
+                                pairs=pairs.get(os.path.basename(f['otf']))))
+            copies.append((f['woff2'], f['woff2_path'], f['family']))
+        out[face] = dict(studies=studies, latest=studies[-1]['family'], latest_file=studies[-1]['file'],
+                         release_pairs=pairs.get(f'{FONTS[face]["ps"]}-Regular.otf'),
+                         sources=list(sources.values()), glyphs=list(glyphs.values()))
     return out, copies
 
 
@@ -196,9 +260,9 @@ def build():
     glyphs, regions = traced_data()
     studies, copies = studies_data(faces)
     css = fontface_css()
-    for st, fn in zip(studies, copies):
-        shutil.copy(fn, os.path.join(DEST, 'fonts', st['file']))
-        css += '@font-face{font-family:"%s";src:url("../fonts/%s") format("woff2");font-weight:400;font-style:normal;font-display:swap}\n' % (st['family'], st['file'])
+    for file, path, family in copies:
+        shutil.copy(path, os.path.join(DEST, 'fonts', file))
+        css += '@font-face{font-family:"%s";src:url("../fonts/%s") format("woff2");font-weight:400;font-style:normal;font-display:swap}\n' % (family, file)
     open(os.path.join(DEST, 'css', 'faces.css'), 'w', encoding='utf-8').write(css)
     site = dict(v=VERSION, order=ORDER, faces=faces, names=names, audit=audit_data(), studies=studies,
                 flyer=dict(w=803, h=1125, regions=regions))
