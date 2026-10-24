@@ -1,4 +1,4 @@
-import { $, loadFace, fitCanvas, offscreen, rng, clamp } from './util.js';
+import { $, loadFace, fitCanvas, offscreen, rng, clamp, reduced } from './util.js';
 
 // Dry transfer, the way Kilfane was sold: a translucent carrier sheet of letters
 // (S53909) lying on a cutting mat. Rubbing over the sheet moves ink from the sheet to
@@ -147,6 +147,7 @@ export async function init(root, data) {
 
   // ---------------------------------------------------------------- rubbing
   const brushR = () => F * 0.17;
+  let only = null;      // while set, rubbing transfers only inside this sheet rectangle
   function stamp(lx, ly) {
     const r = brushR(), d = Math.ceil(r * 2 * R) + 2;
     if (!tmp || tmp.width !== d) { tmp = offscreen(d, d); chunk = offscreen(d, d); }
@@ -159,6 +160,12 @@ export async function init(root, data) {
     t.beginPath(); t.arc(d / 2, d / 2, r * R * (0.8 + rand() * 0.2), 0, Math.PI * 2); t.fill();
     t.globalCompositeOperation = 'destination-in';
     t.drawImage(noise, -Math.floor(rand() * (256 - d)), -Math.floor(rand() * (256 - d)));
+    if (only) {
+      // the machine rubs one letter at a time, so nothing of its neighbours comes with it
+      t.globalCompositeOperation = 'destination-in';
+      t.fillStyle = '#000';
+      t.fillRect(dev(only.x0) - sx, dev(only.y0) - sy, dev(only.x1 - only.x0), dev(only.y1 - only.y0));
+    }
     // the ink under it
     c.globalCompositeOperation = 'source-over';
     c.clearRect(0, 0, d, d);
@@ -196,6 +203,99 @@ export async function init(root, data) {
       x.fillRect(ex + rand() * ew, ty - F * 1.05 + rand() * F * 1.1, 1 + rand() * 2.2, 1 + rand() * 1.4);
     }
     x.restore();
+  }
+
+  // ---------------------------------------------------------------- rubbing a word down, by machine
+  // The machine works as a designer did: slide the sheet until the letter sits where
+  // it should go, burnish it in a zigzag, move on. An accented letter is its base
+  // letter and then one of the sheet's loose accents, rubbed down above it.
+  const LOOSE = { '\u0301': '´', '\u0307': '˙', '\u0308': '¨', '\u0302': 'ˆ', '\u0303': '˜', '\u030C': 'ˇ', '\u030A': '˚' };
+  let auto = null, next = null;      // the running job; where the next word goes
+  const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+  const inkLeft = (it) => {
+    const x = dev(it.x), y = dev(it.base - F * 0.8), w = Math.max(1, dev(it.w)), h = Math.max(1, dev(F * 1.05));
+    const d = sheetInk.getContext('2d').getImageData(x, y, w, h).data;
+    let n = 0;
+    for (let i = 3; i < d.length; i += 16) if (d[i] > 128) n++;
+    return n;
+  };
+  function pick(ch) {
+    let best = null, most = 0;
+    for (const it of items) {
+      if (it.ch !== ch) continue;
+      const n = inkLeft(it);
+      if (n > most) { most = n; best = it; }
+    }
+    return most > 20 ? best : null;
+  }
+  function slideTo(x, y, job) {
+    if (reduced()) { S.x = S.tx = x; S.y = S.ty = y; dirty = true; return Promise.resolve(); }
+    const fx = S.x, fy = S.y, t0 = performance.now(), dur = 380;
+    return new Promise((res) => {
+      const step = (now) => {
+        if (job.stop) return res();
+        const t = Math.min(1, (now - t0) / dur), e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        S.x = S.tx = fx + (x - fx) * e; S.y = S.ty = fy + (y - fy) * e; dirty = true;
+        if (t < 1) requestAnimationFrame(step); else res();
+      };
+      requestAnimationFrame(step);
+    });
+  }
+  async function burnish(it, job) {
+    const top = it.base - F * 0.82, bottom = it.base + F * 0.28, r = brushR();
+    only = { x0: it.x - F * 0.03, x1: it.x + it.w + F * 0.03, y0: it.base - F * 0.95, y1: it.base + F * 0.34 };
+    const pts = [];
+    for (let pass = 0; pass < 2; pass++) {
+      for (let y = top + r * 0.6, k = 0; y <= bottom; y += r * 0.9, k++) {
+        const l = it.x - r * 0.3, rr = it.x + it.w + r * 0.3;
+        pts.push(k % 2 ? { x: rr, y } : { x: l, y }, k % 2 ? { x: l, y } : { x: rr, y });
+      }
+    }
+    for (let i = 1; i < pts.length; i++) {
+      if (job.stop) { only = null; return; }
+      rubLine(pts[i - 1], pts[i]);
+      cursor = { x: S.x + pts[i].x, y: S.y + pts[i].y };
+      dirty = true;
+      if (!reduced() && i % 2 === 0) await sleep(16);
+    }
+    only = null;
+    cursor = null;
+  }
+  async function rubWord(word) {
+    if (auto) auto.stop = true;
+    const job = auto = { stop: false };
+    if (!S.shown) { S.shown = true; liftBtn.textContent = 'Lift the sheet'; }
+    const glyphs = [...word.normalize('NFD')];
+    const meas = offscreen(1, 1).getContext('2d');
+    meas.font = `${F}px "Kilfane"`;
+    const capLift = F * Math.max(0, (data.faces.kilfane.cap || 0.7) - (data.faces.kilfane.xh || 0.48));
+    const lineH = F * 1.45;
+    // where this word goes: above Fáilte, then up the mat
+    next ??= { x: 46, y: H - F * 0.9 - F * 2.1 };
+    const width = meas.measureText(word).width + F * 0.2 * word.length;
+    if (next.x + width > W - 30) next = { x: 46, y: next.y - lineH };
+    if (next.y < F * 1.4) next = { x: 46, y: H - F * 0.9 - F * 2.1 };
+    let x = next.x, base = next.y, prev = null;
+    for (const g of glyphs) {
+      if (job.stop) break;
+      if (g === ' ') { x += F * 0.32; continue; }
+      const mark = LOOSE[g];
+      const ch = mark || g;
+      const it = pick(ch) || (!mark && pick(ch.toUpperCase() === ch ? ch.toLowerCase() : ch.toUpperCase()));
+      if (!it) { if (!mark) x += meas.measureText(g).width; continue; }
+      let tx = x, ty = base;
+      if (mark && prev) {
+        // centred over the letter it belongs to, higher over a capital
+        tx = prev.x + (prev.w - it.w) / 2;
+        ty = base - (prev.ch !== prev.ch.toLowerCase() ? capLift : 0);
+      }
+      await slideTo(tx - it.x, ty - it.base, job);
+      await burnish(it, job);
+      if (!mark) { prev = { x, w: it.w, ch: it.ch }; x += it.w + F * 0.05; }
+    }
+    next = { x: x + F * 0.6, y: base };
+    if (!job.stop) await slideTo(Math.round((W - S.w) / 2), 44, job);
+    if (auto === job) auto = null;
   }
 
   // ---------------------------------------------------------------- frame
@@ -252,6 +352,7 @@ export async function init(root, data) {
   const local = (e) => { const r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
   const onSheet = (p) => S.shown && p.x >= S.x && p.x <= S.x + S.w && p.y >= S.y && p.y <= S.y + S.h;
   canvas.addEventListener('pointerdown', (e) => {
+    if (auto) auto.stop = true;         // a hand on the sheet stops the machine
     const p = local(e);
     if (!onSheet(p)) return;
     canvas.setPointerCapture(e.pointerId);
@@ -287,6 +388,17 @@ export async function init(root, data) {
     slide = 1;
     liftBtn.textContent = S.shown ? 'Lift the sheet' : 'Put the sheet back';
   });
+  const word = $('[data-rub-word]', root);
+  const go = () => { const w = word.value.trim() || 'Éire'; rubWord(w); };
+  $('[data-rub-auto]', root).addEventListener('click', go);
+  word.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  // The first time the mat comes into view, the machine shows how it is done.
+  if (!reduced()) {
+    const io = new IntersectionObserver((en) => {
+      if (en.some((x) => x.isIntersecting)) { io.disconnect(); setTimeout(() => { if (!auto && !mode) rubWord('Kilfane'); }, 700); }
+    }, { threshold: 0.6 });
+    io.observe(mat);
+  }
   $('[data-rub-fresh]', root).addEventListener('click', () => { freshInk(); dirty = true; });
-  $('[data-rub-clear]', root).addEventListener('click', () => { transfer.getContext('2d').clearRect(0, 0, transfer.width, transfer.height); dirty = true; });
+  $('[data-rub-clear]', root).addEventListener('click', () => { transfer.getContext('2d').clearRect(0, 0, transfer.width, transfer.height); next = null; dirty = true; });
 }
