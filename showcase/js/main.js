@@ -13,6 +13,7 @@ const parts = [
   ['[data-rub]', './kilfane.js'],
   ['[data-illum]', './tuam.js'],
   ['.tester', './tester.js'],
+  ['.shop', './shopfront.js'],
   ['.glyphs', './glyphs.js'],
 ];
 for (const [sel, mod, near] of parts) {
