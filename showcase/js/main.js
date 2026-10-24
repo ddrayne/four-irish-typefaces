@@ -12,11 +12,6 @@ const parts = [
   ['[data-wall]', './carrick.js'],
   ['[data-rub]', './kilfane.js'],
   ['[data-illum]', './tuam.js'],
-  // research studies stay hidden until they load, so watch each one's section
-  ['[data-study="ceili"]', './study.js', '#ceili'],
-  ['[data-study="carrick"]', './study.js', '#carrick'],
-  ['[data-study="kilfane"]', './study.js', '#kilfane'],
-  ['[data-study="tuam"]', './study.js', '#tuam'],
   ['.tester', './tester.js'],
   ['.glyphs', './glyphs.js'],
 ];
@@ -25,6 +20,11 @@ for (const [sel, mod, near] of parts) {
   if (!el) continue;
   onNear(near ? $(near) : el, () => import(mod).then((m) => m.init(el, data)).catch((err) => console.error(mod, err)));
 }
+
+// The research panels change the page's height when they appear, so build them
+// straight away, while the reader is still near the top, rather than as they near.
+const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 200));
+idle(() => import('./study.js').then((m) => $$('[data-study]').forEach((el) => m.init(el, data))).catch((err) => console.error('study.js', err)));
 
 // Footer and other fitted lines.
 const fits = $$('.foot [data-fit]');

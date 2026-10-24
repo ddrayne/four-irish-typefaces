@@ -280,6 +280,10 @@
       <div class="toy-bar">
         <p class="toy-title"><span class="f-kilfane" lang="ga">Cuimil</span><span>Rub it down</span></p>
         <div class="toy-controls">
+          <label class="txt"><span class="vh">A word to rub down</span>
+            <input id="rub-word" type="text" placeholder="Type a word" maxlength="16" spellcheck="false" autocomplete="off" data-rub-word>
+          </label>
+          <button type="button" class="btn btn-ink" data-rub-auto>Rub it down</button>
           <button type="button" class="btn btn-line" data-rub-lift>Lift the sheet</button>
           <button type="button" class="btn btn-line" data-rub-fresh>New sheet</button>
           <button type="button" class="btn btn-line" data-rub-clear>Clear the mat</button>
@@ -288,7 +292,7 @@
       <div class="rub-mat" data-rub-mat>
         <canvas class="rub-canvas" data-rub-canvas aria-label="A cutting mat with a Kilfane transfer sheet. Rub over a letter to transfer it."></canvas>
       </div>
-      <p class="toy-note">Drag the sheet by its edge to position a letter, then rub over the letter to transfer it. Rub the loose accents over a vowel to give it a fada.</p>
+      <p class="toy-note">Drag the sheet by its top band to position a letter, then rub over the letter to transfer it. The sheet has no accented letters, only loose accents, as on the flyer: rub one over a vowel to give it a fada. Or type a word and let the machine rub it down.</p>
     </div>
 
     <div class="styles-strip" data-styles="kilfane">
