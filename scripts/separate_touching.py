@@ -19,7 +19,6 @@ from scipy import ndimage as ndi
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
-from kilfane_study import PRIMARY, FLAT
 from curvefit import curves_to_recording
 from curvefit3 import contour_to_curves4
 from metrics import line_baselines
@@ -27,7 +26,14 @@ from metrics import line_baselines
 FIT = dict(cutoff=6, corner_deg=55, rms_tol=.07, max_tol=.22, line_tol=.18, line_bulge=.055, line_min=4.5, snap_deg=1.5)
 # each fused pair: the window holding both letters on N516 (pixels) and its row
 PAIRS = {'kilfane': [dict(names=('T', 'U'), window=(930, 270, 1180, 420), row=1),
-                     dict(names=('k', 'l'), window=(805, 600, 955, 740), row=3)]}
+                     dict(names=('k', 'l'), window=(805, 600, 955, 740), row=3)],
+         # on N513, x's upper-right piece touches the top of y's left arm
+         # Carrick's y is three pieces (arm, stem, tail) and its arm touches x but not its own stem, so
+         # every piece of each letter's earlier outline marks its body, not only the largest
+         'carrick': [dict(names=('x', 'y'), window=(520, 490, 760, 655), row=2, markers='all')]}
+PRIMARY = {'kilfane': 'Kilfane-alphabet-specimen.jpg', 'carrick': 'Carrick-alphabet-specimen.jpg'}
+SOURCE_ID = {'kilfane': 'N516', 'carrick': 'N513'}
+PRINTS = {'kilfane': 'N47 and N46', 'carrick': 'N47'}            # the other prints on which they touch
 
 
 def raster(rec, shape, to_px):
@@ -60,8 +66,9 @@ def main():
     oldbase = line_baselines(legacy)
     byname = {g['name']: g for g in tr['glyphs']}
     old_line = {g['name']: g['line_idx'] for g in legacy}
-    cal = ev['calibration'][PRIMARY]; scale = cal['scale']
-    gray = np.asarray(Image.open(ROOT / 'build' / 'research' / 'original-specimens' / PRIMARY).convert('L')).astype(float)
+    primary = PRIMARY[args.face]; src = SOURCE_ID[args.face]
+    cal = ev['calibration'][primary]; scale = cal['scale']
+    gray = np.asarray(Image.open(ROOT / 'build' / 'research' / 'original-specimens' / primary).convert('L')).astype(float)
     evidence = {e['name']: e for e in ev['glyphs']}
     previews = []
     for pair in PAIRS[args.face]:
@@ -93,12 +100,18 @@ def main():
         for i, n in enumerate(pair['names']):
             core = ndi.binary_erosion(masks[n], iterations=5) & inked
             cl, k = ndi.label(core)
-            if k:
+            if k and pair.get('markers') == 'all':
+                sizes = ndi.sum(core, cl, range(1, k + 1))
+                markers[np.isin(cl, [j + 1 for j in range(k) if sizes[j] >= 20])] = i + 1
+            elif k:
                 markers[cl == 1 + int(np.argmax(ndi.sum(core, cl, range(1, k + 1))))] = i + 1
         ws = watershed(-ndi.distance_transform_edt(inked), markers, mask=inked)
-        # soft edge pixels go with the nearest divided ink
+        # soft edge pixels go with the nearest divided ink; ink no letter's body reaches (the edge of a
+        # neighbour inside the window) goes to neither
         idx = ndi.distance_transform_edt(ws == 0, return_distances=False, return_indices=True)
         owner = ws[idx[0], idx[1]] - 1
+        stray = inked & (ws == 0)
+        owner[ndi.binary_dilation(stray, iterations=2) & ~(ws > 0)] = -1
         for i, n in enumerate(pair['names']):
             f = np.where(permitted & (owner == i), field, 0.0)
             f = ndi.gaussian_filter(f, .8)
@@ -116,13 +129,13 @@ def main():
             ys, xs = np.nonzero(f > 0.5)
             box = [int(x0 + xs.min()), int(y0 + ys.min()), int(x0 + xs.max() + 1), int(y0 + ys.max() + 1)]
             evidence[n] = dict(
-                name=n, status='candidate', source=PRIMARY, box=box, scale=scale,
+                name=n, status='candidate', source=primary, box=box, scale=scale,
                 method='separated', pair=list(pair['names']), window=list(pair['window']), row=pair['row'],
                 source_baseline=cal['baselines'][str(pair['row'])], old_baseline=oldbase[old_line[n]],
-                note=f'{first} and {second} touch on N516 (and on N47 and N46). Traced from N516 like every other '
+                note=f'{first} and {second} touch on {src} (and on {PRINTS[args.face]}). Traced from {src} like every other '
                      f'round-2 letter; the fused ink is divided at its narrowest neck, flooded from each '
-                     f'letter\'s body, so the cut across the neck is a construction and the rest is N516.')
-            print(f'{n}: N516 box {box}, {len(curves)} contours', flush=True)
+                     f'letter\'s body, so the cut across the neck is a construction and the rest is {src}.')
+            print(f'{n}: {src} box {box}, {len(curves)} contours', flush=True)
         if args.preview:
             rgb = np.stack([a] * 3, -1).astype(np.uint8)
             cut = (owner == 0) & permitted & (field > 0.5)

@@ -30,12 +30,20 @@ import impressions as IM
 # lighter than its backing, the rough letter height in pixels, and which part of the photograph it
 # occupies (sheets overlap: `side(box)` is True for letters on this sheet).
 EDGE_30 = lambda box: (box[1] + box[3]) / 2 > 1063 + (1183 - 1063) * ((box[0] + box[2]) / 2 - 120) / 2440
+# N514: the 36pt sheet lies over the 60pt sheet's lower rows; its top edge runs from y 1295 at x 300 to
+# y 1370 at x 2300. The 60pt letters at that edge show faintly through the 36pt carrier and are left out,
+# as is the 36pt sheet's header.
+EDGE_36 = lambda box: 1295 + 75 * ((box[0] + box[2]) / 2 - 300) / 2000
 SHEETS = {
-    'kilfane': dict(photo='Kilfane-Letraset.jpg', source_id='N517', sheets={
+    'kilfane': dict(photo='Kilfane-Letraset.jpg', source_id='N517', sure=('E', 'I', 'L', 'H', 'K', 'B', 'F'), sheets={
         '48pt S53910': dict(channel=0, light_ink=True, letter_px=120, area=(1500, 30000), side=lambda b: not EDGE_30(b)),
         '30pt S53909': dict(channel=1, light_ink=False, letter_px=75, area=(500, 12000), side=EDGE_30)}),
+    # the photographed parts of Carrick's sheets hold lowercase only (a to q), so figures are never candidates
+    'carrick': dict(photo='Carrick-Letraset.jpg', source_id='N514', sure=('b', 'd', 'g', 'h', 'k', 'l'),
+                    letters='abcdefghijklmnopqrstuvwxyz', detect='template', reject=2.5, sheets={
+        '60pt S53914': dict(channel=1, light_ink=False, letter_px=100, area=(1500, 30000), side=lambda b: b[3] < EDGE_36(b) - 10),
+        '36pt S53913': dict(channel=1, light_ink=False, letter_px=60, area=(400, 12000), side=lambda b: b[1] > EDGE_36(b) + 200)}),
 }
-SURE = ('E', 'I', 'L', 'H', 'K', 'B', 'F')       # letters no other glyph resembles, for each sheet's scale
 MIN_SCORE, STEPS, FINE, PAD = 0.72, (0.5, 0.25), 0.125, 3.0
 
 
@@ -47,12 +55,68 @@ def sha256(path):
     return h.hexdigest()
 
 
+def detect(p, templates, scale, side, margin=0.15, threshold=0.6, accept=0.72, coverage=0.75):
+    """Whole letters by template: each letter's trace at the sheet's scale, with a margin of the white
+    space a letter has around it, matched across the ink map (normalised correlation), so letters made
+    of separate pieces (Carrick's k, m, i, j) are found whole. Which finds are letters is then decided by
+    matching pursuit: repeatedly take the find that explains the most ink not yet explained, less the
+    ink it claims where the sheet is blank, until none explains enough. An n laid over the first two
+    legs of an m explains less than the m; an h laid over two l's claims the blank between them."""
+    from skimage.feature import match_template, peak_local_max
+    from skimage.transform import rescale
+    cands = []
+    for n, (m, _) in templates.items():
+        t = rescale(m.astype(float), 0.5 * scale, order=1, anti_aliasing=True)
+        ys, xs = np.nonzero(t > 0.5)
+        t = t[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+        g = int(round(margin * t.shape[0]))
+        r = match_template(p, np.pad(t, g))
+        for iy, ix in peak_local_max(r, min_distance=max(3, t.shape[1] // 3), threshold_abs=threshold):
+            box = [int(ix + g), int(iy + g), int(ix + g + t.shape[1]), int(iy + g + t.shape[0])]
+            if side(box) and box[3] <= p.shape[0] and box[2] <= p.shape[1]:
+                cands.append(dict(name=n, score=round(float(r[iy, ix]), 3), box=box, t=t > 0.5))
+    from scipy import ndimage as ndi
+    lab, _ = ndi.label(p > 0.5, structure=np.ones((3, 3)))
+    sizes = np.bincount(lab.ravel())
+    def contained(c):
+        # every piece of ink the letter covers lies (almost) wholly inside it: a p whose descender runs
+        # off the photograph is not an n, and letters fused to a neighbour are left out
+        x0, y0, x1, y1 = c['box']
+        pieces = np.unique(lab[y0:y1, x0:x1][c['t']])
+        pieces = pieces[pieces > 0]
+        if not len(pieces):
+            return False
+        inside = np.bincount(lab[y0:y1, x0:x1].ravel(), minlength=len(sizes))[pieces]
+        return inside.sum() >= 0.95 * sizes[pieces].sum()
+    cands = [c for c in cands if contained(c)]
+    R = p.copy()
+    def gain(c):
+        x0, y0, x1, y1 = c['box']; t = c['t']
+        return float((R[y0:y1, x0:x1] * t).sum() - ((1 - p[y0:y1, x0:x1]) * t).sum())
+    keep, live = [], [c for c in cands if c['score'] >= accept]
+    while live:
+        gains = [gain(c) for c in live]
+        i = int(np.argmax(gains)); c = live.pop(i)
+        x0, y0, x1, y1 = c['box']; t = c['t']
+        explained = float((R[y0:y1, x0:x1] * t).sum() / t.sum())
+        if explained < coverage:
+            continue                                    # its ink is already another letter's
+        R[y0:y1, x0:x1] *= ~t
+        rivals = sorted((d for d in cands if d['name'] != c['name'] and abs(d['box'][0] - x0) + abs(d['box'][1] - y0) < 0.5 * (x1 - x0)),
+                        key=lambda d: -d['score'])
+        keep.append(dict(name=c['name'], score=c['score'], box=c['box'], explained=round(explained, 3),
+                         runner_up=rivals[0]['name'] if rivals else None,
+                         margin=round(c['score'] - (rivals[0]['score'] if rivals else 0.0), 3)))
+    return keep
+
+
 def find(face, sources, base, work):
     from PIL import Image
     spec = SHEETS[face]
     photo = os.path.join(sources, spec['photo'])
     im = np.asarray(Image.open(photo))
-    tr = {g['name']: g for g in json.load(open(os.path.join(base, f'{face}.json')))['glyphs'] if g['name'] != 'ornament'}
+    tr = {g['name']: g for g in json.load(open(os.path.join(base, f'{face}.json')))['glyphs'] if g['name'] != 'ornament'
+          and ('letters' not in spec or g['name'] in spec['letters'])}
     templates = {n: IM.trace_mask(g['rec'], 0.5, 2) for n, g in tr.items()}
     th = {n: (np.ptp(np.nonzero(m)[0]) + 1) * 0.5 for n, (m, _) in templates.items()}
     found = []
@@ -61,8 +125,12 @@ def find(face, sources, base, work):
         np.save(os.path.join(work, f'ink-{sheet.split()[0]}.npy'), p.astype(np.float32))
         comps = [c for c in IM.components(p, *s['area'])[0] if s['side'](c['box'])]
         sure = [(c['box'][3] - c['box'][1]) / th[r[0][1]] for c in comps
-                for r in [IM.classify(p, c['box'], templates)] if r and r[0][1] in SURE and r[0][0] > 0.75]
+                for r in [IM.classify(p, c['box'], templates)] if r and r[0][1] in spec['sure'] and r[0][0] > 0.75]
         scale = float(np.median(sure))
+        if spec.get('detect') == 'template':
+            for d in detect(p, templates, scale, s['side']):
+                found.append(dict(sheet=sheet, scale=round(scale, 4), **d))
+            continue
         for c in comps:
             h = c['box'][3] - c['box'][1]
             cand = {n: t for n, t in templates.items() if abs(th[n] * scale / h - 1) < 0.12}
@@ -75,6 +143,34 @@ def find(face, sources, base, work):
                 min_score=MIN_SCORE, impressions=found)
     json.dump(meta, open(os.path.join(work, 'impressions.json'), 'w'), indent=1)
     return meta
+
+
+def topology_of(mask, piece_min=48, counter_min=96):
+    """(pieces, counters) of a raster letter at the 1/8-unit grid, ignoring ink specks under piece_min
+    pixels (0.75 square trace units) and the light speckle of printed ink under counter_min (1.5)."""
+    from scipy import ndimage as ndi
+    lab, n = ndi.label(mask, structure=np.ones((3, 3)))
+    pieces = int((np.bincount(lab.ravel())[1:] >= piece_min).sum())
+    bg, nb = ndi.label(np.pad(~mask, 1, constant_values=True))          # the padding is background
+    sizes = np.bincount(bg.ravel())
+    counters = int(sum(1 for i in range(1, nb + 1) if i != bg[0, 0] and sizes[i] >= counter_min))
+    return [pieces, counters]
+
+
+def ndi_dilate(mask, r):
+    from scipy import ndimage as ndi
+    return ndi.binary_dilation(mask, iterations=r)
+
+
+def own_pieces(mask, near):
+    """The pieces of ink that lie on the letter (mostly within `near`, its base trace grown a little):
+    neighbouring letters' edges inside the frame are dropped."""
+    from scipy import ndimage as ndi
+    lab, n = ndi.label(mask, structure=np.ones((3, 3)))
+    total = np.bincount(lab.ravel(), minlength=n + 1)
+    inside = np.bincount(lab[near].ravel(), minlength=n + 1)
+    keep = [i for i in range(1, n + 1) if inside[i] >= 0.6 * total[i]]
+    return np.isin(lab, keep)
 
 
 def average_one(args):
@@ -108,12 +204,38 @@ def average_one(args):
             mean, _, _ = IM.average(P, qs, T[0.25][0].shape, origin, 0.25)
         mean, std, stack = IM.average(P, qs, m.shape, origin, FINE)
         spread = [float(np.sqrt(((s - mean) ** 2).mean())) for s in stack]
+        dropped = []
+        if SHEETS[face].get('reject'):
+            # an impression far from the others' consensus (misregistered, damaged or occluded) is left
+            # out and the rest re-averaged; once, and never below three
+            limit = max(SHEETS[face]['reject'] * float(np.median(spread)), 0.08)
+            bad = [i for i, v in enumerate(spread) if v > limit]
+            if bad and len(qs) - len(bad) >= 3:
+                dropped = [dict(box=imps[i]['box'], rms_to_mean=round(spread[i], 4)) for i in bad]
+                imps = [r for i, r in enumerate(imps) if i not in bad]
+                qs = [q for i, q in enumerate(qs) if i not in bad]
+                first = [e for i, e in enumerate(first) if i not in bad]
+                q_ref = [q for i, q in enumerate(q_ref) if i not in bad]
+                mean, _, _ = IM.average(P, qs, T[0.25][0].shape, origin, 0.25)
+                qs = [IM.register(P, mean, origin, 0.25, q, blur=0.6 * k, levels=(2.0, 1.0))[0] for q in qs]
+                qs = IM.normalise_frames(qs, q_ref)
+                mean, std, stack = IM.average(P, qs, m.shape, origin, FINE)
+                spread = [float(np.sqrt(((s - mean) ** 2).mean())) for s in stack]
         tag = f'{name}@{sheet.split()[0]}'
+        # each impression's own pieces and counters at its midpoint edge: averaging smears hairline gaps
+        # shut, so the letter's topology is read from the impressions, not from their mean
+        tops = None
+        if SHEETS[face].get('reject'):
+            near = ndi_dilate(m > 0.5, int(round(1.5 / FINE)))
+            tops = [topology_of(own_pieces(st > 0.5, near)) for st in stack]
+            np.save(os.path.join(work, f'stack-{tag}.npy'), stack.astype(np.float16))
         np.save(os.path.join(work, f'mean-{tag}.npy'), mean.astype(np.float32))
         np.save(os.path.join(work, f'std-{tag}.npy'), std.astype(np.float32))
         out[tag] = dict(name=name, sheet=sheet, n=len(imps), boxes=[r['box'] for r in imps],
                         affine=[[round(float(v), 5) for v in q] for q in qs],
                         rms_to_base=[round(v, 4) for v in first], rms_to_mean=[round(v, 4) for v in spread],
+                        **({'dropped': dropped} if dropped else {}),
+                        **({'impression_topology': tops} if tops else {}),
                         origin=[float(v) for v in origin], step=FINE, shape=list(m.shape))
     return out
 

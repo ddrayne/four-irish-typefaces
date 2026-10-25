@@ -162,7 +162,7 @@ def classify(p, box, templates, pad=4):
     compared by overlap (IoU) on the impression's box. Returns [(score, name)], best first."""
     from skimage.transform import resize
     x0, y0, x1, y1 = box
-    crop = p[y0 - pad:y1 + pad, x0 - pad:x1 + pad] > 0.5
+    crop = np.pad(p, pad)[y0:y1 + 2 * pad, x0:x1 + 2 * pad] > 0.5      # padded: letters at the photo's edge
     h, w = y1 - y0, x1 - x0
     out = []
     for name, (m, _) in templates.items():

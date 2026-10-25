@@ -142,7 +142,8 @@ def update_provenance(base,f,cfg,evidence,piece_data):
         if not g:continue
         construction=construction.replace('the 1978 flyer','the NIVAL specimen').replace('the flyer’s','the NIVAL specimen’s')
         if kind=='flyer':kind='original-specimen'
-        provenance[name]=[kind,construction+f'; base source {g["name"]}: NIVAL {g["source"]}, region {g["box"]}']
+        region=g['box'] if 'box' in g else f'{len(g.get("boxes",[]))} impressions on the {g.get("sheet","")} sheet'
+        provenance[name]=[kind,construction+f'; base source {g["name"]}: NIVAL {g["source"]}, region {region}']
     path.write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 
 

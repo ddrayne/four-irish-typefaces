@@ -23,6 +23,12 @@ glyphs change; body letters remain as in Study 1. All 123 tests pass. Carrick ch
 85,849 Latin-plus-punctuation pairs in each OTF/TTF; latest four-face domain totals
 324,316 pairs. All are below the recorded collision threshold with kerning enabled.
 
+**Carrick: [Study 3](round-06/README.md), round 6.** Fifteen lowercase letters (b to o, e and f
+included, which resolves C1) redrawn from the averaged impressions on the N514 production sheets, with
+each letter's pieces and counters read from its impressions, not from their mean; x and y traced from
+N513 at last. Start Carrick work from round 6. Remaining: letters after q are not on the photographed
+sheets.
+
 **Kilfane: [Study 4](kilfane-judgement/README.md), the judgement pass**, built on
 [Study 3](kilfane-production/README.md) (capitals from the averaged N517 production impressions) and
 round 2. Redrawn capitals keep N516's frame (Study 3's affine registration had let L, O, P and R drift

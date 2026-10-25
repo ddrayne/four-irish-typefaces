@@ -31,7 +31,13 @@ MAX_SPREAD = 0.10          # mean RMS of the registered impressions about their 
 # green backing: its photographed edge is not comparable with printed black ink (at the midpoint
 # level it inks 10% lighter than N516, against 5% for the black 30pt sheet, and matching N516 needs
 # an implausible edge level), so it is a cross-check only.
-REDRAW = {'kilfane': ['30pt S53909']}
+REDRAW = {'kilfane': ['30pt S53909'],
+          # Carrick's two N514 sheets print one artwork at two sizes (their means differ by no more than
+          # one sheet's impressions differ among themselves); the larger is preferred
+          'carrick': ['60pt S53914', '36pt S53913']}
+PREFER_MARGIN = 0.03       # a later sheet wins only when its impressions agree this much better
+# the trace each face's sheets are registered onto, as the evidence names it
+BASE = {'kilfane': ('round-02 trace', 'N516'), 'carrick': ('round-5 trace', 'N513; e, f from the flyer')}
 
 
 def levels(mean, base_mask):
@@ -61,6 +67,41 @@ def contours_at(mean, level, origin, step, base_mask=None):
         if area >= 6:
             out.append(xy[:-1])
     return out
+
+
+def contours_with_gaps(mean, lo, hi, level, origin, step, base_mask, gap_level=0.5, band=2):
+    """Closed contours at the calibrated level, except where the letter's pieces meet: there the edge
+    rises to the midpoint, the physical edge of the print. The calibrated level (below the midpoint, to
+    keep the base's weight) fills the hairline gaps between Carrick's pieces, which every impression
+    shows; the pieces at the midpoint mark them, a watershed of the mean finds where neighbouring
+    pieces meet, and only along that line is the edge raised."""
+    from scipy import ndimage as ndi
+    from skimage.segmentation import watershed
+    norm = (mean - lo) / max(hi - lo, 1e-9)
+    cal, mid = norm > level, norm > gap_level
+    lab, n = ndi.label(mid, structure=np.ones((3, 3)))
+    sizes = np.bincount(lab.ravel())
+    markers = np.zeros(lab.shape, int)
+    for j, i in enumerate(i for i in range(1, n + 1) if sizes[i] >= 12):
+        markers[lab == i] = j + 1
+    ws = watershed(-norm, markers, mask=cal)
+    meet = np.zeros(cal.shape, bool)
+    for k in range(1, markers.max() + 1):
+        meet |= (ws == k) & ndi.binary_dilation((ws > 0) & (ws != k))
+    B = np.clip(2 * ndi.gaussian_filter(ndi.binary_dilation(meet, iterations=band).astype(float), 1.0), 0, 1)
+    field = norm - (level + (gap_level - level) * B)          # its zero line is the edge
+    return contours_at(field + 1.0, 1.0, origin, step, base_mask)    # offset: contours_at pads with zeros
+
+
+SHOWN = 0.25              # a topology the impressions show: in at least this share of them
+
+
+def shown(tops):
+    """The topologies at least SHOWN of the impressions have, most common first, as (pieces, counters).
+    A hairline gap can print open in some impressions and shut in others, so more than one may stand."""
+    from collections import Counter
+    c = Counter(tuple(t) for t in tops)
+    return [t for t, k in c.most_common() if k >= SHOWN * len(tops)]
 
 
 def topology(rec):
@@ -128,10 +169,12 @@ def main():
     # which sheet's mean redraws each letter: the larger sheet if it has enough consistent impressions
     use = {}
     for name in sorted({r['name'] for r in reg.values()}):
-        for sh in REDRAW[args.face]:
-            r = reg.get(f'{name}@{sh.split()[0]}')
-            if r and r['n'] >= MIN_IMPRESSIONS and np.mean(r['rms_to_mean']) <= MAX_SPREAD:
-                use[name] = f'{name}@{sh.split()[0]}'; break
+        ok = [f'{name}@{sh.split()[0]}' for sh in REDRAW[args.face]]
+        ok = [t for t in ok if t in reg and reg[t]['n'] >= MIN_IMPRESSIONS and np.mean(reg[t]['rms_to_mean']) <= MAX_SPREAD]
+        if ok:
+            spread = lambda t: float(np.mean(reg[t]['rms_to_mean']))
+            best = min(ok, key=spread)
+            use[name] = best if spread(best) < spread(ok[0]) - PREFER_MARGIN else ok[0]
 
     # one edge level per sheet that keeps the base traces' weight on average
     calibration = {}
@@ -166,9 +209,25 @@ def main():
         cs = contours_at(mean, lo + level * (hi - lo), r['origin'], r['step'], m[:mean.shape[0], :mean.shape[1]] > 0.5)
         curves = [contour_to_curves4(c, **FIT) for c in cs]
         rec = curves_to_recording(curves)
-        if topology(rec) != topology(g['rec']):
+        # the letter's topology as its impressions show it, where they were read (Carrick); else the base's
+        ok = shown(r['impression_topology']) if r.get('impression_topology') else [topology(g['rec'])]
+        # where crisp impressions disagree about a hairline gap, the gap is drawn: ink spread closes a
+        # drawn gap far more readily than a clean one opens by chance. So the most open topology the
+        # impressions show (most pieces less counters) is the letter's.
+        ok = [max(ok, key=lambda t: (t[0] - t[1], t[0]))]
+        gaps = False
+        if topology(rec) not in ok and r.get('impression_topology'):
+            mm = m[:mean.shape[0], :mean.shape[1]] > 0.5
+            for gl in (0.5, 0.6, 0.7):                 # a finer gap shows only at a stricter level of the mean
+                cs = contours_with_gaps(mean, lo, hi, level, r['origin'], r['step'], mm, gap_level=gl)
+                rec2 = curves_to_recording([contour_to_curves4(c, **FIT) for c in cs])
+                if topology(rec2) in ok:
+                    rec, gaps = rec2, gl
+                    break
+        want = topology(rec) if topology(rec) in ok else ok[0]
+        if topology(rec) not in ok:
             # the sheet's resolution can blur shut a small counter the base resolves (Kilfane's Q)
-            kept_base[g['name']] = dict(tag=t, base=topology(g['rec']), mean=topology(rec))
+            kept_base[g['name']] = dict(tag=t, base=topology(g['rec']), mean=topology(rec), impressions=want)
             out_glyphs.append(g); continue
         lock = None
         if args.lock_frame:
@@ -176,7 +235,8 @@ def main():
         h = copy.deepcopy(g); h['rec'] = rec
         h['paper'], h['ink'] = lo, hi
         out_glyphs.append(h)
-        redrawn[g['name']] = dict(tag=t, level=level, backing=round(lo, 4), ink=round(hi, 4), lock=lock)
+        redrawn[g['name']] = dict(tag=t, level=level, backing=round(lo, 4), ink=round(hi, 4), lock=lock, gaps=gaps,
+                                  topology=list(want))
 
     os.makedirs(os.path.join(args.round, 'traces'), exist_ok=True)
     tr2 = dict(tr); tr2['glyphs'] = out_glyphs
@@ -185,29 +245,34 @@ def main():
     ev2 = copy.deepcopy(ev)
     ev2['source_hashes'][meta['photo']] = meta['sha256']
     ev2['production_impressions'] = dict(
-        method='Repeated impressions on the Letraset production sheets, each registered onto the round-02 trace by its '
+        method=f'Repeated impressions on the Letraset production sheets, each registered onto the {BASE[args.face][0]} by its '
                'own affine transform (absorbing the photograph\'s local perspective), re-registered twice onto their '
-               'mean with the frame pinned to the round-02 trace, averaged on a 1/8 trace-unit grid; edge at one level '
+               f'mean with the frame pinned to the {BASE[args.face][0]}, averaged on a 1/8 trace-unit grid; edge at one level '
                'per sheet between the mean\'s backing and ink; fitted with curvefit3.contour_to_curves4.',
         fit=FIT, min_impressions=MIN_IMPRESSIONS, max_spread=MAX_SPREAD, calibration=calibration,
         base_kept_for_topology={n: dict(sheet=reg[d['tag']]['sheet'], base_pieces_counters=d['base'],
                                         mean_pieces_counters=d['mean']) for n, d in kept_base.items()},
         caveat='The impressions are one artwork printed many times: averaging lowers print and photographic noise; it is '
-               'not independent confirmation of the design. Proportions and placement remain those of the round-02 trace.')
+               f'not independent confirmation of the design. Proportions and placement remain those of the {BASE[args.face][0]}.')
     for e in ev2['glyphs']:
         d = redrawn.get(e['name'])
         if not d:
             continue
         r = reg[d['tag']]
-        e.update(status='candidate', source_id=meta['source_id'], sheet=r['sheet'], proportion_source=e['source'],
-                 source=f'{meta["photo"]} ({r["sheet"].split()[0]} sheet, mean of {r["n"]} impressions) over {e["source"]}',
+        frame = e.get('source', 'the flyer trace (sources/traced)')     # e and f were retained flyer traces
+        e.update(status='candidate', source_id=meta['source_id'], sheet=r['sheet'], proportion_source=frame,
+                 source=f'{meta["photo"]} ({r["sheet"].split()[0]} sheet, mean of {r["n"]} impressions) over {frame}',
                  impressions=r['n'], boxes=r['boxes'], affine=r['affine'], rms_to_base=r['rms_to_base'],
                  rms_to_mean=r['rms_to_mean'], edge_level=d['level'], mean_backing=d['backing'], mean_ink=d['ink'],
-                 note='Production-sheet mean; proportions and placement from the round-02 trace (N516).')
+                 note=f'Production-sheet mean; proportions and placement from the {BASE[args.face][0]} ({BASE[args.face][1]}).')
         if d.get('lock'):
             e['frame_lock'] = d['lock']
+        if d.get('gaps'):
+            e['gaps_from_impressions'] = dict(topology=d['topology'], gap_level=d['gaps'], note='The mean, at the weight-matching edge, '
+                'fills hairline gaps between the letter\'s pieces that its impressions show; along the line '
+                'where the pieces meet the edge is raised to gap_level instead.')
     json.dump(ev2, open(os.path.join(args.round, 'traces', 'evidence.json'), 'w'), indent=1, ensure_ascii=False)
-    for extra in ('pieces.json', 'source-regions.json', 'mark-audit-regions.json', 'punctuation.json'):
+    for extra in ('pieces.json', 'source-regions.json', 'mark-audit-regions.json', 'punctuation.json', 'mark-evidence.json', 'mark-regions.json'):
         src = os.path.join(base, extra)
         if os.path.exists(src):
             open(os.path.join(args.round, 'traces', extra), 'w').write(open(src).read())

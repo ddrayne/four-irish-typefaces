@@ -21,14 +21,21 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 SPECIMENS = ROOT / 'build' / 'research' / 'original-specimens'
 
 # trace units per font unit is the builder's SCALE; the sources' own calibration is in px per trace unit
-TRACE_UNIT = {'kilfane': 720 / 31.82}
+from glyphs import SCALE as TRACE_UNIT
 SOURCES = {
     'kilfane': dict(
         base=dict(id='N516', file='Kilfane-alphabet-specimen.jpg',
                   evidence='research/round-02/kilfane/traces/evidence.json'),
         copies=[dict(id='N47', file='competition-advert-2.jpg', region=(300, 1050, 1900, 2500))],
         flyer=dict(id='flyer', file='sources/flyer.jpg', traces='sources/traced/kilfane.json'),
-        production=dict(id='N517', work='build/production/kilfane', sheet='30pt')),
+        production=dict(id='N517', work='build/production/kilfane', sheets=('30pt',))),
+    # Carrick: N513 the alphabet specimen; N47's boxes are recorded with round 2's regions ('direct')
+    'carrick': dict(
+        base=dict(id='N513', file='Carrick-alphabet-specimen.jpg',
+                  evidence='research/round-05/carrick/traces/evidence.json'),
+        copies=[dict(id='N47', file='competition-advert-2.jpg', direct=True)],
+        flyer=dict(id='flyer', file='sources/flyer.jpg', traces='sources/traced/carrick.json'),
+        production=dict(id='N514', work='build/production/carrick', sheets=('60pt', '36pt'))),
 }
 ZOOM = 4
 
@@ -216,7 +223,7 @@ def consensus(layers, polys, upx=2.0, margin=40):
     """Prints overlaid in the font's own coordinates: black where they all print ink, a print's colour
     where only it does (N516 red, N47 green, N517 violet), with the font's outline in blue."""
     pts = np.vstack(polys); lo, hi = pts.min(0) - margin, pts.max(0) + margin
-    cols = {'N516': (215, 40, 40), 'N47': (40, 160, 60), 'N517': (140, 60, 200)}
+    cols = {'N516': (215, 40, 40), 'N513': (215, 40, 40), 'N47': (40, 160, 60), 'N517': (140, 60, 200), 'N514': (140, 60, 200)}
     maps = {k: to_font_space(own_ink(ink, rasterise(polys, reg['px'], ink.shape, reg['origin'])), reg, lo, hi, upx) > 0.5
             for k, (ink, reg) in layers.items()}
     shape = next(iter(maps.values())).shape
@@ -255,7 +262,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('face'); ap.add_argument('font')
     ap.add_argument('--glyphs', nargs='*'); ap.add_argument('--out', type=Path)
-    ap.add_argument('--evidence', type=Path, help="a round's evidence.json (default: round 2's)")
+    ap.add_argument('--evidence', type=Path, help="a round's evidence.json (default: the face's base round)")
     args = ap.parse_args()
     from fontTools.ttLib import TTFont
     cfg = SOURCES[args.face]; tu = TRACE_UNIT[args.face]
@@ -263,11 +270,18 @@ def main():
     font = TTFont(args.font); cmap = font.getBestCmap(); order = set(font.getGlyphOrder())
     ev = {g['name']: g for g in json.load(open(args.evidence or ROOT / cfg['base']['evidence']))['glyphs']}
     base_img = Image.open(SPECIMENS / cfg['base']['file'])
-    regions = {g['name']: g for g in json.load(open(ROOT / Path(cfg['base']['evidence']).parent / 'source-regions.json'))[cfg['base']['file']]}
+    all_regions = json.load(open(ROOT / Path(cfg['base']['evidence']).parent / 'source-regions.json'))
+    regions = {g['name']: g for g in all_regions[cfg['base']['file']]}
+    calibration = json.load(open(ROOT / cfg['base']['evidence'])).get('calibration', {})
     rows = rows_ = sorted({tuple(g['row_box']) for g in regions.values()}, key=lambda r: r[1])
     copies = []
     for c in cfg['copies']:
         img = Image.open(SPECIMENS / c['file'])
+        if c.get('direct'):
+            # the copy's own boxes, at its own calibration
+            loc = dict(direct={g['name']: g['box'] for g in all_regions[c['file']]},
+                       scale=calibration[c['file']]['scale'] / calibration[cfg['base']['file']]['scale'])
+            copies.append((c, img, loc)); continue
         loc = locate_rows(base_img, img, c['region'], rows)
         for rb, t in loc.items():
             print(f'{c["id"]} row {rb}: scale {t["scale"]:.3f}, at {t["offset"]}, score {t["score"]:.3f}')
@@ -279,29 +293,39 @@ def main():
     names = args.glyphs or [n for n in ev if n in order]
     for name in names:
         g = ev.get(name)
-        if g is None or name not in order or 'box' not in g or g.get('source', cfg['base']['file']).split(' ')[0] not in (cfg['base']['file'],):
-            continue                       # retained, or drawn from another source (round 2's v and w are N47's)
+        base_file = cfg['base']['file']
+        on_base = 'box' in g if g else False
+        if g is not None and on_base and not (g.get('source', base_file).startswith(base_file) or g.get('proportion_source') == base_file):
+            on_base = False                # drawn from another source (round 2's v and w are N47's)
+        if g is None or name not in order or not (on_base or g.get('source_id') == cfg['production']['id']):
+            continue                       # retained
         polys = glyph_polygons(font, name)
         if not polys:
             continue
-        rows, rep = [], {}
-        px0 = g['scale'] / tu                                    # source px per font unit
+        rows, rep, layers = [], {}, {}
         pad = 24
-        gray = crop(base_img, g['box'], pad); ink = ink_map(gray)
-        reg = register(ink, polys, px0)
-        if reg is None:
-            print(name, 'skipped: its box is smaller than the glyph'); continue
-        rows.append(panel(gray, ink, polys, reg, f'{name} · {cfg["base"]["id"]}'))
-        rep[cfg['base']['id']] = round(reg['iou'], 4)
-        layers = {cfg['base']['id']: (ink, reg)}
-        base_ink = own_ink(ink, rasterise(polys, reg['px'], ink.shape, reg['origin']))[pad:-pad, pad:-pad]
-        for c, img, loc in copies:
-            rb = tuple(regions[name]['row_box']) if name in regions else rows_[g['row']] if 'row' in g else None
-            if rb not in loc or loc[rb]['score'] < 0.3:
-                continue
-            t = loc[rb]; b = g['box']; s = t['scale']; ox, oy = t['offset']
-            box = ((b[0] - rb[0]) * s + ox, (b[1] - rb[1]) * s + oy, (b[2] - rb[0]) * s + ox, (b[3] - rb[1]) * s + oy)
-            box, score = refine_box(base_ink, np.array(img.convert('L')), box, s)
+        if on_base:
+            px0 = g['scale'] / tu                                    # source px per font unit
+            gray = crop(base_img, g['box'], pad); ink = ink_map(gray)
+            reg = register(ink, polys, px0)
+            if reg is None:
+                print(name, 'skipped: its box is smaller than the glyph'); continue
+            rows.append(panel(gray, ink, polys, reg, f'{name} · {cfg["base"]["id"]}'))
+            rep[cfg['base']['id']] = round(reg['iou'], 4)
+            layers = {cfg['base']['id']: (ink, reg)}
+            base_ink = own_ink(ink, rasterise(polys, reg['px'], ink.shape, reg['origin']))[pad:-pad, pad:-pad]
+        for c, img, loc in (copies if on_base else []):
+            if 'direct' in loc:
+                if name not in loc['direct']:
+                    continue
+                box, s = loc['direct'][name], loc['scale']
+            else:
+                rb = tuple(regions[name]['row_box']) if name in regions else rows_[g['row']] if 'row' in g else None
+                if rb not in loc or loc[rb]['score'] < 0.3:
+                    continue
+                t = loc[rb]; b = g['box']; s = t['scale']; ox, oy = t['offset']
+                box = ((b[0] - rb[0]) * s + ox, (b[1] - rb[1]) * s + oy, (b[2] - rb[0]) * s + ox, (b[3] - rb[1]) * s + oy)
+                box, score = refine_box(base_ink, np.array(img.convert('L')), box, s)
             gray = crop(img, box, int(pad * s)); ink = ink_map(gray)
             reg = register(ink, polys, px0 * s)
             if reg is None:
@@ -319,9 +343,10 @@ def main():
                 continue
             rows.append(panel(gray, ink, polys, reg, f'{name} · flyer', zoom=ZOOM * 2))
             rep['flyer'] = round(reg['iou'], 4)
-        mean = prod / f'mean-{name}@{cfg["production"]["sheet"]}.npy'
-        if mean.exists():
-            reg_meta = json.load(open(prod / 'registration.json')).get(f'{name}@{cfg["production"]["sheet"]}', {})
+        sheet = next((sh for sh in cfg['production']['sheets'] if (prod / f'mean-{name}@{sh}.npy').exists()), None)
+        mean = prod / f'mean-{name}@{sheet}.npy'
+        if sheet:
+            reg_meta = json.load(open(prod / 'registration.json')).get(f'{name}@{sheet}', {})
             m = np.load(mean).astype(float); lo_, hi_ = np.percentile(m, 2), np.percentile(m, 98)
             ink = np.clip((m - lo_) / max(hi_ - lo_, 1e-6), 0, 1)
             gray = ((1 - ink) * 255).astype(np.uint8)
@@ -329,9 +354,11 @@ def main():
             reg = register(ink, polys, 1 / (tu * step))
             if reg is None:
                 continue
-            rows.append(panel(gray, ink, polys, reg, f'{name} · {cfg["production"]["id"]} mean of {reg_meta.get("n", "?")}', zoom=max(1, ZOOM // 2)))
+            rows.append(panel(gray, ink, polys, reg, f'{name} · {cfg["production"]["id"]} {sheet} mean of {reg_meta.get("n", "?")}', zoom=max(1, ZOOM // 2)))
             rep[cfg['production']['id']] = round(reg['iou'], 4)
             layers[cfg['production']['id']] = (ink, reg)
+        if not rows:
+            continue
         compose(rows, name, out)
         consensus(layers, polys).save(out / f'{name}-consensus.png')
         report[name] = rep

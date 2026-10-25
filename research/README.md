@@ -5,7 +5,8 @@ Carrick, Tuam Uncial and Céilí. Start with [the handoff](HANDOFF.md) and the
 [shared continuation plan](../docs/superpowers/plans/2026-10-25-continuation.md).
 Use [source access](SOURCE-ACCESS.md) to retrieve and hash-check the original
 archive images and PDFs into a local cache from a fresh clone.
-The latest work is [round 5](round-05/README.md): Carrick's named original marks,
+The latest Carrick candidate is [round 6](round-06/README.md), Carrick Study 3, from the N514 production
+sheets; [round 5](round-05/README.md) holds Carrick's named original marks,
 with retained and derived components distinguished. [Round 4](round-04/README.md) recovers Céilí's named original punctuation
 and the language marks derived from it. [Round 3](round-03/README.md) supplies Tuam and Céilí outline studies
 from larger original reproductions, with topology-preserving tracing and explicit

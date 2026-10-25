@@ -41,8 +41,8 @@ The integrator maintains this table. Before starting, record the task ID, owner/
 
 | ID | Priority / dependency | Deliverable | Status / claim |
 |---|---|---|---|
-| C1 | Next | Carrick N514 e/f evidence decision | Ready; unassigned |
-| C2 | After C1 accepts geometry | Carrick Study 3 candidate and complete review | Waiting on C1; unassigned |
+| C1 | Next | Carrick N514 e/f evidence decision | Done by the Claude Code release/showcase session on `main` (base `35dbb4a`): e and f accepted from the N514 60 pt means (24 and 6 impressions), [carrick-ef](../../../research/carrick-ef/README.md) |
+| C2 | After C1 accepts geometry | Carrick Study 3 candidate and complete review | Done by the same session: [round 6](../../../research/round-06/README.md), Carrick Study 3, fifteen letters from the N514 means with topology read per impression, x/y separated on N513; `tests/test_carrick_sheet.py`. The release candidate builds Carrick from it |
 | E1 | May research independently | Source-gap register for all four faces | Ready; unassigned; no shared builder edits |
 | Q1 | After each accepted outline round | Optical spacing and rendering review for that face | Queued; unassigned |
 | Q2 | After C2 or a documented C1 rejection | Reproducible research packaging and CI coverage | Queued; unassigned |

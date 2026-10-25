@@ -1,0 +1,300 @@
+{
+  "Carrick-alphabet-specimen.jpg": [
+    {
+      "name": "dotaccent",
+      "row": 0,
+      "labels": [
+        2
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        878,
+        860,
+        904,
+        884
+      ],
+      "piece": "dot"
+    },
+    {
+      "name": "acute",
+      "row": 1,
+      "labels": [
+        3
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        889,
+        860,
+        938,
+        911
+      ],
+      "piece": "acute"
+    },
+    {
+      "name": "circumflex",
+      "row": 2,
+      "labels": [
+        4
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        819,
+        871,
+        889,
+        905
+      ],
+      "piece": "circumflex"
+    },
+    {
+      "name": "ring",
+      "row": 3,
+      "labels": [
+        6
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        915,
+        891,
+        943,
+        917
+      ],
+      "piece": "ring"
+    },
+    {
+      "name": "guilsinglleft",
+      "row": 4,
+      "labels": [
+        9
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        786,
+        898,
+        820,
+        957
+      ],
+      "piece": "guil.l1"
+    },
+    {
+      "name": "guilsinglright",
+      "row": 5,
+      "labels": [
+        10
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        711,
+        902,
+        741,
+        958
+      ],
+      "piece": "guil.r1"
+    },
+    {
+      "name": "tilde",
+      "row": 6,
+      "labels": [
+        11
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        875,
+        920,
+        950,
+        954
+      ],
+      "piece": "tilde"
+    }
+  ],
+  "competition-advert-2.jpg": [
+    {
+      "name": "dotaccent",
+      "row": 0,
+      "labels": [
+        1
+      ],
+      "row_box": [
+        1120,
+        850,
+        1410,
+        980
+      ],
+      "threshold": 130,
+      "box": [
+        1303,
+        867,
+        1331,
+        892
+      ],
+      "piece": "dot"
+    },
+    {
+      "name": "acute",
+      "row": 1,
+      "labels": [
+        2
+      ],
+      "row_box": [
+        1120,
+        850,
+        1410,
+        980
+      ],
+      "threshold": 130,
+      "box": [
+        1315,
+        867,
+        1366,
+        920
+      ],
+      "piece": "acute"
+    },
+    {
+      "name": "circumflex",
+      "row": 2,
+      "labels": [
+        4
+      ],
+      "row_box": [
+        1120,
+        850,
+        1410,
+        980
+      ],
+      "threshold": 130,
+      "box": [
+        1241,
+        879,
+        1315,
+        913
+      ],
+      "piece": "circumflex"
+    },
+    {
+      "name": "ring",
+      "row": 3,
+      "labels": [
+        6
+      ],
+      "row_box": [
+        1120,
+        850,
+        1410,
+        980
+      ],
+      "threshold": 130,
+      "box": [
+        1342,
+        899,
+        1372,
+        926
+      ],
+      "piece": "ring"
+    },
+    {
+      "name": "guilsinglleft",
+      "row": 4,
+      "labels": [
+        9
+      ],
+      "row_box": [
+        1120,
+        850,
+        1410,
+        980
+      ],
+      "threshold": 130,
+      "box": [
+        1206,
+        908,
+        1243,
+        968
+      ],
+      "piece": "guil.l1"
+    },
+    {
+      "name": "guilsinglright",
+      "row": 5,
+      "labels": [
+        10
+      ],
+      "row_box": [
+        1120,
+        850,
+        1410,
+        980
+      ],
+      "threshold": 130,
+      "box": [
+        1128,
+        913,
+        1161,
+        970
+      ],
+      "piece": "guil.r1"
+    },
+    {
+      "name": "tilde",
+      "row": 6,
+      "labels": [
+        11
+      ],
+      "row_box": [
+        1120,
+        850,
+        1410,
+        980
+      ],
+      "threshold": 130,
+      "box": [
+        1301,
+        929,
+        1379,
+        965
+      ],
+      "piece": "tilde"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ derives them from the flyer.
 | Face | Study and traces | Traced from | Kept from the flyer | Median ink change from 2.010 | Lowercase mean advance |
 |---|---|---|---|---:|---:|
 | Kilfane | Study 4, `kilfane-judgement` (on round 2 and Study 3) | N516 alphabet specimen; N517 means for 16 capitals; N47 for v, w | loose-mark cluster | 18% | 507 → 501 |
-| Carrick | Study 2, `round-05` | N513 alphabet specimen; N513 named marks | e, f, x, y (and the lower paired mark) | 24% | 659 → 640 |
+| Carrick | Study 3, `round-06` (on round 5) | N514 production-sheet means for b to o; N513 for a, p to z, figures, marks | the lower paired mark | 29% | 659 → 634 |
 | Tuam Uncial | Study 2, `round-03` | N46 (NIVAL's copy of the flyer) | none | 8% | 850 → 857 |
 | Céilí | Study 3, `round-04` | N46; N45 punctuation | the loose dots (DOTS) | 18% | 611 → 616 |
 
@@ -33,6 +33,10 @@ Proofs (font-only): [Kilfane](release-candidate/proofs/kilfane.png),
 [Carrick](release-candidate/proofs/carrick.png), [Tuam Uncial](release-candidate/proofs/tuam.png),
 [Céilí](release-candidate/proofs/ceili.png). Each sets the same lines in the release and in
 the candidate, style by style.
+
+Carrick's candidate is [Study 3](round-06/README.md): b to o from the averaged N514 production
+impressions, each letter's pieces and counters read from its impressions (b's bowl closes and m's
+strokes stand apart, as every production sheet prints them), x and y separated on N513.
 
 Kilfane's candidate is [Study 4](kilfane-judgement/README.md), the judgement pass: capitals from
 the production sheets held to N516's frame, T, U, k and l traced from N516, and the e's notch eased
@@ -72,7 +76,7 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
 | Kilfane Bold → Bold Italic | none | (Study 2 flagged ŋ: a slit under 4 units; gone with Study 4.) |
 | Céilí Regular → Bold | 6 | Joins by design (`BOLD['ceili']['joins']`), as in 2.010. Accept. |
 | Céilí Regular → Italic, Bold → Bold Italic | none | |
-| Carrick Regular → Italic | ¾ | At fraction size the 3's notch mouth is under 2 units, already shut at raster resolution in the Regular. Accept. |
+| Carrick Regular → Italic | ©, ™, ¾ | At their small size the hairline gaps between the pieces of c, m and 3 (c and m now drawn from the production sheets) are a few units wide and close under the slope; invisible at any size. Accept. |
 | Tuam Regular → Italic | @, } | @ also flags in 2.010. The } waist pinches to two pieces in the Regular itself (see below). Fix the brace construction before release. |
 
 ## Checks run on the candidate
@@ -94,10 +98,9 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
    the candidate it pinches the Regular into two pieces. Redraw the point.
 3. **Independent review of the source interpretation**, as the plan requires, using the
    exact study commits above.
-4. **Open source issues stay open.** Carrick's legacy e/f/x/y wait on C1/C2. A Carrick
-   Study 3 would replace the Carrick Regular, so release only after C1/C2 resolve, or
-   promote Carrick with its four legacy letters labelled. The same goes for Kilfane's
-   zero disagreement (T/U/k/l are traced from N516 in Study 4), Céilí's unassigned punctuation, and Tuam's N45/N46
+4. **Open source issues stay open.** Carrick's e/f/x/y are resolved in Study 3 (C1/C2: e and f from
+   the production sheets, x and y separated on N513); its lower paired mark stays unassigned. The same
+   goes for Kilfane's zero disagreement (T/U/k/l are traced from N516 in Study 4), Céilí's unassigned punctuation, and Tuam's N45/N46
    disagreements and recomposed accents. Each glyph's provenance file already labels it
    as traced, retained legacy or modern construction.
 
