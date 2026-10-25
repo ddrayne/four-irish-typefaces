@@ -18,14 +18,16 @@ derives them from the flyer.
 
 | Face | Study and traces | Traced from | Kept from the flyer | Median ink change from 2.010 | Lowercase mean advance |
 |---|---|---|---|---:|---:|
-| Kilfane | Study 4, `kilfane-judgement` (on round 2 and Study 3) | N516 alphabet specimen; N517 means for 16 capitals; N47 for v, w | loose-mark cluster | 18% | 507 → 501 |
-| Carrick | Study 3, `round-06` (on round 5) | N514 production-sheet means for b to o; N513 for a, p to z, figures, marks | the lower paired mark | 29% | 659 → 634 |
+| Kilfane | Study 4, `kilfane-judgement` (on round 2 and Study 3) | N516 alphabet specimen; N517 means for 16 capitals; N47 for v, w | loose-mark cluster | 17% | 507 → 501 |
+| Carrick | Study 3, `round-06` (on round 5) | N514 production-sheet means for b to o, in the sheet's own frame; N513 for a, p to z, figures, marks | the lower paired mark | 26% | 659 → 636 |
 | Tuam Uncial | Study 3, `tuam-judgement` (on round 3) | N46 and N45 averaged in N46's frame; cuts confirmed on the S53912 production sheet (Bolger fig. 206) | none | 9% | 850 → 850 |
-| Céilí | Study 3, `round-04` | N46; N45 punctuation | the loose dots (DOTS) | 18% | 611 → 616 |
+| Céilí | Study 3, `round-04` | N46; N45 punctuation | the loose dots (DOTS) | 18% | 611 → 614 |
 
-"Ink change" is the share of each glyph's ink that differs from 2.010 at 2 units per
-pixel, with glyphs aligned at the left of their ink so spacing changes don't count. It
-measures how far the release moves, not authenticity. The sources' own limitations are in each
+"Ink change" is the median, over the code points both map, of the share of each glyph's ink
+that differs from 2.010 (outlines unchanged in 2.101) at 2 units per pixel, with glyphs aligned
+at the left of their ink so spacing changes don't count; the advance is the mean of a to z. Both
+come from `scripts/candidate_change.py`, one count for every row. They measure how far the
+release moves, not authenticity. The sources' own limitations are in each
 round's `evidence.json`: N46/N45 and N513/N47 share reproduction history, so their
 agreement is not independent confirmation.
 
@@ -36,7 +38,10 @@ the candidate, style by style.
 
 Carrick's candidate is [Study 3](round-06/README.md): b to o from the averaged N514 production
 impressions, each letter's pieces and counters read from its impressions (b's bowl closes and m's
-strokes stand apart, as every production sheet prints them), x and y separated on N513.
+strokes stand apart, as every production sheet prints them), x and y separated on N513. The letters
+keep the sheet's own geometry: Letraset's spacing marks give each one its upright and its line, so
+they no longer take N513's slants (l's 5.5° lean among them), and n and o no longer float above the
+baseline. As for Kilfane, the candidate sits Carrick's slanted stem feet on the baseline.
 
 Tuam's candidate is [Study 3](tuam-judgement/README.md), the judgement pass: each glyph traced from the mean
 of the flyer (N46, a blurred photocopy) and the catalogue (N45, a clean offset print), so N46's ragged edges
@@ -48,8 +53,8 @@ forms); and the braces drawn with a point. The lowercase advance is 854 by the s
 Kilfane's candidate is [Study 4](kilfane-judgement/README.md), the judgement pass: capitals from
 the production sheets held to N516's frame, T, U, k and l traced from N516, and the e's notch eased
 (a recorded judged edit). The candidate also sits Kilfane's square stem feet (F, P, V, 4, 7, the
-roman alternates) on the baseline instead of 8 units below it (`FLAT_FOOT_WIDENING`, Kilfane only:
-the other faces' feet have not been reviewed).
+roman alternates) on the baseline instead of 8 units below it (`FLAT_FOOT_WIDENING`, Kilfane and
+Carrick: Tuam's and Céilí's feet have not been reviewed).
 
 ## The 2026 styles (modern extensions)
 
@@ -83,7 +88,7 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
 | Kilfane Bold → Bold Italic | none | (Study 2 flagged ŋ: a slit under 4 units; gone with Study 4.) |
 | Céilí Regular → Bold | 6 | Joins by design (`BOLD['ceili']['joins']`), as in 2.010. Accept. |
 | Céilí Regular → Italic, Bold → Bold Italic | none | |
-| Carrick Regular → Italic | ©, ™, ¾ | At their small size the hairline gaps between the pieces of c, m and 3 (c and m now drawn from the production sheets) are a few units wide and close under the slope; invisible at any size. Accept. |
+| Carrick Regular → Italic | ©, ™, ¼, ¾ | At their small size the hairline gaps between the pieces of c and m (drawn from the production sheets) are a few units wide and close under the slope; the small 4 of the fractions keeps a barely open counter, as it does in 2.101's Italic. Invisible at text sizes. Accept. |
 | Tuam Regular → Italic | @, ˚ | @ also flags in 2.010: the a inside it nearly touches the ring (necks of 8 units). The spacing ring ˚ (U+02DA) loses its counter in the Italic, as in the released 2.101 Italic; the combining ring and å keep theirs. The braces, drawn with a point since Study 3, no longer flag. |
 
 ## Checks run on the candidate
