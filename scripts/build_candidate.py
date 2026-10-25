@@ -32,9 +32,10 @@ def build(face, traces, version):
         SLIVER, SLIVER_SLOPED = 0.05, 0.01
         FINISH = True
         # a single stem's square foot (Kilfane's F, P, V, 4 and 7) sits on the baseline, not 8 units below
-        # it. Only Kilfane's feet have been reviewed against its sheets; elsewhere the rule would also
-        # move letters (Carrick's s; Tuam's i, s, u, 9; Céilí's h, n, z, £) that need their own review.
-        FLAT_FOOT_WIDENING = 1.2 if face == 'kilfane' else None
+        # it. Kilfane's and Carrick's feet have been reviewed against their sheets (Carrick's are slanted
+        # cuts, s's bottom among them, so n, h and s now sit as m and i do); elsewhere the rule would also
+        # move letters (Tuam's i, s, u, 9; Céilí's h, n, z, £) that need their own review.
+        FLAT_FOOT_WIDENING = 1.2 if face in ('kilfane', 'carrick') else None
         # each original-source glyph is refitted at its own source's resolution (its calibration
         # scale is source pixels per trace unit); letters kept from the flyer were designer-fitted already
         REFIT_PX = {g['name']: 1.0 / g['scale'] for g in evidence['glyphs']
