@@ -131,7 +131,7 @@ def build():
     w('README.md', README)
     w('publish.json', json.dumps(dict(
         slug=SLUG, title='Four Irish Typefaces',
-        description='Céilí, Carrick, Kilfane and Tuam Uncial, the winners of the 1978 Design an Irish Typeface competition, rebuilt as free fonts to try, play with and download.',
+        description='Céilí, Carrick, Kilfane and Tuam Uncial, the winners of the 1978 Design an Irish Typeface competition, digitised as free fonts.',
         access='public', port=80, repository='ddrayne/four-irish-typefaces', branch='deploy',
         buildPack='dockerfile', memoryMiB=256, cpus=0.5, domain=URL), indent=2, ensure_ascii=False) + '\n')
     for dirpath, dirs, files in os.walk(DEST):

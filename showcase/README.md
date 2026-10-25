@@ -1,19 +1,21 @@
 # The showcase site
 
-A one-page site for the four faces: the 1978 results, the flyer as evidence, a world
-for each face with a toy only that face could have, the original-source research
-beside the release, a tester, a shopfront, every character, the designers and downloads.
+A one-page site for the four faces: the 1978 results, the flyer they were digitised from,
+a world for each face with a toy only that face could have, work in progress from the
+archive beside each release, a tester, a shopfront, every character, the designers and
+downloads. The copy keeps to the faces and their history; how they were digitised is
+written up in the repository rather than sold on the page.
 
 | Part | File | What it does |
 |---|---|---|
 | Hero | `js/hero.js` | Every letter of *ceithre chló* is a cell that changes face under the pointer, printed in two overprinting inks |
 | Results | `js/board.js` | The 1978 awards as the competition brochure gives them, each name fitted to its row |
-| Evidence | `js/evidence.js` | The scan at its real pixels, with segmentation boxes, traced points, overlap scores and a wipe between print and font drawn over it |
+| The flyer | `js/evidence.js` | The scan at its real pixels, with the outlines and their points drawn over it and a wipe between print and font |
 | Céilí | `js/ceili.js` | Letters dance to a synthesised bodhrán (jig, reel, slip jig, polka) and change into their alternates on the beat |
 | Carrick | `js/carrick.js` | *Carraig*, rock: letters fall and stack into a drystone wall (Matter.js physics on each letter's hull) |
 | Kilfane | `js/kilfane.js` | Rub letters down from transfer sheet S53909 onto a cutting mat, by hand or by typing a word; accents come from the sheet's loose marks |
 | Tuam Uncial | `js/tuam.js` | An insular page: counters filled with pigment, red-lead dots traced round the initial, generated knotwork |
-| Research | `js/study.js` | Each face's latest original-source study beside the release: letters overprinted in two inks, fit to each archive source, and the collisions the study's spacing removes |
+| Studies | `js/study.js` | Each face's latest study from the archive beside the release, its letters overprinted in two inks |
 | Tester | `js/tester.js` | Type in any face and style, with the stylistic sets, or in the research studies |
 | Shopfront | `js/shopfront.js` | Your name gilded over a painted Irish shopfront, in any face and paint |
 | Characters | `js/glyphs.js` | Every character with its Unicode name, beside the same character in the other faces, its alternates and the study's drawing |

@@ -23,12 +23,6 @@ const pad = (b, f, min = 0) => {
   const p = Math.max(min, Math.max(w, h) * f);
   return [b[0] - p, b[1] - p, b[2] + p, b[3] + p];
 };
-// Overlap 0.85 (orange) to 0.98 (green).
-const scoreColour = (s) => {
-  const t = clamp((s - 0.85) / 0.13, 0, 1);
-  const a = [255, 106, 31], b = [0, 159, 88];
-  return `rgba(${a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',')},.62)`;
-};
 
 export async function init(section, data) {
   const img = $('image', section);
@@ -43,24 +37,15 @@ export async function init(section, data) {
   const tip = $('[data-ev-tip]', section);
   const g = { boxes: $('.ev-boxes', svg), paths: $('.ev-paths', svg), handles: $('.ev-handles', svg), marks: $('.ev-marks', svg) };
   const modeBtns = $$('[data-ev-mode]', section);
-  const audit = data.audit;
-
-  // Numbers in the copy come from the audit, so they follow future rebuilds.
-  const total = Object.values(audit).reduce((s, a) => s + a.n, 0);
-  const mean = Object.values(audit).reduce((s, a) => s + a.n * a.mean, 0) / total;
-  $$('[data-count="glyphs"]', section).forEach((n) => { n.textContent = total; });
-  $$('[data-count="mean"]', section).forEach((n) => { n.textContent = mean.toFixed(3); });
 
   const glyphsIn = (face, rect) => (traced[face] || []).filter((gl) => gl.b[2] > rect[0] && gl.b[0] < rect[2] && gl.b[3] > rect[1] && gl.b[1] < rect[3]);
   const find = (face, name) => (traced[face] || []).find((gl) => gl.n === name);
   const focusGlyph = find('kilfane', 'G') || traced.kilfane[0];
-  const lowest = (face) => Object.entries(audit[face]?.glyphs || {}).sort((a, b) => a[1] - b[1])[0]?.[0];
 
   const VIEWS = {
     flyer: { rect: [0, 0, FW, FH], mode: 'scan', cap: () => `The flyer · ${FW} × ${FH} px` },
     cut: { rect: pad(regions.kilfane, 0.04), face: 'kilfane', mode: 'boxes', cap: () => `Kilfane · ${traced.kilfane.length} glyphs cut out` },
     trace: { rect: pad(focusGlyph.b, 0.55), face: 'kilfane', mode: 'points', focus: focusGlyph, cap: () => `Kilfane ${focusGlyph.n} · ${focusGlyph.p.filter((p) => p[2]).length} points` },
-    score: { rect: pad(regions.ceili, 0.04), face: 'ceili', mode: 'score', hot: lowest('ceili'), cap: () => `Céilí · mean overlap ${audit.ceili.mean.toFixed(3)}` },
     wipe: { rect: pad(regions.carrick, 0.03), mode: 'wipe', cap: () => 'Left: the 1978 print · right: the traced outlines' },
     sheet: { rect: [170, 960, 600, 1110], mode: 'scan', marks: [{ x: 398, y: 1040.5, rx: 11, ry: 5.5, rot: -12, label: '©1973' }, { x: 735, y: 962, rx: 34, ry: 11, rot: -9, label: 'S53909' }], cap: () => 'Sheet S53909 · photographed on the flyer' },
   };
@@ -180,15 +165,6 @@ export async function init(section, data) {
         fg.forEach(drawPoints);
       }
       requestAnimationFrame(() => requestAnimationFrame(() => g.paths.classList.add('show')));
-    } else if (mode === 'score') {
-      const scores = audit[face]?.glyphs || {};
-      drawPaths(pool, { fill: (gl) => scoreColour(scores[gl.n] ?? 0.95), hot: view.hot });
-      g.paths.classList.add('score');
-      requestAnimationFrame(() => requestAnimationFrame(() => g.paths.classList.add('show', 'fill')));
-      if (view.hot) {
-        const gl = find(face, view.hot);
-        if (gl) mark({ x: (gl.b[0] + gl.b[2]) / 2, y: (gl.b[1] + gl.b[3]) / 2, rx: (gl.b[2] - gl.b[0]) * 0.9, ry: (gl.b[3] - gl.b[1]) * 0.8, label: `${gl.n} · ${(scores[gl.n] ?? 0).toFixed(3)}` });
-      }
     }
     wipe.setAttribute('display', mode === 'wipe' ? 'inline' : 'none');
     svg.classList.toggle('wiping', mode === 'wipe');
@@ -219,7 +195,7 @@ export async function init(section, data) {
     else if (m === 'wipe') mode = 'wipe';
     else {
       if (!view.face) { view = { ...VIEWS.cut, mode: m }; zoomTo(view.rect); }
-      mode = m === 'score' ? 'score' : m;
+      mode = m;
     }
     render();
   }));
@@ -236,13 +212,11 @@ export async function init(section, data) {
   svg.addEventListener('pointercancel', () => { wiping = false; });
   svg.addEventListener('pointermove', (e) => { if (mode === 'wipe' && (wiping || e.pointerType === 'mouse')) wipeAt(e); });
 
-  // Hover a traced glyph for its name and score.
+  // Hover a traced glyph for its name.
   svg.addEventListener('pointermove', (e) => {
     const p = e.target.closest?.('path');
     if (!p) { tip.hidden = true; return; }
-    const face = p.dataset.face, n = p.dataset.n;
-    const s = audit[face]?.glyphs?.[n];
-    tip.textContent = s ? `${n} · overlap ${s.toFixed(3)}` : n;
+    tip.textContent = p.dataset.n;
     tip.hidden = false;
   });
   svg.addEventListener('pointerleave', () => { tip.hidden = true; });
