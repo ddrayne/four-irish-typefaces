@@ -2,7 +2,7 @@
 
 usage: python scripts/trace_production.py kilfane --sources build/research/original-specimens
            [--base research/round-02/kilfane/traces] [--work build/production/kilfane] [--jobs 4]
-           [GLYPH ...]
+           [--frame affine|dash] [GLYPH ...]
 
 1. Each sheet's ink map (scripts/impressions.py ink_map), its letters found and named against the
    base traces at one fixed scale per sheet, so a capital is never taken for its lowercase.
@@ -359,7 +359,11 @@ def main():
     ap.add_argument('--base', default=None)
     ap.add_argument('--work', default=None)
     ap.add_argument('--jobs', type=int, default=4)
+    ap.add_argument('--frame', choices=['affine', 'dash'], default=None,
+                    help="override the face's frame: 'dash' sets the letters in the sheet's spacing-mark frame")
     args = ap.parse_args()
+    if args.frame:
+        SHEETS[args.face]['frame'] = None if args.frame == 'affine' else args.frame
     base = args.base or str(ROOT / 'research' / 'round-02' / args.face / 'traces')
     work = args.work or str(ROOT / 'build' / 'production' / args.face)
     os.makedirs(work, exist_ok=True)
