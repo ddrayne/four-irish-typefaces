@@ -55,7 +55,7 @@ def build(face, traces, version):
     out.write_text(json.dumps(dict(
         method='Full-height one-unit silhouette sampling, two-unit vertical allowance, eight-unit minimum '
                'horizontal clearance (scripts/study_spacing.py), per style.',
-        traces=str(Path(traces).resolve().relative_to(ROOT)), changes=spacing), indent=2) + '\n',
+        traces=os.path.relpath(Path(traces).resolve(), ROOT), changes=spacing), indent=2) + '\n',
         encoding='utf-8', newline='\n')
 
 
@@ -64,19 +64,23 @@ def main():
     ap.add_argument('faces', nargs='*', help=f'any of {", ".join(LATEST)} (default: all four)')
     ap.add_argument('--version', default='3.000')
     ap.add_argument('--output', type=Path, default=ROOT / 'build' / 'candidate' / 'fonts')
+    ap.add_argument('--traces', type=Path, help='another trace folder for the one face named (a round under study)')
     args = ap.parse_args()
     faces = args.faces or list(LATEST)
     if set(faces) - set(LATEST):
         ap.error(f'unknown face: {", ".join(sorted(set(faces) - set(LATEST)))}')
     args.output.mkdir(parents=True, exist_ok=True)
+    if args.traces and len(faces) != 1:
+        ap.error('--traces needs exactly one face')
     if len(faces) > 1:
         # build2 reads TRACED when it is imported, so each face is built in a fresh interpreter
         for face in faces:
             subprocess.run([sys.executable, __file__, face, '--version', args.version, '--output', str(args.output)], check=True)
         return
+    traces = args.traces.resolve() if args.traces else ROOT / LATEST[faces[0]]
     os.environ['OUT'] = str(args.output.resolve())
-    os.environ['TRACED'] = str(ROOT / LATEST[faces[0]])
-    build(faces[0], ROOT / LATEST[faces[0]], args.version)
+    os.environ['TRACED'] = str(traces)
+    build(faces[0], traces, args.version)
 
 
 if __name__ == '__main__':
