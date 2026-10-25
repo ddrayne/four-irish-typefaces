@@ -3,27 +3,19 @@ import argparse,copy,json,os
 from pathlib import Path
 
 
-def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--face',choices=['kilfane','carrick','tuam','ceili'],required=True)
-    ap.add_argument('--study',type=int,required=True);ap.add_argument('--traces',type=Path,required=True)
-    ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
-    os.environ['TRACED']=str(args.traces.resolve());os.environ['OUT']=str(args.output.resolve())
-    import ttfautohint
-    os.environ['PATH']=str(Path(ttfautohint._executable_path()).parent)+os.pathsep+os.environ['PATH']
+def study_class(face,traces):
+    """The original-source construction of one face: build2.Font2 with the round's named marks,
+    punctuation and evidence decisions. TRACED must already name `traces` (build2 reads it on import)."""
     import build2
     from glyphs import clean
     from fontTools.pens.recordingPen import replayRecording
     import pathops
-    evidence=json.loads((args.traces/'evidence.json').read_text(encoding='utf-8'))
-    piece_file=args.traces/'pieces.json'
+    evidence=json.loads((traces/'evidence.json').read_text(encoding='utf-8'))
+    piece_file=traces/'pieces.json'
     piece_data=json.loads(piece_file.read_text(encoding='utf-8')) if piece_file.exists() else None
-    punctuation_file=args.traces/'punctuation.json'
+    punctuation_file=traces/'punctuation.json'
     punctuation_data=json.loads(punctuation_file.read_text(encoding='utf-8')) if punctuation_file.exists() else None
-    if punctuation_data is not None and args.face!='ceili':raise ValueError('named punctuation is currently defined only for Ceili')
-    cfg=build2.FONTS[args.face]
-    build2.VERSION=f'2.{args.study:03d}'
-    build2.FONTS[args.face]=dict(cfg,family=f'{cfg["family"]} Study {args.study}',ps=f'{cfg["ps"]}Study{args.study}')
-    build2.FAMILY_STYLES[args.face]=['Regular']
+    if punctuation_data is not None and face!='ceili':raise ValueError('named punctuation is currently defined only for Ceili')
 
     class OriginalStudy(build2.Font2):
         def punctuation(self):
@@ -125,8 +117,11 @@ def main():
             f['name'].setName('Original-source research candidate. Source regions, retained legacy forms, '
                 'modern constructions and uncertainties are recorded in accompanying evidence files.',10,3,1,0x409)
             return f
+    return OriginalStudy,evidence,piece_data
 
-    f=OriginalStudy(args.face,'Regular').prepare();base=f.run()
+
+def update_provenance(base,f,cfg,evidence,piece_data):
+    """Attribute a built style's glyphs to the NIVAL regions their source traces came from."""
     path=Path(base+'.provenance.json')
     provenance=json.loads(path.read_text(encoding='utf-8'))
     updated={g['name']:g for g in evidence['glyphs'] if g['status']=='candidate'}
@@ -149,6 +144,23 @@ def main():
         if kind=='flyer':kind='original-specimen'
         provenance[name]=[kind,construction+f'; base source {g["name"]}: NIVAL {g["source"]}, region {g["box"]}']
     path.write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+
+
+def main():
+    ap=argparse.ArgumentParser();ap.add_argument('--face',choices=['kilfane','carrick','tuam','ceili'],required=True)
+    ap.add_argument('--study',type=int,required=True);ap.add_argument('--traces',type=Path,required=True)
+    ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
+    os.environ['TRACED']=str(args.traces.resolve());os.environ['OUT']=str(args.output.resolve())
+    import ttfautohint
+    os.environ['PATH']=str(Path(ttfautohint._executable_path()).parent)+os.pathsep+os.environ['PATH']
+    import build2
+    cfg=build2.FONTS[args.face]
+    build2.VERSION=f'2.{args.study:03d}'
+    build2.FONTS[args.face]=dict(cfg,family=f'{cfg["family"]} Study {args.study}',ps=f'{cfg["ps"]}Study{args.study}')
+    build2.FAMILY_STYLES[args.face]=['Regular']
+    OriginalStudy,evidence,piece_data=study_class(args.face,args.traces)
+    f=OriginalStudy(args.face,'Regular').prepare();base=f.run()
+    update_provenance(base,f,cfg,evidence,piece_data)
     (args.output/'spacing-adjustments.json').write_text(json.dumps(dict(
         method='Full-height one-unit silhouette sampling, two-unit vertical allowance, eight-unit minimum horizontal clearance; verified separately on shaped binaries.',
         changes=f.spacing_protection),indent=2)+'\n',encoding='utf-8',newline='\n')
