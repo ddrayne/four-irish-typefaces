@@ -362,6 +362,13 @@ class Font2:
     # allowed; None keeps the 30%-of-width test alone, which takes a single stem's foot for round.
     FLAT_FOOT_WIDENING = None
     REFIT_PX = {}                # glyph -> one source pixel in trace units, for those to refit first
+    # Accented letters whose own traced acute is kept (its shape and its place across the letter), rather
+    # than the one acute every composite shares; with a ccmp ligature so the decomposed letter + U+0301
+    # shapes as the same glyph. Empty for the release; studies name them in their evidence (Tuam's á é í ó ú).
+    OWN_ACUTES = ()
+    # Braces whose point is drawn as a point (symbols.pointed_brace) instead of the release's two stroked
+    # halves meeting at the tip; off for the release, on where a study's evidence asks for it.
+    BRACE_POINT = False
 
     def finish_traced(self):
         """Redraw each traced outline from its source-pixel scale up (finish.refit, where a source
@@ -746,9 +753,39 @@ class Font2:
         self.marks['caronvert'] = ms.caronvert(P['quoteright'])
         # flatter accents for capitals
         self.case_marks = {k: (SH.transform(v, (1, 0, 0, 0.82, 0, 0)) if k not in BOTTOM else v) for k, v in self.marks.items()}
+        if self.OWN_ACUTES:
+            self.own_acute = self.traced_acutes()
         for n in ('aacute', 'eacute', 'iacute', 'oacute', 'uacute'):
             P.pop(n, None)
         self.gap = self.cfg['gap'] * self.xh
+
+    def traced_acutes(self):
+        """For each of OWN_ACUTES, the acute as the specimen prints it on that letter: (its shape, or None where it
+        touches the letter and the shared acute stands in; its centre's offset from the centre of the letter's top,
+        measured as attach() measures the base)."""
+        P, xh = self.P, self.xh
+        out = {}
+        for n in self.OWN_ACUTES:
+            p = P[n]; cs = contours(p)
+            ac = [c for c in cs if bounds(c)[1] > 0.85 * xh]
+            if ac:
+                shape = SH.union(*ac)
+                body = SH.union(*[c for c in cs if bounds(c)[1] <= 0.85 * xh])
+            else:
+                shape, body = None, clip(p, y1=xh)
+            lo, hi = ink_x_extent(body, 0.72 * xh, 1.02 * xh)
+            b = bounds(shape if shape is not None else clip(p, y0=1.06 * xh))
+            out[n] = (shape, (b[0] + b[2]) / 2 - (lo + hi) / 2)
+        return out
+
+    def attach_own(self, name, base):
+        """The letter's own acute, centred as the specimen centres it and at the shared gap above the letter."""
+        shape, dx = self.own_acute[name]
+        m = shape if shape is not None else self.marks['acute']
+        a0, b0, a1, b1 = bounds(m); aw = a1 - a0
+        lo, hi = ink_x_extent(base, 0.72 * self.xh, 1.02 * self.xh); cx = (lo + hi) / 2 + dx
+        t = top_under(base, cx - aw / 2, cx + aw / 2)
+        return translate(m, cx - (a0 + a1) / 2, t + self.gap - b0)
 
     def attach(self, base_name, base, mark_kind, upper, stack_top=None):
         """Return (positioned mark path, anchor) for mark_kind on base."""
@@ -823,6 +860,9 @@ class Font2:
                 if cp == 0x165 and bounds(path)[3] >= self.xh * 1.15:
                     kk = ['caronvert']
                 for k in kk:
+                    if kk == ['acute'] and not upper and bn == base and name in getattr(self, 'own_acute', {}):
+                        out = SH.union(out, self.attach_own(name, path))
+                        continue
                     mk = self.attach(bn, out if k not in BOTTOM else path, k, upper, acc_top if k not in BOTTOM else None)
                     if k not in BOTTOM:
                         acc_top = bounds(mk)[3]
@@ -1049,6 +1089,13 @@ class Font2:
         fea += [f'@CombTop = [{" ".join(sorted(tops))}];', f'@CombBottom = [{" ".join(sorted(bots))}];', '']
         fea += ['lookup DOTLESS { sub i by dotlessi; sub j by dotlessj; } DOTLESS;', '',
                 'feature ccmp {', "    sub [i j]' lookup DOTLESS @CombTop;", '} ccmp;', '']
+        own = sorted(n for n in getattr(self, 'own_acute', {}) if n in self.comp and n in self.final)
+        if own:
+            # a letter + U+0301 becomes the precomposed letter, whose acute is the letter's own
+            acute = gname(0x301)
+            rules = [f'        sub {self.comp[n]} {acute} by {n};' for n in own]
+            rules += [f'        sub i {acute} by {n};' for n in own if self.comp[n] == 'dotlessi']
+            fea[-2:-2] = ['    lookup OWN_ACUTE {', *rules, '    } OWN_ACUTE;']     # after the dotless i
         salt = {}
         for b, al in cfg['alts'].items():
             for alt in al:
@@ -1260,6 +1307,12 @@ class Font2:
         for n in self.final:
             if n in self.mark_glyphs:
                 how = ('mark', self.mark_words(self.mark_glyphs[n]))
+            elif n in getattr(self, 'own_acute', {}) and n in self.comp:
+                how = ('composite', f'{self.comp[n]} + ' + (
+                    f'its own acute as the specimen prints it on {n}, centred as printed; modern uniform gap'
+                    if self.own_acute[n][0] is not None else
+                    f'the {self.mark_words("acute")}, centred as the specimen prints it on {n} (there it touches the '
+                    'letter); modern uniform gap'))
             elif n in self.comp:
                 how = ('composite', f'{self.comp[n]} + ' + ' + '.join(self.mark_words(k) for k in self.comp_marks.get(n, [])))
             elif n in self.made:

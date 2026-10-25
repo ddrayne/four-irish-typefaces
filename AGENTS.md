@@ -5,7 +5,7 @@ Read [research/HANDOFF.md](research/HANDOFF.md) and the
 before continuing the reconstruction. Claim a bounded task in the plan's work queue,
 record ownership and base commit, and preserve other agents' work.
 The user's goal is accurate recovery of the historical designs, one face at a time.
-Use Carrick from `research/round-06/` (Study 3, on round 5), Céilí from `research/round-04/`, Tuam from `research/round-03/` and Kilfane from `research/kilfane-judgement/` (Study 4, on round 2 and Study 3); the handoff records remaining
+Use Carrick from `research/round-06/` (Study 3, on round 5), Céilí from `research/round-04/`, Tuam from `research/tuam-judgement/` (Study 3, on round 3) and Kilfane from `research/kilfane-judgement/` (Study 4, on round 2 and Study 3); the handoff records remaining
 work on each face. Modern revival fonts are not design references.
 
 For the exact original files, follow [research/SOURCE-ACCESS.md](research/SOURCE-ACCESS.md).

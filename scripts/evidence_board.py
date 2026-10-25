@@ -36,6 +36,16 @@ SOURCES = {
         copies=[dict(id='N47', file='competition-advert-2.jpg', direct=True)],
         flyer=dict(id='flyer', file='sources/flyer.jpg', traces='sources/traced/carrick.json'),
         production=dict(id='N514', work='build/production/carrick', sheets=('60pt', '36pt'))),
+    # Tuam: N46 (NIVAL's copy of the flyer, a photocopy) and N45 (the brochure's catalogue page, offset
+    # printed from another paste-up of the same letters) both have their boxes in round 3's regions.
+    # They share artwork, so their agreement is not independent; N47 and N44 do not print Tuam.
+    # The flyer (sources/flyer.jpg) is the same document as N46, scanned at a third of its resolution.
+    'tuam': dict(
+        base=dict(id='N46', file='competition-advert-1.jpg',
+                  evidence='research/round-03/tuam/traces/evidence.json'),
+        copies=[dict(id='N45', file='competition-brochure-2.jpg', direct=True)],
+        flyer=dict(id='flyer', file='sources/flyer.jpg', traces='sources/traced/tuam.json'),
+        production=dict(id='S53912', work='build/production/tuam', sheets=('48pt',))),
 }
 ZOOM = 4
 
@@ -223,7 +233,8 @@ def consensus(layers, polys, upx=2.0, margin=40):
     """Prints overlaid in the font's own coordinates: black where they all print ink, a print's colour
     where only it does (N516 red, N47 green, N517 violet), with the font's outline in blue."""
     pts = np.vstack(polys); lo, hi = pts.min(0) - margin, pts.max(0) + margin
-    cols = {'N516': (215, 40, 40), 'N513': (215, 40, 40), 'N47': (40, 160, 60), 'N517': (140, 60, 200), 'N514': (140, 60, 200)}
+    cols = {'N516': (215, 40, 40), 'N513': (215, 40, 40), 'N47': (40, 160, 60), 'N517': (140, 60, 200), 'N514': (140, 60, 200),
+            'N46': (215, 40, 40), 'N45': (40, 160, 60)}
     maps = {k: to_font_space(own_ink(ink, rasterise(polys, reg['px'], ink.shape, reg['origin'])), reg, lo, hi, upx) > 0.5
             for k, (ink, reg) in layers.items()}
     shape = next(iter(maps.values())).shape

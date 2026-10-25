@@ -1,0 +1,1932 @@
+{
+  "face": "tuam",
+  "raster_method": "8x8 pixel-centred coverage, threshold >0.5",
+  "summary": {
+    "competition-advert-1.jpg": {
+      "entries": 46,
+      "before": 0.943982414740761,
+      "candidate": 0.9271500935734752,
+      "improved": 7,
+      "regressions": [
+        {
+          "name": "a",
+          "delta": -0.036270640135816934
+        },
+        {
+          "name": "b",
+          "delta": -0.022008243113807224
+        },
+        {
+          "name": "c",
+          "delta": -0.02752888753627858
+        },
+        {
+          "name": "d",
+          "delta": -0.012764531774875687
+        },
+        {
+          "name": "e",
+          "delta": -0.016233200925431346
+        },
+        {
+          "name": "f",
+          "delta": -0.044492791198385784
+        },
+        {
+          "name": "g",
+          "delta": -0.04130892994462221
+        },
+        {
+          "name": "h",
+          "delta": -0.04080675194103722
+        },
+        {
+          "name": "i",
+          "delta": -0.035681004277962725
+        },
+        {
+          "name": "j",
+          "delta": -0.01930279601449858
+        },
+        {
+          "name": "k",
+          "delta": -0.014390781375206663
+        },
+        {
+          "name": "l",
+          "delta": -0.01994286865782191
+        },
+        {
+          "name": "n",
+          "delta": -0.009498877086899782
+        },
+        {
+          "name": "p",
+          "delta": -0.02057990662452469
+        },
+        {
+          "name": "q",
+          "delta": -0.023837381743587627
+        },
+        {
+          "name": "r",
+          "delta": -0.0396134518747584
+        },
+        {
+          "name": "s",
+          "delta": -0.029835383109553804
+        },
+        {
+          "name": "t",
+          "delta": -0.028739875004198057
+        },
+        {
+          "name": "u",
+          "delta": -0.012989501850133256
+        },
+        {
+          "name": "v",
+          "delta": -0.023575590437549865
+        },
+        {
+          "name": "w",
+          "delta": -0.016387066366116865
+        },
+        {
+          "name": "x",
+          "delta": -0.008036345682385093
+        },
+        {
+          "name": "z",
+          "delta": -0.023827861032040598
+        },
+        {
+          "name": "one",
+          "delta": -0.04621417426295471
+        },
+        {
+          "name": "two",
+          "delta": -0.018853022449574652
+        },
+        {
+          "name": "three",
+          "delta": -0.02233950592341405
+        },
+        {
+          "name": "four",
+          "delta": -0.030194060628401687
+        },
+        {
+          "name": "five",
+          "delta": -0.04311839049112598
+        },
+        {
+          "name": "six",
+          "delta": -0.033092515792563004
+        },
+        {
+          "name": "seven",
+          "delta": -0.012125725573460588
+        },
+        {
+          "name": "eight",
+          "delta": -0.006088973121699537
+        },
+        {
+          "name": "nine",
+          "delta": -0.010574687188572685
+        },
+        {
+          "name": "zero",
+          "delta": -0.041691850077925974
+        },
+        {
+          "name": "sterling",
+          "delta": -0.006867210646011701
+        },
+        {
+          "name": "dollar",
+          "delta": -0.03255487809270863
+        },
+        {
+          "name": "ampersand",
+          "delta": -0.014439444618235209
+        },
+        {
+          "name": "question",
+          "delta": -0.021364569165056024
+        },
+        {
+          "name": "exclam",
+          "delta": -0.010726039550124522
+        },
+        {
+          "name": "aacute",
+          "delta": -0.010771231580851026
+        }
+      ]
+    },
+    "competition-brochure-2.jpg": {
+      "entries": 46,
+      "before": 0.8808336231805949,
+      "candidate": 0.9111541959690187,
+      "improved": 43,
+      "regressions": []
+    }
+  },
+  "glyphs": [
+    {
+      "name": "a",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9615246314275441,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9252539912917271,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": -0.036270640135816934
+    },
+    {
+      "name": "b",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9548346055979644,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9328263624841572,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": -0.022008243113807224
+    },
+    {
+      "name": "c",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9459332393041843,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9184043517679057,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.02752888753627858
+    },
+    {
+      "name": "d",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9459021703919663,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9331376386170906,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": -0.012764531774875687
+    },
+    {
+      "name": "e",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9658873131467995,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9496541122213682,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": -0.016233200925431346
+    },
+    {
+      "name": "f",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9561469265367316,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9116541353383458,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": -0.044492791198385784
+    },
+    {
+      "name": "g",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9528699315429173,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9115610015982951,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.04130892994462221
+    },
+    {
+      "name": "h",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9519104084321476,
+        "offset": [
+          -1,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9111036564911104,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": -0.04080675194103722
+    },
+    {
+      "name": "i",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9462219196732471,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9105409153952844,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": -0.035681004277962725
+    },
+    {
+      "name": "j",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9421025901472829,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9227997941327843,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.01930279601449858
+    },
+    {
+      "name": "k",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9533527696793003,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9389619883040936,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.014390781375206663
+    },
+    {
+      "name": "l",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9644522144522144,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9445093457943925,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": -0.01994286865782191
+    },
+    {
+      "name": "m",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9431850789096127,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.945531914893617,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": 0.002346835984004314
+    },
+    {
+      "name": "n",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9436074042186827,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9341085271317829,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": -0.009498877086899782
+    },
+    {
+      "name": "o",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9497549019607843,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9541209906617946,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.0043660887010102956
+    },
+    {
+      "name": "p",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9549748110831234,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9343949044585987,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": -0.02057990662452469
+    },
+    {
+      "name": "q",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9613171355498721,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9374797538062845,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.023837381743587627
+    },
+    {
+      "name": "r",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.963076923076923,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9234634712021647,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": -0.0396134518747584
+    },
+    {
+      "name": "s",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9373925008599931,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9075571177504393,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "delta": -0.029835383109553804
+    },
+    {
+      "name": "t",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.951937984496124,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9231981094919259,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.028739875004198057
+    },
+    {
+      "name": "u",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9355828220858896,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9225933202357564,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": -0.012989501850133256
+    },
+    {
+      "name": "v",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9479413156649313,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9243657252273815,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": -0.023575590437549865
+    },
+    {
+      "name": "w",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9522487506940589,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.935861684327942,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.016387066366116865
+    },
+    {
+      "name": "x",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9487554904831625,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9407191448007775,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": -0.008036345682385093
+    },
+    {
+      "name": "y",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9449793672627235,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9637180373185902,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.018738670055866713
+    },
+    {
+      "name": "z",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9638175144205559,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9399896533885153,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": -0.023827861032040598
+    },
+    {
+      "name": "one",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9764309764309764,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9302168021680217,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.04621417426295471
+    },
+    {
+      "name": "two",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.944689378757515,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9258363563079404,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.018853022449574652
+    },
+    {
+      "name": "three",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9615705931495405,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9392310872261265,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.02233950592341405
+    },
+    {
+      "name": "four",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9510231465951023,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9208290859667007,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.030194060628401687
+    },
+    {
+      "name": "five",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.931244003837544,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.888125613346418,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "delta": -0.04311839049112598
+    },
+    {
+      "name": "six",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9589465530596437,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9258540372670807,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": -0.033092515792563004
+    },
+    {
+      "name": "seven",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9561671763506626,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.944041450777202,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": -0.012125725573460588
+    },
+    {
+      "name": "eight",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9401512660309109,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9340622929092114,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": -0.006088973121699537
+    },
+    {
+      "name": "nine",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9545454545454546,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9439707673568819,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": -0.010574687188572685
+    },
+    {
+      "name": "zero",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9736111111111111,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9319192610331851,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": -0.041691850077925974
+    },
+    {
+      "name": "sterling",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9286452947259566,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9217780840799449,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": -0.006867210646011701
+    },
+    {
+      "name": "dollar",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9510608203677511,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9185059422750425,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.03255487809270863
+    },
+    {
+      "name": "ampersand",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9593103448275863,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.944870900209351,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": -0.014439444618235209
+    },
+    {
+      "name": "question",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9514192139737991,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9300546448087431,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": -0.021364569165056024
+    },
+    {
+      "name": "exclam",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9247822644497229,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9140562248995984,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": -0.010726039550124522
+    },
+    {
+      "name": "aacute",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.8911104275607505,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.8803391959798995,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": -0.010771231580851026
+    },
+    {
+      "name": "eacute",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.8937276568085798,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8964952505732067,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.0027675937646268745
+    },
+    {
+      "name": "iacute",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.8470873786407767,
+        "offset": [
+          -5,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8958470665787739,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.04875968793799723
+    },
+    {
+      "name": "oacute",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.9011648429226968,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9399928135106,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.038827970587903216
+    },
+    {
+      "name": "uacute",
+      "source": "competition-advert-1.jpg",
+      "before": {
+        "iou": 0.8867924528301887,
+        "offset": [
+          -3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.925367778973807,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.03857532614361825
+    },
+    {
+      "name": "a",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8877209746774964,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9149253731343283,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "delta": 0.02720439845683187
+    },
+    {
+      "name": "b",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9090528080469404,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9281720430107527,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.019119234963812293
+    },
+    {
+      "name": "c",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8969879518072289,
+        "offset": [
+          -2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9246079613992763,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "delta": 0.027620009592047357
+    },
+    {
+      "name": "d",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9159844894442051,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9332748024582967,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.017290313014091674
+    },
+    {
+      "name": "e",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9185033316248078,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9312141740489839,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": 0.012710842424176083
+    },
+    {
+      "name": "f",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8752535496957403,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9058390320883746,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.030585482392634256
+    },
+    {
+      "name": "g",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8522766770941953,
+        "offset": [
+          -3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8817126269956459,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.029435949901450598
+    },
+    {
+      "name": "h",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.843874391862008,
+        "offset": [
+          -1,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.8908153701968134,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.04694097833480548
+    },
+    {
+      "name": "i",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8330324909747292,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8977604673807206,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.06472797640599137
+    },
+    {
+      "name": "j",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8791581805838425,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9043963712491278,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.02523819066528521
+    },
+    {
+      "name": "k",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9068083051665862,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.927458617332035,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.02065031216544888
+    },
+    {
+      "name": "l",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9121989121989122,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9471153846153846,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.03491647241647233
+    },
+    {
+      "name": "m",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8805261234928754,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.8975394785163423,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.017013355023466903
+    },
+    {
+      "name": "n",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9102782509937536,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9200226885989791,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.009744437605225476
+    },
+    {
+      "name": "o",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9293361884368309,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9275898520084567,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": -0.0017463364283741845
+    },
+    {
+      "name": "p",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8921527486361729,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9177187636047018,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.02556601496852895
+    },
+    {
+      "name": "q",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8933791917454859,
+        "offset": [
+          -2,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9147526501766784,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.021373458431192538
+    },
+    {
+      "name": "r",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8680485338725986,
+        "offset": [
+          -2,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9166666666666666,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.048618132794068014
+    },
+    {
+      "name": "s",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8714689265536724,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9262048192771084,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.05473589272343604
+    },
+    {
+      "name": "t",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8342077649527807,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.879707700955593,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.045499936002812325
+    },
+    {
+      "name": "u",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8746722600943891,
+        "offset": [
+          -3,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9243183082915971,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.04964604819720797
+    },
+    {
+      "name": "v",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8746819338422391,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9172229639519359,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": 0.04254103010969679
+    },
+    {
+      "name": "w",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9137168141592921,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9241172051089407,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.010400390949648619
+    },
+    {
+      "name": "x",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9239766081871345,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9431592861863847,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.01918267799925022
+    },
+    {
+      "name": "y",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9090495679854479,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9320165365181442,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.022966968532696308
+    },
+    {
+      "name": "z",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9266943291839558,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9378925331472435,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": 0.011198203963287745
+    },
+    {
+      "name": "one",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8717948717948718,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9333967649857279,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.06160189319085607
+    },
+    {
+      "name": "two",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8785638859556494,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9109776078645548,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.03241372190890546
+    },
+    {
+      "name": "three",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8963447899618112,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9051296194153337,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.008784829453522436
+    },
+    {
+      "name": "four",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8474652310453118,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8980952380952381,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "delta": 0.05063000704992626
+    },
+    {
+      "name": "five",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8217562254259502,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.8690755513843266,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.0473193259583764
+    },
+    {
+      "name": "six",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8569246435845214,
+        "offset": [
+          -3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8846971307120085,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.027772487127487144
+    },
+    {
+      "name": "seven",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8835016835016835,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9090909090909091,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": 0.025589225589225606
+    },
+    {
+      "name": "eight",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8834488734835355,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9074239713774598,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": 0.02397509789392427
+    },
+    {
+      "name": "nine",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.9093816631130064,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9146537842190016,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.005272121105995176
+    },
+    {
+      "name": "zero",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8914518317503393,
+        "offset": [
+          -2,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.8992176714219973,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "delta": 0.007765839671658004
+    },
+    {
+      "name": "sterling",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8997679814385151,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.8997668997668997,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": -1.0816716153883021e-06
+    },
+    {
+      "name": "dollar",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8476402824228911,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.8992156862745098,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.05157540385161863
+    },
+    {
+      "name": "ampersand",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8706581352833638,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.8892032060348892,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.01854507075152545
+    },
+    {
+      "name": "question",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8743754461099215,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9014705882352941,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.027095142125372673
+    },
+    {
+      "name": "exclam",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8867102396514162,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9033333333333333,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.016623093681917167
+    },
+    {
+      "name": "aacute",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8340425531914893,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8787472035794184,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.044704650387929035
+    },
+    {
+      "name": "eacute",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8925468678555099,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8920036764705882,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": -0.0005431913849216485
+    },
+    {
+      "name": "iacute",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.7979882648784576,
+        "offset": [
+          -4,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9166666666666666,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.11867840178820899
+    },
+    {
+      "name": "oacute",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.8939321548017201,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9109390125847048,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.01700685778298472
+    },
+    {
+      "name": "uacute",
+      "source": "competition-brochure-2.jpg",
+      "before": {
+        "iou": 0.847009735744089,
+        "offset": [
+          -3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9237668161434978,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "delta": 0.07675708039940876
+    }
+  ],
+  "limitations": [
+    "Additional reproductions can share source history. These are source-fit measurements, not authenticity scores.",
+    "Uniform source scaling and integer translation only; source-derived entries are not a blind holdout.",
+    "Semicolon excluded because the text builder changes its layout."
+  ]
+}
