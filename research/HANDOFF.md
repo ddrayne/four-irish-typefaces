@@ -23,10 +23,18 @@ glyphs change; body letters remain as in Study 1. All 123 tests pass. Carrick ch
 85,849 Latin-plus-punctuation pairs in each OTF/TTF; latest four-face domain totals
 324,316 pairs. All are below the recorded collision threshold with kerning enabled.
 
+**Kilfane: [Study 4](kilfane-judgement/README.md), the judgement pass**, built on
+[Study 3](kilfane-production/README.md) (capitals from the averaged N517 production impressions) and
+round 2. Redrawn capitals keep N516's frame (Study 3's affine registration had let L, O, P and R drift
+1–2% in size); T, U, k and l are traced from N516 at last, their fused ink divided at the narrowest
+neck; the e's notch is eased as a recorded judged edit. `scripts/evidence_board.py` and
+`scripts/pinches.py` are the review tools: every print of a glyph side by side, in the font's own
+coordinates. Start Kilfane work from Study 4.
+
 Next concrete source lead: N514 contains repeated isolated e/f on the upper sheet.
 Round 5 records native crop coordinates. Compare local perspective and repeated
 instances before accepting a replacement. It does not expose x/y; N517 does not
-expose Kilfane T/U or lowercase k/l. Do not redo the mark recovery or erase the
+expose Kilfane T/U or lowercase k/l (Study 4 now separates them on N516). Do not redo the mark recovery or erase the
 remaining diaeresis uncertainty. Review retained versus derived pieces explicitly.
 
 [Round 4](round-04/README.md), Céilí Study 3: Four named original

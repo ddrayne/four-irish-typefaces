@@ -355,6 +355,11 @@ class Font2:
             self.touched[n] = self.touched[n] + '; ' + note if n in self.touched else note
 
     FINISH = False               # the designer's clean-up of traced outlines (scripts/finish.py)
+    # A foot is also flat when the ink has stopped widening a little above it: past its corners a
+    # square stem foot has vertical sides (Kilfane's F, P and I widen by under 5% from 12 to 24 units
+    # up, V by 19%), where a bowl keeps widening (O, B and e by 40% or more). The value is the widening
+    # allowed; None keeps the 30%-of-width test alone, which takes a single stem's foot for round.
+    FLAT_FOOT_WIDENING = None
     REFIT_PX = {}                # glyph -> one source pixel in trace units, for those to refit first
 
     def finish_traced(self):
@@ -534,7 +539,12 @@ class Font2:
             x0, y0, x1, y1 = bounds(p)
             if abs(y0) > tol:
                 continue
-            over = 0 if self.flat(p, y0, 0.015 * self.xh, top=False) else 8
+            flat = self.flat(p, y0, 0.015 * self.xh, top=False)
+            if not flat and self.FLAT_FOOT_WIDENING:
+                ys, L, R = profiles(p, y0 + 6, y0 + 31, step=12)      # scanlines 12 and 24 units up
+                w12, w24 = R - L
+                flat = bool(w12 >= 0.6 * self.S_regular and w24 <= self.FLAT_FOOT_WIDENING * w12)
+            over = 0 if flat else 8
             self.P[n] = translate(p, 0, -y0 - over)
 
     def zones(self):

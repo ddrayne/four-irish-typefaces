@@ -151,8 +151,11 @@ def main():
     ap.add_argument('--study',type=int,required=True);ap.add_argument('--traces',type=Path,required=True)
     ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
     os.environ['TRACED']=str(args.traces.resolve());os.environ['OUT']=str(args.output.resolve())
-    import ttfautohint
-    os.environ['PATH']=str(Path(ttfautohint._executable_path()).parent)+os.pathsep+os.environ['PATH']
+    try:  # ttfautohint-py bundles the binary; otherwise the system's ttfautohint on PATH is used
+        import ttfautohint
+        os.environ['PATH']=str(Path(ttfautohint._executable_path()).parent)+os.pathsep+os.environ['PATH']
+    except ImportError:
+        pass
     import build2
     cfg=build2.FONTS[args.face]
     build2.VERSION=f'2.{args.study:03d}'

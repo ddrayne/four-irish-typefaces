@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 # the latest accepted study of each face (research/HANDOFF.md)
-LATEST = {'kilfane': 'research/round-02/kilfane/traces', 'carrick': 'research/round-05/carrick/traces',
+LATEST = {'kilfane': 'research/kilfane-judgement/traces', 'carrick': 'research/round-05/carrick/traces',
           'tuam': 'research/round-03/tuam/traces', 'ceili': 'research/round-04/ceili/traces'}
 
 
@@ -31,6 +31,10 @@ def build(face, traces, version):
         # keeps them. The sloped styles add only a hair of weight, so they keep every gap there is.
         SLIVER, SLIVER_SLOPED = 0.05, 0.01
         FINISH = True
+        # a single stem's square foot (Kilfane's F, P, V, 4 and 7) sits on the baseline, not 8 units below
+        # it. Only Kilfane's feet have been reviewed against its sheets; elsewhere the rule would also
+        # move letters (Carrick's s; Tuam's i, s, u, 9; Céilí's h, n, z, £) that need their own review.
+        FLAT_FOOT_WIDENING = 1.2 if face == 'kilfane' else None
         # each original-source glyph is refitted at its own source's resolution (its calibration
         # scale is source pixels per trace unit); letters kept from the flyer were designer-fitted already
         REFIT_PX = {g['name']: 1.0 / g['scale'] for g in evidence['glyphs']

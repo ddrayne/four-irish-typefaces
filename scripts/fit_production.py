@@ -79,6 +79,30 @@ def topology(rec):
     return (pos, neg) if pos >= neg else (neg, pos)
 
 
+def lock_frame(rec, base, step=0.125, scales=np.linspace(0.96, 1.04, 81)):
+    """The uniform scale (about the base's centre) and shift that lay a redrawn letter best over its
+    base trace, and the record moved by them. The impressions' affines absorb the photograph's
+    perspective, and their scales can drift a percent or two from the base's frame; this puts each
+    letter back at the base's size and place, so only its shape comes from the sheet."""
+    from scipy.signal import fftconvolve
+    B, (bx, by) = IM.trace_mask(base, step, 8.0)
+    pts = np.array([p for _, a in base for p in a], float); c = (pts.min(0) + pts.max(0)) / 2
+    move = lambda r, s, t: [(op, tuple(tuple((np.array(p) - c) * s + c + t) for p in a)) for op, a in r]
+    best = None
+    for s in scales:
+        M, (mx, my) = IM.trace_mask(move(rec, s, (0, 0)), step, 2.0)
+        if M.shape[0] >= B.shape[0] or M.shape[1] >= B.shape[1]:
+            continue
+        corr = fftconvolve(B, M[::-1, ::-1], mode='valid')
+        iy, ix = np.unravel_index(np.argmax(corr), corr.shape)
+        sub = B[iy:iy + M.shape[0], ix:ix + M.shape[1]]
+        iou = float((sub * M).sum() / max(((sub + M) > 0).sum(), 1))
+        if best is None or iou > best[0]:
+            best = (iou, float(s), (bx + ix * step - mx, by + iy * step - my))
+    iou, s, t = best
+    return move(rec, s, t), dict(scale=round(s, 4), shift=[round(t[0], 3), round(t[1], 3)], iou_to_base=round(iou, 4))
+
+
 def ink_fraction(mean, level, lo, hi):
     """The share of the frame inked at this edge level (a proxy for stroke weight)."""
     return float((mean > lo + level * (hi - lo)).mean())
@@ -90,6 +114,8 @@ def main():
     ap.add_argument('--round', required=True)
     ap.add_argument('--base', default=None)
     ap.add_argument('--work', default=None)
+    ap.add_argument('--lock-frame', action='store_true',
+                    help="put each redrawn letter back at its base trace's size and place (Study 4)")
     args = ap.parse_args()
     base = args.base or str(ROOT / 'research' / 'round-02' / args.face / 'traces')
     work = args.work or str(ROOT / 'build' / 'production' / args.face)
@@ -144,10 +170,13 @@ def main():
             # the sheet's resolution can blur shut a small counter the base resolves (Kilfane's Q)
             kept_base[g['name']] = dict(tag=t, base=topology(g['rec']), mean=topology(rec))
             out_glyphs.append(g); continue
+        lock = None
+        if args.lock_frame:
+            rec, lock = lock_frame(rec, g['rec'])
         h = copy.deepcopy(g); h['rec'] = rec
         h['paper'], h['ink'] = lo, hi
         out_glyphs.append(h)
-        redrawn[g['name']] = dict(tag=t, level=level, backing=round(lo, 4), ink=round(hi, 4))
+        redrawn[g['name']] = dict(tag=t, level=level, backing=round(lo, 4), ink=round(hi, 4), lock=lock)
 
     os.makedirs(os.path.join(args.round, 'traces'), exist_ok=True)
     tr2 = dict(tr); tr2['glyphs'] = out_glyphs
@@ -175,12 +204,17 @@ def main():
                  impressions=r['n'], boxes=r['boxes'], affine=r['affine'], rms_to_base=r['rms_to_base'],
                  rms_to_mean=r['rms_to_mean'], edge_level=d['level'], mean_backing=d['backing'], mean_ink=d['ink'],
                  note='Production-sheet mean; proportions and placement from the round-02 trace (N516).')
+        if d.get('lock'):
+            e['frame_lock'] = d['lock']
     json.dump(ev2, open(os.path.join(args.round, 'traces', 'evidence.json'), 'w'), indent=1, ensure_ascii=False)
     for extra in ('pieces.json', 'source-regions.json', 'mark-audit-regions.json', 'punctuation.json'):
         src = os.path.join(base, extra)
         if os.path.exists(src):
             open(os.path.join(args.round, 'traces', extra), 'w').write(open(src).read())
     print('redrawn from production impressions:', ', '.join(sorted(redrawn)) or 'none')
+    for n, d in sorted(redrawn.items()):
+        if d.get('lock'):
+            print(f'  {n}: frame lock scale {d["lock"]["scale"]:.4f}, shift {d["lock"]["shift"]}, overlap {d["lock"]["iou_to_base"]:.3f}')
     for n, d in sorted(kept_base.items()):
         print(f'  {n}: base kept, the mean has {d["mean"]} pieces/counters against {d["base"]}')
 

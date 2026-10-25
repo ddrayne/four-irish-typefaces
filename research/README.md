@@ -9,8 +9,9 @@ The latest work is [round 5](round-05/README.md): Carrick's named original marks
 with retained and derived components distinguished. [Round 4](round-04/README.md) recovers Céilí's named original punctuation
 and the language marks derived from it. [Round 3](round-03/README.md) supplies Tuam and Céilí outline studies
 from larger original reproductions, with topology-preserving tracing and explicit
-source disagreements. [Round 2](round-02/README.md) supplies the latest Kilfane
-candidate and Carrick's earlier body study. [Kilfane Study 1](kilfane-study-01/README.md)
+source disagreements. Kilfane's latest candidate is [Study 4](kilfane-judgement/README.md), the
+judgement pass, on [Study 3](kilfane-production/README.md)'s production-sheet capitals and
+[round 2](round-02/README.md), which also holds Carrick's earlier body study. [Kilfane Study 1](kilfane-study-01/README.md)
 is preserved. Release 2.000 is the historical research baseline; main's current
 release is 2.010. Research candidates have not replaced the release fonts.
 
