@@ -29,8 +29,8 @@ def area(p):
 
 
 @pytest.mark.parametrize('ps,style', [(ps, st) for ps, sts in
-                                      [('Ceili', ('Regular', 'Italic', 'Bold', 'Bold Italic')), ('Kilfane', ('Regular', 'Italic', 'Bold', 'Bold Italic')),
-                                       ('Carrick', ('Regular', 'Italic')), ('TuamUncial', ('Regular', 'Italic'))] for st in sts])
+                                      [('CeiliDigital', ('Regular', 'Italic', 'Bold', 'Bold Italic')), ('KilfaneDigital', ('Regular', 'Italic', 'Bold', 'Bold Italic')),
+                                       ('CarrickDigital', ('Regular', 'Italic')), ('TuamUncialDigital', ('Regular', 'Italic'))] for st in sts])
 def test_decomposed_accents_match_precomposed(ps, style):
     path = static(ps, style); font = TTFont(path); blob = hb.Blob.from_file_path(path)
     cmap = font.getBestCmap()

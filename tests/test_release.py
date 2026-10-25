@@ -44,6 +44,18 @@ def test_style_linking(config):
                 assert 'STAT' in f
 
 
+def test_names_mark_a_digitisation(config):
+    """The families carry "Digital" so they are never taken for the original type; the description names the design."""
+    FONTS, STYLES, _ = config
+    for key, cfg in FONTS.items():
+        assert cfg['family'] == f'{cfg["name"]} Digital'
+        for st in STYLES[key]:
+            n = TTFont(static(cfg['ps'], st))['name']
+            assert n.getDebugName(1).endswith(' Digital') and n.getDebugName(6).startswith(cfg['ps'])
+            desc = n.getDebugName(10)
+            assert desc.startswith(f'{cfg["name"]}: ') and 'independent digitisation, not the original type' in desc
+
+
 def test_family_shares_metrics_and_characters(config):
     FONTS, STYLES, _ = config
     for key, cfg in FONTS.items():
@@ -61,10 +73,10 @@ def test_bold_keeps_counters(config):
     """A bold may not lose, merge or nearly close a counter of its regular, except where it joins by design."""
     import topo
     FONTS, STYLES, _ = config
-    allowed = {'Ceili': {'six'}}
+    allowed = {'ceili': {'six'}}
     for key, cfg in FONTS.items():
         if 'Bold' not in STYLES[key]:
             continue
         flagged = topo.compare(static(cfg['ps'], 'Regular'), static(cfg['ps'], 'Bold'), small=0.30)
-        names = {n for n, *_ in flagged} - allowed.get(cfg['ps'], set())
+        names = {n for n, *_ in flagged} - allowed.get(key, set())
         assert not names, f'{cfg["ps"]}: {sorted(names)}'

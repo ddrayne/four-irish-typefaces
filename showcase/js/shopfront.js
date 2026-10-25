@@ -1,4 +1,4 @@
-import { $, FACES, FAMILY, fitCanvas, rng, loadFace, clamp } from './util.js';
+import { $, FACES, FAMILY, NAME, fitCanvas, rng, loadFace, clamp } from './util.js';
 
 // A painted Irish shopfront: a fascia board between two consoles, the name in gilded
 // letters with a cast shadow, the trade beneath in smaller letters, and the shop
@@ -25,7 +25,7 @@ export async function init(root) {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'tog t-face'; b.setAttribute('role', 'radio');
     b.setAttribute('aria-checked', String(k === face));
-    b.innerHTML = `<span class="f-${k}">${FAMILY[k]}</span>`;
+    b.innerHTML = `<span class="f-${k}">${NAME[k]}</span>`;
     b.addEventListener('click', () => { face = k; [...facesHost.children].forEach((c) => c.setAttribute('aria-checked', String(c === b))); draw(); });
     facesHost.appendChild(b);
   });

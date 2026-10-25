@@ -156,7 +156,9 @@ def main():
     import build2
     cfg=build2.FONTS[args.face]
     build2.VERSION=f'2.{args.study:03d}'
-    build2.FONTS[args.face]=dict(cfg,family=f'{cfg["family"]} Study {args.study}',ps=f'{cfg["ps"]}Study{args.study}')
+    # studies are named after the design ("Kilfane Study 3"), not the release family ("Kilfane Digital")
+    name,ps=cfg.get('name',cfg['family']),cfg['ps'].removesuffix('Digital')
+    build2.FONTS[args.face]=dict(cfg,name=f'{name} Study {args.study}',family=f'{name} Study {args.study}',ps=f'{ps}Study{args.study}')
     build2.FAMILY_STYLES[args.face]=['Regular']
     OriginalStudy,evidence,piece_data=study_class(args.face,args.traces)
     f=OriginalStudy(args.face,'Regular').prepare();base=f.run()

@@ -50,7 +50,7 @@ export async function init(root) {
     const key = `${ch}|${tone}|${mossy}|${size}`;
     if (sprites.has(key)) return sprites.get(key);
     const r = Math.min(window.devicePixelRatio || 1, 2);
-    const font = `${size}px "Carrick"`;
+    const font = `${size}px "Carrick Digital"`;
     const m = offscreen(1, 1).getContext('2d');
     m.font = font;
     const tm = m.measureText(ch);

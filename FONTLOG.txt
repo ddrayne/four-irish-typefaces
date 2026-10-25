@@ -10,7 +10,8 @@ Basic font information
 
 Céilí, Carrick, Kilfane and Tuam Uncial won the 1978 "Design an Irish Typeface" competition
 sponsored by Letraset, Kilkenny Design Workshops and D. O'Sullivan Graphic Supplies, and were sold
-as Letraset dry-transfer sheets. These fonts were digitised in 2026 from a scan of the
+as Letraset dry-transfer sheets. These fonts, Céilí Digital, Carrick Digital, Kilfane Digital and
+Tuam Uncial Digital, are independent digitisations of them, not the original type. They were digitised in 2026 from a scan of the
 competition's "Four Irish Typefaces" flyer, completed to about 400 characters each, and extended
 with styles the originals never had. See README.md for how they were made and how faithful they
 are, and docs/validation/ for the evidence.
@@ -30,6 +31,12 @@ declared.
 
 ChangeLog
 ---------
+
+2.100 (2026-10-25)
+- The families are renamed Céilí Digital, Carrick Digital, Kilfane Digital and Tuam Uncial Digital
+  (files CeiliDigital-Regular.otf and so on), so that the fonts are never taken for the original
+  type. The description names the design and says the font is an independent digitisation.
+  Outlines, spacing and features are unchanged. Update font-family names in CSS and documents.
 
 2.010 (2026-10-25)
 - The award wording corrected from the competition brochure: Carrick was Highly Commended and

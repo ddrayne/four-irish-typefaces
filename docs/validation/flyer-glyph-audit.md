@@ -1,4 +1,4 @@
-# Every flyer glyph against the scan (version 2.010)
+# Every flyer glyph against the scan (version 2.100)
 
 Each glyph printed on the 1978 flyer, registered on the scan (best shift, to an eighth of a pixel) and
 compared with the print at 8× resolution. **Overlap** is intersection over union of the filled shapes

@@ -6,7 +6,7 @@ from fontTools.pens.recordingPen import RecordingPen
 
 ROOT=Path(__file__).resolve().parents[1]
 DIR=Path(os.environ.get('ROUND03_DIR',ROOT/'research/round-03'))
-FACES=[('tuam','TuamUncialStudy2','TuamUncial'),('ceili','CeiliStudy2','Ceili')]
+FACES=[('tuam','TuamUncialStudy2','TuamUncialDigital'),('ceili','CeiliStudy2','CeiliDigital')]
 
 @pytest.mark.parametrize('face,ps,old',FACES)
 def test_outline_studies_have_explicit_original_evidence(face,ps,old):

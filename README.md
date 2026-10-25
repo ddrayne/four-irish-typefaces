@@ -1,4 +1,4 @@
-# Four Irish Typefaces: digital revival, version 2.010
+# Four Irish Typefaces: digital revival, version 2.100
 
 **Céilí · Carrick · Kilfane · Tuam Uncial**
 
@@ -6,8 +6,10 @@ These four faces won the 1978 "Design an Irish Typeface" competition, sponsored 
 Letraset, Kilkenny Design Workshops and D. O'Sullivan Graphic Supplies. They were
 sold as Letraset dry-transfer sheets.
 
-These fonts were digitised from a scan of the competition's "Four Irish Typefaces"
-flyer, then completed to roughly 400 characters each so they work on the web and in
+These fonts, **Céilí Digital**, **Carrick Digital**, **Kilfane Digital** and **Tuam Uncial
+Digital**, are independent digitisations of them, not the original type: the "Digital" in each name
+keeps them apart from the 1978 faces. They were digitised from a scan of the competition's "Four
+Irish Typefaces" flyer, then completed to roughly 400 characters each so they work on the web and in
 any app. Further original-source research, a source register and the separately
 named candidates are in [research/](research/README.md). The latest
 [round 5](research/round-05/README.md) recovers Carrick's original mark components,
@@ -31,7 +33,15 @@ test page is at https://irish-typefaces.apps.drayne.xyz/.
 Open `index.html` to see and test the fonts in a browser. It's a live type tester
 with style pickers, stylistic-set toggles and character grids.
 
-## What's new in 2.010
+## What's new in 2.100
+
+- **The families carry "Digital" in their names**: Céilí Digital, Carrick Digital, Kilfane Digital
+  and Tuam Uncial Digital, in files named `CeiliDigital-Regular.otf` and so on. Each font's
+  description names the 1978 design and says the font is an independent digitisation. Outlines,
+  spacing and features are unchanged. To upgrade, uninstall the earlier fonts (they would sit
+  beside the new families) and change `font-family` names in CSS.
+
+## What was new in 2.010
 
 - **The award wording is corrected** from the competition brochure: Carrick was Highly Commended
   (£50), and Kilfane and Tuam Uncial were each Commended (£25), not second, joint third and fourth.
@@ -115,21 +125,21 @@ with style pickers, stylistic-set toggles and character grids.
 
 | Family | Styles | Code points | Glyphs | WOFF2 per style | Features |
 |---|---|---|---|---|---|
-| Kilfane | Regular, Italic, Bold, Bold Italic | 402 | 458 | 50–55 KB | kern, mark, ccmp, salt, aalt, ss01 Roman forms, ss02 Insular forms |
-| Tuam Uncial | Regular, Italic | 398 | 262 | 30–31 KB | kern, mark, ccmp |
-| Carrick | Regular, Italic | 400 | 262 | 33–34 KB | kern, mark, ccmp |
-| Céilí | Regular, Italic, Bold, Bold Italic | 408 | 317 | 35–40 KB | kern, mark, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
+| Kilfane Digital | Regular, Italic, Bold, Bold Italic | 402 | 458 | 50–55 KB | kern, mark, ccmp, salt, aalt, ss01 Roman forms, ss02 Insular forms |
+| Tuam Uncial Digital | Regular, Italic | 398 | 262 | 30–31 KB | kern, mark, ccmp |
+| Carrick Digital | Regular, Italic | 400 | 262 | 33–34 KB | kern, mark, ccmp |
+| Céilí Digital | Regular, Italic, Bold, Bold Italic | 408 | 317 | 35–40 KB | kern, mark, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
 
-Files are named `Family-Style` (`Kilfane-BoldItalic.woff2`, `TuamUncial-Italic.otf`).
+Files are named `Family-Style` (`KilfaneDigital-BoldItalic.woff2`, `TuamUncialDigital-Italic.otf`).
 
 ### Using them on a website
 
 ```html
 <link rel="stylesheet" href="css/four-irish-typefaces.css">
 <style>
-  h1   { font-family: "Céilí", "Ceili", serif; }   /* both names work */
-  .tag { font-family: "Carrick", serif; }
-  .alt { font-family: "Kilfane", serif; font-feature-settings: "ss01"; }   /* roman forms */
+  h1   { font-family: "Céilí Digital", "Ceili Digital", serif; }   /* both names work */
+  .tag { font-family: "Carrick Digital", serif; }
+  .alt { font-family: "Kilfane Digital", serif; font-feature-settings: "ss01"; }   /* roman forms */
 </style>
 <p class="alt">Tír gan teanga, <b>tír gan anam</b>, <i>mar a deirtear</i>.</p>
 ```

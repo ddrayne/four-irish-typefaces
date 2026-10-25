@@ -1,162 +1,163 @@
 /*
- * Four Irish Typefaces: web fonts, version 2.010
- * Kilfane, Tuam Uncial, Carrick and Céilí, winners of the 1978
+ * Four Irish Typefaces: web fonts, version 2.100
+ * Kilfane Digital, Tuam Uncial Digital, Carrick Digital and Céilí Digital: independent
+ * digitisations of Kilfane, Tuam Uncial, Carrick and Céilí, winners of the 1978
  * "Design an Irish Typeface" competition (Letraset, Kilkenny Design Workshops,
  * D. O'Sullivan Graphic Supplies). Digitised 2026 from the printed specimen sheet.
  * Copyright 2026 Dan Drayne. Licensed under the SIL Open Font License 1.1 (OFL.txt,
  * https://openfontlicense.org).
  *
- * Styles: Kilfane and Céilí have Regular, Italic, Bold and Bold Italic; Carrick and
- * Tuam Uncial, already black, have Regular and Italic. The 1978 sheet showed only the
+ * Styles: Kilfane Digital and Céilí Digital have Regular, Italic, Bold and Bold Italic;
+ * Carrick Digital and Tuam Uncial Digital, already black, have Regular and Italic. The 1978 sheet showed only the
  * regulars: the italics and bolds were drawn in 2026 from them.
  *
  * Usage:  <link rel="stylesheet" href="css/four-irish-typefaces.css">
- *         h1 { font-family: "Kilfane", serif; }
+ *         h1 { font-family: "Kilfane Digital", serif; }
  *         <b> and <i> (or font-weight: 700 / font-style: italic) select the real styles.
  * Paths below are relative to this file; keep the fonts/ folder beside css/.
  */
 @font-face {
-  font-family: "Kilfane";
-  src: url("../fonts/woff2/Kilfane-Regular.woff2") format("woff2"),
-       url("../fonts/woff/Kilfane-Regular.woff") format("woff");
+  font-family: "Kilfane Digital";
+  src: url("../fonts/woff2/KilfaneDigital-Regular.woff2") format("woff2"),
+       url("../fonts/woff/KilfaneDigital-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Kilfane";
-  src: url("../fonts/woff2/Kilfane-Italic.woff2") format("woff2"),
-       url("../fonts/woff/Kilfane-Italic.woff") format("woff");
+  font-family: "Kilfane Digital";
+  src: url("../fonts/woff2/KilfaneDigital-Italic.woff2") format("woff2"),
+       url("../fonts/woff/KilfaneDigital-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
-  font-family: "Kilfane";
-  src: url("../fonts/woff2/Kilfane-Bold.woff2") format("woff2"),
-       url("../fonts/woff/Kilfane-Bold.woff") format("woff");
+  font-family: "Kilfane Digital";
+  src: url("../fonts/woff2/KilfaneDigital-Bold.woff2") format("woff2"),
+       url("../fonts/woff/KilfaneDigital-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Kilfane";
-  src: url("../fonts/woff2/Kilfane-BoldItalic.woff2") format("woff2"),
-       url("../fonts/woff/Kilfane-BoldItalic.woff") format("woff");
+  font-family: "Kilfane Digital";
+  src: url("../fonts/woff2/KilfaneDigital-BoldItalic.woff2") format("woff2"),
+       url("../fonts/woff/KilfaneDigital-BoldItalic.woff") format("woff");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 
-/* Tuam Uncial is already black: its one weight answers every font-weight (400 900),
+/* Tuam Uncial Digital is already black: its one weight answers every font-weight (400 900),
    so bold text stays in the drawn weight instead of a smeared synthetic bold. */
 @font-face {
-  font-family: "Tuam Uncial";
-  src: url("../fonts/woff2/TuamUncial-Regular.woff2") format("woff2"),
-       url("../fonts/woff/TuamUncial-Regular.woff") format("woff");
+  font-family: "Tuam Uncial Digital";
+  src: url("../fonts/woff2/TuamUncialDigital-Regular.woff2") format("woff2"),
+       url("../fonts/woff/TuamUncialDigital-Regular.woff") format("woff");
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Tuam Uncial";
-  src: url("../fonts/woff2/TuamUncial-Italic.woff2") format("woff2"),
-       url("../fonts/woff/TuamUncial-Italic.woff") format("woff");
+  font-family: "Tuam Uncial Digital";
+  src: url("../fonts/woff2/TuamUncialDigital-Italic.woff2") format("woff2"),
+       url("../fonts/woff/TuamUncialDigital-Italic.woff") format("woff");
   font-weight: 400 900;
   font-style: italic;
   font-display: swap;
 }
 
-/* Carrick is already black: its one weight answers every font-weight (400 900),
+/* Carrick Digital is already black: its one weight answers every font-weight (400 900),
    so bold text stays in the drawn weight instead of a smeared synthetic bold. */
 @font-face {
-  font-family: "Carrick";
-  src: url("../fonts/woff2/Carrick-Regular.woff2") format("woff2"),
-       url("../fonts/woff/Carrick-Regular.woff") format("woff");
+  font-family: "Carrick Digital";
+  src: url("../fonts/woff2/CarrickDigital-Regular.woff2") format("woff2"),
+       url("../fonts/woff/CarrickDigital-Regular.woff") format("woff");
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Carrick";
-  src: url("../fonts/woff2/Carrick-Italic.woff2") format("woff2"),
-       url("../fonts/woff/Carrick-Italic.woff") format("woff");
+  font-family: "Carrick Digital";
+  src: url("../fonts/woff2/CarrickDigital-Italic.woff2") format("woff2"),
+       url("../fonts/woff/CarrickDigital-Italic.woff") format("woff");
   font-weight: 400 900;
   font-style: italic;
   font-display: swap;
 }
 
-/* Céilí is declared twice so it works with or without the accents in your CSS. */
+/* Céilí Digital is declared twice so it works with or without the accents in your CSS. */
 @font-face {
-  font-family: "Céilí";
-  src: url("../fonts/woff2/Ceili-Regular.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-Regular.woff") format("woff");
+  font-family: "Céilí Digital";
+  src: url("../fonts/woff2/CeiliDigital-Regular.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Céilí";
-  src: url("../fonts/woff2/Ceili-Italic.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-Italic.woff") format("woff");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Céilí";
-  src: url("../fonts/woff2/Ceili-Bold.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Céilí";
-  src: url("../fonts/woff2/Ceili-BoldItalic.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-BoldItalic.woff") format("woff");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Ceili";
-  src: url("../fonts/woff2/Ceili-Regular.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Ceili";
-  src: url("../fonts/woff2/Ceili-Italic.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-Italic.woff") format("woff");
+  font-family: "Céilí Digital";
+  src: url("../fonts/woff2/CeiliDigital-Italic.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
-  font-family: "Ceili";
-  src: url("../fonts/woff2/Ceili-Bold.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-Bold.woff") format("woff");
+  font-family: "Céilí Digital";
+  src: url("../fonts/woff2/CeiliDigital-Bold.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Ceili";
-  src: url("../fonts/woff2/Ceili-BoldItalic.woff2") format("woff2"),
-       url("../fonts/woff/Ceili-BoldItalic.woff") format("woff");
+  font-family: "Céilí Digital";
+  src: url("../fonts/woff2/CeiliDigital-BoldItalic.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili Digital";
+  src: url("../fonts/woff2/CeiliDigital-Regular.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili Digital";
+  src: url("../fonts/woff2/CeiliDigital-Italic.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili Digital";
+  src: url("../fonts/woff2/CeiliDigital-Bold.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili Digital";
+  src: url("../fonts/woff2/CeiliDigital-BoldItalic.woff2") format("woff2"),
+       url("../fonts/woff/CeiliDigital-BoldItalic.woff") format("woff");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 
 /* Convenience classes */
-.kilfane     { font-family: "Kilfane", serif; }
-.tuam-uncial { font-family: "Tuam Uncial", serif; }
-.carrick     { font-family: "Carrick", serif; }
-.ceili       { font-family: "Céilí", "Ceili", serif; }
+.kilfane     { font-family: "Kilfane Digital", serif; }
+.tuam-uncial { font-family: "Tuam Uncial Digital", serif; }
+.carrick     { font-family: "Carrick Digital", serif; }
+.ceili       { font-family: "Céilí Digital", "Ceili Digital", serif; }
 
 /* Stylistic sets (Kilfane and Céilí also support "salt" for single-glyph alternates) */
 .kilfane-roman-forms   { font-feature-settings: "ss01"; }  /* roman T Y d f l t y, pointed A */

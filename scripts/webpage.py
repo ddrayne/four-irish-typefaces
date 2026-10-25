@@ -4,15 +4,15 @@ from fontTools.ttLib import TTFont
 from build2 import FONTS, OUT, FAMILY_STYLES
 
 INFO = {
-    'kilfane': dict(css='Kilfane', credit='William Curran', place='Commended',
+    'kilfane': dict(css='Kilfane Digital', credit='William Curran', place='Commended',
                     display='Banc Ceannais na hÉireann',
                     note='The only one of the four with true capitals. Reportedly used on the Series C Irish pound notes.'),
-    'tuam': dict(css='Tuam Uncial', credit='Jarlath Hayes', place='Commended',
+    'tuam': dict(css='Tuam Uncial Digital', credit='Jarlath Hayes', place='Commended',
                  display='Fáilte go Tuaim',
                  note='A heavy, square uncial reportedly made by cutting up Helvetica Bold; seen on Clannad sleeves and the Glenroe credits. Its hairline cuts are part of the design.'),
-    'carrick': dict(css='Carrick', credit='William Curran', place='Highly Commended', display='Ceol ⁊ craic',
+    'carrick': dict(css='Carrick Digital', credit='William Curran', place='Highly Commended', display='Ceol ⁊ craic',
                     note='A chunky, lower-case-only display face; the name comes from carraig, “rock”.'),
-    'ceili': dict(css='Céilí', credit='Hermann Hecht', place='First prize', display='Céilí mór anocht!',
+    'ceili': dict(css='Céilí Digital', credit='Hermann Hecht', place='First prize', display='Céilí mór anocht!',
                   note='The winner: a light, calligraphic unicase with insular letterforms and old-style figures.'),
 }
 TEXT = 'Is fearr Gaeilge bhriste ná Béarla cliste. A ċara, mo ġrá ṫú! Ciamar a tha thu? The quick brown fox jumps over the lazy dog — 1978.'
@@ -81,7 +81,7 @@ def page():
 * {{ box-sizing: border-box; }}
 body {{ margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }}
 main {{ max-width:1080px; margin:0 auto; padding:32px 20px 64px; }}
-.hero h1 {{ font-family:"Céilí","Ceili",serif; font-weight:400; font-size:clamp(44px,9vw,104px); line-height:1; margin:8px 0 12px; }}
+.hero h1 {{ font-family:"Céilí Digital","Ceili Digital",serif; font-weight:400; font-size:clamp(44px,9vw,104px); line-height:1; margin:8px 0 12px; }}
 .hero p {{ max-width:720px; color:var(--mute); margin:6px 0; }}
 .face {{ border-top:1px solid var(--rule); padding:28px 0 20px; }}
 .f {{ font-family:var(--face), serif; }}
@@ -112,7 +112,8 @@ footer {{ border-top:1px solid var(--rule); margin-top:28px; padding-top:16px; c
   <h1>four irish typefaces</h1>
   <p>Céilí, Carrick, Kilfane and Tuam Uncial won the 1978 “Design an Irish Typeface” competition sponsored by Letraset,
   Kilkenny Design Workshops and D. O’Sullivan Graphic Supplies, and were sold as Letraset dry-transfer sheets.
-  These digital versions were traced from the competition’s “Four Irish Typefaces” flyer and completed with
+  These independent digital versions, named Céilí Digital, Carrick Digital, Kilfane Digital and Tuam Uncial
+  Digital to keep them apart from the originals, were traced from the competition’s “Four Irish Typefaces” flyer and completed with
   around 400 characters each, covering Irish (including traditional lenition dots and ⁊), Scottish Gaelic, Welsh
   and the other Latin-script languages of Europe.</p>
   <p>The sheet shows each face in one style. Version 2 adds, as new work drawn in 2026 from those regulars, an italic
@@ -123,9 +124,9 @@ footer {{ border-top:1px solid var(--rule); margin-top:28px; padding-top:16px; c
   <h3>Use on a website</h3>
 <pre>&lt;link rel="stylesheet" href="css/four-irish-typefaces.css"&gt;
 
-h1     {{ font-family: "Céilí", "Ceili", serif; }}
-.sign  {{ font-family: "Carrick", serif; }}
-p.note {{ font-family: "Kilfane", serif; font-feature-settings: "ss01"; }}  /* roman forms */
+h1     {{ font-family: "Céilí Digital", "Ceili Digital", serif; }}
+.sign  {{ font-family: "Carrick Digital", serif; }}
+p.note {{ font-family: "Kilfane Digital", serif; font-feature-settings: "ss01"; }}  /* roman forms */
 
 &lt;p class="kilfane"&gt;Tír gan teanga, &lt;b&gt;tír gan anam&lt;/b&gt;, &lt;i&gt;mar a deirtear&lt;/i&gt;.&lt;/p&gt;
 /* &lt;b&gt;, &lt;i&gt;, font-weight: 700 and font-style: italic pick the drawn styles */</pre>

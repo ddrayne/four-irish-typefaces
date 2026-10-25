@@ -53,7 +53,7 @@ def icon(size, path):
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
     d.rounded_rectangle([0, 0, size - 1, size - 1], radius=int(size * 0.22), fill=(11, 106, 143, 255))
-    font = ImageFont.truetype(os.path.join(PKG, 'fonts/ttf/Ceili-Regular.ttf'), int(size * 0.92))
+    font = ImageFont.truetype(os.path.join(PKG, 'fonts/ttf/CeiliDigital-Regular.ttf'), int(size * 0.92))
     l, t, r, b = d.textbbox((0, 0), 'a', font=font)
     d.text(((size - (r - l)) / 2 - l, (size - (b - t)) / 2 - t), 'a', font=font, fill=(255, 255, 255, 255))
     im.save(path)
@@ -153,7 +153,7 @@ def page(faces, sizes):
     checks = ''.join(f'''
           <tr data-face="{k}"><th scope="row" class="f-{k} check-name">{esc(FAMILY[k])}</th>
             <td class="st">Checking…</td><td class="fmt">–</td><td class="size">–</td></tr>''' for k in order)
-    font_list = ''.join(f'<li><code>"{FAMILY[k]}"</code>' + (' or <code>"Ceili"</code>' if k == 'ceili' else '') + '</li>' for k in order)
+    font_list = ''.join(f'<li><code>"{FONTS[k]["family"]}"</code>' + (' or <code>"Ceili Digital"</code>' if k == 'ceili' else '') + '</li>' for k in order)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -170,7 +170,7 @@ def page(faces, sizes):
 <meta name="theme-color" content="#0f1312" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="64x64" href="img/icon-64.png">
 <link rel="apple-touch-icon" href="img/icon-180.png">
-<link rel="preload" href="fonts/woff2/Ceili-Regular.woff2?v={V}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/woff2/CeiliDigital-Regular.woff2?v={V}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/four-irish-typefaces.css?v={V}">
 <style>
 /* Layout: a drawing-board hero, then one specimen sheet per face. Each sheet sets the 1978 scan
@@ -477,8 +477,8 @@ footer p + p {{ margin-top: 8px; }}
       href="<span id="css-url">https://{SLUG}.apps.drayne.xyz/css/four-irish-typefaces.css</span>"&gt;
 
 &lt;style&gt;
-  h1    {{ font-family: "Céilí", "Ceili", serif; }}
-  .sign {{ font-family: "Carrick", serif; }}
+  h1    {{ font-family: "Céilí Digital", "Ceili Digital", serif; }}
+  .sign {{ font-family: "Carrick Digital", serif; }}
 &lt;/style&gt;
 
 &lt;!-- ready-made classes, including the stylistic sets --&gt;

@@ -62,7 +62,7 @@ def face_data():
         for cp in cps:
             names.setdefault(cp, unicodedata.name(chr(cp), ''))
         upm = tt['head'].unitsPerEm
-        faces[k] = dict(family=cfg['family'], file=cfg['ps'], unicase=cfg['unicase'],
+        faces[k] = dict(name=cfg['name'], family=cfg['family'], file=cfg['ps'], unicase=cfg['unicase'],
                         styles=FAMILY_STYLES[k], sets=sets, cps=cps, glyphs=len(tt.getGlyphOrder()),
                         xh=round(tt['OS/2'].sxHeight / upm, 4), cap=round(tt['OS/2'].sCapHeight / upm, 4))
     return faces, {f'{cp:04X}': n for cp, n in sorted(names.items())}
@@ -178,7 +178,7 @@ def studies_data(faces):
             tt = TTFont(os.path.join(dirpath, fn))
             family = tt['name'].getDebugName(1) or fn
             plain = lambda t: unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower().replace(' ', '')
-            face = next((k for k in ORDER if plain(family).startswith(plain(FONTS[k]['family']))), None)
+            face = next((k for k in ORDER if plain(family).startswith(plain(FONTS[k]['name']) + 'study')), None)
             m = re.search(r'Study\s*(\d+)', family)
             if face is None or not m:
                 continue
@@ -253,7 +253,8 @@ def studies_data(faces):
                                 pairs=pairs.get(os.path.basename(f['otf']))))
             copies.append((f['woff2'], f['woff2_path'], f['family']))
         out[face] = dict(studies=studies, latest=studies[-1]['family'], latest_file=studies[-1]['file'],
-                         release_pairs=pairs.get(f'{FONTS[face]["ps"]}-Regular.otf'),
+                         # audits of 2.010 hold for 2.100, which renamed it without touching outlines or spacing
+                         release_pairs=pairs.get(f'{FONTS[face]["ps"]}-Regular.otf') or pairs.get(f'{FONTS[face]["ps"].removesuffix("Digital")}-Regular.otf'),
                          sources=list(sources.values()), glyphs=list(glyphs.values()))
     return out, copies
 

@@ -7,7 +7,8 @@ import sys
 from build2 import FONTS, FAMILY_STYLES, VERSION
 
 ORDER = ['kilfane', 'tuam', 'carrick', 'ceili']
-NAMES = {'kilfane': ['Kilfane'], 'tuam': ['Tuam Uncial'], 'carrick': ['Carrick'], 'ceili': ['Céilí', 'Ceili']}
+NAMES = {k: [FONTS[k]['family']] for k in ORDER}
+NAMES['ceili'] = [FONTS['ceili']['family'], 'Ceili Digital']
 
 
 def face(name, ps, style, weight):
@@ -22,18 +23,19 @@ def face(name, ps, style, weight):
 def css():
     out = [f'''/*
  * Four Irish Typefaces: web fonts, version {VERSION}
- * Kilfane, Tuam Uncial, Carrick and Céilí, winners of the 1978
+ * Kilfane Digital, Tuam Uncial Digital, Carrick Digital and Céilí Digital: independent
+ * digitisations of Kilfane, Tuam Uncial, Carrick and Céilí, winners of the 1978
  * "Design an Irish Typeface" competition (Letraset, Kilkenny Design Workshops,
  * D. O'Sullivan Graphic Supplies). Digitised 2026 from the printed specimen sheet.
  * Copyright 2026 Dan Drayne. Licensed under the SIL Open Font License 1.1 (OFL.txt,
  * https://openfontlicense.org).
  *
- * Styles: Kilfane and Céilí have Regular, Italic, Bold and Bold Italic; Carrick and
- * Tuam Uncial, already black, have Regular and Italic. The 1978 sheet showed only the
+ * Styles: Kilfane Digital and Céilí Digital have Regular, Italic, Bold and Bold Italic;
+ * Carrick Digital and Tuam Uncial Digital, already black, have Regular and Italic. The 1978 sheet showed only the
  * regulars: the italics and bolds were drawn in 2026 from them.
  *
  * Usage:  <link rel="stylesheet" href="css/four-irish-typefaces.css">
- *         h1 {{ font-family: "Kilfane", serif; }}
+ *         h1 {{ font-family: "Kilfane Digital", serif; }}
  *         <b> and <i> (or font-weight: 700 / font-style: italic) select the real styles.
  * Paths below are relative to this file; keep the fonts/ folder beside css/.
  */
@@ -42,7 +44,7 @@ def css():
         cfg = FONTS[key]; styles = FAMILY_STYLES[key]; names = NAMES[key]
         has_bold = 'Bold' in styles
         if key == 'ceili':
-            out.append('/* Céilí is declared twice so it works with or without the accents in your CSS. */\n')
+            out.append('/* Céilí Digital is declared twice so it works with or without the accents in your CSS. */\n')
         if not has_bold:
             out.append(f'/* {names[0]} is already black: its one weight answers every font-weight (400 900),\n'
                        '   so bold text stays in the drawn weight instead of a smeared synthetic bold. */\n')
@@ -52,10 +54,10 @@ def css():
                 out.append(face(name, cfg['ps'], st, w))
         out.append('\n')
     out.append('''/* Convenience classes */
-.kilfane     { font-family: "Kilfane", serif; }
-.tuam-uncial { font-family: "Tuam Uncial", serif; }
-.carrick     { font-family: "Carrick", serif; }
-.ceili       { font-family: "Céilí", "Ceili", serif; }
+.kilfane     { font-family: "Kilfane Digital", serif; }
+.tuam-uncial { font-family: "Tuam Uncial Digital", serif; }
+.carrick     { font-family: "Carrick Digital", serif; }
+.ceili       { font-family: "Céilí Digital", "Ceili Digital", serif; }
 
 /* Stylistic sets (Kilfane and Céilí also support "salt" for single-glyph alternates) */
 .kilfane-roman-forms   { font-feature-settings: "ss01"; }  /* roman T Y d f l t y, pointed A */

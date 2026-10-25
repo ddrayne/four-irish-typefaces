@@ -523,8 +523,8 @@ footer p + p {{ margin-top: 8px; }}
 <pre id="css-snippet">&lt;link rel="stylesheet" href="css/four-irish-typefaces.css"&gt;
 
 &lt;style&gt;
-  h1    {{ font-family: "Céilí", "Ceili", serif; }}
-  .sign {{ font-family: "Carrick", serif; }}
+  h1    {{ font-family: "Céilí Digital", "Ceili Digital", serif; }}
+  .sign {{ font-family: "Carrick Digital", serif; }}
 &lt;/style&gt;
 
 &lt;!-- ready-made classes, including the stylistic sets --&gt;

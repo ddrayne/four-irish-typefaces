@@ -6,8 +6,8 @@ from fontTools.pens.recordingPen import RecordingPen
 
 ROOT=Path(__file__).resolve().parents[1]
 DIR=Path(os.environ.get('ROUND02_DIR',ROOT/'research/round-02'))
-FACES=[('kilfane','KilfaneStudy2','Kilfane'),('carrick','CarrickStudy1','Carrick'),
-       ('tuam','TuamUncialStudy1','TuamUncial'),('ceili','CeiliStudy1','Ceili')]
+FACES=[('kilfane','KilfaneStudy2','KilfaneDigital'),('carrick','CarrickStudy1','CarrickDigital'),
+       ('tuam','TuamUncialStudy1','TuamUncialDigital'),('ceili','CeiliStudy1','CeiliDigital')]
 
 
 def test_kilfane_named_marks_preserve_counters_and_uncertainty():
@@ -31,7 +31,7 @@ def test_kilfane_second_candidate_formats(ext):
     assert ots.sanitize(str(p),os.devnull,capture_output=True).returncode==0
     f=TTFont(p)
     assert f['name'].getDebugName(1)=='Kilfane Study 2'
-    baseline=TTFont(ROOT/'fonts/otf/Kilfane-Regular.otf')
+    baseline=TTFont(ROOT/'fonts/otf/KilfaneDigital-Regular.otf')
     assert f.getBestCmap().keys()==baseline.getBestCmap().keys()
     gs=f.getGlyphSet()
     for name,count in [('dieresis',2),('ring',2),('caron',1)]:
@@ -74,7 +74,7 @@ def test_carrick_reconstructs_supported_entries_and_keeps_detached_strokes():
     assert {g['name'] for g in data['glyphs'] if g['status']=='retained'}=={'e','f','x','y','ornament'}
     f=TTFont(DIR/'carrick/fonts/CarrickStudy1-Regular.otf')
     assert f['name'].getDebugName(1)=='Carrick Study 1'
-    baseline=TTFont(ROOT/'fonts/otf/Carrick-Regular.otf')
+    baseline=TTFont(ROOT/'fonts/otf/CarrickDigital-Regular.otf')
     assert f.getBestCmap().keys()==baseline.getBestCmap().keys()
     for name in ['c','k','u','v','w']:
         rec=RecordingPen();f.getGlyphSet()[name].draw(rec)

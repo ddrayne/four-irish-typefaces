@@ -32,7 +32,7 @@ def test_candidate_sanitizes_and_is_separately_named(ext):
 def test_candidate_keeps_coverage_and_shapes_irish_marks():
     import uharfbuzz as hb
     p=DIR/'KilfaneStudy1-Regular.otf'
-    f=TTFont(p);before=TTFont(ROOT/'fonts/otf/Kilfane-Regular.otf')
+    f=TTFont(p);before=TTFont(ROOT/'fonts/otf/KilfaneDigital-Regular.otf')
     assert f.getBestCmap().keys()==before.getBestCmap().keys()
     font=hb.Font(hb.Face(p.read_bytes()));hb.ot_font_set_funcs(font)
     for text in ['ÁÉÍÓÚ áéíóú','A\u0301 E\u0301 I\u0301 O\u0301 U\u0301','Ḃḃ Ċċ Ḋḋ Ḟḟ Ṁṁ Ṗṗ Ṡṡ Ṫṫ']:

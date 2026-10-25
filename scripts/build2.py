@@ -24,14 +24,16 @@ from letters import make_letters, stem_at, clip
 from symbols import make_symbols
 
 OUT = paths.FONTS
-VERSION = '2.010'
+VERSION = '2.100'
 RELEASE_DATE = '2026-10-25'          # stamped into head.created/modified, so a rebuild is byte-identical
 import calendar as _cal, time as _time
 os.environ.setdefault('SOURCE_DATE_EPOCH', str(_cal.timegm(_time.strptime(RELEASE_DATE, '%Y-%m-%d'))))  # fontTools saves honour it
 DIGITS = 'zero one two three four five six seven eight nine'.split()
 
+# name: the 1978 design; family and ps: these fonts, which carry "Digital" so that they are never taken
+# for the original type
 FONTS = {
-    'kilfane': dict(family='Kilfane', ps='Kilfane', designer='William Curran', unicase=False, style='round',
+    'kilfane': dict(name='Kilfane', family='Kilfane Digital', ps='KilfaneDigital', designer='William Curran', unicase=False, style='round',
                     lining=True, mark_weight=0.46, gap=0.09, note='Commended (£25)',
                     alts={'A': ['A.alt1', 'A.alt2'], 'D': ['D.alt1'], 'S': ['S.alt1'], 'T': ['T.alt1'],
                           'Y': ['Y.alt1'], 'd': ['d.alt1'], 'f': ['f.alt1'], 'g': ['g.alt1'],
@@ -40,13 +42,13 @@ FONTS = {
                                                    'f': 'f.alt1', 'l': 'l.alt1', 't': 't.alt1', 'y': 'y.alt1'}),
                           ('ss02', 'Insular forms', {'A': 'A.alt1', 'D': 'D.alt1', 'S': 'S.alt1', 'g': 'g.alt1'})],
                     insular={0xA779: 'D.alt1', 0xA77A: 'd', 0x1D79: 'g.alt1', 0xA77D: 'g.alt1', 0xA786: 'T', 0xA787: 't'}),
-    'tuam': dict(family='Tuam Uncial', ps='TuamUncial', designer='Jarlath Hayes', unicase=True, style='square',
+    'tuam': dict(name='Tuam Uncial', family='Tuam Uncial Digital', ps='TuamUncialDigital', designer='Jarlath Hayes', unicase=True, style='square',
                  lining=True, mark_weight=0.40, gap=0.035, note='Commended (£25)', alts={}, sets=[],
                  insular={0xA786: 't', 0xA787: 't'}),
-    'carrick': dict(family='Carrick', ps='Carrick', designer='William Curran', unicase=True, style='chisel',
+    'carrick': dict(name='Carrick', family='Carrick Digital', ps='CarrickDigital', designer='William Curran', unicase=True, style='chisel',
                     lining=True, mark_weight=0.44, gap=0.08, note='Highly Commended (£50)', alts={}, sets=[],
                     insular={0xA779: 'd', 0xA77A: 'd', 0xA786: 't', 0xA787: 't'}),
-    'ceili': dict(family='Céilí', ps='Ceili', designer='Hermann Hecht', unicase=True, style='round',
+    'ceili': dict(name='Céilí', family='Céilí Digital', ps='CeiliDigital', designer='Hermann Hecht', unicase=True, style='round',
                   lining=False, mark_weight=0.48, gap=0.09, note='First prize (£250 and a silver medallion)',
                   alts={'a': ['a.alt1', 'a.alt2'], 'd': ['d.alt1'], 'e': ['e.alt1'], 'j': ['j.alt1'],
                         'l': ['l.alt1'], 'n': ['n.alt1'], 'r': ['r.alt1'], 's': ['s.alt1'], 'v': ['v.alt1']},
@@ -1131,7 +1133,7 @@ class Font2:
         asc, desc, win = self.family_vm
         run = int(round(1000 * math.tan(math.radians(SLANT)))) if self.italic else 0
         fb.setupHorizontalHeader(ascent=asc, descent=desc, caretSlopeRise=1000, caretSlopeRun=run)
-        fam = cfg['family']
+        fam = cfg['family']; design = cfg.get('name', fam)
         new = {'Regular': '', 'Italic': ' The sloped style was drawn in 2026 from the 1978 regular.',
                'Bold': ' The bold was drawn in 2026 from the 1978 regular, with a wider pen.',
                'Bold Italic': ' The bold sloped style was drawn in 2026 from the 1978 regular.'}[style]
@@ -1143,9 +1145,10 @@ class Font2:
             familyName=fam, styleName=style, uniqueFontIdentifier=f'{VERSION};{ps}',
             fullName=f'{fam} {style}', psName=ps, version=f'Version {VERSION}',
             designer=cfg['designer'],
-            description=(f'{fam}: {cfg["note"]} in the 1978 "Design an Irish Typeface" competition sponsored by '
+            description=(f'{design}: {cfg["note"]} in the 1978 "Design an Irish Typeface" competition sponsored by '
                          'Letraset, Kilkenny Design Workshops and D. O\'Sullivan Graphic Supplies. Traced from the '
-                         '"Four Irish Typefaces" flyer; glyphs not on the sheet were drawn to match.' + new)), mac=False)
+                         '"Four Irish Typefaces" flyer; glyphs not on the sheet were drawn to match.' + new +
+                         (f' {fam} is an independent digitisation, not the original type.' if fam != design else ''))), mac=False)
         sel = (0x01 if self.italic else 0) | (0x20 if self.bold else 0)
         fb.setupOS2(sTypoAscender=asc, sTypoDescender=desc, sTypoLineGap=0, usWinAscent=max(asc, win[0]),
                     usWinDescent=max(-desc, win[1]), sxHeight=int(round(self.xh)), sCapHeight=int(round(self.cap)),
