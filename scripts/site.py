@@ -139,16 +139,15 @@ def main(dest, fontdir, licence):
         site_data.main(fontdir, cache); open(os.path.join(cache, 'stamp'), 'w').write(stamp)
     for k in ORDER:
         shutil.copy(os.path.join(cache, f'{k}.json'), os.path.join(site, 'data', f'{k}.json'))
-    for name in (f'four-irish-typefaces-fonts-v{V}.zip', f'four-irish-typefaces-v{V}.zip'):
-        shutil.copy(os.path.join(SP.ZIPS, name), os.path.join(site, 'downloads', name))
+    # the ZIPs are GitHub release assets (the page links them there); only their sizes are read here
     shutil.copy(os.path.join(PKG, 'docs/specimen/Four-Irish-Typefaces-specimen.pdf'), os.path.join(site, 'downloads'))
     shutil.copy(os.path.join(PKG, 'LICENSE.txt'), os.path.join(site, 'LICENSE.txt'))
     shutil.copy(os.path.join(PKG, 'LICENSE.txt'), os.path.join(site, 'fonts', 'LICENSE.txt'))
     Image.open(paths.SCAN).convert('L').save(os.path.join(site, 'img/flyer.jpg'), 'JPEG', quality=88, optimize=True, progressive=True)
     SP.icon(64, os.path.join(site, 'img/icon-64.png')); SP.icon(180, os.path.join(site, 'img/icon-180.png'))
     m_rows, n_flyer, mean = match_rows(os.path.join(site, 'data'))
-    sizes = dict(SIZE_FONTS=SP.kb(os.path.join(site, f'downloads/four-irish-typefaces-fonts-v{V}.zip')),
-                 SIZE_FULL=SP.kb(os.path.join(site, f'downloads/four-irish-typefaces-v{V}.zip')),
+    sizes = dict(SIZE_FONTS=SP.kb(os.path.join(SP.ZIPS, f'four-irish-typefaces-fonts-v{V}.zip')),
+                 SIZE_FULL=SP.kb(os.path.join(SP.ZIPS, f'four-irish-typefaces-v{V}.zip')),
                  SIZE_PDF=SP.kb(os.path.join(site, 'downloads/Four-Irish-Typefaces-specimen.pdf')))
     fill = dict(V=V, FACE_TILES=tiles(), TABS=tabs(), TESTER_ROWS=tester_rows(), SHEET_ROWS=sheet_rows(),
                 STYLE_CHIPS=style_chips(), FAMILY_ROWS=family_rows(),
@@ -199,29 +198,20 @@ def main(dest, fontdir, licence):
 
 
 def preview(site_dir, page_out, root):
-    """The claude.ai preview of the same page. ZIP files can't be served there, so the fonts package is
-    packed in the browser from served copies of its files; cache-busting queries are dropped."""
+    """The claude.ai preview of the same page; cache-busting queries are dropped. Its downloads link to
+    the GitHub releases, as the page's do."""
     if os.path.exists(root):
         shutil.rmtree(root)
-    shutil.copytree(site_dir, root, ignore=shutil.ignore_patterns('*.zip', 'social.png', 'index.html'))
-    for rel in ('README.md', 'index.html', 'css/four-irish-typefaces.css'):
-        os.makedirs(os.path.dirname(os.path.join(root, 'package', rel)), exist_ok=True)
-        shutil.copy(os.path.join(PKG, rel), os.path.join(root, 'package', rel))
+    # the page shows the fonts as WOFF2 (WOFF as the fallback); the other formats are in the release ZIPs
+    shutil.copytree(site_dir, root, ignore=shutil.ignore_patterns('*.zip', '*.otf', '*.ttf', 'social.png', 'index.html'))
     q = f'?v={V}'
     for rel in ('css/four-irish-typefaces.css',):
         p = os.path.join(root, rel); text = open(p).read().replace(q, ''); open(p, 'w').write(text)
-    entries = []
-    for fmt in ('woff2', 'woff', 'otf', 'ttf'):
-        for f in sorted(os.listdir(os.path.join(root, 'fonts', fmt))):
-            entries.append([f'four-irish-typefaces/fonts/{fmt}/{f}', f'fonts/{fmt}/{f}'])
-    entries += [['four-irish-typefaces/css/four-irish-typefaces.css', 'package/css/four-irish-typefaces.css'],
-                ['four-irish-typefaces/README.md', 'package/README.md'], ['four-irish-typefaces/LICENSE.txt', 'LICENSE.txt'],
-                ['four-irish-typefaces/index.html', 'package/index.html']]
     doc = open(os.path.join(site_dir, 'index.html')).read().replace(q, '')
     i = doc.index('<script type="application/json" id="config">') + len('<script type="application/json" id="config">')
     j = doc.index('</script>', i)
     cfg = json.loads(doc[i:j].replace('<\\/', '</'))
-    cfg.update(q='', pack=dict(name=f'four-irish-typefaces-fonts-v{V}.zip', entries=entries))
+    cfg.update(q='')
     doc = doc[:i] + json.dumps(cfg, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + doc[j:]
     open(page_out, 'w').write(doc)
     files = {}
