@@ -10,8 +10,10 @@ These fonts were digitised from a scan of the competition's "Four Irish Typeface
 flyer, then completed to roughly 400 characters each so they work on the web and in
 any app. Further original-source research, a source register and the separately
 named candidates are in [research/](research/README.md). The latest
-[round 3](research/round-03/README.md) reconstructs Tuam and Céilí from larger
-original reproductions. It builds on [round 2](research/round-02/README.md), which
+[round 5](research/round-05/README.md) recovers Carrick's original mark components,
+following [round 4](research/round-04/README.md) for Céilí's original punctuation.
+[Round 3](research/round-03/README.md) reconstructs Tuam and Céilí from larger
+original reproductions, following [round 2](research/round-02/README.md), which
 improved Kilfane's marks, Carrick's outlines and pair spacing across all four faces.
 Agents continuing this work should start with [the handoff](research/HANDOFF.md).
 Modern revival fonts are excluded as design references for this research.

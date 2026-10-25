@@ -17,12 +17,34 @@ def main():
     evidence=json.loads((args.traces/'evidence.json').read_text(encoding='utf-8'))
     piece_file=args.traces/'pieces.json'
     piece_data=json.loads(piece_file.read_text(encoding='utf-8')) if piece_file.exists() else None
+    punctuation_file=args.traces/'punctuation.json'
+    punctuation_data=json.loads(punctuation_file.read_text(encoding='utf-8')) if punctuation_file.exists() else None
+    if punctuation_data is not None and args.face!='ceili':raise ValueError('named punctuation is currently defined only for Ceili')
     cfg=build2.FONTS[args.face]
     build2.VERSION=f'2.{args.study:03d}'
     build2.FONTS[args.face]=dict(cfg,family=f'{cfg["family"]} Study {args.study}',ps=f'{cfg["ps"]}Study{args.study}')
     build2.FAMILY_STYLES[args.face]=['Regular']
 
     class OriginalStudy(build2.Font2):
+        def punctuation(self):
+            if punctuation_data is not None:
+                self.source_punctuation={}
+                for record in punctuation_data['pieces']:
+                    p=pathops.Path();replayRecording(record['rec'],p.getPen())
+                    self.source_punctuation[record['name']]=clean(p)
+            super().punctuation()
+            if punctuation_data is not None:
+                for name in ['period','comma','quoteleft','quoteright']:
+                    record=next(p for p in punctuation_data['pieces'] if p['name']==name)
+                    self.made[name]=f'named NIVAL N45 {name}; region {record["box"]}; text position adjusted'
+                self.made.update(colon='two NIVAL N45 periods; modern text placement',
+                    semicolon='NIVAL N45 comma and period; modern text placement',
+                    ellipsis='three NIVAL N45 periods; modern text spacing',
+                    quotedblleft='two NIVAL N45 opening quotes; modern text spacing',
+                    quotedblright='two NIVAL N45 closing quotes; modern text spacing',
+                    quotesingle='modern wedge; width calibrated to named NIVAL N45 period',
+                    quotedbl='two modern wedges; width calibrated to named NIVAL N45 period')
+
         def hairlines(self):
             disabled=set(evidence.get('disable_legacy_hairlines',[]))
             if disabled:
@@ -47,10 +69,19 @@ def main():
             for record in piece_data['pieces']:
                 p=pathops.Path();replayRecording(record['rec'],p.getPen())
                 self.piece[record['name']]=clean(p)
-            self.made['accents']='named original-source marks; see pieces.json; ambiguous lower pair is unassigned'
+            self.made['accents']=piece_data.get('decision','named original-source marks; see pieces.json; ambiguous lower pair is unassigned')
 
         def mark_words(self,kind):
             description=super().mark_words(kind)
+            if punctuation_data is not None:
+                if kind in {'commabelow','commaturned'}:
+                    return f'{self.MARK_WORDS[kind]}; modern transformation of the named NIVAL N45 comma'
+                if kind=='caronvert':
+                    return 'apostrophe caron; modern transformation of the named NIVAL N45 quoteright'
+                if kind=='dot':
+                    return 'dot; modern placement of the named NIVAL N45 period'
+                if kind=='dieresis':
+                    return 'diaeresis; modern scaled pair of the named NIVAL N45 period'
             if piece_data is None:
                 if self.key=='tuam' and kind in {'acute','grave','hungarumlaut'}:
                     record=next((g for g in evidence['glyphs'] if g['name']=='uacute' and g['status']=='candidate'),None)
@@ -59,6 +90,21 @@ def main():
                         return f'{self.MARK_WORDS[kind]} {operation} from the accent on uacute; mark source NIVAL {record["source"]}, region {record["box"]}'
                 return description
             word=self.MARK_WORDS[kind]
+            if self.key=='carrick':
+                if kind in {'acute','tilde','dot','ring','circumflex'}:
+                    return f'{word}; directly traced NIVAL N513 {kind} in pieces.json'
+                if kind=='dieresis':
+                    return 'diaeresis retained from legacy construction; N513 lower paired component remains unassigned'
+                if kind in {'grave','hungarumlaut','breve','caron'}:
+                    parent={'grave':'acute','hungarumlaut':'acute','breve':'ring','caron':'circumflex'}[kind]
+                    return f'{word}; modern construction from named NIVAL N513 {parent}'
+                if kind=='macron':
+                    return 'macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules'
+                if kind in {'commabelow','commaturned','caronvert'}:
+                    return f'{word}; modern transformation of NIVAL N513 semicolon punctuation'
+                if kind in {'ogonek','cedilla'}:
+                    return f'{word}; modern drawn mark, stroke weight calibrated from NIVAL N513 ring'
+                return description+'; modern construction'
             direct={'acute':['acute'],'tilde':['tilde'],'dot':['dot'],'ring':['ring'],
                     'circumflex':['circumflex'],'dieresis':['dieresis.l','dieresis.r']}
             derived={'grave':'acute','hungarumlaut':'acute','breve':'ring','caron':'circumflex'}
@@ -91,7 +137,12 @@ def main():
                    'guillemotright':'guil.r1 + guil.r2','guillemotleft':'guil.l1 + guil.l2'}
     for name,(kind,construction) in list(provenance.items()):
         if piece_data is not None and name in piece_sources:
-            provenance[name]=[kind,construction+'; named source pieces: NIVAL N516 '+piece_sources[name]]
+            source_id=piece_data.get('primary_source_id','N516')
+            detail=piece_sources[name]
+            if source_id=='N513':
+                lookup={p['name']:p for p in piece_data['pieces']}
+                detail=' + '.join(n+' ('+lookup[n]['status']+')' for n in detail.split(' + '))
+            provenance[name]=[kind,construction+f'; named source pieces: NIVAL {source_id} '+detail]
         g=updated.get(deps.get(name,name))
         if not g:continue
         construction=construction.replace('the 1978 flyer','the NIVAL specimen').replace('the flyer’s','the NIVAL specimen’s')

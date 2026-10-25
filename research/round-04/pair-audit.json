@@ -1,0 +1,45 @@
+{
+  "method": "HarfBuzz-shaped pair audits: Kilfane/Carrick/Tuam Latin-only; Ceili Latin plus punctuation. Default kerning; exact intersections above four square font units.",
+  "fonts": [
+    {
+      "font": "TuamUncialStudy2-Regular.otf",
+      "characters": 271,
+      "pairs_tested": 73441,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "CeiliStudy3-Regular.otf",
+      "characters": 299,
+      "pairs_tested": 89401,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "KilfaneStudy2-Regular.otf",
+      "characters": 275,
+      "pairs_tested": 75625,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "CarrickStudy1-Regular.otf",
+      "characters": 273,
+      "pairs_tested": 74529,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    }
+  ]
+}

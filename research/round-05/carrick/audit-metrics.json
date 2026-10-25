@@ -1,0 +1,293 @@
+{
+  "face": "carrick",
+  "raster_method": "8x8 pixel-centred coverage, threshold >0.5",
+  "summary": {
+    "Carrick-alphabet-specimen.jpg": {
+      "entries": 7,
+      "before": 0.738060206953555,
+      "candidate": 0.9304481576261578,
+      "improved": 7,
+      "regressions": []
+    },
+    "competition-advert-2.jpg": {
+      "entries": 7,
+      "before": 0.7700040088358,
+      "candidate": 0.9113243469222245,
+      "improved": 7,
+      "regressions": []
+    }
+  },
+  "glyphs": [
+    {
+      "name": "dotaccent",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7555110220440882,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9121447028423773,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.1566336807982891
+    },
+    {
+      "name": "acute",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8230912476722533,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9556025369978859,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.1325112893256326
+    },
+    {
+      "name": "circumflex",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7288414133114215,
+        "offset": [
+          -3,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9337676438653637,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.2049262305539422
+    },
+    {
+      "name": "ring",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.686382393397524,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9022988505747126,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.21591645717718855
+    },
+    {
+      "name": "guilsinglleft",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.6334144363341444,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9288061336254108,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.29539169729126635
+    },
+    {
+      "name": "guilsinglright",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7638279192273925,
+        "offset": [
+          -3,
+          5
+        ]
+      },
+      "candidate": {
+        "iou": 0.929372197309417,
+        "offset": [
+          0,
+          3
+        ]
+      },
+      "delta": 0.16554427808202454
+    },
+    {
+      "name": "tilde",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7753530166880617,
+        "offset": [
+          -1,
+          -4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9511450381679389,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.17579202147987727
+    },
+    {
+      "name": "dotaccent",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8274582560296846,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.875,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.04754174397031541
+    },
+    {
+      "name": "acute",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8288590604026845,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9305816135084428,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.10172255310575828
+    },
+    {
+      "name": "circumflex",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7569392348087022,
+        "offset": [
+          -2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9142581888246628,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.15731895401596063
+    },
+    {
+      "name": "ring",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7278401997503121,
+        "offset": [
+          -3,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9033898305084745,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.17554963075816243
+    },
+    {
+      "name": "guilsinglleft",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.6600587371512482,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9151398264223722,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "delta": 0.25508108927112405
+    },
+    {
+      "name": "guilsinglright",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8110300081103001,
+        "offset": [
+          -1,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9100790513833992,
+        "offset": [
+          1,
+          4
+        ]
+      },
+      "delta": 0.09904904327309905
+    },
+    {
+      "name": "tilde",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.7778425655976676,
+        "offset": [
+          -1,
+          -4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9308219178082192,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.1529793522105516
+    }
+  ],
+  "limitations": [
+    "Additional reproductions can share source history. These are source-fit measurements, not authenticity scores.",
+    "Uniform source scaling and integer translation only; source-derived entries are not a blind holdout.",
+    "Semicolon excluded because the text builder changes its layout."
+  ]
+}

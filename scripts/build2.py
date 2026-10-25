@@ -530,7 +530,12 @@ class Font2:
     def punctuation(self):
         P, xh, S = self.P, self.xh, self.S
         qtop = self.cap if not self.cfg['unicase'] else self.asc
-        if self.key in ('kilfane', 'carrick'):
+        source_parts = getattr(self, 'source_punctuation', None)
+        if source_parts is not None:
+            dot, comma = source_parts['period'], source_parts['comma']
+            ql, qr = source_parts['quoteleft'], source_parts['quoteright']
+            P.pop('DOTS', None)
+        elif self.key in ('kilfane', 'carrick'):
             # the sheet's semicolon gives the comma and the dot; its own pair is drawn compact and set
             # high between the parentheses, but here the dot aligns with the colon's like any text face
             comma, dot = sorted(contours(P.pop('semicolon')), key=lambda c: bounds(c)[1])

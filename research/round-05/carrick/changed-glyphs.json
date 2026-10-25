@@ -1,0 +1,2399 @@
+{
+  "method": "Actual OTF shapes, horizontal origin normalised, vertical placement retained; overlap below 0.995 listed. Small rounding differences below this threshold excluded.",
+  "glyphs": [
+    {
+      "name": "aacute",
+      "iou": 0.9687146899193982,
+      "previous_bounds": [
+        18,
+        0,
+        645,
+        905
+      ],
+      "candidate_bounds": [
+        18,
+        0,
+        645,
+        867
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "abreve",
+      "iou": 0.9784107529360103,
+      "previous_bounds": [
+        18,
+        0,
+        645,
+        670
+      ],
+      "candidate_bounds": [
+        18,
+        0,
+        645,
+        657
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "acircumflex",
+      "iou": 0.9591910514900668,
+      "previous_bounds": [
+        18,
+        0,
+        645,
+        786
+      ],
+      "candidate_bounds": [
+        18,
+        0,
+        645,
+        768
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "acute",
+      "iou": 0.7704222398628748,
+      "previous_bounds": [
+        34,
+        592,
+        304,
+        915
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        306,
+        877
+      ],
+      "previous_advance": 339,
+      "candidate_advance": 340
+    },
+    {
+      "name": "acutecomb",
+      "iou": 0.7722351620491215,
+      "previous_bounds": [
+        -465,
+        592,
+        -195,
+        915
+      ],
+      "candidate_bounds": [
+        -466,
+        592,
+        -194,
+        877
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "agrave",
+      "iou": 0.9686929856607598,
+      "previous_bounds": [
+        18,
+        0,
+        645,
+        905
+      ],
+      "candidate_bounds": [
+        18,
+        0,
+        645,
+        867
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "aogonek",
+      "iou": 0.9923693238153489,
+      "previous_bounds": [
+        18,
+        -158.25483399593904,
+        645,
+        539
+      ],
+      "candidate_bounds": [
+        18,
+        -153.25483399593904,
+        645,
+        539
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "approxequal",
+      "iou": 0.7558839398985286,
+      "previous_bounds": [
+        86,
+        -9,
+        606,
+        524
+      ],
+      "candidate_bounds": [
+        86,
+        -27,
+        606,
+        542.044586657931
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "aring",
+      "iou": 0.9681457804492701,
+      "previous_bounds": [
+        18,
+        0,
+        645,
+        757
+      ],
+      "candidate_bounds": [
+        18,
+        0,
+        645,
+        732
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "asciicircum",
+      "iou": 0.6933718615034685,
+      "previous_bounds": [
+        46,
+        343,
+        606,
+        618
+      ],
+      "candidate_bounds": [
+        46,
+        343,
+        573,
+        593
+      ],
+      "previous_advance": 651,
+      "candidate_advance": 619
+    },
+    {
+      "name": "asciitilde",
+      "iou": 0.7176376856880473,
+      "previous_bounds": [
+        61,
+        203,
+        582,
+        450
+      ],
+      "candidate_bounds": [
+        61,
+        203,
+        582,
+        469.04453342365093
+      ],
+      "previous_advance": 643,
+      "candidate_advance": 643
+    },
+    {
+      "name": "at",
+      "iou": 0.9905104447059665,
+      "previous_bounds": [
+        40,
+        -168,
+        836,
+        628
+      ],
+      "candidate_bounds": [
+        40,
+        -168,
+        836,
+        628
+      ],
+      "previous_advance": 877,
+      "candidate_advance": 877
+    },
+    {
+      "name": "atilde",
+      "iou": 0.9397891191288287,
+      "previous_bounds": [
+        18,
+        0,
+        645,
+        759
+      ],
+      "candidate_bounds": [
+        18,
+        0,
+        645,
+        773
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "breve",
+      "iou": 0.5841353524395667,
+      "previous_bounds": [
+        34,
+        592,
+        261,
+        679
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        230,
+        666
+      ],
+      "previous_advance": 295,
+      "candidate_advance": 265
+    },
+    {
+      "name": "cacute",
+      "iou": 0.9529870055906321,
+      "previous_bounds": [
+        21,
+        -8,
+        525,
+        884
+      ],
+      "candidate_bounds": [
+        21,
+        -8,
+        525,
+        846
+      ],
+      "previous_advance": 534,
+      "candidate_advance": 534
+    },
+    {
+      "name": "caron",
+      "iou": 0.6323085696701951,
+      "previous_bounds": [
+        34,
+        592,
+        449,
+        796
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        425,
+        777
+      ],
+      "previous_advance": 483,
+      "candidate_advance": 459
+    },
+    {
+      "name": "ccaron",
+      "iou": 0.9132075178128789,
+      "previous_bounds": [
+        21,
+        -8,
+        525,
+        765
+      ],
+      "candidate_bounds": [
+        21,
+        -8,
+        525,
+        747
+      ],
+      "previous_advance": 534,
+      "candidate_advance": 534
+    },
+    {
+      "name": "ccedilla",
+      "iou": 0.9865220246794317,
+      "previous_bounds": [
+        21,
+        -156.59375,
+        525,
+        517
+      ],
+      "candidate_bounds": [
+        21,
+        -152.59375,
+        525,
+        517
+      ],
+      "previous_advance": 534,
+      "candidate_advance": 534
+    },
+    {
+      "name": "ccircumflex",
+      "iou": 0.938186637302848,
+      "previous_bounds": [
+        21,
+        -8,
+        525,
+        765
+      ],
+      "candidate_bounds": [
+        21,
+        -8,
+        525,
+        747
+      ],
+      "previous_advance": 534,
+      "candidate_advance": 534
+    },
+    {
+      "name": "cdotaccent",
+      "iou": 0.970775060994529,
+      "previous_bounds": [
+        21,
+        -8,
+        525,
+        711
+      ],
+      "candidate_bounds": [
+        21,
+        -8,
+        525,
+        694
+      ],
+      "previous_advance": 534,
+      "candidate_advance": 534
+    },
+    {
+      "name": "cedilla",
+      "iou": 0.8611310030785544,
+      "previous_bounds": [
+        34,
+        -165.59375,
+        217,
+        22
+      ],
+      "candidate_bounds": [
+        34,
+        -161.59375,
+        213,
+        22
+      ],
+      "previous_advance": 251,
+      "candidate_advance": 248
+    },
+    {
+      "name": "circumflex",
+      "iou": 0.6926136675213909,
+      "previous_bounds": [
+        34,
+        592,
+        449,
+        796
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        425,
+        777
+      ],
+      "previous_advance": 483,
+      "candidate_advance": 459
+    },
+    {
+      "name": "copyright",
+      "iou": 0.9850379549241937,
+      "previous_bounds": [
+        28,
+        0,
+        581,
+        553
+      ],
+      "candidate_bounds": [
+        28,
+        0,
+        581,
+        553
+      ],
+      "previous_advance": 609,
+      "candidate_advance": 609
+    },
+    {
+      "name": "currency",
+      "iou": 0.9717666223189836,
+      "previous_bounds": [
+        28,
+        52,
+        439,
+        463
+      ],
+      "candidate_bounds": [
+        28,
+        51,
+        440,
+        464
+      ],
+      "previous_advance": 467,
+      "candidate_advance": 468
+    },
+    {
+      "name": "dagger",
+      "iou": 0.994616647039118,
+      "previous_bounds": [
+        6,
+        -116,
+        263,
+        570
+      ],
+      "candidate_bounds": [
+        6,
+        -116,
+        263,
+        570
+      ],
+      "previous_advance": 270,
+      "candidate_advance": 270
+    },
+    {
+      "name": "daggerdbl",
+      "iou": 0.9750906664203249,
+      "previous_bounds": [
+        9,
+        -116,
+        266,
+        570
+      ],
+      "candidate_bounds": [
+        8,
+        -116,
+        266,
+        570
+      ],
+      "previous_advance": 273,
+      "candidate_advance": 273
+    },
+    {
+      "name": "degree",
+      "iou": 0.6524135166182139,
+      "previous_bounds": [
+        46,
+        378,
+        227,
+        553
+      ],
+      "candidate_bounds": [
+        46,
+        403,
+        203,
+        553
+      ],
+      "previous_advance": 273,
+      "candidate_advance": 249
+    },
+    {
+      "name": "divide",
+      "iou": 0.9778189709761489,
+      "previous_bounds": [
+        69,
+        37,
+        623,
+        478
+      ],
+      "candidate_bounds": [
+        69,
+        34,
+        623,
+        481
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "dotaccent",
+      "iou": 0.6893683432042084,
+      "previous_bounds": [
+        34,
+        592,
+        192,
+        741
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        173,
+        724
+      ],
+      "previous_advance": 226,
+      "candidate_advance": 208
+    },
+    {
+      "name": "eacute",
+      "iou": 0.9649894337950786,
+      "previous_bounds": [
+        25,
+        -8,
+        602,
+        905
+      ],
+      "candidate_bounds": [
+        25,
+        -8,
+        602,
+        867
+      ],
+      "previous_advance": 627,
+      "candidate_advance": 627
+    },
+    {
+      "name": "ebreve",
+      "iou": 0.9756399584335891,
+      "previous_bounds": [
+        25,
+        -8,
+        602,
+        670
+      ],
+      "candidate_bounds": [
+        25,
+        -8,
+        602,
+        657
+      ],
+      "previous_advance": 627,
+      "candidate_advance": 627
+    },
+    {
+      "name": "ecaron",
+      "iou": 0.93594875082973,
+      "previous_bounds": [
+        25,
+        -8,
+        602,
+        787
+      ],
+      "candidate_bounds": [
+        25,
+        -8,
+        602,
+        768
+      ],
+      "previous_advance": 627,
+      "candidate_advance": 627
+    },
+    {
+      "name": "ecircumflex",
+      "iou": 0.953795455690918,
+      "previous_bounds": [
+        25,
+        -8,
+        602,
+        787
+      ],
+      "candidate_bounds": [
+        25,
+        -8,
+        602,
+        768
+      ],
+      "previous_advance": 627,
+      "candidate_advance": 627
+    },
+    {
+      "name": "edotaccent",
+      "iou": 0.9788642199142769,
+      "previous_bounds": [
+        25,
+        -8,
+        602,
+        732
+      ],
+      "candidate_bounds": [
+        25,
+        -8,
+        602,
+        715
+      ],
+      "previous_advance": 627,
+      "candidate_advance": 627
+    },
+    {
+      "name": "egrave",
+      "iou": 0.9650941690738671,
+      "previous_bounds": [
+        25,
+        -8,
+        602,
+        905
+      ],
+      "candidate_bounds": [
+        25,
+        -8,
+        602,
+        867
+      ],
+      "previous_advance": 627,
+      "candidate_advance": 627
+    },
+    {
+      "name": "eogonek",
+      "iou": 0.9911342976970623,
+      "previous_bounds": [
+        25,
+        -149.25483399593904,
+        602,
+        539
+      ],
+      "candidate_bounds": [
+        25,
+        -144.25483399593904,
+        602,
+        539
+      ],
+      "previous_advance": 627,
+      "candidate_advance": 627
+    },
+    {
+      "name": "equal",
+      "iou": 0.9462982728028725,
+      "previous_bounds": [
+        69,
+        132,
+        623,
+        383
+      ],
+      "candidate_bounds": [
+        69,
+        129,
+        623,
+        386
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "fraction",
+      "iou": 0.967774984499149,
+      "previous_bounds": [
+        -46,
+        -17,
+        205,
+        559
+      ],
+      "candidate_bounds": [
+        -46,
+        -17,
+        206,
+        559
+      ],
+      "previous_advance": 159,
+      "candidate_advance": 160
+    },
+    {
+      "name": "gbreve",
+      "iou": 0.9809401452479622,
+      "previous_bounds": [
+        17,
+        -155,
+        604,
+        670
+      ],
+      "candidate_bounds": [
+        17,
+        -155,
+        604,
+        657
+      ],
+      "previous_advance": 668,
+      "candidate_advance": 668
+    },
+    {
+      "name": "gcircumflex",
+      "iou": 0.9635327013087065,
+      "previous_bounds": [
+        17,
+        -155,
+        604,
+        786
+      ],
+      "candidate_bounds": [
+        17,
+        -155,
+        604,
+        768
+      ],
+      "previous_advance": 668,
+      "candidate_advance": 668
+    },
+    {
+      "name": "gdotaccent",
+      "iou": 0.9835132332389606,
+      "previous_bounds": [
+        17,
+        -155,
+        604,
+        732
+      ],
+      "candidate_bounds": [
+        17,
+        -155,
+        604,
+        715
+      ],
+      "previous_advance": 668,
+      "candidate_advance": 668
+    },
+    {
+      "name": "grave",
+      "iou": 0.7825416292910208,
+      "previous_bounds": [
+        34,
+        592,
+        304,
+        915
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        306,
+        877
+      ],
+      "previous_advance": 339,
+      "candidate_advance": 340
+    },
+    {
+      "name": "gravecomb",
+      "iou": 0.780431039690449,
+      "previous_bounds": [
+        -465,
+        592,
+        -195,
+        915
+      ],
+      "candidate_bounds": [
+        -466,
+        592,
+        -194,
+        877
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "greater",
+      "iou": 0.9663089128680448,
+      "previous_bounds": [
+        120,
+        -5,
+        572,
+        520
+      ],
+      "candidate_bounds": [
+        118,
+        -5,
+        574,
+        521
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "greaterequal",
+      "iou": 0.9560313018880309,
+      "previous_bounds": [
+        105,
+        15,
+        587,
+        495
+      ],
+      "candidate_bounds": [
+        104,
+        11,
+        588,
+        496
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "guillemotleft",
+      "iou": 0.6342595810042454,
+      "previous_bounds": [
+        38,
+        78,
+        394,
+        437
+      ],
+      "candidate_bounds": [
+        38,
+        96,
+        394,
+        419
+      ],
+      "previous_advance": 433,
+      "candidate_advance": 432
+    },
+    {
+      "name": "guillemotright",
+      "iou": 0.561445796508978,
+      "previous_bounds": [
+        38,
+        78,
+        394,
+        437
+      ],
+      "candidate_bounds": [
+        38,
+        102,
+        349,
+        413
+      ],
+      "previous_advance": 433,
+      "candidate_advance": 388
+    },
+    {
+      "name": "guilsinglleft",
+      "iou": 0.6355603500712456,
+      "previous_bounds": [
+        38,
+        78,
+        228,
+        437
+      ],
+      "candidate_bounds": [
+        38,
+        96,
+        227,
+        419
+      ],
+      "previous_advance": 266,
+      "candidate_advance": 265
+    },
+    {
+      "name": "guilsinglright",
+      "iou": 0.6885967527127621,
+      "previous_bounds": [
+        38,
+        78,
+        228,
+        437
+      ],
+      "candidate_bounds": [
+        38,
+        102,
+        204,
+        413
+      ],
+      "previous_advance": 266,
+      "candidate_advance": 242
+    },
+    {
+      "name": "hbar",
+      "iou": 0.9898969228324858,
+      "previous_bounds": [
+        -68,
+        -8,
+        594,
+        719
+      ],
+      "candidate_bounds": [
+        -69,
+        -8,
+        594,
+        719
+      ],
+      "previous_advance": 652,
+      "candidate_advance": 652
+    },
+    {
+      "name": "hcircumflex",
+      "iou": 0.8642128187109522,
+      "previous_bounds": [
+        -94,
+        -8,
+        594,
+        967
+      ],
+      "candidate_bounds": [
+        -82,
+        -8,
+        594,
+        948
+      ],
+      "previous_advance": 652,
+      "candidate_advance": 652
+    },
+    {
+      "name": "hungarumlaut",
+      "iou": 0.7593468765513383,
+      "previous_bounds": [
+        34,
+        592,
+        428,
+        882
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        431,
+        848
+      ],
+      "previous_advance": 462,
+      "candidate_advance": 465
+    },
+    {
+      "name": "iacute",
+      "iou": 0.9431639992315554,
+      "previous_bounds": [
+        8,
+        -8,
+        323,
+        907
+      ],
+      "candidate_bounds": [
+        8,
+        -8,
+        323,
+        869
+      ],
+      "previous_advance": 387,
+      "candidate_advance": 387
+    },
+    {
+      "name": "ibreve",
+      "iou": 0.9577269337328569,
+      "previous_bounds": [
+        8,
+        -8,
+        323,
+        672
+      ],
+      "candidate_bounds": [
+        8,
+        -8,
+        323,
+        659
+      ],
+      "previous_advance": 387,
+      "candidate_advance": 387
+    },
+    {
+      "name": "icircumflex",
+      "iou": 0.8348463229591021,
+      "previous_bounds": [
+        -42,
+        -8,
+        372,
+        788
+      ],
+      "candidate_bounds": [
+        -30,
+        -8,
+        360,
+        770
+      ],
+      "previous_advance": 387,
+      "candidate_advance": 387
+    },
+    {
+      "name": "igrave",
+      "iou": 0.943831433101032,
+      "previous_bounds": [
+        8,
+        -8,
+        323,
+        907
+      ],
+      "candidate_bounds": [
+        8,
+        -8,
+        323,
+        869
+      ],
+      "previous_advance": 387,
+      "candidate_advance": 387
+    },
+    {
+      "name": "iogonek",
+      "iou": 0.987384759448153,
+      "previous_bounds": [
+        8,
+        -158.25483399593904,
+        323,
+        733
+      ],
+      "candidate_bounds": [
+        8,
+        -153.25483399593904,
+        323,
+        733
+      ],
+      "previous_advance": 387,
+      "candidate_advance": 387
+    },
+    {
+      "name": "itilde",
+      "iou": 0.8513397000088289,
+      "previous_bounds": [
+        -49,
+        -8,
+        379,
+        760
+      ],
+      "candidate_bounds": [
+        -42,
+        -8,
+        372,
+        775
+      ],
+      "previous_advance": 387,
+      "candidate_advance": 387
+    },
+    {
+      "name": "jcircumflex",
+      "iou": 0.9440775252652372,
+      "previous_bounds": [
+        -178,
+        -178,
+        324,
+        787
+      ],
+      "candidate_bounds": [
+        -178,
+        -178,
+        324,
+        768
+      ],
+      "previous_advance": 380,
+      "candidate_advance": 380
+    },
+    {
+      "name": "lacute",
+      "iou": 0.9583191505899407,
+      "previous_bounds": [
+        -93,
+        -8,
+        284,
+        1099
+      ],
+      "candidate_bounds": [
+        -93,
+        -8,
+        284,
+        1061
+      ],
+      "previous_advance": 341,
+      "candidate_advance": 341
+    },
+    {
+      "name": "less",
+      "iou": 0.9607571057383909,
+      "previous_bounds": [
+        120,
+        -5,
+        572,
+        520
+      ],
+      "candidate_bounds": [
+        118,
+        -5,
+        574,
+        521
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "lessequal",
+      "iou": 0.9570201846847961,
+      "previous_bounds": [
+        105,
+        15,
+        587,
+        495
+      ],
+      "candidate_bounds": [
+        104,
+        11,
+        588,
+        496
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "logicalnot",
+      "iou": 0.9744472740276564,
+      "previous_bounds": [
+        69,
+        142,
+        623,
+        345
+      ],
+      "candidate_bounds": [
+        69,
+        142,
+        623,
+        347
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "macron",
+      "iou": 0.9668149589381257,
+      "previous_bounds": [
+        34,
+        592,
+        309,
+        668
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        310,
+        670
+      ],
+      "previous_advance": 343,
+      "candidate_advance": 344
+    },
+    {
+      "name": "multiply",
+      "iou": 0.9758301268495296,
+      "previous_bounds": [
+        164,
+        99,
+        528,
+        416
+      ],
+      "candidate_bounds": [
+        163,
+        99,
+        529,
+        417
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "nacute",
+      "iou": 0.9661225283034793,
+      "previous_bounds": [
+        8,
+        -8,
+        614,
+        904
+      ],
+      "candidate_bounds": [
+        8,
+        -8,
+        614,
+        866
+      ],
+      "previous_advance": 675,
+      "candidate_advance": 675
+    },
+    {
+      "name": "ncaron",
+      "iou": 0.9392713322537942,
+      "previous_bounds": [
+        8,
+        -8,
+        614,
+        787
+      ],
+      "candidate_bounds": [
+        8,
+        -8,
+        614,
+        768
+      ],
+      "previous_advance": 675,
+      "candidate_advance": 675
+    },
+    {
+      "name": "notequal",
+      "iou": 0.9595756319377657,
+      "previous_bounds": [
+        69,
+        19,
+        623,
+        496
+      ],
+      "candidate_bounds": [
+        69,
+        19,
+        623,
+        496
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "ntilde",
+      "iou": 0.936679191467401,
+      "previous_bounds": [
+        8,
+        -8,
+        614,
+        759
+      ],
+      "candidate_bounds": [
+        8,
+        -8,
+        614,
+        773
+      ],
+      "previous_advance": 675,
+      "candidate_advance": 675
+    },
+    {
+      "name": "numbersign",
+      "iou": 0.9747894182116987,
+      "previous_bounds": [
+        9,
+        -7,
+        446,
+        560
+      ],
+      "candidate_bounds": [
+        8,
+        -7,
+        447,
+        560
+      ],
+      "previous_advance": 474,
+      "candidate_advance": 475
+    },
+    {
+      "name": "oacute",
+      "iou": 0.9684871388672844,
+      "previous_bounds": [
+        23,
+        0,
+        684,
+        920
+      ],
+      "candidate_bounds": [
+        23,
+        0,
+        684,
+        882
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "obreve",
+      "iou": 0.9780393666003139,
+      "previous_bounds": [
+        23,
+        0,
+        684,
+        685
+      ],
+      "candidate_bounds": [
+        23,
+        0,
+        684,
+        672
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "ocircumflex",
+      "iou": 0.9584990715611045,
+      "previous_bounds": [
+        23,
+        0,
+        684,
+        802
+      ],
+      "candidate_bounds": [
+        23,
+        0,
+        684,
+        783
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "ogonek",
+      "iou": 0.8522391650163512,
+      "previous_bounds": [
+        34.2,
+        -170.25483399593904,
+        187,
+        22
+      ],
+      "candidate_bounds": [
+        34.916666666666664,
+        -165.25483399593904,
+        182,
+        22
+      ],
+      "previous_advance": 221,
+      "candidate_advance": 216
+    },
+    {
+      "name": "ograve",
+      "iou": 0.9684383821324033,
+      "previous_bounds": [
+        23,
+        0,
+        684,
+        920
+      ],
+      "candidate_bounds": [
+        23,
+        0,
+        684,
+        882
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "ohungarumlaut",
+      "iou": 0.95755690023685,
+      "previous_bounds": [
+        23,
+        0,
+        684,
+        888
+      ],
+      "candidate_bounds": [
+        23,
+        0,
+        684,
+        854
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "onehalf",
+      "iou": 0.9921459210825906,
+      "previous_bounds": [
+        9,
+        -17,
+        590,
+        559
+      ],
+      "candidate_bounds": [
+        9,
+        -17,
+        591,
+        559
+      ],
+      "previous_advance": 604,
+      "candidate_advance": 605
+    },
+    {
+      "name": "onequarter",
+      "iou": 0.9924168386752102,
+      "previous_bounds": [
+        9,
+        -17,
+        614,
+        559
+      ],
+      "candidate_bounds": [
+        9,
+        -17,
+        615,
+        559
+      ],
+      "previous_advance": 623,
+      "candidate_advance": 624
+    },
+    {
+      "name": "ordfeminine",
+      "iou": 0.9920054737958053,
+      "previous_bounds": [
+        15,
+        156,
+        388.39230484541326,
+        553
+      ],
+      "candidate_bounds": [
+        17,
+        156,
+        390,
+        553
+      ],
+      "previous_advance": 420,
+      "candidate_advance": 423
+    },
+    {
+      "name": "ordmasculine",
+      "iou": 0.9916975534865526,
+      "previous_bounds": [
+        18,
+        148,
+        410,
+        553
+      ],
+      "candidate_bounds": [
+        20,
+        148,
+        411,
+        553
+      ],
+      "previous_advance": 427,
+      "candidate_advance": 430
+    },
+    {
+      "name": "otilde",
+      "iou": 0.9400022975537363,
+      "previous_bounds": [
+        23,
+        0,
+        684,
+        774
+      ],
+      "candidate_bounds": [
+        23,
+        0,
+        684,
+        788
+      ],
+      "previous_advance": 704,
+      "candidate_advance": 704
+    },
+    {
+      "name": "percent",
+      "iou": 0.9853613478300954,
+      "previous_bounds": [
+        10,
+        -16,
+        617,
+        569
+      ],
+      "candidate_bounds": [
+        10,
+        -17,
+        618,
+        570
+      ],
+      "previous_advance": 631,
+      "candidate_advance": 631
+    },
+    {
+      "name": "perthousand",
+      "iou": 0.9882774243460664,
+      "previous_bounds": [
+        10,
+        -16,
+        901,
+        569
+      ],
+      "candidate_bounds": [
+        10,
+        -17,
+        901,
+        570
+      ],
+      "previous_advance": 910,
+      "candidate_advance": 910
+    },
+    {
+      "name": "plus",
+      "iou": 0.986361671208202,
+      "previous_bounds": [
+        69,
+        -19,
+        623,
+        535
+      ],
+      "candidate_bounds": [
+        69,
+        -20,
+        623,
+        535
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "plusminus",
+      "iou": 0.9548937740327044,
+      "previous_bounds": [
+        69,
+        -40,
+        623,
+        610
+      ],
+      "candidate_bounds": [
+        69,
+        -44,
+        623,
+        610
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "racute",
+      "iou": 0.9694881588062311,
+      "previous_bounds": [
+        9,
+        -8,
+        707,
+        910
+      ],
+      "candidate_bounds": [
+        9,
+        -8,
+        707,
+        872
+      ],
+      "previous_advance": 716,
+      "candidate_advance": 716
+    },
+    {
+      "name": "rcaron",
+      "iou": 0.9406995060575203,
+      "previous_bounds": [
+        9,
+        -8,
+        707,
+        801
+      ],
+      "candidate_bounds": [
+        9,
+        -8,
+        707,
+        782
+      ],
+      "previous_advance": 716,
+      "candidate_advance": 716
+    },
+    {
+      "name": "registered",
+      "iou": 0.9846003765316699,
+      "previous_bounds": [
+        28,
+        0,
+        581,
+        553
+      ],
+      "candidate_bounds": [
+        28,
+        0,
+        581,
+        553
+      ],
+      "previous_advance": 609,
+      "candidate_advance": 609
+    },
+    {
+      "name": "ring",
+      "iou": 0.6243955047358587,
+      "previous_bounds": [
+        34,
+        592,
+        215,
+        767
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        192,
+        741
+      ],
+      "previous_advance": 250,
+      "candidate_advance": 226
+    },
+    {
+      "name": "sacute",
+      "iou": 0.9622873970333907,
+      "previous_bounds": [
+        27,
+        -8,
+        584,
+        905
+      ],
+      "candidate_bounds": [
+        27,
+        -8,
+        584,
+        867
+      ],
+      "previous_advance": 611,
+      "candidate_advance": 611
+    },
+    {
+      "name": "scaron",
+      "iou": 0.9310012206450904,
+      "previous_bounds": [
+        27,
+        -8,
+        584,
+        787
+      ],
+      "candidate_bounds": [
+        27,
+        -8,
+        584,
+        768
+      ],
+      "previous_advance": 611,
+      "candidate_advance": 611
+    },
+    {
+      "name": "scedilla",
+      "iou": 0.9892986041281029,
+      "previous_bounds": [
+        27,
+        -166.2093178577271,
+        584,
+        539
+      ],
+      "candidate_bounds": [
+        27,
+        -162.2093178577271,
+        584,
+        539
+      ],
+      "previous_advance": 611,
+      "candidate_advance": 611
+    },
+    {
+      "name": "scircumflex",
+      "iou": 0.9501950632374617,
+      "previous_bounds": [
+        27,
+        -8,
+        584,
+        787
+      ],
+      "candidate_bounds": [
+        27,
+        -8,
+        584,
+        768
+      ],
+      "previous_advance": 611,
+      "candidate_advance": 611
+    },
+    {
+      "name": "tcaron",
+      "iou": 0.8921181102393676,
+      "previous_bounds": [
+        9,
+        -8,
+        716,
+        849
+      ],
+      "candidate_bounds": [
+        9,
+        -8,
+        716,
+        816
+      ],
+      "previous_advance": 721,
+      "candidate_advance": 721
+    },
+    {
+      "name": "threequarters",
+      "iou": 0.9914744442734852,
+      "previous_bounds": [
+        12,
+        -17,
+        720,
+        559
+      ],
+      "candidate_bounds": [
+        12,
+        -17,
+        721,
+        559
+      ],
+      "previous_advance": 729,
+      "candidate_advance": 730
+    },
+    {
+      "name": "tilde",
+      "iou": 0.6885229705722249,
+      "previous_bounds": [
+        34,
+        592,
+        462,
+        768
+      ],
+      "candidate_bounds": [
+        34,
+        592,
+        448,
+        782
+      ],
+      "previous_advance": 497,
+      "candidate_advance": 482
+    },
+    {
+      "name": "tildecomb",
+      "iou": 0.6878094186974596,
+      "previous_bounds": [
+        -544,
+        592,
+        -116,
+        768
+      ],
+      "candidate_bounds": [
+        -537,
+        592,
+        -124,
+        782
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uacute",
+      "iou": 0.9669000771889462,
+      "previous_bounds": [
+        9,
+        0,
+        635,
+        905
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        635,
+        867
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "ubreve",
+      "iou": 0.9767429822679574,
+      "previous_bounds": [
+        9,
+        0,
+        635,
+        670
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        635,
+        657
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "ucircumflex",
+      "iou": 0.9561452720007082,
+      "previous_bounds": [
+        9,
+        0,
+        635,
+        787
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        635,
+        768
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "ugrave",
+      "iou": 0.96690008606913,
+      "previous_bounds": [
+        9,
+        0,
+        635,
+        905
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        635,
+        867
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "uhungarumlaut",
+      "iou": 0.9543004162473502,
+      "previous_bounds": [
+        9,
+        0,
+        635,
+        873
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        635,
+        839
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "underscore",
+      "iou": 0.9534883720930233,
+      "previous_bounds": [
+        0,
+        -152,
+        504,
+        -111
+      ],
+      "candidate_bounds": [
+        0,
+        -153,
+        504,
+        -110
+      ],
+      "previous_advance": 504,
+      "candidate_advance": 504
+    },
+    {
+      "name": "uni0163",
+      "iou": 0.9902826868472779,
+      "previous_bounds": [
+        9,
+        -161.59375,
+        716,
+        612
+      ],
+      "candidate_bounds": [
+        9,
+        -157.59375,
+        716,
+        612
+      ],
+      "previous_advance": 721,
+      "candidate_advance": 721
+    },
+    {
+      "name": "uni0302",
+      "iou": 0.68859237819586,
+      "previous_bounds": [
+        -538,
+        592,
+        -123,
+        796
+      ],
+      "candidate_bounds": [
+        -525,
+        592,
+        -135,
+        777
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni0304",
+      "iou": 0.9723932909689544,
+      "previous_bounds": [
+        -468,
+        592,
+        -193,
+        668
+      ],
+      "candidate_bounds": [
+        -468,
+        592,
+        -193,
+        670
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni0306",
+      "iou": 0.5848577196968221,
+      "previous_bounds": [
+        -443,
+        592,
+        -217,
+        679
+      ],
+      "candidate_bounds": [
+        -428,
+        592,
+        -232,
+        666
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni0307",
+      "iou": 0.692364571634255,
+      "previous_bounds": [
+        -409,
+        592,
+        -251,
+        741
+      ],
+      "candidate_bounds": [
+        -400,
+        592,
+        -261,
+        724
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni030A",
+      "iou": 0.6228951336999626,
+      "previous_bounds": [
+        -421,
+        592,
+        -240,
+        767
+      ],
+      "candidate_bounds": [
+        -409,
+        592,
+        -251,
+        741
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni030B",
+      "iou": 0.7632343346618784,
+      "previous_bounds": [
+        -527,
+        592,
+        -133,
+        882
+      ],
+      "candidate_bounds": [
+        -528,
+        592,
+        -132,
+        848
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni030C",
+      "iou": 0.6316185225180315,
+      "previous_bounds": [
+        -538,
+        592,
+        -123,
+        796
+      ],
+      "candidate_bounds": [
+        -525,
+        592,
+        -135,
+        777
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni0327",
+      "iou": 0.8620957828846237,
+      "previous_bounds": [
+        -422,
+        -165.59375,
+        -239,
+        22
+      ],
+      "candidate_bounds": [
+        -420,
+        -161.59375,
+        -241,
+        22
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni0328",
+      "iou": 0.8647338986444334,
+      "previous_bounds": [
+        -406.0263474578472,
+        -170.25483399593904,
+        -254,
+        22
+      ],
+      "candidate_bounds": [
+        -403.8,
+        -165.25483399593904,
+        -257,
+        22
+      ],
+      "previous_advance": 0,
+      "candidate_advance": 0
+    },
+    {
+      "name": "uni1E03",
+      "iou": 0.9837329307178924,
+      "previous_bounds": [
+        -70,
+        -8,
+        627,
+        924
+      ],
+      "candidate_bounds": [
+        -70,
+        -8,
+        627,
+        907
+      ],
+      "previous_advance": 656,
+      "candidate_advance": 656
+    },
+    {
+      "name": "uni1E0B",
+      "iou": 0.9842372410448549,
+      "previous_bounds": [
+        19,
+        0,
+        660,
+        943
+      ],
+      "candidate_bounds": [
+        19,
+        0,
+        660,
+        926
+      ],
+      "previous_advance": 688,
+      "candidate_advance": 688
+    },
+    {
+      "name": "uni1E1F",
+      "iou": 0.9783929807635562,
+      "previous_bounds": [
+        26,
+        -8,
+        513,
+        961
+      ],
+      "candidate_bounds": [
+        26,
+        -8,
+        513,
+        944
+      ],
+      "previous_advance": 480,
+      "candidate_advance": 480
+    },
+    {
+      "name": "uni1E41",
+      "iou": 0.9861329426670086,
+      "previous_bounds": [
+        8,
+        -8,
+        940,
+        730
+      ],
+      "candidate_bounds": [
+        8,
+        -8,
+        940,
+        713
+      ],
+      "previous_advance": 997,
+      "candidate_advance": 997
+    },
+    {
+      "name": "uni1E57",
+      "iou": 0.9831606696851244,
+      "previous_bounds": [
+        9,
+        -138,
+        681,
+        740
+      ],
+      "candidate_bounds": [
+        9,
+        -138,
+        681,
+        723
+      ],
+      "previous_advance": 710,
+      "candidate_advance": 710
+    },
+    {
+      "name": "uni1E61",
+      "iou": 0.9767963815358132,
+      "previous_bounds": [
+        27,
+        -8,
+        584,
+        732
+      ],
+      "candidate_bounds": [
+        27,
+        -8,
+        584,
+        715
+      ],
+      "previous_advance": 611,
+      "candidate_advance": 611
+    },
+    {
+      "name": "uni1E6B",
+      "iou": 0.9787331342308954,
+      "previous_bounds": [
+        9,
+        -8,
+        716,
+        746
+      ],
+      "candidate_bounds": [
+        9,
+        -8,
+        716,
+        728
+      ],
+      "previous_advance": 721,
+      "candidate_advance": 721
+    },
+    {
+      "name": "uogonek",
+      "iou": 0.9915847444037693,
+      "previous_bounds": [
+        9,
+        -158.25483399593904,
+        643,
+        539
+      ],
+      "candidate_bounds": [
+        9,
+        -152.3606797749979,
+        638,
+        539
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "uring",
+      "iou": 0.9667130393470479,
+      "previous_bounds": [
+        9,
+        0,
+        635,
+        757
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        635,
+        732
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "utilde",
+      "iou": 0.937235572126419,
+      "previous_bounds": [
+        9,
+        0,
+        635,
+        759
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        635,
+        773
+      ],
+      "previous_advance": 692,
+      "candidate_advance": 692
+    },
+    {
+      "name": "wacute",
+      "iou": 0.9748592588042921,
+      "previous_bounds": [
+        9,
+        0,
+        844,
+        919
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        844,
+        881
+      ],
+      "previous_advance": 876,
+      "candidate_advance": 876
+    },
+    {
+      "name": "wcircumflex",
+      "iou": 0.9669406359528,
+      "previous_bounds": [
+        9,
+        0,
+        844,
+        801
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        844,
+        782
+      ],
+      "previous_advance": 876,
+      "candidate_advance": 876
+    },
+    {
+      "name": "wgrave",
+      "iou": 0.9750830424511792,
+      "previous_bounds": [
+        9,
+        0,
+        844,
+        919
+      ],
+      "candidate_bounds": [
+        9,
+        0,
+        844,
+        881
+      ],
+      "previous_advance": 876,
+      "candidate_advance": 876
+    },
+    {
+      "name": "yacute",
+      "iou": 0.973084307299818,
+      "previous_bounds": [
+        9,
+        -221,
+        633,
+        865
+      ],
+      "candidate_bounds": [
+        9,
+        -221,
+        633,
+        827
+      ],
+      "previous_advance": 698,
+      "candidate_advance": 698
+    },
+    {
+      "name": "ycircumflex",
+      "iou": 0.964547436930329,
+      "previous_bounds": [
+        9,
+        -221,
+        633,
+        756
+      ],
+      "candidate_bounds": [
+        9,
+        -221,
+        633,
+        737
+      ],
+      "previous_advance": 698,
+      "candidate_advance": 698
+    },
+    {
+      "name": "yen",
+      "iou": 0.9926282602871191,
+      "previous_bounds": [
+        8.585786437626904,
+        0,
+        417.375,
+        553
+      ],
+      "candidate_bounds": [
+        8.585786437626904,
+        0,
+        417.375,
+        553
+      ],
+      "previous_advance": 443,
+      "candidate_advance": 443
+    },
+    {
+      "name": "ygrave",
+      "iou": 0.9726965332959467,
+      "previous_bounds": [
+        9,
+        -221,
+        633,
+        865
+      ],
+      "candidate_bounds": [
+        9,
+        -221,
+        633,
+        827
+      ],
+      "previous_advance": 698,
+      "candidate_advance": 698
+    },
+    {
+      "name": "zacute",
+      "iou": 0.9600494317352468,
+      "previous_bounds": [
+        15,
+        0,
+        521,
+        903
+      ],
+      "candidate_bounds": [
+        15,
+        0,
+        521,
+        865
+      ],
+      "previous_advance": 532,
+      "candidate_advance": 532
+    },
+    {
+      "name": "zcaron",
+      "iou": 0.9271155196921484,
+      "previous_bounds": [
+        15,
+        0,
+        521,
+        787
+      ],
+      "candidate_bounds": [
+        15,
+        0,
+        521,
+        768
+      ],
+      "previous_advance": 532,
+      "candidate_advance": 532
+    },
+    {
+      "name": "zdotaccent",
+      "iou": 0.9751411667300771,
+      "previous_bounds": [
+        15,
+        0,
+        521,
+        730
+      ],
+      "candidate_bounds": [
+        15,
+        0,
+        521,
+        713
+      ],
+      "previous_advance": 532,
+      "candidate_advance": 532
+    }
+  ]
+}

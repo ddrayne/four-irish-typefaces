@@ -1,0 +1,842 @@
+{
+  "face": "carrick",
+  "status": "research candidate; not release",
+  "source_hashes": {
+    "Carrick-alphabet-specimen.jpg": "9a98c303280bae75a5dc40ecdcac3c4e61e2b62899c853fd31c1e689d5483701",
+    "competition-advert-2.jpg": "d08bbd6cb70af8e4311d9c018be6ad3325fa23dd0386538d1a53f5c46864992c"
+  },
+  "glyphs": [
+    {
+      "name": "a",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        151,
+        160,
+        263,
+        255
+      ],
+      "labels": [
+        10
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "b",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        253,
+        125,
+        377,
+        258
+      ],
+      "labels": [
+        4
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "c",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        381,
+        161,
+        471,
+        254
+      ],
+      "labels": [
+        13,
+        15
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "d",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        466,
+        123,
+        579,
+        256
+      ],
+      "labels": [
+        3
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "e",
+      "status": "retained",
+      "reason": "Fused e/f or x/y retained from the previous body reconstruction."
+    },
+    {
+      "name": "f",
+      "status": "retained",
+      "reason": "Fused e/f or x/y retained from the previous body reconstruction."
+    },
+    {
+      "name": "g",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        745,
+        160,
+        851,
+        283
+      ],
+      "labels": [
+        11,
+        19
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "h",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        844,
+        125,
+        962,
+        255
+      ],
+      "labels": [
+        5
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "i",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        963,
+        126,
+        1020,
+        259
+      ],
+      "labels": [
+        7,
+        14
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "j",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        993,
+        127,
+        1083,
+        287
+      ],
+      "labels": [
+        8,
+        12,
+        20
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "k",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        1076,
+        125,
+        1204,
+        259
+      ],
+      "labels": [
+        6,
+        9
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 255.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "l",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        154,
+        295,
+        222,
+        429
+      ],
+      "labels": [
+        1
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "m",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        223,
+        332,
+        389,
+        434
+      ],
+      "labels": [
+        8
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 568.8315032385765,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "n",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        392,
+        333,
+        501,
+        430
+      ],
+      "labels": [
+        10
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "o",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        506,
+        328,
+        624,
+        426
+      ],
+      "labels": [
+        3
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "p",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        614,
+        332,
+        734,
+        455
+      ],
+      "labels": [
+        9
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "q",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        737,
+        331,
+        838,
+        459
+      ],
+      "labels": [
+        6
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "r",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        842,
+        331,
+        967,
+        432
+      ],
+      "labels": [
+        7
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "s",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        962,
+        329,
+        1061,
+        428
+      ],
+      "labels": [
+        4,
+        11
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "t",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        1055,
+        321,
+        1181,
+        432
+      ],
+      "labels": [
+        2
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 429.0,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "u",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        162,
+        507,
+        274,
+        602
+      ],
+      "labels": [
+        6,
+        8
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 601.5,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "v",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        280,
+        504,
+        383,
+        603
+      ],
+      "labels": [
+        1,
+        7
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 601.5,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "w",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        386,
+        505,
+        537,
+        603
+      ],
+      "labels": [
+        2,
+        3
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 601.5,
+      "old_baseline": 609.9178345103861,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "x",
+      "status": "retained",
+      "reason": "Fused e/f or x/y retained from the previous body reconstruction."
+    },
+    {
+      "name": "y",
+      "status": "retained",
+      "reason": "Fused e/f or x/y retained from the previous body reconstruction."
+    },
+    {
+      "name": "z",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        748,
+        505,
+        839,
+        601
+      ],
+      "labels": [
+        5
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 601.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "one",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        173,
+        677,
+        226,
+        780
+      ],
+      "labels": [
+        2
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "two",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        237,
+        683,
+        320,
+        776
+      ],
+      "labels": [
+        12
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "three",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        328,
+        680,
+        416,
+        776
+      ],
+      "labels": [
+        4,
+        10
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "four",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        415,
+        680,
+        505,
+        778
+      ],
+      "labels": [
+        5
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "five",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        503,
+        679,
+        589,
+        782
+      ],
+      "labels": [
+        3,
+        13
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "six",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        592,
+        680,
+        693,
+        779
+      ],
+      "labels": [
+        6
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "seven",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        694,
+        681,
+        775,
+        783
+      ],
+      "labels": [
+        8
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "eight",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        775,
+        669,
+        872,
+        781
+      ],
+      "labels": [
+        1
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "nine",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        876,
+        680,
+        971,
+        781
+      ],
+      "labels": [
+        7,
+        11
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "zero",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        973,
+        681,
+        1082,
+        778
+      ],
+      "labels": [
+        9
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 778.5,
+      "old_baseline": 652.353986116,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "ampersand",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        178,
+        848,
+        294,
+        959
+      ],
+      "labels": [
+        6,
+        14
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "question",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        278,
+        847,
+        360,
+        960
+      ],
+      "labels": [
+        5,
+        23
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "exclam",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        368,
+        848,
+        407,
+        960
+      ],
+      "labels": [
+        7,
+        25
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "sterling",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        413,
+        844,
+        492,
+        954
+      ],
+      "labels": [
+        4,
+        24
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "dollar",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        488,
+        827,
+        584,
+        971
+      ],
+      "labels": [
+        1
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "parenleft",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        598,
+        839,
+        634,
+        966
+      ],
+      "labels": [
+        3
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "semicolon",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        633,
+        867,
+        663,
+        942
+      ],
+      "labels": [
+        11,
+        20
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "parenright",
+      "status": "candidate",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "box": [
+        661,
+        838,
+        694,
+        966
+      ],
+      "labels": [
+        2
+      ],
+      "scale": 4.040082609462362,
+      "source_baseline": 959.0,
+      "old_baseline": 694.4699326886721,
+      "note": "Detached source components preserved together; uniform source scaling. Existing builder still regularises text heights."
+    },
+    {
+      "name": "ornament",
+      "status": "superseded",
+      "reason": "Legacy cluster preserved only in the inherited trace file; final named mark inputs come from pieces.json."
+    }
+  ],
+  "calibration": {
+    "Carrick-alphabet-specimen.jpg": {
+      "scale": 4.040082609462362,
+      "baselines": {
+        "0": 255.0,
+        "1": 429.0,
+        "2": 601.5,
+        "3": 778.5,
+        "4": 959.0
+      }
+    },
+    "competition-advert-2.jpg": {
+      "scale": 4.210191350913409,
+      "baselines": {
+        "0": 238.0,
+        "1": 419.0,
+        "2": 601.0,
+        "3": 783.0,
+        "4": 973.0
+      }
+    }
+  },
+  "limitations": [
+    "N513 and N47 share reproduction history; not independent original drawings.",
+    "N47 three/four are fused and excluded from its comparison regions.",
+    "Forty body entries retained from Study 1; e/f/x/y remain legacy. Named mark inputs and their direct/derived/retained status are in pieces.json."
+  ],
+  "inherited_body_evidence": "research/round-02/carrick/traces/evidence.json",
+  "marks_evidence": "pieces.json"
+}
