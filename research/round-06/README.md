@@ -40,27 +40,51 @@ spread closes a drawn gap far more readily than a clean one opens by chance. Whe
 calibrated edge fills such a gap, the edge is raised along the line where the pieces meet
 (`fit_production.contours_with_gaps`), and nowhere else.
 
-| Letter | Sheet | Impressions | Spread | Frame lock | Pieces, counters | Against round 5 |
-|---|---|---:|---:|---:|---|---|
-| b | 60 pt | 3 | 0.041 | 0.993 | 1, 1 | the bowl closes, as on every production impression (8 of 8 on both sheets); N513 prints it open |
-| c | 60 pt | 7 | 0.035 | 1.005 | 2, 0 | |
-| d | 36 pt | 12 (2 dropped) | 0.047 | 1.000 | 1, 1 | |
-| e | 60 pt | 24 | 0.068 | 1.001 | 2, 0 | **was a flyer trace**; the lower wedge is detached (11 of 24 impressions, and on N513) |
-| f | 60 pt | 6 | 0.032 | 1.013 | 1, 0 | **was a flyer trace** |
-| g | 60 pt | 7 | 0.038 | 1.001 | 2, 0 | |
-| h | 36 pt | 15 | 0.061 | 0.996 | 1, 0 | |
-| i | 36 pt | 19 | 0.046 | 1.001 | 2, 0 | |
-| j | 36 pt | 4 | 0.043 | 1.013 | 3, 0 | the tail stays apart (3 of 4), recovered from the mean at a 0.6 edge |
-| k | 36 pt | 7 | 0.052 | 0.999 | 2, 0 | |
-| l | 36 pt | 16 | 0.057 | 0.997 | 1, 0 | |
-| m | 36 pt | 8 | 0.051 | 0.994 | 3, 0 | the three strokes stand apart (3 of 8; 2 pieces in the rest); N513 prints m in one piece |
-| n | 36 pt | 22 | 0.054 | 0.996 | 1, 0 | |
-| o | 36 pt | 17 | 0.055 | 0.996 | 1, 1 | |
+| Letter | Sheet | Impressions | Spread | Turned | Shear taken out | Scale | Pieces, counters | Against round 5 |
+|---|---|---:|---:|---:|---:|---:|---|---|
+| b | 60 pt | 3 | 0.041 | +0.3° | +1.8° | 0.998 | 1, 1 | the bowl closes, as on every production impression (8 of 8 on both sheets); N513 prints it open |
+| c | 60 pt | 7 | 0.035 | −1.8° | −0.6° | 1.013 | 2, 0 | |
+| d | 36 pt | 12 (2 dropped) | 0.047 | +1.6° | −0.2° | 0.995 | 1, 1 | |
+| e | 60 pt | 24 | 0.068 | +1.0° | −0.6° | 0.986 | 2, 0 | **was a flyer trace**; the lower wedge is detached (11 of 24 impressions, and on N513) |
+| f | 60 pt | 6 | 0.032 | +0.4° | +1.3° | 1.000 | 1, 0 | **was a flyer trace** |
+| g | 60 pt | 7 | 0.038 | +0.3° | −0.9° | 1.007 | 2, 0 | |
+| h | 36 pt | 15 | 0.061 | +0.6° | −1.0° | 1.021 | 1, 0 | |
+| i | 36 pt | 19 | 0.046 | +1.5° | +3.2° | 0.993 | 2, 0 | |
+| j | 36 pt | 4 | 0.043 | +0.8° | +1.2° | 1.004 | 3, 0 | the tail stays apart (3 of 4), recovered from the mean at a 0.6 edge |
+| k | 36 pt | 7 | 0.052 | +0.6° | +0.7° | 1.011 | 2, 0 | |
+| l | 36 pt | 16 | 0.058 | +2.7° | +5.5° | 0.963 | 1, 0 | upright: N513's l leans, the sheet's does not |
+| m | 36 pt | 8 | 0.051 | −1.5° | +3.2° | 1.000 | 3, 0 | the three strokes stand apart (3 of 8; 2 pieces in the rest); N513 prints m in one piece |
+| n | 36 pt | 22 | 0.054 | +0.4° | +1.1° | 1.011 | 1, 0 | |
+| o | 36 pt | 17 | 0.055 | +2.6° | +1.0° | 1.022 | 1, 1 | |
 
-Spread is the mean RMS of the impressions about their mean, on the 0–1 ink scale. The frame lock puts each
-redrawn letter at its round-5 size and place (e and f: the flyer trace's), so only its shape comes from the
-sheet. Edge levels: 0.33 of the way from backing to ink on the 60 pt sheet, 0.38 on the 36 pt (at the
-midpoint the sheets ink 5% and 4% less than round 5's N513 letters; the same weight question as Kilfane's).
+Spread is the mean RMS of the impressions about their mean, on the 0–1 ink scale. Turned and shear taken
+out are the sheet frame's correction (below); scale is the frame lock's. Edge levels: 0.33 of the way from
+backing to ink on the 60 pt sheet, 0.38 on the 36 pt (at the midpoint the sheets ink 5% and 4% less than
+round 5's N513 letters; the same weight question as Kilfane's).
+
+## The sheet's own frame
+
+Letraset prints a spacing mark under every letter, a fixed distance below its baseline, and a row's marks
+lie on one line: the line its users ruled to set the letters straight. The first build of Study 3 registered
+each impression onto its round-5 trace by its own affine transform, which absorbs the photograph's local
+distortion but also takes in N513's own differences of slant and proportion. Those are the same for every
+impression of a letter, so they passed straight into the letter: l took N513's lean (5.5° of shear), i and
+m 3°, o and i were turned 1.5 to 2.6°, and n and o, whose feet stand higher in N513's box, floated 30 units
+above the baseline in the font.
+
+Now `scripts/trace_production.py` finds each impression's mark (in pieces where a descender's tail breaks
+it) and the mark line of its row. `impressions.sheet_frame` takes the part of the registration that all of a
+letter's impressions share, splits it into a rotation and a stretch, removes the stretch's shape (keeping
+its scale) and turns the letter square to its marks; each impression keeps its own fit's small differences,
+so the impressions stay registered on one another (the spreads are unchanged). `fit_production.py` then sets
+each letter on the line by its marks, 9.48 units above them on the 36 pt sheet and 5.18 on the 60 pt (the
+median over each sheet's sitting letters), and the frame lock fits only the scale and the horizontal place.
+Each letter's correction is in `traces/evidence.json` (`frame_lock.sheet_frame`, `frame_lock.baseline`).
+
+The marks fix the frame, not each letter's exact height: Letraset's paste-up set its letters within about
+±0.8 units of the line (e, k and b a little below it, n and l a little above; the impressions of one letter
+vary by ±0.3), and the builder snaps every foot onto the baseline as before. The 60 and 36 pt sheets agree
+on each letter's place to 0.15 units, so this is the assembly of one master, not noise.
 
 **a keeps round 5's N513 drawing.** Its bowl prints open on N513 and N47 and in 4 of the 14 60 pt
 impressions, closed in the rest and on all 16 36 pt ones. By the rule above the gap is drawn, and the mean

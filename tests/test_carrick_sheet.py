@@ -73,7 +73,13 @@ def test_redrawn_letters_name_their_sheet_and_keep_the_frame():
     for n in REDRAWN:
         g = ev[n]
         assert g['impressions'] >= 3 and g['sheet'] in ('60pt S53914', '36pt S53913'), n
-        assert 0.97 <= g['frame_lock']['scale'] <= 1.03, n
+        assert 0.96 < g['frame_lock']['scale'] < 1.04, n                   # inside the lock's search range
+        lock = g['frame_lock']
+        # the shape is the sheet's (its shared slant and stretch taken out, square to its marks), and the
+        # letter stands on its marks' line: its foot within the builder's snap of the base's line
+        assert set(lock['sheet_frame']) == {'turn_deg', 'stretch_ratio', 'shear_removed_deg'}, n
+        assert lock['baseline']['source'] == "the sheet's spacing marks", n
+        assert abs(lock['baseline']['foot_below_line']) < (9 if n in 'gj' else 1.0), n
     assert ev['e']['proportion_source'].startswith('the flyer trace')
     assert ev['x']['method'] == ev['y']['method'] == 'separated' and ev['x']['source'] == 'Carrick-alphabet-specimen.jpg'
 
