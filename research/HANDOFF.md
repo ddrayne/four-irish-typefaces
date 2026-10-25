@@ -29,7 +29,9 @@ each letter's pieces and counters read from its impressions, not from their mean
 N513 at last. Start Carrick work from round 6. Remaining: letters after q are not on the photographed
 sheets.
 
-**Kilfane: [Study 4](kilfane-judgement/README.md), the judgement pass**, built on
+**Kilfane: [Study 5](kilfane-sheet-frame/README.md)** is Study 4 with its sixteen production capitals averaged
+again in the sheet's own frame (Letraset's spacing marks give each letter its upright and its line, so L no
+longer takes N516's 3.5° lean). **[Study 4](kilfane-judgement/README.md), the judgement pass**, built on
 [Study 3](kilfane-production/README.md) (capitals from the averaged N517 production impressions) and
 round 2. Redrawn capitals keep N516's frame (Study 3's affine registration had let L, O, P and R drift
 1–2% in size); T, U, k and l are traced from N516 at last, their fused ink divided at the narrowest

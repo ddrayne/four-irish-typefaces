@@ -1,0 +1,7 @@
+{
+ "face": "kilfane",
+ "edits": [
+  {"glyph": "e", "op": "ease_notch", "at": [198.2, 232.0], "radius": 0.7, "reach": 3.0,
+   "reason": "N516 and N47 agree that the bowl's terminal meets the bar at a hairline, with a white notch running almost into the eye. The hairline (about 34 units) matches the face's other bowl joins and is kept; the notch's inner end, narrower than about 30 units, is closed so that the eye reads as closed at text sizes. The notch's mouth is kept."}
+ ]
+}

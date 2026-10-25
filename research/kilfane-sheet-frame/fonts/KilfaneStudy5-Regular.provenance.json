@@ -1,0 +1,1830 @@
+{
+  "space": [
+    "made",
+    "word space"
+  ],
+  "A": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "B": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source B: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 7 impressions) over Kilfane-alphabet-specimen.jpg, region [223, 125, 316, 247]"
+  ],
+  "C": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]"
+  ],
+  "D": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source D: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [416, 125, 525, 245]"
+  ],
+  "E": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "F": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source F: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 5 impressions) over Kilfane-alphabet-specimen.jpg, region [639, 128, 726, 246]"
+  ],
+  "G": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source G: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 9 impressions) over Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]"
+  ],
+  "H": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source H: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [830, 128, 931, 246]"
+  ],
+  "I": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "J": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source J: NIVAL Kilfane-alphabet-specimen.jpg, region [978, 129, 1034, 263]"
+  ],
+  "K": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source K: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 9 impressions) over Kilfane-alphabet-specimen.jpg, region [1043, 127, 1153, 248]"
+  ],
+  "L": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source L: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 12 impressions) over Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]"
+  ],
+  "M": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source M: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 7 impressions) over Kilfane-alphabet-specimen.jpg, region [180, 284, 335, 406]"
+  ],
+  "N": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source N: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 23 impressions) over Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]"
+  ],
+  "O": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "P": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source P: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 11 impressions) over Kilfane-alphabet-specimen.jpg, region [556, 285, 646, 405]"
+  ],
+  "Q": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source Q: NIVAL Kilfane-alphabet-specimen.jpg, region [648, 284, 763, 415]"
+  ],
+  "R": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source R: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 6 impressions) over Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]"
+  ],
+  "S": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]"
+  ],
+  "T": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source T: NIVAL Kilfane-alphabet-specimen.jpg, region [948, 275, 1047, 406]"
+  ],
+  "U": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "V": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source V: NIVAL Kilfane-alphabet-specimen.jpg, region [351, 443, 451, 566]"
+  ],
+  "W": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]"
+  ],
+  "X": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source X: NIVAL Kilfane-alphabet-specimen.jpg, region [603, 440, 710, 566]"
+  ],
+  "Y": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]"
+  ],
+  "Z": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]"
+  ],
+  "a": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "b": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source b: NIVAL Kilfane-alphabet-specimen.jpg, region [177, 608, 266, 729]"
+  ],
+  "c": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]"
+  ],
+  "d": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source d: NIVAL Kilfane-alphabet-specimen.jpg, region [349, 616, 429, 728]"
+  ],
+  "e": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "f": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source f: NIVAL Kilfane-alphabet-specimen.jpg, region [512, 640, 587, 750]"
+  ],
+  "g": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]"
+  ],
+  "h": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source h: NIVAL Kilfane-alphabet-specimen.jpg, region [658, 611, 748, 727]"
+  ],
+  "i": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source i: NIVAL Kilfane-alphabet-specimen.jpg, region [743, 611, 777, 727]"
+  ],
+  "j": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source j: NIVAL Kilfane-alphabet-specimen.jpg, region [761, 612, 816, 753]"
+  ],
+  "k": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source k: NIVAL Kilfane-alphabet-specimen.jpg, region [821, 610, 909, 733]"
+  ],
+  "l": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source l: NIVAL Kilfane-alphabet-specimen.jpg, region [898, 611, 950, 726]"
+  ],
+  "m": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source m: NIVAL Kilfane-alphabet-specimen.jpg, region [946, 643, 1072, 728]"
+  ],
+  "n": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]"
+  ],
+  "o": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "p": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source p: NIVAL Kilfane-alphabet-specimen.jpg, region [198, 779, 283, 895]"
+  ],
+  "q": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source q: NIVAL Kilfane-alphabet-specimen.jpg, region [292, 780, 377, 895]"
+  ],
+  "r": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]"
+  ],
+  "s": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]"
+  ],
+  "t": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]"
+  ],
+  "u": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "v": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source v: NIVAL competition-advert-2.jpg, region [1182, 1790, 1261, 1881]"
+  ],
+  "w": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]"
+  ],
+  "x": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source x: NIVAL Kilfane-alphabet-specimen.jpg, region [905, 779, 987, 868]"
+  ],
+  "y": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]"
+  ],
+  "z": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]"
+  ],
+  "one": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source one: NIVAL Kilfane-alphabet-specimen.jpg, region [238, 946, 279, 1066]"
+  ],
+  "two": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source two: NIVAL Kilfane-alphabet-specimen.jpg, region [292, 945, 369, 1065]"
+  ],
+  "three": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source three: NIVAL Kilfane-alphabet-specimen.jpg, region [377, 947, 449, 1066]"
+  ],
+  "four": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source four: NIVAL Kilfane-alphabet-specimen.jpg, region [455, 947, 535, 1065]"
+  ],
+  "five": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source five: NIVAL Kilfane-alphabet-specimen.jpg, region [539, 947, 611, 1066]"
+  ],
+  "six": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source six: NIVAL Kilfane-alphabet-specimen.jpg, region [622, 946, 701, 1066]"
+  ],
+  "seven": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source seven: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 947, 775, 1064]"
+  ],
+  "eight": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source eight: NIVAL Kilfane-alphabet-specimen.jpg, region [777, 944, 850, 1067]"
+  ],
+  "nine": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source nine: NIVAL Kilfane-alphabet-specimen.jpg, region [860, 947, 936, 1066]"
+  ],
+  "zero": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source zero: NIVAL Kilfane-alphabet-specimen.jpg, region [949, 945, 1031, 1066]"
+  ],
+  "ampersand": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source ampersand: NIVAL Kilfane-alphabet-specimen.jpg, region [298, 1105, 398, 1224]"
+  ],
+  "question": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source question: NIVAL Kilfane-alphabet-specimen.jpg, region [398, 1105, 464, 1223]"
+  ],
+  "exclam": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source exclam: NIVAL Kilfane-alphabet-specimen.jpg, region [475, 1107, 496, 1222]"
+  ],
+  "sterling": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source sterling: NIVAL Kilfane-alphabet-specimen.jpg, region [504, 1107, 571, 1223]"
+  ],
+  "dollar": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source dollar: NIVAL Kilfane-alphabet-specimen.jpg, region [575, 1091, 644, 1237]"
+  ],
+  "parenleft": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source parenleft: NIVAL Kilfane-alphabet-specimen.jpg, region [658, 1091, 698, 1237]"
+  ],
+  "parenright": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source parenright: NIVAL Kilfane-alphabet-specimen.jpg, region [713, 1089, 749, 1235]"
+  ],
+  "A.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "A.alt2": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "D.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source D.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [340, 1291, 452, 1423]"
+  ],
+  "S.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]"
+  ],
+  "T.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]"
+  ],
+  "Y.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]"
+  ],
+  "d.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source d.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [734, 1303, 816, 1422]"
+  ],
+  "f.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source f.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [826, 1303, 895, 1422]"
+  ],
+  "g.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]"
+  ],
+  "l.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]"
+  ],
+  "t.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]"
+  ],
+  "y.alt1": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]"
+  ],
+  "period": [
+    "made",
+    "the dot of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "comma": [
+    "made",
+    "the comma of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "quoteright": [
+    "made",
+    "the comma, raised; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "quoteleft": [
+    "made",
+    "the comma, raised and turned; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "quotedblleft": [
+    "made",
+    "two quotes; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "quotedblright": [
+    "made",
+    "two quotes; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "quotesingle": [
+    "made",
+    "wedge drawn to match"
+  ],
+  "quotedbl": [
+    "made",
+    "two wedges"
+  ],
+  "colon": [
+    "made",
+    "two of the dots of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "semicolon": [
+    "rebuilt",
+    "the comma of the NIVAL specimen’s semicolon, with the colon’s upper dot; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "ellipsis": [
+    "made",
+    "three periods; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "hyphen": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "endash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "emdash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "slash": [
+    "made",
+    "drawn to match"
+  ],
+  "uni204A": [
+    "made",
+    "the NIVAL specimen’s 7 at x-height, as in Gaelic type; base source seven: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 947, 775, 1064]"
+  ],
+  "Euro": [
+    "made",
+    "the NIVAL specimen’s C with two bars; base source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]"
+  ],
+  "dotlessi": [
+    "made",
+    "the NIVAL specimen’s i without its dot; base source i: NIVAL Kilfane-alphabet-specimen.jpg, region [743, 611, 777, 727]"
+  ],
+  "dotlessj": [
+    "made",
+    "the NIVAL specimen’s j without its dot; base source j: NIVAL Kilfane-alphabet-specimen.jpg, region [761, 612, 816, 753]"
+  ],
+  "ae": [
+    "made",
+    "a+e"
+  ],
+  "oe": [
+    "made",
+    "o+e"
+  ],
+  "AE": [
+    "made",
+    "A+E"
+  ],
+  "OE": [
+    "made",
+    "O+E"
+  ],
+  "oslash": [
+    "made",
+    "o+stroke"
+  ],
+  "Oslash": [
+    "made",
+    "O+stroke"
+  ],
+  "dcroat": [
+    "made",
+    "d+bar"
+  ],
+  "eth": [
+    "made",
+    "d+slanted bar"
+  ],
+  "Dcroat": [
+    "made",
+    "D+bar"
+  ],
+  "Eth": [
+    "made",
+    "D+bar"
+  ],
+  "hbar": [
+    "made",
+    "h+bar"
+  ],
+  "Hbar": [
+    "made",
+    "H+bar"
+  ],
+  "lslash": [
+    "made",
+    "l+slash"
+  ],
+  "Lslash": [
+    "made",
+    "L+slash"
+  ],
+  "tbar": [
+    "made",
+    "t+bar"
+  ],
+  "Tbar": [
+    "made",
+    "T+bar"
+  ],
+  "eng": [
+    "made",
+    "n+hook"
+  ],
+  "Eng": [
+    "made",
+    "N+hook"
+  ],
+  "thorn": [
+    "made",
+    "p+ascender"
+  ],
+  "Thorn": [
+    "made",
+    "P stem + lowered bowl"
+  ],
+  "ij": [
+    "made",
+    "i+j"
+  ],
+  "IJ": [
+    "made",
+    "I+J"
+  ],
+  "ldot": [
+    "made",
+    "l+dot"
+  ],
+  "Ldot": [
+    "made",
+    "L+dot"
+  ],
+  "kgreenlandic": [
+    "made",
+    "k trimmed"
+  ],
+  "napostrophe": [
+    "made",
+    "'+n"
+  ],
+  "longs": [
+    "made",
+    "f without crossbar"
+  ],
+  "germandbls": [
+    "made",
+    "long s + s ligature"
+  ],
+  "Agrave": [
+    "composite",
+    "A + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Agrave.alt1": [
+    "composite",
+    "A.alt1 + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Agrave.alt2": [
+    "composite",
+    "A.alt2 + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "Aacute": [
+    "composite",
+    "A + acute; marks: NIVAL N516 named components acute in pieces.json; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Aacute.alt1": [
+    "composite",
+    "A.alt1 + acute; marks: NIVAL N516 named components acute in pieces.json; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Aacute.alt2": [
+    "composite",
+    "A.alt2 + acute; marks: NIVAL N516 named components acute in pieces.json; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "Acircumflex": [
+    "composite",
+    "A + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Acircumflex.alt1": [
+    "composite",
+    "A.alt1 + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Acircumflex.alt2": [
+    "composite",
+    "A.alt2 + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "Atilde": [
+    "composite",
+    "A + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Atilde.alt1": [
+    "composite",
+    "A.alt1 + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Atilde.alt2": [
+    "composite",
+    "A.alt2 + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "Adieresis": [
+    "composite",
+    "A + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Adieresis.alt1": [
+    "composite",
+    "A.alt1 + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Adieresis.alt2": [
+    "composite",
+    "A.alt2 + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "Aring": [
+    "composite",
+    "A + ring; marks: NIVAL N516 named components ring in pieces.json; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Aring.alt1": [
+    "composite",
+    "A.alt1 + ring; marks: NIVAL N516 named components ring in pieces.json; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Aring.alt2": [
+    "composite",
+    "A.alt2 + ring; marks: NIVAL N516 named components ring in pieces.json; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "Ccedilla": [
+    "composite",
+    "C + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]"
+  ],
+  "Egrave": [
+    "composite",
+    "E + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "Eacute": [
+    "composite",
+    "E + acute; marks: NIVAL N516 named components acute in pieces.json; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "Ecircumflex": [
+    "composite",
+    "E + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "Edieresis": [
+    "composite",
+    "E + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "Igrave": [
+    "composite",
+    "I + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "Iacute": [
+    "composite",
+    "I + acute; marks: NIVAL N516 named components acute in pieces.json; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "Icircumflex": [
+    "composite",
+    "I + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "Idieresis": [
+    "composite",
+    "I + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "Ntilde": [
+    "composite",
+    "N + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source N: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 23 impressions) over Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]"
+  ],
+  "Ograve": [
+    "composite",
+    "O + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "Oacute": [
+    "composite",
+    "O + acute; marks: NIVAL N516 named components acute in pieces.json; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "Ocircumflex": [
+    "composite",
+    "O + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "Otilde": [
+    "composite",
+    "O + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "Odieresis": [
+    "composite",
+    "O + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "Ugrave": [
+    "composite",
+    "U + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "Uacute": [
+    "composite",
+    "U + acute; marks: NIVAL N516 named components acute in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "Ucircumflex": [
+    "composite",
+    "U + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "Udieresis": [
+    "composite",
+    "U + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "Yacute": [
+    "composite",
+    "Y + acute; marks: NIVAL N516 named components acute in pieces.json; base source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]"
+  ],
+  "Yacute.alt1": [
+    "composite",
+    "Y.alt1 + acute; marks: NIVAL N516 named components acute in pieces.json; base source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]"
+  ],
+  "agrave": [
+    "composite",
+    "a + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "aacute": [
+    "composite",
+    "a + acute; marks: NIVAL N516 named components acute in pieces.json; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "acircumflex": [
+    "composite",
+    "a + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "atilde": [
+    "composite",
+    "a + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "adieresis": [
+    "composite",
+    "a + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "aring": [
+    "composite",
+    "a + ring; marks: NIVAL N516 named components ring in pieces.json; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "ccedilla": [
+    "composite",
+    "c + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]"
+  ],
+  "egrave": [
+    "composite",
+    "e + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "eacute": [
+    "composite",
+    "e + acute; marks: NIVAL N516 named components acute in pieces.json; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "ecircumflex": [
+    "composite",
+    "e + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "edieresis": [
+    "composite",
+    "e + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "igrave": [
+    "composite",
+    "dotlessi + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json"
+  ],
+  "iacute": [
+    "composite",
+    "dotlessi + acute; marks: NIVAL N516 named components acute in pieces.json"
+  ],
+  "icircumflex": [
+    "composite",
+    "dotlessi + circumflex; marks: NIVAL N516 named components circumflex in pieces.json"
+  ],
+  "idieresis": [
+    "composite",
+    "dotlessi + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json"
+  ],
+  "ntilde": [
+    "composite",
+    "n + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]"
+  ],
+  "ograve": [
+    "composite",
+    "o + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "oacute": [
+    "composite",
+    "o + acute; marks: NIVAL N516 named components acute in pieces.json; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "ocircumflex": [
+    "composite",
+    "o + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "otilde": [
+    "composite",
+    "o + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "odieresis": [
+    "composite",
+    "o + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "ugrave": [
+    "composite",
+    "u + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "uacute": [
+    "composite",
+    "u + acute; marks: NIVAL N516 named components acute in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "ucircumflex": [
+    "composite",
+    "u + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "udieresis": [
+    "composite",
+    "u + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "yacute": [
+    "composite",
+    "y + acute; marks: NIVAL N516 named components acute in pieces.json; base source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]"
+  ],
+  "yacute.alt1": [
+    "composite",
+    "y.alt1 + acute; marks: NIVAL N516 named components acute in pieces.json; base source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]"
+  ],
+  "ydieresis": [
+    "composite",
+    "y + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]"
+  ],
+  "ydieresis.alt1": [
+    "composite",
+    "y.alt1 + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]"
+  ],
+  "Amacron": [
+    "composite",
+    "A + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Amacron.alt1": [
+    "composite",
+    "A.alt1 + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Amacron.alt2": [
+    "composite",
+    "A.alt2 + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "amacron": [
+    "composite",
+    "a + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "Abreve": [
+    "composite",
+    "A + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Abreve.alt1": [
+    "composite",
+    "A.alt1 + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Abreve.alt2": [
+    "composite",
+    "A.alt2 + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "abreve": [
+    "composite",
+    "a + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "Aogonek": [
+    "composite",
+    "A + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source A: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [105, 125, 219, 245]"
+  ],
+  "Aogonek.alt1": [
+    "composite",
+    "A.alt1 + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source A.alt1: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [134, 1300, 237, 1424]"
+  ],
+  "Aogonek.alt2": [
+    "composite",
+    "A.alt2 + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source A.alt2: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 3 impressions) over Kilfane-alphabet-specimen.jpg, region [242, 1300, 341, 1427]"
+  ],
+  "aogonek": [
+    "composite",
+    "a + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source a: NIVAL Kilfane-alphabet-specimen.jpg, region [101, 641, 186, 728]"
+  ],
+  "Cacute": [
+    "composite",
+    "C + acute; marks: NIVAL N516 named components acute in pieces.json; base source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]"
+  ],
+  "cacute": [
+    "composite",
+    "c + acute; marks: NIVAL N516 named components acute in pieces.json; base source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]"
+  ],
+  "Ccircumflex": [
+    "composite",
+    "C + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]"
+  ],
+  "ccircumflex": [
+    "composite",
+    "c + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]"
+  ],
+  "Cdotaccent": [
+    "composite",
+    "C + dot; marks: NIVAL N516 named components dot in pieces.json; base source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]"
+  ],
+  "cdotaccent": [
+    "composite",
+    "c + dot; marks: NIVAL N516 named components dot in pieces.json; base source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]"
+  ],
+  "Ccaron": [
+    "composite",
+    "C + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source C: NIVAL Kilfane-alphabet-specimen.jpg, region [323, 125, 418, 247]"
+  ],
+  "ccaron": [
+    "composite",
+    "c + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source c: NIVAL Kilfane-alphabet-specimen.jpg, region [273, 639, 345, 729]"
+  ],
+  "Dcaron": [
+    "composite",
+    "D + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source D: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [416, 125, 525, 245]"
+  ],
+  "Dcaron.alt1": [
+    "composite",
+    "D.alt1 + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source D.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [340, 1291, 452, 1423]"
+  ],
+  "dcaron": [
+    "composite",
+    "d + apostrophe caron; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source d: NIVAL Kilfane-alphabet-specimen.jpg, region [349, 616, 429, 728]"
+  ],
+  "dcaron.alt1": [
+    "composite",
+    "d.alt1 + apostrophe caron; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source d.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [734, 1303, 816, 1422]"
+  ],
+  "Emacron": [
+    "composite",
+    "E + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "emacron": [
+    "composite",
+    "e + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "Ebreve": [
+    "composite",
+    "E + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "ebreve": [
+    "composite",
+    "e + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "Edotaccent": [
+    "composite",
+    "E + dot; marks: NIVAL N516 named components dot in pieces.json; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "edotaccent": [
+    "composite",
+    "e + dot; marks: NIVAL N516 named components dot in pieces.json; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "Eogonek": [
+    "composite",
+    "E + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "eogonek": [
+    "composite",
+    "e + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "Ecaron": [
+    "composite",
+    "E + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source E: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 35 impressions) over Kilfane-alphabet-specimen.jpg, region [532, 125, 632, 247]"
+  ],
+  "ecaron": [
+    "composite",
+    "e + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source e: NIVAL Kilfane-alphabet-specimen.jpg, region [437, 640, 512, 728]"
+  ],
+  "Gcircumflex": [
+    "composite",
+    "G + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source G: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 9 impressions) over Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]"
+  ],
+  "gcircumflex": [
+    "composite",
+    "g + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]"
+  ],
+  "gcircumflex.alt1": [
+    "composite",
+    "g.alt1 + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]"
+  ],
+  "Gbreve": [
+    "composite",
+    "G + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source G: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 9 impressions) over Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]"
+  ],
+  "gbreve": [
+    "composite",
+    "g + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]"
+  ],
+  "gbreve.alt1": [
+    "composite",
+    "g.alt1 + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]"
+  ],
+  "Gdotaccent": [
+    "composite",
+    "G + dot; marks: NIVAL N516 named components dot in pieces.json; base source G: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 9 impressions) over Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]"
+  ],
+  "gdotaccent": [
+    "composite",
+    "g + dot; marks: NIVAL N516 named components dot in pieces.json; base source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]"
+  ],
+  "gdotaccent.alt1": [
+    "composite",
+    "g.alt1 + dot; marks: NIVAL N516 named components dot in pieces.json; base source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]"
+  ],
+  "uni0122": [
+    "composite",
+    "G + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source G: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 9 impressions) over Kilfane-alphabet-specimen.jpg, region [724, 126, 824, 249]"
+  ],
+  "uni0123": [
+    "composite",
+    "g + turned comma; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source g: NIVAL Kilfane-alphabet-specimen.jpg, region [583, 643, 665, 755]"
+  ],
+  "uni0123.alt1": [
+    "composite",
+    "g.alt1 + turned comma; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source g.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [892, 1329, 967, 1451]"
+  ],
+  "Hcircumflex": [
+    "composite",
+    "H + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source H: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [830, 128, 931, 246]"
+  ],
+  "hcircumflex": [
+    "composite",
+    "h + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source h: NIVAL Kilfane-alphabet-specimen.jpg, region [658, 611, 748, 727]"
+  ],
+  "Itilde": [
+    "composite",
+    "I + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "itilde": [
+    "composite",
+    "dotlessi + tilde; marks: NIVAL N516 named components tilde in pieces.json"
+  ],
+  "Imacron": [
+    "composite",
+    "I + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "imacron": [
+    "composite",
+    "dotlessi + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron"
+  ],
+  "Ibreve": [
+    "composite",
+    "I + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "ibreve": [
+    "composite",
+    "dotlessi + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json"
+  ],
+  "Iogonek": [
+    "composite",
+    "I + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "iogonek": [
+    "composite",
+    "i + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source i: NIVAL Kilfane-alphabet-specimen.jpg, region [743, 611, 777, 727]"
+  ],
+  "Idotaccent": [
+    "composite",
+    "I + dot; marks: NIVAL N516 named components dot in pieces.json; base source I: NIVAL Kilfane-alphabet-specimen.jpg, region [943, 129, 979, 246]"
+  ],
+  "Jcircumflex": [
+    "composite",
+    "J + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source J: NIVAL Kilfane-alphabet-specimen.jpg, region [978, 129, 1034, 263]"
+  ],
+  "jcircumflex": [
+    "composite",
+    "dotlessj + circumflex; marks: NIVAL N516 named components circumflex in pieces.json"
+  ],
+  "uni0136": [
+    "composite",
+    "K + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source K: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 9 impressions) over Kilfane-alphabet-specimen.jpg, region [1043, 127, 1153, 248]"
+  ],
+  "uni0137": [
+    "composite",
+    "k + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source k: NIVAL Kilfane-alphabet-specimen.jpg, region [821, 610, 909, 733]"
+  ],
+  "Lacute": [
+    "composite",
+    "L + acute; marks: NIVAL N516 named components acute in pieces.json; base source L: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 12 impressions) over Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]"
+  ],
+  "lacute": [
+    "composite",
+    "l + acute; marks: NIVAL N516 named components acute in pieces.json; base source l: NIVAL Kilfane-alphabet-specimen.jpg, region [898, 611, 950, 726]"
+  ],
+  "lacute.alt1": [
+    "composite",
+    "l.alt1 + acute; marks: NIVAL N516 named components acute in pieces.json; base source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]"
+  ],
+  "uni013B": [
+    "composite",
+    "L + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source L: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 12 impressions) over Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]"
+  ],
+  "uni013C": [
+    "composite",
+    "l + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source l: NIVAL Kilfane-alphabet-specimen.jpg, region [898, 611, 950, 726]"
+  ],
+  "uni013C.alt1": [
+    "composite",
+    "l.alt1 + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]"
+  ],
+  "Lcaron": [
+    "composite",
+    "L + apostrophe caron; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source L: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 12 impressions) over Kilfane-alphabet-specimen.jpg, region [106, 283, 189, 406]"
+  ],
+  "lcaron": [
+    "composite",
+    "l + apostrophe caron; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source l: NIVAL Kilfane-alphabet-specimen.jpg, region [898, 611, 950, 726]"
+  ],
+  "lcaron.alt1": [
+    "composite",
+    "l.alt1 + apostrophe caron; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source l.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [962, 1304, 1017, 1423]"
+  ],
+  "Nacute": [
+    "composite",
+    "N + acute; marks: NIVAL N516 named components acute in pieces.json; base source N: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 23 impressions) over Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]"
+  ],
+  "nacute": [
+    "composite",
+    "n + acute; marks: NIVAL N516 named components acute in pieces.json; base source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]"
+  ],
+  "uni0145": [
+    "composite",
+    "N + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source N: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 23 impressions) over Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]"
+  ],
+  "uni0146": [
+    "composite",
+    "n + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]"
+  ],
+  "Ncaron": [
+    "composite",
+    "N + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source N: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 23 impressions) over Kilfane-alphabet-specimen.jpg, region [335, 283, 446, 406]"
+  ],
+  "ncaron": [
+    "composite",
+    "n + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source n: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 643, 1162, 729]"
+  ],
+  "Omacron": [
+    "composite",
+    "O + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "omacron": [
+    "composite",
+    "o + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "Obreve": [
+    "composite",
+    "O + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "obreve": [
+    "composite",
+    "o + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "Ohungarumlaut": [
+    "composite",
+    "O + double acute made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source O: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 14 impressions) over Kilfane-alphabet-specimen.jpg, region [446, 281, 557, 406]"
+  ],
+  "ohungarumlaut": [
+    "composite",
+    "o + double acute made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source o: NIVAL Kilfane-alphabet-specimen.jpg, region [116, 776, 200, 870]"
+  ],
+  "Racute": [
+    "composite",
+    "R + acute; marks: NIVAL N516 named components acute in pieces.json; base source R: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 6 impressions) over Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]"
+  ],
+  "racute": [
+    "composite",
+    "r + acute; marks: NIVAL N516 named components acute in pieces.json; base source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]"
+  ],
+  "uni0156": [
+    "composite",
+    "R + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source R: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 6 impressions) over Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]"
+  ],
+  "uni0157": [
+    "composite",
+    "r + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]"
+  ],
+  "Rcaron": [
+    "composite",
+    "R + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source R: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 6 impressions) over Kilfane-alphabet-specimen.jpg, region [756, 285, 860, 406]"
+  ],
+  "rcaron": [
+    "composite",
+    "r + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source r: NIVAL Kilfane-alphabet-specimen.jpg, region [381, 777, 469, 869]"
+  ],
+  "Sacute": [
+    "composite",
+    "S + acute; marks: NIVAL N516 named components acute in pieces.json; base source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]"
+  ],
+  "Sacute.alt1": [
+    "composite",
+    "S.alt1 + acute; marks: NIVAL N516 named components acute in pieces.json; base source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]"
+  ],
+  "sacute": [
+    "composite",
+    "s + acute; marks: NIVAL N516 named components acute in pieces.json; base source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]"
+  ],
+  "Scircumflex": [
+    "composite",
+    "S + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]"
+  ],
+  "Scircumflex.alt1": [
+    "composite",
+    "S.alt1 + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]"
+  ],
+  "scircumflex": [
+    "composite",
+    "s + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]"
+  ],
+  "Scedilla": [
+    "composite",
+    "S + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]"
+  ],
+  "Scedilla.alt1": [
+    "composite",
+    "S.alt1 + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]"
+  ],
+  "scedilla": [
+    "composite",
+    "s + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]"
+  ],
+  "Scaron": [
+    "composite",
+    "S + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]"
+  ],
+  "Scaron.alt1": [
+    "composite",
+    "S.alt1 + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]"
+  ],
+  "scaron": [
+    "composite",
+    "s + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]"
+  ],
+  "uni0162": [
+    "composite",
+    "T + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source T: NIVAL Kilfane-alphabet-specimen.jpg, region [948, 275, 1047, 406]"
+  ],
+  "uni0162.alt1": [
+    "composite",
+    "T.alt1 + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]"
+  ],
+  "uni0163": [
+    "composite",
+    "t + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]"
+  ],
+  "uni0163.alt1": [
+    "composite",
+    "t.alt1 + cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]"
+  ],
+  "Tcaron": [
+    "composite",
+    "T + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source T: NIVAL Kilfane-alphabet-specimen.jpg, region [948, 275, 1047, 406]"
+  ],
+  "Tcaron.alt1": [
+    "composite",
+    "T.alt1 + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]"
+  ],
+  "tcaron": [
+    "composite",
+    "t + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]"
+  ],
+  "tcaron.alt1": [
+    "composite",
+    "t.alt1 + apostrophe caron; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]"
+  ],
+  "Utilde": [
+    "composite",
+    "U + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "utilde": [
+    "composite",
+    "u + tilde; marks: NIVAL N516 named components tilde in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "Umacron": [
+    "composite",
+    "U + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "umacron": [
+    "composite",
+    "u + macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "Ubreve": [
+    "composite",
+    "U + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "ubreve": [
+    "composite",
+    "u + breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "Uring": [
+    "composite",
+    "U + ring; marks: NIVAL N516 named components ring in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "uring": [
+    "composite",
+    "u + ring; marks: NIVAL N516 named components ring in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "Uhungarumlaut": [
+    "composite",
+    "U + double acute made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "uhungarumlaut": [
+    "composite",
+    "u + double acute made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "Uogonek": [
+    "composite",
+    "U + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source U: NIVAL Kilfane-alphabet-specimen.jpg, region [1048, 286, 1146, 407]"
+  ],
+  "uogonek": [
+    "composite",
+    "u + ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring; base source u: NIVAL Kilfane-alphabet-specimen.jpg, region [624, 780, 702, 867]"
+  ],
+  "Wcircumflex": [
+    "composite",
+    "W + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]"
+  ],
+  "wcircumflex": [
+    "composite",
+    "w + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]"
+  ],
+  "Ycircumflex": [
+    "composite",
+    "Y + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]"
+  ],
+  "Ycircumflex.alt1": [
+    "composite",
+    "Y.alt1 + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]"
+  ],
+  "ycircumflex": [
+    "composite",
+    "y + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]"
+  ],
+  "ycircumflex.alt1": [
+    "composite",
+    "y.alt1 + circumflex; marks: NIVAL N516 named components circumflex in pieces.json; base source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]"
+  ],
+  "Ydieresis": [
+    "composite",
+    "Y + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]"
+  ],
+  "Ydieresis.alt1": [
+    "composite",
+    "Y.alt1 + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]"
+  ],
+  "Zacute": [
+    "composite",
+    "Z + acute; marks: NIVAL N516 named components acute in pieces.json; base source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]"
+  ],
+  "zacute": [
+    "composite",
+    "z + acute; marks: NIVAL N516 named components acute in pieces.json; base source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]"
+  ],
+  "Zdotaccent": [
+    "composite",
+    "Z + dot; marks: NIVAL N516 named components dot in pieces.json; base source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]"
+  ],
+  "zdotaccent": [
+    "composite",
+    "z + dot; marks: NIVAL N516 named components dot in pieces.json; base source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]"
+  ],
+  "Zcaron": [
+    "composite",
+    "Z + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source Z: NIVAL Kilfane-alphabet-specimen.jpg, region [811, 444, 906, 565]"
+  ],
+  "zcaron": [
+    "composite",
+    "z + caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json; base source z: NIVAL Kilfane-alphabet-specimen.jpg, region [1072, 782, 1143, 869]"
+  ],
+  "uni0218": [
+    "composite",
+    "S + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]"
+  ],
+  "uni0218.alt1": [
+    "composite",
+    "S.alt1 + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]"
+  ],
+  "uni0219": [
+    "composite",
+    "s + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]"
+  ],
+  "uni021A": [
+    "composite",
+    "T + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source T: NIVAL Kilfane-alphabet-specimen.jpg, region [948, 275, 1047, 406]"
+  ],
+  "uni021A.alt1": [
+    "composite",
+    "T.alt1 + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]"
+  ],
+  "uni021B": [
+    "composite",
+    "t + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]"
+  ],
+  "uni021B.alt1": [
+    "composite",
+    "t.alt1 + comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster; base source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]"
+  ],
+  "uni1E02": [
+    "composite",
+    "B + dot; marks: NIVAL N516 named components dot in pieces.json; base source B: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 7 impressions) over Kilfane-alphabet-specimen.jpg, region [223, 125, 316, 247]"
+  ],
+  "uni1E03": [
+    "composite",
+    "b + dot; marks: NIVAL N516 named components dot in pieces.json; base source b: NIVAL Kilfane-alphabet-specimen.jpg, region [177, 608, 266, 729]"
+  ],
+  "uni1E0A": [
+    "composite",
+    "D + dot; marks: NIVAL N516 named components dot in pieces.json; base source D: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 10 impressions) over Kilfane-alphabet-specimen.jpg, region [416, 125, 525, 245]"
+  ],
+  "uni1E0A.alt1": [
+    "composite",
+    "D.alt1 + dot; marks: NIVAL N516 named components dot in pieces.json; base source D.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [340, 1291, 452, 1423]"
+  ],
+  "uni1E0B": [
+    "composite",
+    "d + dot; marks: NIVAL N516 named components dot in pieces.json; base source d: NIVAL Kilfane-alphabet-specimen.jpg, region [349, 616, 429, 728]"
+  ],
+  "uni1E0B.alt1": [
+    "composite",
+    "d.alt1 + dot; marks: NIVAL N516 named components dot in pieces.json; base source d.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [734, 1303, 816, 1422]"
+  ],
+  "uni1E1E": [
+    "composite",
+    "F + dot; marks: NIVAL N516 named components dot in pieces.json; base source F: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 5 impressions) over Kilfane-alphabet-specimen.jpg, region [639, 128, 726, 246]"
+  ],
+  "uni1E1F": [
+    "composite",
+    "f + dot; marks: NIVAL N516 named components dot in pieces.json; base source f: NIVAL Kilfane-alphabet-specimen.jpg, region [512, 640, 587, 750]"
+  ],
+  "uni1E1F.alt1": [
+    "composite",
+    "f.alt1 + dot; marks: NIVAL N516 named components dot in pieces.json; base source f.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [826, 1303, 895, 1422]"
+  ],
+  "uni1E40": [
+    "composite",
+    "M + dot; marks: NIVAL N516 named components dot in pieces.json; base source M: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 7 impressions) over Kilfane-alphabet-specimen.jpg, region [180, 284, 335, 406]"
+  ],
+  "uni1E41": [
+    "composite",
+    "m + dot; marks: NIVAL N516 named components dot in pieces.json; base source m: NIVAL Kilfane-alphabet-specimen.jpg, region [946, 643, 1072, 728]"
+  ],
+  "uni1E56": [
+    "composite",
+    "P + dot; marks: NIVAL N516 named components dot in pieces.json; base source P: NIVAL Kilfane-Letraset.jpg (30pt sheet, mean of 11 impressions) over Kilfane-alphabet-specimen.jpg, region [556, 285, 646, 405]"
+  ],
+  "uni1E57": [
+    "composite",
+    "p + dot; marks: NIVAL N516 named components dot in pieces.json; base source p: NIVAL Kilfane-alphabet-specimen.jpg, region [198, 779, 283, 895]"
+  ],
+  "uni1E60": [
+    "composite",
+    "S + dot; marks: NIVAL N516 named components dot in pieces.json; base source S: NIVAL Kilfane-alphabet-specimen.jpg, region [856, 283, 943, 407]"
+  ],
+  "uni1E60.alt1": [
+    "composite",
+    "S.alt1 + dot; marks: NIVAL N516 named components dot in pieces.json; base source S.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [451, 1291, 547, 1421]"
+  ],
+  "uni1E61": [
+    "composite",
+    "s + dot; marks: NIVAL N516 named components dot in pieces.json; base source s: NIVAL Kilfane-alphabet-specimen.jpg, region [469, 778, 538, 868]"
+  ],
+  "uni1E6A": [
+    "composite",
+    "T + dot; marks: NIVAL N516 named components dot in pieces.json; base source T: NIVAL Kilfane-alphabet-specimen.jpg, region [948, 275, 1047, 406]"
+  ],
+  "uni1E6A.alt1": [
+    "composite",
+    "T.alt1 + dot; marks: NIVAL N516 named components dot in pieces.json; base source T.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [550, 1292, 645, 1422]"
+  ],
+  "uni1E6B": [
+    "composite",
+    "t + dot; marks: NIVAL N516 named components dot in pieces.json; base source t: NIVAL Kilfane-alphabet-specimen.jpg, region [543, 769, 620, 867]"
+  ],
+  "uni1E6B.alt1": [
+    "composite",
+    "t.alt1 + dot; marks: NIVAL N516 named components dot in pieces.json; base source t.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1010, 1313, 1068, 1423]"
+  ],
+  "Wgrave": [
+    "composite",
+    "W + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]"
+  ],
+  "wgrave": [
+    "composite",
+    "w + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]"
+  ],
+  "Wacute": [
+    "composite",
+    "W + acute; marks: NIVAL N516 named components acute in pieces.json; base source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]"
+  ],
+  "wacute": [
+    "composite",
+    "w + acute; marks: NIVAL N516 named components acute in pieces.json; base source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]"
+  ],
+  "Wdieresis": [
+    "composite",
+    "W + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source W: NIVAL Kilfane-alphabet-specimen.jpg, region [452, 444, 593, 564]"
+  ],
+  "wdieresis": [
+    "composite",
+    "w + diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json; base source w: NIVAL competition-advert-2.jpg, region [1263, 1793, 1382, 1880]"
+  ],
+  "Ygrave": [
+    "composite",
+    "Y + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source Y: NIVAL Kilfane-alphabet-specimen.jpg, region [708, 444, 801, 574]"
+  ],
+  "Ygrave.alt1": [
+    "composite",
+    "Y.alt1 + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source Y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [649, 1300, 742, 1423]"
+  ],
+  "ygrave": [
+    "composite",
+    "y + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source y: NIVAL Kilfane-alphabet-specimen.jpg, region [985, 782, 1064, 897]"
+  ],
+  "ygrave.alt1": [
+    "composite",
+    "y.alt1 + grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json; base source y.alt1: NIVAL Kilfane-alphabet-specimen.jpg, region [1069, 1337, 1145, 1451]"
+  ],
+  "plus": [
+    "made",
+    "bars"
+  ],
+  "minus": [
+    "made",
+    "bar"
+  ],
+  "equal": [
+    "made",
+    "bars"
+  ],
+  "multiply": [
+    "made",
+    "rotated plus"
+  ],
+  "divide": [
+    "made",
+    "bar + dots"
+  ],
+  "plusminus": [
+    "made",
+    "plus over bar"
+  ],
+  "less": [
+    "made",
+    "chevron"
+  ],
+  "greater": [
+    "made",
+    "chevron"
+  ],
+  "lessequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "greaterequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "notequal": [
+    "made",
+    "equal + slash"
+  ],
+  "approxequal": [
+    "made",
+    "two tildes"
+  ],
+  "logicalnot": [
+    "made",
+    "bar + drop"
+  ],
+  "numbersign": [
+    "made",
+    "sheared grid"
+  ],
+  "percent": [
+    "made",
+    "scaled zeros + slash"
+  ],
+  "perthousand": [
+    "made",
+    "percent + zero"
+  ],
+  "asterisk": [
+    "made",
+    "five arms"
+  ],
+  "at": [
+    "made",
+    "a in a ring"
+  ],
+  "bracketleft": [
+    "made",
+    "stem + arms"
+  ],
+  "bracketright": [
+    "made",
+    "mirror"
+  ],
+  "braceleft": [
+    "made",
+    "stroked curve"
+  ],
+  "braceright": [
+    "made",
+    "mirror"
+  ],
+  "bar": [
+    "made",
+    "rule"
+  ],
+  "brokenbar": [
+    "made",
+    "split rule"
+  ],
+  "backslash": [
+    "made",
+    "mirrored slash"
+  ],
+  "underscore": [
+    "made",
+    "rule"
+  ],
+  "asciicircum": [
+    "made",
+    "circumflex, raised"
+  ],
+  "asciitilde": [
+    "made",
+    "tilde at math axis"
+  ],
+  "exclamdown": [
+    "made",
+    "rotated !"
+  ],
+  "questiondown": [
+    "made",
+    "rotated ?"
+  ],
+  "cent": [
+    "made",
+    "c + bar"
+  ],
+  "yen": [
+    "made",
+    "Y + bars"
+  ],
+  "currency": [
+    "made",
+    "ring + spurs"
+  ],
+  "section": [
+    "made",
+    "two interlaced s"
+  ],
+  "paragraph": [
+    "made",
+    "bowl + two stems"
+  ],
+  "copyright": [
+    "made",
+    "ring + c"
+  ],
+  "registered": [
+    "made",
+    "ring + r"
+  ],
+  "trademark": [
+    "made",
+    "small T + M"
+  ],
+  "degree": [
+    "made",
+    "the sheet's ring; named source pieces: NIVAL N516 ring"
+  ],
+  "ordfeminine": [
+    "made",
+    "small a + rule"
+  ],
+  "ordmasculine": [
+    "made",
+    "small o + rule"
+  ],
+  "onesuperior": [
+    "made",
+    "small figure"
+  ],
+  "twosuperior": [
+    "made",
+    "small figure"
+  ],
+  "threesuperior": [
+    "made",
+    "small figure"
+  ],
+  "fraction": [
+    "made",
+    "steep slash"
+  ],
+  "onequarter": [
+    "made",
+    "fraction"
+  ],
+  "onehalf": [
+    "made",
+    "fraction"
+  ],
+  "threequarters": [
+    "made",
+    "fraction"
+  ],
+  "mu": [
+    "made",
+    "u + descender"
+  ],
+  "periodcentered": [
+    "made",
+    "raised period"
+  ],
+  "bullet": [
+    "made",
+    "disc"
+  ],
+  "dagger": [
+    "made",
+    "stem + bar"
+  ],
+  "daggerdbl": [
+    "made",
+    "stem + two bars"
+  ],
+  "quotesinglbase": [
+    "made",
+    "comma; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "quotedblbase": [
+    "made",
+    "two commas; base source semicolon: NIVAL Kilfane-alphabet-specimen.jpg, region [695, 1133, 715, 1198]"
+  ],
+  "guilsinglright": [
+    "made",
+    "chevron from the sheet; named source pieces: NIVAL N516 guil.r1"
+  ],
+  "guilsinglleft": [
+    "made",
+    "chevron from the sheet; named source pieces: NIVAL N516 guil.l1"
+  ],
+  "guillemotright": [
+    "made",
+    "chevrons from the sheet; named source pieces: NIVAL N516 guil.r1 + guil.r2"
+  ],
+  "guillemotleft": [
+    "made",
+    "chevrons from the sheet; named source pieces: NIVAL N516 guil.l1 + guil.l2"
+  ],
+  "minute": [
+    "made",
+    "slanted wedge"
+  ],
+  "second": [
+    "made",
+    "two wedges"
+  ],
+  "gravecomb": [
+    "mark",
+    "grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json"
+  ],
+  "acutecomb": [
+    "mark",
+    "acute; marks: NIVAL N516 named components acute in pieces.json"
+  ],
+  "uni0302": [
+    "mark",
+    "circumflex; marks: NIVAL N516 named components circumflex in pieces.json"
+  ],
+  "tildecomb": [
+    "mark",
+    "tilde; marks: NIVAL N516 named components tilde in pieces.json"
+  ],
+  "uni0304": [
+    "mark",
+    "macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron"
+  ],
+  "uni0306": [
+    "mark",
+    "breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json"
+  ],
+  "uni0307": [
+    "mark",
+    "dot; marks: NIVAL N516 named components dot in pieces.json"
+  ],
+  "uni0308": [
+    "mark",
+    "diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json"
+  ],
+  "uni030A": [
+    "mark",
+    "ring; marks: NIVAL N516 named components ring in pieces.json"
+  ],
+  "uni030B": [
+    "mark",
+    "double acute made from the NIVAL N516 acute; modern construction using named marks in pieces.json"
+  ],
+  "uni030C": [
+    "mark",
+    "caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json"
+  ],
+  "uni0312": [
+    "mark",
+    "turned comma; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster"
+  ],
+  "uni0326": [
+    "mark",
+    "comma below; modern scaled/repositioned punctuation derived from the NIVAL N516 semicolon, not the loose-mark cluster"
+  ],
+  "uni0327": [
+    "mark",
+    "cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring"
+  ],
+  "uni0328": [
+    "mark",
+    "ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring"
+  ],
+  "grave": [
+    "made",
+    "spacing grave made from the NIVAL N516 acute; modern construction using named marks in pieces.json"
+  ],
+  "dieresis": [
+    "made",
+    "spacing diaeresis; marks: NIVAL N516 named components dieresis.l, dieresis.r in pieces.json"
+  ],
+  "macron": [
+    "made",
+    "spacing macron constructed as a straight rule at the NIVAL N516 endash weight; modern length and geometry, not a traced macron"
+  ],
+  "acute": [
+    "made",
+    "spacing acute; marks: NIVAL N516 named components acute in pieces.json"
+  ],
+  "cedilla": [
+    "made",
+    "spacing cedilla; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring"
+  ],
+  "circumflex": [
+    "made",
+    "spacing circumflex; marks: NIVAL N516 named components circumflex in pieces.json"
+  ],
+  "caron": [
+    "made",
+    "spacing caron made from the NIVAL N516 circumflex; modern construction using named marks in pieces.json"
+  ],
+  "breve": [
+    "made",
+    "spacing breve made from the NIVAL N516 ring; modern construction using named marks in pieces.json"
+  ],
+  "dotaccent": [
+    "made",
+    "spacing dot; marks: NIVAL N516 named components dot in pieces.json"
+  ],
+  "ring": [
+    "made",
+    "spacing ring; marks: NIVAL N516 named components ring in pieces.json"
+  ],
+  "ogonek": [
+    "made",
+    "spacing ogonek; modern drawn mark; stroke weight calibrated from the NIVAL N516 ring"
+  ],
+  "tilde": [
+    "made",
+    "spacing tilde; marks: NIVAL N516 named components tilde in pieces.json"
+  ],
+  "hungarumlaut": [
+    "made",
+    "spacing double acute made from the NIVAL N516 acute; modern construction using named marks in pieces.json"
+  ]
+}

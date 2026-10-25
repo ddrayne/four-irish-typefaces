@@ -11,8 +11,8 @@ with retained and derived components distinguished. [Round 4](round-04/README.md
 and the language marks derived from it. [Round 3](round-03/README.md) supplies Tuam and Céilí outline studies
 from larger original reproductions, with topology-preserving tracing and explicit
 source disagreements; Tuam's latest candidate is [Study 3](tuam-judgement/README.md), the judgement pass
-on round 3, traced from both prints and checked against the production sheet. Kilfane's latest candidate is [Study 4](kilfane-judgement/README.md), the
-judgement pass, on [Study 3](kilfane-production/README.md)'s production-sheet capitals and
+on round 3, traced from both prints and checked against the production sheet. Kilfane's latest candidate is [Study 5](kilfane-sheet-frame/README.md): the production-sheet
+capitals in the sheet's own frame, on the [Study 4](kilfane-judgement/README.md) judgement pass, on [Study 3](kilfane-production/README.md)'s production-sheet capitals and
 [round 2](round-02/README.md), which also holds Carrick's earlier body study. [Kilfane Study 1](kilfane-study-01/README.md)
 is preserved. Release 2.000 is the historical research baseline; main's current
 release is 2.010. Research candidates have not replaced the release fonts.

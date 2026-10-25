@@ -18,7 +18,7 @@ derives them from the flyer.
 
 | Face | Study and traces | Traced from | Kept from the flyer | Median ink change from 2.010 | Lowercase mean advance |
 |---|---|---|---|---:|---:|
-| Kilfane | Study 4, `kilfane-judgement` (on round 2 and Study 3) | N516 alphabet specimen; N517 means for 16 capitals; N47 for v, w | loose-mark cluster | 17% | 507 → 501 |
+| Kilfane | Study 5, `kilfane-sheet-frame` (on Study 4) | N516 alphabet specimen; N517 means for 16 capitals, in the sheet's own frame; N47 for v, w | loose-mark cluster | 18% | 507 → 501 |
 | Carrick | Study 3, `round-06` (on round 5) | N514 production-sheet means for b to o, in the sheet's own frame; N513 for a, p to z, figures, marks | the lower paired mark | 26% | 659 → 636 |
 | Tuam Uncial | Study 3, `tuam-judgement` (on round 3) | N46 and N45 averaged in N46's frame; cuts confirmed on the S53912 production sheet (Bolger fig. 206) | none | 9% | 850 → 850 |
 | Céilí | Study 3, `round-04` | N46; N45 punctuation | the loose dots (DOTS) | 18% | 611 → 614 |
@@ -50,7 +50,8 @@ in two pieces on every impression of the production sheet; v, w, 5 and the slits
 evidence); the five fadas as the prints set them (í's short acute; a `ccmp` ligature for the decomposed
 forms); and the braces drawn with a point. The lowercase advance is 854 by the same count for the Study 2 candidate.
 
-Kilfane's candidate is [Study 4](kilfane-judgement/README.md), the judgement pass: capitals from
+Kilfane's candidate is [Study 5](kilfane-sheet-frame/README.md): [Study 4](kilfane-judgement/README.md), the judgement pass, with
+its production capitals in the sheet's own frame (L no longer takes N516's 3.5° lean). Study 4: capitals from
 the production sheets held to N516's frame, T, U, k and l traced from N516, and the e's notch eased
 (a recorded judged edit). The candidate also sits Kilfane's square stem feet (F, P, V, 4, 7, the
 roman alternates) on the baseline instead of 8 units below it (`FLAT_FOOT_WIDENING`, Kilfane and

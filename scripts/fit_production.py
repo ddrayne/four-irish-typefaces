@@ -151,7 +151,7 @@ def lock_frame(rec, base, step=0.125, scales=np.linspace(0.96, 1.04, 81), baseli
         if best is None or iou > best[0]:
             best = (iou, float(s), (bx + ix * step - mx, by + iy * step - my if baseline is None else ty))
     iou, s, t = best
-    return move(rec, s, t), dict(scale=round(s, 4), shift=[round(t[0], 3), round(t[1], 3)], iou_to_base=round(iou, 4))
+    return move(rec, s, t), dict(scale=round(s, 4), shift=[round(float(t[0]), 3), round(float(t[1]), 3)], iou_to_base=round(iou, 4))
 
 
 def ink_fraction(mean, level, lo, hi):
