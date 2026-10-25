@@ -100,14 +100,21 @@ def heights_back(p, xh, ry):
     return remap(p, f)
 
 
-def embolden(p, rx, ry, k, xh, stem, separate=True, keep_open=True, apertures=True):
-    parts = components(p) if separate else [p]
+# Narrower than SLIVER stems, a gap is a tracing sliver, not a drawn one. On the flyer, a photocopy,
+# anything under a quarter of a stem is; the original sheets show drawn open joins and openings of
+# 0.13-0.22 stem (Kilfane's r and 9, Tuam's a, o and 0), so outlines traced from them pass 0.05.
+SLIVER = 0.24
+
+
+def embolden(p, rx, ry, k, xh, stem, separate=True, keep_open=True, apertures=True, sliver=SLIVER):
+    # a zero-area contour left by a trace would grow into a stray dot
+    parts = [q for q in (components(p) if separate else [p]) if abs(area(q)) > 1]
     wide = [SH.transform(q, (k, 0, 0, 1, 0, 0)) for q in parts]
     bold = heights_back(SH.union(*[grow(q, rx, ry) for q in wide]), xh, ry)
     if not keep_open:
         return bold
     # the regular in the bold's frame: same widening and height map, no growth
-    return protect(heights_back(SH.union(*wide), xh, ry), bold, stem, (rx, ry), apertures)
+    return protect(heights_back(SH.union(*wide), xh, ry), bold, stem, (rx, ry), apertures, sliver)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -116,11 +123,15 @@ def embolden(p, rx, ry, k, xh, stem, separate=True, keep_open=True, apertures=Tr
 # of a small counter with a lighter pen, or thinning the strokes either side of an aperture.
 # The spaces are read from the regular glyph's background, after closing the hairline gaps where
 # two strokes meet but the trace left a sliver between them (those close in the bold, as they should).
-# * Every enclosed counter keeps at least F_HOLE of its inscribed radius: where the bold took more,
-#   the counter is drawn again as the regular's counter shrunk by a lighter pen, so it keeps its shape.
+# * Every enclosed counter keeps at least F_HOLE of its inscribed radius and F_AREA of its area: where
+#   the bold took more, the counter is drawn again as the regular's counter shrunk by a lighter pen, so
+#   it keeps its shape. (A small pointed counter, Q's where the tail crosses the bowl, loses area far
+#   faster than radius.)
 # * Every aperture (a narrowing that is all that joins a real counter to the outside) keeps at least
 #   F_PASS of its width all along, as a smooth channel.
-F_PASS, F_HOLE, RES = 0.62, 0.55, 2.0
+# * Every space the regular leaves open to the outside stays open: an open join the bold still closes
+#   is kept as a hairline crack along the regular's passage (_reopen).
+F_PASS, F_HOLE, F_AREA, RES = 0.62, 0.55, 0.36, 2.0
 LOG = []                       # what protect() changed, for proofs
 APERTURE = 'ease'
 
@@ -264,7 +275,24 @@ def _radius(p, frame):
     return float(ndi.distance_transform_edt(m).max()) * RES if m.any() else 0.0
 
 
-def protect(core, bold, stem, pen, apertures=True):
+def closes(core, bold):
+    """Did growing `core` into `bold` join pieces, close or open a counter, or squeeze one below F_AREA?"""
+    def holes(p):
+        a = [area(c) for c in contours(p)]
+        return sorted(-x for x in a if x < 0) if any(x > 0 for x in a) else sorted(x for x in a if x > 0)
+    hc, hb = holes(core), holes(bold)
+    return pieces(core) != pieces(bold) or len(hc) != len(hb) or bool(hc) and hb[0] < F_AREA * hc[0]
+
+
+def _background(R, stem, sliver):
+    """The regular's background (raster), with the tracing slivers narrower than `sliver` stems closed."""
+    from skimage.morphology import disk
+    from scipy import ndimage as ndi
+    hair = int(round(sliver / 2 * stem / RES))
+    return ndi.binary_opening(~R, disk(hair).astype(bool)) if hair else ~R
+
+
+def protect(core, bold, stem, pen, apertures=True, sliver=SLIVER):
     """Re-open the counters and apertures of `core` (the regular glyph in the bold's frame) that the
     wider pen of `bold` closed in on. `pen` = (rx, ry), the growth from core to bold."""
     from skimage.morphology import medial_axis, disk
@@ -277,10 +305,10 @@ def protect(core, bold, stem, pen, apertures=True):
     W, H = int((x1 - x0) / RES) + 1, int((y1 - y0) / RES) + 1
     frame = (x0, y1, W, H)
     R = _raster(core, frame); B = _raster(bold, frame)
-    # Gaps under a quarter of a stem are where two strokes meet in the drawing but the trace left a
-    # sliver between them: a counter behind one is still a counter, and the bold closes the sliver.
-    hair = max(1, int(round(0.12 * stem / RES)))
-    BG = ndi.binary_opening(~R, disk(hair).astype(bool))
+    # Gaps under `sliver` stems are where two strokes meet in the drawing but the trace left a sliver
+    # between them: a counter behind one is still a counter, and the bold closes the sliver.
+    BG = _background(R, stem, sliver)
+    hair = max(1, int(round(sliver / 2 * stem / RES)))
     open_bold = ndi.distance_transform_edt(~B)
     dist = ndi.distance_transform_edt(BG)
     unit = lambda q: (x0 + (q[1] + 0.5) * RES, y1 - (q[0] + 0.5) * RES)
@@ -293,16 +321,19 @@ def protect(core, bold, stem, pen, apertures=True):
             continue
         region = lab == k
         r_reg = float(dist[region].max()) * RES
-        if r_reg < 0.15 * stem or open_bold[region].max() * RES >= F_HOLE * r_reg:
+        if r_reg < min(0.15, 2 * sliver) * stem or (open_bold[region].max() * RES >= F_HOLE * r_reg and
+                                         (region & ~B).sum() >= F_AREA * region.sum()):
             continue
         shape = _vector_mask(ndi.binary_dilation(region, disk(hair + 2).astype(bool)), frame)
         if shape is None:
             continue
         C = SH.difference(shape, core)
+        a_reg = abs(area(C))
         lo, hi = 0.0, 1.0
         for _ in range(7):
             mid = (lo + hi) / 2
-            if _radius(erode(C, mid * pen[0], mid * pen[1]), frame) >= F_HOLE * r_reg:
+            e = erode(C, mid * pen[0], mid * pen[1])
+            if _radius(e, frame) >= F_HOLE * r_reg and abs(area(e)) >= F_AREA * a_reg:
                 lo = mid
             else:
                 hi = mid
@@ -315,7 +346,7 @@ def protect(core, bold, stem, pen, apertures=True):
             continue
         d = np.array([dist[q] for q in path])
         i = int(np.argmin(d))
-        if not (0 < i < len(d) - 1 and d[i] < 0.9 * d[0] and d[i] < 0.9 * d[-1]) or 2 * d[i] * RES < 0.24 * stem:
+        if not (0 < i < len(d) - 1 and d[i] < 0.9 * d[0] and d[i] < 0.9 * d[-1]) or 2 * d[i] * RES < sliver * stem:
             continue
         if not any(open_bold[q] < F_PASS * dist[q] for q in path):
             continue                                        # the bold left this one open enough
@@ -339,4 +370,140 @@ def protect(core, bold, stem, pen, apertures=True):
         if c is not None:
             cuts.append(c)
             LOG.append(('aperture', unit(path[i]), round(2 * d[i] * RES), round(float(small.sum()) * RES * RES)))
+    out = _cut(bold, cuts) if cuts else bold
+    if apertures:
+        out = _reopen(core, out, stem, pen, sliver)
+    if pieces(out) < pieces(core):
+        out = _separate(core, out, pen)
+    # a cut can leave specks of either kind; two growth fronts that nearly meet leave a pinhole
+    return _despeckle(out, core, stem) if out is not bold else _despeckle(bold, core, stem, holes_only=True)
+
+
+def _reopen(core, bold, stem, pen, sliver, tries=3):
+    """The openings the bold still closes, found by topology rather than by shape: a background
+    region that the regular leaves open to the outside but the bold encloses. The original sheets
+    have open joins that run as a long slit beside a stem (Kilfane's r and 9), which no single
+    narrowing describes, so each is reopened as a hairline crack along the regular's own passage:
+    the cheapest path from the region to the outside through the widest background, F_PASS of its
+    narrowest width wide wherever the bold has closed in on it. The bold keeps its weight either side."""
+    from skimage.morphology import disk
+    from skimage.graph import MCP_Geometric
+    from scipy import ndimage as ndi
+    edge = lambda L: set(np.unique(np.concatenate([L[0], L[-1], L[:, 0], L[:, -1]]))) - {0}
+    for attempt in range(tries):
+        b = bounds(bold)
+        if b is None:
+            return bold
+        m = 60 + 2 * max(pen)
+        x0, y0, x1, y1 = b[0] - m, b[1] - m, b[2] + m, b[3] + m
+        W, H = int((x1 - x0) / RES) + 1, int((y1 - y0) / RES) + 1
+        frame = (x0, y1, W, H)
+        unit = lambda q: (x0 + (q[1] + 0.5) * RES, y1 - (q[0] + 0.5) * RES)
+        R = _raster(core, frame); B = _raster(bold, frame)
+        BG = _background(R, stem, sliver)
+        lr, _ = ndi.label(BG); outside = list(edge(lr))
+        lb, nb = ndi.label(~B); bb = edge(lb)
+        closed = []
+        for k in range(1, nb + 1):
+            region = lb == k
+            if k in bb or region.sum() * RES * RES < (0.1 * stem) ** 2:     # smaller is a speck
+                continue
+            under = lr[region & BG]
+            if under.size and np.isin(under, outside).mean() > 0.5:
+                closed.append(region & BG)
+        if not closed:
+            return bold
+        dist = ndi.distance_transform_edt(BG)
+        open_bold = ndi.distance_transform_edt(~B)
+        far = np.isin(lb, list(bb)) & (dist * RES >= 2 * max(pen) + 0.25 * stem)    # well clear, outside the bold
+        cost = np.where(BG, 1.0 / (dist + 0.5) ** 2, np.inf)
+        cuts = []
+        for seed in closed:
+            if not far.any():
+                break
+            start = np.unravel_index(np.argmax(np.where(seed, dist, -1)), dist.shape)
+            mcp = MCP_Geometric(cost, fully_connected=True)
+            costs, _ = mcp.find_costs([start])
+            end = np.unravel_index(np.argmin(np.where(far, costs, np.inf)), costs.shape)
+            if not np.isfinite(costs[end]):
+                continue
+            path = np.array(mcp.traceback(end))
+            # the stretch the bold has closed in on, and the passage's narrowest width there
+            d = dist[path[:, 0], path[:, 1]]; ob = open_bold[path[:, 0], path[:, 1]]
+            shut = np.nonzero(ob < F_PASS * d + 1)[0]
+            if not len(shut):
+                continue
+            i0, i1 = max(0, shut[0] - 6), min(len(path) - 1, shut[-1] + 6)
+            w = 2 * float(d[shut[0]:shut[-1] + 1].min()) * RES
+            r = F_PASS * w / 2 * (1 + 0.25 * attempt)
+            pts = [unit(q) for q in path[i0:i1 + 1]]
+            c = _channel(pts, [r] * len(pts))
+            if c is not None:
+                cuts.append(c)
+                LOG.append(('opening', unit(path[shut[0] + int(np.argmin(d[shut[0]:shut[-1] + 1]))]), round(w), attempt))
+        if not cuts:
+            return bold
+        bold = _cut(bold, cuts)
+    return bold
+
+
+def _separate(core, bold, pen):
+    """Pieces the regular keeps apart that the bold joins (the dot of a ! that sits close to its
+    stroke): cut apart again along the line midway between them, F_PASS of their gap wide, so both
+    keep their weight and the gap its place."""
+    from scipy import ndimage as ndi
+    from skimage.measure import find_contours
+    b = bounds(bold)
+    m = 20 + 2 * max(pen)
+    x0, y0, x1, y1 = b[0] - m, b[1] - m, b[2] + m, b[3] + m
+    W, H = int((x1 - x0) / RES) + 1, int((y1 - y0) / RES) + 1
+    frame = (x0, y1, W, H)
+    R = _raster(core, frame); B = _raster(bold, frame)
+    lr, nr = ndi.label(R, structure=np.ones((3, 3)))
+    lb, _ = ndi.label(B, structure=np.ones((3, 3)))
+    dist = [ndi.distance_transform_edt(lr != k) * RES for k in range(1, nr + 1)]
+    nearest = np.argmin(np.stack(dist), 0) if nr > 1 else np.zeros(R.shape, int)
+    reach = 2 * max(pen)
+    cuts = []
+    for i in range(nr):
+        for j in range(i + 1, nr):
+            ki, kj = set(np.unique(lb[lr == i + 1])) - {0}, set(np.unique(lb[lr == j + 1])) - {0}
+            if not ki & kj:
+                continue                                    # still apart in the bold
+            gap = float((dist[i] + dist[j])[~R].min())
+            if gap < 1:
+                continue
+            # a smooth field whose zero line runs either side of the midline, F_PASS * gap apart
+            field = F_PASS * gap - np.abs(dist[i] - dist[j])
+            near = (dist[i] < gap + reach) & (dist[j] < gap + reach) & np.isin(nearest, (i, j))
+            field = np.where(near, field, -1.0)
+            polys = []
+            for c in find_contours(np.pad(field, 1, constant_values=-1), 0.0):
+                c = c - 1
+                if len(c) >= 8:
+                    polys.append(SH.polygon([(x0 + (q[1] + 0.5) * RES, y1 - (q[0] + 0.5) * RES) for q in c[::2]]))
+            if polys:
+                cuts.append(SH.union(*polys))
+                LOG.append(('apart', (i, j), round(gap)))
     return _cut(bold, cuts) if cuts else bold
+
+
+def _despeckle(p, core, stem, holes_only=False):
+    """Drop specks under a tenth of a stem square that the regular does not have: ink a cut left
+    beside the bold's edge, or a pinhole where two growth fronts nearly met. A small hole inside one
+    of the regular's counters is that counter, and a small piece on the regular's ink is drawn."""
+    cs = contours(p)
+    thr = (0.1 * stem) ** 2
+    if all(abs(area(c)) >= thr for c in cs):
+        return p
+    outer = [c for c in contours(core) if area(c) > 0]
+    counters = SH.difference(SH.union(*outer), core) if outer else pathops.Path()
+    inter = lambda a, b: abs(area(pathops.op(a, b, pathops.PathOp.INTERSECTION, fix_winding=True)))
+    keep = []
+    for c in cs:
+        a = area(c)
+        if abs(a) >= thr or (holes_only and a > -1) or inter(c, core if a > 0 else counters) > 0.5 * abs(a):
+            keep.append(c)
+    if len(keep) == len(cs):
+        return p
+    return pathops.simplify(concat(keep), fix_winding=True, keep_starting_points=False, clockwise=False)

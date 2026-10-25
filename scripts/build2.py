@@ -279,6 +279,13 @@ def despike(p):
                         del segs[i:i + 2]; changed = True; break
         if len(segs) < 2:
             continue
+        # a speck that rounding pinched off (under four units square): nothing a rasteriser could show
+        one = pathops.Path(); one_pen = one.getPen(); one_pen.moveTo(start)
+        for op, a in segs:
+            getattr(one_pen, op)(*a)
+        one_pen.closePath()
+        if abs(one.area) < 16:
+            continue
         pen.moveTo(start)
         for op, a in segs:
             getattr(pen, op)(*a)
@@ -290,9 +297,16 @@ def final_clean(p):
     """Round to the integer grid, then let pathops remove the spurs and slivers that rounding exposes."""
     q = pathops.Path()
     p.draw(CleanPen(q.getPen()))
-    q = pathops.simplify(q, fix_winding=True, keep_starting_points=False, clockwise=False)
-    r = pathops.Path(); q.draw(CleanPen(r.getPen()))
-    return despike(r)
+    for _ in range(3):
+        q = pathops.simplify(q, fix_winding=True, keep_starting_points=False, clockwise=False)
+        r = pathops.Path(); q.draw(CleanPen(r.getPen()))
+        r = despike(r)
+        # rounding the tip of a cusp can twist it into a loop of its own, which resolves to a speck
+        q = pathops.simplify(r, fix_winding=True, keep_starting_points=False, clockwise=False)
+        if not any(abs(c.area) < 16 for c in GL.contours(q)):
+            return r
+        q = bolden.concat([c for c in GL.contours(q) if abs(c.area) >= 16])
+    return r
 
 
 class Font2:
@@ -341,24 +355,30 @@ class Font2:
         return float(np.mean([w('l')[1] - w('l')[0], w('n')[1] - w('n')[0]]))
 
     # ------------------------------------------------------------------ the bold: a wider pen
+    SLIVER = bolden.SLIVER       # the widest gap in a trace that is a tracing sliver, in stems
+    SLIVER_SLOPED = bolden.SLIVER  # the same for the sloped styles' hair of extra weight
+
     def embolden_traced(self):
         """Draw every traced letter with a wider pen before anything is derived from it, so the
         punctuation, accents and symbols built from the letters follow it."""
         b = BOLD[self.key]; self.kept_open = {}
         for n, p in list(self.P.items()):
             if n in ('ornament', 'DOTS'):
-                # the sheet's loose accents and dots: each piece grown on its own, nothing moved, and
-                # kept apart (some sit close enough on the sheet for a wider pen to join them); a
-                # ring keeps its hole open as the letters' counters do
-                pen = (b['rx'], b['ry'])
-                self.P[n] = bolden.concat([bolden.protect(q, bolden.grow(q, *pen), self.S_regular, pen)
-                                           for q in bolden.components(p)])
+                self.P[n] = self.bold_pieces(p)
             else:
                 bolden.LOG.clear()
                 self.P[n] = bolden.embolden(p, b['rx'], b['ry'], b['k'], self.xh, self.S_regular,
-                                            apertures=n not in b.get('joins', ()))
+                                            apertures=n not in b.get('joins', ()), sliver=self.SLIVER)
                 if bolden.LOG:
                     self.kept_open[n] = list(bolden.LOG)
+
+    def bold_pieces(self, p):
+        """The sheet's loose accents and dots: each piece grown on its own, nothing moved, and kept
+        apart (some sit close enough on the sheet for a wider pen to join them); a ring keeps its
+        hole open as the letters' counters do."""
+        b = BOLD[self.key]; pen = (b['rx'], b['ry'])
+        return bolden.concat([bolden.protect(q, bolden.grow(q, *pen), self.S_regular, pen, sliver=self.SLIVER)
+                              for q in bolden.components(p)])
 
     # ------------------------------------------------------------------ the sloped styles
     def condense(self):
@@ -369,7 +389,17 @@ class Font2:
             if bounds(p) is None:
                 continue
             q = SH.transform(p, (CONDENSE, 0, 0, 1, 0, 0))
-            self.P[n] = bolden.grow(q, rx, 0.5) if rx > 0.5 else q
+            if rx <= 0.5:
+                self.P[n] = q
+                continue
+            g = bolden.grow(q, rx, 0.5)
+            # even this little weight can shut a narrow opening or a small counter (Tuam's d, the 4 of
+            # Carrick's fractions): those are kept open as the bold keeps them
+            if bolden.closes(q, g):
+                kept = bolden.protect(q, g, self.S, (rx, 0.5), sliver=self.SLIVER_SLOPED)
+                if abs(bolden.area(kept) - bolden.area(g)) > 1:
+                    g = kept
+            self.P[n] = g
 
     def slant(self):
         """Slope the finished glyphs about the middle of the x-height, so the space before and after a
@@ -532,6 +562,8 @@ class Font2:
         qtop = self.cap if not self.cfg['unicase'] else self.asc
         source_parts = getattr(self, 'source_punctuation', None)
         if source_parts is not None:
+            if self.bold:              # named pieces from an original sheet arrive after the letters were bolded
+                source_parts = {n: self.bold_pieces(p) for n, p in source_parts.items()}
             dot, comma = source_parts['period'], source_parts['comma']
             ql, qr = source_parts['quoteleft'], source_parts['quoteright']
             P.pop('DOTS', None)
