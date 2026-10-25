@@ -26,3 +26,45 @@ jobs:
         run: |
           make showcase
           test -s build/showcase/index.html && test -s build/showcase/data/site.json && test -s build/showcase/img/social.png
+
+  # After the checks pass on main, rebuild the published site and push it to the `deploy`
+  # branch. Coolify serves irish-typefaces.apps.drayne.xyz from that branch and rebuilds on
+  # every push to it, so the live site follows main. Only the built site is ever published.
+  deploy-site:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    concurrency:
+      group: deploy-site
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Tools
+        run: python -m venv .venv && .venv/bin/python -m pip install -q -r requirements.txt
+      - name: Assemble the site
+        run: .venv/bin/python scripts/deploy_site.py
+      - name: Push it to the deploy branch, if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin deploy >/dev/null; then
+            git fetch -q --depth=1 origin deploy:refs/remotes/origin/deploy
+            git worktree add -q -B deploy build/deploy-git origin/deploy
+          else
+            git worktree add -q --orphan -b deploy build/deploy-git
+          fi
+          cd build/deploy-git
+          git rm -rq --ignore-unmatch .
+          cp -a ../deploy/. .
+          git add -A
+          if git diff --cached --quiet; then
+            echo "The site is unchanged."
+          else
+            git commit -q -m "Site from ${GITHUB_SHA::7}: $(git -C ../.. log -1 --format=%s)"
+            git push -q origin deploy
+          fi

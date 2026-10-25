@@ -2,10 +2,10 @@
 PY      ?= .venv/bin/python
 FACES   ?= kilfane tuam carrick ceili
 
-.PHONY: help setup fonts release test validate specimen audit package site showcase serve trace clean
+.PHONY: help setup fonts release test validate specimen audit package site showcase serve deploy-site trace clean
 
 help:
-	@grep -E '^[a-z]+:.*## ' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
+	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
 
 setup:  ## a Python 3.13 venv with the pinned tools
 	python3.13 -m venv .venv && $(PY) -m pip install -q -r requirements.txt
@@ -36,6 +36,9 @@ showcase:  ## the showcase website, into build/showcase (and build/showcase-arti
 
 serve: showcase  ## build the showcase and serve it at http://localhost:8377
 	cd build/showcase && python3 -m http.server 8377
+
+deploy-site:  ## the published site (Dockerfile, nginx, site/) into build/deploy; CI pushes it to the deploy branch
+	$(PY) scripts/deploy_site.py
 
 trace:  ## re-trace sources/traced/*.json from the scan (slow; only for a new scan)
 	$(PY) scripts/trace3.py $(FACES)

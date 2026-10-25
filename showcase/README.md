@@ -43,6 +43,14 @@ its WOFF2, the round's `metrics.json`, `audit-metrics.json` or `mark-audit-metri
 research does not accept (such as `brochure-proposal-metrics.json`) are not shown.
 Only font files and numbers are used: no archive pixels (see `research/RIGHTS.md`).
 
+## Publishing
+
+`make deploy-site` (`scripts/deploy_site.py`) assembles `build/deploy`: the built site, the
+ready-made stylesheet at `/css/four-irish-typefaces.css` with the web fonts it links, an nginx
+configuration (caching, cross-origin fonts, a content security policy) and a Dockerfile. After
+the tests pass on `main`, CI pushes it to the `deploy` branch, and Coolify serves
+https://irish-typefaces.apps.drayne.xyz/ from that branch, rebuilding on every push.
+
 Nothing in this folder is generated. There is no bundler: the page is plain HTML, CSS
 and ES modules, and each part's script loads only when it scrolls near. CI checks
 that the site builds.
