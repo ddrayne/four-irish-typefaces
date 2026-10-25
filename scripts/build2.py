@@ -24,15 +24,15 @@ from letters import make_letters, stem_at, clip
 from symbols import make_symbols
 
 OUT = paths.FONTS
-VERSION = '2.000'
-RELEASE_DATE = '2026-10-19'          # stamped into head.created/modified, so a rebuild is byte-identical
+VERSION = '2.010'
+RELEASE_DATE = '2026-10-25'          # stamped into head.created/modified, so a rebuild is byte-identical
 import calendar as _cal, time as _time
 os.environ.setdefault('SOURCE_DATE_EPOCH', str(_cal.timegm(_time.strptime(RELEASE_DATE, '%Y-%m-%d'))))  # fontTools saves honour it
 DIGITS = 'zero one two three four five six seven eight nine'.split()
 
 FONTS = {
     'kilfane': dict(family='Kilfane', ps='Kilfane', designer='William Curran', unicase=False, style='round',
-                    lining=True, mark_weight=0.46, gap=0.09, note='Joint third prize',
+                    lining=True, mark_weight=0.46, gap=0.09, note='Commended (£25)',
                     alts={'A': ['A.alt1', 'A.alt2'], 'D': ['D.alt1'], 'S': ['S.alt1'], 'T': ['T.alt1'],
                           'Y': ['Y.alt1'], 'd': ['d.alt1'], 'f': ['f.alt1'], 'g': ['g.alt1'],
                           'l': ['l.alt1'], 't': ['t.alt1'], 'y': ['y.alt1']},
@@ -41,13 +41,13 @@ FONTS = {
                           ('ss02', 'Insular forms', {'A': 'A.alt1', 'D': 'D.alt1', 'S': 'S.alt1', 'g': 'g.alt1'})],
                     insular={0xA779: 'D.alt1', 0xA77A: 'd', 0x1D79: 'g.alt1', 0xA77D: 'g.alt1', 0xA786: 'T', 0xA787: 't'}),
     'tuam': dict(family='Tuam Uncial', ps='TuamUncial', designer='Jarlath Hayes', unicase=True, style='square',
-                 lining=True, mark_weight=0.40, gap=0.035, note='Fourth place (highly commended)', alts={}, sets=[],
+                 lining=True, mark_weight=0.40, gap=0.035, note='Commended (£25)', alts={}, sets=[],
                  insular={0xA786: 't', 0xA787: 't'}),
     'carrick': dict(family='Carrick', ps='Carrick', designer='William Curran', unicase=True, style='chisel',
-                    lining=True, mark_weight=0.44, gap=0.08, note='Second prize', alts={}, sets=[],
+                    lining=True, mark_weight=0.44, gap=0.08, note='Highly Commended (£50)', alts={}, sets=[],
                     insular={0xA779: 'd', 0xA77A: 'd', 0xA786: 't', 0xA787: 't'}),
     'ceili': dict(family='Céilí', ps='Ceili', designer='Hermann Hecht', unicase=True, style='round',
-                  lining=False, mark_weight=0.48, gap=0.09, note='First prize',
+                  lining=False, mark_weight=0.48, gap=0.09, note='First prize (£250 and a silver medallion)',
                   alts={'a': ['a.alt1', 'a.alt2'], 'd': ['d.alt1'], 'e': ['e.alt1'], 'j': ['j.alt1'],
                         'l': ['l.alt1'], 'n': ['n.alt1'], 'r': ['r.alt1'], 's': ['s.alt1'], 'v': ['v.alt1']},
                   sets=[('ss01', 'Insular r and s', {'r': 'r.alt1', 's': 's.alt1'}),

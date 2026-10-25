@@ -23,11 +23,11 @@ CLS = {'ceili': 'f-ceili', 'carrick': 'f-carrick', 'kilfane': 'f-kilfane', 'tuam
 INFO = {
     'ceili': dict(prize='First prize', who='Hermann Hecht', sheets=[('S53915', '24 pt', '6.5 mm'), ('S53916', '42 pt', '11 mm')],
                   sample='céilí mór', feats=[('ss01', 'Insular r, s'), ('ss02', 'Uncial a, n'), ('ss03', 'Alternates')]),
-    'carrick': dict(prize='Second prize', who='William Curran', sheets=[('S53913', '36 pt', '9 mm'), ('S53914', '60 pt', '15 mm')],
+    'carrick': dict(prize='Highly Commended', who='William Curran', sheets=[('S53913', '36 pt', '9 mm'), ('S53914', '60 pt', '15 mm')],
                     sample='carraig', feats=[]),
-    'kilfane': dict(prize='Joint third prize', who='William Curran', sheets=[('S53909', '30 pt', '7.5 mm'), ('S53910', '48 pt', '13 mm')],
+    'kilfane': dict(prize='Commended', who='William Curran', sheets=[('S53909', '30 pt', '7.5 mm'), ('S53910', '48 pt', '13 mm')],
                     sample='Fáilte', feats=[('ss01', 'Roman forms'), ('ss02', 'Insular forms')]),
-    'tuam': dict(prize='Highly commended', who='Jarlath Hayes', sheets=[('S53911', '30 pt', '7.5 mm'), ('S53912', '48 pt', '12.5 mm')],
+    'tuam': dict(prize='Commended', who='Jarlath Hayes', sheets=[('S53911', '30 pt', '7.5 mm'), ('S53912', '48 pt', '12.5 mm')],
                  sample='Tuaim', feats=[]),
 }
 ROWS_CAPS = ['ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ']

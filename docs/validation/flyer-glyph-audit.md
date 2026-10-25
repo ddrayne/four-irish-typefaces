@@ -1,11 +1,11 @@
-# Every flyer glyph against the scan (version 2.000)
+# Every flyer glyph against the scan (version 2.010)
 
 Each glyph printed on the 1978 flyer, registered on the scan (best shift, to an eighth of a pixel) and
 compared with the print at 8× resolution. **Overlap** is intersection over union of the filled shapes
 (1.000 is identical). **Miss** and **extra** are how far, in flyer pixels, the deepest spot of print
 the font lacks, and of font the print lacks, reaches. At this scan (about 97 dpi) a quarter of a pixel
 is about 0.07 mm on the flyer. Letters are listed from the lowest overlap up. The regular of each face
-is the one compared: the italics and bolds (new in 2.000) were drawn from it and have no print to match.
+is the one compared: the italics and bolds were drawn from it and have no print to match.
 
 ## Céilí
 

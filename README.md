@@ -1,4 +1,4 @@
-# Four Irish Typefaces: digital revival, version 2.000
+# Four Irish Typefaces: digital revival, version 2.010
 
 **Céilí · Carrick · Kilfane · Tuam Uncial**
 
@@ -28,7 +28,14 @@ test page is at https://irish-typefaces.apps.drayne.xyz/.
 Open `index.html` to see and test the fonts in a browser. It's a live type tester
 with style pickers, stylistic-set toggles and character grids.
 
-## What's new in 2.000
+## What's new in 2.010
+
+- **The award wording is corrected** from the competition brochure: Carrick was Highly Commended
+  (£50), and Kilfane and Tuam Uncial were each Commended (£25), not second, joint third and fourth.
+  The wording is in each font's description, so the fonts are reissued. Outlines, spacing and
+  features are unchanged.
+
+## What was new in 2.000
 
 - **Families.** Twelve fonts instead of four: an italic for every face, and a bold and bold
   italic for Céilí and Kilfane. They are style-linked (name table, `OS/2` and `head` style bits,

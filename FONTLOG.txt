@@ -15,10 +15,14 @@ competition's "Four Irish Typefaces" flyer, completed to about 400 characters ea
 with styles the originals never had. See README.md for how they were made and how faithful they
 are, and docs/validation/ for the evidence.
 
-  Céilí        Hermann Hecht, 1978 (first prize)
-  Carrick      William Curran, 1978 (second prize)
-  Kilfane      William Curran, 1978 (joint third prize)
-  Tuam Uncial  Jarlath Hayes, 1978 (fourth place, highly commended)
+  Céilí        Hermann Hecht, 1978 (first prize, £250 and a silver medallion)
+  Carrick      William Curran, 1978 (Highly Commended, £50)
+  Kilfane      William Curran, 1978 (Commended, £25)
+  Tuam Uncial  Jarlath Hayes, 1978 (Commended, £25)
+
+The award wording follows the competition brochure in the William Curran Archive at the National
+Irish Visual Arts Library (https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/).
+It prints Céilí's name as "Caill".
 
 The fonts are released under the SIL Open Font License 1.1 (OFL.txt). No Reserved Font Names are
 declared.
@@ -26,6 +30,11 @@ declared.
 
 ChangeLog
 ---------
+
+2.010 (2026-10-25)
+- The award wording corrected from the competition brochure: Carrick was Highly Commended and
+  Kilfane and Tuam Uncial Commended, not second, joint third and fourth. It is in each font's
+  description field, so the fonts are reissued; outlines, spacing and features are unchanged.
 
 2.000 (2026-10-19)
 - Families: an italic for every face, and a bold and bold italic for Céilí and Kilfane, drawn from
