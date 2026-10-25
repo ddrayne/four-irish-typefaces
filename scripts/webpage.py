@@ -4,13 +4,13 @@ from fontTools.ttLib import TTFont
 from build2 import FONTS, OUT, FAMILY_STYLES
 
 INFO = {
-    'kilfane': dict(css='Kilfane', credit='William Curran', place='Joint third prize',
+    'kilfane': dict(css='Kilfane', credit='William Curran', place='Commended',
                     display='Banc Ceannais na hÉireann',
                     note='The only one of the four with true capitals. Reportedly used on the Series C Irish pound notes.'),
-    'tuam': dict(css='Tuam Uncial', credit='Jarlath Hayes', place='Fourth place, highly commended',
+    'tuam': dict(css='Tuam Uncial', credit='Jarlath Hayes', place='Commended',
                  display='Fáilte go Tuaim',
                  note='A heavy, square uncial reportedly made by cutting up Helvetica Bold; seen on Clannad sleeves and the Glenroe credits. Its hairline cuts are part of the design.'),
-    'carrick': dict(css='Carrick', credit='William Curran', place='Second prize', display='Ceol ⁊ craic',
+    'carrick': dict(css='Carrick', credit='William Curran', place='Highly Commended', display='Ceol ⁊ craic',
                     note='A chunky, lower-case-only display face; the name comes from carraig, “rock”.'),
     'ceili': dict(css='Céilí', credit='Hermann Hecht', place='First prize', display='Céilí mór anocht!',
                   note='The winner: a light, calligraphic unicase with insular letterforms and old-style figures.'),

@@ -543,8 +543,9 @@ footer p + p {{ margin-top: 8px; }}
           <h2 id="history-h">The competition</h2>
         </div>
         <p>Letraset, Kilkenny Design Workshops and D. O’Sullivan Graphic Supplies of 66 Lower Camden Street, Dublin,
-          sponsored a competition for a new Irish typeface. Hermann Hecht’s Céilí took first prize, William Curran won
-          second with Carrick and joint third with Kilfane, and Jarlath Hayes’s Tuam Uncial was highly commended.</p>
+          sponsored a competition for a new Irish typeface. The competition brochure lists the awards: Hermann Hecht’s
+          Céilí took first prize (£250 and a silver medallion), William Curran’s Carrick was Highly Commended (£50), and
+          Curran’s Kilfane and Jarlath Hayes’s Tuam Uncial were each Commended (£25).</p>
         <p>Each winner was issued as two Letraset sheets, numbered S53909 to S53916. The flyer gives each sheet’s size in
           points and in millimetres of letter height. As far as this research found, Céilí, Carrick and Kilfane have
           never been digitised before.</p>

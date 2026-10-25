@@ -1,4 +1,4 @@
-# Four Irish Typefaces: digital revival, version 2.000
+# Four Irish Typefaces: digital revival, version 2.010
 
 **Céilí · Carrick · Kilfane · Tuam Uncial**
 
@@ -23,7 +23,14 @@ test page is at https://irish-typefaces.apps.drayne.xyz/.
 Open `index.html` to see and test the fonts in a browser. It's a live type tester
 with style pickers, stylistic-set toggles and character grids.
 
-## What's new in 2.000
+## What's new in 2.010
+
+- **The award wording is corrected** from the competition brochure: Carrick was Highly Commended
+  (£50), and Kilfane and Tuam Uncial were each Commended (£25), not second, joint third and fourth.
+  The wording is in each font's description, so the fonts are reissued. Outlines, spacing and
+  features are unchanged.
+
+## What was new in 2.000
 
 - **Families.** Twelve fonts instead of four: an italic for every face, and a bold and bold
   italic for Céilí and Kilfane. They are style-linked (name table, `OS/2` and `head` style bits,
@@ -137,9 +144,11 @@ Install the OTF or TTF on your computer for desktop apps. Stylistic sets are und
 | Face | Designer | 1978 result | Notes |
 |---|---|---|---|
 | **Céilí** | Hermann Hecht (1923–1985) | First prize (£250 and a silver medallion) | Light calligraphic unicase with insular forms and old-style figures. Used for National Library of Ireland booklets and reportedly the *Glenroe* titles. |
-| **Carrick** | William Curran (1919–2016) | Second prize | A "chunky, lower case typeface". Fonts In Use lists it as having no uppercase. The name comes from *carraig*, "rock". |
-| **Kilfane** | William Curran | Joint third | Has upper and lower case, plus alternates. Named after a place in Co. Kilkenny. Reportedly used on the Series C Irish banknotes (Robert Ballagh, 1992–96). |
-| **Tuam Uncial** | Jarlath Hayes (1924–2001) | Fourth place / highly commended | Reportedly made by cutting up Helvetica Bold. Used on Clannad sleeves, the *Glenroe* credits and shopfronts. Hayes also designed the harp on Ireland's euro coins. |
+| **Carrick** | William Curran (1919–2016) | Highly Commended (£50) | A "chunky, lower case typeface". Fonts In Use lists it as having no uppercase. The name comes from *carraig*, "rock". |
+| **Kilfane** | William Curran | Commended (£25) | Has upper and lower case, plus alternates. Named after a place in Co. Kilkenny. Reportedly used on the Series C Irish banknotes (Robert Ballagh, 1992–96). |
+| **Tuam Uncial** | Jarlath Hayes (1924–2001) | Commended (£25) | Reportedly made by cutting up Helvetica Bold. Used on Clannad sleeves and shopfronts; the *Glenroe* attribution needs dated-frame verification. Hayes also designed the harp on Ireland's euro coins. |
+
+Award wording follows the [original competition brochure](https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/).
 
 ### The designers
 

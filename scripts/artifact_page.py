@@ -28,7 +28,7 @@ INFO = {
               'd, e, j, l, n, r, s and v. All of them are in the font.'),
         chips=[('ss01', 'Insular r, s'), ('ss02', 'Uncial a, n'), ('ss03', 'Alternates')]),
     'carrick': dict(
-        result='Second prize', designer='William Curran', dates='1919–2016',
+        result='Highly Commended', designer='William Curran', dates='1919–2016',
         sheets=[('S53913', '36 pt', '9 mm'), ('S53914', '60 pt', '15 mm')],
         traits='Lining figures · accents from the sheet’s own set',
         note=('A heavy, chiselled lower case with no capitals. The name comes from carraig, Irish for '
@@ -36,7 +36,7 @@ INFO = {
               'Irish Visual Arts Library in 2025.'),
         chips=[]),
     'kilfane': dict(
-        result='Joint third prize', designer='William Curran', dates='1919–2016',
+        result='Commended', designer='William Curran', dates='1919–2016',
         sheets=[('S53909', '30 pt', '7.5 mm'), ('S53910', '48 pt', '13 mm')],
         traits='True capitals · Roman and insular alternates · accents from the sheet’s own set',
         note=('The only one of the four with true capitals. The flyer’s last line shows alternates for '
@@ -44,7 +44,7 @@ INFO = {
               'insular forms. It is reported to have been used on the Series C Irish banknotes.'),
         chips=[('ss01', 'Roman forms'), ('ss02', 'Insular forms')]),
     'tuam': dict(
-        result='Highly commended', designer='Jarlath Hayes', dates='1924–2001',
+        result='Commended', designer='Jarlath Hayes', dates='1924–2001',
         sheets=[('S53911', '30 pt', '7.5 mm'), ('S53912', '48 pt', '12.5 mm')],
         traits='Lining figures · cut dots and hairline notches, as on the flyer',
         note=('A heavy, square uncial. Hayes is said to have made it by cutting up Helvetica Bold, and '
@@ -589,8 +589,9 @@ footer p + p {{ margin-top: 8px; }}
           <h2 id="history-h">The competition</h2>
         </div>
         <p>Letraset, Kilkenny Design Workshops and D. O’Sullivan Graphic Supplies of 66 Lower Camden Street, Dublin,
-          sponsored a competition for a new Irish typeface. Hermann Hecht’s Céilí took first prize, William Curran won
-          second with Carrick and joint third with Kilfane, and Jarlath Hayes’s Tuam Uncial was highly commended.</p>
+          sponsored a competition for a new Irish typeface. The competition brochure lists the awards: Hermann Hecht’s
+          Céilí took first prize (£250 and a silver medallion), William Curran’s Carrick was Highly Commended (£50), and
+          Curran’s Kilfane and Jarlath Hayes’s Tuam Uncial were each Commended (£25).</p>
         <p>Each winner was issued as two Letraset sheets, numbered S53909 to S53916. The flyer gives each sheet’s size in
           points and in millimetres of letter height. As far as this research found, Céilí, Carrick and Kilfane have
           never been digitised before.</p>

@@ -11,12 +11,12 @@ from seg import GRAY
 DEST = paths.SPECIMEN
 
 INFO = {
-    'kilfane': dict(credit='William Curran · joint third prize', display='Banc Ceannais na hÉireann',
+    'kilfane': dict(credit='William Curran · Commended', display='Banc Ceannais na hÉireann',
                     alpha=['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:) '],
                     sets=[('ss01', 'ss01 · Roman forms'), ('ss02', 'ss02 · Insular forms')]),
-    'tuam': dict(credit='Jarlath Hayes · fourth place (highly commended)', display='Fáilte go Tuaim',
+    'tuam': dict(credit='Jarlath Hayes · Commended', display='Fáilte go Tuaim',
                  alpha=['abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:)'], sets=[]),
-    'carrick': dict(credit='William Curran · second prize', display='Ceol ⁊ craic',
+    'carrick': dict(credit='William Curran · Highly Commended', display='Ceol ⁊ craic',
                     alpha=['abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:) '], sets=[]),
     'ceili': dict(credit='Hermann Hecht · first prize', display='Céilí mór anocht!',
                   alpha=['abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:)'],
@@ -124,8 +124,8 @@ def cover():
   <div style="display:flex;gap:28px;align-items:flex-start">
   <img src="data:image/jpeg;base64,{b64}" style="width:430px;border:1px solid var(--rule)">
   <div style="font-size:15px;line-height:1.5;max-width:560px">
-  <p><b>Céilí</b> — Hermann Hecht, first prize. <b>Carrick</b> — William Curran, second prize.
-  <b>Kilfane</b> — William Curran, joint third. <b>Tuam Uncial</b> — Jarlath Hayes, fourth place (highly commended).</p>
+  <p><b>Céilí</b> — Hermann Hecht, first prize. <b>Carrick</b> — William Curran, Highly Commended.
+  <b>Kilfane</b> — William Curran, Commended. <b>Tuam Uncial</b> — Jarlath Hayes, Commended.</p>
   <p>The faces were issued as Letraset dry-transfer sheets S53909–S53916 and sold through D. O’Sullivan Graphic
   Supplies, Dublin. Kilfane is reported on the Series C Irish banknotes; Tuam Uncial on Clannad sleeves and the
   Glenroe credits; Céilí on National Library of Ireland booklets.</p>
