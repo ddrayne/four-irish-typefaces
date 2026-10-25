@@ -1,0 +1,13 @@
+{
+  "slug": "irish-typefaces",
+  "title": "Four Irish Typefaces",
+  "description": "Céilí, Carrick, Kilfane and Tuam Uncial, the winners of the 1978 Design an Irish Typeface competition, rebuilt as free fonts to try, play with and download.",
+  "access": "public",
+  "port": 80,
+  "repository": "ddrayne/four-irish-typefaces",
+  "branch": "deploy",
+  "buildPack": "dockerfile",
+  "memoryMiB": 256,
+  "cpus": 0.5,
+  "domain": "https://irish-typefaces.apps.drayne.xyz"
+}

@@ -1,0 +1,166 @@
+/*
+ * Four Irish Typefaces: web fonts, version 2.010
+ * Kilfane, Tuam Uncial, Carrick and Céilí, winners of the 1978
+ * "Design an Irish Typeface" competition (Letraset, Kilkenny Design Workshops,
+ * D. O'Sullivan Graphic Supplies). Digitised 2026 from the printed specimen sheet.
+ * Copyright 2026 Dan Drayne. Licensed under the SIL Open Font License 1.1 (OFL.txt,
+ * https://openfontlicense.org).
+ *
+ * Styles: Kilfane and Céilí have Regular, Italic, Bold and Bold Italic; Carrick and
+ * Tuam Uncial, already black, have Regular and Italic. The 1978 sheet showed only the
+ * regulars: the italics and bolds were drawn in 2026 from them.
+ *
+ * Usage:  <link rel="stylesheet" href="css/four-irish-typefaces.css">
+ *         h1 { font-family: "Kilfane", serif; }
+ *         <b> and <i> (or font-weight: 700 / font-style: italic) select the real styles.
+ * Paths below are relative to this file; keep the fonts/ folder beside css/.
+ */
+@font-face {
+  font-family: "Kilfane";
+  src: url("../fonts/woff2/Kilfane-Regular.woff2") format("woff2"),
+       url("../fonts/woff/Kilfane-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kilfane";
+  src: url("../fonts/woff2/Kilfane-Italic.woff2") format("woff2"),
+       url("../fonts/woff/Kilfane-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kilfane";
+  src: url("../fonts/woff2/Kilfane-Bold.woff2") format("woff2"),
+       url("../fonts/woff/Kilfane-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kilfane";
+  src: url("../fonts/woff2/Kilfane-BoldItalic.woff2") format("woff2"),
+       url("../fonts/woff/Kilfane-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Tuam Uncial is already black: its one weight answers every font-weight (400 900),
+   so bold text stays in the drawn weight instead of a smeared synthetic bold. */
+@font-face {
+  font-family: "Tuam Uncial";
+  src: url("../fonts/woff2/TuamUncial-Regular.woff2") format("woff2"),
+       url("../fonts/woff/TuamUncial-Regular.woff") format("woff");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tuam Uncial";
+  src: url("../fonts/woff2/TuamUncial-Italic.woff2") format("woff2"),
+       url("../fonts/woff/TuamUncial-Italic.woff") format("woff");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Carrick is already black: its one weight answers every font-weight (400 900),
+   so bold text stays in the drawn weight instead of a smeared synthetic bold. */
+@font-face {
+  font-family: "Carrick";
+  src: url("../fonts/woff2/Carrick-Regular.woff2") format("woff2"),
+       url("../fonts/woff/Carrick-Regular.woff") format("woff");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Carrick";
+  src: url("../fonts/woff2/Carrick-Italic.woff2") format("woff2"),
+       url("../fonts/woff/Carrick-Italic.woff") format("woff");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Céilí is declared twice so it works with or without the accents in your CSS. */
+@font-face {
+  font-family: "Céilí";
+  src: url("../fonts/woff2/Ceili-Regular.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Céilí";
+  src: url("../fonts/woff2/Ceili-Italic.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Céilí";
+  src: url("../fonts/woff2/Ceili-Bold.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Céilí";
+  src: url("../fonts/woff2/Ceili-BoldItalic.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili";
+  src: url("../fonts/woff2/Ceili-Regular.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili";
+  src: url("../fonts/woff2/Ceili-Italic.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili";
+  src: url("../fonts/woff2/Ceili-Bold.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ceili";
+  src: url("../fonts/woff2/Ceili-BoldItalic.woff2") format("woff2"),
+       url("../fonts/woff/Ceili-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Convenience classes */
+.kilfane     { font-family: "Kilfane", serif; }
+.tuam-uncial { font-family: "Tuam Uncial", serif; }
+.carrick     { font-family: "Carrick", serif; }
+.ceili       { font-family: "Céilí", "Ceili", serif; }
+
+/* Stylistic sets (Kilfane and Céilí also support "salt" for single-glyph alternates) */
+.kilfane-roman-forms   { font-feature-settings: "ss01"; }  /* roman T Y d f l t y, pointed A */
+.kilfane-insular-forms { font-feature-settings: "ss02"; }  /* insular D g, flat-topped S, flourished A */
+.ceili-insular-r-s     { font-feature-settings: "ss01"; }  /* traditional Gaelic-script r and s */
+.ceili-uncial-a-n      { font-feature-settings: "ss02"; }  /* uncial A and N shapes */
+.ceili-alternates      { font-feature-settings: "ss03"; }  /* alternate a d e j l v */

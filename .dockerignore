@@ -1,0 +1,5 @@
+*
+!site/
+!site/**
+!nginx.conf
+!headers.inc
