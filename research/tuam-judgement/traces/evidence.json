@@ -1,0 +1,4845 @@
+{
+ "face": "tuam",
+ "status": "research candidate; not release",
+ "method": "Trace each glyph from the agreement of two prints of the same artwork, not from one print's noise.",
+ "source_hashes": {
+  "competition-advert-1.jpg": "0adeda27c189890fbd78619810cfc144ea3d5b910256971bf1c33a946d4baadc",
+  "competition-brochure-2.jpg": "57d14ab343c5942345f14f277be8e92a6182f4b1a6a90a1d9ae413563b26ef18"
+ },
+ "calibration": {
+  "competition-advert-1.jpg": {
+   "scale": 2.6758714388255833,
+   "baselines": {
+    "0": 400.0,
+    "1": 504.5,
+    "2": 606.5,
+    "3": 712.0,
+    "4": 817.0
+   }
+  },
+  "competition-brochure-2.jpg": {
+   "scale": 2.3394034060609252,
+   "baselines": {
+    "0": 423.0,
+    "1": 511.5,
+    "2": 600.0,
+    "3": 690.0,
+    "4": 779.0
+   }
+  }
+ },
+ "constructions": {
+  "own_acutes": [
+   "aacute",
+   "eacute",
+   "iacute",
+   "oacute",
+   "uacute"
+  ],
+  "own_acutes_reason": "Both prints set each fada as drawn for its letter: on i a short acute (0.43 x-height wide against 0.68 on the others) right of the stem, on o one set right of centre. The composites keep each traced acute and its place across the letter; the gap above the letter stays the builder's uniform one (the traced gaps vary by print). a's acute touches the bowl on both prints, so a takes the shared acute at a's place.",
+  "brace": "pointed",
+  "brace_reason": "Braces are not on the specimens. The stroked construction ended the tip inside the stems' outer edge, cutting a notch into the waist; drawn instead with a point."
+ },
+ "independent_checks": [
+  {
+   "id": "B2 fig. 206",
+   "what": "Tuam Uncial Letraset sheet S53912, 48 pt, c. 1980 (production)",
+   "where": "Bolger 2017 volume 2, PDF page 164; pdfimages JPEG 590 x 900, SHA-256 2ea8c4401b68e2435b080cb37d976347086f1acc404da5194b1488ef50b8b8aa",
+   "result": "sheet-check.json (scripts/tuam_sheet_check.py): n 9 of 9 impressions in two pieces, h 10 of 10, f 7 of 7, u 13 of 13, r 7 of 8, u-acute 2 of 2 in three; v, w, x, e and o in one (x-height about 20 px: cuts narrower than about two N45 pixels do not separate). The means of the v and w impressions show a light seam at the cut N45 prints; the mean of the x impressions (crossed, not cut) shows none."
+  },
+  {
+   "id": "B2 figs 205b-c",
+   "what": "Hayes's development work with the repro camera, 1974-78",
+   "where": "Bolger 2017 volume 2, PDF pages 162-163 (205b rotated, 205c a mirrored negative)",
+   "result": "Earlier drawings, not the final letters (205c's b is a capital B form), but the same construction: the hooks of a, d, g, p, q and s stop short of the next stroke and the arches of h, m and n stand off their stems; 205c's first v is cut at the vertex."
+  },
+  {
+   "id": "N47, N44",
+   "what": "the competition advert's second sheet and the brochure's cover",
+   "where": "research/downloads.json",
+   "result": "neither prints Tuam Uncial"
+  }
+ ],
+ "shared_transform": {
+  "scale": 0.8529,
+  "rotation_deg": -0.2654,
+  "calibration_ratio": 0.87426,
+  "per_glyph_spread": {
+   "scale": 0.006374658880616392,
+   "rotation_deg": 0.4353191507645017
+  },
+  "note": "The median of free per-glyph fits; each glyph then moves by translation only."
+ },
+ "glyphs": [
+  {
+   "name": "a",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1160,
+    350,
+    1239,
+    402
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2297,
+     378,
+     2364,
+     423
+    ],
+    "labels": [
+     7
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.046,
+      0.025
+     ],
+     "centre_N46_px": [
+      375.79,
+      1199.59
+     ],
+     "centre_N45_px": [
+      400.56,
+      2329.619
+     ]
+    },
+    "correlation": 0.968,
+    "free_fit": {
+     "scale": 0.8444,
+     "rotation_deg": -0.664
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.525,
+    "mean_signed_px": -0.314,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.8,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "b",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1243,
+    328,
+    1323,
+    401
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2368,
+     359,
+     2435,
+     423
+    ],
+    "labels": [
+     1
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.436,
+      -0.369
+     ],
+     "centre_N46_px": [
+      368.875,
+      1279.841
+     ],
+     "centre_N45_px": [
+      395.678,
+      2398.732
+     ]
+    },
+    "correlation": 0.9715,
+    "free_fit": {
+     "scale": 0.8534,
+     "rotation_deg": -1.053
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.511,
+    "mean_signed_px": -0.192,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "c",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1332,
+    350,
+    1406,
+    400
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2444,
+     379,
+     2506,
+     424
+    ],
+    "labels": [
+     8
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.433,
+      -0.683
+     ],
+     "centre_N46_px": [
+      374.437,
+      1363.779
+     ],
+     "centre_N45_px": [
+      400.565,
+      2470.928
+     ]
+    },
+    "correlation": 0.9591,
+    "free_fit": {
+     "scale": 0.8626,
+     "rotation_deg": 0.377
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.578,
+    "mean_signed_px": 0.19,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.1,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "d",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1415,
+    328,
+    1487,
+    401
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2514,
+     361,
+     2577,
+     424
+    ],
+    "labels": [
+     2
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -1.001,
+      0.826
+     ],
+     "centre_N46_px": [
+      368.53,
+      1454.759
+     ],
+     "centre_N45_px": [
+      396.371,
+      2547.983
+     ]
+    },
+    "correlation": 0.9618,
+    "free_fit": {
+     "scale": 0.8606,
+     "rotation_deg": -1.085
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.558,
+    "mean_signed_px": -0.096,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      2
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     1
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "N45: the hook stops short of the stem and the slit runs into the counter, as both prints draw it in a, b, g, o and the figures; N46's blur closes it (round 3 traced the pinholes it leaves); fig. 206 cannot resolve a slit this narrow; figs 205b-c draw the same hooks",
+    "steps": [
+     {
+      "op": "open",
+      "pixels": 13,
+      "topology": [
+       1,
+       0
+      ],
+      "at_N46_px": [
+       1463.2,
+       356.5
+      ]
+     }
+    ],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.9,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.4
+   }
+  },
+  {
+   "name": "e",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1500,
+    350,
+    1575,
+    401
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2589,
+     380,
+     2652,
+     424
+    ],
+    "labels": [
+     9
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.051,
+      -0.464
+     ],
+     "centre_N46_px": [
+      374.832,
+      1535.317
+     ],
+     "centre_N45_px": [
+      401.118,
+      2618.644
+     ]
+    },
+    "correlation": 0.9589,
+    "free_fit": {
+     "scale": 0.8503,
+     "rotation_deg": -0.116
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.413,
+    "mean_signed_px": -0.215,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      1
+     ],
+     "N45": [
+      1,
+      1
+     ]
+    },
+    "mean": [
+     1,
+     1
+    ],
+    "decided": [
+     1,
+     1
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.2,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "f",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1580,
+    328,
+    1640,
+    423
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2656,
+     361,
+     2708,
+     443
+    ],
+    "labels": [
+     3,
+     4
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.964,
+      0.019
+     ],
+     "centre_N46_px": [
+      370.687,
+      1602.252
+     ],
+     "centre_N45_px": [
+      398.558,
+      2675.741
+     ]
+    },
+    "correlation": 0.9551,
+    "free_fit": {
+     "scale": 0.8514,
+     "rotation_deg": -0.22
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.71,
+    "mean_signed_px": -0.563,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "N45: the flag is cut from the stem; every impression on Bolger fig. 206 (the S53912 48 pt production sheet) prints it in separate pieces",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "g",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1640,
+    350,
+    1719,
+    423
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2709,
+     380,
+     2776,
+     443
+    ],
+    "labels": [
+     10
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.531,
+      0.188
+     ],
+     "centre_N46_px": [
+      386.393,
+      1679.863
+     ],
+     "centre_N45_px": [
+      410.753,
+      2741.608
+     ]
+    },
+    "correlation": 0.9409,
+    "free_fit": {
+     "scale": 0.8505,
+     "rotation_deg": -0.24
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.704,
+    "mean_signed_px": -0.567,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "h",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1725,
+    329,
+    1796,
+    403
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2780,
+     362,
+     2840,
+     424
+    ],
+    "labels": [
+     5,
+     11
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.062,
+      -0.197
+     ],
+     "centre_N46_px": [
+      368.738,
+      1757.497
+     ],
+     "centre_N45_px": [
+      395.523,
+      2808.072
+     ]
+    },
+    "correlation": 0.9536,
+    "free_fit": {
+     "scale": 0.8372,
+     "rotation_deg": -0.277
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.984,
+    "mean_signed_px": -0.922,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "N45: the arch is cut from the stem, as n's is on both prints; every impression on Bolger fig. 206 (the S53912 48 pt production sheet) prints it in separate pieces",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 5.2,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "i",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1808,
+    341,
+    1848,
+    403
+   ],
+   "labels": [
+    8,
+    13
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2846,
+     372,
+     2880,
+     425
+    ],
+    "labels": [
+     6,
+     12
+    ],
+    "row_box": [
+     2280,
+     350,
+     2940,
+     445
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.766,
+      -0.157
+     ],
+     "centre_N46_px": [
+      372.9,
+      1824.768
+     ],
+     "centre_N45_px": [
+      400.116,
+      2859.687
+     ]
+    },
+    "correlation": 0.9548,
+    "free_fit": {
+     "scale": 0.8416,
+     "rotation_deg": -0.885
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.864,
+    "mean_signed_px": -0.729,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 4.6,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "j",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1851,
+    339,
+    1891,
+    424
+   ],
+   "labels": [
+    7,
+    14
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2287,
+     457,
+     2322,
+     529
+    ],
+    "labels": [
+     5,
+     6
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.631,
+      -0.065
+     ],
+     "centre_N46_px": [
+      383.691,
+      1875.076
+     ],
+     "centre_N45_px": [
+      494.681,
+      2308.24
+     ]
+    },
+    "correlation": 0.9649,
+    "free_fit": {
+     "scale": 0.8459,
+     "rotation_deg": -0.464
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.508,
+    "mean_signed_px": -0.339,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "k",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1899,
+    329,
+    1969,
+    401
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2328,
+     449,
+     2389,
+     512
+    ],
+    "labels": [
+     3
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.357,
+      -0.073
+     ],
+     "centre_N46_px": [
+      368.648,
+      1927.737
+     ],
+     "centre_N45_px": [
+      483.876,
+      2352.845
+     ]
+    },
+    "correlation": 0.965,
+    "free_fit": {
+     "scale": 0.8544,
+     "rotation_deg": -0.888
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.487,
+    "mean_signed_px": -0.091,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.6,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "l",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1975,
+    328,
+    2016,
+    400
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    1140,
+    310,
+    2050,
+    425
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 400.0,
+   "old_baseline": 150.6466014670119,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2392,
+     449,
+     2429,
+     512
+    ],
+    "labels": [
+     4
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.115,
+      0.059
+     ],
+     "centre_N46_px": [
+      364.924,
+      1989.924
+     ],
+     "centre_N45_px": [
+      481.047,
+      2406.142
+     ]
+    },
+    "correlation": 0.9682,
+    "free_fit": {
+     "scale": 0.8538,
+     "rotation_deg": -1.429
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.609,
+    "mean_signed_px": -0.197,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.2,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "m",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1164,
+    455,
+    1275,
+    506
+   ],
+   "labels": [
+    14,
+    13,
+    8
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2433,
+     468,
+     2529,
+     512
+    ],
+    "labels": [
+     7,
+     8,
+     9
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.283,
+      -0.011
+     ],
+     "centre_N46_px": [
+      478.81,
+      1219.836
+     ],
+     "centre_N45_px": [
+      487.887,
+      2481.868
+     ]
+    },
+    "correlation": 0.9514,
+    "free_fit": {
+     "scale": 0.8596,
+     "rotation_deg": -1.012
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.676,
+    "mean_signed_px": 0.133,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      3,
+      0
+     ],
+     "N45": [
+      3,
+      0
+     ]
+    },
+    "mean": [
+     3,
+     0
+    ],
+    "decided": [
+     3,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.6,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "n",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1282,
+    455,
+    1352,
+    505
+   ],
+   "labels": [
+    9,
+    10
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2535,
+     468,
+     2596,
+     513
+    ],
+    "labels": [
+     10,
+     11
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.043,
+      0.583
+     ],
+     "centre_N46_px": [
+      477.551,
+      1318.944
+     ],
+     "centre_N45_px": [
+      488.566,
+      2566.35
+     ]
+    },
+    "correlation": 0.9665,
+    "free_fit": {
+     "scale": 0.8613,
+     "rotation_deg": -0.388
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.508,
+    "mean_signed_px": 0.072,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "o",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1364,
+    455,
+    1438,
+    505
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2606,
+     469,
+     2670,
+     513
+    ],
+    "labels": [
+     12
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.044,
+      -0.253
+     ],
+     "centre_N46_px": [
+      479.858,
+      1400.822
+     ],
+     "centre_N45_px": [
+      490.751,
+      2637.694
+     ]
+    },
+    "correlation": 0.9597,
+    "free_fit": {
+     "scale": 0.866,
+     "rotation_deg": -0.307
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.535,
+    "mean_signed_px": 0.222,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.8,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "p",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1442,
+    454,
+    1520,
+    526
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2673,
+     469,
+     2740,
+     531
+    ],
+    "labels": [
+     13
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.197,
+      0.093
+     ],
+     "centre_N46_px": [
+      484.925,
+      1477.579
+     ],
+     "centre_N45_px": [
+      495.178,
+      2703.753
+     ]
+    },
+    "correlation": 0.9602,
+    "free_fit": {
+     "scale": 0.8589,
+     "rotation_deg": -0.465
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.664,
+    "mean_signed_px": -0.388,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      1
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "N45: the hook stops short of the stem and the slit runs into the counter, as both prints draw it in a, b, g, o and the figures; N46's blur closes it (round 3 traced the pinholes it leaves); fig. 206 cannot resolve a slit this narrow; figs 205b-c draw the same hooks",
+    "steps": [],
+    "kept_unblurred": [
+     {
+      "op": "open",
+      "pixels": 8,
+      "topology": [
+       1,
+       0
+      ],
+      "at_N46_px": [
+       1468.0,
+       466.5
+      ]
+     }
+    ]
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "q",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1527,
+    454,
+    1604,
+    527
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2748,
+     469,
+     2814,
+     532
+    ],
+    "labels": [
+     14
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.393,
+      -0.116
+     ],
+     "centre_N46_px": [
+      485.125,
+      1568.276
+     ],
+     "centre_N45_px": [
+      495.454,
+      2782.603
+     ]
+    },
+    "correlation": 0.9587,
+    "free_fit": {
+     "scale": 0.8539,
+     "rotation_deg": -0.083
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.655,
+    "mean_signed_px": -0.427,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      1
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "N45: the hook stops short of the stem and the slit runs into the counter, as both prints draw it in a, b, g, o and the figures; N46's blur closes it (round 3 traced the pinholes it leaves); fig. 206 cannot resolve a slit this narrow; figs 205b-c draw the same hooks",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "r",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1608,
+    453,
+    1683,
+    505
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2818,
+     469,
+     2883,
+     514
+    ],
+    "labels": [
+     15,
+     16
+    ],
+    "row_box": [
+     2280,
+     438,
+     2940,
+     540
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.171,
+      -0.011
+     ],
+     "centre_N46_px": [
+      478.109,
+      1646.106
+     ],
+     "centre_N45_px": [
+      490.485,
+      2849.653
+     ]
+    },
+    "correlation": 0.9474,
+    "free_fit": {
+     "scale": 0.853,
+     "rotation_deg": -0.848
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.801,
+    "mean_signed_px": -0.587,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "N45: the bowl and leg are cut from the stem; every impression on Bolger fig. 206 (the S53912 48 pt production sheet) prints it in separate pieces",
+    "steps": [
+     {
+      "op": "open",
+      "pixels": 138,
+      "topology": [
+       2,
+       0
+      ],
+      "at_N46_px": [
+       1635.2,
+       474.2
+      ]
+     }
+    ],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 4.2,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "s",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1693,
+    455,
+    1765,
+    507
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2284,
+     555,
+     2344,
+     600
+    ],
+    "labels": [
+     2
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.071,
+      -0.095
+     ],
+     "centre_N46_px": [
+      480.225,
+      1728.744
+     ],
+     "centre_N45_px": [
+      577.334,
+      2314.229
+     ]
+    },
+    "correlation": 0.9319,
+    "free_fit": {
+     "scale": 0.8527,
+     "rotation_deg": -0.518
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.793,
+    "mean_signed_px": -0.615,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      2
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     1
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "N45: both hooks of the spine stop short and both counters open, as the slits of a and g do; N46's blur closes them",
+    "steps": [
+     {
+      "op": "open",
+      "pixels": 25,
+      "topology": [
+       1,
+       0
+      ],
+      "at_N46_px": [
+       1713.3,
+       486.0
+      ]
+     }
+    ],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 4.2,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "t",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1777,
+    444,
+    1854,
+    506
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2354,
+     546,
+     2419,
+     600
+    ],
+    "labels": [
+     1
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.394,
+      0.383
+     ],
+     "centre_N46_px": [
+      476.079,
+      1809.58
+     ],
+     "centre_N45_px": [
+      574.551,
+      2381.582
+     ]
+    },
+    "correlation": 0.9352,
+    "free_fit": {
+     "scale": 0.8451,
+     "rotation_deg": 0.017
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.966,
+    "mean_signed_px": -0.852,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 5.1,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "u",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1865,
+    454,
+    1940,
+    506
+   ],
+   "labels": [
+    6,
+    7
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2431,
+     557,
+     2492,
+     601
+    ],
+    "labels": [
+     3,
+     4
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.036,
+      -0.566
+     ],
+     "centre_N46_px": [
+      480.14,
+      1903.826
+     ],
+     "centre_N45_px": [
+      578.603,
+      2462.883
+     ]
+    },
+    "correlation": 0.9575,
+    "free_fit": {
+     "scale": 0.8461,
+     "rotation_deg": -0.726
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.64,
+    "mean_signed_px": -0.446,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "N45: the bowl is cut from the right stem (u is n turned); every impression on Bolger fig. 206 (the S53912 48 pt production sheet) prints it in separate pieces",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.4,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "v",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1949,
+    453,
+    2020,
+    504
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    1140,
+    425,
+    2050,
+    530
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 504.5,
+   "old_baseline": 189.76529107141695,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2501,
+     557,
+     2562,
+     601
+    ],
+    "labels": [
+     5,
+     6
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.033,
+      0.397
+     ],
+     "centre_N46_px": [
+      477.629,
+      1984.307
+     ],
+     "centre_N45_px": [
+      577.823,
+      2530.74
+     ]
+    },
+    "correlation": 0.9536,
+    "free_fit": {
+     "scale": 0.8446,
+     "rotation_deg": -0.977
+    }
+   },
+   "edges": {
+    "mean_abs_px": 1.081,
+    "mean_signed_px": -0.904,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "N45: the thin stroke is cut from the thick at the vertex; the mean of the four fig. 206 impressions shows a light seam there (x, drawn without a cut, shows none); fig. 205c's first v draws the cut",
+    "steps": [
+     {
+      "op": "open",
+      "pixels": 51,
+      "topology": [
+       2,
+       0
+      ],
+      "at_N46_px": [
+       1987.4,
+       496.9
+      ]
+     }
+    ],
+    "kept_unblurred": [
+     {
+      "op": "open",
+      "pixels": 5,
+      "topology": [
+       2,
+       0
+      ],
+      "at_N46_px": [
+       1990.0,
+       489.0
+      ]
+     }
+    ]
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 5.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "w",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1161,
+    557,
+    1271,
+    608
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2570,
+     557,
+     2664,
+     601
+    ],
+    "labels": [
+     7,
+     8,
+     9
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.098,
+      0.373
+     ],
+     "centre_N46_px": [
+      582.052,
+      1217.304
+     ],
+     "centre_N45_px": [
+      578.33,
+      2616.836
+     ]
+    },
+    "correlation": 0.959,
+    "free_fit": {
+     "scale": 0.8577,
+     "rotation_deg": -0.562
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.666,
+    "mean_signed_px": -0.277,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      3,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     3,
+     0
+    ],
+    "decision": "N45: each thin stroke is cut from the thick one before it, as in v; the mean of the four fig. 206 impressions shows a light seam at the right-hand cut",
+    "steps": [
+     {
+      "op": "open",
+      "pixels": 15,
+      "topology": [
+       2,
+       0
+      ],
+      "at_N46_px": [
+       1245.1,
+       592.5
+      ]
+     },
+     {
+      "op": "open",
+      "pixels": 25,
+      "topology": [
+       3,
+       0
+      ],
+      "at_N46_px": [
+       1198.6,
+       595.2
+      ]
+     }
+    ],
+    "kept_unblurred": [
+     {
+      "op": "open",
+      "pixels": 13,
+      "topology": [
+       3,
+       0
+      ],
+      "at_N46_px": [
+       1244.1,
+       595.2
+      ]
+     }
+    ]
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "x",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1282,
+    557,
+    1351,
+    607
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2672,
+     557,
+     2733,
+     602
+    ],
+    "labels": [
+     10
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.055,
+      0.263
+     ],
+     "centre_N46_px": [
+      581.876,
+      1314.263
+     ],
+     "centre_N45_px": [
+      579.148,
+      2700.559
+     ]
+    },
+    "correlation": 0.9724,
+    "free_fit": {
+     "scale": 0.857,
+     "rotation_deg": -0.465
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.517,
+    "mean_signed_px": -0.132,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "y",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1358,
+    557,
+    1429,
+    629
+   ],
+   "labels": [
+    11,
+    12
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2739,
+     558,
+     2800,
+     621
+    ],
+    "labels": [
+     11,
+     12
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.124,
+      0.759
+     ],
+     "centre_N46_px": [
+      589.316,
+      1399.169
+     ],
+     "centre_N45_px": [
+      585.849,
+      2773.305
+     ]
+    },
+    "correlation": 0.9727,
+    "free_fit": {
+     "scale": 0.8589,
+     "rotation_deg": 0.02
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.465,
+    "mean_signed_px": -0.085,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "z",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1444,
+    556,
+    1506,
+    607
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2813,
+     558,
+     2868,
+     602
+    ],
+    "labels": [
+     13
+    ],
+    "row_box": [
+     2280,
+     535,
+     2940,
+     625
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.06,
+      -0.085
+     ],
+     "centre_N46_px": [
+      581.49,
+      1473.713
+     ],
+     "centre_N45_px": [
+      579.786,
+      2839.286
+     ]
+    },
+    "correlation": 0.9696,
+    "free_fit": {
+     "scale": 0.8591,
+     "rotation_deg": -0.369
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.505,
+    "mean_signed_px": -0.122,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "one",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1525,
+    542,
+    1551,
+    608
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2288,
+     633,
+     2310,
+     690
+    ],
+    "labels": [
+     1
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.056,
+      0.008
+     ],
+     "centre_N46_px": [
+      573.758,
+      1539.126
+     ],
+     "centre_N45_px": [
+      660.068,
+      2299.827
+     ]
+    },
+    "correlation": 0.9664,
+    "free_fit": {
+     "scale": 0.8442,
+     "rotation_deg": -0.053
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.626,
+    "mean_signed_px": -0.438,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.3,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "two",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1566,
+    542,
+    1633,
+    608
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2323,
+     633,
+     2379,
+     690
+    ],
+    "labels": [
+     2
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.446,
+      0.659
+     ],
+     "centre_N46_px": [
+      572.527,
+      1602.836
+     ],
+     "centre_N45_px": [
+      659.811,
+      2353.227
+     ]
+    },
+    "correlation": 0.9552,
+    "free_fit": {
+     "scale": 0.8527,
+     "rotation_deg": 0.037
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.671,
+    "mean_signed_px": -0.352,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "three",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1639,
+    542,
+    1709,
+    608
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2385,
+     633,
+     2444,
+     690
+    ],
+    "labels": [
+     3
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.351,
+      0.473
+     ],
+     "centre_N46_px": [
+      575.665,
+      1679.674
+     ],
+     "centre_N45_px": [
+      661.583,
+      2418.516
+     ]
+    },
+    "correlation": 0.9589,
+    "free_fit": {
+     "scale": 0.8567,
+     "rotation_deg": 0.638
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.653,
+    "mean_signed_px": -0.075,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.4,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "four",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1718,
+    543,
+    1794,
+    617
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2452,
+     633,
+     2516,
+     697
+    ],
+    "labels": [
+     4
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.057,
+      0.432
+     ],
+     "centre_N46_px": [
+      575.812,
+      1760.078
+     ],
+     "centre_N45_px": [
+      661.366,
+      2486.514
+     ]
+    },
+    "correlation": 0.9517,
+    "free_fit": {
+     "scale": 0.8406,
+     "rotation_deg": -0.008
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.817,
+    "mean_signed_px": -0.728,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 4.3,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "five",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1805,
+    543,
+    1877,
+    610
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2526,
+     634,
+     2585,
+     691
+    ],
+    "labels": [
+     5,
+     11
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.287,
+      -0.193
+     ],
+     "centre_N46_px": [
+      576.244,
+      1841.177
+     ],
+     "centre_N45_px": [
+      662.192,
+      2555.778
+     ]
+    },
+    "correlation": 0.9198,
+    "free_fit": {
+     "scale": 0.8494,
+     "rotation_deg": -0.32
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.954,
+    "mean_signed_px": -0.834,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "N45: the flag is cut from the stroke below it, as f's flag is; a fig. 206 impression shows the seam",
+    "steps": [],
+    "kept_unblurred": [
+     {
+      "op": "open",
+      "pixels": 18,
+      "topology": [
+       2,
+       0
+      ],
+      "at_N46_px": [
+       1830.2,
+       569.3
+      ]
+     }
+    ]
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 5.0,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "six",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1886,
+    543,
+    1958,
+    609
+   ],
+   "labels": [
+    7
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2596,
+     634,
+     2655,
+     691
+    ],
+    "labels": [
+     6
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.595,
+      -0.458
+     ],
+     "centre_N46_px": [
+      579.504,
+      1919.9
+     ],
+     "centre_N45_px": [
+      666.235,
+      2623.31
+     ]
+    },
+    "correlation": 0.9617,
+    "free_fit": {
+     "scale": 0.8465,
+     "rotation_deg": -0.057
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.609,
+    "mean_signed_px": -0.357,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      1
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "N45: the bowl's hook stops short of the stem, as the 9's does on both prints; N46's blur closes it",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.2,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "seven",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1953,
+    542,
+    2014,
+    616
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    1140,
+    530,
+    2050,
+    635
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 606.5,
+   "old_baseline": 228.0168998676677,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2652,
+     635,
+     2704,
+     697
+    ],
+    "labels": [
+     7
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.585,
+      0.391
+     ],
+     "centre_N46_px": [
+      571.654,
+      1989.82
+     ],
+     "centre_N45_px": [
+      660.103,
+      2682.326
+     ]
+    },
+    "correlation": 0.9676,
+    "free_fit": {
+     "scale": 0.8501,
+     "rotation_deg": -0.512
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.69,
+    "mean_signed_px": -0.306,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.6,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "eight",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1165,
+    649,
+    1237,
+    714
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2714,
+     635,
+     2774,
+     691
+    ],
+    "labels": [
+     8
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.222,
+      -0.185
+     ],
+     "centre_N46_px": [
+      681.564,
+      1200.076
+     ],
+     "centre_N45_px": [
+      663.06,
+      2743.215
+     ]
+    },
+    "correlation": 0.9673,
+    "free_fit": {
+     "scale": 0.8528,
+     "rotation_deg": -0.098
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.58,
+    "mean_signed_px": -0.291,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      1
+     ],
+     "N45": [
+      1,
+      1
+     ]
+    },
+    "mean": [
+     1,
+     1
+    ],
+    "decided": [
+     1,
+     1
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.1,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.6
+   }
+  },
+  {
+   "name": "nine",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1244,
+    649,
+    1314,
+    713
+   ],
+   "labels": [
+    11,
+    12
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2781,
+     636,
+     2841,
+     691
+    ],
+    "labels": [
+     9
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.114,
+      0.644
+     ],
+     "centre_N46_px": [
+      675.7,
+      1280.867
+     ],
+     "centre_N45_px": [
+      659.248,
+      2812.225
+     ]
+    },
+    "correlation": 0.9618,
+    "free_fit": {
+     "scale": 0.8584,
+     "rotation_deg": 0.024
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.505,
+    "mean_signed_px": -0.163,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.4
+   }
+  },
+  {
+   "name": "zero",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1323,
+    647,
+    1397,
+    713
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2850,
+     636,
+     2913,
+     691
+    ],
+    "labels": [
+     10
+    ],
+    "row_box": [
+     2280,
+     625,
+     2940,
+     715
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.12,
+      -0.167
+     ],
+     "centre_N46_px": [
+      679.769,
+      1359.33
+     ],
+     "centre_N45_px": [
+      663.301,
+      2880.881
+     ]
+    },
+    "correlation": 0.967,
+    "free_fit": {
+     "scale": 0.8562,
+     "rotation_deg": -0.023
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.523,
+    "mean_signed_px": -0.293,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.8,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "sterling",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1423,
+    646,
+    1504,
+    713
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2287,
+     722,
+     2358,
+     779
+    ],
+    "labels": [
+     2
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.088,
+      -0.628
+     ],
+     "centre_N46_px": [
+      682.073,
+      1461.128
+     ],
+     "centre_N45_px": [
+      752.398,
+      2321.661
+     ]
+    },
+    "correlation": 0.9636,
+    "free_fit": {
+     "scale": 0.8525,
+     "rotation_deg": 0.088
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.566,
+    "mean_signed_px": -0.249,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.0,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "dollar",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1516,
+    638,
+    1588,
+    720
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2368,
+     714,
+     2430,
+     786
+    ],
+    "labels": [
+     1
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -1.099,
+      0.595
+     ],
+     "centre_N46_px": [
+      677.986,
+      1552.088
+     ],
+     "centre_N45_px": [
+      750.179,
+      2398.229
+     ]
+    },
+    "correlation": 0.9323,
+    "free_fit": {
+     "scale": 0.8488,
+     "rotation_deg": 0.046
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.663,
+    "mean_signed_px": -0.49,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      3
+     ],
+     "N45": [
+      1,
+      2
+     ]
+    },
+    "mean": [
+     1,
+     2
+    ],
+    "decided": [
+     1,
+     2
+    ],
+    "decision": "N46's third counter is a toner dropout in the lower terminal; N45 prints it solid",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.2
+   }
+  },
+  {
+   "name": "ampersand",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1603,
+    647,
+    1682,
+    712
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2443,
+     722,
+     2510,
+     779
+    ],
+    "labels": [
+     3
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.07,
+      -0.584
+     ],
+     "centre_N46_px": [
+      682.346,
+      1635.897
+     ],
+     "centre_N45_px": [
+      752.664,
+      2471.065
+     ]
+    },
+    "correlation": 0.958,
+    "free_fit": {
+     "scale": 0.8547,
+     "rotation_deg": 0.04
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.678,
+    "mean_signed_px": -0.428,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      1
+     ],
+     "N45": [
+      1,
+      1
+     ]
+    },
+    "mean": [
+     1,
+     1
+    ],
+    "decided": [
+     1,
+     1
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.6,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "question",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1689,
+    647,
+    1759,
+    713
+   ],
+   "labels": [
+    7,
+    17
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2515,
+     722,
+     2574,
+     779
+    ],
+    "labels": [
+     4,
+     16
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.975,
+      0.351
+     ],
+     "centre_N46_px": [
+      672.636,
+      1725.504
+     ],
+     "centre_N45_px": [
+      742.94,
+      2546.317
+     ]
+    },
+    "correlation": 0.9652,
+    "free_fit": {
+     "scale": 0.8546,
+     "rotation_deg": 0.726
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.582,
+    "mean_signed_px": -0.236,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.1,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "exclam",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1771,
+    647,
+    1793,
+    713
+   ],
+   "labels": [
+    8,
+    18
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2585,
+     722,
+     2603,
+     780
+    ],
+    "labels": [
+     5,
+     17
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      0.205,
+      -0.086
+     ],
+     "centre_N46_px": [
+      678.411,
+      1781.655
+     ],
+     "centre_N45_px": [
+      748.739,
+      2593.886
+     ]
+    },
+    "correlation": 0.9544,
+    "free_fit": {
+     "scale": 0.8495,
+     "rotation_deg": -0.324
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.534,
+    "mean_signed_px": -0.359,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 2.8,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "aacute",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1814,
+    647,
+    1895,
+    714
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2614,
+     722,
+     2682,
+     780
+    ],
+    "labels": [
+     6
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -1.203,
+      -0.298
+     ],
+     "centre_N46_px": [
+      683.556,
+      1853.164
+     ],
+     "centre_N45_px": [
+      754.893,
+      2646.294
+     ]
+    },
+    "correlation": 0.9326,
+    "free_fit": {
+     "scale": 0.8495,
+     "rotation_deg": -0.254
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.927,
+    "mean_signed_px": -0.746,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      1
+     ],
+     "N45": [
+      1,
+      0
+     ]
+    },
+    "mean": [
+     1,
+     0
+    ],
+    "decided": [
+     1,
+     0
+    ],
+    "decision": "as a (the slit open); the acute touches the bowl on both prints",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 4.9,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "eacute",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1900,
+    646,
+    1974,
+    714
+   ],
+   "labels": [
+    3,
+    13,
+    14
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2687,
+     723,
+     2749,
+     780
+    ],
+    "labels": [
+     7,
+     11
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.607,
+      0.396
+     ],
+     "centre_N46_px": [
+      682.664,
+      1935.745
+     ],
+     "centre_N45_px": [
+      754.174,
+      2716.361
+     ]
+    },
+    "correlation": 0.9335,
+    "free_fit": {
+     "scale": 0.8472,
+     "rotation_deg": -0.2
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.629,
+    "mean_signed_px": -0.409,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      2
+     ],
+     "N45": [
+      2,
+      1
+     ]
+    },
+    "mean": [
+     2,
+     1
+    ],
+    "decided": [
+     2,
+     1
+    ],
+    "decision": "N45: the acute stands clear of the e, as on every é of fig. 206; N46's blur joins them",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.3,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "iacute",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1982,
+    646,
+    2020,
+    712
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    1140,
+    635,
+    2050,
+    735
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 712.0,
+   "old_baseline": 267.66321248086274,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2755,
+     723,
+     2789,
+     780
+    ],
+    "labels": [
+     8,
+     12
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.449,
+      -0.008
+     ],
+     "centre_N46_px": [
+      682.052,
+      1997.59
+     ],
+     "centre_N45_px": [
+      754.005,
+      2769.362
+     ]
+    },
+    "correlation": 0.9382,
+    "free_fit": {
+     "scale": 0.8549,
+     "rotation_deg": -0.035
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.894,
+    "mean_signed_px": -0.693,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      1,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "N45: the acute stands clear of the stem, as on every í of fig. 206; N46's blur joins them",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 4.7,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "oacute",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1165,
+    753,
+    1241,
+    818
+   ],
+   "labels": [
+    2,
+    5
+   ],
+   "row_box": [
+    1140,
+    735,
+    2050,
+    850
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 817.0,
+   "old_baseline": 306.7065832458163,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2795,
+     723,
+     2858,
+     780
+    ],
+    "labels": [
+     9,
+     13
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.67,
+      -0.261
+     ],
+     "centre_N46_px": [
+      789.277,
+      1203.133
+     ],
+     "centre_N45_px": [
+      755.14,
+      2826.213
+     ]
+    },
+    "correlation": 0.9655,
+    "free_fit": {
+     "scale": 0.8586,
+     "rotation_deg": -0.094
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.657,
+    "mean_signed_px": -0.245,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      2,
+      0
+     ]
+    },
+    "mean": [
+     2,
+     0
+    ],
+    "decided": [
+     2,
+     0
+    ],
+    "decision": "both prints agree",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 3.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  },
+  {
+   "name": "uacute",
+   "status": "candidate",
+   "method": "consensus",
+   "source": "competition-advert-1.jpg",
+   "source_id": "N46+N45",
+   "box": [
+    1246,
+    752,
+    1317,
+    818
+   ],
+   "labels": [
+    1,
+    3,
+    4
+   ],
+   "row_box": [
+    1140,
+    735,
+    2050,
+    850
+   ],
+   "scale": 2.6758714388255833,
+   "source_baseline": 817.0,
+   "old_baseline": 306.7065832458163,
+   "check": {
+    "source": "competition-brochure-2.jpg",
+    "source_id": "N45",
+    "box": [
+     2863,
+     723,
+     2924,
+     780
+    ],
+    "labels": [
+     10,
+     14,
+     15
+    ],
+    "row_box": [
+     2280,
+     705,
+     2940,
+     805
+    ],
+    "transform": {
+     "kind": "similarity, N46 crop pixel (row, col) -> N45 crop pixel",
+     "scale": 0.8529,
+     "rotation_deg": -0.2654,
+     "shift_px": [
+      -0.424,
+      0.104
+     ],
+     "centre_N46_px": [
+      788.668,
+      1283.242
+     ],
+     "centre_N45_px": [
+      754.928,
+      2895.17
+     ]
+    },
+    "correlation": 0.9562,
+    "free_fit": {
+     "scale": 0.8645,
+     "rotation_deg": -0.282
+    }
+   },
+   "edges": {
+    "mean_abs_px": 0.844,
+    "mean_signed_px": -0.499,
+    "note": "N45's 0.5 edge against N46's, in N46 pixels (one is about 10.6 font units); positive where N45 prints bolder. The traced edge lies half-way between them."
+   },
+   "topology": {
+    "prints": {
+     "N46": [
+      2,
+      0
+     ],
+     "N45": [
+      3,
+      0
+     ]
+    },
+    "mean": [
+     3,
+     0
+    ],
+    "decided": [
+     3,
+     0
+    ],
+    "decision": "as u (the bowl cut from the stem), with the acute apart",
+    "steps": [],
+    "kept_unblurred": []
+   },
+   "smoothing_sigma": 0.8,
+   "uncertainty_font_units": 4.5,
+   "round3": {
+    "source_id": "N46",
+    "smoothing_sigma": 0.8
+   }
+  }
+ ],
+ "limitations": [
+  "N46 and N45 reproduce the same lettering and may share intermediate copies: their agreement is not independent confirmation. Bolger fig. 206 (the production sheet) is the independent check, at a third of their resolution.",
+  "The traced edge is the mean of the two prints at each print's own paper and ink levels.",
+  "Legacy builder text-height regularisation and modern extensions remain."
+ ]
+}

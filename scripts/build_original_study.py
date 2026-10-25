@@ -17,7 +17,14 @@ def study_class(face,traces):
     punctuation_data=json.loads(punctuation_file.read_text(encoding='utf-8')) if punctuation_file.exists() else None
     if punctuation_data is not None and face!='ceili':raise ValueError('named punctuation is currently defined only for Ceili')
 
+    constructions=evidence.get('constructions',{})
+
     class OriginalStudy(build2.Font2):
+        # construction decisions a round records in its evidence (Tuam Study 3): the accented letters that
+        # keep their own traced acutes, and braces drawn with a point; absent, the release's constructions
+        OWN_ACUTES=tuple(constructions.get('own_acutes',()))
+        BRACE_POINT=constructions.get('brace')=='pointed'
+
         def punctuation(self):
             if punctuation_data is not None:
                 self.source_punctuation={}
@@ -130,7 +137,17 @@ def update_provenance(base,f,cfg,evidence,piece_data):
           'Euro':'c' if cfg['unicase'] else 'C','uni204A':'seven',**f.comp}
     piece_sources={'degree':'ring','guilsinglright':'guil.r1','guilsinglleft':'guil.l1',
                    'guillemotright':'guil.r1 + guil.r2','guillemotleft':'guil.l1 + guil.l2'}
+    own_acutes=evidence.get('constructions',{}).get('own_acutes',[])
+    def source_words(g):
+        region=g['box'] if 'box' in g else f'{len(g.get("boxes",[]))} impressions on the {g.get("sheet","")} sheet'
+        words=f'NIVAL {g["source"]}, region {region}'
+        if 'check' in g:      # a consensus of two prints (Tuam Study 3)
+            words+=f', averaged with NIVAL {g["check"]["source"]}, region {g["check"]["box"]}'
+        return words
     for name,(kind,construction) in list(provenance.items()):
+        if name in own_acutes and name in updated:
+            construction+=f'; the acute as printed on {name}: '+source_words(updated[name])
+            provenance[name]=[kind,construction]
         if piece_data is not None and name in piece_sources:
             source_id=piece_data.get('primary_source_id','N516')
             detail=piece_sources[name]
@@ -142,8 +159,7 @@ def update_provenance(base,f,cfg,evidence,piece_data):
         if not g:continue
         construction=construction.replace('the 1978 flyer','the NIVAL specimen').replace('the flyer’s','the NIVAL specimen’s')
         if kind=='flyer':kind='original-specimen'
-        region=g['box'] if 'box' in g else f'{len(g.get("boxes",[]))} impressions on the {g.get("sheet","")} sheet'
-        provenance[name]=[kind,construction+f'; base source {g["name"]}: NIVAL {g["source"]}, region {region}']
+        provenance[name]=[kind,construction+f'; base source {g["name"]}: '+source_words(g)]
     path.write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 
 

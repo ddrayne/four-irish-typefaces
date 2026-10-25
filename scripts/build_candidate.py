@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 # the latest accepted study of each face (research/HANDOFF.md)
 LATEST = {'kilfane': 'research/kilfane-judgement/traces', 'carrick': 'research/round-06/carrick/traces',
-          'tuam': 'research/round-03/tuam/traces', 'ceili': 'research/round-04/ceili/traces'}
+          'tuam': 'research/tuam-judgement/traces', 'ceili': 'research/round-04/ceili/traces'}
 
 
 def build(face, traces, version):

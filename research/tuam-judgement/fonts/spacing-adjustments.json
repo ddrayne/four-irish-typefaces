@@ -1,0 +1,2203 @@
+{
+  "method": "Full-height one-unit silhouette sampling, two-unit vertical allowance, eight-unit minimum horizontal clearance; verified separately on shaped binaries.",
+  "changes": [
+    {
+      "left": "f",
+      "right": "b",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -19.128732168093848
+    },
+    {
+      "left": "f",
+      "right": "h",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.781210901492273
+    },
+    {
+      "left": "f",
+      "right": "k",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.275381686416267
+    },
+    {
+      "left": "f",
+      "right": "l",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "f",
+      "right": "parenright",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -26.711191403129533
+    },
+    {
+      "left": "f",
+      "right": "hbar",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.78485309601831
+    },
+    {
+      "left": "f",
+      "right": "ldot",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "f",
+      "right": "igrave",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -17.843419124689376
+    },
+    {
+      "left": "f",
+      "right": "hcircumflex",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.781210901492273
+    },
+    {
+      "left": "f",
+      "right": "ibreve",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -10.039135836745118
+    },
+    {
+      "left": "f",
+      "right": "uni0137",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.275381686416267
+    },
+    {
+      "left": "f",
+      "right": "lacute",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "f",
+      "right": "uni013C",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "f",
+      "right": "lcaron",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "f",
+      "right": "uni1E03",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -19.128732168093848
+    },
+    {
+      "left": "f",
+      "right": "backslash",
+      "before": 0,
+      "after": 145,
+      "measured_gap": -132.879957847917
+    },
+    {
+      "left": "f",
+      "right": "yen",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.619043241791246
+    },
+    {
+      "left": "f",
+      "right": "onesuperior",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 7.0182433234081145
+    },
+    {
+      "left": "f",
+      "right": "onequarter",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.49347576153184
+    },
+    {
+      "left": "f",
+      "right": "onehalf",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.49347576153184
+    },
+    {
+      "left": "f",
+      "right": "minute",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 3.776479491506393
+    },
+    {
+      "left": "f",
+      "right": "second",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 3.776479491506393
+    },
+    {
+      "left": "f",
+      "right": "caron",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.6881091063741
+    },
+    {
+      "left": "f",
+      "right": "breve",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.4301414490141724
+    },
+    {
+      "left": "i",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "k",
+      "right": "fraction",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -39.44667667238423
+    },
+    {
+      "left": "l",
+      "right": "fraction",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -31.889110465148235
+    },
+    {
+      "left": "r",
+      "right": "fraction",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.691201098027136
+    },
+    {
+      "left": "x",
+      "right": "fraction",
+      "before": 0,
+      "after": 55,
+      "measured_gap": -42.58410522160614
+    },
+    {
+      "left": "z",
+      "right": "fraction",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.26526767563314
+    },
+    {
+      "left": "two",
+      "right": "idieresis",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 5.749476103236589
+    },
+    {
+      "left": "seven",
+      "right": "idieresis",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -10.530912208445443
+    },
+    {
+      "left": "seven",
+      "right": "backslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -11.087557603686605
+    },
+    {
+      "left": "ampersand",
+      "right": "fraction",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -30.33914038485807
+    },
+    {
+      "left": "question",
+      "right": "idieresis",
+      "before": 0,
+      "after": 45,
+      "measured_gap": -33.74331189514112
+    },
+    {
+      "left": "question",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 5.525219772430091
+    },
+    {
+      "left": "quoteright",
+      "right": "backslash",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.287390029325536
+    },
+    {
+      "left": "quoteleft",
+      "right": "backslash",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -1.5582977069568642
+    },
+    {
+      "left": "quotedblleft",
+      "right": "backslash",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -1.5582977069568642
+    },
+    {
+      "left": "quotedblright",
+      "right": "backslash",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.287390029325479
+    },
+    {
+      "left": "quotesingle",
+      "right": "backslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -11.81258920924921
+    },
+    {
+      "left": "quotedbl",
+      "right": "backslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -11.81258920924921
+    },
+    {
+      "left": "parenleft",
+      "right": "j",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -28.3013322912077
+    },
+    {
+      "left": "parenleft",
+      "right": "slash",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -38.57028620385353
+    },
+    {
+      "left": "parenleft",
+      "right": "dotlessj",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -28.3013322912077
+    },
+    {
+      "left": "parenleft",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -28.3013322912077
+    },
+    {
+      "left": "parenleft",
+      "right": "backslash",
+      "before": 0,
+      "after": 75,
+      "measured_gap": -63.572517609695126
+    },
+    {
+      "left": "slash",
+      "right": "b",
+      "before": 0,
+      "after": 55,
+      "measured_gap": -42.83542781436779
+    },
+    {
+      "left": "slash",
+      "right": "h",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -26.975350935983272
+    },
+    {
+      "left": "slash",
+      "right": "k",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -30.342715237373056
+    },
+    {
+      "left": "slash",
+      "right": "l",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -25.213223195742387
+    },
+    {
+      "left": "slash",
+      "right": "seven",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 7.346769000245331
+    },
+    {
+      "left": "slash",
+      "right": "quotesingle",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -12.802703673349129
+    },
+    {
+      "left": "slash",
+      "right": "quotedbl",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -12.802703673349129
+    },
+    {
+      "left": "slash",
+      "right": "parenright",
+      "before": 0,
+      "after": 75,
+      "measured_gap": -64.57181760019438
+    },
+    {
+      "left": "slash",
+      "right": "hbar",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -26.975350935983272
+    },
+    {
+      "left": "slash",
+      "right": "lslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -8.2266716249066
+    },
+    {
+      "left": "slash",
+      "right": "ldot",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -25.213223195742387
+    },
+    {
+      "left": "slash",
+      "right": "igrave",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -39.78359347901494
+    },
+    {
+      "left": "slash",
+      "right": "idieresis",
+      "before": 0,
+      "after": 70,
+      "measured_gap": -58.959988319604406
+    },
+    {
+      "left": "slash",
+      "right": "hcircumflex",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -26.975350935983272
+    },
+    {
+      "left": "slash",
+      "right": "ibreve",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -25.51759129751065
+    },
+    {
+      "left": "slash",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.749039115083633
+    },
+    {
+      "left": "slash",
+      "right": "uni0137",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -30.342715237373056
+    },
+    {
+      "left": "slash",
+      "right": "lacute",
+      "before": 0,
+      "after": 75,
+      "measured_gap": -62.567580067059794
+    },
+    {
+      "left": "slash",
+      "right": "uni013C",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -25.213223195742387
+    },
+    {
+      "left": "slash",
+      "right": "lcaron",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -25.213223195742387
+    },
+    {
+      "left": "slash",
+      "right": "uni1E03",
+      "before": 0,
+      "after": 55,
+      "measured_gap": -42.83542781436779
+    },
+    {
+      "left": "slash",
+      "right": "braceright",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -0.7898022892820222
+    },
+    {
+      "left": "slash",
+      "right": "backslash",
+      "before": 0,
+      "after": 180,
+      "measured_gap": -170.5801248699272
+    },
+    {
+      "left": "slash",
+      "right": "yen",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -20.332115549925334
+    },
+    {
+      "left": "slash",
+      "right": "trademark",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 0.9240706196436577
+    },
+    {
+      "left": "slash",
+      "right": "onesuperior",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -17.10513806181558
+    },
+    {
+      "left": "slash",
+      "right": "twosuperior",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 1.70500689167676
+    },
+    {
+      "left": "slash",
+      "right": "onequarter",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -17.950407557907397
+    },
+    {
+      "left": "slash",
+      "right": "onehalf",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -17.950407557907397
+    },
+    {
+      "left": "slash",
+      "right": "minute",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -22.926597478658834
+    },
+    {
+      "left": "slash",
+      "right": "second",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -22.926597478658834
+    },
+    {
+      "left": "slash",
+      "right": "grave",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -0.044779743322919785
+    },
+    {
+      "left": "slash",
+      "right": "caron",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -21.04185654311243
+    },
+    {
+      "left": "slash",
+      "right": "breve",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -12.778468365960975
+    },
+    {
+      "left": "slash",
+      "right": "ring",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.272130413825494
+    },
+    {
+      "left": "dotlessi",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "dcroat",
+      "right": "igrave",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.993908775981481
+    },
+    {
+      "left": "dcroat",
+      "right": "idieresis",
+      "before": 0,
+      "after": 65,
+      "measured_gap": -56.72351266959288
+    },
+    {
+      "left": "dcroat",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 1.0404624277456378
+    },
+    {
+      "left": "dcroat",
+      "right": "backslash",
+      "before": 0,
+      "after": 60,
+      "measured_gap": -48.08064516129036
+    },
+    {
+      "left": "dcroat",
+      "right": "yen",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 7.0047826086956775
+    },
+    {
+      "left": "dcroat",
+      "right": "trademark",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.8975543478260306
+    },
+    {
+      "left": "dcroat",
+      "right": "twosuperior",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 5.945152121275896
+    },
+    {
+      "left": "eth",
+      "right": "igrave",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.645454545454527
+    },
+    {
+      "left": "eth",
+      "right": "backslash",
+      "before": 0,
+      "after": 70,
+      "measured_gap": -59.45992179863151
+    },
+    {
+      "left": "lslash",
+      "right": "fraction",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -31.889110465148235
+    },
+    {
+      "left": "kgreenlandic",
+      "right": "fraction",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -39.44667667238423
+    },
+    {
+      "left": "longs",
+      "right": "b",
+      "before": 0,
+      "after": 180,
+      "measured_gap": -170.12873216809385
+    },
+    {
+      "left": "longs",
+      "right": "f",
+      "before": 0,
+      "after": 105,
+      "measured_gap": -95.00099613108603
+    },
+    {
+      "left": "longs",
+      "right": "h",
+      "before": 0,
+      "after": 165,
+      "measured_gap": -156.78121090149227
+    },
+    {
+      "left": "longs",
+      "right": "i",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -4.584063809434042
+    },
+    {
+      "left": "longs",
+      "right": "k",
+      "before": 0,
+      "after": 175,
+      "measured_gap": -164.27538168641627
+    },
+    {
+      "left": "longs",
+      "right": "l",
+      "before": 0,
+      "after": 170,
+      "measured_gap": -158.7875897147453
+    },
+    {
+      "left": "longs",
+      "right": "one",
+      "before": 0,
+      "after": 130,
+      "measured_gap": -118.7999750001029
+    },
+    {
+      "left": "longs",
+      "right": "two",
+      "before": 0,
+      "after": 90,
+      "measured_gap": -79.2949572997714
+    },
+    {
+      "left": "longs",
+      "right": "three",
+      "before": 0,
+      "after": 65,
+      "measured_gap": -54.751178501439654
+    },
+    {
+      "left": "longs",
+      "right": "seven",
+      "before": 0,
+      "after": 115,
+      "measured_gap": -104.60235609527842
+    },
+    {
+      "left": "longs",
+      "right": "eight",
+      "before": 0,
+      "after": 70,
+      "measured_gap": -58.085542223995844
+    },
+    {
+      "left": "longs",
+      "right": "nine",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -12.32259821721209
+    },
+    {
+      "left": "longs",
+      "right": "zero",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -15.485627249865047
+    },
+    {
+      "left": "longs",
+      "right": "dollar",
+      "before": 0,
+      "after": 60,
+      "measured_gap": -47.78815885742506
+    },
+    {
+      "left": "longs",
+      "right": "ampersand",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.396819350677674
+    },
+    {
+      "left": "longs",
+      "right": "question",
+      "before": 0,
+      "after": 95,
+      "measured_gap": -85.6843652553705
+    },
+    {
+      "left": "longs",
+      "right": "exclam",
+      "before": 0,
+      "after": 95,
+      "measured_gap": -85.49312910239371
+    },
+    {
+      "left": "longs",
+      "right": "quoteright",
+      "before": 0,
+      "after": 130,
+      "measured_gap": -121.86395685763932
+    },
+    {
+      "left": "longs",
+      "right": "quoteleft",
+      "before": 0,
+      "after": 125,
+      "measured_gap": -115.66064785393678
+    },
+    {
+      "left": "longs",
+      "right": "quotedblleft",
+      "before": 0,
+      "after": 125,
+      "measured_gap": -115.66064785393678
+    },
+    {
+      "left": "longs",
+      "right": "quotedblright",
+      "before": 0,
+      "after": 130,
+      "measured_gap": -121.86395685763932
+    },
+    {
+      "left": "longs",
+      "right": "quotesingle",
+      "before": 0,
+      "after": 145,
+      "measured_gap": -134.62175059698922
+    },
+    {
+      "left": "longs",
+      "right": "quotedbl",
+      "before": 0,
+      "after": 145,
+      "measured_gap": -134.62175059698922
+    },
+    {
+      "left": "longs",
+      "right": "parenleft",
+      "before": 0,
+      "after": 45,
+      "measured_gap": -33.027764560050855
+    },
+    {
+      "left": "longs",
+      "right": "parenright",
+      "before": 0,
+      "after": 190,
+      "measured_gap": -177.7111914031296
+    },
+    {
+      "left": "longs",
+      "right": "hbar",
+      "before": 0,
+      "after": 165,
+      "measured_gap": -156.7848530960183
+    },
+    {
+      "left": "longs",
+      "right": "lslash",
+      "before": 0,
+      "after": 150,
+      "measured_gap": -141.80103814390952
+    },
+    {
+      "left": "longs",
+      "right": "thorn",
+      "before": 0,
+      "after": 115,
+      "measured_gap": -102.89608688017506
+    },
+    {
+      "left": "longs",
+      "right": "ij",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -4.584063809434042
+    },
+    {
+      "left": "longs",
+      "right": "ldot",
+      "before": 0,
+      "after": 170,
+      "measured_gap": -158.7875897147453
+    },
+    {
+      "left": "longs",
+      "right": "longs",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -108.00099613108591
+    },
+    {
+      "left": "longs",
+      "right": "germandbls",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -108.00099613108591
+    },
+    {
+      "left": "longs",
+      "right": "igrave",
+      "before": 0,
+      "after": 180,
+      "measured_gap": -168.84341912468955
+    },
+    {
+      "left": "longs",
+      "right": "iacute",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 0.27000957377049417
+    },
+    {
+      "left": "longs",
+      "right": "icircumflex",
+      "before": 0,
+      "after": 65,
+      "measured_gap": -54.99463678443499
+    },
+    {
+      "left": "longs",
+      "right": "idieresis",
+      "before": 0,
+      "after": 150,
+      "measured_gap": -138.58745641992317
+    },
+    {
+      "left": "longs",
+      "right": "hcircumflex",
+      "before": 0,
+      "after": 165,
+      "measured_gap": -156.78121090149227
+    },
+    {
+      "left": "longs",
+      "right": "itilde",
+      "before": 0,
+      "after": 110,
+      "measured_gap": -97.82806271714594
+    },
+    {
+      "left": "longs",
+      "right": "ibreve",
+      "before": 0,
+      "after": 170,
+      "measured_gap": -161.03913583674517
+    },
+    {
+      "left": "longs",
+      "right": "iogonek",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -4.584063809434042
+    },
+    {
+      "left": "longs",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 105,
+      "measured_gap": -94.45128418327886
+    },
+    {
+      "left": "longs",
+      "right": "uni0137",
+      "before": 0,
+      "after": 175,
+      "measured_gap": -164.27538168641627
+    },
+    {
+      "left": "longs",
+      "right": "lacute",
+      "before": 0,
+      "after": 170,
+      "measured_gap": -158.7875897147453
+    },
+    {
+      "left": "longs",
+      "right": "uni013C",
+      "before": 0,
+      "after": 170,
+      "measured_gap": -158.7875897147453
+    },
+    {
+      "left": "longs",
+      "right": "lcaron",
+      "before": 0,
+      "after": 170,
+      "measured_gap": -158.7875897147453
+    },
+    {
+      "left": "longs",
+      "right": "zcaron",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -0.7053504856844484
+    },
+    {
+      "left": "longs",
+      "right": "uni1E03",
+      "before": 0,
+      "after": 180,
+      "measured_gap": -170.12873216809385
+    },
+    {
+      "left": "longs",
+      "right": "uni1E1F",
+      "before": 0,
+      "after": 105,
+      "measured_gap": -95.00099613108603
+    },
+    {
+      "left": "longs",
+      "right": "percent",
+      "before": 0,
+      "after": 105,
+      "measured_gap": -93.98803514056561
+    },
+    {
+      "left": "longs",
+      "right": "perthousand",
+      "before": 0,
+      "after": 105,
+      "measured_gap": -93.98803514056561
+    },
+    {
+      "left": "longs",
+      "right": "asterisk",
+      "before": 0,
+      "after": 65,
+      "measured_gap": -52.84951480520749
+    },
+    {
+      "left": "longs",
+      "right": "bracketleft",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -109.89608688017506
+    },
+    {
+      "left": "longs",
+      "right": "bracketright",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -109.89608688017506
+    },
+    {
+      "left": "longs",
+      "right": "braceleft",
+      "before": 0,
+      "after": 90,
+      "measured_gap": -79.32652398419577
+    },
+    {
+      "left": "longs",
+      "right": "braceright",
+      "before": 0,
+      "after": 135,
+      "measured_gap": -122.89608688017506
+    },
+    {
+      "left": "longs",
+      "right": "bar",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -109.89608688017506
+    },
+    {
+      "left": "longs",
+      "right": "brokenbar",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -109.89608688017506
+    },
+    {
+      "left": "longs",
+      "right": "backslash",
+      "before": 0,
+      "after": 295,
+      "measured_gap": -283.879957847917
+    },
+    {
+      "left": "longs",
+      "right": "yen",
+      "before": 0,
+      "after": 155,
+      "measured_gap": -144.38095675820875
+    },
+    {
+      "left": "longs",
+      "right": "section",
+      "before": 0,
+      "after": 80,
+      "measured_gap": -70.60876230693793
+    },
+    {
+      "left": "longs",
+      "right": "paragraph",
+      "before": 0,
+      "after": 60,
+      "measured_gap": -49.64007850837356
+    },
+    {
+      "left": "longs",
+      "right": "trademark",
+      "before": 0,
+      "after": 85,
+      "measured_gap": -74.40769571158467
+    },
+    {
+      "left": "longs",
+      "right": "degree",
+      "before": 0,
+      "after": 90,
+      "measured_gap": -77.39304439205836
+    },
+    {
+      "left": "longs",
+      "right": "ordfeminine",
+      "before": 0,
+      "after": 105,
+      "measured_gap": -95.89687237141851
+    },
+    {
+      "left": "longs",
+      "right": "ordmasculine",
+      "before": 0,
+      "after": 105,
+      "measured_gap": -92.72958227716214
+    },
+    {
+      "left": "longs",
+      "right": "onesuperior",
+      "before": 0,
+      "after": 155,
+      "measured_gap": -143.981756676592
+    },
+    {
+      "left": "longs",
+      "right": "twosuperior",
+      "before": 0,
+      "after": 125,
+      "measured_gap": -114.00299910145566
+    },
+    {
+      "left": "longs",
+      "right": "threesuperior",
+      "before": 0,
+      "after": 110,
+      "measured_gap": -101.67388636442882
+    },
+    {
+      "left": "longs",
+      "right": "fraction",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -27.37513164204222
+    },
+    {
+      "left": "longs",
+      "right": "onequarter",
+      "before": 0,
+      "after": 155,
+      "measured_gap": -144.50652423846833
+    },
+    {
+      "left": "longs",
+      "right": "onehalf",
+      "before": 0,
+      "after": 155,
+      "measured_gap": -144.50652423846833
+    },
+    {
+      "left": "longs",
+      "right": "threequarters",
+      "before": 0,
+      "after": 115,
+      "measured_gap": -102.27408139091943
+    },
+    {
+      "left": "longs",
+      "right": "dagger",
+      "before": 0,
+      "after": 85,
+      "measured_gap": -72.55768955003555
+    },
+    {
+      "left": "longs",
+      "right": "daggerdbl",
+      "before": 0,
+      "after": 75,
+      "measured_gap": -63.55768955003555
+    },
+    {
+      "left": "longs",
+      "right": "minute",
+      "before": 0,
+      "after": 160,
+      "measured_gap": -147.22352050849366
+    },
+    {
+      "left": "longs",
+      "right": "second",
+      "before": 0,
+      "after": 160,
+      "measured_gap": -147.22352050849366
+    },
+    {
+      "left": "longs",
+      "right": "grave",
+      "before": 0,
+      "after": 140,
+      "measured_gap": -130.19959574340794
+    },
+    {
+      "left": "longs",
+      "right": "dieresis",
+      "before": 0,
+      "after": 65,
+      "measured_gap": -54.207619898216876
+    },
+    {
+      "left": "longs",
+      "right": "acute",
+      "before": 0,
+      "after": 60,
+      "measured_gap": -51.21863695265813
+    },
+    {
+      "left": "longs",
+      "right": "circumflex",
+      "before": 0,
+      "after": 60,
+      "measured_gap": -48.19883089654684
+    },
+    {
+      "left": "longs",
+      "right": "caron",
+      "before": 0,
+      "after": 165,
+      "measured_gap": -156.6881091063741
+    },
+    {
+      "left": "longs",
+      "right": "breve",
+      "before": 0,
+      "after": 160,
+      "measured_gap": -148.56985855098583
+    },
+    {
+      "left": "longs",
+      "right": "dotaccent",
+      "before": 0,
+      "after": 75,
+      "measured_gap": -66.7351546605696
+    },
+    {
+      "left": "longs",
+      "right": "ring",
+      "before": 0,
+      "after": 155,
+      "measured_gap": -142.37051783413574
+    },
+    {
+      "left": "longs",
+      "right": "tilde",
+      "before": 0,
+      "after": 90,
+      "measured_gap": -79.55204294418945
+    },
+    {
+      "left": "longs",
+      "right": "hungarumlaut",
+      "before": 0,
+      "after": 75,
+      "measured_gap": -66.60179361553185
+    },
+    {
+      "left": "igrave",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "iacute",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "icircumflex",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "idieresis",
+      "right": "idieresis",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -1.1561391674931656
+    },
+    {
+      "left": "idieresis",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "dcaron",
+      "right": "idieresis",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 7.370267868202859
+    },
+    {
+      "left": "dcaron",
+      "right": "backslash",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -41.68906810035844
+    },
+    {
+      "left": "eogonek",
+      "right": "j",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.801895210995781
+    },
+    {
+      "left": "eogonek",
+      "right": "slash",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -15.112353203508292
+    },
+    {
+      "left": "eogonek",
+      "right": "dotlessj",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.801895210995781
+    },
+    {
+      "left": "eogonek",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.801895210995781
+    },
+    {
+      "left": "itilde",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "imacron",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "ibreve",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.702546176819283
+    },
+    {
+      "left": "iogonek",
+      "right": "j",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -31.80572883088007
+    },
+    {
+      "left": "iogonek",
+      "right": "slash",
+      "before": 0,
+      "after": 70,
+      "measured_gap": -59.43519807712033
+    },
+    {
+      "left": "iogonek",
+      "right": "dotlessj",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -31.80572883088007
+    },
+    {
+      "left": "iogonek",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -31.80572883088007
+    },
+    {
+      "left": "iogonek",
+      "right": "fraction",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -24.62439024123836
+    },
+    {
+      "left": "uni0137",
+      "right": "fraction",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -39.44667667238423
+    },
+    {
+      "left": "lacute",
+      "right": "fraction",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -31.889110465148235
+    },
+    {
+      "left": "uni013C",
+      "right": "fraction",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -31.889110465148235
+    },
+    {
+      "left": "lcaron",
+      "right": "idieresis",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.370267868202859
+    },
+    {
+      "left": "lcaron",
+      "right": "backslash",
+      "before": 0,
+      "after": 55,
+      "measured_gap": -42.68906810035844
+    },
+    {
+      "left": "racute",
+      "right": "fraction",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.691201098027136
+    },
+    {
+      "left": "uni0157",
+      "right": "fraction",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.691201098027136
+    },
+    {
+      "left": "rcaron",
+      "right": "fraction",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.691201098027136
+    },
+    {
+      "left": "tcaron",
+      "right": "idieresis",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.811277431443159
+    },
+    {
+      "left": "tcaron",
+      "right": "backslash",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -20.301971326164903
+    },
+    {
+      "left": "zacute",
+      "right": "fraction",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.26526767563314
+    },
+    {
+      "left": "zdotaccent",
+      "right": "fraction",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.26526767563314
+    },
+    {
+      "left": "zcaron",
+      "right": "fraction",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.26526767563314
+    },
+    {
+      "left": "uni1E1F",
+      "right": "b",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -19.128732168093848
+    },
+    {
+      "left": "uni1E1F",
+      "right": "h",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.781210901492273
+    },
+    {
+      "left": "uni1E1F",
+      "right": "k",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.275381686416267
+    },
+    {
+      "left": "uni1E1F",
+      "right": "l",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "uni1E1F",
+      "right": "parenright",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -26.711191403129533
+    },
+    {
+      "left": "uni1E1F",
+      "right": "hbar",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.78485309601831
+    },
+    {
+      "left": "uni1E1F",
+      "right": "ldot",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "uni1E1F",
+      "right": "igrave",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -17.843419124689376
+    },
+    {
+      "left": "uni1E1F",
+      "right": "hcircumflex",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.781210901492273
+    },
+    {
+      "left": "uni1E1F",
+      "right": "ibreve",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -10.039135836745118
+    },
+    {
+      "left": "uni1E1F",
+      "right": "uni0137",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.275381686416267
+    },
+    {
+      "left": "uni1E1F",
+      "right": "lacute",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "uni1E1F",
+      "right": "uni013C",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "uni1E1F",
+      "right": "lcaron",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.787589714745309
+    },
+    {
+      "left": "uni1E1F",
+      "right": "uni1E03",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -19.128732168093848
+    },
+    {
+      "left": "uni1E1F",
+      "right": "backslash",
+      "before": 0,
+      "after": 145,
+      "measured_gap": -132.879957847917
+    },
+    {
+      "left": "uni1E1F",
+      "right": "yen",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.619043241791246
+    },
+    {
+      "left": "uni1E1F",
+      "right": "onesuperior",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 7.0182433234081145
+    },
+    {
+      "left": "uni1E1F",
+      "right": "onequarter",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.49347576153184
+    },
+    {
+      "left": "uni1E1F",
+      "right": "onehalf",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.49347576153184
+    },
+    {
+      "left": "uni1E1F",
+      "right": "minute",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 3.776479491506393
+    },
+    {
+      "left": "uni1E1F",
+      "right": "second",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 3.776479491506393
+    },
+    {
+      "left": "uni1E1F",
+      "right": "caron",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -5.6881091063741
+    },
+    {
+      "left": "uni1E1F",
+      "right": "breve",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.4301414490141724
+    },
+    {
+      "left": "numbersign",
+      "right": "idieresis",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.8311385673804352
+    },
+    {
+      "left": "numbersign",
+      "right": "backslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -7.329572540918491
+    },
+    {
+      "left": "percent",
+      "right": "backslash",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 0.5054907343857167
+    },
+    {
+      "left": "perthousand",
+      "right": "fraction",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 4.008873395904175
+    },
+    {
+      "left": "asterisk",
+      "right": "idieresis",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -29.625
+    },
+    {
+      "left": "braceleft",
+      "right": "backslash",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 0.20967741935481854
+    },
+    {
+      "left": "backslash",
+      "right": "j",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -109.31117095728138
+    },
+    {
+      "left": "backslash",
+      "right": "parenright",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -38.57062536518157
+    },
+    {
+      "left": "backslash",
+      "right": "slash",
+      "before": 0,
+      "after": 130,
+      "measured_gap": -119.5801248699272
+    },
+    {
+      "left": "backslash",
+      "right": "dotlessj",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -109.31117095728138
+    },
+    {
+      "left": "backslash",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 120,
+      "measured_gap": -109.31117095728138
+    },
+    {
+      "left": "backslash",
+      "right": "fraction",
+      "before": 0,
+      "after": 60,
+      "measured_gap": -47.76594574780057
+    },
+    {
+      "left": "backslash",
+      "right": "cedilla",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -15.687758478081093
+    },
+    {
+      "left": "backslash",
+      "right": "ogonek",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.512150222236073
+    },
+    {
+      "left": "questiondown",
+      "right": "fraction",
+      "before": 0,
+      "after": 60,
+      "measured_gap": -47.15909090909088
+    },
+    {
+      "left": "cent",
+      "right": "fraction",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.376900925928908
+    },
+    {
+      "left": "yen",
+      "right": "idieresis",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -15.528325572311587
+    },
+    {
+      "left": "yen",
+      "right": "backslash",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -14.044454143332132
+    },
+    {
+      "left": "trademark",
+      "right": "idieresis",
+      "before": 0,
+      "after": 45,
+      "measured_gap": -34.0
+    },
+    {
+      "left": "trademark",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 3.4393063583816
+    },
+    {
+      "left": "trademark",
+      "right": "backslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -9.426310048145297
+    },
+    {
+      "left": "ordfeminine",
+      "right": "idieresis",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.505338394922603
+    },
+    {
+      "left": "ordfeminine",
+      "right": "backslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -10.250257637660809
+    },
+    {
+      "left": "ordmasculine",
+      "right": "idieresis",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -19.85912687827863
+    },
+    {
+      "left": "onesuperior",
+      "right": "idieresis",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -7.0
+    },
+    {
+      "left": "twosuperior",
+      "right": "idieresis",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -26.80273450231408
+    },
+    {
+      "left": "threesuperior",
+      "right": "backslash",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -1.8174076626647206
+    },
+    {
+      "left": "fraction",
+      "right": "v",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 5.813710173305537
+    },
+    {
+      "left": "fraction",
+      "right": "w",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.9973621593464372
+    },
+    {
+      "left": "fraction",
+      "right": "x",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.49564933620141
+    },
+    {
+      "left": "fraction",
+      "right": "one",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 1.646120979993924
+    },
+    {
+      "left": "fraction",
+      "right": "seven",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -16.936093482980596
+    },
+    {
+      "left": "fraction",
+      "right": "question",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.080113936182585
+    },
+    {
+      "left": "fraction",
+      "right": "parenright",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -1.8716863075432855
+    },
+    {
+      "left": "fraction",
+      "right": "hbar",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -26.232954545454533
+    },
+    {
+      "left": "fraction",
+      "right": "napostrophe",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -3.411875626595929
+    },
+    {
+      "left": "fraction",
+      "right": "igrave",
+      "before": 0,
+      "after": 65,
+      "measured_gap": -54.87992424242424
+    },
+    {
+      "left": "fraction",
+      "right": "icircumflex",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 5.433624540199702
+    },
+    {
+      "left": "fraction",
+      "right": "idieresis",
+      "before": 0,
+      "after": 95,
+      "measured_gap": -82.65094620987716
+    },
+    {
+      "left": "fraction",
+      "right": "itilde",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -10.73627712521025
+    },
+    {
+      "left": "fraction",
+      "right": "ibreve",
+      "before": 0,
+      "after": 40,
+      "measured_gap": -27.276010814522806
+    },
+    {
+      "left": "fraction",
+      "right": "jcircumflex",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -40.88455727798211
+    },
+    {
+      "left": "fraction",
+      "right": "wcircumflex",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.9973621593464372
+    },
+    {
+      "left": "fraction",
+      "right": "wgrave",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.9973621593464372
+    },
+    {
+      "left": "fraction",
+      "right": "wacute",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.9973621593464372
+    },
+    {
+      "left": "fraction",
+      "right": "wdieresis",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.9973621593464372
+    },
+    {
+      "left": "fraction",
+      "right": "asterisk",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -1.43659090909091
+    },
+    {
+      "left": "fraction",
+      "right": "backslash",
+      "before": 0,
+      "after": 115,
+      "measured_gap": -102.54013929618768
+    },
+    {
+      "left": "fraction",
+      "right": "yen",
+      "before": 0,
+      "after": 50,
+      "measured_gap": -37.1399296675192
+    },
+    {
+      "left": "fraction",
+      "right": "trademark",
+      "before": 0,
+      "after": 35,
+      "measured_gap": -23.149778242485525
+    },
+    {
+      "left": "fraction",
+      "right": "ordfeminine",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 4.720264858018481
+    },
+    {
+      "left": "fraction",
+      "right": "ordmasculine",
+      "before": 0,
+      "after": 5,
+      "measured_gap": 6.6448212030904585
+    },
+    {
+      "left": "fraction",
+      "right": "onesuperior",
+      "before": 0,
+      "after": 45,
+      "measured_gap": -33.07991788888671
+    },
+    {
+      "left": "fraction",
+      "right": "twosuperior",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -20.24318784343967
+    },
+    {
+      "left": "fraction",
+      "right": "threesuperior",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -8.307334710743817
+    },
+    {
+      "left": "fraction",
+      "right": "onequarter",
+      "before": 0,
+      "after": 45,
+      "measured_gap": -34.241334067096176
+    },
+    {
+      "left": "fraction",
+      "right": "onehalf",
+      "before": 0,
+      "after": 45,
+      "measured_gap": -34.241334067096176
+    },
+    {
+      "left": "fraction",
+      "right": "threequarters",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -9.666644143364977
+    },
+    {
+      "left": "fraction",
+      "right": "grave",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -14.079924242424255
+    },
+    {
+      "left": "fraction",
+      "right": "macron",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -3.1875
+    },
+    {
+      "left": "fraction",
+      "right": "breve",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -12.713501513194785
+    },
+    {
+      "left": "fraction",
+      "right": "ring",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -14.583257777545413
+    },
+    {
+      "left": "dagger",
+      "right": "idieresis",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -13.0
+    },
+    {
+      "left": "daggerdbl",
+      "right": "idieresis",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -4.0
+    },
+    {
+      "left": "daggerdbl",
+      "right": "fraction",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.244318181818187
+    },
+    {
+      "left": "minute",
+      "right": "backslash",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -21.688695403939448
+    },
+    {
+      "left": "second",
+      "right": "backslash",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -21.688695403939448
+    },
+    {
+      "left": "grave",
+      "right": "idieresis",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.97070059059655
+    },
+    {
+      "left": "dieresis",
+      "right": "idieresis",
+      "before": 0,
+      "after": 10,
+      "measured_gap": -0.3366960939914634
+    },
+    {
+      "left": "macron",
+      "right": "idieresis",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -7.0
+    },
+    {
+      "left": "acute",
+      "right": "backslash",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 0.8870967741935374
+    },
+    {
+      "left": "circumflex",
+      "right": "idieresis",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -6.573542134347747
+    },
+    {
+      "left": "caron",
+      "right": "backslash",
+      "before": 0,
+      "after": 30,
+      "measured_gap": -20.092324805339217
+    },
+    {
+      "left": "breve",
+      "right": "backslash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -11.851100391920454
+    },
+    {
+      "left": "dotaccent",
+      "right": "idieresis",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.162594628754732
+    },
+    {
+      "left": "ring",
+      "right": "backslash",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -4.501445018526908
+    },
+    {
+      "left": "ogonek",
+      "right": "slash",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -11.112353203508263
+    },
+    {
+      "left": "hungarumlaut",
+      "right": "backslash",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 2.4032258064515872
+    }
+  ]
+}

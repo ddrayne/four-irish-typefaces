@@ -20,7 +20,7 @@ derives them from the flyer.
 |---|---|---|---|---:|---:|
 | Kilfane | Study 4, `kilfane-judgement` (on round 2 and Study 3) | N516 alphabet specimen; N517 means for 16 capitals; N47 for v, w | loose-mark cluster | 18% | 507 → 501 |
 | Carrick | Study 3, `round-06` (on round 5) | N514 production-sheet means for b to o; N513 for a, p to z, figures, marks | the lower paired mark | 29% | 659 → 634 |
-| Tuam Uncial | Study 2, `round-03` | N46 (NIVAL's copy of the flyer) | none | 8% | 850 → 857 |
+| Tuam Uncial | Study 3, `tuam-judgement` (on round 3) | N46 and N45 averaged in N46's frame; cuts confirmed on the S53912 production sheet (Bolger fig. 206) | none | 9% | 850 → 850 |
 | Céilí | Study 3, `round-04` | N46; N45 punctuation | the loose dots (DOTS) | 18% | 611 → 616 |
 
 "Ink change" is the share of each glyph's ink that differs from 2.010 at 2 units per
@@ -37,6 +37,13 @@ the candidate, style by style.
 Carrick's candidate is [Study 3](round-06/README.md): b to o from the averaged N514 production
 impressions, each letter's pieces and counters read from its impressions (b's bowl closes and m's
 strokes stand apart, as every production sheet prints them), x and y separated on N513.
+
+Tuam's candidate is [Study 3](tuam-judgement/README.md), the judgement pass: each glyph traced from the mean
+of the flyer (N46, a blurred photocopy) and the catalogue (N45, a clean offset print), so N46's ragged edges
+and pinholes are gone; Tuam's drawn cuts kept where N45 prints them and N46's blur fills them (h, u, r and f
+in two pieces on every impression of the production sheet; v, w, 5 and the slits of d, p, q, s, 6 on N45's
+evidence); the five fadas as the prints set them (í's short acute; a `ccmp` ligature for the decomposed
+forms); and the braces drawn with a point. The lowercase advance is 854 by the same count for the Study 2 candidate.
 
 Kilfane's candidate is [Study 4](kilfane-judgement/README.md), the judgement pass: capitals from
 the production sheets held to N516's frame, T, U, k and l traced from N516, and the e's notch eased
@@ -77,31 +84,34 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
 | Céilí Regular → Bold | 6 | Joins by design (`BOLD['ceili']['joins']`), as in 2.010. Accept. |
 | Céilí Regular → Italic, Bold → Bold Italic | none | |
 | Carrick Regular → Italic | ©, ™, ¾ | At their small size the hairline gaps between the pieces of c, m and 3 (c and m now drawn from the production sheets) are a few units wide and close under the slope; invisible at any size. Accept. |
-| Tuam Regular → Italic | @, } | @ also flags in 2.010. The } waist pinches to two pieces in the Regular itself (see below). Fix the brace construction before release. |
+| Tuam Regular → Italic | @, ˚ | @ also flags in 2.010: the a inside it nearly touches the ring (necks of 8 units). The spacing ring ˚ (U+02DA) loses its counter in the Italic, as in the released 2.101 Italic; the combining ring and å keep theirs. The braces, drawn with a point since Study 3, no longer flag. |
 
 ## Checks run on the candidate
 
 | Check | Result |
 |---|---|
 | `FONTDIR=build/candidate/fonts pytest tests/test_release.py tests/test_shaping.py` | 20 of 21 pass. Style linking fails only because the expected version is the release's (2.101). Bold counters: 0 flags beyond the designed Céilí 6. The "Digital" naming check passes. |
-| Pair collisions, all 12 styles ([summary](release-candidate/pair-audit.json)) | 0 collisions in 1,346,872 HarfBuzz-shaped pairs: Latin letters, figures and punctuation, default features |
-| OTS, 48 files (OTF, TTF, WOFF, WOFF2) | no failures |
-| Font Bakery `check-universal`, per family | 0 FAIL, 0 ERROR; the same two WARN kinds as 2.010 (decomposed carons, contour counts) |
-| Full test suite on the committed fonts | 145 pass; the release rebuilds byte-identical |
+| Pair collisions, all 12 styles ([summary](release-candidate/pair-audit.json)) | 0 collisions in 1,346,872 HarfBuzz-shaped pairs: Latin letters, figures and punctuation, default features (Tuam rerun on Study 3: unchanged, 108,900 per style) |
+| OTS, 48 files (OTF, TTF, WOFF, WOFF2) | no failures (Tuam rerun on Study 3: 8 files, no failures) |
+| Font Bakery `check-universal`, per family | 0 FAIL, 0 ERROR; the same two WARN kinds as 2.010 (decomposed carons, contour counts); Tuam rerun on Study 3: the same |
+| Full test suite on the committed fonts | 173 pass (18 for Tuam Study 3); the release rebuilds byte-identical |
 
 ## Before promotion
 
 1. **Q1, optical spacing and rendering, per face.** Not done. The candidate keeps the
    studies' spacing protection (`*.spacing-adjustments.json`, per style) and the release's
    class kerning. Nobody has yet reviewed it as text in Irish prose at 12–32 px in real applications.
-2. **Tuam braces.** Both 2.010 and the candidate cut a notch into the brace's waist. In
-   the candidate it pinches the Regular into two pieces. Redraw the point.
+2. **Tuam braces.** Done in the candidate: since Tuam Study 3 the brace is drawn as one outline with a
+   point (`symbols.pointed_brace`, on for that study only). The released 2.101 braces still have the
+   notch cut into the waist and small spurs at the tip; they change only when the candidate is promoted.
+   Tuam's @ and the Italic's spacing ring ˚ still flag (see the topology table).
 3. **Independent review of the source interpretation**, as the plan requires, using the
    exact study commits above.
 4. **Open source issues stay open.** Carrick's e/f/x/y are resolved in Study 3 (C1/C2: e and f from
    the production sheets, x and y separated on N513); its lower paired mark stays unassigned. The same
-   goes for Kilfane's zero disagreement (T/U/k/l are traced from N516 in Study 4), Céilí's unassigned punctuation, and Tuam's N45/N46
-   disagreements and recomposed accents. Each glyph's provenance file already labels it
+   goes for Kilfane's zero disagreement (T/U/k/l are traced from N516 in Study 4) and Céilí's unassigned punctuation. Tuam's N45/N46
+   disagreements and its five fadas are resolved in Study 3; the cuts of v, w and 5 and the slits of d, p, q, s and 6
+   rest on N45 alone (the production sheet is too coarse for them), and Tuam's other accents remain constructions. Each glyph's provenance file already labels it
    as traced, retained legacy or modern construction.
 
 ## Proposed release mechanics, when approved

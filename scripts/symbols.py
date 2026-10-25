@@ -120,6 +120,37 @@ def drawn_section(H, W, t, style):
     return SH.union(a, SH.rotate(a, 180, W / 2, H / 2))
 
 
+def pointed_brace(top, bottom, w, reach, point=0.55, cusp=0.45, corner=0.35):
+    """A left brace drawn as one outline, in the stroked brace's place: stems w wide (outer edge at x = 0),
+    rounded outer corners into square arm ends at x = reach, and a point at the middle that juts beyond the
+    stems by `point` x w, with the inner cusp `cusp` x w inside them, so the waist is (1 + point - cusp) x w
+    wide wherever it is cut. top/bottom: the outer edges of the arms."""
+    mid = (top + bottom) / 2; hh = (top - bottom) / 2
+    xo, xi, xe = 0.0, w, max(reach, w)
+    xa, xc = xo - point * w, xi - cusp * w             # the point's tip; the inner cusp
+    vo = corner * hh                                   # the outer corner's height
+    vi = max(vo - w, 0.0) * 0.5                        # the inner corner's, inside the arm
+    h1 = 0.30 * hh                                     # where the stems turn towards the point
+    a, c = 0.35 * (xo - xa), 0.35 * (xi - xc)          # the point's and the cusp's handles, at 45 degrees
+    p = pathops.Path()
+    p.moveTo(xe, top)
+    p.cubicTo(xe - 0.55 * (xe - xo), top, xo, top - 0.45 * vo, xo, top - vo)
+    p.lineTo(xo, mid + h1)
+    p.cubicTo(xo, mid + 0.45 * h1, xa + a, mid + a, xa, mid)
+    p.cubicTo(xa + a, mid - a, xo, mid - 0.45 * h1, xo, mid - h1)
+    p.lineTo(xo, bottom + vo)
+    p.cubicTo(xo, bottom + 0.45 * vo, xe - 0.55 * (xe - xo), bottom, xe, bottom)
+    p.lineTo(xe, bottom + w)
+    p.cubicTo(xi + 0.45 * (xe - xi), bottom + w, xi, bottom + w + 0.45 * vi, xi, bottom + w + vi)
+    p.lineTo(xi, mid - h1)
+    p.cubicTo(xi, mid - 0.45 * h1, xc + c, mid - c, xc, mid)
+    p.cubicTo(xc + c, mid + c, xi, mid + 0.45 * h1, xi, mid + h1)
+    p.lineTo(xi, top - w - vi)
+    p.cubicTo(xi, top - w - 0.45 * vi, xi + 0.45 * (xe - xi), top - w, xe, top - w)
+    p.close()
+    return pathops.simplify(p, fix_winding=True, keep_starting_points=False, clockwise=False)
+
+
 def make_symbols(f):
     P, S, xh, st = f.P, f.S, f.xh, f.style
     # Small glyphs (superiors, fractions, the letters in ® and ©) in a bold are drawn lighter in
@@ -201,10 +232,17 @@ def make_symbols(f):
             ((bw * 0.35, mid + 0.30 * hh), (bw * 0.35, mid + 0.02 * hh), (0, mid)),
             ((bw * 0.35, mid - 0.02 * hh), (bw * 0.35, mid - 0.30 * hh), (bw * 0.35, pbm + 0.35 * hh)),
             ((bw * 0.35, pbm + 0.12 * hh), (bw * 0.35, pbm), (bw, pbm))]
-    # two halves stroked separately and joined at the tip: no self-overlapping join at the cusp
-    brace = SH.union(stroke_cubics((bw, pt), segs[:2], 0.62 * S, st),
-                     stroke_cubics((0, mid), segs[2:], 0.62 * S, st))
-    put('braceleft', brace, 'stroked curve')
+    if getattr(f, 'BRACE_POINT', False):
+        # the stroked brace's tip ends inside the stems' outer edge, so its point is cut in as a notch (and
+        # the butt caps leave spurs): drawn instead as one outline with the same stems, arms and extent
+        w = 0.62 * S
+        brace = pointed_brace(pt + w / 2, pbm - w / 2, w, 0.65 * bw + w / 2)
+        put('braceleft', brace, 'drawn outline: stems and arms at the stroked brace\'s weight, a point at the waist')
+    else:
+        # two halves stroked separately and joined at the tip: no self-overlapping join at the cusp
+        brace = SH.union(stroke_cubics((bw, pt), segs[:2], 0.62 * S, st),
+                         stroke_cubics((0, mid), segs[2:], 0.62 * S, st))
+        put('braceleft', brace, 'stroked curve')
     put('braceright', SH.transform(brace, (-1, 0, 0, 1, 0, 0)), 'mirror')
     put('bar', vbar(st, 0, pbm, pt, 0.45 * S), 'rule')
     put('brokenbar', SH.union(vbar(st, 0, pbm, mid - 0.06 * xh, 0.45 * S), vbar(st, 0, mid + 0.06 * xh, pt, 0.45 * S)), 'split rule')

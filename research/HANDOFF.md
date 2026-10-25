@@ -37,6 +37,14 @@ neck; the e's notch is eased as a recorded judged edit. `scripts/evidence_board.
 `scripts/pinches.py` are the review tools: every print of a glyph side by side, in the font's own
 coordinates. Start Kilfane work from Study 4.
 
+**Tuam Uncial: [Study 3](tuam-judgement/README.md), the judgement pass**, on round 3. Each glyph is traced
+from the mean of N46 (a blurred photocopy) and N45 (a clean offset print) in N46's frame
+(`scripts/consensus_trace.py`), so N46's ragged edges and pinholes go. Tuam is cut, not joined: N45 prints
+cuts and slits N46's blur fills, and the production sheet photographed in Bolger fig. 206
+(`scripts/tuam_sheet_check.py`) prints h, u, r and f in two pieces on every impression; Study 3 draws them,
+and those of v, w, 5, d, p, q, s and 6 on N45's evidence. The five fadas keep the prints' own acutes; the
+braces are drawn with a point. N47 and N44 do not print Tuam. Start Tuam work from Study 3.
+
 Next concrete source lead: N514 contains repeated isolated e/f on the upper sheet.
 Round 5 records native crop coordinates. Compare local perspective and repeated
 instances before accepting a replacement. It does not expose x/y; N517 does not
