@@ -2,7 +2,21 @@
 
 ## Active state
 
-**Latest: [round 4](round-04/README.md), Céilí Study 3.** Four named original
+**Latest: [round 5](round-05/README.md), Carrick Study 2.** Ten isolated N513 mark
+components recovered; two touching groups remain unassigned. Diaeresis stays
+explicitly legacy; paired guillemets repeat the recovered outer shapes. All seven
+directly comparable final marks improve against both N513 and N47. 133 derived
+glyphs change; body letters remain as in Study 1. All 123 tests pass. Carrick checks
+85,849 Latin-plus-punctuation pairs in each OTF/TTF; latest four-face domain totals
+324,316 pairs. All are below the recorded collision threshold with kerning enabled.
+
+Next concrete source lead: N514 contains repeated isolated e/f on the upper sheet.
+Round 5 records native crop coordinates. Compare local perspective and repeated
+instances before accepting a replacement. It does not expose x/y; N517 does not
+expose Kilfane T/U or lowercase k/l. Do not redo the mark recovery or erase the
+remaining diaeresis uncertainty. Review retained versus derived pieces explicitly.
+
+[Round 4](round-04/README.md), Céilí Study 3: Four named original
 punctuation pieces replace the legacy cluster as construction inputs. Period,
 comma and opposed quotes come from N45; 64 derived glyphs change, including dotted
 letters and comma marks. Body outlines remain as in round 3. All 112 tests pass.
@@ -19,7 +33,8 @@ character pairs with no intersections above four square font units. This is not
 an optical spacing certification. The Study 1 account below is an earlier ledger.
 
 Next priorities: optical spacing and small-size rendering across applications;
-Kilfane's fused letters/zero/ambiguous lower marks; Carrick's e/f/x/y and marks;
+Kilfane's fused letters/zero/ambiguous lower marks; Carrick's e/f/x/y and unresolved
+lower paired mark/inner chevrons;
 unassigned upper Céilí punctuation pieces; Tuam's recomposed accent placement and source
 disagreements. N45 was additionally checked for Kilfane T/U/k/l and Carrick e/f/x/y:
 these still touch and do not provide clean isolated replacements.

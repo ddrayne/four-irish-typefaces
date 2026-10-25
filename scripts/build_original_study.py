@@ -69,7 +69,7 @@ def main():
             for record in piece_data['pieces']:
                 p=pathops.Path();replayRecording(record['rec'],p.getPen())
                 self.piece[record['name']]=clean(p)
-            self.made['accents']='named original-source marks; see pieces.json; ambiguous lower pair is unassigned'
+            self.made['accents']=piece_data.get('decision','named original-source marks; see pieces.json; ambiguous lower pair is unassigned')
 
         def mark_words(self,kind):
             description=super().mark_words(kind)
@@ -90,6 +90,21 @@ def main():
                         return f'{self.MARK_WORDS[kind]} {operation} from the accent on uacute; mark source NIVAL {record["source"]}, region {record["box"]}'
                 return description
             word=self.MARK_WORDS[kind]
+            if self.key=='carrick':
+                if kind in {'acute','tilde','dot','ring','circumflex'}:
+                    return f'{word}; directly traced NIVAL N513 {kind} in pieces.json'
+                if kind=='dieresis':
+                    return 'diaeresis retained from legacy construction; N513 lower paired component remains unassigned'
+                if kind in {'grave','hungarumlaut','breve','caron'}:
+                    parent={'grave':'acute','hungarumlaut':'acute','breve':'ring','caron':'circumflex'}[kind]
+                    return f'{word}; modern construction from named NIVAL N513 {parent}'
+                if kind=='macron':
+                    return 'macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules'
+                if kind in {'commabelow','commaturned','caronvert'}:
+                    return f'{word}; modern transformation of NIVAL N513 semicolon punctuation'
+                if kind in {'ogonek','cedilla'}:
+                    return f'{word}; modern drawn mark, stroke weight calibrated from NIVAL N513 ring'
+                return description+'; modern construction'
             direct={'acute':['acute'],'tilde':['tilde'],'dot':['dot'],'ring':['ring'],
                     'circumflex':['circumflex'],'dieresis':['dieresis.l','dieresis.r']}
             derived={'grave':'acute','hungarumlaut':'acute','breve':'ring','caron':'circumflex'}
@@ -122,7 +137,12 @@ def main():
                    'guillemotright':'guil.r1 + guil.r2','guillemotleft':'guil.l1 + guil.l2'}
     for name,(kind,construction) in list(provenance.items()):
         if piece_data is not None and name in piece_sources:
-            provenance[name]=[kind,construction+'; named source pieces: NIVAL N516 '+piece_sources[name]]
+            source_id=piece_data.get('primary_source_id','N516')
+            detail=piece_sources[name]
+            if source_id=='N513':
+                lookup={p['name']:p for p in piece_data['pieces']}
+                detail=' + '.join(n+' ('+lookup[n]['status']+')' for n in detail.split(' + '))
+            provenance[name]=[kind,construction+f'; named source pieces: NIVAL {source_id} '+detail]
         g=updated.get(deps.get(name,name))
         if not g:continue
         construction=construction.replace('the 1978 flyer','the NIVAL specimen').replace('the flyer’s','the NIVAL specimen’s')
