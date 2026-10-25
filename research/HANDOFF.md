@@ -2,6 +2,14 @@
 
 ## Active state
 
+PR #1 merged into `main` on 25 October 2026 as
+`573d554871d92a934aea333089b96c4b1237eba2`. All 123 tests pass on the merged
+checkout, which also includes other contributors' 2.010 release and showcase work.
+Research candidates remain separate. Read the
+[shared continuation plan and work queue](../docs/superpowers/plans/2026-10-25-continuation.md)
+for task ownership, dependencies, acceptance checks and release boundaries.
+Next task: C1, Carrick N514 e/f evidence decision; currently unassigned.
+
 **Latest: [round 5](round-05/README.md), Carrick Study 2.** Ten isolated N513 mark
 components recovered; two touching groups remain unassigned. Diaeresis stays
 explicitly legacy; paired guillemets repeat the recovered outer shapes. All seven
@@ -46,6 +54,11 @@ Topology-aware smoothing preserves Céilí's exclamation dot and Tuam 8/9 openin
 Tuam a/o/zero openings also appear in N45; Bolger fig.206 repeats the o opening.
 Read the per-entry exceptions and review decisions before changing them. The
 small-size proofs use actual TTF rasterization, not screenshots of every app.
+
+## Historical Study 1 ledger
+
+The paragraphs below describe the first Kilfane iteration and its priorities at
+that time. The active state above and continuation plan supersede those priorities.
 
 The user wants accurate reconstruction from original evidence, with repeated
 letter-by-letter inspection and no modern revival fonts used as design references.

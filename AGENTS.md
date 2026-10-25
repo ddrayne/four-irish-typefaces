@@ -1,6 +1,9 @@
 # Continuing the original-source research
 
-Read [research/HANDOFF.md](research/HANDOFF.md) before continuing the reconstruction.
+Read [research/HANDOFF.md](research/HANDOFF.md) and the
+[shared continuation plan](docs/superpowers/plans/2026-10-25-continuation.md)
+before continuing the reconstruction. Claim a bounded task in the plan's work queue,
+record ownership and base commit, and preserve other agents' work.
 The user's goal is accurate recovery of the historical designs, one face at a time.
 Use Carrick from `research/round-05/`, Céilí from `research/round-04/`, Tuam from `research/round-03/` and Kilfane from `research/round-02/`; the handoff records remaining
 work on each face. Modern revival fonts are not design references.

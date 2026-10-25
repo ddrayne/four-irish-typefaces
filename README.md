@@ -15,7 +15,8 @@ following [round 4](research/round-04/README.md) for Céilí's original punctuat
 [Round 3](research/round-03/README.md) reconstructs Tuam and Céilí from larger
 original reproductions, following [round 2](research/round-02/README.md), which
 improved Kilfane's marks, Carrick's outlines and pair spacing across all four faces.
-Agents continuing this work should start with [the handoff](research/HANDOFF.md).
+Agents continuing this work should start with [the handoff](research/HANDOFF.md)
+and [the shared plan and work queue](docs/superpowers/plans/2026-10-25-continuation.md).
 Modern revival fonts are excluded as design references for this research.
 
 The flyer shows each face in a single style. From version 2.000 each face is also a family:
