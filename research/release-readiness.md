@@ -1,0 +1,109 @@
+# Release readiness: 3.000 candidate from the original-source studies
+
+Task R1 in the [continuation plan](../docs/superpowers/plans/2026-10-25-continuation.md).
+This is a proposal, not a release: `fonts/`, `sources/traced/`, the release metadata
+and the showcase still carry 2.010. Promotion needs the user's explicit approval.
+
+## What the candidate is
+
+All twelve styles, under release names and version 3.000, built by
+`make candidate` (`scripts/build_candidate.py`) into ignored `build/candidate/fonts`.
+Each Regular is the latest accepted study's construction: same traces, named marks,
+punctuation and evidence decisions, through `build_original_study.study_class()`.
+Its outlines match the committed study glyph for glyph. The one exception is a
+1.9-unit² speck hole in Céilí Study 3's ©, which the final clean-up now drops.
+The 2026 bold and sloped styles are derived from those Regulars, as the release
+derives them from the flyer.
+
+| Face | Study and traces | Traced from | Kept from the flyer | Median ink change from 2.010 | Lowercase mean advance |
+|---|---|---|---|---:|---:|
+| Kilfane | Study 2, `round-02` | N516 alphabet specimen; N47 for v, w | T, U, k, l, loose-mark cluster | 15% | 507 → 504 |
+| Carrick | Study 2, `round-05` | N513 alphabet specimen; N513 named marks | e, f, x, y (and the lower paired mark) | 24% | 659 → 640 |
+| Tuam Uncial | Study 2, `round-03` | N46 (NIVAL's copy of the flyer) | none | 8% | 850 → 857 |
+| Céilí | Study 3, `round-04` | N46; N45 punctuation | the loose dots (DOTS) | 18% | 611 → 616 |
+
+"Ink change" is the share of each glyph's ink that differs from 2.010 at 2 units per
+pixel, with glyphs aligned at the left of their ink so spacing changes don't count. It
+measures how far the release moves, not authenticity. The sources' own limitations are in each
+round's `evidence.json`: N46/N45 and N513/N47 share reproduction history, so their
+agreement is not independent confirmation.
+
+Proofs (font-only): [Kilfane](release-candidate/proofs/kilfane.png),
+[Carrick](release-candidate/proofs/carrick.png), [Tuam Uncial](release-candidate/proofs/tuam.png),
+[Céilí](release-candidate/proofs/ceili.png). Each sets the same lines in 2.010 and in the
+candidate, style by style.
+
+## The 2026 styles (modern extensions)
+
+The pen model was written for the flyer, where any gap under a quarter of a stem is a
+photocopy sliver. The sheets draw narrower things, and the first candidate build
+failed the bold topology check on 22 Kilfane glyphs. The fixes are in `scripts/bolden.py`
+and `scripts/build2.py`. Every released 2.010 font, in all four formats, rebuilds
+byte-identical with them.
+
+- **Hollow letters.** Uniting an outline with its stroke could leave a whole letter as a
+  hole (Y and 3 from N516). `grow()` now checks its result and falls back only when unsound.
+- **Open joins.** Kilfane's r, 6, 9 and g, and the joins of Tuam's 8 and 9, cross narrow
+  slits that the research says to preserve. Builds from the sheets treat only gaps under
+  0.05 stem as slivers. Any space the Regular leaves open but the Bold encloses is reopened
+  as a hairline crack along the Regular's passage, so the Bold keeps its weight on both sides.
+- **Small counters.** Q's second counter and the 4 of the fractions keep at least 36% of
+  their area as well as 55% of their radius.
+- **Separate pieces.** The dots of Céilí's ! and ? are cut apart from their strokes along
+  the midline between them.
+- **Named source punctuation.** In the first build, Céilí's N45 period, comma and quotes
+  stayed at Regular weight in the Bold. They are now bolded like the sheet's loose marks.
+- **Sloped styles.** The italics' small extra weight goes through the same protection
+  wherever it changes a glyph's topology.
+
+Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
+
+| Pair | Flagged | Disposition |
+|---|---|---|
+| Kilfane Regular → Bold | none | |
+| Kilfane Regular → Italic | none | |
+| Kilfane Bold → Bold Italic | ŋ | A slit under 4 units closes; 2.010 has the same. Accept. |
+| Céilí Regular → Bold | 6 | Joins by design (`BOLD['ceili']['joins']`), as in 2.010. Accept. |
+| Céilí Regular → Italic, Bold → Bold Italic | none | |
+| Carrick Regular → Italic | ¾ | At fraction size the 3's notch mouth is under 2 units, already shut at raster resolution in the Regular. Accept. |
+| Tuam Regular → Italic | @, } | @ also flags in 2.010. The } waist pinches to two pieces in the Regular itself (see below). Fix the brace construction before release. |
+
+## Checks run on the candidate
+
+| Check | Result |
+|---|---|
+| `FONTDIR=build/candidate/fonts pytest tests/test_release.py tests/test_shaping.py` | 18 of 20 pass. Style linking fails only because the expected version is still 2.010. Bold counters: 0 flags beyond the designed Céilí 6. |
+| Pair collisions, all 12 styles ([summary](release-candidate/pair-audit.json)) | 0 collisions in 1,346,872 HarfBuzz-shaped pairs: Latin letters, figures and punctuation, default features |
+| OTS, 48 files (OTF, TTF, WOFF, WOFF2) | no failures |
+| Font Bakery `check-universal`, per family | 0 FAIL, 0 ERROR; the same two WARN kinds as 2.010 (decomposed carons, contour counts) |
+| Full test suite on the committed fonts | 131 pass; the release rebuilds byte-identical |
+
+## Before promotion
+
+1. **Q1, optical spacing and rendering, per face.** Not done. The candidate keeps the
+   studies' spacing protection (`*.spacing-adjustments.json`, per style) and the release's
+   class kerning. Nobody has yet reviewed it as text in Irish prose at 12–32 px in real applications.
+2. **Tuam braces.** Both 2.010 and the candidate cut a notch into the brace's waist. In
+   the candidate it pinches the Regular into two pieces. Redraw the point.
+3. **Independent review of the source interpretation**, as the plan requires, using the
+   exact study commits above.
+4. **Open source issues stay open.** Carrick's legacy e/f/x/y wait on C1/C2. A Carrick
+   Study 3 would replace the Carrick Regular, so release only after C1/C2 resolve, or
+   promote Carrick with its four legacy letters labelled. The same goes for Kilfane
+   T/U/k/l and the zero disagreement, Céilí's unassigned punctuation, and Tuam's N45/N46
+   disagreements and recomposed accents. Each glyph's provenance file already labels it
+   as traced, retained legacy or modern construction.
+
+## Proposed release mechanics, when approved
+
+- `make fonts` builds through `scripts/build_candidate.py` (the traces map in `LATEST`).
+  `VERSION = '3.000'`. CI's byte-identical check then pins the new outputs.
+- FONTLOG and README: what changed per face, the sources, retained legacy glyphs, and the
+  2026 styles' new rules.
+- Regenerate the specimen, CSS, the showcase data (its research panels become the release),
+  the download ZIP and the deploy branch.
+- Rollback: 2.010 stays tagged (`v2.010`, local until pushed), and every study stays in
+  `research/`. Installed side by side, 3.000 replaces 2.010 under the same family names, as
+  any release does.
+
+Base: `e3a4ba9` on `main`. Work on branch `candidate/release-3`.

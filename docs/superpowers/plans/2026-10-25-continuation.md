@@ -46,7 +46,7 @@ The integrator maintains this table. Before starting, record the task ID, owner/
 | E1 | May research independently | Source-gap register for all four faces | Ready; unassigned; no shared builder edits |
 | Q1 | After each accepted outline round | Optical spacing and rendering review for that face | Queued; unassigned |
 | Q2 | After C2 or a documented C1 rejection | Reproducible research packaging and CI coverage | Queued; unassigned |
-| R1 | After evidence and quality gates | Explicit release-promotion proposal | Queued; unassigned |
+| R1 | After evidence and quality gates | Explicit release-promotion proposal | In progress, not promoted: Claude Code release/showcase session, branch `candidate/release-3`, base `e3a4ba9`. Owns `scripts/build_candidate.py`, `scripts/candidate_proofs.py`, `research/release-readiness.md`, `research/release-candidate/`; release-neutral changes to `scripts/bolden.py`, `scripts/build2.py`; behaviour-preserving refactor of `scripts/build_original_study.py`. Waits on Q1 and the user's decision |
 
 Only the integrator edits shared builders, `AGENTS.md`, this table and `research/HANDOFF.md` during concurrent work, unless ownership is explicitly transferred. An evidence worker can return a report without changing font geometry. A reviewer should receive the exact candidate commit and source decisions, not merely a claim that tests passed. Do not spawn or message other chats solely because this plan mentions agents; follow the user's current coordination authorization.
 
