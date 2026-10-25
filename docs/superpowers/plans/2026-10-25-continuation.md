@@ -107,6 +107,10 @@ Only the integrator edits shared builders, `AGENTS.md`, this table and `research
 
 ## Q2 — Make the next round reproducible from a fresh clone
 
+Source retrieval is already available through `scripts/fetch_sources.py` and
+[SOURCE-ACCESS.md](../../../research/SOURCE-ACCESS.md). Reuse it; the remaining
+work here concerns packaging, overlays, manifests and build reproducibility.
+
 **Owned files:** repository packaging/manifest helpers under `scripts/`, their documentation, and narrowly scoped CI updates if required. Reuse current helpers where possible; do not copy local machine paths into the repository.
 
 - [ ] Inventory steps still performed by local-only packaging/verification scripts. Bring the necessary reusable parts into the repository with explicit input/output paths, source-image exclusions and stable manifest rules.

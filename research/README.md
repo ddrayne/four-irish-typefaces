@@ -3,6 +3,8 @@
 Evidence collected on 24 October 2026 for faithful reconstruction of Kilfane,
 Carrick, Tuam Uncial and Céilí. Start with [the handoff](HANDOFF.md) and the
 [shared continuation plan](../docs/superpowers/plans/2026-10-25-continuation.md).
+Use [source access](SOURCE-ACCESS.md) to retrieve and hash-check the original
+archive images and PDFs into a local cache from a fresh clone.
 The latest work is [round 5](round-05/README.md): Carrick's named original marks,
 with retained and derived components distinguished. [Round 4](round-04/README.md) recovers Céilí's named original punctuation
 and the language marks derived from it. [Round 3](round-03/README.md) supplies Tuam and Céilí outline studies

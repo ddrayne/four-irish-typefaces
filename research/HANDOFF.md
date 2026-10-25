@@ -9,6 +9,11 @@ Research candidates remain separate. Read the
 [shared continuation plan and work queue](../docs/superpowers/plans/2026-10-25-continuation.md)
 for task ownership, dependencies, acceptance checks and release boundaries.
 Next task: C1, Carrick N514 e/f evidence decision; currently unassigned.
+Original source access is now reproducible through
+[SOURCE-ACCESS.md](SOURCE-ACCESS.md): `python scripts/fetch_sources.py` retrieves
+23 registered original/source files, excluding modern revivals, and verifies
+their sizes and SHA-256 hashes. All 23 cached originals were checked; a fresh
+N514 JPEG download also matched. Source-containing archive files remain local.
 
 **Latest: [round 5](round-05/README.md), Carrick Study 2.** Ten isolated N513 mark
 components recovered; two touching groups remain unassigned. Diaeresis stays

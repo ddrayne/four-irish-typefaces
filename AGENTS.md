@@ -8,6 +8,10 @@ The user's goal is accurate recovery of the historical designs, one face at a ti
 Use Carrick from `research/round-05/`, Céilí from `research/round-04/`, Tuam from `research/round-03/` and Kilfane from `research/round-02/`; the handoff records remaining
 work on each face. Modern revival fonts are not design references.
 
+For the exact original files, follow [research/SOURCE-ACCESS.md](research/SOURCE-ACCESS.md).
+`python scripts/fetch_sources.py` retrieves the registered original/source leads
+into ignored `build/research/`, checking sizes and hashes and excluding revivals.
+
 - Keep each research candidate separately named and stored under `research/` or `build/` until a release is requested.
 - Record the source identifier, image hash, coordinates, transform and uncertainty for proposed glyph changes. Distinguish attested shapes, retained legacy traces and modern extensions.
 - Inspect shapes and counters as well as scores. Correlated reproductions are not independent confirmation; a higher pixel-overlap score alone does not establish authenticity.
