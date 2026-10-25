@@ -2,9 +2,9 @@
 
 usage: python scripts/deploy_site.py
 
-Builds the showcase with absolute link-preview addresses, then adds what the public
-address promises: the ready-made stylesheet at /css/four-irish-typefaces.css with the
-web fonts it points to (other sites link them), an nginx configuration and a Dockerfile.
+Builds the showcase with absolute link-preview addresses, then adds an nginx configuration
+and a Dockerfile. The site's fonts are for its own pages: nothing is offered for other sites
+to link (no cross-origin access), and the downloads are GitHub release assets.
 Coolify builds the Dockerfile on every push to `deploy`, so the published site is only
 ever these files, never the repository. CI runs this after the tests pass on main.
 """
@@ -63,32 +63,13 @@ NGINX = r'''server {
         include /etc/nginx/conf.d/headers.inc;
         add_header Cache-Control "no-cache" always;
     }
-    # The ready-made stylesheet and fonts are for other sites too, so they allow any origin.
-    location /css/ {
-        limit_except GET { deny all; }
-        include /etc/nginx/conf.d/headers.inc;
-        add_header Access-Control-Allow-Origin "*" always;
-        add_header Cache-Control "no-cache" always;
-    }
+    # The site's own fonts: same origin only, so other sites cannot link them.
     location /fonts/ {
         limit_except GET { deny all; }
         include /etc/nginx/conf.d/headers.inc;
-        add_header Access-Control-Allow-Origin "*" always;
         add_header Cache-Control "public, max-age=86400" always;
-        location ~* \.ttf$ {
-            default_type font/ttf;
-            include /etc/nginx/conf.d/headers.inc;
-            add_header Access-Control-Allow-Origin "*" always;
-            add_header Cache-Control "public, max-age=86400" always;
-        }
-        location ~* \.otf$ {
-            default_type font/otf;
-            include /etc/nginx/conf.d/headers.inc;
-            add_header Access-Control-Allow-Origin "*" always;
-            add_header Cache-Control "public, max-age=86400" always;
-        }
     }
-    location ~ ^/(img|vendor|downloads)/ {
+    location ~ ^/(img|vendor)/ {
         limit_except GET { deny all; }
         include /etc/nginx/conf.d/headers.inc;
         add_header Cache-Control "public, max-age=86400" always;
@@ -103,10 +84,8 @@ This branch is written by CI (`scripts/deploy_site.py`) from `main` after the te
 Do not edit it: change the showcase on `main` instead. Coolify builds the Dockerfile here
 on every push and serves it at {URL}/.
 
-- `site/`: the showcase site, version {VERSION}, plus `/css/four-irish-typefaces.css` and the
-  web fonts it links, for other sites to use
-- `nginx.conf`, `headers.inc`: caching, cross-origin access for the fonts and stylesheet, and
-  the security headers
+- `site/`: the showcase site, version {VERSION}; the fonts are downloaded from the GitHub releases
+- `nginx.conf`, `headers.inc`: caching and the security headers (no cross-origin access)
 - `publish.json`: the app's settings for the Drayne publishing helper
 '''
 
@@ -118,10 +97,6 @@ def build():
         shutil.rmtree(DEST)
     site = os.path.join(DEST, 'site')
     shutil.copytree(showcase.DEST, site)
-    # the public stylesheet, at the address the page gives, with the fonts it references
-    shutil.copy(os.path.join(paths.ROOT, 'css', 'four-irish-typefaces.css'), os.path.join(site, 'css', 'four-irish-typefaces.css'))
-    for fmt in ('woff2', 'woff'):
-        shutil.copytree(os.path.join(paths.ROOT, 'fonts', fmt), os.path.join(site, 'fonts', fmt))
     w = lambda name, text: open(os.path.join(DEST, name), 'w', encoding='utf-8').write(text)
     w('Dockerfile', DOCKERFILE.replace('COPY nginx.conf /etc/nginx/conf.d/default.conf',
                                        'COPY nginx.conf /etc/nginx/conf.d/default.conf\nCOPY headers.inc /etc/nginx/conf.d/headers.inc'))

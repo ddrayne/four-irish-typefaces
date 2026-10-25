@@ -27,8 +27,8 @@ def css():
  * digitisations of Kilfane, Tuam Uncial, Carrick and Céilí, winners of the 1978
  * "Design an Irish Typeface" competition (Letraset, Kilkenny Design Workshops,
  * D. O'Sullivan Graphic Supplies). Digitised 2026 from the printed specimen sheet.
- * Copyright 2026 Dan Drayne. Licensed under the SIL Open Font License 1.1 (OFL.txt,
- * https://openfontlicense.org).
+ * No copyright is claimed: the digitisation is dedicated to the public domain under
+ * CC0 1.0 (LICENSE.txt, https://creativecommons.org/publicdomain/zero/1.0/).
  *
  * Styles: Kilfane Digital and Céilí Digital have Regular, Italic, Bold and Bold Italic;
  * Carrick Digital and Tuam Uncial Digital, already black, have Regular and Italic. The 1978 sheet showed only the

@@ -21,8 +21,8 @@
   },
   {
     "path": "ceili/fonts/CeiliStudy2-Regular.otf",
-    "bytes": 78944,
-    "sha256": "78ec4fb166a15ff5af6ac9b8d0398e0367341e70a3942b305b3e7e4fba8db577"
+    "bytes": 79200,
+    "sha256": "72522a69b083dba8736e83e4800b4972b06639a6899c0e155ece0c3f777eff16"
   },
   {
     "path": "ceili/fonts/CeiliStudy2-Regular.provenance.json",
@@ -31,18 +31,18 @@
   },
   {
     "path": "ceili/fonts/CeiliStudy2-Regular.ttf",
-    "bytes": 131320,
-    "sha256": "250b30696a1e8d35790584ea4718333c79ed6d1bc537a0388e92ff1212cdb947"
+    "bytes": 131576,
+    "sha256": "01a3155c5a83295d08f17d08111c69f0922631caec369c020e6959fa0b559d23"
   },
   {
     "path": "ceili/fonts/CeiliStudy2-Regular.woff",
-    "bytes": 52544,
-    "sha256": "c8012059fda920c10105bbb4e23099dccf2135f74e9e467d1f158845d132d7f2"
+    "bytes": 52616,
+    "sha256": "09c6f41353864dadc73dbda99730fb7b86ad62ceb58b10b10e7f6c5ad3ebba35"
   },
   {
     "path": "ceili/fonts/CeiliStudy2-Regular.woff2",
-    "bytes": 40724,
-    "sha256": "13044be6c88ed373c3d0eea6dd2a4f6cc48c0cc8821905e823b45d20a3493a55"
+    "bytes": 40752,
+    "sha256": "6e5f7ab39e48e8cd0c8c979d243b861f1e88d2225766399e12148cb5099b9069"
   },
   {
     "path": "ceili/fonts/spacing-adjustments.json",
@@ -65,9 +65,9 @@
     "sha256": "cb0fc183ca4cb1c8522c890e4895bc48f961cb31a8a5f00af5e6356d64ff6dab"
   },
   {
-    "path": "OFL.txt",
-    "bytes": 4498,
-    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+    "path": "LICENSE.txt",
+    "bytes": 7048,
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
   },
   {
     "path": "pair-audit.json",
@@ -76,8 +76,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 8369,
-    "sha256": "1be72e6b9651d436e4f153ccd17575b502fc8caa366b4e6bfc6b3fe54a707ab6"
+    "bytes": 8376,
+    "sha256": "3d8f6dfead181019ebf59275c2aae8bed0e08c161e0fd2e3419a450df20c6081"
   },
   {
     "path": "topology-audit.json",
@@ -101,8 +101,8 @@
   },
   {
     "path": "tuam/fonts/TuamUncialStudy2-Regular.otf",
-    "bytes": 54440,
-    "sha256": "fc48ebd0d0934ab807721564ae0b234b0ec9e71b78b61359f530b10c09b3ff0c"
+    "bytes": 54696,
+    "sha256": "5dfe3b18e7bc6e8ce055b8e0712cbb5dd56ddab765d6b42a0cfffa5c39e71839"
   },
   {
     "path": "tuam/fonts/TuamUncialStudy2-Regular.provenance.json",
@@ -111,18 +111,18 @@
   },
   {
     "path": "tuam/fonts/TuamUncialStudy2-Regular.ttf",
-    "bytes": 107400,
-    "sha256": "429921d054565712f40ba4a133c54abc01c2bed6c3a5b6c6b95e43cfda13d74a"
+    "bytes": 107656,
+    "sha256": "bcd5d390b315f769b673ea10c693c7985e8d5c0af695eadfc245bf67efeef059"
   },
   {
     "path": "tuam/fonts/TuamUncialStudy2-Regular.woff",
-    "bytes": 45628,
-    "sha256": "563dcb19f012f311e51cfb0e8dd3fb8e7e9461d65f8473c91be235ea4b0476f4"
+    "bytes": 45696,
+    "sha256": "cadb2f11945f7f2d9c934128b567ebfd4efba7a8d9ac3fdf1db894420ccc5b60"
   },
   {
     "path": "tuam/fonts/TuamUncialStudy2-Regular.woff2",
-    "bytes": 35616,
-    "sha256": "9d800adbc147badc82b3b48990eb2ab4c996b724048b69510142a23338457ae0"
+    "bytes": 35748,
+    "sha256": "a8d710b9c840218ab29d5f46c36e03e3c67c24a6aba8b4329a9eb24df639f186"
   },
   {
     "path": "tuam/traces/evidence.json",

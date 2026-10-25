@@ -311,7 +311,7 @@ def social(dest):
     d.text((W - 58, 52), 'SHEETS S53909–S53916', font=mono, fill=(80, 82, 70), anchor='ra')
     d.text((W - 58, 452), 'Four Irish', font=sans, fill=ink, anchor='ra')
     d.text((W - 58, 510), 'Typefaces', font=sans, fill=ink, anchor='ra')
-    d.text((58, 572), 'Céilí · Carrick · Kilfane · Tuam Uncial · free under the OFL', font=mono, fill=(80, 82, 70))
+    d.text((58, 572), 'Céilí · Carrick · Kilfane · Tuam Uncial · public domain', font=mono, fill=(80, 82, 70))
     art.save(os.path.join(dest, 'img', 'social.png'), optimize=True)
 
     # favicon: Céilí's c, pink on the green of its plate
@@ -333,26 +333,10 @@ def social(dest):
     icon.save(os.path.join(dest, 'img', 'apple-touch-icon.png'), optimize=True)
 
 
-def fonts_zip(dest):
-    """The twelve fonts in every format, with the stylesheet, licence, log and README:
-    what most people want, without the sources and research. Fixed timestamps, so the
-    same release always gives the same file."""
-    import zipfile
-    name = f'four-irish-typefaces-{VERSION}-fonts.zip'
-    os.makedirs(os.path.join(dest, 'downloads'), exist_ok=True)
-    files = []
-    for fmt in ('otf', 'ttf', 'woff', 'woff2'):
-        d = os.path.join(paths.ROOT, 'fonts', fmt)
-        files += [os.path.join('fonts', fmt, f) for f in sorted(os.listdir(d))]
-    files += ['css/four-irish-typefaces.css', 'OFL.txt', 'FONTLOG.txt', 'README.md']
-    with zipfile.ZipFile(os.path.join(dest, 'downloads', name), 'w', zipfile.ZIP_DEFLATED) as z:
-        for rel in files:
-            info = zipfile.ZipInfo(f'four-irish-typefaces/{rel}', date_time=(2026, 1, 1, 0, 0, 0))
-            info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o644 << 16
-            z.writestr(info, open(os.path.join(paths.ROOT, rel), 'rb').read())
-    return f'downloads/{name}'
-
+# The fonts are published as GitHub release assets (.github/workflows/release.yml builds them from the
+# version's tag): this site does not host them for download or for other sites to link.
+RELEASES = 'https://github.com/ddrayne/four-irish-typefaces/releases'
+RELEASE_ZIP = f'{RELEASES}/download/v{VERSION}/four-irish-typefaces-fonts-v{VERSION}.zip'
 
 def build():
     if os.path.exists(DEST):
@@ -364,7 +348,7 @@ def build():
         for style in FAMILY_STYLES[k]:
             fn = f'{FONTS[k]["ps"]}-{style.replace(" ", "")}.woff2'
             shutil.copy(os.path.join(WOFF2, fn), os.path.join(DEST, 'fonts', fn))
-    shutil.copy(os.path.join(paths.ROOT, 'OFL.txt'), os.path.join(DEST, 'fonts', 'OFL.txt'))
+    shutil.copy(os.path.join(paths.ROOT, 'LICENSE.txt'), os.path.join(DEST, 'fonts', 'LICENSE.txt'))
     shutil.copy(paths.SCAN, os.path.join(DEST, 'img', 'flyer.jpg'))
     faces, names = face_data()
     glyphs, regions = traced_data()
@@ -381,7 +365,7 @@ def build():
     dump(site, 'site.json')
     dump(glyphs, 'traced.json')
     social(DEST)
-    zip_href = fonts_zip(DEST)
+    zip_href = RELEASE_ZIP
     # copies keep their source modes; a web server needs to read every file
     for dirpath, dirs, files in os.walk(DEST):
         for n in dirs: os.chmod(os.path.join(dirpath, n), 0o755)
@@ -403,9 +387,6 @@ def artifact():
         shutil.rmtree(dest)
     shutil.copytree(DEST, dest)
     html = open(os.path.join(dest, 'index.html'), encoding='utf-8').read()
-    # the viewer blocks downloads, so the download button points at GitHub there
-    html = re.sub(r'href="downloads/[^"]+\.zip"', 'href="https://github.com/ddrayne/four-irish-typefaces/tree/main/fonts"', html)
-    shutil.rmtree(os.path.join(dest, 'downloads'), ignore_errors=True)
     head = re.search(r'<head>(.*?)</head>', html, re.S).group(1)
     body = re.search(r'<body([^>]*)>(.*?)</body>', html, re.S)
     head = re.sub(r'<meta charset[^>]*>\s*|<meta name="viewport"[^>]*>\s*|<link rel="preload"[^>]*>\s*', '', head)

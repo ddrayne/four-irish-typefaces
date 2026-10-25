@@ -142,8 +142,8 @@ def main(dest, fontdir, licence):
     for name in (f'four-irish-typefaces-fonts-v{V}.zip', f'four-irish-typefaces-v{V}.zip'):
         shutil.copy(os.path.join(SP.ZIPS, name), os.path.join(site, 'downloads', name))
     shutil.copy(os.path.join(PKG, 'docs/specimen/Four-Irish-Typefaces-specimen.pdf'), os.path.join(site, 'downloads'))
-    shutil.copy(os.path.join(PKG, 'OFL.txt'), os.path.join(site, 'OFL.txt'))
-    shutil.copy(os.path.join(PKG, 'OFL.txt'), os.path.join(site, 'fonts', 'OFL.txt'))
+    shutil.copy(os.path.join(PKG, 'LICENSE.txt'), os.path.join(site, 'LICENSE.txt'))
+    shutil.copy(os.path.join(PKG, 'LICENSE.txt'), os.path.join(site, 'fonts', 'LICENSE.txt'))
     Image.open(paths.SCAN).convert('L').save(os.path.join(site, 'img/flyer.jpg'), 'JPEG', quality=88, optimize=True, progressive=True)
     SP.icon(64, os.path.join(site, 'img/icon-64.png')); SP.icon(180, os.path.join(site, 'img/icon-180.png'))
     m_rows, n_flyer, mean = match_rows(os.path.join(site, 'data'))
@@ -215,7 +215,7 @@ def preview(site_dir, page_out, root):
         for f in sorted(os.listdir(os.path.join(root, 'fonts', fmt))):
             entries.append([f'four-irish-typefaces/fonts/{fmt}/{f}', f'fonts/{fmt}/{f}'])
     entries += [['four-irish-typefaces/css/four-irish-typefaces.css', 'package/css/four-irish-typefaces.css'],
-                ['four-irish-typefaces/README.md', 'package/README.md'], ['four-irish-typefaces/OFL.txt', 'OFL.txt'],
+                ['four-irish-typefaces/README.md', 'package/README.md'], ['four-irish-typefaces/LICENSE.txt', 'LICENSE.txt'],
                 ['four-irish-typefaces/index.html', 'package/index.html']]
     doc = open(os.path.join(site_dir, 'index.html')).read().replace(q, '')
     i = doc.index('<script type="application/json" id="config">') + len('<script type="application/json" id="config">')
@@ -232,8 +232,8 @@ def preview(site_dir, page_out, root):
     print('preview', page_out, len(files), 'supporting files', f'{sum(os.path.getsize(p) for p in files.values()) / 1e6:.1f} MB')
 
 
-LICENCE = ('Fonts copyright 2026 Dan Drayne, released under the <a href="OFL.txt">SIL Open Font License 1.1</a>: '
-           'use them for anything, share and adapt them, but don’t sell the fonts on their own.')
+LICENCE = ('No copyright is claimed: the fonts are in the public domain (<a href="LICENSE.txt">CC0 1.0</a>). '
+           'Use, change, share or sell them for anything, without asking.')
 
 if __name__ == '__main__':
     if sys.argv[1] == '--preview':           # python site.py --preview APPDIR PAGE.html ROOTDIR

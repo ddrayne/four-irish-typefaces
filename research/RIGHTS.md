@@ -9,7 +9,7 @@ open for redistribution. Public access to a scan is not evidence of an open lice
 | Bolger thesis volumes at RCA | Repository policy allows certain personal, educational and non-profit copying; the examined record does not establish an unrestricted open licence, including for reproduced third-party images. | Links, bibliographic facts, page/figure references and hashes; no mirrored PDFs or embedded images |
 | NCAD theses, museum and Heritage Council PDFs | No open redistribution licence verified during this pass. This records an evidence gap, not a conclusion that every use is forbidden. | Links and factual research metadata |
 | Modern revival specimens | Excluded from design references by the user's direction; no need to mirror | Bibliographic links only, explicitly marked as context |
-| New research font software, trace data, scripts and analysis | Created for this repository; source-media permissions are not transferred to the new files | Included with the repository's existing font-software licence; candidate includes OFL.txt |
+| New research font software, trace data, scripts and analysis | Created for this repository; source-media permissions are not transferred to the new files | In the public domain with the release (CC0 1.0, no copyright claimed); candidates that ship fonts include LICENSE.txt |
 
 Policies: [NIVAL reproduction policy](https://www.nival.ie/resources/reproduction-policy/),
 [RCA repository policy](https://researchonline.rca.ac.uk/policies.html).

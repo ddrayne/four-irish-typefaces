@@ -516,8 +516,6 @@
   $$('.acc').forEach(f => lazy.observe(f));
 
   /* ------------------------------------------------------------------ the web snippet, the browser check */
-  const cssURL = new URL('css/four-irish-typefaces.css', document.baseURI).href;
-  if (location.protocol.startsWith('http')) $('#css-url').textContent = cssURL;
   $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText($(b.dataset.copy).textContent); flash(b, 'Copied'); } catch { flash(b, 'Select and copy'); }
   }));

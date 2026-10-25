@@ -2,7 +2,7 @@
 
 Original-source Regular candidate, version 2.001; the released family remains
 version 2.000. See [the handoff](../HANDOFF.md) for decisions and unresolved work.
-The fonts use the existing [OFL](OFL.txt). This directory contains no archival scans.
+The fonts are in the public domain ([CC0 1.0](LICENSE.txt)), as the release is. This directory contains no archival scans.
 
 | Contents | Purpose |
 |---|---|

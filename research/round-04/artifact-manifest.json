@@ -11,8 +11,8 @@
   },
   {
     "path": "ceili/fonts/CeiliStudy3-Regular.otf",
-    "bytes": 79792,
-    "sha256": "cc804f0cd91470d7151fe75d90de0fe4f10fab7249209495c9413d4e20be5861"
+    "bytes": 80048,
+    "sha256": "1d4e36b346dec25b450a6c1aa956164b7e3dd1d6f95e9367b1cdf788003d8666"
   },
   {
     "path": "ceili/fonts/CeiliStudy3-Regular.provenance.json",
@@ -21,18 +21,18 @@
   },
   {
     "path": "ceili/fonts/CeiliStudy3-Regular.ttf",
-    "bytes": 132376,
-    "sha256": "34e0abea1b1a82b61a468bd00c6045f25e0cde3d7daa7762632769c0029428a3"
+    "bytes": 132632,
+    "sha256": "90fbed9bb86d53691fa0024bd8fff5f71f5a07aeafd2d5fcc21a5ce6beb6f250"
   },
   {
     "path": "ceili/fonts/CeiliStudy3-Regular.woff",
-    "bytes": 52464,
-    "sha256": "185c6a749ca2f91a48651fc1e6868815d6e3282eebf74d252ebbca1fd5b93a77"
+    "bytes": 52536,
+    "sha256": "bac975a63d9ec82113b893adfe46169495fd08981f35e3de7e49b37780f1eff4"
   },
   {
     "path": "ceili/fonts/CeiliStudy3-Regular.woff2",
-    "bytes": 40648,
-    "sha256": "7b2f770df4b0d1c0b3c851eb0f8f14630154a854fca855009ab6ea73f2b0216f"
+    "bytes": 40652,
+    "sha256": "15421b5064a499b4517cb7248ab2137c3599a20988be10f59b3302e73ee6de1c"
   },
   {
     "path": "ceili/fonts/spacing-adjustments.json",
@@ -125,9 +125,9 @@
     "sha256": "6ae5383063c19b27d17199b2414c5d9f3fb6a261cd65d2152b165733c5d49b71"
   },
   {
-    "path": "OFL.txt",
-    "bytes": 4498,
-    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+    "path": "LICENSE.txt",
+    "bytes": 7048,
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
   },
   {
     "path": "pair-audit.json",

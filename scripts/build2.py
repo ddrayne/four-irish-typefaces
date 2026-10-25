@@ -24,7 +24,8 @@ from letters import make_letters, stem_at, clip
 from symbols import make_symbols
 
 OUT = paths.FONTS
-VERSION = '2.100'
+VERSION = '2.101'
+CC0 = 'https://creativecommons.org/publicdomain/zero/1.0/'
 RELEASE_DATE = '2026-10-25'          # stamped into head.created/modified, so a rebuild is byte-identical
 import calendar as _cal, time as _time
 os.environ.setdefault('SOURCE_DATE_EPOCH', str(_cal.timegm(_time.strptime(RELEASE_DATE, '%Y-%m-%d'))))  # fontTools saves honour it
@@ -1148,10 +1149,10 @@ class Font2:
                'Bold': ' The bold was drawn in 2026 from the 1978 regular, with a wider pen.',
                'Bold Italic': ' The bold sloped style was drawn in 2026 from the 1978 regular.'}[style]
         fb.setupNameTable(dict(
-            copyright=f'Copyright 2026 Dan Drayne. Original design 1978 by {cfg["designer"]}; digitised 2026 from the printed specimen sheet.',
-            licenseDescription=('This Font Software is licensed under the SIL Open Font License, Version 1.1. '
-                                'This license is available with a FAQ at: https://openfontlicense.org'),
-            licenseInfoURL='https://openfontlicense.org',
+            copyright=f'No copyright is claimed. Original design 1978 by {cfg["designer"]}; digitised 2026 by Dan Drayne from the printed specimen sheet.',
+            licenseDescription=('To the extent possible under law, Dan Drayne has waived all copyright and related or neighboring '
+                                f'rights to this digitisation: it is dedicated to the public domain under CC0 1.0 Universal, {CC0}'),
+            licenseInfoURL=CC0,
             familyName=fam, styleName=style, uniqueFontIdentifier=f'{VERSION};{ps}',
             fullName=f'{fam} {style}', psName=ps, version=f'Version {VERSION}',
             designer=cfg['designer'],

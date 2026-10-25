@@ -120,7 +120,7 @@ def cover():
   <h1 class="f" style="font-size:110px">four irish typefaces</h1>
   <p class="credit">Céilí · Carrick · Kilfane · Tuam Uncial — winners of the 1978 “Design an Irish Typeface” competition,
   sponsored by Letraset, Kilkenny Design Workshops and D. O’Sullivan Graphic Supplies. Digitised 2026, version {VERSION}.
-  Fonts copyright 2026 Dan Drayne, free to use under the SIL Open Font License 1.1 (openfontlicense.org).</p>
+  No copyright is claimed: the fonts are in the public domain (CC0 1.0).</p>
   <div style="display:flex;gap:28px;align-items:flex-start">
   <img src="data:image/jpeg;base64,{b64}" style="width:430px;border:1px solid var(--rule)">
   <div style="font-size:15px;line-height:1.5;max-width:560px">

@@ -1,8 +1,8 @@
 [
   {
     "path": "fonts/KilfaneStudy1-Regular.otf",
-    "bytes": 102624,
-    "sha256": "49b1871427b325fef4bbf0eeb1abea25ef185b631e1a81137b005da83d7a9f5f"
+    "bytes": 102880,
+    "sha256": "a514e9ebc7c18aeb13fb713593287dede1cdb4d4fff8d3474208cb45c049a9fc"
   },
   {
     "path": "fonts/KilfaneStudy1-Regular.provenance.json",
@@ -11,18 +11,18 @@
   },
   {
     "path": "fonts/KilfaneStudy1-Regular.ttf",
-    "bytes": 182936,
-    "sha256": "f461d955e7d2c9f2a4233c74ccc24e9e1faedeb18557c1ae6aaa5d2e57759dc2"
+    "bytes": 183192,
+    "sha256": "be31fb0fd881dad2e2554176e18f2cc15a0e0c5775c2d8abfe2159039639ee45"
   },
   {
     "path": "fonts/KilfaneStudy1-Regular.woff",
-    "bytes": 71240,
-    "sha256": "003ea3462c1021c1631b700f9136be1467efc8b3fbbfc2616d24cef0f106653b"
+    "bytes": 71316,
+    "sha256": "bf7e203b9961ce2fb54ee97c6b9571864467425730d2f5f01ad64a440be78744"
   },
   {
     "path": "fonts/KilfaneStudy1-Regular.woff2",
-    "bytes": 52456,
-    "sha256": "39f62f8c2b206683ad39a5e29bcd70e023f808ef79f12bc7a37b3ea9a0a86762"
+    "bytes": 52408,
+    "sha256": "8c3a1b224a8b00c80113d037868109ff72fdb908d89530f016884458e37b9578"
   },
   {
     "path": "metrics.json",
@@ -30,9 +30,9 @@
     "sha256": "4855f657d8c0a59497c15dc7d42c9a91c4e0fa6994cff9cb3cf6f88b660bd32d"
   },
   {
-    "path": "OFL.txt",
-    "bytes": 4498,
-    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+    "path": "LICENSE.txt",
+    "bytes": 7048,
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
   },
   {
     "path": "text-proof.png",

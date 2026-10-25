@@ -1,8 +1,7 @@
 FONTLOG for Four Irish Typefaces
 ================================
 
-This file provides detailed information on the Four Irish Typefaces font software. This
-information should be distributed along with the fonts and any derivative works.
+This file provides detailed information on the Four Irish Typefaces font software.
 
 
 Basic font information
@@ -25,12 +24,21 @@ The award wording follows the competition brochure in the William Curran Archive
 Irish Visual Arts Library (https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/).
 It prints Céilí's name as "Caill".
 
-The fonts are released under the SIL Open Font License 1.1 (OFL.txt). No Reserved Font Names are
-declared.
+No copyright is claimed in the fonts. To the extent possible under law, Dan Drayne has waived all
+copyright and related or neighboring rights to the digitisation, and dedicates it to the public
+domain under CC0 1.0 Universal (LICENSE.txt). The 1978 designs are the work of their designers,
+named above.
 
 
 ChangeLog
 ---------
+
+2.101 (2026-10-25)
+- No copyright is claimed: the fonts are dedicated to the public domain under CC0 1.0 Universal
+  (LICENSE.txt) instead of being licensed under the SIL Open Font License 1.1. The name table's
+  copyright, licence and licence URL say so. Outlines, spacing, features and names are unchanged.
+- The fonts are downloaded from the project's GitHub releases. The site no longer serves the fonts or
+  the stylesheet to other sites (no cross-origin access): host your own copy.
 
 2.100 (2026-10-25)
 - The families are renamed Céilí Digital, Carrick Digital, Kilfane Digital and Tuam Uncial Digital

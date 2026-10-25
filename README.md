@@ -1,4 +1,4 @@
-# Four Irish Typefaces: digital revival, version 2.100
+# Four Irish Typefaces: digital revival, version 2.101
 
 **Céilí · Carrick · Kilfane · Tuam Uncial**
 
@@ -27,13 +27,23 @@ The flyer shows each face in a single style. From version 2.000 each face is als
 work, drawn in 2026 from the 1978 regulars (see *The 2026 styles* below). They are not
 reconstructions of anything the designers drew.
 
-The fonts are free to use under the SIL Open Font License 1.1 (see `OFL.txt`). A live
-test page is at https://irish-typefaces.apps.drayne.xyz/.
+The fonts are in the public domain (CC0 1.0, see `LICENSE.txt`): no copyright is claimed.
+Download them from the [GitHub releases](https://github.com/ddrayne/four-irish-typefaces/releases)
+and host your own copy: the site at https://irish-typefaces.apps.drayne.xyz/ shows them but does
+not serve them to other sites.
 
 Open `index.html` to see and test the fonts in a browser. It's a live type tester
 with style pickers, stylistic-set toggles and character grids.
 
-## What's new in 2.100
+## What's new in 2.101
+
+- **No copyright is claimed.** The fonts are dedicated to the public domain under CC0 1.0
+  (`LICENSE.txt`) instead of the SIL Open Font License; the name tables say so.
+- **Downloads are GitHub releases.** Each version's ZIPs are attached to its release. The site no
+  longer serves the fonts or the stylesheet to other sites: host your own copy.
+- Outlines, spacing, features and names are unchanged from 2.100.
+
+## What was new in 2.100
 
 - **The families carry "Digital" in their names**: Céilí Digital, Carrick Digital, Kilfane Digital
   and Tuam Uncial Digital, in files named `CeiliDigital-Regular.otf` and so on. Each font's
@@ -121,7 +131,7 @@ with style pickers, stylistic-set toggles and character grids.
 | `site/` | Sources of the test page at irish-typefaces.apps.drayne.xyz |
 | `tests/` | Checks every release must pass (`make test`) |
 | `research/` | Original-source catalogue, evidence metadata, agent handoff and separately named research candidates |
-| `OFL.txt`, `FONTLOG.txt` | The licence (SIL Open Font License 1.1) and the release history |
+| `LICENSE.txt`, `FONTLOG.txt` | The public-domain dedication (CC0 1.0) and the release history |
 
 | Family | Styles | Code points | Glyphs | WOFF2 per style | Features |
 |---|---|---|---|---|---|
@@ -445,8 +455,9 @@ As far as I know, Irish law (Copyright and Related Rights Act 2000, s.84) and UK
 That has long passed for these 1978 designs. Names and trademarks are a separate
 matter, and Jarlath is its own commercial product.
 
-The digitisation is new work, copyright 2026 Dan Drayne, and it is released under the
-**SIL Open Font License 1.1** (`OFL.txt`). You may use the fonts for anything, including
-commercial work, and share or adapt them, but you may not sell the fonts on their own,
-and adapted versions must stay under the OFL. No Reserved Font Names are declared. Each
-font's name table carries the copyright, the licence and its original designer.
+No copyright is claimed in the digitisation. To the extent possible under law, Dan Drayne
+has waived all copyright and related or neighboring rights to it and dedicates it to the
+public domain under **CC0 1.0 Universal** (`LICENSE.txt`). Use, change, share or sell the
+fonts for any purpose, without asking or crediting. The 1978 designs remain the work of
+Hermann Hecht, William Curran and Jarlath Hayes, and a credit to them is always welcome.
+Each font's name table records the dedication and its original designer.

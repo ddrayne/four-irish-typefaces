@@ -6,8 +6,8 @@
   },
   {
     "path": "carrick/fonts/CarrickStudy1-Regular.otf",
-    "bytes": 63100,
-    "sha256": "d5c9bd187733a094fb7191cae739c3cc604898bc22db46de7e30666d8ce4c372"
+    "bytes": 63356,
+    "sha256": "5cbcb4a9800902e4723f5b8f5c891a6029c09a8d375feb16095afffa69123a1a"
   },
   {
     "path": "carrick/fonts/CarrickStudy1-Regular.provenance.json",
@@ -16,18 +16,18 @@
   },
   {
     "path": "carrick/fonts/CarrickStudy1-Regular.ttf",
-    "bytes": 101120,
-    "sha256": "34b942ae220f37e96d1623656f285b100a9cc87c200416b851a8494bbf9512a7"
+    "bytes": 101376,
+    "sha256": "02e9911597113f7ad1b79a0f102191d5f7888344628b1167c5e993ab1df560d5"
   },
   {
     "path": "carrick/fonts/CarrickStudy1-Regular.woff",
-    "bytes": 44544,
-    "sha256": "3efc49933aba17dc5a660460855e4e2c3048cb286b10ea5467875c417cf72a4e"
+    "bytes": 44620,
+    "sha256": "dc1e0616e42325764ef1793b12e3cbb473d8a292a72f8d7aab6a531ff4d7d422"
   },
   {
     "path": "carrick/fonts/CarrickStudy1-Regular.woff2",
-    "bytes": 34604,
-    "sha256": "83e128a874ee6d5c108342745b48fb66dc4bccef0a421d6ce4acef7270ab948e"
+    "bytes": 34584,
+    "sha256": "ca1178c7c1ac96e5c845ff5aae3866338c5a6b8953b2ac925c56efa44c1ddba6"
   },
   {
     "path": "carrick/fonts/spacing-adjustments.json",
@@ -56,8 +56,8 @@
   },
   {
     "path": "ceili/fonts/CeiliStudy1-Regular.otf",
-    "bytes": 72392,
-    "sha256": "28c467a2e544beb1a21848e38d95c9914bcc04cc3a47503e29dda25c70278409"
+    "bytes": 72648,
+    "sha256": "44a35b09222c9bcb34ab0649c48bde40d5270652e8247791663e9034c3386239"
   },
   {
     "path": "ceili/fonts/CeiliStudy1-Regular.provenance.json",
@@ -66,18 +66,18 @@
   },
   {
     "path": "ceili/fonts/CeiliStudy1-Regular.ttf",
-    "bytes": 115464,
-    "sha256": "4bb3b81bce8bcbb06b0163b0ae79c619249a126252069c8cb6512da31a5dfd8f"
+    "bytes": 115720,
+    "sha256": "5e890a207a7c6c94975129053952c5b013291bea18fcfb37919138e2968dd505"
   },
   {
     "path": "ceili/fonts/CeiliStudy1-Regular.woff",
-    "bytes": 48184,
-    "sha256": "5190c6300c94b3abf4c847df4c6d1ea299d56c9586172e2f5b4c5cfcf5cba281"
+    "bytes": 48256,
+    "sha256": "53dd6e3068c070b8ec9287b7913ce13e10bb65e7ecac3082fc92413d77f1d016"
   },
   {
     "path": "ceili/fonts/CeiliStudy1-Regular.woff2",
-    "bytes": 37280,
-    "sha256": "36cd8520e3a51a15e45b54409036a061e8a943dfb1aa8e8b17e321e403f54169"
+    "bytes": 37328,
+    "sha256": "33b52c9001e96160e9f72891dff9c8defb897e907de980ee5b862efdcf44c605"
   },
   {
     "path": "ceili/fonts/spacing-adjustments.json",
@@ -101,8 +101,8 @@
   },
   {
     "path": "kilfane/fonts/KilfaneStudy2-Regular.otf",
-    "bytes": 111240,
-    "sha256": "b780ef3e11e074a3d767b838ca3ea2258a07944aae4536b48419a9ff97be1773"
+    "bytes": 111496,
+    "sha256": "f191e6681403842d31d37dc8bd73d3c7edf56cb3e8d3578e021dcb281769208a"
   },
   {
     "path": "kilfane/fonts/KilfaneStudy2-Regular.provenance.json",
@@ -111,18 +111,18 @@
   },
   {
     "path": "kilfane/fonts/KilfaneStudy2-Regular.ttf",
-    "bytes": 190172,
-    "sha256": "60d8035aceeb3c9e41a3d86e23de4c330e0e6f3dafc9821c3edc64e36119358e"
+    "bytes": 190428,
+    "sha256": "92a0985c14c612c411cb890f15d5e14d53c8ab5dc3637f3fa0fdc921de404240"
   },
   {
     "path": "kilfane/fonts/KilfaneStudy2-Regular.woff",
-    "bytes": 73732,
-    "sha256": "5833829e7eeeeac90ef95549d4cf0cbe95ce03e572a741d8337b2cabe715b7e8"
+    "bytes": 73804,
+    "sha256": "4c7cfa2c95c45c7eae9a55cfc6e2c804b21e51c951620c04757272c408f0a242"
   },
   {
     "path": "kilfane/fonts/KilfaneStudy2-Regular.woff2",
-    "bytes": 54336,
-    "sha256": "4e995d991fecbd75e7c47a0b0f143fb1fb206463f0f4bfc20f94e58a547eedf5"
+    "bytes": 54404,
+    "sha256": "5e717cebdf1be89f3332de183f0f0a9e6fcf69c15947d0e5cee8fa6167089e46"
   },
   {
     "path": "kilfane/fonts/spacing-adjustments.json",
@@ -165,9 +165,9 @@
     "sha256": "28d8000903ad4229a5b3bd604240dd533fbb5838f1b8f418ef91526ba46487ea"
   },
   {
-    "path": "OFL.txt",
-    "bytes": 4498,
-    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+    "path": "LICENSE.txt",
+    "bytes": 7048,
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
   },
   {
     "path": "pair-audit.json",
@@ -176,8 +176,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 8403,
-    "sha256": "b3cb06f6ce21a34beaa24070a25a1e74e920b4274d7c6b86b6ea623104222bd9"
+    "bytes": 8425,
+    "sha256": "dac70c7ba8cb38899de97e219cbdff3760dd693863ed90b21866e5a2e40ce4b2"
   },
   {
     "path": "tuam/fonts/spacing-adjustments.json",
@@ -186,8 +186,8 @@
   },
   {
     "path": "tuam/fonts/TuamUncialStudy1-Regular.otf",
-    "bytes": 48028,
-    "sha256": "fce54f82deed48a774558f28679f1b87701daaede70ff6345d73950cdd5de63a"
+    "bytes": 48284,
+    "sha256": "d5aaa7d21cfa5277be2a99a8d4a66a0865f15432a0314c74d0f896fd93571bd3"
   },
   {
     "path": "tuam/fonts/TuamUncialStudy1-Regular.provenance.json",
@@ -196,18 +196,18 @@
   },
   {
     "path": "tuam/fonts/TuamUncialStudy1-Regular.ttf",
-    "bytes": 88964,
-    "sha256": "824001b2248b24380ddc46c87f3abf8ff2b46ffdeaff9fe72833fcf0228a8bce"
+    "bytes": 89220,
+    "sha256": "212b8ab943f9840d1f09c1f4ecd64b2942d0d560519ac25ceb254c32745431cd"
   },
   {
     "path": "tuam/fonts/TuamUncialStudy1-Regular.woff",
-    "bytes": 39968,
-    "sha256": "90229f5a200e5942aeb6d61b3e9a5a5707140d018b7257bbed730011c0038c7c"
+    "bytes": 40036,
+    "sha256": "e7b36c43d49a6864382dc11dbff45805cf6ef313aa2c2885104aac81f75d09e1"
   },
   {
     "path": "tuam/fonts/TuamUncialStudy1-Regular.woff2",
-    "bytes": 31372,
-    "sha256": "904b49128c557168748b60974c7fef8455a771c9b3883209ff3270f2c15e94be"
+    "bytes": 31504,
+    "sha256": "aabd85a44523947eb95b2e0c962f0fb357c83e222e9fed2f0b6296dc40f9f6d3"
   },
   {
     "path": "tuam/text-proof.png",

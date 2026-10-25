@@ -169,7 +169,7 @@ def package_files():
         for dp, dn, fn in os.walk(os.path.join(PKG_ROOT, sub)):
             dn.sort()
             files += [os.path.relpath(os.path.join(dp, f), PKG_ROOT) for f in sorted(fn)]
-    return files + ['README.md', 'OFL.txt', 'index.html']
+    return files + ['README.md', 'LICENSE.txt', 'index.html']
 
 
 def flyer_thumb():
@@ -470,7 +470,7 @@ footer p + p {{ margin-top: 8px; }}
       <div class="actions">
         <div class="dl">
           <button type="button" class="btn" data-action="fonts">Download the fonts</button>
-          <span class="dl-size">ZIP · about 0.7 MB · WOFF2, WOFF, OTF, TTF, CSS, README and the OFL</span>
+          <span class="dl-size">ZIP · about 0.7 MB · WOFF2, WOFF, OTF, TTF, CSS, README and the CC0 text</span>
         </div>
         <div class="dl">
           <button type="button" class="btn secondary" data-action="pdf">Specimen PDF</button>
@@ -622,8 +622,8 @@ footer p + p {{ margin-top: 8px; }}
   <div class="wrap">
     <p>Typeface designs by Hermann Hecht, William Curran and Jarlath Hayes, 1978. Digitised in 2026 from the printed
       flyer. Version 1.100.</p>
-    <p>Fonts copyright 2026 Dan Drayne, released under the SIL Open Font License 1.1: use them for anything, share and
-      adapt them, but don’t sell the fonts on their own. The licence is in the download.</p>
+    <p>No copyright is claimed: the fonts are in the public domain (CC0 1.0). Use, change, share or sell them for
+      anything, without asking. The dedication is in the download.</p>
     <p>Jarlath, Signal Type Foundry’s revival of Tuam Uncial, is a separate commercial product and is not part of this
       project.</p>
   </div>

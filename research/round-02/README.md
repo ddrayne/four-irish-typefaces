@@ -2,7 +2,7 @@
 
 Four separately named Regular candidates, with source improvements for Kilfane
 and Carrick and a full-height spacing correction for all four faces. These are
-research builds under the [OFL](OFL.txt); the released families are unchanged.
+research builds, in the public domain ([CC0 1.0](LICENSE.txt)); the released families are unchanged.
 
 | Candidate | Outline work in this round | Glyphs / code points |
 |---|---|---:|

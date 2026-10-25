@@ -2,7 +2,7 @@
 
 Task R1 in the [continuation plan](../docs/superpowers/plans/2026-10-25-continuation.md).
 This is a proposal, not a release: `fonts/`, `sources/traced/`, the release metadata
-and the showcase still carry 2.100 (2.010 renamed "Digital"; outlines unchanged). Promotion
+and the showcase still carry 2.101 (2.010 renamed "Digital" and dedicated to the public domain; outlines unchanged). Promotion
 needs the user's explicit approval.
 
 ## What the candidate is
@@ -83,7 +83,7 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
 
 | Check | Result |
 |---|---|
-| `FONTDIR=build/candidate/fonts pytest tests/test_release.py tests/test_shaping.py` | 20 of 21 pass. Style linking fails only because the expected version is the release's (2.100). Bold counters: 0 flags beyond the designed Céilí 6. The "Digital" naming check passes. |
+| `FONTDIR=build/candidate/fonts pytest tests/test_release.py tests/test_shaping.py` | 20 of 21 pass. Style linking fails only because the expected version is the release's (2.101). Bold counters: 0 flags beyond the designed Céilí 6. The "Digital" naming check passes. |
 | Pair collisions, all 12 styles ([summary](release-candidate/pair-audit.json)) | 0 collisions in 1,346,872 HarfBuzz-shaped pairs: Latin letters, figures and punctuation, default features |
 | OTS, 48 files (OTF, TTF, WOFF, WOFF2) | no failures |
 | Font Bakery `check-universal`, per family | 0 FAIL, 0 ERROR; the same two WARN kinds as 2.010 (decomposed carons, contour counts) |

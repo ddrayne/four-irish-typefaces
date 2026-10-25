@@ -386,7 +386,7 @@ footer p + p {{ margin-top: 8px; }}
           <a class="btn secondary" href="downloads/Four-Irish-Typefaces-specimen.pdf">Specimen PDF</a>
           <span class="dl-size">9 pages · {sizes['pdf']}</span>
         </div>
-        <p class="dl-size">Free to use under the <a href="OFL.txt">SIL Open Font License 1.1</a>.</p>
+        <p class="dl-size">In the public domain (<a href="LICENSE.txt">CC0 1.0</a>): no copyright is claimed.</p>
       </div>
     </div>
     <figure class="flyer">
@@ -461,10 +461,9 @@ footer p + p {{ margin-top: 8px; }}
         <div class="block-head">
           <h2 id="web-h">Use them on a website</h2>
         </div>
-        <p>Link the stylesheet from this site, then name a face in your CSS. The fonts are served with cross-origin
-          access, so this works from any domain. The Open Font License allows this, in commercial work too.</p>
-        <p>Or download the fonts, put the <code>fonts</code> and <code>css</code> folders next to your pages, and link
-          your own copy of <code>css/four-irish-typefaces.css</code>.</p>
+        <p>Download the fonts, put the <code>fonts</code> and <code>css</code> folders next to your pages, link
+          your own copy of <code>css/four-irish-typefaces.css</code>, then name a face in your CSS. This site does not
+          serve the fonts to other sites.</p>
         <h3>Font names</h3>
         <ul>{font_list}</ul>
         <p class="fine">Ready-made classes for the stylistic sets are in the stylesheet: <code>kilfane-roman-forms</code>,
@@ -473,8 +472,7 @@ footer p + p {{ margin-top: 8px; }}
       </div>
       <div class="code">
         <button type="button" class="copy" id="copy-css">Copy</button>
-<pre id="css-snippet">&lt;link rel="stylesheet"
-      href="<span id="css-url">https://{SLUG}.apps.drayne.xyz/css/four-irish-typefaces.css</span>"&gt;
+<pre id="css-snippet">&lt;link rel="stylesheet" href="css/four-irish-typefaces.css"&gt;
 
 &lt;style&gt;
   h1    {{ font-family: "Céilí Digital", "Ceili Digital", serif; }}
@@ -654,9 +652,6 @@ footer p + p {{ margin-top: 8px; }}
     }}));
   }});
 
-  // the hotlink snippet points at wherever this page is actually served from
-  const cssUrl = new URL('css/four-irish-typefaces.css', document.baseURI).href.split('?')[0];
-  document.getElementById('css-url').textContent = cssUrl;
   const copy = document.getElementById('copy-css');
   const snippet = document.getElementById('css-snippet');
   copy.addEventListener('click', () => {{
@@ -764,29 +759,25 @@ NGINX = r'''server {
     }
 
     # Web fonts. nginx already maps .woff2/.woff to font/woff2 and font/woff; OTF/TTF get
-    # their own types. Cross-origin access lets other sites use the fonts and the linked
-    # stylesheet. URLs carry ?v=<version>, so a long cache is safe.
+    # their own types. They are for this page only: no cross-origin access, so other sites
+    # cannot link them. URLs carry ?v=<version>, so a long cache is safe.
     location /fonts/ {
         limit_except GET { deny all; }
-        add_header Access-Control-Allow-Origin "*" always;
         add_header X-Content-Type-Options nosniff always;
         add_header Cache-Control "public, max-age=2592000" always;
         location ~* \.ttf$ {
             default_type font/ttf;
-            add_header Access-Control-Allow-Origin "*" always;
             add_header X-Content-Type-Options nosniff always;
             add_header Cache-Control "public, max-age=2592000" always;
         }
         location ~* \.otf$ {
             default_type font/otf;
-            add_header Access-Control-Allow-Origin "*" always;
             add_header X-Content-Type-Options nosniff always;
             add_header Cache-Control "public, max-age=2592000" always;
         }
     }
     location /css/ {
         limit_except GET { deny all; }
-        add_header Access-Control-Allow-Origin "*" always;
         add_header X-Content-Type-Options nosniff always;
         add_header Cache-Control "public, max-age=3600" always;
     }
@@ -812,7 +803,7 @@ It is a static site served by nginx; the Docker image contains only `site/` and 
 - `site/css/four-irish-typefaces.css`: `@font-face` rules other sites can link to
 - `site/fonts/`: WOFF2 and WOFF for the web, OTF and TTF for download
 - `site/downloads/`: the release ZIPs and the PDF specimen
-- `nginx.conf`: font MIME types, cross-origin access for fonts and CSS, caching
+- `nginx.conf`: font MIME types and caching (no cross-origin access)
 
 Publish with the Drayne helper from the `drayne-apps` checkout:
 
@@ -837,8 +828,8 @@ def main(dest, licence_text):
     for name in (f'four-irish-typefaces-fonts-v{V}.zip', f'four-irish-typefaces-v{V}.zip'):
         shutil.copy(os.path.join(ZIPS, name), os.path.join(site, 'downloads', name))
     shutil.copy(os.path.join(PKG, 'docs/specimen/Four-Irish-Typefaces-specimen.pdf'), os.path.join(site, 'downloads'))
-    shutil.copy(os.path.join(PKG, 'OFL.txt'), os.path.join(site, 'OFL.txt'))
-    shutil.copy(os.path.join(PKG, 'OFL.txt'), os.path.join(site, 'fonts', 'OFL.txt'))
+    shutil.copy(os.path.join(PKG, 'LICENSE.txt'), os.path.join(site, 'LICENSE.txt'))
+    shutil.copy(os.path.join(PKG, 'LICENSE.txt'), os.path.join(site, 'fonts', 'LICENSE.txt'))
     faces = [A.face_data(k) for k in A.ORDER]
     for d in faces:
         d['pil'].save(os.path.join(site, f'img/{d["key"]}-scan.jpg'), 'JPEG', quality=86, optimize=True, progressive=True)
@@ -864,5 +855,5 @@ def main(dest, licence_text):
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else
-         ('Fonts copyright 2026 Dan Drayne, released under the <a href="OFL.txt">SIL Open Font License 1.1</a>: '
-          'use them for anything, share and adapt them, but don’t sell the fonts on their own.'))
+         ('No copyright is claimed: the fonts are in the public domain (<a href="LICENSE.txt">CC0 1.0</a>). '
+          'Use, change, share or sell them for anything, without asking.'))

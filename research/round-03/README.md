@@ -10,7 +10,7 @@ round 2](../round-02/README.md), unchanged. Released families remain unchanged.
 | Céilí Study 2 | 54 of 55 | 317 / 408 | [OTF, TTF, WOFF, WOFF2](ceili/fonts/) |
 
 Glyph counts include `.notdef`. These are research candidates under the repository's
-[font-software licence](OFL.txt), not a claim of original-master authentication.
+[public-domain dedication](LICENSE.txt), not a claim of original-master authentication.
 
 ## Sources and construction decisions
 

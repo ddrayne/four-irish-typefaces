@@ -13,7 +13,7 @@ import paths
 from build2 import VERSION
 
 ROOT_NAME = 'four-irish-typefaces'
-FONTS_ONLY = ('fonts/', 'css/', 'index.html', 'README.md', 'OFL.txt', 'FONTLOG.txt')
+FONTS_ONLY = ('fonts/', 'css/', 'index.html', 'README.md', 'LICENSE.txt', 'FONTLOG.txt')
 
 
 def tracked():
