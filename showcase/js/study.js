@@ -15,7 +15,7 @@ import { $, $$, FAMILY, offscreen } from './util.js';
 
 const pct = (v) => `${Math.max(0, Math.min(100, ((v - 0.75) / 0.25) * 100)).toFixed(1)}%`;
 const fmt = (n) => Number(n).toLocaleString('en-IE');
-const KIND = { outlines: 'letters', marks: 'loose accent marks' };
+const KIND = { letters: 'letters', outlines: 'letters', marks: 'accent marks', punctuation: 'punctuation' };
 
 export async function init(root, data) {
   const face = root.dataset.study;
@@ -55,10 +55,11 @@ export async function init(root, data) {
 function describe(studies) {
   return studies.map((x, i) => {
     const name = i ? x.family.replace(/^.*?(Study \d+)$/, '$1') : x.family;
-    const did = [];
-    if (x.measured.includes('outlines')) did.push(i === studies.length - 1 ? 'rebuilds the letters' : 'rebuilt the letters');
-    if (x.measured.includes('marks')) did.push("adds the sheet's loose accent marks");
-    if (x.spacing_changes) did.push('corrects the spacing');
+    const now = i === studies.length - 1, did = [];
+    if (x.measured.includes('letters')) did.push(now ? 'rebuilds the letters' : 'rebuilt the letters');
+    if (x.measured.includes('marks')) did.push(now ? 'takes the accent marks from the original sheets' : 'took the accent marks from the original sheets');
+    if (x.measured.includes('punctuation')) did.push(now ? 'takes the punctuation from the original brochure' : 'took the punctuation from the original brochure');
+    if (x.spacing_changes) did.push(now ? 'corrects the spacing' : 'corrected the spacing');
     return `${name} ${did.join(' and ') || 'continues the work'}`;
   }).join('; ') + '.';
 }
@@ -100,7 +101,7 @@ function outlineFit(root, info, face, latest) {
     const feat = g.tag ? `font-feature-settings:'${g.tag}' 1;` : '';
     return `<span class="sc-art" aria-hidden="true"><span class="sc-r f-${face}" style="${feat}">${g.ch}</span><span class="sc-s" style="font-family:'${latest.family}',serif;${feat}">${g.ch}</span></span>`;
   };
-  const list = () => info.glyphs.filter((g) => g.src === pick.id && (pick.kind === 'marks') === isMark(g, info));
+  const list = () => info.glyphs.filter((g) => g.src === pick.id && g.kind === pick.kind);
   function show(g) {
     picked = g.n;
     zoom.innerHTML = art(g) +
@@ -136,9 +137,6 @@ function outlineFit(root, info, face, latest) {
   body.dataset.show = 'both';
 }
 
-function isMark(g, info) {
-  return info.sources.some((s) => s.kind === 'marks' && s.study === g.study);
-}
 
 // ------------------------------------------------------------------ spacing
 function spacing(root, info, face, latest) {

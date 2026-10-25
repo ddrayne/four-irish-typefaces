@@ -125,6 +125,19 @@ METRICS = ('metrics.json', 'audit-metrics.json', 'mark-audit-metrics.json')
 TEXT_LETTERS = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚ')
 
 
+def measured_kind(metrics, chars):
+    """What a set of scores measured: 'letters' when most of its glyphs are letters or
+    figures, otherwise 'marks' (accents and guillemets) or 'punctuation'. A later round
+    that re-measures only a few marks must not stand in for the letters."""
+    names = [g['name'] for g in metrics.get('glyphs', [])]
+    shown = [chars.get(n, (None, None))[0] for n in names]
+    alnum = sum(1 for c in shown if c and c.isalnum())
+    if names and alnum >= len(names) / 2:
+        return 'letters'
+    marks = sum(1 for c in shown if c and (unicodedata.category(c) in ('Sk', 'Mn') or c in '‹›«»'))
+    return 'marks' if marks >= len(names) / 2 else 'punctuation'
+
+
 def studies_data(faces):
     """The original-source research candidates under research/ (any folder holding
     fonts/<Name>-Regular.otf), grouped by face, shown beside the release they rebuild.
@@ -218,7 +231,7 @@ def studies_data(faces):
                 if not os.path.exists(path):
                     continue
                 mm = json.load(open(path, encoding='utf-8'))
-                kind = 'marks' if mf.startswith('mark') else 'outlines'
+                kind = measured_kind(mm, chars[face])
                 measured.append(kind)
                 for fn, sm in mm.get('summary', {}).items():
                     a = src(fn)
@@ -233,7 +246,7 @@ def studies_data(faces):
                     if ch is None:
                         continue
                     sid = src(g['source']).get('source_id', g['source'])
-                    glyphs[(g['name'], sid)] = dict(n=g['name'], ch=ch, tag=tag, src=sid, study=f['family'],
+                    glyphs[(g['name'], sid)] = dict(n=g['name'], ch=ch, tag=tag, src=sid, study=f['family'], kind=kind,
                                                     before=round(g['before']['iou'], 4), after=round(g['candidate']['iou'], 4))
             studies.append(dict(family=f['family'], version=f['version'], file=f['woff2'], round=f['round'],
                                 measured=measured, spacing_changes=nspace, common_pairs=common[:8],
