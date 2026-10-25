@@ -93,6 +93,7 @@ export async function init(root, data) {
     const sw = dev(S.w), sh = dev(S.h);
     sheetBase = offscreen(sw, sh);
     sheetInk = offscreen(sw, sh);
+    sheetInk.getContext('2d', { willReadFrequently: true });   // the machine reads back what ink is left
     const b = sheetBase.getContext('2d');
     b.scale(R, R);
     // the carrier film: translucent, so the mat shows through
