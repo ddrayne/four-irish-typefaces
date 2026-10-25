@@ -37,6 +37,7 @@
     <a href="#kilfane" class="chip chip-kilfane"><span class="f-kilfane">K</span><span class="chip-label">Kilfane</span></a>
     <a href="#tuam" class="chip chip-tuam"><span class="f-tuam">t</span><span class="chip-label">Tuam</span></a>
     <a href="#fianaise" class="mast-link">Flyer</a>
+    <a href="#postaer" class="mast-link mast-poster">Posters</a>
     <a href="#triail" class="mast-link">Try</a>
     <a href="#ioslodail" class="mast-link mast-get">Download</a>
   </nav>
@@ -47,6 +48,7 @@
 <!-- ============================================================ hero -->
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="crop crop-tl" aria-hidden="true"></div><div class="crop crop-tr" aria-hidden="true"></div>
+  <div class="hero-sun" aria-hidden="true"></div>
   <div class="hero-meta mono">
     <span>Design an Irish Typeface · 1978</span>
     <span>Sheets S53909–S53916</span>
@@ -62,6 +64,7 @@
     <p class="hero-lede">The four winners of the 1978 <i>Design an Irish Typeface</i> competition, digitised from the competition flyer and free for anyone to use.</p>
     <div class="hero-actions">
       <a class="btn btn-ink" href="#triail">Try them</a>
+      <a class="btn btn-poster" href="#postaer">Make a poster</a>
       <a class="btn btn-line" href="#ioslodail">Download</a>
     </div>
     <div class="seal" aria-hidden="true">
@@ -80,7 +83,7 @@
 <section class="board" id="clonna" aria-labelledby="board-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="sec-ga f-kilfane" lang="ga">Na clónna</p>
+      <p class="sec-ga f-kilfane" lang="ga" data-ov>Na clónna</p>
       <h2 class="sec-en" id="board-h">The four winners</h2>
       <p class="sec-note">In 1978 Letraset, Kilkenny Design Workshops and D. O'Sullivan Graphic Supplies asked designers for an Irish typeface. The competition brochure lists four awards: a first prize for Céilí (printed there as <i>Caill</i>), Highly Commended for Carrick, and Commended for Kilfane and Tuam Uncial. All four were sold as dry-transfer lettering, in two sizes each.</p>
     </header>
@@ -121,7 +124,7 @@
 <section class="evidence" id="fianaise" aria-labelledby="ev-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="sec-ga f-carrick" lang="ga">an bhileog</p>
+      <p class="sec-ga f-carrick" lang="ga" data-ov>an bhileog</p>
       <h2 class="sec-en" id="ev-h">The flyer</h2>
     </header>
   </div>
@@ -176,7 +179,7 @@
   <div class="wrap">
     <header class="world-head">
       <p class="world-place mono">1 · <span lang="ga">An chéad duais</span> · First prize, £250</p>
-      <h2 class="world-name f-ceili" id="ceili-h">céilí</h2>
+      <h2 class="world-name f-ceili" id="ceili-h" data-ov>céilí</h2>
       <dl class="facts">
         <div><dt>Designer</dt><dd>Hermann Hecht (1923–1985)</dd></div>
         <div><dt>Sheets</dt><dd class="mono">S53915 24 pt · S53916 42 pt</dd></div>
@@ -226,7 +229,7 @@
   <div class="wrap">
     <header class="world-head">
       <p class="world-place mono">HC · <span lang="ga">Ardmholadh</span> · Highly Commended, £50</p>
-      <h2 class="world-name f-carrick" id="carrick-h">carrick</h2>
+      <h2 class="world-name f-carrick" id="carrick-h" data-ov>carrick</h2>
       <dl class="facts">
         <div><dt>Designer</dt><dd>William Curran (1919–2016)</dd></div>
         <div><dt>Sheets</dt><dd class="mono">S53913 36 pt · S53914 60 pt</dd></div>
@@ -266,7 +269,7 @@
   <div class="wrap">
     <header class="world-head">
       <p class="world-place mono">C · <span lang="ga">Moladh</span> · Commended, £25</p>
-      <h2 class="world-name f-kilfane" id="kilfane-h">Kilfane</h2>
+      <h2 class="world-name f-kilfane" id="kilfane-h" data-ov>Kilfane</h2>
       <dl class="facts">
         <div><dt>Designer</dt><dd>William Curran</dd></div>
         <div><dt>Sheets</dt><dd class="mono">S53909 30 pt · S53910 48 pt</dd></div>
@@ -311,7 +314,7 @@
   <div class="wrap">
     <header class="world-head">
       <p class="world-place mono">C · <span lang="ga">Moladh</span> · Commended, £25</p>
-      <h2 class="world-name f-tuam" id="tuam-h">tuam uncial</h2>
+      <h2 class="world-name f-tuam" id="tuam-h" data-ov>tuam uncial</h2>
       <dl class="facts">
         <div><dt>Designer</dt><dd>Jarlath Hayes (1924–2001)</dd></div>
         <div><dt>Sheets</dt><dd class="mono">S53911 30 pt · S53912 48 pt</dd></div>
@@ -345,11 +348,72 @@
   </div>
 </section>
 
+<!-- ============================================================ poster -->
+<section class="poster" id="postaer" aria-labelledby="poster-h">
+  <div class="wrap">
+    <header class="sec-head poster-head">
+      <p class="sec-ga f-carrick" lang="ga" data-ov>déan póstaer</p>
+      <h2 class="sec-en" id="poster-h">Make a poster</h2>
+      <p class="sec-note">Set in the four faces and printed in two inks, as on a risograph: each ink is its own plate, a little out of register and grainy where the drum ran short, and where the inks cross they print a third colour. Start from one of these, or from nothing.</p>
+    </header>
+    <div class="pz-wall" role="group" aria-label="Ready-made posters" data-poster-presets></div>
+    <div class="studio">
+      <div class="proof">
+        <canvas class="proof-canvas" role="img" aria-label="A two-colour poster" data-poster-canvas></canvas>
+        <p class="proof-cap mono" data-poster-cap aria-live="polite"></p>
+      </div>
+      <div class="desk" data-poster-desk>
+        <fieldset class="ctl ctl-words">
+          <legend>Words</legend>
+          <label class="field"><span>Headline <i>· Enter starts a new line</i></span><textarea id="poster-head" rows="2" maxlength="60" spellcheck="false" autocomplete="off" data-poster-head>Céilí mór anocht</textarea></label>
+          <label class="field"><span>Line beneath</span><input id="poster-sub" type="text" value="Halla an pharóiste · a naoi a chlog" maxlength="120" spellcheck="false" autocomplete="off" data-poster-sub></label>
+          <label class="field"><span>Footer</span><input id="poster-foot" type="text" value="Fáilte roimh chách · All welcome" maxlength="80" spellcheck="false" autocomplete="off" data-poster-foot></label>
+        </fieldset>
+        <fieldset class="ctl ctl-layout">
+          <legend>Layout</legend>
+          <div class="picks picks-layout" data-poster-layouts></div>
+        </fieldset>
+        <fieldset class="ctl ctl-type">
+          <legend>Type</legend>
+          <div class="type-row" data-poster-type="0"></div>
+          <div class="type-row" data-poster-type="1"></div>
+          <div class="alts-row" data-poster-alts></div>
+        </fieldset>
+        <fieldset class="ctl ctl-inks">
+          <legend>Inks</legend>
+          <div class="ink-row" data-poster-ink="0"></div>
+          <div class="ink-row" data-poster-ink="1"></div>
+          <button type="button" class="btn btn-line btn-sm" data-poster-swap>Swap the inks</button>
+        </fieldset>
+        <fieldset class="ctl ctl-paper">
+          <legend>Paper</legend>
+          <div class="picks picks-paper" data-poster-papers></div>
+          <div class="picks picks-size" data-poster-sizes></div>
+        </fieldset>
+        <fieldset class="ctl ctl-print">
+          <legend>Print</legend>
+          <div class="picks picks-finish" data-poster-finishes></div>
+          <button type="button" class="btn btn-line btn-sm" data-poster-shift>Print it again</button>
+        </fieldset>
+        <div class="ctl ctl-save" data-poster-save>
+          <p class="ctl-k">Save</p>
+          <div class="save-row">
+            <button type="button" class="btn btn-ink" data-poster-png>PNG</button>
+            <button type="button" class="btn btn-line" data-poster-svg>SVG</button>
+            <button type="button" class="btn btn-line" data-poster-pdf>PDF</button>
+          </div>
+          <p class="ctl-note" data-poster-save-note></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ tester -->
 <section class="tester" id="triail" aria-labelledby="tester-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="sec-ga f-ceili" lang="ga">bain triail astu</p>
+      <p class="sec-ga f-ceili" lang="ga" data-ov>bain triail astu</p>
       <h2 class="sec-en" id="tester-h">Try them</h2>
     </header>
     <div class="t-bar">
@@ -372,7 +436,7 @@
 <section class="shop" id="siopa" aria-labelledby="shop-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="sec-ga f-tuam" lang="ga">os cionn an dorais</p>
+      <p class="sec-ga f-tuam" lang="ga" data-ov>os cionn an dorais</p>
       <h2 class="sec-en" id="shop-h">Your name over the door</h2>
       <p class="sec-note">Irish towns are known for their painted shopfronts: a fascia board between two consoles, the name in gilded letters with a cast shadow, the trade written on the glass. Tuam Uncial went up over real shops. Put your own name up in any of the four.</p>
     </header>
@@ -386,40 +450,11 @@
   </div>
 </section>
 
-<!-- ============================================================ poster -->
-<section class="poster" id="postaer" aria-labelledby="poster-h">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="sec-ga f-carrick" lang="ga">déan póstaer</p>
-      <h2 class="sec-en" id="poster-h">Make a poster</h2>
-      <p class="sec-note">Two inks, as on a risograph: each is its own plate, a little out of register and grainy where the drum ran dry, and where they cross they print a third colour.</p>
-    </header>
-    <div class="poster-grid">
-      <div class="poster-controls">
-        <label class="field"><span>Headline</span><input id="poster-head" type="text" value="Céilí mór anocht" maxlength="40" spellcheck="false" autocomplete="off" data-poster-head></label>
-        <label class="field"><span>Line beneath</span><input id="poster-sub" type="text" value="Halla an pharóiste · a naoi a chlog" maxlength="60" spellcheck="false" autocomplete="off" data-poster-sub></label>
-        <label class="field"><span>Footer</span><input id="poster-foot" type="text" value="Fáilte roimh chách · Admission free" maxlength="60" spellcheck="false" autocomplete="off" data-poster-foot></label>
-        <div class="field-row">
-          <label class="field"><span>First ink's face</span><select id="poster-face-a" data-poster-face-a></select></label>
-          <label class="field"><span>Second ink's face</span><select id="poster-face-b" data-poster-face-b></select></label>
-        </div>
-        <div class="field"><span>Inks</span><div class="swatches" role="radiogroup" aria-label="Inks" data-poster-inks></div></div>
-        <div class="field"><span>Layout</span><div class="t-styles" role="radiogroup" aria-label="Layout" data-poster-layouts></div></div>
-        <div class="poster-actions">
-          <button type="button" class="btn btn-line" data-poster-shift>Print it again</button>
-          <button type="button" class="btn btn-ink" data-poster-save>Save the poster (PNG)</button>
-        </div>
-      </div>
-      <canvas class="poster-canvas" data-poster-canvas aria-label="A two-colour poster"></canvas>
-    </div>
-  </div>
-</section>
-
 <!-- ============================================================ glyphs -->
 <section class="glyphs" id="litreacha" aria-labelledby="glyphs-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="sec-ga f-tuam" lang="ga">gach litir</p>
+      <p class="sec-ga f-tuam" lang="ga" data-ov>gach litir</p>
       <h2 class="sec-en" id="glyphs-h">Every character</h2>
       <p class="sec-note">About four hundred characters in each face: every letter for Irish, Scottish Gaelic, Welsh and the languages of Western and Central Europe, the old dot-above lenition (<span class="f-kilfane">ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ</span>), the insular letters and the Tironian <span class="f-kilfane">⁊</span>.</p>
     </header>
@@ -444,7 +479,7 @@
 <section class="people" id="daoine" aria-labelledby="people-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="sec-ga f-kilfane" lang="ga">Na daoine</p>
+      <p class="sec-ga f-kilfane" lang="ga" data-ov>Na daoine</p>
       <h2 class="sec-en" id="people-h">The designers</h2>
     </header>
     <div class="cards">
@@ -466,14 +501,14 @@
     </div>
     <div class="timeline" tabindex="0" aria-label="Timeline, scrolls sideways" data-timeline>
       <ol>
-        <li><span class="yr f-carrick">1973</span><span>The year in the fine print of the Kilfane sheet photographed on the flyer. A printed copyright line does not date the sheet itself.</span></li>
-        <li><span class="yr f-carrick">1974</span><span>An application for Tuam Uncial, years before the competition, is among the material Mary Ann Bolger reproduces in <i>Designing Modern Ireland</i>.</span></li>
-        <li><span class="yr f-carrick">1978</span><span>The four winners are announced and sold as transfer sheets S53909–S53916. The competition brochure was designed by Liam Miller and printed at the Dolmen Press.</span></li>
-        <li><span class="yr f-carrick">1985</span><span>Hermann Hecht dies, aged 62.</span></li>
-        <li><span class="yr f-carrick">1992</span><span>Series C banknotes begin to appear, with lettering reported to be Kilfane.</span></li>
-        <li><span class="yr f-carrick">2002</span><span>The euro arrives, with Jarlath Hayes's harp on the Irish coins.</span></li>
-        <li><span class="yr f-carrick">2020</span><span>Signal Type Foundry begins Jarlath, a revival of Tuam Uncial, with the Hayes family.</span></li>
-        <li><span class="yr f-carrick">2025</span><span>William Curran's archive, with original Kilfane and Carrick material, is deposited at the National Irish Visual Arts Library.</span></li>
+        <li><span class="yr f-carrick" data-ov>1973</span><span>The year in the fine print of the Kilfane sheet photographed on the flyer. A printed copyright line does not date the sheet itself.</span></li>
+        <li><span class="yr f-carrick" data-ov>1974</span><span>An application for Tuam Uncial, years before the competition, is among the material Mary Ann Bolger reproduces in <i>Designing Modern Ireland</i>.</span></li>
+        <li><span class="yr f-carrick" data-ov>1978</span><span>The four winners are announced and sold as transfer sheets S53909–S53916. The competition brochure was designed by Liam Miller and printed at the Dolmen Press.</span></li>
+        <li><span class="yr f-carrick" data-ov>1985</span><span>Hermann Hecht dies, aged 62.</span></li>
+        <li><span class="yr f-carrick" data-ov>1992</span><span>Series C banknotes begin to appear, with lettering reported to be Kilfane.</span></li>
+        <li><span class="yr f-carrick" data-ov>2002</span><span>The euro arrives, with Jarlath Hayes's harp on the Irish coins.</span></li>
+        <li><span class="yr f-carrick" data-ov>2020</span><span>Signal Type Foundry begins Jarlath, a revival of Tuam Uncial, with the Hayes family.</span></li>
+        <li><span class="yr f-carrick" data-ov>2025</span><span>William Curran's archive, with original Kilfane and Carrick material, is deposited at the National Irish Visual Arts Library.</span></li>
       </ol>
     </div>
     <p class="caveat">The award wording follows the competition brochure in the William Curran Archive (<a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/">NIVAL</a>). Other facts come from published sources, and some are reported rather than confirmed. Corrections are welcome on <a href="https://github.com/ddrayne/four-irish-typefaces/issues">GitHub</a>.</p>
@@ -484,7 +519,7 @@
 <section class="get" id="ioslodail" aria-labelledby="get-h">
   <div class="wrap">
     <header class="sec-head">
-      <p class="sec-ga f-carrick" lang="ga">íoslódáil</p>
+      <p class="sec-ga f-carrick" lang="ga" data-ov>íoslódáil</p>
       <h2 class="sec-en" id="get-h">Download</h2>
       <p class="sec-note">Twelve fonts as OTF, TTF, WOFF and WOFF2, with a ready-made stylesheet, from the project's GitHub releases. They are named Céilí Digital, Carrick Digital, Kilfane Digital and Tuam Uncial Digital: independent digitisations, not the original type. No copyright is claimed: they are in the public domain (CC0 1.0), for any use, commercial work included.</p>
     </header>
@@ -504,7 +539,7 @@
     </div>
     <div class="snippet">
       <p class="mono">Use them on a website: host your own copy</p>
-      <pre><code data-snippet>&lt;!-- the ZIP's fonts/ and css/ folders, beside your pages --&gt;
+      <pre tabindex="0"><code data-snippet>&lt;!-- the ZIP's fonts/ and css/ folders, beside your pages --&gt;
 &lt;link rel="stylesheet" href="css/four-irish-typefaces.css"&gt;
 h1 { font-family: "Céilí Digital", serif; }</code></pre>
       <button type="button" class="btn btn-line" data-copy-snippet>Copy</button>
@@ -515,7 +550,7 @@ h1 { font-family: "Céilí Digital", serif; }</code></pre>
 </main>
 
 <footer class="foot">
-  <p class="foot-thanks f-ceili" lang="ga" data-fit>go raibh maith agat</p>
+  <p class="foot-thanks f-ceili" lang="ga" data-fit data-ov>go raibh maith agat</p>
   <div class="wrap foot-cols">
     <p>Céilí by Hermann Hecht; Carrick and Kilfane by William Curran; Tuam Uncial by Jarlath Hayes. Designed 1978.</p>
     <p>Digitised 2026 by Dan Drayne. No copyright is claimed: the fonts are in the public domain (CC0 1.0). Interface set in Archivo and Fragment Mono.</p>

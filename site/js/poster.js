@@ -1,199 +1,276 @@
-import { $, FACES, FAMILY, NAME, loadFace, offscreen, rng } from './util.js';
+import { $, $$, FACES, NAME } from './util.js';
+import { loadFont } from './poster-type.js';
+import { compose, LAYOUTS, PRESETS, INKS, PAPERS, SIZES, FINISHES } from './poster-layouts.js';
+import { raster, svg, pdf } from './poster-render.js';
 
-// A two-colour risograph poster. Each ink is its own plate: drawn as a mask, given
-// the grain of a drum print, offset a little out of register, and multiplied onto
-// the paper, so where the inks cross they make a third colour. 1200 x 1600 pixels.
+// The poster maker: ready-made posters to start from, words, a layout, a face and an
+// ink for each plate, paper, finish, and the poster saved at its print size as a PNG,
+// or as clean vectors in an SVG or a PDF with each ink's plate on its own page.
 
-const INKS = [
-  { id: 'green-orange', name: 'Green and orange', a: '#00A95C', b: '#FF6C2F' },
-  { id: 'pink-blue', name: 'Fluorescent pink and blue', a: '#FF48B0', b: '#0078BF' },
-  { id: 'red-teal', name: 'Bright red and teal', a: '#F15060', b: '#00838A' },
-  { id: 'yellow-black', name: 'Yellow and black', a: '#FFE800', b: '#1A1A1A' },
-];
-const LAYOUTS = [
-  { id: 'initial', name: 'Great initial' },
-  { id: 'stack', name: 'Stacked' },
-  { id: 'repeat', name: 'Repeat' },
-];
-const W = 1200, H = 1600;
+const STYLES = { ceili: ['Regular', 'Italic', 'Bold', 'Bold Italic'], kilfane: ['Regular', 'Italic', 'Bold', 'Bold Italic'], carrick: ['Regular', 'Italic'], tuam: ['Regular', 'Italic'] };
+const byId = (list, id) => list.find((x) => x.id === id) || list[0];
+const MAX_PX = 16_700_000;        // the largest canvas every browser will draw (iOS caps at 16.7 MP)
+
+// little drawings of each layout, in the chosen inks
+const ICON = {
+  sun: '<circle class="i1" cx="15" cy="14" r="11"/><rect class="i2" x="4" y="21" width="22" height="6"/><rect class="i2" x="8" y="30" width="14" height="3"/>',
+  initial: '<path class="i1" d="M5 3h20v7H14v5h9v6h-9v15H5z"/><rect class="i2" x="3" y="26" width="24" height="5"/><rect class="i2" x="3" y="33" width="15" height="3"/>',
+  stack: '<rect class="i1" x="3" y="3" width="24" height="9"/><rect class="i2" x="3" y="14" width="24" height="7"/><rect class="i1" x="3" y="23" width="24" height="9"/><rect class="i2" x="3" y="35" width="16" height="3"/>',
+  shadow: '<rect class="i1" x="0" y="0" width="30" height="26"/><rect class="ip" x="4" y="6" width="20" height="5"/><rect class="ip" x="4" y="14" width="14" height="5"/><rect class="i2" x="6" y="8" width="20" height="5"/><rect class="i2" x="6" y="16" width="14" height="5"/><rect class="i2" x="4" y="31" width="20" height="3"/>',
+  two: '<rect class="i1" x="3" y="6" width="24" height="10"/><rect class="i2" x="5" y="9" width="22" height="9"/><rect class="i1" x="3" y="21" width="24" height="10"/><rect class="i2" x="3" y="24" width="20" height="9"/>',
+  repeat: '<rect class="i1" x="-4" y="3" width="16" height="5"/><rect class="i1" x="14" y="3" width="16" height="5"/><rect class="i2" x="4" y="7" width="16" height="5"/><rect class="i2" x="22" y="7" width="16" height="5"/><rect class="i1" x="-8" y="11" width="16" height="5"/><rect class="i1" x="10" y="11" width="16" height="5"/><rect class="i2" x="0" y="15" width="16" height="5"/><rect class="i2" x="18" y="15" width="16" height="5"/><rect class="i1" x="-2" y="19" width="16" height="5"/><rect class="i1" x="16" y="19" width="16" height="5"/><rect class="i1" x="4" y="32" width="20" height="3"/>',
+  tiles: '<rect class="i1" x="3" y="3" width="8" height="8"/><rect class="i1" x="19" y="3" width="8" height="8"/><rect class="i1" x="11" y="11" width="8" height="8"/><rect class="i1" x="3" y="19" width="8" height="8"/><rect class="i1" x="19" y="19" width="8" height="8"/><rect class="i2" x="13" y="5" width="4" height="4"/><rect class="i2" x="5" y="13" width="4" height="4"/><rect class="i2" x="21" y="13" width="4" height="4"/><rect class="i2" x="13" y="21" width="4" height="4"/><rect class="i2" x="3" y="32" width="18" height="3"/>',
+  halftone: '<g class="i1"><circle cx="5" cy="4" r="3.4"/><circle cx="12" cy="4" r="3.4"/><circle cx="19" cy="4" r="3.4"/><circle cx="26" cy="4" r="3.4"/><circle cx="8.5" cy="10" r="2.6"/><circle cx="15.5" cy="10" r="2.6"/><circle cx="22.5" cy="10" r="2.6"/><circle cx="5" cy="16" r="1.8"/><circle cx="12" cy="16" r="1.8"/><circle cx="19" cy="16" r="1.8"/><circle cx="26" cy="16" r="1.8"/><circle cx="8.5" cy="22" r="1"/><circle cx="15.5" cy="22" r="1"/><circle cx="22.5" cy="22" r="1"/></g><rect class="i2" x="3" y="25" width="24" height="6"/><rect class="i2" x="3" y="34" width="14" height="3"/>',
+  upright: '<rect class="i2" x="0" y="0" width="11" height="42"/><rect class="i1" x="4" y="3" width="10" height="36"/><rect class="i1" x="18" y="4" width="9" height="3"/><rect class="i1" x="18" y="9" width="7" height="3"/><rect class="i2" x="18" y="36" width="9" height="2"/>',
+  specimen: '<rect class="i1" x="3" y="3" width="24" height="7"/><rect class="i2" x="3" y="13" width="24" height="1.5"/><path class="i1" d="M3 30l5-13h3l5 13h-3l-1-3h-5l-1 3zM8.5 24.5h3l-1.5-4z"/><rect class="i2" x="18" y="18" width="9" height="3"/><rect class="i2" x="3" y="33" width="24" height="2"/><rect class="i2" x="3" y="37" width="20" height="2"/>',
+};
 
 export async function init(root) {
-  await Promise.all(FACES.map((k) => loadFace(k)));
   const view = $('[data-poster-canvas]', root);
-  const head = $('[data-poster-head]', root);
-  const sub = $('[data-poster-sub]', root);
-  const foot = $('[data-poster-foot]', root);
-  const faceA = $('[data-poster-face-a]', root);
-  const faceB = $('[data-poster-face-b]', root);
-  const inkHost = $('[data-poster-inks]', root);
-  const layHost = $('[data-poster-layouts]', root);
-  const save = $('[data-poster-save]', root);
-  const shift = $('[data-poster-shift]', root);
-  let ink = INKS[0], layout = LAYOUTS[0], seed = 1978;
+  const cap = $('[data-poster-cap]', root);
+  const head = $('[data-poster-head]', root), sub = $('[data-poster-sub]', root), foot = $('[data-poster-foot]', root);
+  const S = {
+    layout: 'sun', type: [{ face: 'tuam', style: 'Regular' }, { face: 'ceili', style: 'Regular' }],
+    inks: ['pink', 'medium-blue'], paper: 'natural', size: 'a3', finish: 'riso', seed: 1978,
+    tags: { ceili: [], kilfane: [] },
+  };
+  const noSave = !!document.querySelector('[data-no-downloads]');
 
-  for (const sel of [faceA, faceB]) {
-    for (const k of FACES) {
-      const o = document.createElement('option');
-      o.value = k; o.textContent = NAME[k];
-      sel.appendChild(o);
-    }
+  // ---------------------------------------------------------------- controls
+  let uid = 0;
+  function picks(host, name, items, get, set, render, cls = '') {
+    host.replaceChildren(...items.map((it) => {
+      const lab = document.createElement('label');
+      lab.className = `pick ${cls}`;
+      const inp = document.createElement('input');
+      inp.type = 'radio'; inp.name = name; inp.value = it.id; inp.className = 'pick-in';
+      inp.id = `pk-${name}-${it.id}-${++uid}`;
+      inp.checked = it.id === get();
+      inp.addEventListener('change', () => { if (inp.checked) { set(it.id); changed(); } });
+      const face = document.createElement('span');
+      face.className = 'pick-face';
+      face.innerHTML = render(it);
+      lab.append(inp, face);
+      if (it.hex) lab.title = it.name;
+      return lab;
+    }));
   }
-  faceA.value = 'tuam'; faceB.value = 'ceili';
+  const sync = (host, id) => { const inp = host.querySelector(`input[value="${CSS.escape(id)}"]`); if (inp) inp.checked = true; };
 
-  const radios = (host, list, get, set) => list.forEach((it) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.setAttribute('role', 'radio');
-    b.setAttribute('aria-checked', String(it === get()));
-    if (it.a) {
-      b.className = 'swatch'; b.title = it.name; b.setAttribute('aria-label', it.name);
-      b.innerHTML = `<span style="background:${it.a}"></span><span style="background:${it.b}"></span>`;
-    } else { b.className = 'tog'; b.textContent = it.name; }
-    b.addEventListener('click', () => { set(it); [...host.children].forEach((c) => c.setAttribute('aria-checked', String(c === b))); draw(); });
-    host.appendChild(b);
+  const layoutHost = $('[data-poster-layouts]', root);
+  picks(layoutHost, 'p-layout', LAYOUTS, () => S.layout, (v) => { S.layout = v; },
+    (l) => `<svg class="pick-icon" viewBox="0 0 30 42" aria-hidden="true">${ICON[l.id]}</svg><span>${l.name}</span>`, 'pick-layout');
+
+  const typeRows = $$('[data-poster-type]', root);
+  const inkRows = $$('[data-poster-ink]', root);
+  const altsHost = $('[data-poster-alts]', root);
+  const styleSel = [];
+  typeRows.forEach((row, n) => {
+    const label = document.createElement('p'); label.className = 'ctl-k'; label.textContent = n ? 'Second ink' : 'First ink';
+    const faces = document.createElement('div'); faces.className = 'picks picks-face';
+    const sel = document.createElement('select'); sel.id = `poster-style-${n}`; sel.className = 'style-sel';
+    const selLab = document.createElement('label'); selLab.className = 'sel-wrap';
+    selLab.innerHTML = `<span class="vh">${n ? 'Second' : 'First'} ink's style</span>`;
+    selLab.append(sel);
+    sel.addEventListener('change', () => { S.type[n].style = sel.value; changed(); });
+    row.append(label, faces, selLab);
+    picks(faces, `p-face-${n}`, FACES.map((k) => ({ id: k, name: NAME[k] })), () => S.type[n].face,
+      (v) => { S.type[n].face = v; if (!STYLES[v].includes(S.type[n].style)) S.type[n].style = 'Regular'; },
+      (f) => `<span class="f-${f.id}">${f.name}</span>`, 'pick-chip');
+    styleSel.push(sel);
   });
-  radios(inkHost, INKS, () => ink, (v) => { ink = v; });
-  radios(layHost, LAYOUTS, () => layout, (v) => { layout = v; });
-
-  const font = (k, px) => `${px}px "${FAMILY[k]}"`;
-  function fit(ctx, text, k, maxW, maxPx) {
-    ctx.font = font(k, maxPx);
-    const w = ctx.measureText(text).width;
-    return Math.floor(w > maxW ? maxPx * (maxW / w) : maxPx);
+  function fillStyles() {
+    styleSel.forEach((sel, n) => {
+      const t = S.type[n];
+      sel.replaceChildren(...STYLES[t.face].map((st) => { const o = document.createElement('option'); o.value = st; o.textContent = st; return o; }));
+      sel.value = t.style;
+    });
   }
-  function wrap(ctx, text, k, px, maxW) {
-    ctx.font = font(k, px);
-    const lines = []; let cur = '';
-    for (const word of text.split(/\s+/).filter(Boolean)) {
-      const t = cur ? `${cur} ${word}` : word;
-      if (ctx.measureText(t).width > maxW && cur) { lines.push(cur); cur = word; } else cur = t;
-    }
-    if (cur) lines.push(cur);
-    return lines;
-  }
-
-  // Each layout draws two masks (black on transparent): plate A and plate B.
-  function compose(A, B) {
-    const a = A.getContext('2d'), b = B.getContext('2d');
-    for (const c of [a, b]) { c.fillStyle = '#000'; c.textBaseline = 'alphabetic'; }
-    const h = head.value.trim() || 'Céilí mór', s = sub.value.trim(), f = foot.value.trim();
-    const kA = faceA.value, kB = faceB.value, m = 80;
-    if (layout.id === 'initial') {
-      // one huge letter in ink A, the words over it in ink B
-      const ch = [...h][0];
-      const px = 1500;
-      a.font = font(kA, px);
-      const mt = a.measureText(ch);
-      const gw = mt.actualBoundingBoxLeft + mt.actualBoundingBoxRight;
-      const gh = mt.actualBoundingBoxAscent + mt.actualBoundingBoxDescent;
-      const k = Math.min((W - 40) / gw, (H * 0.86) / gh);
-      a.font = font(kA, px * k);
-      const m2 = a.measureText(ch);
-      a.fillText(ch, (W - (m2.actualBoundingBoxRight - m2.actualBoundingBoxLeft)) / 2, H * 0.08 + m2.actualBoundingBoxAscent);
-      const lines = wrap(b, h, kB, 200, W - 2 * m);
-      const hp = Math.min(200, ...lines.map((l) => fit(b, l, kB, W - 2 * m, 200)));
-      b.font = font(kB, hp);
-      let y = H * 0.56;
-      for (const l of lines) { b.fillText(l, m, y); y += hp * 1.02; }
-      if (s) { const sp = fit(b, s, kB, W - 2 * m, 64); b.font = font(kB, sp); b.fillText(s, m, y + sp * 0.4); }
-    } else if (layout.id === 'stack') {
-      // the headline as tall as it will go, line by line, alternating inks
-      const words = h.split(/\s+/).filter(Boolean);
-      let y = m;
-      words.forEach((w, i) => {
-        const ctx = i % 2 ? b : a, k = i % 2 ? kB : kA;
-        const px = fit(ctx, w, k, W - 2 * m, 420);
-        ctx.font = font(k, px);
-        const mt = ctx.measureText(w);
-        y += mt.actualBoundingBoxAscent;
-        ctx.fillText(w, m, y);
-        y += mt.actualBoundingBoxDescent + 28;
+  let altFonts = {};
+  async function fillAlts() {
+    const faces = [...new Set(S.type.map((t) => t.face))].filter((f) => S.tags[f]);
+    const fonts = await Promise.all(faces.map((f) => loadFont(f)));
+    altFonts = Object.fromEntries(faces.map((f, i) => [f, fonts[i]]));
+    altsHost.replaceChildren(...faces.flatMap((f) => altFonts[f].sets.map((set) => {
+      const lab = document.createElement('label'); lab.className = 'chk';
+      const inp = document.createElement('input'); inp.type = 'checkbox'; inp.checked = S.tags[f].includes(set.tag);
+      inp.addEventListener('change', () => {
+        S.tags[f] = inp.checked ? [...S.tags[f], set.tag] : S.tags[f].filter((t) => t !== set.tag);
+        changed();
       });
-      if (s) {
-        const lines = wrap(b, s, kB, 66, W - 2 * m);
-        b.font = font(kB, 66);
-        let yy = Math.min(y + 70, H - 260);
-        for (const l of lines.slice(0, 4)) { b.fillText(l, m, yy); yy += 76; }
-      }
-    } else {
-      // the headline repeated down the sheet, both inks crossing on alternate rows
-      const px = fit(a, h, kA, W * 1.3, 230);
-      const step = px * 0.7;                                  // rows overlap, so the inks cross
-      const rows = Math.floor((H - 360) / step);
-      for (let i = 0; i < rows; i++) {
-        const ctx = i % 2 ? b : a, k = i % 2 ? kB : kA;
-        ctx.font = font(k, px);
-        ctx.fillText(`${h} ${h} ${h}`, -((i * 137) % 400), 40 + px * 0.82 + i * step);
-      }
-      if (s) {
-        const sp = fit(a, s, kA, W - 2 * m, 72);
-        a.font = font(kA, sp);
-        a.fillText(s, m, H - 200);
-      }
-    }
-    // the footer line, small, in ink B along the bottom, with a rule
-    const fl = f || 'Design an Irish Typeface · 1978';
-    b.fillRect(m, H - 150, W - 2 * m, 4);
-    const fp = fit(b, fl, kB, W - 2 * m, 48);
-    b.font = font(kB, fp);
-    b.fillText(fl, m, H - 80);
+      lab.append(inp, ` ${NAME[f]}: ${set.label}`);
+      return lab;
+    })));
+    altsHost.hidden = !altsHost.children.length;
   }
 
-  // A plate: the mask, eroded by grain where the drum starved the ink.
-  function plate(mask, colour, grainSeed) {
-    const c = offscreen(W, H), x = c.getContext('2d');
-    x.fillStyle = colour; x.fillRect(0, 0, W, H);
-    x.globalCompositeOperation = 'destination-in';
-    x.drawImage(mask, 0, 0);
-    const g = offscreen(W, H), gx = g.getContext('2d');
-    const img = gx.createImageData(W, H), r = rng(grainSeed);
-    for (let i = 3; i < img.data.length; i += 4) img.data[i] = r() < 0.075 ? 255 : 0;
-    gx.putImageData(img, 0, 0);
-    x.globalCompositeOperation = 'destination-out';
-    x.drawImage(g, 0, 0);
-    return c;
-  }
-
-  let out = null;
-  function draw() {
-    const A = offscreen(W, H), B = offscreen(W, H);
-    compose(A, B);
-    out = offscreen(W, H);
-    const o = out.getContext('2d');
-    o.fillStyle = '#F2EEE3'; o.fillRect(0, 0, W, H);
-    const r = rng(seed);
-    o.globalCompositeOperation = 'multiply';
-    o.drawImage(plate(A, ink.a, seed + 1), Math.round((r() - 0.5) * 12), Math.round((r() - 0.5) * 12));
-    o.drawImage(plate(B, ink.b, seed + 2), Math.round((r() - 0.5) * 12), Math.round((r() - 0.5) * 12));
-    o.globalCompositeOperation = 'source-over';
-    // paper fibre
-    const pr = rng(7);
-    for (let k = 0; k < 9000; k++) { o.fillStyle = pr() < 0.5 ? 'rgba(0,0,0,.035)' : 'rgba(255,255,255,.05)'; o.fillRect(pr() * W, pr() * H, 1.5, 1.5); }
-    // show it at the size of its box
-    const v = view.getContext('2d');
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const cw = view.clientWidth;
-    view.width = Math.round(cw * dpr); view.height = Math.round(cw * dpr * (H / W));
-    v.imageSmoothingQuality = 'high';
-    v.drawImage(out, 0, 0, view.width, view.height);
-    view.setAttribute('aria-label', `A two-colour poster reading ${head.value}, in ${NAME[faceA.value]} and ${NAME[faceB.value]}.`);
-  }
-
-  let t = 0;
-  const later = () => { clearTimeout(t); t = setTimeout(draw, 160); };
-  for (const el of [head, sub, foot]) el.addEventListener('input', later);
-  for (const el of [faceA, faceB]) el.addEventListener('change', draw);
-  shift.addEventListener('click', () => { seed = (seed * 31 + 7) % 99991; draw(); });
-  // The preview viewer cannot save files, so the button only appears where saving works.
-  if (document.querySelector('[data-no-downloads]')) save.hidden = true;
-  save.addEventListener('click', () => {
-    out.toBlob((blob) => {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `poster-${(head.value || 'ceili').toLowerCase().replace(/[^a-z0-9áéíóú]+/g, '-')}.png`;
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-    }, 'image/png');
+  inkRows.forEach((row, n) => {
+    const label = document.createElement('p'); label.className = 'ctl-k';
+    const sw = document.createElement('div'); sw.className = 'picks picks-ink';
+    row.append(label, sw);
+    picks(sw, `p-ink-${n}`, INKS, () => S.inks[n], (v) => { S.inks[n] = v; },
+      (i) => `<span class="dot" style="background:${i.hex}"></span><span class="vh">${i.name}</span>`, 'pick-swatch');
   });
-  let lastW = 0;
-  new ResizeObserver(() => { if (view.clientWidth !== lastW) { lastW = view.clientWidth; draw(); } }).observe(view);
+  const papersHost = $('[data-poster-papers]', root), sizesHost = $('[data-poster-sizes]', root), finHost = $('[data-poster-finishes]', root);
+  picks(papersHost, 'p-paper', PAPERS, () => S.paper, (v) => { S.paper = v; },
+    (p) => `<span class="dot dot-paper" style="background:${p.hex}"></span><span class="vh">${p.name}</span>`, 'pick-swatch');
+  picks(sizesHost, 'p-size', SIZES, () => S.size, (v) => { S.size = v; }, (z) => `<span>${z.name}</span>`, 'pick-chip');
+  picks(finHost, 'p-finish', FINISHES, () => S.finish, (v) => { S.finish = v; }, (f) => `<span>${f.name}</span>`, 'pick-chip');
+
+  $('[data-poster-swap]', root).addEventListener('click', () => {
+    S.inks.reverse();
+    inkRows.forEach((row, n) => sync(row, S.inks[n]));
+    changed();
+  });
+  $('[data-poster-shift]', root).addEventListener('click', () => { S.seed = (S.seed * 31 + 7) % 99991; changed(); });
+
+  // ---------------------------------------------------------------- drawing
+  const sheet = () => byId(SIZES, S.size);
+  async function doc(state = S, words = { head: head.value, sub: sub.value, foot: foot.value }) {
+    const z = byId(SIZES, state.size);
+    const fonts = await Promise.all(state.type.map((t) => loadFont(t.face, t.style)));
+    const W = 1000, H = Math.round(1000 * z.mm[1] / z.mm[0] * 10) / 10;
+    const sp = (n) => ({ font: fonts[n], tags: state.tags[state.type[n].face] || [] });
+    return { W, H, plates: compose({ W, H, ...words, a: sp(0), b: sp(1) }, state.layout) };
+  }
+  const inkHex = (state = S) => state.inks.map((i) => byId(INKS, i).hex);
+  const inkName = (state = S) => state.inks.map((i) => byId(INKS, i).name);
+
+  function describe() {
+    const z = sheet(), L = byId(LAYOUTS, S.layout);
+    const [i1, i2] = inkName();
+    const faces = S.type.map((t) => `${NAME[t.face]}${t.style === 'Regular' ? '' : ` ${t.style}`}`);
+    const typeText = faces[0] === faces[1] ? faces[0] : `${faces[0]} and ${faces[1]}`;
+    cap.textContent = `${z.name} · ${z.inches || `${z.mm[0]} × ${z.mm[1]} mm`} · ${i1} and ${i2} on ${byId(PAPERS, S.paper).name.toLowerCase()} paper`;
+    view.setAttribute('aria-label', `Poster preview, ${L.name} layout: “${head.value.replace(/\s+/g, ' ').trim()}” in ${typeText}, printed in ${i1} and ${i2}.`);
+    root.style.setProperty('--ink1', byId(INKS, S.inks[0]).hex);
+    root.style.setProperty('--ink2', byId(INKS, S.inks[1]).hex);
+    root.style.setProperty('--paper-c', byId(PAPERS, S.paper).hex);
+    root.style.setProperty('--ratio', String(z.mm[1] / z.mm[0]));
+    inkRows.forEach((row, n) => { $('.ctl-k', row).textContent = `${n ? 'Second' : 'First'} ink · ${byId(INKS, S.inks[n]).name}`; });
+    const dims = pngSize();
+    $('[data-poster-png]', root).textContent = `PNG · ${dims.w} × ${dims.h} px`;
+    $('[data-poster-save-note]', root).textContent = `The PNG is printed at ${dims.dpi} dpi, grain and all. The SVG and the PDF are clean vectors at ${z.name}; the PDF adds each ink's plate on its own page, as a print shop asks for them.`;
+  }
+
+  let gen = 0;
+  async function draw() {
+    const my = ++gen;
+    const d = await doc();
+    if (my !== gen) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cw = view.clientWidth || 600;
+    raster(d, { px: Math.round(cw * dpr), inks: inkHex(), paper: byId(PAPERS, S.paper).hex, finish: S.finish, seed: S.seed, into: view });
+    view.style.aspectRatio = `${d.W} / ${d.H}`;
+    describe();
+  }
+  let t = 0;
+  const later = (ms = 140) => { clearTimeout(t); t = setTimeout(() => draw().catch((e) => console.error('poster', e)), ms); };
+  // the style menus and the alternates follow the faces chosen; rebuilt only when those change
+  let facesShown = '';
+  function changed() {
+    const faces = S.type.map((t) => `${t.face}:${t.style}`).join('|');
+    if (faces !== facesShown) {
+      facesShown = faces;
+      fillStyles();
+      fillAlts().catch((e) => console.error('poster', e));
+    }
+    later(0);
+  }
+  for (const el of [head, sub, foot]) el.addEventListener('input', () => later());
+
+  // ---------------------------------------------------------------- ready-made posters
+  const wall = $('[data-poster-presets]', root);
+  const thumbs = PRESETS.map((pr, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'pz';
+    b.setAttribute('aria-label', `Start from the ${pr.name} poster`);
+    b.style.setProperty('--tilt', `${[-1.6, 1.1, -0.6, 1.8, -1.2, 0.7, -1.9, 1.3, -0.8, 1.5][i % 10]}deg`);
+    b.innerHTML = `<canvas class="pz-art" aria-hidden="true"></canvas><span class="pz-t f-${pr.b[0]}">${pr.name}</span>`;
+    b.addEventListener('click', () => {
+      apply(pr);
+      $$('.pz', wall).forEach((x) => x.removeAttribute('aria-current'));
+      b.setAttribute('aria-current', 'true');
+      const top = root.querySelector('.studio').getBoundingClientRect().top;
+      if (top < 0 || top > innerHeight * 0.6) root.querySelector('.studio').scrollIntoView({ block: 'start' });
+    });
+    wall.appendChild(b);
+    return { pr, b };
+  });
+  const stateOf = (pr) => ({
+    layout: pr.layout, inks: [...pr.inks], paper: pr.paper, size: 'a3', finish: 'riso', seed: 1978,
+    type: [pr.a, pr.b].map(([face, style = 'Regular']) => ({ face, style })), tags: { ceili: [], kilfane: [] },
+  });
+  function apply(pr) {
+    Object.assign(S, stateOf(pr), { size: S.size, finish: S.finish });
+    head.value = pr.head; sub.value = pr.sub; foot.value = pr.foot;
+    sync(layoutHost, S.layout);
+    typeRows.forEach((row, n) => sync(row, S.type[n].face));
+    inkRows.forEach((row, n) => sync(row, S.inks[n]));
+    sync(papersHost, S.paper);
+    changed();
+  }
+  thumbs[0].b.setAttribute('aria-current', 'true');
+  async function drawThumbs() {
+    for (const { pr, b } of thumbs) {
+      await new Promise((res) => (window.requestIdleCallback || setTimeout)(res, { timeout: 400 }));
+      const c = $('canvas', b);
+      const st = stateOf(pr);
+      const d = await doc(st, pr);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      raster(d, { px: Math.round((c.clientWidth || 160) * dpr), inks: inkHex(st), paper: byId(PAPERS, st.paper).hex, finish: 'riso', seed: 1978, into: c });
+    }
+  }
+
+  // ---------------------------------------------------------------- saving
+  function pngSize() {
+    const z = sheet();
+    const wi = z.mm[0] / 25.4, hi = z.mm[1] / 25.4;
+    const dpi = Math.min(300, Math.floor(Math.sqrt(MAX_PX / (wi * hi))));
+    return { dpi, w: Math.round(wi * dpi), h: Math.round(hi * dpi) };
+  }
+  const slug = () => (head.value.trim() || 'poster').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'poster';
+  const fileName = (ext) => `${slug()}-${S.size}.${ext}`;
+  function download(blob, name) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+  async function busy(btn, job) {
+    const old = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Printing…';
+    await new Promise((r) => requestAnimationFrame(() => setTimeout(r, 30)));
+    try { await job(); } catch (e) { console.error('poster', e); btn.textContent = 'Could not save'; await new Promise((r) => setTimeout(r, 1600)); }
+    btn.disabled = false; btn.textContent = old;
+  }
+  const saveBox = $('[data-poster-save]', root);
+  if (noSave) saveBox.hidden = true;      // the preview viewer cannot save files
+  const title = () => head.value.replace(/\s+/g, ' ').trim() || 'Poster';
+  $('[data-poster-png]', root).addEventListener('click', (e) => busy(e.currentTarget, async () => {
+    const d = await doc(), dims = pngSize();
+    const c = raster(d, { px: dims.w, inks: inkHex(), paper: byId(PAPERS, S.paper).hex, finish: S.finish, seed: S.seed });
+    const blob = await new Promise((res, rej) => c.toBlob((b) => (b ? res(b) : rej(new Error('PNG encoding failed'))), 'image/png'));
+    c.width = c.height = 0;
+    download(blob, fileName('png'));
+  }));
+  $('[data-poster-svg]', root).addEventListener('click', (e) => busy(e.currentTarget, async () => {
+    const d = await doc();
+    const text = svg(d, { inks: inkHex(), inkNames: inkName(), paper: byId(PAPERS, S.paper).hex, sizeMM: sheet().mm, title: title() });
+    download(new Blob([text], { type: 'image/svg+xml' }), fileName('svg'));
+  }));
+  $('[data-poster-pdf]', root).addEventListener('click', (e) => busy(e.currentTarget, async () => {
+    const d = await doc();
+    download(await pdf(d, { inks: inkHex(), inkNames: inkName(), sizeMM: sheet().mm, title: title() }), fileName('pdf'));
+  }));
+
+  // ---------------------------------------------------------------- go
+  facesShown = S.type.map((t) => `${t.face}:${t.style}`).join('|');
+  fillStyles();
+  await fillAlts();
+  await draw();
+  let lastW = view.clientWidth;
+  new ResizeObserver(() => { if (Math.abs(view.clientWidth - lastW) > 1) { lastW = view.clientWidth; later(60); } }).observe(view);
+  drawThumbs().catch((e) => console.error('poster thumbnails', e));
+  root.posterReady = true;
 }

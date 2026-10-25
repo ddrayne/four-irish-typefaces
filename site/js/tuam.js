@@ -179,6 +179,7 @@ export async function init(root) {
   function draw() {
     const text = (input.value.trim() || 'Tús maith leath na hoibre').replace(/\s+/g, ' ');
     const W = page.clientWidth;
+    if (W < 160) return;             // not laid out (or mid-resize): nothing to draw into yet
     const m = clamp(W * 0.05, 14, 56);
     const band = clamp(Math.round(W * 0.064), 30, 78);
     const Fi = clamp(W * 0.3, 118, 380);
