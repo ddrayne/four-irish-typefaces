@@ -46,6 +46,17 @@ def concat(paths):
     return out
 
 
+def pieces(p):
+    """How many separate pieces a shape has (its outer contours)."""
+    a = [area(c) for c in contours(p)]
+    return sum(x > 0 for x in a) or sum(x < 0 for x in a)      # or wound the other way round
+
+
+def _sound(to, g):
+    """A grown shape still covers everything it grew from, and growing never splits a piece."""
+    return abs(area(SH.difference(to, g))) <= 1e-3 * abs(area(to)) and pieces(g) <= pieces(to)
+
+
 def grow(p, rx, ry, miter=4.0):
     """Grow a shape by an axis-aligned ellipse (rx, ry), keeping convex corners sharp."""
     if rx <= 0 and ry <= 0:
@@ -55,6 +66,15 @@ def grow(p, rx, ry, miter=4.0):
     s.stroke(2.0, pathops.LineCap.BUTT_CAP, pathops.LineJoin.MITER_JOIN, miter)
     s.convertConicsToQuads()
     g = SH.union(to, s)
+    if not _sound(to, g):
+        # The stroke's inner edge loops back on itself wherever the outline turns inward more
+        # tightly than the pen, and pathops can resolve those loops wrongly in the union, leaving a
+        # whole letter as a hole (Y and 3 traced from the original sheets did). Resolving the
+        # stroke on its own first gives a clean band; it is not always right either (Tuam's sloped
+        # thorn), so each result is checked and the first sound one kept.
+        alt = SH.union(to, pathops.simplify(s, fix_winding=False, keep_starting_points=False, clockwise=False))
+        if _sound(to, alt):
+            g = alt
     return SH.transform(g, (rx, 0, 0, ry, 0, 0))
 
 
