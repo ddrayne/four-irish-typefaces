@@ -1,7 +1,7 @@
 {
   "slug": "irish-typefaces",
   "title": "Four Irish Typefaces",
-  "description": "Céilí, Carrick, Kilfane and Tuam Uncial, the winners of the 1978 Design an Irish Typeface competition, rebuilt as free fonts to try, play with and download.",
+  "description": "Céilí, Carrick, Kilfane and Tuam Uncial, the winners of the 1978 Design an Irish Typeface competition, digitised as free fonts.",
   "access": "public",
   "port": 80,
   "repository": "ddrayne/four-irish-typefaces",
