@@ -12,6 +12,14 @@ usage: python scripts/trace_production.py kilfane --sources build/research/origi
 3. The averaged edge: the level halfway between the mean's own backing and ink, as sub-pixel
    contours in base-trace units (scan pixels, y down), ready for the designer-style fitter.
 
+With frame='dash' (Carrick), the mean keeps the sheet's own geometry. Letraset prints a spacing
+mark under every letter, a fixed distance below its baseline, and the marks of a row lie on one
+line: the line its users ruled. Registered onto another print's trace, every impression's affine
+also takes in that print's differences of slant and proportion, which all of a letter's impressions
+share; impressions.sheet_frame removes that shared part (keeping its scale) and turns the letter
+square to its marks, and the marks' place in the letter's frame is recorded for
+scripts/fit_production.py to set the letter on its baseline.
+
 Writes, under --work (ignored build/, since the means are derived from archive pixels):
 impressions.json (every letter found: sheet, box, name, score), registration.json (per
 impression: affine, residuals), mean-*.npy / std-*.npy, and contours.json. Nothing is written to
@@ -40,7 +48,7 @@ SHEETS = {
         '30pt S53909': dict(channel=1, light_ink=False, letter_px=75, area=(500, 12000), side=EDGE_30)}),
     # the photographed parts of Carrick's sheets hold lowercase only (a to q), so figures are never candidates
     'carrick': dict(photo='Carrick-Letraset.jpg', source_id='N514', sure=('b', 'd', 'g', 'h', 'k', 'l'),
-                    letters='abcdefghijklmnopqrstuvwxyz', detect='template', reject=2.5, sheets={
+                    letters='abcdefghijklmnopqrstuvwxyz', detect='template', reject=2.5, frame='dash', sheets={
         '60pt S53914': dict(channel=1, light_ink=False, letter_px=100, area=(1500, 30000), side=lambda b: b[3] < EDGE_36(b) - 10),
         '36pt S53913': dict(channel=1, light_ink=False, letter_px=60, area=(400, 12000), side=lambda b: b[1] > EDGE_36(b) + 200)}),
 }
@@ -145,6 +153,93 @@ def find(face, sources, base, work):
     return meta
 
 
+def own_dash(P, box):
+    """An impression's spacing mark: the thin line under its letter (in pieces where a descender's tail
+    breaks it). Returns its ends and the line y = a + b x through its middle (sheet pixels), or None."""
+    from scipy import ndimage as ndi
+    x0, y0, x1, y1 = box; h = y1 - y0; pad = 6
+    crop = P[max(0, y0 - pad):y1 + pad, max(0, x0 - pad):x1 + pad] > 0.5
+    lab, _ = ndi.label(crop)
+    inner = np.zeros_like(crop); inner[pad + 3:-pad - 3, pad + 3:-pad - 3] = True
+    keep = np.isin(lab, [l for l in np.unique(lab[inner & crop]) if l and (lab == l).sum() > 30])
+    if not keep.any():
+        return None
+    top = y0 - pad + np.nonzero(keep)[0].max() + 2                     # just under the letter's ink
+    band = P[top:top + int(0.8 * h), x0:x1]
+    lab, n = ndi.label(band > 0.5)
+    thin = []
+    for l in range(1, n + 1):
+        ys, xs = np.nonzero(lab == l)
+        cols = np.bincount(xs - xs.min()); cols = cols[cols > 0]
+        if np.median(cols) <= max(4, 0.08 * h) and np.ptp(xs) >= 0.06 * (x1 - x0):
+            thin.append((l, float(ys.mean()), xs))
+    # the mark: the thin pieces on one line that together run furthest
+    best = None
+    for _, y, _ in thin:
+        group = [q for q in thin if abs(q[1] - y) <= 2.5]
+        width = sum(np.ptp(q[2]) + 1 for q in group)
+        if best is None or width > best[0]:
+            best = (width, group)
+    if best is None or best[0] < 0.35 * (x1 - x0):
+        return None
+    own = ndi.binary_dilation(np.isin(lab, [q[0] for q in best[1]]), iterations=2)
+    cx, cy = [], []
+    for c in np.unique(np.concatenate([q[2] for q in best[1]])):
+        rr = np.nonzero(own[:, c])[0]; w = band[rr, c]
+        cx.append(x0 + c + 0.5); cy.append(top + (rr * w).sum() / w.sum() + 0.5)
+    b, a = np.polyfit(cx, cy, 1)
+    return dict(ends=[float(min(cx)), float(max(cx))], a=float(a), b=float(b))
+
+
+def add_dashes(face, base, meta, work):
+    """Each impression's mark line: a straight line through its own mark and its row neighbours' (the
+    photograph's sheet is not flat, so only nearby marks); for a letter whose own mark is not found,
+    through its neighbours' alone."""
+    for sheet, s in SHEETS[face]['sheets'].items():
+        P = np.load(os.path.join(work, f'ink-{sheet.split()[0]}.npy'))
+        imps = [r for r in meta['impressions'] if r['sheet'] == sheet]
+        for r in imps:
+            r['_own'] = own_dash(P, r['box'])
+        reach = 5 * s['letter_px']
+        for r in imps:
+            x0, y0, x1, y1 = r['box']; cx = (x0 + x1) / 2
+            o = r['_own']
+            def on_row(q):
+                d = q['_own']; qx = (q['box'][0] + q['box'][2]) / 2
+                if q is r or d is None or abs(qx - cx) > reach:
+                    return False
+                y = d['a'] + d['b'] * qx
+                if o:
+                    return abs(y - (o['a'] + o['b'] * qx)) < 0.25 * s['letter_px']
+                return y0 + 0.4 * (y1 - y0) < y < y1 + 0.6 * (y1 - y0)   # the row's marks, under a descender's bowl
+            pts = [(x, q['_own']['a'] + q['_own']['b'] * x) for q in imps if on_row(q)
+                   for x in ((q['box'][0] + q['box'][2]) / 2,)]
+            if o:
+                pts.append((cx, o['a'] + o['b'] * cx))
+            if len(pts) >= 3 and np.ptp([p[0] for p in pts]) > 0:
+                b, a = np.polyfit(*zip(*pts), 1)
+            elif o:
+                a, b = o['a'], o['b']
+            else:
+                continue
+            r['dash'] = dict(x=round(cx, 2), y=round(float(a + b * cx), 3), slope=round(float(b), 5), marks=len(pts),
+                             own=[round(v, 2) for v in o['ends']] if o else None)
+        for r in imps:
+            del r['_own']
+    return meta
+
+
+def dash_in_frame(q, d, centre):
+    """The mark line's height in the template frame (where it crosses under the template's centre) and
+    the mark's ends along the template's x axis."""
+    a, b, c, dd, tx, ty = q
+    sx = a * centre[0] + b * centre[1] + tx
+    line = lambda x: d['y'] + d['slope'] * (x - d['x'])
+    y = float(IM.to_template(q, [[sx, line(sx)]])[0][1])
+    ends = IM.to_template(q, [[e, line(e)] for e in d['own']])[:, 0].tolist() if d.get('own') else None
+    return y, ends
+
+
 def topology_of(mask, piece_min=48, counter_min=96):
     """(pieces, counters) of a raster letter at the 1/8-unit grid, ignoring ink specks under piece_min
     pixels (0.75 square trace units) and the light speckle of printed ink under counter_min (1.5)."""
@@ -221,6 +316,21 @@ def average_one(args):
                 qs = IM.normalise_frames(qs, q_ref)
                 mean, std, stack = IM.average(P, qs, m.shape, origin, FINE)
                 spread = [float(np.sqrt(((s - mean) ** 2).mean())) for s in stack]
+        marks = None
+        if SHEETS[face].get('frame') == 'dash' and any('dash' in r for r in imps):
+            # one linear map for all of the letter's impressions puts the mean in the sheet's own geometry
+            # (an impression whose mark its own descender hides still shares it)
+            centre = np.array([(tb[0] + tb[2]) / 2, (tb[1] + tb[3]) / 2])
+            angles = [float(np.arctan(r['dash']['slope'])) if 'dash' in r else None for r in imps]
+            G, removed = IM.sheet_frame(qs, angles)
+            qs = [IM.compose(q, G, centre) for q in qs]
+            mean, std, stack = IM.average(P, qs, m.shape, origin, FINE)
+            spread = [float(np.sqrt(((s - mean) ** 2).mean())) for s in stack]
+            got = [dash_in_frame(q, r['dash'], centre) for q, r in zip(qs, imps) if 'dash' in r]
+            ys = np.array([y for y, _ in got]); ends = np.array([e for _, e in got if e])
+            marks = dict(y=round(float(np.median(ys)), 4), spread=round(float(ys.std()), 4), n=len(ys),
+                         ends=[round(float(v), 3) for v in np.median(ends, axis=0)] if len(ends) else None,
+                         centre=[round(float(v), 4) for v in centre], **removed)
         tag = f'{name}@{sheet.split()[0]}'
         # each impression's own pieces and counters at its midpoint edge: averaging smears hairline gaps
         # shut, so the letter's topology is read from the impressions, not from their mean
@@ -236,6 +346,7 @@ def average_one(args):
                         rms_to_base=[round(v, 4) for v in first], rms_to_mean=[round(v, 4) for v in spread],
                         **({'dropped': dropped} if dropped else {}),
                         **({'impression_topology': tops} if tops else {}),
+                        **({'frame': 'dash', 'marks': marks} if marks else {}),
                         origin=[float(v) for v in origin], step=FINE, shape=list(m.shape))
     return out
 
@@ -254,6 +365,9 @@ def main():
     os.makedirs(work, exist_ok=True)
     meta_path = os.path.join(work, 'impressions.json')
     meta = json.load(open(meta_path)) if os.path.exists(meta_path) else find(args.face, args.sources, base, work)
+    if SHEETS[args.face].get('frame') == 'dash' and not any('dash' in r for r in meta['impressions']):
+        meta = add_dashes(args.face, base, meta, work)
+        json.dump(meta, open(meta_path, 'w'), indent=1)
     names = args.glyphs or sorted({r['name'] for r in meta['impressions'] if r['score'] > MIN_SCORE})
     reg_path = os.path.join(work, 'registration.json')
     reg = json.load(open(reg_path)) if os.path.exists(reg_path) else {}

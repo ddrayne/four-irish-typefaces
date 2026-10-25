@@ -120,26 +120,36 @@ def topology(rec):
     return (pos, neg) if pos >= neg else (neg, pos)
 
 
-def lock_frame(rec, base, step=0.125, scales=np.linspace(0.96, 1.04, 81)):
+def lock_frame(rec, base, step=0.125, scales=np.linspace(0.96, 1.04, 81), baseline=None):
     """The uniform scale (about the base's centre) and shift that lay a redrawn letter best over its
     base trace, and the record moved by them. The impressions' affines absorb the photograph's
     perspective, and their scales can drift a percent or two from the base's frame; this puts each
-    letter back at the base's size and place, so only its shape comes from the sheet."""
+    letter back at the base's size and place, so only its shape comes from the sheet.
+
+    With baseline=(y, target), the letter's own baseline (y in the record, from its sheet's spacing
+    marks) is put at target, the base's line: only the scale and the horizontal shift are fitted."""
     from scipy.signal import fftconvolve
     B, (bx, by) = IM.trace_mask(base, step, 8.0)
     pts = np.array([p for _, a in base for p in a], float); c = (pts.min(0) + pts.max(0)) / 2
     move = lambda r, s, t: [(op, tuple(tuple((np.array(p) - c) * s + c + t) for p in a)) for op, a in r]
     best = None
     for s in scales:
-        M, (mx, my) = IM.trace_mask(move(rec, s, (0, 0)), step, 2.0)
+        ty = 0.0 if baseline is None else baseline[1] - (c[1] + (baseline[0] - c[1]) * s)
+        M, (mx, my) = IM.trace_mask(move(rec, s, (0, ty)), step, 2.0)
         if M.shape[0] >= B.shape[0] or M.shape[1] >= B.shape[1]:
             continue
         corr = fftconvolve(B, M[::-1, ::-1], mode='valid')
-        iy, ix = np.unravel_index(np.argmax(corr), corr.shape)
+        if baseline is None:
+            iy, ix = np.unravel_index(np.argmax(corr), corr.shape)
+        else:
+            iy = int(round((my - by) / step))              # the row that leaves the vertical place as set
+            if not 0 <= iy < corr.shape[0]:
+                continue
+            ix = int(np.argmax(corr[iy]))
         sub = B[iy:iy + M.shape[0], ix:ix + M.shape[1]]
         iou = float((sub * M).sum() / max(((sub + M) > 0).sum(), 1))
         if best is None or iou > best[0]:
-            best = (iou, float(s), (bx + ix * step - mx, by + iy * step - my))
+            best = (iou, float(s), (bx + ix * step - mx, by + iy * step - my if baseline is None else ty))
     iou, s, t = best
     return move(rec, s, t), dict(scale=round(s, 4), shift=[round(t[0], 3), round(t[1], 3)], iou_to_base=round(iou, 4))
 
@@ -197,6 +207,28 @@ def main():
         print(f'{sheet}: edge level {level:.3f} of the way from backing to ink; at 0.5 the sheet inks '
               f'{100 * (at_half / target - 1):+.1f}% against the base traces')
 
+    # Letraset's spacing marks: where the sheet frame records them, each letter's baseline is its marks'
+    # line less the sheet's mark-to-baseline distance, the median over the sheet's sitting letters of
+    # how far their feet stand above their marks (round letters overshoot either way)
+    from metrics import line_baselines, bounds as rec_bounds
+    lines = line_baselines([dict(g) for g in tr['glyphs']])
+    sits = {g['name'] for g in tr['glyphs'] if abs(rec_bounds(g['rec'])[3] - lines[g['line_idx']]) <= 1.5}
+    for sheet in list(calibration):
+        feet = {}
+        for t, r in reg.items():
+            if r['sheet'] != sheet or r.get('frame') != 'dash' or r['name'] not in sits:
+                continue
+            mean = np.load(os.path.join(work, f'mean-{t}.npy')).astype(float)
+            m, _ = IM.trace_mask(byname[r['name']]['rec'], r['step'], 3.0)
+            mm = m[:mean.shape[0], :mean.shape[1]] > 0.5
+            lo, hi = levels(mean, mm)
+            cs = contours_at(mean, lo + calibration[sheet]['level'] * (hi - lo), r['origin'], r['step'], mm)
+            feet[r['name']] = round(r['marks']['y'] - max(float(np.max(np.asarray(c)[:, 1])) for c in cs), 3)
+        if feet:
+            calibration[sheet]['mark_to_baseline'] = round(float(np.median(list(feet.values()))), 3)
+            calibration[sheet]['feet_above_marks'] = feet
+            print(f'{sheet}: marks {calibration[sheet]["mark_to_baseline"]:.2f} units under the baseline (median of {len(feet)} letters)')
+
     out_glyphs, redrawn, kept_base = [], {}, {}
     for g in tr['glyphs']:
         t = use.get(g['name'])
@@ -231,7 +263,16 @@ def main():
             out_glyphs.append(g); continue
         lock = None
         if args.lock_frame:
-            rec, lock = lock_frame(rec, g['rec'])
+            base_line = None
+            if r.get('frame') == 'dash' and 'mark_to_baseline' in calibration[r['sheet']]:
+                base_line = (r['marks']['y'] - calibration[r['sheet']]['mark_to_baseline'], lines[g['line_idx']])
+            rec, lock = lock_frame(rec, g['rec'], baseline=base_line)
+            if base_line:
+                foot = max(p[1] for _, a in rec for p in a)
+                lock.update(baseline=dict(source='the sheet\'s spacing marks', marks_y=r['marks']['y'],
+                                          mark_to_baseline=calibration[r['sheet']]['mark_to_baseline'],
+                                          line=round(base_line[1], 3), foot_below_line=round(foot - base_line[1], 3)),
+                            sheet_frame={k: r['marks'][k] for k in ('turn_deg', 'stretch_ratio', 'shear_removed_deg')})
         h = copy.deepcopy(g); h['rec'] = rec
         h['paper'], h['ink'] = lo, hi
         out_glyphs.append(h)

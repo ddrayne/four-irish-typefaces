@@ -123,6 +123,47 @@ def _register(sheet_p, template, origin, step, q, blur, reach, levels=(6.0, 3.0,
     return q
 
 
+def rotation(a):
+    """Rotation through a radians, in y-down coordinates (positive turns the x axis towards +y)."""
+    return np.array([[np.cos(a), -np.sin(a)], [np.sin(a), np.cos(a)]])
+
+
+def sheet_frame(qs, mark_angles):
+    """The letter's frame on its own sheet. Registered onto another print's trace, every impression's
+    affine also takes in that print's differences of slant and proportion; those are common to all of
+    a letter's impressions, while the photograph's local distortions differ from one to the next. So
+    the mean of the linear parts is split into a rotation and a stretch (polar decomposition), the
+    stretch's shape is removed (its scale kept), and the letter is turned square to its row's mark
+    lines: by the median, over its impressions that have one (an angle of None has none), of each
+    fit's own rotation less its mark line's angle.
+    Returns the template-side map G (each q becomes q composed with G about the template's centre:
+    the impressions stay registered on one another) and what it removed."""
+    L = np.array([[[q[0], q[1]], [q[2], q[3]]] for q in qs])
+    W, S, Vt = np.linalg.svd(L.mean(0))
+    stretch = Vt.T @ np.diag(S / np.sqrt(S.prod())) @ Vt               # symmetric, unit determinant
+    turn = np.arctan2(L[:, 1, 0] - L[:, 0, 1], L[:, 0, 0] + L[:, 1, 1])
+    have = [i for i, a in enumerate(mark_angles) if a is not None]
+    off = float(np.median([turn[i] - mark_angles[i] for i in have]))
+    to_sheet = rotation(off) @ stretch                                  # template -> the sheet's geometry
+    shear = np.degrees(np.arctan2(to_sheet[1, 0], to_sheet[0, 0]) - np.arctan2(-to_sheet[0, 1], to_sheet[1, 1]))
+    return np.linalg.inv(to_sheet), dict(turn_deg=round(np.degrees(off), 3), stretch_ratio=round(float(S[0] / S[1]), 4),
+                                         shear_removed_deg=round(float(shear), 3))
+
+
+def compose(q, G, centre):
+    """q applied after the template-side linear map G about `centre` (which still maps where q mapped it)."""
+    a, b, c, d, tx, ty = q
+    M = np.array([[a, b], [c, d]]); N = M @ G
+    t = M @ centre + [tx, ty] - N @ centre
+    return np.array([N[0, 0], N[0, 1], N[1, 0], N[1, 1], t[0], t[1]])
+
+
+def to_template(q, pts):
+    """Sheet points mapped back into template units through the affine q."""
+    a, b, c, d, tx, ty = q
+    return (np.linalg.inv([[a, b], [c, d]]) @ (np.asarray(pts, float) - [tx, ty]).T).T
+
+
 def average(sheet_p, qs, shape, origin, step):
     """Mean and per-pixel standard deviation of the registered impressions."""
     stack = np.stack([warp(sheet_p, q, shape, origin, step) for q in qs])
