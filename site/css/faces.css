@@ -1,19 +1,19 @@
-@font-face{font-family:"Céilí";src:url("../fonts/Ceili-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Céilí";src:url("../fonts/Ceili-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Céilí";src:url("../fonts/Ceili-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Céilí";src:url("../fonts/Ceili-BoldItalic.woff2") format("woff2");font-weight:700;font-style:italic;font-display:swap}
-@font-face{font-family:"Carrick";src:url("../fonts/Carrick-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Carrick";src:url("../fonts/Carrick-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Carrick";src:url("../fonts/Carrick-Regular.woff2") format("woff2");font-weight:500 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Carrick";src:url("../fonts/Carrick-Italic.woff2") format("woff2");font-weight:500 900;font-style:italic;font-display:swap}
-@font-face{font-family:"Kilfane";src:url("../fonts/Kilfane-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Kilfane";src:url("../fonts/Kilfane-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Kilfane";src:url("../fonts/Kilfane-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Kilfane";src:url("../fonts/Kilfane-BoldItalic.woff2") format("woff2");font-weight:700;font-style:italic;font-display:swap}
-@font-face{font-family:"Tuam Uncial";src:url("../fonts/TuamUncial-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Tuam Uncial";src:url("../fonts/TuamUncial-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Tuam Uncial";src:url("../fonts/TuamUncial-Regular.woff2") format("woff2");font-weight:500 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Tuam Uncial";src:url("../fonts/TuamUncial-Italic.woff2") format("woff2");font-weight:500 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Céilí Digital";src:url("../fonts/CeiliDigital-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Céilí Digital";src:url("../fonts/CeiliDigital-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Céilí Digital";src:url("../fonts/CeiliDigital-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Céilí Digital";src:url("../fonts/CeiliDigital-BoldItalic.woff2") format("woff2");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"Carrick Digital";src:url("../fonts/CarrickDigital-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Carrick Digital";src:url("../fonts/CarrickDigital-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Carrick Digital";src:url("../fonts/CarrickDigital-Regular.woff2") format("woff2");font-weight:500 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Carrick Digital";src:url("../fonts/CarrickDigital-Italic.woff2") format("woff2");font-weight:500 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Kilfane Digital";src:url("../fonts/KilfaneDigital-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Kilfane Digital";src:url("../fonts/KilfaneDigital-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Kilfane Digital";src:url("../fonts/KilfaneDigital-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Kilfane Digital";src:url("../fonts/KilfaneDigital-BoldItalic.woff2") format("woff2");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"Tuam Uncial Digital";src:url("../fonts/TuamUncialDigital-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Tuam Uncial Digital";src:url("../fonts/TuamUncialDigital-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Tuam Uncial Digital";src:url("../fonts/TuamUncialDigital-Regular.woff2") format("woff2");font-weight:500 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Tuam Uncial Digital";src:url("../fonts/TuamUncialDigital-Italic.woff2") format("woff2");font-weight:500 900;font-style:italic;font-display:swap}
 @font-face{font-family:"Céilí Study 1";src:url("../fonts/CeiliStudy1-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Céilí Study 2";src:url("../fonts/CeiliStudy2-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Céilí Study 3";src:url("../fonts/CeiliStudy3-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}

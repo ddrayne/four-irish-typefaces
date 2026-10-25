@@ -1,4 +1,4 @@
-import { $, FACES, FAMILY, loadFace, offscreen, rng } from './util.js';
+import { $, FACES, FAMILY, NAME, loadFace, offscreen, rng } from './util.js';
 
 // A two-colour risograph poster. Each ink is its own plate: drawn as a mask, given
 // the grain of a drum print, offset a little out of register, and multiplied onto
@@ -34,7 +34,7 @@ export async function init(root) {
   for (const sel of [faceA, faceB]) {
     for (const k of FACES) {
       const o = document.createElement('option');
-      o.value = k; o.textContent = FAMILY[k];
+      o.value = k; o.textContent = NAME[k];
       sel.appendChild(o);
     }
   }
@@ -175,7 +175,7 @@ export async function init(root) {
     view.width = Math.round(cw * dpr); view.height = Math.round(cw * dpr * (H / W));
     v.imageSmoothingQuality = 'high';
     v.drawImage(out, 0, 0, view.width, view.height);
-    view.setAttribute('aria-label', `A two-colour poster reading ${head.value}, in ${FAMILY[faceA.value]} and ${FAMILY[faceB.value]}.`);
+    view.setAttribute('aria-label', `A two-colour poster reading ${head.value}, in ${NAME[faceA.value]} and ${NAME[faceB.value]}.`);
   }
 
   let t = 0;

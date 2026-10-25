@@ -47,10 +47,10 @@
   /* type */
   --sans: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono: "Fragment Mono", ui-monospace, Menlo, Consolas, monospace;
-  --ceili: "Céilí", "Ceili", Georgia, serif;
-  --carrick: "Carrick", Georgia, serif;
-  --kilfane: "Kilfane", Georgia, serif;
-  --tuam: "Tuam Uncial", Georgia, serif;
+  --ceili: "Céilí Digital", Georgia, serif;
+  --carrick: "Carrick Digital", Georgia, serif;
+  --kilfane: "Kilfane Digital", Georgia, serif;
+  --tuam: "Tuam Uncial Digital", Georgia, serif;
   --s-1: .8125rem;
   --s0: 1.0625rem;
   --s1: 1.3rem;

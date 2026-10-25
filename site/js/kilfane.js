@@ -72,7 +72,7 @@ export async function init(root, data) {
       S.w = Math.min(W - 24, Math.max(320, W * 0.86), 860);
       S.band = Math.round(F * 1.05 + 14);
       const meas = offscreen(1, 1).getContext('2d');
-      meas.font = `${F}px "Kilfane"`;
+      meas.font = `${F}px "Kilfane Digital"`;
       items = [];
       let x = m, base = S.band + m + F * 0.95;
       for (const row of rows) {
@@ -121,7 +121,7 @@ export async function init(root, data) {
     b.fillText('Burnish firmly over the letter, then lift the sheet slowly. Store flat.', S.w - 10, S.h - 8);
     // ghosts of the letters (they show where ink has gone)
     b.textAlign = 'left';
-    b.font = `${F}px "Kilfane"`;
+    b.font = `${F}px "Kilfane Digital"`;
     b.fillStyle = 'rgba(120,122,110,.30)';
     for (const it of items) b.fillText(it.ch, it.x, it.base);
     freshInk();
@@ -133,7 +133,7 @@ export async function init(root, data) {
     k.globalCompositeOperation = 'source-over';
     k.clearRect(0, 0, sheetInk.width, sheetInk.height);
     k.scale(R, R);
-    k.font = `${F}px "Kilfane"`;
+    k.font = `${F}px "Kilfane Digital"`;
     k.fillStyle = '#0E0E0C';
     for (const it of items) k.fillText(it.ch, it.x, it.base);
   }
@@ -191,7 +191,7 @@ export async function init(root, data) {
   function seedWord() {
     const x = transfer.getContext('2d');
     x.save(); x.scale(R, R);
-    x.font = `${Math.round(F * 1.5)}px "Kilfane"`;
+    x.font = `${Math.round(F * 1.5)}px "Kilfane Digital"`;
     x.fillStyle = '#0E0E0C';
     const word = 'Fáilte';
     const tx = 46, ty = H - Math.round(F * 0.9);
@@ -268,7 +268,7 @@ export async function init(root, data) {
     if (!S.shown) { S.shown = true; liftBtn.textContent = 'Lift the sheet'; }
     const glyphs = [...word.normalize('NFD')];
     const meas = offscreen(1, 1).getContext('2d');
-    meas.font = `${F}px "Kilfane"`;
+    meas.font = `${F}px "Kilfane Digital"`;
     const capLift = F * Math.max(0, (data.faces.kilfane.cap || 0.7) - (data.faces.kilfane.xh || 0.48));
     const lineH = F * 1.45;
     // where this word goes: above Fáilte, then up the mat

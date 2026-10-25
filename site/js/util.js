@@ -5,7 +5,9 @@ export const lerp = (a, b, t) => a + (b - a) * t;
 export const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export const FACES = ['ceili', 'carrick', 'kilfane', 'tuam'];
-export const FAMILY = { ceili: 'Céilí', carrick: 'Carrick', kilfane: 'Kilfane', tuam: 'Tuam Uncial' };
+// NAME is the 1978 design; FAMILY is the font, which carries "Digital" so it is never taken for the original type
+export const NAME = { ceili: 'Céilí', carrick: 'Carrick', kilfane: 'Kilfane', tuam: 'Tuam Uncial' };
+export const FAMILY = { ceili: 'Céilí Digital', carrick: 'Carrick Digital', kilfane: 'Kilfane Digital', tuam: 'Tuam Uncial Digital' };
 export const cssFamily = (k) => `"${FAMILY[k]}", Georgia, serif`;
 
 export const PROVERBS = [

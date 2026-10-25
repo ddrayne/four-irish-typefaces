@@ -183,7 +183,7 @@ export async function init(root) {
     const band = clamp(Math.round(W * 0.064), 30, 78);
     const Fi = clamp(W * 0.3, 118, 380);
     const Ft = clamp(W * 0.058, 22, 58);
-    const font = (px) => `${px}px "Tuam Uncial"`;
+    const font = (px) => `${px}px "Tuam Uncial Digital"`;
     const meas = offscreen(1, 1).getContext('2d');
 
     const initial = text[0];

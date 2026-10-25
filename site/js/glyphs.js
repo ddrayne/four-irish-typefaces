@@ -1,4 +1,4 @@
-import { $, FACES, FAMILY, copyText } from './util.js';
+import { $, FACES, NAME, copyText } from './util.js';
 
 export function init(root, data) {
   const facesHost = $('[data-g-faces]', root);
@@ -15,7 +15,7 @@ export function init(root, data) {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'tog t-face'; b.setAttribute('role', 'radio');
     b.setAttribute('aria-checked', String(k === face));
-    b.innerHTML = `<span class="f-${k}">${FAMILY[k]}</span>`;
+    b.innerHTML = `<span class="f-${k}">${NAME[k]}</span>`;
     b.addEventListener('click', () => {
       face = k;
       [...facesHost.children].forEach((c) => c.setAttribute('aria-checked', String(c === b)));
@@ -42,8 +42,8 @@ export function init(root, data) {
     const tiles = [];
     for (const k of FACES) {
       const has = data.faces[k].cps.includes(cp);
-      tiles.push(`<button type="button" class="g-mini${k === face ? ' on' : ''}" data-face="${k}" ${has ? '' : 'disabled'} title="${FAMILY[k]}">` +
-        `<span class="f-${k}">${has ? ch : '·'}</span><span class="mono">${FAMILY[k]}</span></button>`);
+      tiles.push(`<button type="button" class="g-mini${k === face ? ' on' : ''}" data-face="${k}" ${has ? '' : 'disabled'} title="${NAME[k]}">` +
+        `<span class="f-${k}">${has ? ch : '·'}</span><span class="mono">${NAME[k]}</span></button>`);
     }
     const f = data.faces[face];
     const lower = ch.toLowerCase(), upper = ch.toUpperCase();

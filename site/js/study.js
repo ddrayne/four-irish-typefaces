@@ -1,4 +1,4 @@
-import { $, $$, FAMILY } from './util.js';
+import { $, $$, FAMILY, NAME } from './util.js';
 
 // The research studies beside the release they are rebuilding: each letter printed in
 // two inks, green for the released font and orange for the latest study, so the two
@@ -10,14 +10,14 @@ export async function init(root, data) {
   const face = root.dataset.study;
   const info = data.studies?.[face];
   if (!info) return;
-  const family = FAMILY[face];
+  const family = FAMILY[face], name = NAME[face];
   const latest = info.studies[info.studies.length - 1];
   await Promise.all([document.fonts.load(`64px "${latest.family}"`), document.fonts.load(`64px "${family}"`)]).catch(() => []);
   root.hidden = false;
   const outlines = info.glyphs.length > 0;
 
   const intro = outlines
-    ? `<b>${latest.family}</b> redraws ${family} from better reproductions in the William Curran Archive at the National Irish Visual Arts Library. It is work in progress, not a release. Green is the released ${family}; orange is the study. Where they agree, the inks print dark.`
+    ? `<b>${latest.family}</b> redraws ${name} from better reproductions in the William Curran Archive at the National Irish Visual Arts Library. It is work in progress, not a release. Green is the released ${family}; orange is the study. Where they agree, the inks print dark.`
     : `<b>${latest.family}</b> keeps ${family}'s outlines as released and adjusts only its spacing; better sources for its letters are still being sought. It is work in progress, not a release.`;
 
   root.innerHTML = `

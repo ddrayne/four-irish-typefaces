@@ -1,4 +1,4 @@
-import { $, FACES, FAMILY, PROVERBS } from './util.js';
+import { $, FACES, FAMILY, NAME, PROVERBS } from './util.js';
 
 const STYLE = { Regular: [400, 'normal'], Italic: [400, 'italic'], Bold: [700, 'normal'], 'Bold Italic': [700, 'italic'] };
 
@@ -27,7 +27,7 @@ export function init(root, data) {
     host.appendChild(b);
     return b;
   };
-  FACES.forEach((k) => radio(facesHost, `<span class="f-${k}">${FAMILY[k]}</span>`, k === face, () => { face = k; build(); }, 't-face'));
+  FACES.forEach((k) => radio(facesHost, `<span class="f-${k}">${NAME[k]}</span>`, k === face, () => { face = k; build(); }, 't-face'));
 
   function build() {
     const f = data.faces[face];
