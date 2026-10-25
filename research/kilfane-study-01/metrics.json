@@ -1,0 +1,2878 @@
+{
+  "summary": {
+    "Kilfane-alphabet-specimen.jpg": {
+      "glyphs": 75,
+      "before": 0.8680804579971493,
+      "candidate": 0.9351728022324373,
+      "improved": 75,
+      "regressed": []
+    },
+    "competition-advert-2.jpg": {
+      "glyphs": 75,
+      "before": 0.8953433937878312,
+      "candidate": 0.9425560908626268,
+      "improved": 74,
+      "regressed": [
+        "zero"
+      ]
+    }
+  },
+  "glyphs": [
+    {
+      "name": "A",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.88410546700432,
+        "offset": [
+          0,
+          -5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9492962009989405,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.0651907339946205
+    },
+    {
+      "name": "B",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8575303126994257,
+        "offset": [
+          2,
+          -4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9396060556731238,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.08207574297369813
+    },
+    {
+      "name": "C",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8845734235217106,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9262259194395797,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.041652495917869015
+    },
+    {
+      "name": "D",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8987099856665074,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9507902884145348,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.05208030274802744
+    },
+    {
+      "name": "E",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8825918079096046,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9396551724137931,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.057063364504188585
+    },
+    {
+      "name": "F",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8693247292002766,
+        "offset": [
+          8,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9274670304683947,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.058142301268118146
+    },
+    {
+      "name": "G",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9032094594594594,
+        "offset": [
+          0,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9346230820547031,
+        "offset": [
+          0,
+          3
+        ]
+      },
+      "delta": 0.03141362259524372
+    },
+    {
+      "name": "H",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9018839487565938,
+        "offset": [
+          2,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9408676856569399,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.03898373690034607
+    },
+    {
+      "name": "I",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9014945652173914,
+        "offset": [
+          2,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.946661956905687,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.045167391688295644
+    },
+    {
+      "name": "J",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8570227081581161,
+        "offset": [
+          -1,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.951302729528536,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.09428002137041991
+    },
+    {
+      "name": "K",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8741376409220932,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9359411448053113,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": 0.06180350388321809
+    },
+    {
+      "name": "L",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9194665298794563,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9471189822898478,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.027652452410391493
+    },
+    {
+      "name": "M",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8782992609655437,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9472446580104283,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.06894539704488467
+    },
+    {
+      "name": "N",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8953470862821864,
+        "offset": [
+          3,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9406491499227202,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.045302063640533796
+    },
+    {
+      "name": "O",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8517370738868048,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.959633350960691,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.10789627707388627
+    },
+    {
+      "name": "P",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8767529132925144,
+        "offset": [
+          4,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9371175353450095,
+        "offset": [
+          2,
+          -2
+        ]
+      },
+      "delta": 0.060364622052495154
+    },
+    {
+      "name": "Q",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8700042668183757,
+        "offset": [
+          -3,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9461170294889609,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.0761127626705852
+    },
+    {
+      "name": "R",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8922742110990207,
+        "offset": [
+          4,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9418032786885245,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.04952906758950382
+    },
+    {
+      "name": "S",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9006575439843612,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9447208402432283,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.04406329625886718
+    },
+    {
+      "name": "V",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.855705335105373,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9345238095238095,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.07881847441843648
+    },
+    {
+      "name": "W",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8546929554323269,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9394886680808306,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.08479571264850372
+    },
+    {
+      "name": "X",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8523274478330658,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.939885307494562,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.0875578596614962
+    },
+    {
+      "name": "Y",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8467370298795898,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9404409345179335,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.09370390463834377
+    },
+    {
+      "name": "Z",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9005536626916525,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9284818067754078,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.027928144083755324
+    },
+    {
+      "name": "a",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8477999519115172,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.94325,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.09545004808848279
+    },
+    {
+      "name": "b",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9069075451647184,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9353255069370331,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.028417961772314704
+    },
+    {
+      "name": "c",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9157894736842105,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9367130550033135,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.02092358131910299
+    },
+    {
+      "name": "d",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8933986470725449,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9432607134306918,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.04986206635814694
+    },
+    {
+      "name": "e",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8640434192672999,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9110369752571588,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.04699355598985888
+    },
+    {
+      "name": "f",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8651813767495001,
+        "offset": [
+          5,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9303512458721105,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.06516986912261036
+    },
+    {
+      "name": "g",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8724989357173265,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9251218431546301,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.05262290743730358
+    },
+    {
+      "name": "h",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9159505344791449,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9381926683716965,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.022242133892551585
+    },
+    {
+      "name": "i",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8983200707338639,
+        "offset": [
+          3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9608305804624823,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.06251050972861838
+    },
+    {
+      "name": "j",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.835026161895968,
+        "offset": [
+          -1,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9441166261714682,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.10909046427550018
+    },
+    {
+      "name": "m",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8759344679497375,
+        "offset": [
+          4,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.940979769269353,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.0650453013196155
+    },
+    {
+      "name": "n",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8614001892147588,
+        "offset": [
+          2,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9318181818181818,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.07041799260342296
+    },
+    {
+      "name": "o",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8803827751196173,
+        "offset": [
+          -2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9464758876523582,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.06609311253274097
+    },
+    {
+      "name": "p",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8791067210650634,
+        "offset": [
+          1,
+          -7
+        ]
+      },
+      "candidate": {
+        "iou": 0.9303050545535515,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.051198333488488124
+    },
+    {
+      "name": "q",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8776641091219096,
+        "offset": [
+          -1,
+          -5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9430449069003286,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.06538079777841899
+    },
+    {
+      "name": "r",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8729480548684506,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9388322520852641,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.06588419721681349
+    },
+    {
+      "name": "s",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9002013229795801,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9290380047505938,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.028836681771013728
+    },
+    {
+      "name": "t",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.872039372500769,
+        "offset": [
+          3,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9202492211838006,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.048209848683031575
+    },
+    {
+      "name": "u",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9036503600695307,
+        "offset": [
+          -1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9371833839918946,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.0335330239223639
+    },
+    {
+      "name": "x",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8418948015995078,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9102228047182176,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.06832800311870979
+    },
+    {
+      "name": "y",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8555383423702556,
+        "offset": [
+          3,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9373818028997689,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.0818434605295133
+    },
+    {
+      "name": "z",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8466597438560055,
+        "offset": [
+          2,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9265394310406914,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.07987968718468585
+    },
+    {
+      "name": "one",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.922735674676525,
+        "offset": [
+          3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9380498533724341,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.01531417869590912
+    },
+    {
+      "name": "two",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9122636936500242,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9375452134072824,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.02528151975725812
+    },
+    {
+      "name": "three",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8690269868779401,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9330618477984219,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.06403486092048183
+    },
+    {
+      "name": "four",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9031242431581497,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9402241594022416,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.037099916244091924
+    },
+    {
+      "name": "five",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8858603066439523,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9261845386533666,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.04032423200941426
+    },
+    {
+      "name": "six",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8863043478260869,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.932252332296757,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.045947984470670056
+    },
+    {
+      "name": "seven",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8781651376146788,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9226077011056043,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.04444256349092546
+    },
+    {
+      "name": "eight",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8834218048182931,
+        "offset": [
+          -2,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9226815163846648,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "delta": 0.03925971156637165
+    },
+    {
+      "name": "nine",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8838983050847458,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9288061336254108,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.044907828540664996
+    },
+    {
+      "name": "zero",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.9079661384849143,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9547438548127728,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.04677771632785854
+    },
+    {
+      "name": "ampersand",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8320855614973262,
+        "offset": [
+          -2,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9325090159711489,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.10042345447382273
+    },
+    {
+      "name": "question",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8635584504628042,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9337481698389458,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.0701897193761416
+    },
+    {
+      "name": "exclam",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8438623523369286,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.8991825613079019,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.05532020897097323
+    },
+    {
+      "name": "sterling",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8284072249589491,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9240963855421687,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.09568916058321952
+    },
+    {
+      "name": "dollar",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8193675889328064,
+        "offset": [
+          -2,
+          5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9214092140921409,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.10204162515933457
+    },
+    {
+      "name": "parenleft",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7686567164179104,
+        "offset": [
+          0,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9310160427807487,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.16235932636283823
+    },
+    {
+      "name": "parenright",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7820128479657388,
+        "offset": [
+          -1,
+          6
+        ]
+      },
+      "candidate": {
+        "iou": 0.8960910440376052,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.11407819607186642
+    },
+    {
+      "name": "A.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8748043818466353,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9419934640522876,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.06718908220565223
+    },
+    {
+      "name": "A.alt2",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8598763045999227,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9381093683764307,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.07823306377650796
+    },
+    {
+      "name": "D.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8636716928338256,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9386657704587464,
+        "offset": [
+          0,
+          -1
+        ]
+      },
+      "delta": 0.07499407762492083
+    },
+    {
+      "name": "S.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8521897810218978,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9355912294440094,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.08340144842211161
+    },
+    {
+      "name": "T.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8888048411497731,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9357387411114038,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.046933899961630665
+    },
+    {
+      "name": "Y.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8616940581542352,
+        "offset": [
+          2,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.933993399339934,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.0722993411856988
+    },
+    {
+      "name": "d.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8625528642829681,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9384871155444722,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.0759342512615041
+    },
+    {
+      "name": "f.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8373600471420153,
+        "offset": [
+          3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9167470266795242,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.07938697953750895
+    },
+    {
+      "name": "g.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.8066805845511482,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9282341831916903,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.12155359864054205
+    },
+    {
+      "name": "l.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7791152572976227,
+        "offset": [
+          -3,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9237410071942446,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.1446257498966219
+    },
+    {
+      "name": "t.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.772205099467638,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9480385409497591,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.1758334414821211
+    },
+    {
+      "name": "y.alt1",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "before": {
+        "iou": 0.7848863129736959,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9344782034346103,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.14959189046091437
+    },
+    {
+      "name": "A",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.896411645226811,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9486549228458282,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.05224327761901715
+    },
+    {
+      "name": "B",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8702577468867652,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9425033171163202,
+        "offset": [
+          2,
+          3
+        ]
+      },
+      "delta": 0.07224557022955502
+    },
+    {
+      "name": "C",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9050279329608939,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9328818960366461,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.027853963075752164
+    },
+    {
+      "name": "D",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9083405734144222,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9384885764499121,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.030148003035489923
+    },
+    {
+      "name": "E",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.869447540200605,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9521937411542696,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.08274620095366458
+    },
+    {
+      "name": "F",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8865564037319763,
+        "offset": [
+          9,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9599661088752383,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.07340970514326195
+    },
+    {
+      "name": "G",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8964569334147832,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9521712723959915,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "delta": 0.05571433898120837
+    },
+    {
+      "name": "H",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9277932960893854,
+        "offset": [
+          4,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9648119010155914,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.03701860492620601
+    },
+    {
+      "name": "I",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.910411622276029,
+        "offset": [
+          3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9415752098127824,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.031163587536753412
+    },
+    {
+      "name": "J",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8998702983138781,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9709039548022599,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.07103365648838178
+    },
+    {
+      "name": "K",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9137583372111059,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9510763209393346,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.0373179837282287
+    },
+    {
+      "name": "L",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.905448717948718,
+        "offset": [
+          4,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9644970414201184,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.05904832347140043
+    },
+    {
+      "name": "M",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9109024887078204,
+        "offset": [
+          4,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9544823757979461,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.043579887090125724
+    },
+    {
+      "name": "N",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9095010252904989,
+        "offset": [
+          4,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9537361558951353,
+        "offset": [
+          3,
+          0
+        ]
+      },
+      "delta": 0.04423513060463635
+    },
+    {
+      "name": "O",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8882193431756553,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9291301627033792,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.04091081952772391
+    },
+    {
+      "name": "P",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.910453216374269,
+        "offset": [
+          4,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.944069431051109,
+        "offset": [
+          2,
+          -3
+        ]
+      },
+      "delta": 0.03361621467683995
+    },
+    {
+      "name": "Q",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9060446780551905,
+        "offset": [
+          -1,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9446458449525934,
+        "offset": [
+          2,
+          -2
+        ]
+      },
+      "delta": 0.038601166897402894
+    },
+    {
+      "name": "R",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9241231209735147,
+        "offset": [
+          4,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.933343143025309,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.009220022051794285
+    },
+    {
+      "name": "S",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9264946096047043,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9590219224283305,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.0325273128236262
+    },
+    {
+      "name": "X",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8928923988153998,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9390091218028975,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.046116722987497694
+    },
+    {
+      "name": "Y",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8847532395919493,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9554784183519469,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.07072517875999762
+    },
+    {
+      "name": "Z",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8981301129723412,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9404647589782984,
+        "offset": [
+          1,
+          -3
+        ]
+      },
+      "delta": 0.042334646005957155
+    },
+    {
+      "name": "a",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8684153005464481,
+        "offset": [
+          -1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9367854741089442,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "delta": 0.06837017356249608
+    },
+    {
+      "name": "b",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9026210063133728,
+        "offset": [
+          3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.935283859717109,
+        "offset": [
+          2,
+          2
+        ]
+      },
+      "delta": 0.0326628534037362
+    },
+    {
+      "name": "c",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9347760745416291,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9523090854210685,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.01753301087943937
+    },
+    {
+      "name": "d",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9159197609901836,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9289699570815451,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.013050196091361488
+    },
+    {
+      "name": "e",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8795120736868309,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9150326797385621,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.03552060605173113
+    },
+    {
+      "name": "f",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9014346439957492,
+        "offset": [
+          4,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9451236077152948,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.04368896371954556
+    },
+    {
+      "name": "g",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8941860465116279,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9292565947242206,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.0350705482125927
+    },
+    {
+      "name": "h",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9285578205372452,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9526627218934911,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.024104901356245878
+    },
+    {
+      "name": "i",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9020070838252656,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9596602972399151,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.05765321341464946
+    },
+    {
+      "name": "j",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8759601706970128,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9586750788643533,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.0827149081673405
+    },
+    {
+      "name": "m",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9017349467852457,
+        "offset": [
+          5,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.952959028831563,
+        "offset": [
+          2,
+          -2
+        ]
+      },
+      "delta": 0.05122408204631734
+    },
+    {
+      "name": "n",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9082911809984605,
+        "offset": [
+          4,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9338672768878719,
+        "offset": [
+          2,
+          -3
+        ]
+      },
+      "delta": 0.025576095889411343
+    },
+    {
+      "name": "o",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9060913705583756,
+        "offset": [
+          -2,
+          5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9421703950499762,
+        "offset": [
+          1,
+          6
+        ]
+      },
+      "delta": 0.03607902449160061
+    },
+    {
+      "name": "p",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.90624388334312,
+        "offset": [
+          2,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9367088607594937,
+        "offset": [
+          2,
+          5
+        ]
+      },
+      "delta": 0.030464977416373662
+    },
+    {
+      "name": "q",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8980147917477618,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9495431068732618,
+        "offset": [
+          1,
+          4
+        ]
+      },
+      "delta": 0.051528315125500046
+    },
+    {
+      "name": "r",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.895643153526971,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9459175084175084,
+        "offset": [
+          1,
+          3
+        ]
+      },
+      "delta": 0.05027435489053744
+    },
+    {
+      "name": "s",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9297082228116711,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9409694015705389,
+        "offset": [
+          2,
+          2
+        ]
+      },
+      "delta": 0.011261178758867785
+    },
+    {
+      "name": "t",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8924336533032186,
+        "offset": [
+          4,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9310737681572202,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.03864011485400165
+    },
+    {
+      "name": "u",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9364175022789426,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9448563484708064,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.008438846191863747
+    },
+    {
+      "name": "v",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.906934306569343,
+        "offset": [
+          4,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.918918918918919,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "delta": 0.01198461234957593
+    },
+    {
+      "name": "w",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9147465437788018,
+        "offset": [
+          3,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9389841688654353,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "delta": 0.02423762508663352
+    },
+    {
+      "name": "x",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8828191338805548,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9174858504617218,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.034666716581167045
+    },
+    {
+      "name": "y",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8984989278055754,
+        "offset": [
+          4,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9442428871491312,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.045743959343555796
+    },
+    {
+      "name": "z",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8737988468930173,
+        "offset": [
+          1,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9462508294625083,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.07245198256949092
+    },
+    {
+      "name": "one",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9162593678722711,
+        "offset": [
+          4,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9595453025743899,
+        "offset": [
+          1,
+          2
+        ]
+      },
+      "delta": 0.04328593470211872
+    },
+    {
+      "name": "two",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9189070074922874,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9407923378319547,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.02188533033966733
+    },
+    {
+      "name": "three",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8882312770316413,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9383974062065771,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.05016612917493579
+    },
+    {
+      "name": "four",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9118748623044723,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9426823742637064,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.030807511959234035
+    },
+    {
+      "name": "five",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.91733690795353,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9368181818181818,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.019481273864651816
+    },
+    {
+      "name": "six",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9106256206554121,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9432437891335084,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.03261816847809629
+    },
+    {
+      "name": "seven",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8989966555183947,
+        "offset": [
+          3,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9367396593673966,
+        "offset": [
+          2,
+          -3
+        ]
+      },
+      "delta": 0.037743003849001866
+    },
+    {
+      "name": "eight",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9167447965497844,
+        "offset": [
+          -1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9243827160493827,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.007637919499598356
+    },
+    {
+      "name": "nine",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9128075954272428,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9490305816510094,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.03622298622376663
+    },
+    {
+      "name": "zero",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9344457687723481,
+        "offset": [
+          0,
+          -3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9203179131852456,
+        "offset": [
+          1,
+          -4
+        ]
+      },
+      "delta": -0.0141278555871025
+    },
+    {
+      "name": "ampersand",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8680516563728242,
+        "offset": [
+          -2,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9256860931236509,
+        "offset": [
+          0,
+          2
+        ]
+      },
+      "delta": 0.05763443675082669
+    },
+    {
+      "name": "question",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8998415213946117,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9423076923076923,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "delta": 0.04246617091308058
+    },
+    {
+      "name": "exclam",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8832630098452883,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9324055666003976,
+        "offset": [
+          0,
+          -2
+        ]
+      },
+      "delta": 0.04914255675510937
+    },
+    {
+      "name": "sterling",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8601062484189224,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.936381162214266,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.07627491379534368
+    },
+    {
+      "name": "dollar",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8694859642726941,
+        "offset": [
+          0,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9307895270955957,
+        "offset": [
+          2,
+          1
+        ]
+      },
+      "delta": 0.061303562822901614
+    },
+    {
+      "name": "parenleft",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8458367683429514,
+        "offset": [
+          -1,
+          4
+        ]
+      },
+      "candidate": {
+        "iou": 0.9265750828991,
+        "offset": [
+          -1,
+          0
+        ]
+      },
+      "delta": 0.08073831455614855
+    },
+    {
+      "name": "parenright",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8475513428120063,
+        "offset": [
+          -1,
+          5
+        ]
+      },
+      "candidate": {
+        "iou": 0.9347234814143246,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.08717213860231832
+    },
+    {
+      "name": "A.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.882144753141037,
+        "offset": [
+          2,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.9412196914033799,
+        "offset": [
+          1,
+          5
+        ]
+      },
+      "delta": 0.05907493826234289
+    },
+    {
+      "name": "A.alt2",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8980028530670471,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9323523791324289,
+        "offset": [
+          1,
+          6
+        ]
+      },
+      "delta": 0.034349526065381775
+    },
+    {
+      "name": "D.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.893971782813168,
+        "offset": [
+          3,
+          3
+        ]
+      },
+      "candidate": {
+        "iou": 0.93204469948656,
+        "offset": [
+          2,
+          2
+        ]
+      },
+      "delta": 0.038072916673391966
+    },
+    {
+      "name": "S.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8908720040795512,
+        "offset": [
+          2,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9399468556244465,
+        "offset": [
+          1,
+          0
+        ]
+      },
+      "delta": 0.049074851544895215
+    },
+    {
+      "name": "T.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.9181044398435703,
+        "offset": [
+          3,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9556471158507028,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.03754267600713257
+    },
+    {
+      "name": "Y.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8991361195423768,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9439782823297137,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.04484216278733688
+    },
+    {
+      "name": "d.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8962398013479957,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.938334273359654,
+        "offset": [
+          1,
+          1
+        ]
+      },
+      "delta": 0.04209447201165828
+    },
+    {
+      "name": "f.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8725806451612903,
+        "offset": [
+          3,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9614814814814815,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.08890083632019119
+    },
+    {
+      "name": "g.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8443625072773142,
+        "offset": [
+          -1,
+          2
+        ]
+      },
+      "candidate": {
+        "iou": 0.9408450704225352,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.09648256314522097
+    },
+    {
+      "name": "l.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8207521273675542,
+        "offset": [
+          -3,
+          -1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9529257927427264,
+        "offset": [
+          2,
+          -1
+        ]
+      },
+      "delta": 0.13217366537517217
+    },
+    {
+      "name": "t.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.806062162856409,
+        "offset": [
+          0,
+          1
+        ]
+      },
+      "candidate": {
+        "iou": 0.9520737327188941,
+        "offset": [
+          1,
+          -2
+        ]
+      },
+      "delta": 0.1460115698624851
+    },
+    {
+      "name": "y.alt1",
+      "source": "competition-advert-2.jpg",
+      "before": {
+        "iou": 0.8320972393901936,
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "iou": 0.9492252681764005,
+        "offset": [
+          1,
+          -1
+        ]
+      },
+      "delta": 0.11712802878620687
+    }
+  ],
+  "limitations": [
+    "Two reproductions share matching blemishes; not independent original drawings.",
+    "Candidate was derived from N516 except v/w from N47; this is a fit measure, not blind validation.",
+    "Semicolon excluded from summary because Font2 deliberately resets its vertical layout.",
+    "Uniform source scale, integer translation only; no per-glyph width or height fitting."
+  ]
+}

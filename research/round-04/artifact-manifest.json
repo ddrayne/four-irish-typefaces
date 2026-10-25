@@ -1,0 +1,142 @@
+[
+  {
+    "path": "ceili/audit-metrics.json",
+    "bytes": 3616,
+    "sha256": "6f9e474e80d32fb7ebf8efc1a5c6092a3a68cb5889c976478d7dc8425aeb23ca"
+  },
+  {
+    "path": "ceili/changed-glyphs.json",
+    "bytes": 20064,
+    "sha256": "2d3108474ceb37c25cd78618ccfbf6542cf3d84d611db59bf9a9bb3b208e50ab"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy3-Regular.otf",
+    "bytes": 79792,
+    "sha256": "cc804f0cd91470d7151fe75d90de0fe4f10fab7249209495c9413d4e20be5861"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy3-Regular.provenance.json",
+    "bytes": 38727,
+    "sha256": "b7dfd07a7bb5c735d63a191ea578816d4b1897ea1e787a62a7652ae69c696f31"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy3-Regular.ttf",
+    "bytes": 132376,
+    "sha256": "34e0abea1b1a82b61a468bd00c6045f25e0cde3d7daa7762632769c0029428a3"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy3-Regular.woff",
+    "bytes": 52464,
+    "sha256": "185c6a749ca2f91a48651fc1e6868815d6e3282eebf74d252ebbca1fd5b93a77"
+  },
+  {
+    "path": "ceili/fonts/CeiliStudy3-Regular.woff2",
+    "bytes": 40648,
+    "sha256": "7b2f770df4b0d1c0b3c851eb0f8f14630154a854fca855009ab6ea73f2b0216f"
+  },
+  {
+    "path": "ceili/fonts/spacing-adjustments.json",
+    "bytes": 255950,
+    "sha256": "c2b5214e865d6de18a27814209d9252fde044bb85a056fab9ee938b561791608"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-01.png",
+    "bytes": 35128,
+    "sha256": "ab51de372b27f4272482c24997d9d04866f76c54bc1edb3ca740a2e4729e5309"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-02.png",
+    "bytes": 33652,
+    "sha256": "ed33a9b8029e8a6a3aa5bbadb2b8b741f0c535f9476e3cb1c84f2638e6413b2e"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-03.png",
+    "bytes": 32844,
+    "sha256": "676995aaddfecae4ff9d323abac97fec59daee02c5792d8eeff163dfc47dc928"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-04.png",
+    "bytes": 32330,
+    "sha256": "43a88ee97b14bbcccfc5b7807668c2d8c1c1701980479dbefbca43127f3e51e4"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-05.png",
+    "bytes": 35788,
+    "sha256": "11bb8a5bc11cc773865971c6899aa6d9e664ad8377f48c6d8b19bb240951d0be"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-06.png",
+    "bytes": 35660,
+    "sha256": "b7c2896a41e39ddb38750b364823bb26ec6e4b473a2e1578aa047d26f739f4a7"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-07.png",
+    "bytes": 33757,
+    "sha256": "d127e5497c4325c96d571f09da2724a6e9bc44de5d38f121f74a5d0d149190c7"
+  },
+  {
+    "path": "ceili/proofs/changed-glyphs-08.png",
+    "bytes": 35637,
+    "sha256": "c2ede70e77ed425bd5330e819b4f424820d30d8390dfeece1f6b12870b70ba5a"
+  },
+  {
+    "path": "ceili/proofs/punctuation-proof.png",
+    "bytes": 80700,
+    "sha256": "85e9641b2b81543437ad5a960916dcdf6a4f4d579e140588f4a121bfd760296a"
+  },
+  {
+    "path": "ceili/punctuation-pair-audit.json",
+    "bytes": 2985,
+    "sha256": "4832cc60b4193f5f2a7f152fabd5f1380205b51e8fc43d5578ab83a152b55a3e"
+  },
+  {
+    "path": "ceili/traces/ceili.json",
+    "bytes": 521485,
+    "sha256": "be21285e1c9407959e0ee0a6c00cc0ae05f28c8a83d0c4d6e17c45212e4fcdef"
+  },
+  {
+    "path": "ceili/traces/evidence.json",
+    "bytes": 37172,
+    "sha256": "9abc2a3269680e8d1fb78f64f0525d05b3a313b324e205b5e190e5f8e63a3ff1"
+  },
+  {
+    "path": "ceili/traces/punctuation-evidence.json",
+    "bytes": 661,
+    "sha256": "1c8e9adc38f96c608e26d74dc5acb3e0842582ac9c849400209006be38c07aa1"
+  },
+  {
+    "path": "ceili/traces/punctuation-regions.json",
+    "bytes": 2273,
+    "sha256": "e50a7f3f8d8e4d45bb11224bb480498706729b1995f0bf3ac5fafaa4f08ee998"
+  },
+  {
+    "path": "ceili/traces/punctuation.json",
+    "bytes": 12621,
+    "sha256": "24d56a1ec3b82ec5177ea25696688f75396a990d4d4d7664df629ff6a3ccea3e"
+  },
+  {
+    "path": "ceili/traces/source-regions.json",
+    "bytes": 29369,
+    "sha256": "cb0fc183ca4cb1c8522c890e4895bc48f961cb31a8a5f00af5e6356d64ff6dab"
+  },
+  {
+    "path": "default-release-regression.json",
+    "bytes": 2451,
+    "sha256": "6ae5383063c19b27d17199b2414c5d9f3fb6a261cd65d2152b165733c5d49b71"
+  },
+  {
+    "path": "OFL.txt",
+    "bytes": 4498,
+    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+  },
+  {
+    "path": "pair-audit.json",
+    "bytes": 1195,
+    "sha256": "901fc62b359b4573faf19a0751db338ed90567d36413e7d4c117492c34da72e2"
+  },
+  {
+    "path": "README.md",
+    "bytes": 6652,
+    "sha256": "129d70db876baed6d8d50ab1440da56bebed69061040d083d781aacf33449d1d"
+  }
+]

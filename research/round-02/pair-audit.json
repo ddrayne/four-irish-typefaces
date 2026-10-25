@@ -1,0 +1,1173 @@
+{
+  "method": "HarfBuzz default shaping; exact path intersection area; mapped Latin letters only.",
+  "limitations": [
+    "A collision check does not establish even optical spacing, historical authenticity or all possible text behavior.",
+    "Combining sequences without precomposed Latin characters, non-Latin scripts, disabled kerning and application-specific shaping need separate review."
+  ],
+  "fonts": [
+    {
+      "font": "Kilfane-Regular.otf",
+      "characters": 275,
+      "pairs_tested": 75625,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 806,
+      "worst": [
+        {
+          "text": "ſĵ",
+          "area": 15905.11078505774,
+          "glyphs": [
+            "longs",
+            "jcircumflex"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "Ęĵ",
+          "area": 9733.15526327034,
+          "glyphs": [
+            "Eogonek",
+            "jcircumflex"
+          ],
+          "advance": 607
+        },
+        {
+          "text": "ſb",
+          "area": 9213.449134458791,
+          "glyphs": [
+            "longs",
+            "b"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſḃ",
+          "area": 9213.44913445878,
+          "glyphs": [
+            "longs",
+            "uni1E03"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſV",
+          "area": 9089.945740556144,
+          "glyphs": [
+            "longs",
+            "V"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſħ",
+          "area": 9001.868869446034,
+          "glyphs": [
+            "longs",
+            "hbar"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſh",
+          "area": 8605.124319841707,
+          "glyphs": [
+            "longs",
+            "h"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſĥ",
+          "area": 8605.124319841707,
+          "glyphs": [
+            "longs",
+            "hcircumflex"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſl",
+          "area": 8505.598581180253,
+          "glyphs": [
+            "longs",
+            "l"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſĺ",
+          "area": 8505.598581180253,
+          "glyphs": [
+            "longs",
+            "lacute"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſļ",
+          "area": 8505.598581180253,
+          "glyphs": [
+            "longs",
+            "uni013C"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſľ",
+          "area": 8505.598581180253,
+          "glyphs": [
+            "longs",
+            "lcaron"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſŀ",
+          "area": 8505.598581180253,
+          "glyphs": [
+            "longs",
+            "ldot"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "Vĵ",
+          "area": 8196.411612491684,
+          "glyphs": [
+            "V",
+            "jcircumflex"
+          ],
+          "advance": 611
+        },
+        {
+          "text": "ſW",
+          "area": 7586.474953401557,
+          "glyphs": [
+            "longs",
+            "W"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſŴ",
+          "area": 7586.474953401557,
+          "glyphs": [
+            "longs",
+            "Wcircumflex"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſẀ",
+          "area": 7586.474953401557,
+          "glyphs": [
+            "longs",
+            "Wgrave"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſẂ",
+          "area": 7586.474953401557,
+          "glyphs": [
+            "longs",
+            "Wacute"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſẄ",
+          "area": 7586.474953401557,
+          "glyphs": [
+            "longs",
+            "Wdieresis"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſþ",
+          "area": 7579.205392730335,
+          "glyphs": [
+            "longs",
+            "thorn"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſk",
+          "area": 7536.425108040676,
+          "glyphs": [
+            "longs",
+            "k"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſķ",
+          "area": 7536.425108040676,
+          "glyphs": [
+            "longs",
+            "uni0137"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſî",
+          "area": 7468.038088237234,
+          "glyphs": [
+            "longs",
+            "icircumflex"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſZ",
+          "area": 7087.000983713282,
+          "glyphs": [
+            "longs",
+            "Z"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſŹ",
+          "area": 7087.000983713282,
+          "glyphs": [
+            "longs",
+            "Zacute"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſŻ",
+          "area": 7087.000983713282,
+          "glyphs": [
+            "longs",
+            "Zdotaccent"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſŽ",
+          "area": 7087.000983713282,
+          "glyphs": [
+            "longs",
+            "Zcaron"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſꝹ",
+          "area": 7007.954149908575,
+          "glyphs": [
+            "longs",
+            "D.alt1"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſT",
+          "area": 6972.092737941632,
+          "glyphs": [
+            "longs",
+            "T"
+          ],
+          "advance": 270
+        },
+        {
+          "text": "ſŤ",
+          "area": 6972.092737941632,
+          "glyphs": [
+            "longs",
+            "Tcaron"
+          ],
+          "advance": 270
+        }
+      ]
+    },
+    {
+      "font": "Carrick-Regular.otf",
+      "characters": 273,
+      "pairs_tested": 74529,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 663,
+      "worst": [
+        {
+          "text": "ſĴ",
+          "area": 20373.22159846236,
+          "glyphs": [
+            "longs",
+            "jcircumflex"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĵ",
+          "area": 20373.22159846236,
+          "glyphs": [
+            "longs",
+            "jcircumflex"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſB",
+          "area": 18349.107571677872,
+          "glyphs": [
+            "longs",
+            "b"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſb",
+          "area": 18349.107571677872,
+          "glyphs": [
+            "longs",
+            "b"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſḂ",
+          "area": 18349.107571677872,
+          "glyphs": [
+            "longs",
+            "uni1E03"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſḃ",
+          "area": 18349.107571677872,
+          "glyphs": [
+            "longs",
+            "uni1E03"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſL",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "l"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſl",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "l"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĹ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "lacute"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĺ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "lacute"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĻ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "uni013C"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſļ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "uni013C"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĽ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "lcaron"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſľ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "lcaron"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĿ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "ldot"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſŀ",
+          "area": 17859.01678555514,
+          "glyphs": [
+            "longs",
+            "ldot"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſK",
+          "area": 14498.20960802408,
+          "glyphs": [
+            "longs",
+            "k"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſk",
+          "area": 14498.20960802408,
+          "glyphs": [
+            "longs",
+            "k"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĶ",
+          "area": 14498.20960802408,
+          "glyphs": [
+            "longs",
+            "uni0137"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſķ",
+          "area": 14498.20960802408,
+          "glyphs": [
+            "longs",
+            "uni0137"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſŁ",
+          "area": 14011.016276619863,
+          "glyphs": [
+            "longs",
+            "lslash"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſł",
+          "area": 14011.016276619863,
+          "glyphs": [
+            "longs",
+            "lslash"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĦ",
+          "area": 12539.548792967853,
+          "glyphs": [
+            "longs",
+            "hbar"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſħ",
+          "area": 12539.548792967853,
+          "glyphs": [
+            "longs",
+            "hbar"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſH",
+          "area": 12537.550396284925,
+          "glyphs": [
+            "longs",
+            "h"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſh",
+          "area": 12537.550396284925,
+          "glyphs": [
+            "longs",
+            "h"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĤ",
+          "area": 12537.550396284925,
+          "glyphs": [
+            "longs",
+            "hcircumflex"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĥ",
+          "area": 12537.550396284925,
+          "glyphs": [
+            "longs",
+            "hcircumflex"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĨ",
+          "area": 11023.882393910266,
+          "glyphs": [
+            "longs",
+            "itilde"
+          ],
+          "advance": 351
+        },
+        {
+          "text": "ſĩ",
+          "area": 11023.882393910266,
+          "glyphs": [
+            "longs",
+            "itilde"
+          ],
+          "advance": 351
+        }
+      ]
+    },
+    {
+      "font": "TuamUncial-Regular.otf",
+      "characters": 271,
+      "pairs_tested": 73441,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 122,
+      "worst": [
+        {
+          "text": "ſB",
+          "area": 13147.514066832693,
+          "glyphs": [
+            "longs",
+            "b"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſb",
+          "area": 13147.514066832693,
+          "glyphs": [
+            "longs",
+            "b"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſḂ",
+          "area": 13147.514066832693,
+          "glyphs": [
+            "longs",
+            "uni1E03"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſḃ",
+          "area": 13147.514066832693,
+          "glyphs": [
+            "longs",
+            "uni1E03"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĦ",
+          "area": 12892.483552025536,
+          "glyphs": [
+            "longs",
+            "hbar"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſħ",
+          "area": 12892.483552025536,
+          "glyphs": [
+            "longs",
+            "hbar"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſH",
+          "area": 12890.535845500228,
+          "glyphs": [
+            "longs",
+            "h"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſh",
+          "area": 12890.535845500228,
+          "glyphs": [
+            "longs",
+            "h"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĤ",
+          "area": 12890.535845500228,
+          "glyphs": [
+            "longs",
+            "hcircumflex"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĥ",
+          "area": 12890.535845500228,
+          "glyphs": [
+            "longs",
+            "hcircumflex"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſK",
+          "area": 12532.496284390887,
+          "glyphs": [
+            "longs",
+            "k"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſk",
+          "area": 12532.496284390887,
+          "glyphs": [
+            "longs",
+            "k"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĶ",
+          "area": 12532.496284390887,
+          "glyphs": [
+            "longs",
+            "uni0137"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſķ",
+          "area": 12532.496284390887,
+          "glyphs": [
+            "longs",
+            "uni0137"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĹ",
+          "area": 9255.281341606016,
+          "glyphs": [
+            "longs",
+            "lacute"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĺ",
+          "area": 9255.281341606016,
+          "glyphs": [
+            "longs",
+            "lacute"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſL",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "l"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſl",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "l"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĻ",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "uni013C"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſļ",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "uni013C"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĽ",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "lcaron"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſľ",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "lcaron"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſĿ",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "ldot"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſŀ",
+          "area": 9244.491690997605,
+          "glyphs": [
+            "longs",
+            "ldot"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſß",
+          "area": 9151.220535295635,
+          "glyphs": [
+            "longs",
+            "germandbls"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſſ",
+          "area": 9151.220535295635,
+          "glyphs": [
+            "longs",
+            "longs"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſÞ",
+          "area": 8850.265257066116,
+          "glyphs": [
+            "longs",
+            "thorn"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſþ",
+          "area": 8850.265257066116,
+          "glyphs": [
+            "longs",
+            "thorn"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſF",
+          "area": 8162.908532762156,
+          "glyphs": [
+            "longs",
+            "f"
+          ],
+          "advance": 429
+        },
+        {
+          "text": "ſf",
+          "area": 8162.908532762156,
+          "glyphs": [
+            "longs",
+            "f"
+          ],
+          "advance": 429
+        }
+      ]
+    },
+    {
+      "font": "Ceili-Regular.otf",
+      "characters": 281,
+      "pairs_tested": 78961,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 552,
+      "worst": [
+        {
+          "text": "ſĦ",
+          "area": 10333.454670289335,
+          "glyphs": [
+            "longs",
+            "hbar"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſħ",
+          "area": 10333.454670289335,
+          "glyphs": [
+            "longs",
+            "hbar"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞄĦ",
+          "area": 10333.454670289335,
+          "glyphs": [
+            "s.alt1",
+            "hbar"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "Ꞅħ",
+          "area": 10333.454670289335,
+          "glyphs": [
+            "s.alt1",
+            "hbar"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅĦ",
+          "area": 10333.454670289335,
+          "glyphs": [
+            "s.alt1",
+            "hbar"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅħ",
+          "area": 10333.454670289335,
+          "glyphs": [
+            "s.alt1",
+            "hbar"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſŁ",
+          "area": 9720.801623210058,
+          "glyphs": [
+            "longs",
+            "lslash"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſł",
+          "area": 9720.801623210058,
+          "glyphs": [
+            "longs",
+            "lslash"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞄŁ",
+          "area": 9720.801623210058,
+          "glyphs": [
+            "s.alt1",
+            "lslash"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "Ꞅł",
+          "area": 9720.801623210058,
+          "glyphs": [
+            "s.alt1",
+            "lslash"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅŁ",
+          "area": 9720.801623210058,
+          "glyphs": [
+            "s.alt1",
+            "lslash"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅł",
+          "area": 9720.801623210058,
+          "glyphs": [
+            "s.alt1",
+            "lslash"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſÞ",
+          "area": 8431.1196253948,
+          "glyphs": [
+            "longs",
+            "thorn"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſþ",
+          "area": 8431.1196253948,
+          "glyphs": [
+            "longs",
+            "thorn"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞄÞ",
+          "area": 8431.1196253948,
+          "glyphs": [
+            "s.alt1",
+            "thorn"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "Ꞅþ",
+          "area": 8431.1196253948,
+          "glyphs": [
+            "s.alt1",
+            "thorn"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅÞ",
+          "area": 8431.1196253948,
+          "glyphs": [
+            "s.alt1",
+            "thorn"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅþ",
+          "area": 8431.1196253948,
+          "glyphs": [
+            "s.alt1",
+            "thorn"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſÐ",
+          "area": 8065.674211196825,
+          "glyphs": [
+            "longs",
+            "eth"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſð",
+          "area": 8065.674211196825,
+          "glyphs": [
+            "longs",
+            "eth"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞄÐ",
+          "area": 8065.674211196825,
+          "glyphs": [
+            "s.alt1",
+            "eth"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "Ꞅð",
+          "area": 8065.674211196825,
+          "glyphs": [
+            "s.alt1",
+            "eth"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅÐ",
+          "area": 8065.674211196825,
+          "glyphs": [
+            "s.alt1",
+            "eth"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅð",
+          "area": 8065.674211196825,
+          "glyphs": [
+            "s.alt1",
+            "eth"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſĐ",
+          "area": 7974.819822791902,
+          "glyphs": [
+            "longs",
+            "dcroat"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ſđ",
+          "area": 7974.819822791902,
+          "glyphs": [
+            "longs",
+            "dcroat"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞄĐ",
+          "area": 7974.819822791902,
+          "glyphs": [
+            "s.alt1",
+            "dcroat"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "Ꞅđ",
+          "area": 7974.819822791902,
+          "glyphs": [
+            "s.alt1",
+            "dcroat"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅĐ",
+          "area": 7974.819822791902,
+          "glyphs": [
+            "s.alt1",
+            "dcroat"
+          ],
+          "advance": 266
+        },
+        {
+          "text": "ꞅđ",
+          "area": 7974.819822791902,
+          "glyphs": [
+            "s.alt1",
+            "dcroat"
+          ],
+          "advance": 266
+        }
+      ]
+    },
+    {
+      "font": "KilfaneStudy2-Regular.otf",
+      "characters": 275,
+      "pairs_tested": 75625,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "CarrickStudy1-Regular.otf",
+      "characters": 273,
+      "pairs_tested": 74529,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "TuamUncialStudy1-Regular.otf",
+      "characters": 271,
+      "pairs_tested": 73441,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "CeiliStudy1-Regular.otf",
+      "characters": 281,
+      "pairs_tested": 78961,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    }
+  ]
+}

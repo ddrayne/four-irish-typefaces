@@ -1,0 +1,45 @@
+{
+  "method": "HarfBuzz-shaped mapped Latin pairs; exact pathops intersections above four square font units; default kerning on.",
+  "fonts": [
+    {
+      "font": "TuamUncialStudy2-Regular.otf",
+      "characters": 271,
+      "pairs_tested": 73441,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "CeiliStudy2-Regular.otf",
+      "characters": 281,
+      "pairs_tested": 78961,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "KilfaneStudy2-Regular.otf",
+      "characters": 275,
+      "pairs_tested": 75625,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    },
+    {
+      "font": "CarrickStudy1-Regular.otf",
+      "characters": 273,
+      "pairs_tested": 74529,
+      "skipped_non_pair_shaping": 0,
+      "tolerance_square_font_units": 4,
+      "features": {},
+      "collisions": 0,
+      "worst": []
+    }
+  ]
+}

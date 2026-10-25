@@ -1,0 +1,1046 @@
+{
+  "space": [
+    "made",
+    "word space"
+  ],
+  "a": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "b": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source b: NIVAL Carrick-alphabet-specimen.jpg, region [253, 125, 377, 258]"
+  ],
+  "c": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "d": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source d: NIVAL Carrick-alphabet-specimen.jpg, region [466, 123, 579, 256]"
+  ],
+  "e": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "f": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "g": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "h": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source h: NIVAL Carrick-alphabet-specimen.jpg, region [844, 125, 962, 255]"
+  ],
+  "i": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source i: NIVAL Carrick-alphabet-specimen.jpg, region [963, 126, 1020, 259]"
+  ],
+  "j": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source j: NIVAL Carrick-alphabet-specimen.jpg, region [993, 127, 1083, 287]"
+  ],
+  "k": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source k: NIVAL Carrick-alphabet-specimen.jpg, region [1076, 125, 1204, 259]"
+  ],
+  "l": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "m": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source m: NIVAL Carrick-alphabet-specimen.jpg, region [223, 332, 389, 434]"
+  ],
+  "n": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "o": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "p": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source p: NIVAL Carrick-alphabet-specimen.jpg, region [614, 332, 734, 455]"
+  ],
+  "q": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source q: NIVAL Carrick-alphabet-specimen.jpg, region [737, 331, 838, 459]"
+  ],
+  "r": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "s": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "t": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "u": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "v": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source v: NIVAL Carrick-alphabet-specimen.jpg, region [280, 504, 383, 603]"
+  ],
+  "w": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "x": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "y": [
+    "flyer",
+    "traced from the 1978 flyer"
+  ],
+  "z": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "one": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source one: NIVAL Carrick-alphabet-specimen.jpg, region [173, 677, 226, 780]"
+  ],
+  "two": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source two: NIVAL Carrick-alphabet-specimen.jpg, region [237, 683, 320, 776]"
+  ],
+  "three": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source three: NIVAL Carrick-alphabet-specimen.jpg, region [328, 680, 416, 776]"
+  ],
+  "four": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source four: NIVAL Carrick-alphabet-specimen.jpg, region [415, 680, 505, 778]"
+  ],
+  "five": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source five: NIVAL Carrick-alphabet-specimen.jpg, region [503, 679, 589, 782]"
+  ],
+  "six": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source six: NIVAL Carrick-alphabet-specimen.jpg, region [592, 680, 693, 779]"
+  ],
+  "seven": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source seven: NIVAL Carrick-alphabet-specimen.jpg, region [694, 681, 775, 783]"
+  ],
+  "eight": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source eight: NIVAL Carrick-alphabet-specimen.jpg, region [775, 669, 872, 781]"
+  ],
+  "nine": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source nine: NIVAL Carrick-alphabet-specimen.jpg, region [876, 680, 971, 781]"
+  ],
+  "zero": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source zero: NIVAL Carrick-alphabet-specimen.jpg, region [973, 681, 1082, 778]"
+  ],
+  "ampersand": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source ampersand: NIVAL Carrick-alphabet-specimen.jpg, region [178, 848, 294, 959]"
+  ],
+  "question": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source question: NIVAL Carrick-alphabet-specimen.jpg, region [278, 847, 360, 960]"
+  ],
+  "exclam": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source exclam: NIVAL Carrick-alphabet-specimen.jpg, region [368, 848, 407, 960]"
+  ],
+  "sterling": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source sterling: NIVAL Carrick-alphabet-specimen.jpg, region [413, 844, 492, 954]"
+  ],
+  "dollar": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source dollar: NIVAL Carrick-alphabet-specimen.jpg, region [488, 827, 584, 971]"
+  ],
+  "parenleft": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source parenleft: NIVAL Carrick-alphabet-specimen.jpg, region [598, 839, 634, 966]"
+  ],
+  "parenright": [
+    "original-specimen",
+    "traced from the NIVAL specimen; base source parenright: NIVAL Carrick-alphabet-specimen.jpg, region [661, 838, 694, 966]"
+  ],
+  "period": [
+    "made",
+    "the dot of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "comma": [
+    "made",
+    "the comma of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quoteright": [
+    "made",
+    "the comma, raised; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quoteleft": [
+    "made",
+    "the comma, raised and turned; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotedblleft": [
+    "made",
+    "two quotes; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotedblright": [
+    "made",
+    "two quotes; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotesingle": [
+    "made",
+    "wedge drawn to match"
+  ],
+  "quotedbl": [
+    "made",
+    "two wedges"
+  ],
+  "colon": [
+    "made",
+    "two of the dots of the NIVAL specimen’s semicolon; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "semicolon": [
+    "rebuilt",
+    "the comma of the NIVAL specimen’s semicolon, with the colon’s upper dot; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "ellipsis": [
+    "made",
+    "three periods; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "hyphen": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "endash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "emdash": [
+    "made",
+    "drawn at the weight of the rules in the sheet’s accent set"
+  ],
+  "slash": [
+    "made",
+    "drawn to match"
+  ],
+  "uni204A": [
+    "made",
+    "the NIVAL specimen’s 7 at x-height, as in Gaelic type; base source seven: NIVAL Carrick-alphabet-specimen.jpg, region [694, 681, 775, 783]"
+  ],
+  "Euro": [
+    "made",
+    "the NIVAL specimen’s c with two bars; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "dotlessi": [
+    "made",
+    "the NIVAL specimen’s i without its dot; base source i: NIVAL Carrick-alphabet-specimen.jpg, region [963, 126, 1020, 259]"
+  ],
+  "dotlessj": [
+    "made",
+    "the NIVAL specimen’s j without its dot; base source j: NIVAL Carrick-alphabet-specimen.jpg, region [993, 127, 1083, 287]"
+  ],
+  "ae": [
+    "made",
+    "a+e"
+  ],
+  "oe": [
+    "made",
+    "o+e"
+  ],
+  "oslash": [
+    "made",
+    "o+stroke"
+  ],
+  "dcroat": [
+    "made",
+    "d+bar"
+  ],
+  "eth": [
+    "made",
+    "d+slanted bar"
+  ],
+  "hbar": [
+    "made",
+    "h+bar"
+  ],
+  "lslash": [
+    "made",
+    "l+slash"
+  ],
+  "tbar": [
+    "made",
+    "t+bar"
+  ],
+  "eng": [
+    "made",
+    "n+hook"
+  ],
+  "thorn": [
+    "made",
+    "p+ascender"
+  ],
+  "ij": [
+    "made",
+    "i+j"
+  ],
+  "ldot": [
+    "made",
+    "l+dot"
+  ],
+  "kgreenlandic": [
+    "made",
+    "k trimmed"
+  ],
+  "napostrophe": [
+    "made",
+    "'+n"
+  ],
+  "longs": [
+    "made",
+    "f without crossbar"
+  ],
+  "germandbls": [
+    "made",
+    "long s + s ligature"
+  ],
+  "agrave": [
+    "composite",
+    "a + grave; modern construction from named NIVAL N513 acute; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "aacute": [
+    "composite",
+    "a + acute; directly traced NIVAL N513 acute in pieces.json; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "acircumflex": [
+    "composite",
+    "a + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "atilde": [
+    "composite",
+    "a + tilde; directly traced NIVAL N513 tilde in pieces.json; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "adieresis": [
+    "composite",
+    "a + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "aring": [
+    "composite",
+    "a + ring; directly traced NIVAL N513 ring in pieces.json; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "ccedilla": [
+    "composite",
+    "c + cedilla; modern drawn mark, stroke weight calibrated from NIVAL N513 ring; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "egrave": [
+    "composite",
+    "e + grave; modern construction from named NIVAL N513 acute"
+  ],
+  "eacute": [
+    "composite",
+    "e + acute; directly traced NIVAL N513 acute in pieces.json"
+  ],
+  "ecircumflex": [
+    "composite",
+    "e + circumflex; directly traced NIVAL N513 circumflex in pieces.json"
+  ],
+  "edieresis": [
+    "composite",
+    "e + diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+  ],
+  "igrave": [
+    "composite",
+    "dotlessi + grave; modern construction from named NIVAL N513 acute"
+  ],
+  "iacute": [
+    "composite",
+    "dotlessi + acute; directly traced NIVAL N513 acute in pieces.json"
+  ],
+  "icircumflex": [
+    "composite",
+    "dotlessi + circumflex; directly traced NIVAL N513 circumflex in pieces.json"
+  ],
+  "idieresis": [
+    "composite",
+    "dotlessi + diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+  ],
+  "ntilde": [
+    "composite",
+    "n + tilde; directly traced NIVAL N513 tilde in pieces.json; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "ograve": [
+    "composite",
+    "o + grave; modern construction from named NIVAL N513 acute; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "oacute": [
+    "composite",
+    "o + acute; directly traced NIVAL N513 acute in pieces.json; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "ocircumflex": [
+    "composite",
+    "o + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "otilde": [
+    "composite",
+    "o + tilde; directly traced NIVAL N513 tilde in pieces.json; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "odieresis": [
+    "composite",
+    "o + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "ugrave": [
+    "composite",
+    "u + grave; modern construction from named NIVAL N513 acute; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uacute": [
+    "composite",
+    "u + acute; directly traced NIVAL N513 acute in pieces.json; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "ucircumflex": [
+    "composite",
+    "u + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "udieresis": [
+    "composite",
+    "u + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "yacute": [
+    "composite",
+    "y + acute; directly traced NIVAL N513 acute in pieces.json"
+  ],
+  "ydieresis": [
+    "composite",
+    "y + diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+  ],
+  "amacron": [
+    "composite",
+    "a + macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "abreve": [
+    "composite",
+    "a + breve; modern construction from named NIVAL N513 ring; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "aogonek": [
+    "composite",
+    "a + ogonek; modern drawn mark, stroke weight calibrated from NIVAL N513 ring; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+  ],
+  "cacute": [
+    "composite",
+    "c + acute; directly traced NIVAL N513 acute in pieces.json; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "ccircumflex": [
+    "composite",
+    "c + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "cdotaccent": [
+    "composite",
+    "c + dot; directly traced NIVAL N513 dot in pieces.json; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "ccaron": [
+    "composite",
+    "c + caron; modern construction from named NIVAL N513 circumflex; base source c: NIVAL Carrick-alphabet-specimen.jpg, region [381, 161, 471, 254]"
+  ],
+  "dcaron": [
+    "composite",
+    "d + apostrophe caron; modern transformation of NIVAL N513 semicolon punctuation; base source d: NIVAL Carrick-alphabet-specimen.jpg, region [466, 123, 579, 256]"
+  ],
+  "emacron": [
+    "composite",
+    "e + macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules"
+  ],
+  "ebreve": [
+    "composite",
+    "e + breve; modern construction from named NIVAL N513 ring"
+  ],
+  "edotaccent": [
+    "composite",
+    "e + dot; directly traced NIVAL N513 dot in pieces.json"
+  ],
+  "eogonek": [
+    "composite",
+    "e + ogonek; modern drawn mark, stroke weight calibrated from NIVAL N513 ring"
+  ],
+  "ecaron": [
+    "composite",
+    "e + caron; modern construction from named NIVAL N513 circumflex"
+  ],
+  "gcircumflex": [
+    "composite",
+    "g + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "gbreve": [
+    "composite",
+    "g + breve; modern construction from named NIVAL N513 ring; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "gdotaccent": [
+    "composite",
+    "g + dot; directly traced NIVAL N513 dot in pieces.json; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "uni0123": [
+    "composite",
+    "g + turned comma; modern transformation of NIVAL N513 semicolon punctuation; base source g: NIVAL Carrick-alphabet-specimen.jpg, region [745, 160, 851, 283]"
+  ],
+  "hcircumflex": [
+    "composite",
+    "h + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source h: NIVAL Carrick-alphabet-specimen.jpg, region [844, 125, 962, 255]"
+  ],
+  "itilde": [
+    "composite",
+    "dotlessi + tilde; directly traced NIVAL N513 tilde in pieces.json"
+  ],
+  "imacron": [
+    "composite",
+    "dotlessi + macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules"
+  ],
+  "ibreve": [
+    "composite",
+    "dotlessi + breve; modern construction from named NIVAL N513 ring"
+  ],
+  "iogonek": [
+    "composite",
+    "i + ogonek; modern drawn mark, stroke weight calibrated from NIVAL N513 ring; base source i: NIVAL Carrick-alphabet-specimen.jpg, region [963, 126, 1020, 259]"
+  ],
+  "jcircumflex": [
+    "composite",
+    "dotlessj + circumflex; directly traced NIVAL N513 circumflex in pieces.json"
+  ],
+  "uni0137": [
+    "composite",
+    "k + comma below; modern transformation of NIVAL N513 semicolon punctuation; base source k: NIVAL Carrick-alphabet-specimen.jpg, region [1076, 125, 1204, 259]"
+  ],
+  "lacute": [
+    "composite",
+    "l + acute; directly traced NIVAL N513 acute in pieces.json; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "uni013C": [
+    "composite",
+    "l + comma below; modern transformation of NIVAL N513 semicolon punctuation; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "lcaron": [
+    "composite",
+    "l + apostrophe caron; modern transformation of NIVAL N513 semicolon punctuation; base source l: NIVAL Carrick-alphabet-specimen.jpg, region [154, 295, 222, 429]"
+  ],
+  "nacute": [
+    "composite",
+    "n + acute; directly traced NIVAL N513 acute in pieces.json; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "uni0146": [
+    "composite",
+    "n + comma below; modern transformation of NIVAL N513 semicolon punctuation; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "ncaron": [
+    "composite",
+    "n + caron; modern construction from named NIVAL N513 circumflex; base source n: NIVAL Carrick-alphabet-specimen.jpg, region [392, 333, 501, 430]"
+  ],
+  "omacron": [
+    "composite",
+    "o + macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "obreve": [
+    "composite",
+    "o + breve; modern construction from named NIVAL N513 ring; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "ohungarumlaut": [
+    "composite",
+    "o + double acute; modern construction from named NIVAL N513 acute; base source o: NIVAL Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+  ],
+  "racute": [
+    "composite",
+    "r + acute; directly traced NIVAL N513 acute in pieces.json; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "uni0157": [
+    "composite",
+    "r + comma below; modern transformation of NIVAL N513 semicolon punctuation; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "rcaron": [
+    "composite",
+    "r + caron; modern construction from named NIVAL N513 circumflex; base source r: NIVAL Carrick-alphabet-specimen.jpg, region [842, 331, 967, 432]"
+  ],
+  "sacute": [
+    "composite",
+    "s + acute; directly traced NIVAL N513 acute in pieces.json; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "scircumflex": [
+    "composite",
+    "s + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "scedilla": [
+    "composite",
+    "s + cedilla; modern drawn mark, stroke weight calibrated from NIVAL N513 ring; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "scaron": [
+    "composite",
+    "s + caron; modern construction from named NIVAL N513 circumflex; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "uni0163": [
+    "composite",
+    "t + cedilla; modern drawn mark, stroke weight calibrated from NIVAL N513 ring; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "tcaron": [
+    "composite",
+    "t + caron; modern construction from named NIVAL N513 circumflex; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "utilde": [
+    "composite",
+    "u + tilde; directly traced NIVAL N513 tilde in pieces.json; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "umacron": [
+    "composite",
+    "u + macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "ubreve": [
+    "composite",
+    "u + breve; modern construction from named NIVAL N513 ring; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uring": [
+    "composite",
+    "u + ring; directly traced NIVAL N513 ring in pieces.json; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uhungarumlaut": [
+    "composite",
+    "u + double acute; modern construction from named NIVAL N513 acute; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "uogonek": [
+    "composite",
+    "u + ogonek; modern drawn mark, stroke weight calibrated from NIVAL N513 ring; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+  ],
+  "wcircumflex": [
+    "composite",
+    "w + circumflex; directly traced NIVAL N513 circumflex in pieces.json; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "ycircumflex": [
+    "composite",
+    "y + circumflex; directly traced NIVAL N513 circumflex in pieces.json"
+  ],
+  "zacute": [
+    "composite",
+    "z + acute; directly traced NIVAL N513 acute in pieces.json; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "zdotaccent": [
+    "composite",
+    "z + dot; directly traced NIVAL N513 dot in pieces.json; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "zcaron": [
+    "composite",
+    "z + caron; modern construction from named NIVAL N513 circumflex; base source z: NIVAL Carrick-alphabet-specimen.jpg, region [748, 505, 839, 601]"
+  ],
+  "uni0219": [
+    "composite",
+    "s + comma below; modern transformation of NIVAL N513 semicolon punctuation; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "uni021B": [
+    "composite",
+    "t + comma below; modern transformation of NIVAL N513 semicolon punctuation; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "uni1E03": [
+    "composite",
+    "b + dot; directly traced NIVAL N513 dot in pieces.json; base source b: NIVAL Carrick-alphabet-specimen.jpg, region [253, 125, 377, 258]"
+  ],
+  "uni1E0B": [
+    "composite",
+    "d + dot; directly traced NIVAL N513 dot in pieces.json; base source d: NIVAL Carrick-alphabet-specimen.jpg, region [466, 123, 579, 256]"
+  ],
+  "uni1E1F": [
+    "composite",
+    "f + dot; directly traced NIVAL N513 dot in pieces.json"
+  ],
+  "uni1E41": [
+    "composite",
+    "m + dot; directly traced NIVAL N513 dot in pieces.json; base source m: NIVAL Carrick-alphabet-specimen.jpg, region [223, 332, 389, 434]"
+  ],
+  "uni1E57": [
+    "composite",
+    "p + dot; directly traced NIVAL N513 dot in pieces.json; base source p: NIVAL Carrick-alphabet-specimen.jpg, region [614, 332, 734, 455]"
+  ],
+  "uni1E61": [
+    "composite",
+    "s + dot; directly traced NIVAL N513 dot in pieces.json; base source s: NIVAL Carrick-alphabet-specimen.jpg, region [962, 329, 1061, 428]"
+  ],
+  "uni1E6B": [
+    "composite",
+    "t + dot; directly traced NIVAL N513 dot in pieces.json; base source t: NIVAL Carrick-alphabet-specimen.jpg, region [1055, 321, 1181, 432]"
+  ],
+  "wgrave": [
+    "composite",
+    "w + grave; modern construction from named NIVAL N513 acute; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "wacute": [
+    "composite",
+    "w + acute; directly traced NIVAL N513 acute in pieces.json; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "wdieresis": [
+    "composite",
+    "w + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+  ],
+  "ygrave": [
+    "composite",
+    "y + grave; modern construction from named NIVAL N513 acute"
+  ],
+  "plus": [
+    "made",
+    "bars"
+  ],
+  "minus": [
+    "made",
+    "bar"
+  ],
+  "equal": [
+    "made",
+    "bars"
+  ],
+  "multiply": [
+    "made",
+    "rotated plus"
+  ],
+  "divide": [
+    "made",
+    "bar + dots"
+  ],
+  "plusminus": [
+    "made",
+    "plus over bar"
+  ],
+  "less": [
+    "made",
+    "chevron"
+  ],
+  "greater": [
+    "made",
+    "chevron"
+  ],
+  "lessequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "greaterequal": [
+    "made",
+    "chevron + bar"
+  ],
+  "notequal": [
+    "made",
+    "equal + slash"
+  ],
+  "approxequal": [
+    "made",
+    "two tildes"
+  ],
+  "logicalnot": [
+    "made",
+    "bar + drop"
+  ],
+  "numbersign": [
+    "made",
+    "sheared grid"
+  ],
+  "percent": [
+    "made",
+    "scaled zeros + slash"
+  ],
+  "perthousand": [
+    "made",
+    "percent + zero"
+  ],
+  "asterisk": [
+    "made",
+    "five arms"
+  ],
+  "at": [
+    "made",
+    "a in a ring"
+  ],
+  "bracketleft": [
+    "made",
+    "stem + arms"
+  ],
+  "bracketright": [
+    "made",
+    "mirror"
+  ],
+  "braceleft": [
+    "made",
+    "stroked curve"
+  ],
+  "braceright": [
+    "made",
+    "mirror"
+  ],
+  "bar": [
+    "made",
+    "rule"
+  ],
+  "brokenbar": [
+    "made",
+    "split rule"
+  ],
+  "backslash": [
+    "made",
+    "mirrored slash"
+  ],
+  "underscore": [
+    "made",
+    "rule"
+  ],
+  "asciicircum": [
+    "made",
+    "circumflex, raised"
+  ],
+  "asciitilde": [
+    "made",
+    "tilde at math axis"
+  ],
+  "exclamdown": [
+    "made",
+    "rotated !"
+  ],
+  "questiondown": [
+    "made",
+    "rotated ?"
+  ],
+  "cent": [
+    "made",
+    "c + bar"
+  ],
+  "yen": [
+    "made",
+    "Y + bars"
+  ],
+  "currency": [
+    "made",
+    "ring + spurs"
+  ],
+  "section": [
+    "made",
+    "two interlaced s"
+  ],
+  "paragraph": [
+    "made",
+    "bowl + two stems"
+  ],
+  "copyright": [
+    "made",
+    "ring + c"
+  ],
+  "registered": [
+    "made",
+    "ring + r"
+  ],
+  "trademark": [
+    "made",
+    "small T + M"
+  ],
+  "degree": [
+    "made",
+    "the sheet's ring; named source pieces: NIVAL N513 ring (direct)"
+  ],
+  "ordfeminine": [
+    "made",
+    "small a + rule"
+  ],
+  "ordmasculine": [
+    "made",
+    "small o + rule"
+  ],
+  "onesuperior": [
+    "made",
+    "small figure"
+  ],
+  "twosuperior": [
+    "made",
+    "small figure"
+  ],
+  "threesuperior": [
+    "made",
+    "small figure"
+  ],
+  "fraction": [
+    "made",
+    "steep slash"
+  ],
+  "onequarter": [
+    "made",
+    "fraction"
+  ],
+  "onehalf": [
+    "made",
+    "fraction"
+  ],
+  "threequarters": [
+    "made",
+    "fraction"
+  ],
+  "mu": [
+    "made",
+    "u + descender"
+  ],
+  "periodcentered": [
+    "made",
+    "raised period"
+  ],
+  "bullet": [
+    "made",
+    "disc"
+  ],
+  "dagger": [
+    "made",
+    "stem + bar"
+  ],
+  "daggerdbl": [
+    "made",
+    "stem + two bars"
+  ],
+  "quotesinglbase": [
+    "made",
+    "comma; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "quotedblbase": [
+    "made",
+    "two commas; base source semicolon: NIVAL Carrick-alphabet-specimen.jpg, region [633, 867, 663, 942]"
+  ],
+  "guilsinglright": [
+    "made",
+    "chevron from the sheet; named source pieces: NIVAL N513 guil.r1 (direct)"
+  ],
+  "guilsinglleft": [
+    "made",
+    "chevron from the sheet; named source pieces: NIVAL N513 guil.l1 (direct)"
+  ],
+  "guillemotright": [
+    "made",
+    "chevrons from the sheet; named source pieces: NIVAL N513 guil.r1 (direct) + guil.r2 (derived)"
+  ],
+  "guillemotleft": [
+    "made",
+    "chevrons from the sheet; named source pieces: NIVAL N513 guil.l1 (direct) + guil.l2 (derived)"
+  ],
+  "minute": [
+    "made",
+    "slanted wedge"
+  ],
+  "second": [
+    "made",
+    "two wedges"
+  ],
+  "gravecomb": [
+    "mark",
+    "grave; modern construction from named NIVAL N513 acute"
+  ],
+  "acutecomb": [
+    "mark",
+    "acute; directly traced NIVAL N513 acute in pieces.json"
+  ],
+  "uni0302": [
+    "mark",
+    "circumflex; directly traced NIVAL N513 circumflex in pieces.json"
+  ],
+  "tildecomb": [
+    "mark",
+    "tilde; directly traced NIVAL N513 tilde in pieces.json"
+  ],
+  "uni0304": [
+    "mark",
+    "macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules"
+  ],
+  "uni0306": [
+    "mark",
+    "breve; modern construction from named NIVAL N513 ring"
+  ],
+  "uni0307": [
+    "mark",
+    "dot; directly traced NIVAL N513 dot in pieces.json"
+  ],
+  "uni0308": [
+    "mark",
+    "diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+  ],
+  "uni030A": [
+    "mark",
+    "ring; directly traced NIVAL N513 ring in pieces.json"
+  ],
+  "uni030B": [
+    "mark",
+    "double acute; modern construction from named NIVAL N513 acute"
+  ],
+  "uni030C": [
+    "mark",
+    "caron; modern construction from named NIVAL N513 circumflex"
+  ],
+  "uni0312": [
+    "mark",
+    "turned comma; modern transformation of NIVAL N513 semicolon punctuation"
+  ],
+  "uni0326": [
+    "mark",
+    "comma below; modern transformation of NIVAL N513 semicolon punctuation"
+  ],
+  "uni0327": [
+    "mark",
+    "cedilla; modern drawn mark, stroke weight calibrated from NIVAL N513 ring"
+  ],
+  "uni0328": [
+    "mark",
+    "ogonek; modern drawn mark, stroke weight calibrated from NIVAL N513 ring"
+  ],
+  "grave": [
+    "made",
+    "spacing grave; modern construction from named NIVAL N513 acute"
+  ],
+  "dieresis": [
+    "made",
+    "spacing diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+  ],
+  "macron": [
+    "made",
+    "spacing macron drawn as a modern straight rule at the mean weight of the two NIVAL N513 rules"
+  ],
+  "acute": [
+    "made",
+    "spacing acute; directly traced NIVAL N513 acute in pieces.json"
+  ],
+  "cedilla": [
+    "made",
+    "spacing cedilla; modern drawn mark, stroke weight calibrated from NIVAL N513 ring"
+  ],
+  "circumflex": [
+    "made",
+    "spacing circumflex; directly traced NIVAL N513 circumflex in pieces.json"
+  ],
+  "caron": [
+    "made",
+    "spacing caron; modern construction from named NIVAL N513 circumflex"
+  ],
+  "breve": [
+    "made",
+    "spacing breve; modern construction from named NIVAL N513 ring"
+  ],
+  "dotaccent": [
+    "made",
+    "spacing dot; directly traced NIVAL N513 dot in pieces.json"
+  ],
+  "ring": [
+    "made",
+    "spacing ring; directly traced NIVAL N513 ring in pieces.json"
+  ],
+  "ogonek": [
+    "made",
+    "spacing ogonek; modern drawn mark, stroke weight calibrated from NIVAL N513 ring"
+  ],
+  "tilde": [
+    "made",
+    "spacing tilde; directly traced NIVAL N513 tilde in pieces.json"
+  ],
+  "hungarumlaut": [
+    "made",
+    "spacing double acute; modern construction from named NIVAL N513 acute"
+  ]
+}

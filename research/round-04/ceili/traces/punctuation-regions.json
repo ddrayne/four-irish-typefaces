@@ -1,0 +1,166 @@
+{
+  "competition-brochure-2.jpg": [
+    {
+      "name": "period",
+      "row": 0,
+      "labels": [
+        17
+      ],
+      "row_box": [
+        755,
+        665,
+        1430,
+        770
+      ],
+      "threshold": 130,
+      "box": [
+        1206,
+        742,
+        1218,
+        756
+      ]
+    },
+    {
+      "name": "comma",
+      "row": 1,
+      "labels": [
+        18
+      ],
+      "row_box": [
+        755,
+        665,
+        1430,
+        770
+      ],
+      "threshold": 130,
+      "box": [
+        1222,
+        742,
+        1234,
+        761
+      ]
+    },
+    {
+      "name": "quoteleft",
+      "row": 2,
+      "labels": [
+        6
+      ],
+      "row_box": [
+        755,
+        665,
+        1430,
+        770
+      ],
+      "threshold": 130,
+      "box": [
+        1323,
+        685,
+        1337,
+        704
+      ]
+    },
+    {
+      "name": "quoteright",
+      "row": 3,
+      "labels": [
+        7
+      ],
+      "row_box": [
+        755,
+        665,
+        1430,
+        770
+      ],
+      "threshold": 130,
+      "box": [
+        1340,
+        685,
+        1354,
+        703
+      ]
+    }
+  ],
+  "competition-advert-1.jpg": [
+    {
+      "name": "period",
+      "row": 0,
+      "labels": [
+        26
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "threshold": 130,
+      "box": [
+        1958,
+        1750,
+        1973,
+        1764
+      ]
+    },
+    {
+      "name": "comma",
+      "row": 1,
+      "labels": [
+        25
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "threshold": 130,
+      "box": [
+        1981,
+        1720,
+        1993,
+        1733
+      ]
+    },
+    {
+      "name": "quoteleft",
+      "row": 2,
+      "labels": [
+        6
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "threshold": 130,
+      "box": [
+        1959,
+        1664,
+        1974,
+        1682
+      ]
+    },
+    {
+      "name": "quoteright",
+      "row": 3,
+      "labels": [
+        7
+      ],
+      "row_box": [
+        1130,
+        1645,
+        2070,
+        1795
+      ],
+      "threshold": 130,
+      "box": [
+        1979,
+        1664,
+        1993,
+        1680
+      ]
+    }
+  ]
+}

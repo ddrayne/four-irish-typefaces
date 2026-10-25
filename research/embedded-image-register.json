@@ -1,0 +1,167 @@
+[
+  {
+    "file": "Bolger-pdf-page-157-Im136.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 157,
+    "width": 1561,
+    "height": 1217,
+    "bytes": 477281,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "100af8e2f9f785c5ac255d953476c12691e029c6229eb8ef60d3e66f55db034f",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-158-Im140.png",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 158,
+    "width": 464,
+    "height": 661,
+    "bytes": 434170,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "4c37ca9a1145fdacdc773e1b129afb4a1ff55becc93024f34e61fba820a83ef9",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-158-Im138.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 158,
+    "width": 913,
+    "height": 1217,
+    "bytes": 246366,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "b47e415eaca308cb0df6dbd2c1a3c2b5b4a20e46128c6c6b02cb2e7242bea18e",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-159-Im144.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 159,
+    "width": 1726,
+    "height": 1268,
+    "bytes": 700493,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "391f739619fdb35e35364593028f11a6ca02fcb4720d287549d441477b2430f6",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-160-Im147.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 160,
+    "width": 1630,
+    "height": 1181,
+    "bytes": 459255,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "0c045ece23b90c4b763bcbd1b02d77ce9a99654021f8d51fb4a6e9fa85d14c63",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-161-Im150.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 161,
+    "width": 1632,
+    "height": 1224,
+    "bytes": 298811,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "0023bc9edc1f7d074a8cf718dc49073e0187e2f22e85bfcc3b8c94980178305d",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-162-Im153.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 162,
+    "width": 1564,
+    "height": 1173,
+    "bytes": 380988,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "5388975a2e5c54712a488410be1c31dd2bc0d1a63b61b60f12f6c46d11cf53fa",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-163-Im156.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 163,
+    "width": 1837,
+    "height": 1377,
+    "bytes": 516483,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "71e17da499836cfc8479119335b449b720bf4e0146d70b844f96a0e1f0661828",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Bolger-pdf-page-164-Im158.jpg",
+    "source_pdf": "../sources/Bolger-2017-volume-2-illustrations.pdf",
+    "pdf_page": 164,
+    "width": 590,
+    "height": 900,
+    "bytes": 158231,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "636437ceda406542d494ae5a252104e035f261be6e9f279115e56c1a8f5534f3",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Varrilly-pdf-page-94-Im0.jp2",
+    "source_pdf": "../sources/Varrilly-1982-bilingualism-and-graphic-design.pdf",
+    "pdf_page": 94,
+    "width": 1059,
+    "height": 1498,
+    "bytes": 661957,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "46b7d03e12d5ea4eb9cc6a10ec03de9eeeb2978954b6476ad3eae7dd5070d024",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Varrilly-pdf-page-94-Im1.jp2",
+    "source_pdf": "../sources/Varrilly-1982-bilingualism-and-graphic-design.pdf",
+    "pdf_page": 94,
+    "width": 530,
+    "height": 749,
+    "bytes": 68822,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "1d61e94b93f2211a39402a189089e0b09579513806ddef373a501202492ec67b",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Varrilly-pdf-page-96-Im0.jp2",
+    "source_pdf": "../sources/Varrilly-1982-bilingualism-and-graphic-design.pdf",
+    "pdf_page": 96,
+    "width": 1022,
+    "height": 1481,
+    "bytes": 645866,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "228ea3530932ce56969d4eee02644d2756cfe59a9c57febfec249dc1d80ed568",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Varrilly-pdf-page-96-Im1.jp2",
+    "source_pdf": "../sources/Varrilly-1982-bilingualism-and-graphic-design.pdf",
+    "pdf_page": 96,
+    "width": 511,
+    "height": 741,
+    "bytes": 122695,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "aa96e359cd61bca0bb1f4399abdcea959b6c49f3ae478b9b76423c3a5fbc294c",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Varrilly-pdf-page-98-Im0.jp2",
+    "source_pdf": "../sources/Varrilly-1982-bilingualism-and-graphic-design.pdf",
+    "pdf_page": 98,
+    "width": 1005,
+    "height": 1473,
+    "bytes": 647073,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "c8ad4d6d72a1c5e7f50bf1c2f3be6c4ee0fb3d05ee6002c9c33286b96601f47b",
+    "public_redistribution": "not established; image not mirrored"
+  },
+  {
+    "file": "Varrilly-pdf-page-98-Im1.jp2",
+    "source_pdf": "../sources/Varrilly-1982-bilingualism-and-graphic-design.pdf",
+    "pdf_page": 98,
+    "width": 502,
+    "height": 736,
+    "bytes": 104894,
+    "note": "Embedded raster extracted without resizing; not a new scan.",
+    "sha256": "97520c63d9369d80faf2e515b083b66c73e3148f73debfd5a0f82d4feb00e84c",
+    "public_redistribution": "not established; image not mirrored"
+  }
+]

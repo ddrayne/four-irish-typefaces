@@ -8,8 +8,15 @@ sold as Letraset dry-transfer sheets.
 
 These fonts were digitised from a scan of the competition's "Four Irish Typefaces"
 flyer, then completed to roughly 400 characters each so they work on the web and in
-any app. As far as research could establish, no digital version of Céilí, Carrick or
-Kilfane existed before this.
+any app. Further original-source research, a source register and the separately
+named candidates are in [research/](research/README.md). The latest
+[round 5](research/round-05/README.md) recovers Carrick's original mark components,
+following [round 4](research/round-04/README.md) for Céilí's original punctuation.
+[Round 3](research/round-03/README.md) reconstructs Tuam and Céilí from larger
+original reproductions, following [round 2](research/round-02/README.md), which
+improved Kilfane's marks, Carrick's outlines and pair spacing across all four faces.
+Agents continuing this work should start with [the handoff](research/HANDOFF.md).
+Modern revival fonts are excluded as design references for this research.
 
 The flyer shows each face in a single style. From version 2.000 each face is also a family:
 **Céilí** and **Kilfane** have Regular, Italic, Bold and Bold Italic, and **Carrick** and
@@ -102,6 +109,7 @@ with style pickers, stylistic-set toggles and character grids.
 | `scripts/` | The build: tracing, the styles, spacing, kerning, features, proofs, the test page |
 | `site/` | Sources of the test page at irish-typefaces.apps.drayne.xyz |
 | `tests/` | Checks every release must pass (`make test`) |
+| `research/` | Original-source catalogue, evidence metadata, agent handoff and separately named research candidates |
 | `OFL.txt`, `FONTLOG.txt` | The licence (SIL Open Font License 1.1) and the release history |
 
 | Family | Styles | Code points | Glyphs | WOFF2 per style | Features |
@@ -157,8 +165,8 @@ Award wording follows the [original competition brochure](https://nival.contentd
   the school primer *An Príméar*. His archive, including the original Kilfane and
   Carrick drawings, went to the National Irish Visual Arts Library (NIVAL) in 2025.
 - **Hermann Hecht.** Born in Bingen, he came to England in 1939. He was an assistant to
-  Hans Schleger and later taught at Croydon College of Art. His papers, with Ann
-  Hecht's, are at the V&A Archive of Art and Design.
+  Hans Schleger and later taught at Croydon College of Art. Custody of his Céilí
+  drawings remains unverified; see the [research leads](research/README.md).
 
 ### The competition and the sheets
 
@@ -177,10 +185,10 @@ Award wording follows the [original competition brochure](https://nival.contentd
 
 - **Dates.** Some sources give 1973 or 1974 dates for the sheets, which is unresolved.
   Those dates may be copyright boilerplate.
-- **Existing digitisation.** The only earlier one is Tuam Uncial, revived commercially
-  as **Jarlath** by Signal Type Foundry: Max Phillips with the Hayes family, 2020–2025,
-  four styles. It is a refined interpretation, not a facsimile, so license it for
-  professional Tuam work.
+- **Existing digitisation.** Earlier projects include Tuam Uncial's **Jarlath** revival
+  by Signal Type Foundry and the Céilí-based **Caolchló GC** (2025). They are recorded
+  for historical context in the [source register](research/source-register.json),
+  and are not design references for the original-source reconstruction.
 
 > **Sources and caveat.** This environment could run web searches but could not open
 > pages or download images (network policy). The facts above come from search-result

@@ -1,0 +1,142 @@
+[
+  {
+    "path": "carrick/audit-metrics.json",
+    "bytes": 5827,
+    "sha256": "92b78d103f4c85b4615f03199f5693309e9c994568fbd7b11377f3c64f6e2640"
+  },
+  {
+    "path": "carrick/changed-glyphs.json",
+    "bytes": 41161,
+    "sha256": "8b98586926f1177371635595a92e024583ece5c4c99a50448d021419febc49a8"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy2-Regular.otf",
+    "bytes": 62004,
+    "sha256": "c165c70e180db7939c1146d49f3eaa2dddaf2b82ea02d4a210e244d167870810"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy2-Regular.provenance.json",
+    "bytes": 32675,
+    "sha256": "d473797c3923643ff12478fdfd4e06f9f83ba77038b1d3038da92797c1356ea9"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy2-Regular.ttf",
+    "bytes": 99916,
+    "sha256": "7aee5487d716abfc542ad5a80982a9ad189e1ea5ec65180540b0b36c7d289e8f"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy2-Regular.woff",
+    "bytes": 44336,
+    "sha256": "0de268b9061088fb89487b8a84febf9ea073be3bf828e29916c11b74ecc95cd3"
+  },
+  {
+    "path": "carrick/fonts/CarrickStudy2-Regular.woff2",
+    "bytes": 34524,
+    "sha256": "b451384b403421fdc198228c274d562c579ea662735d671d4279ae136fc0bcb4"
+  },
+  {
+    "path": "carrick/fonts/spacing-adjustments.json",
+    "bytes": 126574,
+    "sha256": "0f6785ff209f69f58ccd16d86901fc806fecea2ba4cf791e204bbce7cc7cc5f5"
+  },
+  {
+    "path": "carrick/mark-pair-audit.json",
+    "bytes": 2110,
+    "sha256": "e8b30c2d52fcdea82c62f6ad7b8f838fd055783699a5d1fe33f8497aa7ab8b4d"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-01.png",
+    "bytes": 49873,
+    "sha256": "be683ec6d5063011f88f9cae1ba34f9123f3d809afa9f0b516aadbfadc662447"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-02.png",
+    "bytes": 49020,
+    "sha256": "4fbfb712feef7fe2549fb52699aeb952ac9548b1f1d5eef30bddba1a1d3250d1"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-03.png",
+    "bytes": 49961,
+    "sha256": "dab4e7eb581e518b46debc90776e4e6169933f1cd55dfc610fe239cc89843aeb"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-04.png",
+    "bytes": 48642,
+    "sha256": "e866c550a2f9e1f5896e2a2b0923faebcb43d8a54b9f850f953170559ce753ba"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-05.png",
+    "bytes": 48612,
+    "sha256": "d363bba193a80b197a5e1bf85ce4adaccab014dc1710238c2fbf87a85bd826fe"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-06.png",
+    "bytes": 51491,
+    "sha256": "a20022651d1aa55a44939eca35618506cc08a994ee7d7621a56f60e3b3844732"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-07.png",
+    "bytes": 47796,
+    "sha256": "58194662527b10cc87a83a8a40f2da94c6907d497425bdb1b25d5eba60a5beea"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-08.png",
+    "bytes": 50985,
+    "sha256": "bc63330ebd09058b61adebc25e64715caffe3ce42d61207f739b072e4480aaf8"
+  },
+  {
+    "path": "carrick/proofs/changed-glyphs-09.png",
+    "bytes": 17264,
+    "sha256": "1d17b81f4fc3df6c25157a2c13a7d479bd3ff4aa4d3eb69ce49390646e264a79"
+  },
+  {
+    "path": "carrick/proofs/marks-proof.png",
+    "bytes": 81768,
+    "sha256": "fc1403fa2af7b20c20a60c8a584a834d1ebd54735d83de8ff997b8d158212e38"
+  },
+  {
+    "path": "carrick/traces/carrick.json",
+    "bytes": 488793,
+    "sha256": "fa6311876754c65b3dd22e9a3c46e76cfdb60517302f9c43d8fb30c8d37cc6bf"
+  },
+  {
+    "path": "carrick/traces/evidence.json",
+    "bytes": 21912,
+    "sha256": "759eb2ba789105b2ffde6de0bfc9d56291c055bf7ae9c912022f48884bf00fec"
+  },
+  {
+    "path": "carrick/traces/mark-evidence.json",
+    "bytes": 846,
+    "sha256": "20326a04c7f2785496d3e34f0cc8ab6ad860ec7b0a63ab3610ff38542a1ed85c"
+  },
+  {
+    "path": "carrick/traces/mark-regions.json",
+    "bytes": 4234,
+    "sha256": "c14aef8dd6129619f3591cf589857bdd11f5abaaa3469d08facb804d3940cc69"
+  },
+  {
+    "path": "carrick/traces/pieces.json",
+    "bytes": 60731,
+    "sha256": "9a656bcb00ea98c2dd2043153342abafe4e1ed4cbc73bb5ded20990cd290e498"
+  },
+  {
+    "path": "carrick/traces/source-regions.json",
+    "bytes": 21231,
+    "sha256": "7ba50fca9e3629ce8508d8d02cd1325b72dfb20b9b0e849393e827b2bc379408"
+  },
+  {
+    "path": "OFL.txt",
+    "bytes": 4498,
+    "sha256": "f8501e06814b94626f6092d7c843b646e723cee74b1c7583cc959ac6873a2ef8"
+  },
+  {
+    "path": "pair-audit.json",
+    "bytes": 1211,
+    "sha256": "29392a7df2dec215010f5f76a7363106e45253d4a902934fb6b6cbea61c4aace"
+  },
+  {
+    "path": "README.md",
+    "bytes": 6667,
+    "sha256": "839cfded1557a5caac0fe42cf0a9a957869c453dae79881a4602eac0a4b134fa"
+  }
+]

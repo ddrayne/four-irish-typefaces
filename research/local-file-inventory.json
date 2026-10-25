@@ -1,0 +1,425 @@
+{
+  "note": "Inventory of the local research pack; these external media files are not committed. Hashes identify the exact examined bytes.",
+  "files": [
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-157-Im136.jpg",
+      "bytes": 477281,
+      "sha256": "100af8e2f9f785c5ac255d953476c12691e029c6229eb8ef60d3e66f55db034f",
+      "dimensions": [
+        1561,
+        1217
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-158-Im138.jpg",
+      "bytes": 246366,
+      "sha256": "b47e415eaca308cb0df6dbd2c1a3c2b5b4a20e46128c6c6b02cb2e7242bea18e",
+      "dimensions": [
+        913,
+        1217
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-158-Im140.png",
+      "bytes": 434170,
+      "sha256": "4c37ca9a1145fdacdc773e1b129afb4a1ff55becc93024f34e61fba820a83ef9",
+      "dimensions": [
+        464,
+        661
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-159-Im144.jpg",
+      "bytes": 700493,
+      "sha256": "391f739619fdb35e35364593028f11a6ca02fcb4720d287549d441477b2430f6",
+      "dimensions": [
+        1726,
+        1268
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-160-Im147.jpg",
+      "bytes": 459255,
+      "sha256": "0c045ece23b90c4b763bcbd1b02d77ce9a99654021f8d51fb4a6e9fa85d14c63",
+      "dimensions": [
+        1630,
+        1181
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-161-Im150.jpg",
+      "bytes": 298811,
+      "sha256": "0023bc9edc1f7d074a8cf718dc49073e0187e2f22e85bfcc3b8c94980178305d",
+      "dimensions": [
+        1632,
+        1224
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-162-Im153.jpg",
+      "bytes": 380988,
+      "sha256": "5388975a2e5c54712a488410be1c31dd2bc0d1a63b61b60f12f6c46d11cf53fa",
+      "dimensions": [
+        1564,
+        1173
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-163-Im156.jpg",
+      "bytes": 516483,
+      "sha256": "71e17da499836cfc8479119335b449b720bf4e0146d70b844f96a0e1f0661828",
+      "dimensions": [
+        1837,
+        1377
+      ]
+    },
+    {
+      "path": "embedded-specimens/Bolger-pdf-page-164-Im158.jpg",
+      "bytes": 158231,
+      "sha256": "636437ceda406542d494ae5a252104e035f261be6e9f279115e56c1a8f5534f3",
+      "dimensions": [
+        590,
+        900
+      ]
+    },
+    {
+      "path": "embedded-specimens/manifest.json",
+      "bytes": 4380,
+      "sha256": "40866eee18f6a123c301a3e45ed0acb4b48838496a92a75312284d8518420333"
+    },
+    {
+      "path": "embedded-specimens/Varrilly-pdf-page-94-Im0.jp2",
+      "bytes": 661957,
+      "sha256": "46b7d03e12d5ea4eb9cc6a10ec03de9eeeb2978954b6476ad3eae7dd5070d024",
+      "dimensions": [
+        1059,
+        1498
+      ]
+    },
+    {
+      "path": "embedded-specimens/Varrilly-pdf-page-94-Im1.jp2",
+      "bytes": 68822,
+      "sha256": "1d61e94b93f2211a39402a189089e0b09579513806ddef373a501202492ec67b",
+      "dimensions": [
+        530,
+        749
+      ]
+    },
+    {
+      "path": "embedded-specimens/Varrilly-pdf-page-96-Im0.jp2",
+      "bytes": 645866,
+      "sha256": "228ea3530932ce56969d4eee02644d2756cfe59a9c57febfec249dc1d80ed568",
+      "dimensions": [
+        1022,
+        1481
+      ]
+    },
+    {
+      "path": "embedded-specimens/Varrilly-pdf-page-96-Im1.jp2",
+      "bytes": 122695,
+      "sha256": "aa96e359cd61bca0bb1f4399abdcea959b6c49f3ae478b9b76423c3a5fbc294c",
+      "dimensions": [
+        511,
+        741
+      ]
+    },
+    {
+      "path": "embedded-specimens/Varrilly-pdf-page-98-Im0.jp2",
+      "bytes": 647073,
+      "sha256": "c8ad4d6d72a1c5e7f50bf1c2f3be6c4ee0fb3d05ee6002c9c33286b96601f47b",
+      "dimensions": [
+        1005,
+        1473
+      ]
+    },
+    {
+      "path": "embedded-specimens/Varrilly-pdf-page-98-Im1.jp2",
+      "bytes": 104894,
+      "sha256": "97520c63d9369d80faf2e515b083b66c73e3148f73debfd5a0f82d4feb00e84c",
+      "dimensions": [
+        502,
+        736
+      ]
+    },
+    {
+      "path": "original-specimens/Carrick-alphabet-specimen-metadata.json",
+      "bytes": 3786,
+      "sha256": "60e94a64df6d54f760de74eeca5d84d3b1696faf9b169b35d10843e1eae6baf1"
+    },
+    {
+      "path": "original-specimens/Carrick-alphabet-specimen.jp2",
+      "bytes": 551228,
+      "sha256": "c9fbcd92df02c4a16c03862fd6c53869fe984c449d0d1f96a7338d42616d92ee",
+      "dimensions": [
+        1286,
+        1073
+      ]
+    },
+    {
+      "path": "original-specimens/Carrick-alphabet-specimen.jpg",
+      "bytes": 162335,
+      "sha256": "9a98c303280bae75a5dc40ecdcac3c4e61e2b62899c853fd31c1e689d5483701",
+      "dimensions": [
+        1286,
+        1073
+      ]
+    },
+    {
+      "path": "original-specimens/Carrick-Letraset-metadata.json",
+      "bytes": 3878,
+      "sha256": "885e74bb0e465e700528227ff71c69c3480ab2400a6bbbbfb1ae3bb0553e5a18"
+    },
+    {
+      "path": "original-specimens/Carrick-Letraset.jp2",
+      "bytes": 6105403,
+      "sha256": "fc7afd2a547b2b1593f0ceb0978d1f0d26df3d8511be44b0c8b9766d644ec162",
+      "dimensions": [
+        2592,
+        2592
+      ]
+    },
+    {
+      "path": "original-specimens/Carrick-Letraset.jpg",
+      "bytes": 1138245,
+      "sha256": "525f4bb849a7f5bea66f82ca5aad0f2dbb3a9d8d7257ae2e91ed7e36c08ef35d",
+      "dimensions": [
+        2592,
+        2592
+      ]
+    },
+    {
+      "path": "original-specimens/competition-advert-1-metadata.json",
+      "bytes": 4142,
+      "sha256": "8a8af0fe4558152b5775efedd9057a57bb997ffa7d289f732674e201e8a054a1"
+    },
+    {
+      "path": "original-specimens/competition-advert-1.jp2",
+      "bytes": 4457186,
+      "sha256": "d4f02a704368850ab079abbd793c63fc3e7e5a340de42414933cef63ba4795cc",
+      "dimensions": [
+        2140,
+        3000
+      ]
+    },
+    {
+      "path": "original-specimens/competition-advert-1.jpg",
+      "bytes": 875894,
+      "sha256": "0adeda27c189890fbd78619810cfc144ea3d5b910256971bf1c33a946d4baadc",
+      "dimensions": [
+        2140,
+        3000
+      ]
+    },
+    {
+      "path": "original-specimens/competition-advert-2-metadata.json",
+      "bytes": 4142,
+      "sha256": "eff17876e389730f86e60d49665dde2398a08f764f271ba000165a8c93a8128a"
+    },
+    {
+      "path": "original-specimens/competition-advert-2.jp2",
+      "bytes": 2994794,
+      "sha256": "25791fbfc1b805fa6cb2c135216bbb4725dfd58e530c5a98519da826d3b4c008",
+      "dimensions": [
+        2140,
+        3000
+      ]
+    },
+    {
+      "path": "original-specimens/competition-advert-2.jpg",
+      "bytes": 508361,
+      "sha256": "d08bbd6cb70af8e4311d9c018be6ad3325fa23dd0386538d1a53f5c46864992c",
+      "dimensions": [
+        2140,
+        3000
+      ]
+    },
+    {
+      "path": "original-specimens/competition-brochure-1-metadata.json",
+      "bytes": 4562,
+      "sha256": "88a66605971e4e65fa85bd8a860bb4fcdaffb1e2324df2d421f445cd7b41a98e"
+    },
+    {
+      "path": "original-specimens/competition-brochure-1.jp2",
+      "bytes": 3916957,
+      "sha256": "41fcdc815e25d91cbfea3e9161461b7bc78e24d1e45df131f57d015669ad4e35",
+      "dimensions": [
+        3000,
+        2113
+      ]
+    },
+    {
+      "path": "original-specimens/competition-brochure-1.jpg",
+      "bytes": 868174,
+      "sha256": "172ddcd2548474636df30b9043cacb466694883d5b2bdaab4fbd3f92e8276055",
+      "dimensions": [
+        3000,
+        2113
+      ]
+    },
+    {
+      "path": "original-specimens/competition-brochure-2-metadata.json",
+      "bytes": 4568,
+      "sha256": "1b4410b0ee789a69900b1e4ca1379125ffc3c95663056287f6801d7c21621814"
+    },
+    {
+      "path": "original-specimens/competition-brochure-2.jp2",
+      "bytes": 4343233,
+      "sha256": "ed9f01c555c0118f40567db067646d4a300dae904c85fedb0735c89fa2ca97dc",
+      "dimensions": [
+        3000,
+        2106
+      ]
+    },
+    {
+      "path": "original-specimens/competition-brochure-2.jpg",
+      "bytes": 884975,
+      "sha256": "57d14ab343c5942345f14f277be8e92a6182f4b1a6a90a1d9ae413563b26ef18",
+      "dimensions": [
+        3000,
+        2106
+      ]
+    },
+    {
+      "path": "original-specimens/Kilfane-alphabet-specimen-metadata.json",
+      "bytes": 3975,
+      "sha256": "0c368cb70ad16f00535214299ed49d38132ad9ba0ad018c808c08e2dbf6b2f95"
+    },
+    {
+      "path": "original-specimens/Kilfane-alphabet-specimen.jp2",
+      "bytes": 857005,
+      "sha256": "1acc9532034abb40fee031c58a4ea7034096bf1a3087b134650d5375d14ffd94",
+      "dimensions": [
+        1242,
+        1576
+      ]
+    },
+    {
+      "path": "original-specimens/Kilfane-alphabet-specimen.jpg",
+      "bytes": 258996,
+      "sha256": "d05baa30e434ba83e17f470332a0eebfe87f5d06f751ed84a7576181543d4dc5",
+      "dimensions": [
+        1242,
+        1576
+      ]
+    },
+    {
+      "path": "original-specimens/Kilfane-Letraset-metadata.json",
+      "bytes": 4067,
+      "sha256": "aa00fce2a01f6bd4ab257e268bab6b3c9a53441a67945a69ea803ae1f966b535"
+    },
+    {
+      "path": "original-specimens/Kilfane-Letraset.jp2",
+      "bytes": 6337881,
+      "sha256": "914121cb1576ce6d2374c9d32d1075e46d6321761838216b80ef35f01670869d",
+      "dimensions": [
+        2573,
+        2573
+      ]
+    },
+    {
+      "path": "original-specimens/Kilfane-Letraset.jpg",
+      "bytes": 1164822,
+      "sha256": "a3a821f5cb233b4f6bff0b163c9c6992b9431109a6ad706d206d91981ceae16b",
+      "dimensions": [
+        2573,
+        2573
+      ]
+    },
+    {
+      "path": "original-specimens/manifest.json",
+      "bytes": 11889,
+      "sha256": "a5f6880420ce3245f8e2f652f8785de77b2043130aa73dda56631022e42165ee"
+    },
+    {
+      "path": "page-previews/Irish-page-74.png",
+      "bytes": 692147,
+      "sha256": "3f11f4cd1343076056e12af30a7b5f16bc717ed38049ae098be4767e2cf0c5f6",
+      "dimensions": [
+        1193,
+        1705
+      ]
+    },
+    {
+      "path": "page-previews/Varrilly-page-94.png",
+      "bytes": 764442,
+      "sha256": "2cd406520cbaedb3b107717b4450cf2e2b7a72b6adf6c0ad91aebd11f6e6bdfc",
+      "dimensions": [
+        1017,
+        1439
+      ]
+    },
+    {
+      "path": "page-previews/Varrilly-page-96.png",
+      "bytes": 854572,
+      "sha256": "be5eb3762ef33ef8fd19fceb7c942c7dc5033e733c5203f1f8f88cb36137ea30",
+      "dimensions": [
+        982,
+        1422
+      ]
+    },
+    {
+      "path": "page-previews/Varrilly-page-98.png",
+      "bytes": 771883,
+      "sha256": "879835438f676cfb631820927d018854bc66a65d78234bb81c12c91a85ca1b69",
+      "dimensions": [
+        965,
+        1414
+      ]
+    },
+    {
+      "path": "research-dossier.html",
+      "bytes": 41839,
+      "sha256": "49da1c318d8a8f60fa7f0917310a5d12aae8c2f99928b3a32803e4ab61aab870"
+    },
+    {
+      "path": "source-register.json",
+      "bytes": 15021,
+      "sha256": "86471ec663552ee5a39da96ef39e3029b0d0890c793be8bce4b497b7dcdfae49"
+    },
+    {
+      "path": "sources/Bolger-2017-volume-1-text.pdf",
+      "bytes": 2723773,
+      "sha256": "c61a2aa74015d9554411d01bcfedc23ec8e44c39f18355c7987498ce768e5583"
+    },
+    {
+      "path": "sources/Bolger-2017-volume-2-illustrations.pdf",
+      "bytes": 90324629,
+      "sha256": "f7532cc196f256bec05f97945f12ada382e56885ce4a238c4d6466ef86eb898a"
+    },
+    {
+      "path": "sources/Gaelchlo-Caolchlo-GC-specimen.pdf",
+      "bytes": 14306,
+      "sha256": "7be3d84879050046aff9d766619144ad65863e2bd046d8c91d8cbc53f438d5dc"
+    },
+    {
+      "path": "sources/Heritage-Outlook-summer-2011.pdf",
+      "bytes": 8946539,
+      "sha256": "aef82fc92f0a1a26a2ba8ce9cfdc186063096f325100b05b18e16b829f2f0cb9"
+    },
+    {
+      "path": "sources/Irish-identity-contemporary-graphic-design.pdf",
+      "bytes": 34415486,
+      "sha256": "04b411688af57c2e920eaaf8a407a3f55b064d1bad068e793a72f20028c298a9"
+    },
+    {
+      "path": "sources/Klingspor-Jarlath-Hayes.pdf",
+      "bytes": 298924,
+      "sha256": "170ad22ca3467a3cb297afc5b65e3303f674b0153a7418d73d757bf95fcf7b32"
+    },
+    {
+      "path": "sources/OKeane-2022-design-and-Irish-language.pdf",
+      "bytes": 76500352,
+      "sha256": "34938d024a5914c405ad6c7e35b94a982ce5acb71b74f4ace9257fa8131c4b87"
+    },
+    {
+      "path": "sources/Signal-Jarlath-specimen.pdf",
+      "bytes": 455474,
+      "sha256": "35ebc7449dd10f2769fa9bbe9d09f4f76430dc1daa34ea75c684ba11b1b85919"
+    },
+    {
+      "path": "sources/Varrilly-1982-bilingualism-and-graphic-design.pdf",
+      "bytes": 8794249,
+      "sha256": "17788fb644a91d62cc5a488eefc95747222618e40d06f11e2796d43ecab0197e"
+    }
+  ]
+}

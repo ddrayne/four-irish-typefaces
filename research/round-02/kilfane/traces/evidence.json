@@ -1,0 +1,1311 @@
+{
+  "face": "kilfane",
+  "status": "research candidate; not a release",
+  "calibration": {
+    "Kilfane-alphabet-specimen.jpg": {
+      "scale": 3.8316343640728965,
+      "baselines": {
+        "0": 245.5,
+        "1": 405.0,
+        "2": 565.0,
+        "3": 727.0,
+        "4": 867.5,
+        "5": 1064.0,
+        "6": 1222.5,
+        "7": 1422.0
+      }
+    },
+    "competition-advert-2.jpg": {
+      "scale": 3.972374934088129,
+      "baselines": {
+        "0": 1236.5,
+        "1": 1404.0,
+        "2": 1569.0,
+        "3": 1738.0,
+        "4": 1880.5,
+        "5": 2088.0,
+        "6": 2251.5,
+        "7": 2457.0
+      }
+    }
+  },
+  "source_hashes": {
+    "Kilfane-alphabet-specimen.jpg": "d05baa30e434ba83e17f470332a0eebfe87f5d06f751ed84a7576181543d4dc5",
+    "competition-advert-2.jpg": "d08bbd6cb70af8e4311d9c018be6ad3325fa23dd0386538d1a53f5c46864992c"
+  },
+  "glyphs": [
+    {
+      "name": "A",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        105,
+        125,
+        219,
+        245
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 58.335395944054945
+    },
+    {
+      "name": "B",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        223,
+        125,
+        316,
+        247
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 90.36082578134051
+    },
+    {
+      "name": "C",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        323,
+        125,
+        418,
+        247
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 116.37584004506553
+    },
+    {
+      "name": "D",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        416,
+        125,
+        525,
+        245
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 141.4025884502396
+    },
+    {
+      "name": "E",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        532,
+        125,
+        632,
+        247
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 171.9066502512176
+    },
+    {
+      "name": "F",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        639,
+        128,
+        726,
+        246
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 201.23848025210793
+    },
+    {
+      "name": "G",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        724,
+        126,
+        824,
+        249
+      ],
+      "scale": 3.8316343640728965,
+      "note": "G: small print-damage hole removed; checked against repeated transfer-sheet Gs.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 221.9321788271338
+    },
+    {
+      "name": "H",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        830,
+        128,
+        931,
+        246
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 250.57964467267013
+    },
+    {
+      "name": "I",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        943,
+        129,
+        979,
+        246
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 280.8490090550092
+    },
+    {
+      "name": "J",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        978,
+        129,
+        1034,
+        263
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 289.5757277967111
+    },
+    {
+      "name": "K",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        1043,
+        127,
+        1153,
+        248
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 245.5,
+      "old_baseline": 154.66859393846175,
+      "old_x": 307.4311292498345
+    },
+    {
+      "name": "L",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        106,
+        283,
+        189,
+        406
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 405.0,
+      "old_baseline": 154.66859393846175,
+      "old_x": 337.0532564779032
+    },
+    {
+      "name": "M",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        180,
+        284,
+        335,
+        406
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 405.0,
+      "old_baseline": 154.66859393846175,
+      "old_x": 356.7779546454714
+    },
+    {
+      "name": "N",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        335,
+        283,
+        446,
+        406
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 405.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 59.461154832865176
+    },
+    {
+      "name": "O",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        446,
+        281,
+        557,
+        406
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 405.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 88.13490141746344
+    },
+    {
+      "name": "P",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        556,
+        285,
+        646,
+        405
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 405.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 118.79411895835557
+    },
+    {
+      "name": "Q",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        648,
+        284,
+        763,
+        415
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Q: secondary counter retained; visible in flyer and transfer-sheet Qs.",
+      "source_baseline": 405.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 141.59403610693155
+    },
+    {
+      "name": "R",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        756,
+        285,
+        860,
+        406
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 405.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 171.34435004715942
+    },
+    {
+      "name": "S",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        856,
+        283,
+        943,
+        407
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 405.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 196.70015692134945
+    },
+    {
+      "name": "T",
+      "status": "retained",
+      "reason": "Fused adjacent letters or loose-mark layout; no unsupported split."
+    },
+    {
+      "name": "U",
+      "status": "retained",
+      "reason": "Fused adjacent letters or loose-mark layout; no unsupported split."
+    },
+    {
+      "name": "V",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        351,
+        443,
+        451,
+        566
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 565.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 277.68224796286324
+    },
+    {
+      "name": "W",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        452,
+        444,
+        593,
+        564
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 565.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 304.95176899194723
+    },
+    {
+      "name": "X",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        603,
+        440,
+        710,
+        566
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 565.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 345.0010976088659
+    },
+    {
+      "name": "Y",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        708,
+        444,
+        801,
+        574
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 565.0,
+      "old_baseline": 198.018812073859,
+      "old_x": 373.2319484576577
+    },
+    {
+      "name": "Z",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        811,
+        444,
+        906,
+        565
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 565.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 60.538571424985236
+    },
+    {
+      "name": "a",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        101,
+        641,
+        186,
+        728
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 92.92079722512146
+    },
+    {
+      "name": "b",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        177,
+        608,
+        266,
+        729
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 113.92051246097577
+    },
+    {
+      "name": "c",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        273,
+        639,
+        345,
+        729
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 138.45666761772873
+    },
+    {
+      "name": "d",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        349,
+        616,
+        429,
+        728
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 158.4145849774898
+    },
+    {
+      "name": "e",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        437,
+        640,
+        512,
+        728
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 181.4680529432376
+    },
+    {
+      "name": "f",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        512,
+        640,
+        587,
+        750
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 202.14846493631643
+    },
+    {
+      "name": "g",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        583,
+        643,
+        665,
+        755
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 219.57680558445023
+    },
+    {
+      "name": "h",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        658,
+        611,
+        748,
+        727
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 239.2735396135451
+    },
+    {
+      "name": "i",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        743,
+        611,
+        777,
+        727
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 262.6210995405016
+    },
+    {
+      "name": "j",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        761,
+        612,
+        816,
+        753
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 266.5067935776884
+    },
+    {
+      "name": "k",
+      "status": "retained",
+      "reason": "Fused adjacent letters or loose-mark layout; no unsupported split."
+    },
+    {
+      "name": "l",
+      "status": "retained",
+      "reason": "Fused adjacent letters or loose-mark layout; no unsupported split."
+    },
+    {
+      "name": "m",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        946,
+        643,
+        1072,
+        728
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 318.0210734259931
+    },
+    {
+      "name": "n",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        1072,
+        643,
+        1162,
+        729
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 727.0,
+      "old_baseline": 245.82743566399407,
+      "old_x": 351.11423652766166
+    },
+    {
+      "name": "o",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        116,
+        776,
+        200,
+        870
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 245.82743566399407,
+      "old_x": 374.1124229943399
+    },
+    {
+      "name": "p",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        198,
+        779,
+        283,
+        895
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 58.705219004421686
+    },
+    {
+      "name": "q",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        292,
+        780,
+        377,
+        895
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 83.30211371054003
+    },
+    {
+      "name": "r",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        381,
+        777,
+        469,
+        869
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Open join retained as seen in larger originals and flyer.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 107.55899275906356
+    },
+    {
+      "name": "s",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        469,
+        778,
+        538,
+        868
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 130.8789100549789
+    },
+    {
+      "name": "t",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        543,
+        769,
+        620,
+        867
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 150.97413953448225
+    },
+    {
+      "name": "u",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        624,
+        780,
+        702,
+        867
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 171.1731496188506
+    },
+    {
+      "name": "v",
+      "status": "candidate",
+      "source": "competition-advert-2.jpg",
+      "box": [
+        1182,
+        1790,
+        1261,
+        1881
+      ],
+      "scale": 3.972374934088129,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1880.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 194.23606655018713
+    },
+    {
+      "name": "w",
+      "status": "candidate",
+      "source": "competition-advert-2.jpg",
+      "box": [
+        1263,
+        1793,
+        1382,
+        1880
+      ],
+      "scale": 3.972374934088129,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1880.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 214.53407616454203
+    },
+    {
+      "name": "x",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        905,
+        779,
+        987,
+        868
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 245.70062808887033
+    },
+    {
+      "name": "y",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        985,
+        782,
+        1064,
+        897
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 267.04517171863256
+    },
+    {
+      "name": "z",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        1072,
+        782,
+        1143,
+        869
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 867.5,
+      "old_baseline": 284.95805537491157,
+      "old_x": 290.12486795317136
+    },
+    {
+      "name": "ornament",
+      "status": "retained",
+      "reason": "Fused adjacent letters or loose-mark layout; no unsupported split."
+    },
+    {
+      "name": "one",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        238,
+        946,
+        279,
+        1066
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 60.04702558757079
+    },
+    {
+      "name": "two",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        292,
+        945,
+        369,
+        1065
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 73.6978315841259
+    },
+    {
+      "name": "three",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        377,
+        947,
+        449,
+        1066
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 96.43211078093898
+    },
+    {
+      "name": "four",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        455,
+        947,
+        535,
+        1065
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 117.60175659050282
+    },
+    {
+      "name": "five",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        539,
+        947,
+        611,
+        1066
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 139.79491703315372
+    },
+    {
+      "name": "six",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        622,
+        946,
+        701,
+        1066
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Open join retained as seen in larger originals and flyer.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 161.0846742465046
+    },
+    {
+      "name": "seven",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        708,
+        947,
+        775,
+        1064
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 184.23608411555
+    },
+    {
+      "name": "eight",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        777,
+        944,
+        850,
+        1067
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 201.25991216017079
+    },
+    {
+      "name": "nine",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        860,
+        947,
+        936,
+        1066
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Open join retained as seen in larger originals and flyer.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 223.73483510157004
+    },
+    {
+      "name": "zero",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        949,
+        945,
+        1031,
+        1066
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1064.0,
+      "old_baseline": 327.6712229340947,
+      "old_x": 247.01852246393887
+    },
+    {
+      "name": "ampersand",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        298,
+        1105,
+        398,
+        1224
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 273.2645218640762
+    },
+    {
+      "name": "question",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        398,
+        1105,
+        464,
+        1223
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 300.8217912534138
+    },
+    {
+      "name": "exclam",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        475,
+        1107,
+        496,
+        1222
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 321.3227176953498
+    },
+    {
+      "name": "sterling",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        504,
+        1107,
+        571,
+        1223
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 329.6410849028717
+    },
+    {
+      "name": "dollar",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        575,
+        1091,
+        644,
+        1237
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 347.7479404456351
+    },
+    {
+      "name": "parenleft",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        658,
+        1091,
+        698,
+        1237
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 370.0280519843398
+    },
+    {
+      "name": "semicolon",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        695,
+        1133,
+        715,
+        1198
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 380.24620897196604
+    },
+    {
+      "name": "parenright",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        713,
+        1089,
+        749,
+        1235
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1222.5,
+      "old_baseline": 327.6712229340947,
+      "old_x": 384.98536172535904
+    },
+    {
+      "name": "A.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        134,
+        1300,
+        237,
+        1424
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 60.76633230432192
+    },
+    {
+      "name": "A.alt2",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        242,
+        1300,
+        341,
+        1427
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 89.34227099347771
+    },
+    {
+      "name": "D.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        340,
+        1291,
+        452,
+        1423
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 116.0213382340942
+    },
+    {
+      "name": "S.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        451,
+        1291,
+        547,
+        1421
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 145.10535129582294
+    },
+    {
+      "name": "T.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        550,
+        1292,
+        645,
+        1422
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 171.01691194993836
+    },
+    {
+      "name": "Y.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        649,
+        1300,
+        742,
+        1423
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 197.01630157604524
+    },
+    {
+      "name": "d.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        734,
+        1303,
+        816,
+        1422
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 218.71082830563427
+    },
+    {
+      "name": "f.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        826,
+        1303,
+        895,
+        1422
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 244.13614076275752
+    },
+    {
+      "name": "g.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        892,
+        1329,
+        967,
+        1451
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 260.60828716310976
+    },
+    {
+      "name": "l.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        962,
+        1304,
+        1017,
+        1423
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 278.82112762792326
+    },
+    {
+      "name": "t.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        1010,
+        1313,
+        1068,
+        1423
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 292.52761566732676
+    },
+    {
+      "name": "y.alt1",
+      "status": "candidate",
+      "source": "Kilfane-alphabet-specimen.jpg",
+      "box": [
+        1069,
+        1337,
+        1145,
+        1451
+      ],
+      "scale": 3.8316343640728965,
+      "note": "Specimen shape reconstructed; current builder retains text-height regularisation.",
+      "source_baseline": 1422.0,
+      "old_baseline": 371.0969957678346,
+      "old_x": 308.73646475003324
+    }
+  ]
+}
