@@ -321,6 +321,8 @@ class Font2:
         self.P = {n: g['path'] for n, g in G.items()}
         self.traced = set(self.P)                 # names cut from the flyer itself
         self.hairlines()
+        if self.FINISH:
+            self.finish_traced()
         self.S_regular = self.stem_width()
         if self.bold:
             self.embolden_traced()
@@ -349,6 +351,24 @@ class Font2:
             self.P[n] = hairline.spine(self.P[n], h['h'])
             note = f'a hairline the scan pinched to nothing given back its {h["h"]:.0f}-unit minimum'
             self.touched[n] = self.touched[n] + '; ' + note if n in self.touched else note
+
+    FINISH = False               # the designer's clean-up of traced outlines (scripts/finish.py)
+    REFIT_PX = {}                # glyph -> one source pixel in trace units, for those to refit first
+
+    def finish_traced(self):
+        """Redraw each traced outline from its source-pixel scale up (finish.refit, where a source
+        resolution is known), then smooth the joins, fold away flat spots and bumps and square the
+        extremes (finish.finish): before anything is derived from it."""
+        import finish
+        self.refitted = set()
+        for n, p in list(self.P.items()):
+            rec = RecordingPen(); p.draw(rec); rec = rec.value
+            if n in self.REFIT_PX:
+                r = finish.refit(rec, self.s, self.REFIT_PX[n])
+                if r is not None:
+                    rec = r; self.refitted.add(n)
+            q = pathops.Path(); replayRecording(finish.finish(rec), q.getPen())
+            self.P[n] = q
 
     def stem_width(self):
         w = lambda n: stem_at(self.P[n], 0.4 * self.xh, 'left')

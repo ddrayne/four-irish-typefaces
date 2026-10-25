@@ -30,6 +30,11 @@ def build(face, traces, version):
         # The sheets are drawings, not a photocopy: their narrow open joins are drawn, and the bold
         # keeps them. The sloped styles add only a hair of weight, so they keep every gap there is.
         SLIVER, SLIVER_SLOPED = 0.05, 0.01
+        FINISH = True
+        # each original-source glyph is refitted at its own source's resolution (its calibration
+        # scale is source pixels per trace unit); letters kept from the flyer were designer-fitted already
+        REFIT_PX = {g['name']: 1.0 / g['scale'] for g in evidence['glyphs']
+                    if g['status'] == 'candidate' and g.get('scale')}
 
         def build(self, flavour):
             f = build2.Font2.build(self, flavour)        # the release's names, not the study's
