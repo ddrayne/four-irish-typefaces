@@ -1,16 +1,25 @@
 name: Release
 
-# Pushing a version tag (v2.101 and so on) publishes that version's fonts as a GitHub release.
-# The releases are where the fonts are downloaded from: the site does not host them.
+# Each version is published once as a GitHub release, with its ZIPs attached: the releases are
+# where the fonts are downloaded from (the site does not host them). On a push to main whose
+# version (scripts/build2.py VERSION) has no release yet, this tags that commit vX.YYY and
+# publishes the release.
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
     runs-on: ubuntu-24.04
     permissions:
       contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,17 +29,22 @@ jobs:
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q ttfautohint
           python -m venv .venv && .venv/bin/python -m pip install -q -r requirements.txt
-      - name: The tagged fonts pass the release checks and carry the tag's version
+      - name: Is this version released yet?
+        id: version
         run: |
-          make test
-          version=$(cd scripts && ../.venv/bin/python -c 'from build2 import VERSION; print(VERSION)')
-          test "v$version" = "$GITHUB_REF_NAME"
+          tag="v$(cd scripts && ../.venv/bin/python -c 'from build2 import VERSION; print(VERSION)')"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if gh release view "$tag" >/dev/null 2>&1; then echo "new=false" >> "$GITHUB_OUTPUT"; else echo "new=true" >> "$GITHUB_OUTPUT"; fi
+      - name: The fonts pass the release checks
+        if: steps.version.outputs.new == 'true'
+        run: make test
       - name: The release ZIPs
+        if: steps.version.outputs.new == 'true'
         run: .venv/bin/python scripts/package.py
       - name: Publish the release
-        env:
-          GH_TOKEN: ${{ github.token }}
+        if: steps.version.outputs.new == 'true'
         run: |
           # the notes are this version's FONTLOG entry
           awk '/^ChangeLog/ {on = 1; next} on && /^[0-9]+\.[0-9]+ \(/ {n++} n == 1' FONTLOG.txt > notes.md
-          gh release create "$GITHUB_REF_NAME" build/dist/*.zip --title "Four Irish Typefaces $GITHUB_REF_NAME" --notes-file notes.md
+          gh release create "${{ steps.version.outputs.tag }}" build/dist/*.zip --target "$GITHUB_SHA" \
+            --title "Four Irish Typefaces ${{ steps.version.outputs.tag }}" --notes-file notes.md
