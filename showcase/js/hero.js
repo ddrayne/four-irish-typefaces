@@ -94,9 +94,9 @@ export async function init(hero) {
     cancelAnimationFrame(raf);
     if (!visible) return;
     const t = (performance.now() - t0) / 1000;
-    // With reduced motion the plates stay put, slightly out of register, as printed.
-    const driftX = still ? 0.35 : Math.sin(t * 0.7) * 0.25;
-    const driftY = still ? 0.25 : Math.cos(t * 0.5) * 0.2;
+    // The plates never quite register; with reduced motion they stay put, out of register, as printed.
+    const driftX = still ? 0.6 : 0.5 + Math.sin(t * 0.7) * 0.25;
+    const driftY = still ? 0.4 : 0.35 + Math.cos(t * 0.5) * 0.2;
     off.x = still ? driftX : lerp(off.x, off.tx + driftX, 0.08);
     off.y = still ? driftY : lerp(off.y, off.ty + driftY, 0.08);
     const k = Math.min(14, innerWidth / 90);

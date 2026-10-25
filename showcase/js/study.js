@@ -12,7 +12,6 @@ export async function init(root, data) {
   if (!info) return;
   const family = FAMILY[face], name = NAME[face];
   const latest = info.studies[info.studies.length - 1];
-  await Promise.all([document.fonts.load(`64px "${latest.family}"`), document.fonts.load(`64px "${family}"`)]).catch(() => []);
   root.hidden = false;
   const outlines = info.glyphs.length > 0;
 
@@ -20,20 +19,27 @@ export async function init(root, data) {
     ? `<b>${latest.family}</b> redraws ${name} from better reproductions in the William Curran Archive at the National Irish Visual Arts Library. It is work in progress, not a release. Green is the released ${family}; orange is the study. Where they agree, the inks print dark.`
     : `<b>${latest.family}</b> keeps ${family}'s outlines as released and adjusts only its spacing; better sources for its letters are still being sought. It is work in progress, not a release.`;
 
-  root.innerHTML = `
-    <div class="toy-bar">
-      <p class="toy-title"><span class="f-${face}" lang="ga">staidéar</span><span>Work in progress · from the archive</span></p>
-      ${outlines ? `<div class="toy-controls" role="group" aria-label="Which ${family} to show">
+  // Closed until asked for: the faces come first, the work in progress after.
+  root.innerHTML = `<details class="study-more">
+    <summary><span class="study-sum-t"><span class="f-${face}" lang="ga">staidéar</span><span>Work in progress · from the archive</span></span><span class="study-sum-k">${latest.family}</span></summary>
+    ${outlines ? `<div class="toy-bar"><div class="toy-controls" role="group" aria-label="Which ${family} to show">
         <button type="button" class="tog" data-show="both" aria-pressed="true">Both, overprinted</button>
         <button type="button" class="tog" data-show="release" aria-pressed="false">Release</button>
-        <button type="button" class="tog" data-show="study" aria-pressed="false">Study</button></div>` : ''}
-    </div>
+        <button type="button" class="tog" data-show="study" aria-pressed="false">Study</button></div></div>` : ''}
     <p class="study-text">${intro}</p>
     ${outlines ? `<div class="study-sources" role="radiogroup" aria-label="Compared with"></div>
       <div class="study-body"><figure class="study-zoom" aria-live="polite"></figure><div class="study-grid"></div></div>` : ''}
-    <p class="toy-note">The archive reproductions share a printing history, so where they agree it is not proof of the original drawings. Archive images are not reproduced here.</p>`;
+    <p class="toy-note">The archive reproductions share a printing history, so where they agree it is not proof of the original drawings. Archive images are not reproduced here.</p>
+  </details>`;
 
-  if (outlines) outlineFit(root, info, face, latest);
+  // the letters are built the first time the panel is opened
+  const det = $('details', root);
+  det.addEventListener('toggle', async () => {
+    if (!det.open || !outlines || det.dataset.built) return;
+    det.dataset.built = '1';
+    await Promise.all([document.fonts.load(`64px "${latest.family}"`), document.fonts.load(`64px "${family}"`)]).catch(() => []);
+    outlineFit(root, info, face, latest);
+  });
 }
 
 function outlineFit(root, info, face, latest) {

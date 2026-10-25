@@ -1,7 +1,16 @@
 import { $, $$, onNear, fitText, paperTooth, copyText } from './util.js';
 
-const data = await fetch('data/site.json').then((r) => r.json());
+// Big headings print in two inks: a copy of the words, hidden from screen readers, laid
+// over them a little out of register in the second ink (see .ov in the stylesheet).
+for (const el of $$('[data-ov]')) {
+  const ov = document.createElement('span');
+  ov.className = 'ov';
+  ov.setAttribute('aria-hidden', 'true');
+  ov.textContent = el.textContent;
+  el.appendChild(ov);
+}
 paperTooth();
+const data = await fetch('data/site.json').then((r) => r.json());
 
 // Each part loads its code only when it comes near the screen.
 const parts = [
@@ -23,8 +32,8 @@ for (const [sel, mod, near] of parts) {
   onNear(near ? $(near) : el, () => import(mod).then((m) => m.init(el, data)).catch((err) => console.error(mod, err)));
 }
 
-// The research panels change the page's height when they appear, so build them
-// straight away, while the reader is still near the top, rather than as they near.
+// The research panels (closed disclosures, opened on request) add a line to the page when
+// they appear, so build them straight away, while the reader is still near the top.
 const idle = (fn) => {
   const later = () => setTimeout(() => (window.requestIdleCallback || setTimeout)(fn), 1200);
   // this module awaits its data first, so the page may already have loaded

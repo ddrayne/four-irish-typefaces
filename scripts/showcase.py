@@ -9,6 +9,7 @@ data generated from the fonts and sources:
   data/site.json    per face: styles, character map, stylistic sets; Unicode names;
                     the flyer audit (overlap per glyph); where each face sits on the flyer
   data/traced.json  every traced flyer glyph as an SVG path in scan pixels (the page reads the points back from it)
+  data/outlines/    each released style's glyphs as outlines, metrics and kerning, for the poster maker
 
 --artifact also writes build/showcase-artifact/: the same site with the page split
 into the form the Artifact viewer expects and the fonts inlined as data URIs.
@@ -66,6 +67,106 @@ def face_data():
                         styles=FAMILY_STYLES[k], sets=sets, cps=cps, glyphs=len(tt.getGlyphOrder()),
                         xh=round(tt['OS/2'].sxHeight / upm, 4), cap=round(tt['OS/2'].sCapHeight / upm, 4))
     return faces, {f'{cp:04X}': n for cp, n in sorted(names.items())}
+
+
+def outline_data(dest):
+    """Every glyph of each released style as outlines, for the poster maker, which sets its
+    type from these rather than from the browser's text rendering, so that its preview, PNG,
+    SVG and PDF are one drawing. Per style, data/outlines/<File>-<Style>.json holds:
+
+      m      units per em, ascender, descender, cap height, x-height
+      cmap   code point -> glyph index; sets: each stylistic set as base -> alternate index
+      g      per glyph: advance, ink bounds (or null) and the outline as SVG path data in
+             font units, y up (M, L, C and Z only: the fonts are CFF)
+      kern   [first, second, value]: the kern feature's pair adjustments, flattened
+    """
+    from fontTools.pens.recordingPen import DecomposingRecordingPen
+    from fontTools.pens.boundsPen import BoundsPen
+    out_dir = os.path.join(dest, 'data', 'outlines')
+    os.makedirs(out_dir, exist_ok=True)
+    n = lambda v: ('%d' % round(v)) if abs(v - round(v)) < 0.05 else ('%.1f' % v)
+    for k in ORDER:
+        cfg = FONTS[k]
+        for style in FAMILY_STYLES[k]:
+            tt = TTFont(os.path.join(OTF, f'{cfg["ps"]}-{style.replace(" ", "")}.otf'))
+            gs = tt.getGlyphSet()
+            cmap = {cp: g for cp, g in tt.getBestCmap().items() if not 0xE000 <= cp <= 0xF8FF}
+            # the stylistic sets as the font has them (accented letters included), labelled as configured
+            gsub, subst = tt['GSUB'].table, {}
+            for fr in gsub.FeatureList.FeatureRecord:
+                if re.fullmatch(r'ss\d\d', fr.FeatureTag):
+                    for li in fr.Feature.LookupListIndex:
+                        lk = gsub.LookupList.Lookup[li]
+                        for st in lk.SubTable:
+                            st = st.ExtSubTable if lk.LookupType == 7 else st
+                            if hasattr(st, 'mapping'):
+                                subst.setdefault(fr.FeatureTag, {}).update(st.mapping)
+            labels = {tag: label for tag, label, _ in cfg.get('sets', [])}
+            wanted = set(cmap.values())
+            for mapping in subst.values():
+                wanted |= set(mapping) | set(mapping.values())
+            names = [g for g in tt.getGlyphOrder() if g in wanted]
+            index = {g: i for i, g in enumerate(names)}
+            glyphs = []
+            for g in names:
+                rec = DecomposingRecordingPen(gs)
+                gs[g].draw(rec)
+                d = []
+                for op, args in rec.value:
+                    if op == 'moveTo':
+                        d.append('M' + ' '.join(f'{n(x)} {n(y)}' for x, y in args))
+                    elif op == 'lineTo':
+                        d.append('L' + ' '.join(f'{n(x)} {n(y)}' for x, y in args))
+                    elif op == 'curveTo':
+                        d.append('C' + ' '.join(f'{n(x)} {n(y)}' for x, y in args))
+                    elif op == 'qCurveTo':
+                        raise ValueError(f'{g}: quadratic curves in a CFF font')
+                    elif op in ('closePath', 'endPath'):
+                        d.append('Z')
+                bp = BoundsPen(gs)
+                gs[g].draw(bp)
+                box = [round(v) for v in bp.bounds] if bp.bounds else None
+                glyphs.append([gs[g].width, box, ''.join(d)])
+            # the kern feature, flattened to pairs: within a lookup the first subtable to
+            # cover a pair decides it; separate lookups add
+            gpos = tt['GPOS'].table
+            lookups = sorted({i for fr in gpos.FeatureList.FeatureRecord if fr.FeatureTag == 'kern'
+                              for i in fr.Feature.LookupListIndex})
+            total = {}
+            xadv = lambda v: (getattr(v, 'XAdvance', 0) or 0) if v is not None else 0
+            for li in lookups:
+                lk, seen = gpos.LookupList.Lookup[li], {}
+                for st in lk.SubTable:
+                    if lk.LookupType == 9:
+                        st = st.ExtSubTable
+                    if st.Format == 1:
+                        for first, ps in zip(st.Coverage.glyphs, st.PairSet):
+                            for r in ps.PairValueRecord:
+                                if first in index and r.SecondGlyph in index:
+                                    seen.setdefault((first, r.SecondGlyph), xadv(r.Value1))
+                    else:
+                        c1, c2 = st.ClassDef1.classDefs, st.ClassDef2.classDefs
+                        seconds = {}
+                        for g in names:
+                            seconds.setdefault(c2.get(g, 0), []).append(g)
+                        for first in st.Coverage.glyphs:
+                            if first not in index:
+                                continue
+                            row = st.Class1Record[c1.get(first, 0)].Class2Record
+                            for k2, gl in seconds.items():
+                                v = xadv(row[k2].Value1)
+                                for second in gl:
+                                    seen.setdefault((first, second), v)
+                for pair, v in seen.items():
+                    total[pair] = total.get(pair, 0) + v
+            kern = [[index[a], index[b], v] for (a, b), v in sorted(total.items(), key=lambda p: (index[p[0][0]], index[p[0][1]])) if v]
+            sets = [dict(tag=tag, label=labels.get(tag, tag), map={str(index[b]): index[a] for b, a in sorted(mapping.items(), key=lambda p: index[p[0]])})
+                    for tag, mapping in sorted(subst.items())]
+            os2, upm = tt['OS/2'], tt['head'].unitsPerEm
+            data = dict(face=k, style=style, m=[upm, tt['hhea'].ascent, tt['hhea'].descent, os2.sCapHeight, os2.sxHeight],
+                        cmap={str(cp): index[g] for cp, g in sorted(cmap.items())}, sets=sets, g=glyphs, kern=kern)
+            with open(os.path.join(out_dir, f'{cfg["ps"]}-{style.replace(" ", "")}.json'), 'w', encoding='utf-8') as fh:
+                fh.write(json.dumps(data, ensure_ascii=False, separators=(',', ':')))
 
 
 def audit_data():
@@ -364,6 +465,7 @@ def build():
         json.dumps(obj, ensure_ascii=False, separators=(',', ':')))
     dump(site, 'site.json')
     dump(glyphs, 'traced.json')
+    outline_data(DEST)
     social(DEST)
     zip_href = RELEASE_ZIP
     # copies keep their source modes; a web server needs to read every file
