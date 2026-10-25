@@ -2,73 +2,73 @@
  "method": "HarfBuzz default shaping, exact outline intersection above 4 square font units; Latin letters, decimal figures and punctuation (Unicode categories L* with LATIN in the name, Nd, Po, Ps, Pe, Pi, Pf, Pd) mapped in each font.",
  "fonts": [
   {
-   "font": "Carrick-Italic.otf",
+   "font": "CarrickDigital-Italic.otf",
    "characters": 332,
    "pairs_tested": 110224,
    "collisions": 0
   },
   {
-   "font": "Carrick-Regular.otf",
+   "font": "CarrickDigital-Regular.otf",
    "characters": 332,
    "pairs_tested": 110224,
    "collisions": 0
   },
   {
-   "font": "Ceili-Bold.otf",
+   "font": "CeiliDigital-Bold.otf",
    "characters": 340,
    "pairs_tested": 115600,
    "collisions": 0
   },
   {
-   "font": "Ceili-BoldItalic.otf",
+   "font": "CeiliDigital-BoldItalic.otf",
    "characters": 340,
    "pairs_tested": 115600,
    "collisions": 0
   },
   {
-   "font": "Ceili-Italic.otf",
+   "font": "CeiliDigital-Italic.otf",
    "characters": 340,
    "pairs_tested": 115600,
    "collisions": 0
   },
   {
-   "font": "Ceili-Regular.otf",
+   "font": "CeiliDigital-Regular.otf",
    "characters": 340,
    "pairs_tested": 115600,
    "collisions": 0
   },
   {
-   "font": "Kilfane-Bold.otf",
+   "font": "KilfaneDigital-Bold.otf",
    "characters": 334,
    "pairs_tested": 111556,
    "collisions": 0
   },
   {
-   "font": "Kilfane-BoldItalic.otf",
+   "font": "KilfaneDigital-BoldItalic.otf",
    "characters": 334,
    "pairs_tested": 111556,
    "collisions": 0
   },
   {
-   "font": "Kilfane-Italic.otf",
+   "font": "KilfaneDigital-Italic.otf",
    "characters": 334,
    "pairs_tested": 111556,
    "collisions": 0
   },
   {
-   "font": "Kilfane-Regular.otf",
+   "font": "KilfaneDigital-Regular.otf",
    "characters": 334,
    "pairs_tested": 111556,
    "collisions": 0
   },
   {
-   "font": "TuamUncial-Italic.otf",
+   "font": "TuamUncialDigital-Italic.otf",
    "characters": 330,
    "pairs_tested": 108900,
    "collisions": 0
   },
   {
-   "font": "TuamUncial-Regular.otf",
+   "font": "TuamUncialDigital-Regular.otf",
    "characters": 330,
    "pairs_tested": 108900,
    "collisions": 0

@@ -36,7 +36,7 @@ def sheet(face, release, candidate, out):
     small = label_font(22)
     for style in styles:
         fn = f'{ps}-{style.replace(" ", "")}.otf'
-        for tag, d, colour in (('2.010', release, GREY), ('3.000 candidate', candidate, RED)):
+        for tag, d, colour in ((build2.VERSION, release, GREY), ('3.000 candidate', candidate, RED)):
             path = os.path.join(d, fn)
             if not os.path.exists(path):
                 continue

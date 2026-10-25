@@ -2,7 +2,8 @@
 
 Task R1 in the [continuation plan](../docs/superpowers/plans/2026-10-25-continuation.md).
 This is a proposal, not a release: `fonts/`, `sources/traced/`, the release metadata
-and the showcase still carry 2.010. Promotion needs the user's explicit approval.
+and the showcase still carry 2.100 (2.010 renamed "Digital"; outlines unchanged). Promotion
+needs the user's explicit approval.
 
 ## What the candidate is
 
@@ -17,7 +18,7 @@ derives them from the flyer.
 
 | Face | Study and traces | Traced from | Kept from the flyer | Median ink change from 2.010 | Lowercase mean advance |
 |---|---|---|---|---:|---:|
-| Kilfane | Study 2, `round-02` | N516 alphabet specimen; N47 for v, w | T, U, k, l, loose-mark cluster | 15% | 507 → 504 |
+| Kilfane | Study 4, `kilfane-judgement` (on round 2 and Study 3) | N516 alphabet specimen; N517 means for 16 capitals; N47 for v, w | loose-mark cluster | 18% | 507 → 501 |
 | Carrick | Study 2, `round-05` | N513 alphabet specimen; N513 named marks | e, f, x, y (and the lower paired mark) | 24% | 659 → 640 |
 | Tuam Uncial | Study 2, `round-03` | N46 (NIVAL's copy of the flyer) | none | 8% | 850 → 857 |
 | Céilí | Study 3, `round-04` | N46; N45 punctuation | the loose dots (DOTS) | 18% | 611 → 616 |
@@ -30,8 +31,14 @@ agreement is not independent confirmation.
 
 Proofs (font-only): [Kilfane](release-candidate/proofs/kilfane.png),
 [Carrick](release-candidate/proofs/carrick.png), [Tuam Uncial](release-candidate/proofs/tuam.png),
-[Céilí](release-candidate/proofs/ceili.png). Each sets the same lines in 2.010 and in the
-candidate, style by style.
+[Céilí](release-candidate/proofs/ceili.png). Each sets the same lines in the release and in
+the candidate, style by style.
+
+Kilfane's candidate is [Study 4](kilfane-judgement/README.md), the judgement pass: capitals from
+the production sheets held to N516's frame, T, U, k and l traced from N516, and the e's notch eased
+(a recorded judged edit). The candidate also sits Kilfane's square stem feet (F, P, V, 4, 7, the
+roman alternates) on the baseline instead of 8 units below it (`FLAT_FOOT_WIDENING`, Kilfane only:
+the other faces' feet have not been reviewed).
 
 ## The 2026 styles (modern extensions)
 
@@ -62,7 +69,7 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
 |---|---|---|
 | Kilfane Regular → Bold | none | |
 | Kilfane Regular → Italic | none | |
-| Kilfane Bold → Bold Italic | ŋ | A slit under 4 units closes; 2.010 has the same. Accept. |
+| Kilfane Bold → Bold Italic | none | (Study 2 flagged ŋ: a slit under 4 units; gone with Study 4.) |
 | Céilí Regular → Bold | 6 | Joins by design (`BOLD['ceili']['joins']`), as in 2.010. Accept. |
 | Céilí Regular → Italic, Bold → Bold Italic | none | |
 | Carrick Regular → Italic | ¾ | At fraction size the 3's notch mouth is under 2 units, already shut at raster resolution in the Regular. Accept. |
@@ -72,11 +79,11 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
 
 | Check | Result |
 |---|---|
-| `FONTDIR=build/candidate/fonts pytest tests/test_release.py tests/test_shaping.py` | 18 of 20 pass. Style linking fails only because the expected version is still 2.010. Bold counters: 0 flags beyond the designed Céilí 6. |
+| `FONTDIR=build/candidate/fonts pytest tests/test_release.py tests/test_shaping.py` | 20 of 21 pass. Style linking fails only because the expected version is the release's (2.100). Bold counters: 0 flags beyond the designed Céilí 6. The "Digital" naming check passes. |
 | Pair collisions, all 12 styles ([summary](release-candidate/pair-audit.json)) | 0 collisions in 1,346,872 HarfBuzz-shaped pairs: Latin letters, figures and punctuation, default features |
 | OTS, 48 files (OTF, TTF, WOFF, WOFF2) | no failures |
 | Font Bakery `check-universal`, per family | 0 FAIL, 0 ERROR; the same two WARN kinds as 2.010 (decomposed carons, contour counts) |
-| Full test suite on the committed fonts | 131 pass; the release rebuilds byte-identical |
+| Full test suite on the committed fonts | 145 pass; the release rebuilds byte-identical |
 
 ## Before promotion
 
@@ -89,8 +96,8 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
    exact study commits above.
 4. **Open source issues stay open.** Carrick's legacy e/f/x/y wait on C1/C2. A Carrick
    Study 3 would replace the Carrick Regular, so release only after C1/C2 resolve, or
-   promote Carrick with its four legacy letters labelled. The same goes for Kilfane
-   T/U/k/l and the zero disagreement, Céilí's unassigned punctuation, and Tuam's N45/N46
+   promote Carrick with its four legacy letters labelled. The same goes for Kilfane's
+   zero disagreement (T/U/k/l are traced from N516 in Study 4), Céilí's unassigned punctuation, and Tuam's N45/N46
    disagreements and recomposed accents. Each glyph's provenance file already labels it
    as traced, retained legacy or modern construction.
 
