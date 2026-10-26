@@ -135,6 +135,25 @@ vertex seams (15), which N45 prints distinctly narrower and which stay so. The s
 (20 to 33), which differ by under two N45 pixels; evening them to one width (about 27) would be the next step, but
 nothing in the prints asks for it.
 
+### The second pass (a review of the release)
+
+A type review of the release found six defects. Each fix is in [judged-edits.json](judged-edits.json) with its reason
+(`constructions`; r's top in `edits`; the section sign in `derived`, edits to a glyph made from the traced ones).
+
+| What | First pass | Now | Evidence and reasoning |
+|---|---|---|---|
+| í against i | acute 223 x 125 at 19 degrees, 30 above the stem; dot 249 x 93, 40 above: alike at 14 to 20 px | the traced acute drawn steeper, its right end raised 100: 223 x 213 at 40 degrees, its width, thin left end, place and gap kept | N45 prints í's acute steeper and taller than the dot (18 degrees, 136 units, against 3 and 74) and closer to the stem (25 against 37); the production sheet the same (13 to 14 degrees against 1 to 3; 26 against 54). Of eight options, proofed at 14 to 20 px, this is the least change that renders i and í at least as differently as Liberation Serif, the least distinct of three common text faces (FreeType, blurred half a pixel: 0.18 to 0.30, now 0.70 to 0.85, against 0.55 to 0.73); a larger gap also passes but draws a raised dot, not a fada, against the prints, which set the acute nearer than the dot |
+| ḃ ḋ ḟ | the ponc 30 above the ascender, one with it at 14 px | ḃ ḋ: beside the ascender over the bowl, centred over the counter and on the ascender's height above the x-height (61 above the bowl, 73 and 70 from the ascender; 63 and 62 in the Italic); ḟ: 60 above the stem | Hayes letters the dotted b of leabhair this way in the face on his 1974 cover (Bolger fig. 204, PDF page 160); f has no bowl and its flag fills the space beside its stem. All three now render apart at 14 to 20 px. The line's ascender rises from 934 to 951 to hold ḟ |
+| § | a 76 degree corner on pieces of 2 to 8 units where the two s meet, and stubs at the counters' tips: 11 pieces under 8 units | continuous curves, none under 8 units; joins bent 3 to 25 degrees 15 to 2 (the two corners where the s meet) | the joins redrawn as single curves, then the outline settled |
+| Quotes and apostrophe | tails 84 thick (skeleton) against stems of 220, a notch where the tail met the dot | 123; the same wedge, its inner side moved out, one outline with the dot | no print sets a comma or quote; the comma, quotes, semicolon, comma accents and apostrophe caron share the one drawing |
+| Italic weight | stems 210 to 213, o 207 (the Regular 220, 216): narrowed by a plain transform | stems 219 to 222, o 216: every edge grown 4.4 across, each cut, slit and seam put back to its first-pass width (within 1.6) | grown by the drawing's own nodes, the whites restored as the slope shows them, by the side that ends there; ð, ½, ¼, ™ and the braces, whose hairline gaps the growth would close, keep the narrowing alone |
+| Italic joins | 194 joins bent 3 to 25 degrees, 62 pieces under 8 units (the Regular 76 and 17) | 72 and 8 | settled on the grid after the slant (`scripts/settle.py`, pieces under 8 folded) |
+| r | its arm's top 542 | 544, with n, m and h | a level edit, as the other flat tops |
+
+The traced í acute stays in the Study 3 fonts here. A stylistic alternate for it was not added: build2's stylistic
+sets would carry it, but the alternate has to be made as a composite of the dotless i between the composites and
+the spacing, where the release build has no Tuam step.
+
 ## Open
 
 - The cuts of v, w and 5, and the slits of d, p, q, s and 6, are N45's: the sheet resolves only the wider cuts.
