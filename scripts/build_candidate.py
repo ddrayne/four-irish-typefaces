@@ -35,6 +35,12 @@ def build(face, traces, version):
         SLIVER, SLIVER_SLOPED = 0.05, 0.01
         FINISH = True
         MATCHED_BRACKETS = True          # symbols.make_symbols: the drawn brackets match the parentheses
+        # Carrick's second finishing pass (research/round-06/carrick/judged-edits.json): % and ‰ from the
+        # face's own 0 and # in the figures' weight (symbols.figure_signs), the ¢ bar clear of the c's
+        # counter (symbols.clear_bar), the ponc of ḃ beside its ascender and ḋ's and ḟ's well above theirs
+        # (build2.Font2.ponc)
+        FIGURE_PERCENT = CENT_CLEAR = face == 'carrick'
+        PONC_BESIDE, PONC_GAP = (('b',), 0.13) if face == 'carrick' else ((), None)
         # a single stem's square foot (Kilfane's F, P, V, 4 and 7) sits on the baseline, not 8 units below
         # it. Kilfane's and Carrick's feet have been reviewed against their sheets (Carrick's are slanted
         # cuts, s's bottom among them, so n, h and s now sit as m and i do); elsewhere the rule would also
@@ -77,9 +83,12 @@ def build(face, traces, version):
             narrow = {n: SH.transform(p, (build2.CONDENSE, 0, 0, 1, 0, 0)) for n, p in self.P.items()
                       if build2.bounds(p) is not None}
             # and the hair is added by moving the drawing's own nodes (bolden.grow_nodes), not by a
-            # stroked offset, which nearly doubled the sloped outlines' nodes
-            grow = bolden.grow
-            bolden.grow = lambda p, rx, ry, miter=4.0: bolden.grow_nodes(p, rx, ry, miter, fallback=grow)
+            # stroked offset, which nearly doubled the sloped outlines' nodes; nodes beside a cut or slit
+            # narrower than 0.22 stem stay put (stepping back by what narrowing and sloping take from it),
+            # so the Italic keeps the Regular's cuts (@, 9 and u's had lost half their width)
+            grow, cut, frame = bolden.grow, 0.22 * self.S, (build2.CONDENSE, t)
+            bolden.grow = lambda p, rx, ry, miter=4.0: bolden.grow_nodes(p, rx, ry, miter, fallback=grow, keep_cuts=cut,
+                                                                         cut_frame=frame)
             try:
                 super().condense()
             finally:
@@ -134,6 +143,9 @@ def build(face, traces, version):
                 self.P.update(keep)
                 return
             super().zones()
+            if face == 'carrick':
+                import carrick_studio
+                carrick_studio.figures(self)                 # the figures on one figure line
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.apply(self)

@@ -210,3 +210,126 @@ def test_outlines_are_settled_on_the_grid():
                 joins += 1
                 bent += 'C' in segs[i][0] + segs[j][0] and 1.5 < turn < settle.SMOOTH
     assert bent < 0.04 * joins, (bent, joins)          # 175 of 1209 joins before, 23 of 1184 after
+
+
+# ---------------------------------------------------------------- the second finishing pass
+def mask(font, name, upx=1.0, pad=50):
+    import evidence_board as EB
+    polys = ink(font, name)
+    pts = np.vstack(polys); lo, hi = pts.min(0) - pad, pts.max(0) + pad
+    shape = (int((hi[1] - lo[1]) * upx) + 1, int((hi[0] - lo[0]) * upx) + 1)
+    return EB.rasterise(polys, upx, shape, np.array([lo[0], hi[1]])), (lo[0], hi[1])
+
+
+def weight(font, name):
+    """A glyph's stroke weight as the review measured it: twice the distance to the edge along its
+    skeleton, the 75th percentile."""
+    from scipy import ndimage as ndi
+    from skimage.morphology import skeletonize
+    m, _ = mask(font, name, pad=4)
+    return 2 * np.percentile(ndi.distance_transform_edt(m)[skeletonize(m)], 75)
+
+
+def topology(m):
+    from scipy import ndimage as ndi
+    lab, n = ndi.label(m, structure=np.ones((3, 3)))
+    pieces = int((ndi.sum(m, lab, range(1, n + 1)) >= 3).sum())
+    bg, k = ndi.label(~m); edge = set(np.unique(np.r_[bg[0], bg[-1], bg[:, 0], bg[:, -1]]))
+    return pieces, sum(1 for i in range(1, k + 1) if i not in edge and (bg == i).sum() >= 3)
+
+
+def cut(font, name, most=45.0):
+    """The width of a glyph's narrowest cut: the smallest closing (in font units, at a unit a pixel) that
+    joins two of its pieces or shuts or opens a counter."""
+    from scipy import ndimage as ndi
+    m, _ = mask(font, name)
+    closed = lambda r: ndi.distance_transform_edt(ndi.distance_transform_edt(~m) <= r) > r
+    t0 = topology(m)
+    # the first change, scanned upwards: closings do not change a glyph's topology monotonically (a
+    # ring's hole shuts as the ring joins the letter under it, which can restore the count)
+    for r in np.arange(1.0, most / 2 + 1):
+        if topology(closed(r)) != t0:
+            lo, hi = r - 1, r
+            while hi - lo > 0.25:
+                mid = (lo + hi) / 2
+                lo, hi = (lo, mid) if topology(closed(mid)) != t0 else (mid, hi)
+            return 2 * hi
+    return None
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_percent_and_numbersign_take_the_figures_weight(style):
+    """% and ‰ are the face's own 0 made small with strokes about 0.6 of the figure stem, # has bars about
+    half of it (all three were 0.39 of it: 68 to 70 units against the 1's 176)."""
+    f = release(style); stem = weight(f, 'one')
+    for name in ('percent', 'perthousand'):
+        assert weight(f, name) >= 0.55 * stem, (name, weight(f, name), stem)
+    assert 0.45 * stem <= weight(f, 'numbersign') <= 0.6 * stem
+    # the zeros keep their counters, and the zeros and the slash stand apart
+    for name, zeros in (('percent', 2), ('perthousand', 3)):
+        m, _ = mask(f, name)
+        assert topology(m) == (zeros + 1, zeros), name
+        assert min(counters(f, name)) >= 0.15 * stem, name
+
+
+def ponc(font, name):
+    """A dotted letter's dot (its smallest piece) and the rest, as rasters at a unit a pixel."""
+    from scipy import ndimage as ndi
+    m, origin = mask(font, name)
+    lab, n = ndi.label(m)
+    dot = lab == 1 + int(np.argmin(ndi.sum(m, lab, range(1, n + 1))))
+    return dot, m & ~dot, origin
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_the_ponc_stands_clear_of_the_ascender(style):
+    """ḃ ḋ ḟ: the dot stood 45 to 47 units above the ascender, so that at 14 to 16 px ḃ and b, ḟ and f
+    were hard to tell apart. Irish types set ḃ's ponc beside the ascender, over the bowl (Baoithín, Colum
+    Cille, William Britain's 1963 drawings); ḋ's and ḟ's stand above theirs, at least 60 units clear."""
+    from scipy import ndimage as ndi
+    f = release(style); cm = f.getBestCmap()
+    for ch in 'ḃḋḟ':
+        dot, base, _ = ponc(f, cm[ord(ch)])
+        assert ndi.distance_transform_edt(~base)[dot].min() >= 60, ch
+    # ḃ's beside its ascender: below the ascender's top and right of its stem, at the dot's height
+    dot, base, _ = ponc(f, cm[ord('ḃ')])
+    rows = np.nonzero(dot.any(1))[0]
+    assert base[:rows.max()].any(), 'the ascender rises above the foot of the dot'
+    for r in rows[base[rows].any(1)]:
+        assert np.nonzero(dot[r])[0].min() - np.nonzero(base[r])[0].max() >= 60, r
+
+
+def test_the_italic_keeps_the_cuts():
+    """The sloped style's hair of weight narrowed the cuts by half (@ and 9 from 14 to 6 units, ¢ from 16 to
+    6, u from 20 to 10): nodes beside a cut stay where they are, so each keeps the Regular's width to
+    within 2 units, the small change that narrowing and sloping the letter make."""
+    R, I = release('Regular'), release('Italic'); cm = R.getBestCmap()
+    for ch in '@9¢uamyk5e':
+        a, b = cut(R, cm[ord(ch)]), cut(I, cm[ord(ch)])
+        assert a is not None and b is not None and abs(a - b) <= 2.0, (ch, a, b)
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_the_cent_bar_leaves_the_counter_whole(style):
+    """The ¢ bar crossed the c beside the narrow inner curve of its back and shut a lens of the counter off;
+    it now stands at the back, so the c's counter stays one open space."""
+    f = release(style)
+    assert counters(f, 'cent') == counters(f, 'c') == []
+    assert cut(f, 'cent') >= 16                         # the bar stands clear of the c's top terminal
+
+
+def test_figures_share_one_figure_line():
+    """N513 prints the figures' tops on one line (all but the 8 within two source pixels) and their feet at
+    different depths; set on the baseline by their lowest points they stood from 517 (the 2) to 565 (the 5
+    and 7) tall. A flat top meets the figure line, a cut or pointed one stands the round overshoot above it;
+    the 8, drawn about 67 units taller on N513 and N47, keeps its height."""
+    from fontTools.pens.boundsPen import BoundsPen
+    spec = load(ROUND, 'carrick', 'judged-edits.json')['figures']
+    line, over = spec['line'], spec['overshoot']
+    for style in ('Regular', 'Italic'):
+        gs = release(style).getGlyphSet()
+        def b(n):
+            p = BoundsPen(gs); gs[n].draw(p); return p.bounds
+        for n in 'zero one two three four five six seven nine'.split():
+            assert line - 2 <= b(n)[3] <= line + over + 2 and -10 <= b(n)[1] <= 0, (style, n, b(n))
+        assert b('eight')[3] >= line + 55, style

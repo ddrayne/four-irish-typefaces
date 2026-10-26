@@ -140,6 +140,54 @@ its leg); u's right foot stays below its rounded left. *Spacing*: Letraset's spa
 letter's ink to within 0 to 20 units (o's lies 35 inside its left edge): they set ink box to ink box and
 argue nothing against the optical spacing, which sets nn, oo and prose evenly with no letter pair kerned.
 
+## The second finishing pass
+
+An independent type review of the released fonts (font outlines only) raised the items below; each
+correction is in [judged-edits.json](carrick/judged-edits.json) with its reason. Numbers are font units.
+
+- **% ‰ #** were drawn from small zeros at their own weight and thin rules: strokes of 68 to 70
+  (skeleton, 75th percentile) beside figures of 176. % and ‰ are now the face's own 0 made small,
+  grown by a pen in the zero's own contrast that moves its nodes (so its cut corners stay cut), with a
+  slash between the zeros; # has bars half the figure stem (`symbols.figure_signs`, switched on by
+  `FIGURE_PERCENT`, which any face can take: a scratch build of Tuam with it measures 0.58 and 0.50 of
+  its figure stem, and its zero's cut stays a cut). The strokes are now 104 to 106 (0.59 to 0.60 of
+  the figure stem; 0.57 in the Italic) and #'s bars 92 (0.52).
+- **The ponc of ḃ ḋ ḟ** stood 44 to 45 units above the ascender, so that at 14 to 16 px ḃ read as b and
+  ḟ as f. N513's accent set gives the dot's shape (a diamond) but no dotted letter, and the production
+  sheets have none. Irish types set ḃ's dot beside the ascender, over the bowl: Ó Lochlainn's Baoithín
+  (c. 1932) and Colum Cille (1934), and William Britain's 1963 drawings for an Cló Nua-Rómhánach, which
+  also drew f and t with lower ascenders so that their dots clear them (Bolger 2017, figs 171, 172 and
+  181). ḃ's dot now stands beside the ascender, over the bowl; ḋ's (Carrick's d leans back like
+  Baoithín's ꝺ, but its tip is too high and steep for the dot to sit in its crook legibly) and ḟ's stand
+  above, 70 to 72 units clear (68 to 71 in the Italic; `build2.Font2.ponc`). b, d or f with U+0307
+  shapes as the precomposed letter (ccmp). The line box, which covers ḟ, keeps its height (1201) and
+  rises 7 units about the baseline: 988 above it and 213 below (it was 981 and 220).
+- **The Italic's cuts**: its hair of extra weight narrowed every cut by about 7 units (@ and 9 from 12 to
+  3 and 6, ¢ from 14 to 4, u from 19 to 8). The nodes beside a cut narrower than 0.22 stem now stay put,
+  a long segment beside one is given a node there to hold, and each held node steps back by what
+  narrowing and sloping take from the cut (`bolden.grow_nodes(keep_cuts, cut_frame)`). The Italic's @
+  is now 11.6 against the Regular's 12.3, 9 14.4 against 13.7, ¢ 17.2 against 18.6, u 18.3 against
+  18.6. Of the 101 glyphs with a cut under 40 units (its width read as the narrowest closing that
+  changes the glyph's pieces or counters, at a unit a pixel), 86 lost more than 2 units of it in the
+  Italic (median 5.5, up to 11); now the median change is 0.5 and none loses more than 2, but for two
+  the measure misreads: ™, whose m strokes stand 1.4 units apart in the Regular as before (under its
+  resolution), and ¾, where the small 4's counter (21 across, 20 in the Italic) shuts at the same
+  closing at which the 3's opening makes a new one.
+- **¢**: the bar stood at the c's middle and shut off a lens of the counter (35 across, 25 in the
+  Italic) behind it. It now stands at the c's back, just covering the counter's innermost point, so the
+  counter stays one open space and the bar stands 19 units clear of the c's top terminal (17 in the
+  Italic; they were 14 and 4).
+- **Figure heights** (investigated): N513 prints the figures' tops, all but the 8's, on one line (677
+  to 683 px, the row's line at 681.5), and N47 too (680 to 687, line 682), while their feet stand at
+  different depths (775 to 782 px and 779 to 787: the 7's and 5's cut ends and round bottoms run up to
+  7 px, about 37 units, below the 2's flat foot). The builder sets each figure's lowest point on the
+  baseline, as it does the lowercase cut feet, and that moved the tops apart: 517 (the 2) to 565 (the
+  5 and 7). Each figure is now scaled about the baseline so that a flat top meets a figure line at 550
+  and a cut or pointed top stands 8 above it, as cut and round feet stand 8 below the baseline, by at
+  most 6% (the 2; `scripts/carrick_studio.py`). The 8 is the exception both prints agree on: it rises
+  12 px (about 67 units) above the others with its feet on their line, so it is drawn taller and keeps
+  its height (617).
+
 ## Reproduce
 
 ```sh

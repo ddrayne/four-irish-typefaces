@@ -41,6 +41,9 @@ ChangeLog
   Uncial and Céilí from the mean of the flyer (N46) and the catalogue (N45), with Céilí's
   disagreements decided by a third print (N44). Each study's evidence is in research/.
 - Tuam Uncial's braces are drawn with a point; Kilfane's and Carrick's stem feet sit on the baseline.
+- Carrick: % ‰ # in the figures' weight; ḃ's ponc beside its ascender, ḋ's and ḟ's well clear above
+  theirs (b, d, f + U+0307 compose to them); ¢'s bar clear of the counter; the figures on one figure
+  line; the Italic keeps the Regular's cuts. Its line box rises 7 units about the baseline (988/-213).
 - Names, coverage and features are unchanged; spacing follows the new outlines.
 
 2.101 (2026-10-25)

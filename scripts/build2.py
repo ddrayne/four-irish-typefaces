@@ -369,6 +369,13 @@ class Font2:
     # Braces whose point is drawn as a point (symbols.pointed_brace) instead of the release's two stroked
     # halves meeting at the tip; off for the release, on where a study's evidence asks for it.
     BRACE_POINT = False
+    # The ponc (dot above) on ascender letters: PONC_BESIDE names the lowercase letters whose dot stands
+    # beside the ascender, over the bowl, as Irish types set ḃ's (Baoithín, Colum Cille, William
+    # Britain's 1963 drawings for an Cló Nua-Rómhánach); on the other ascender letters the dot stands above
+    # the stem, PONC_GAP x-heights clear. Each such letter + U+0307 shapes as its precomposed glyph (ccmp).
+    # Off for the release (the shared gap above the stem's top) but where a finishing pass sets them.
+    PONC_BESIDE = ()
+    PONC_GAP = None
 
     def finish_traced(self):
         """Redraw each traced outline from its source-pixel scale up (finish.refit, where a source
@@ -817,6 +824,8 @@ class Font2:
                 return translate(m, cx - neck, bottom_under(base, cx - 10, cx + 10) + 0.05 * xh - b1)
             return translate(m, cx - acx, -0.06 * xh - b1)
         # top marks
+        if mark_kind == 'dot' and not upper and self.PONC_GAP and base_name.split('.')[0] in tuple('bdfhkl'):
+            return self.ponc(base_name, base, m)
         top_ref = cap if upper else xh
         if not upper and base_name[0] in 'bdhkl' and base_name not in ('dotlessi',):
             s0, s1 = stem_at(base, xh + 0.6 * (asc - xh), 'left'); cx = (s0 + s1) / 2
@@ -827,6 +836,29 @@ class Font2:
         if mark_kind == 'commaturned':
             gap *= 1.4
         return translate(m, cx - acx, t + gap - b0)
+
+    def ponc(self, base_name, base, m):
+        """The dot on an ascender letter (PONC_BESIDE, PONC_GAP): beside the ascender over the bowl (a fifth
+        further from the stem than from the bowl), or above the stem; PONC_GAP x-heights clear either way."""
+        from symbols import clearance
+        xh, asc = self.xh, self.asc; gap = self.PONC_GAP * xh
+        a0, b0, a1, b1 = bounds(m); aw = a1 - a0
+        s0, s1 = stem_at(base, xh + 0.6 * (asc - xh), 'left')
+        self.ponc_bases = getattr(self, 'ponc_bases', set()) | {base_name}
+        if base_name not in self.PONC_BESIDE:
+            cx = (s0 + s1) / 2
+            q = translate(m, cx - (a0 + a1) / 2, top_under(base, cx - aw / 2, cx + aw / 2) + gap - b0)
+            for _ in range(20):                       # as low as the gap allows (the top under it slopes)
+                if clearance(translate(q, 0, -2), base) < gap:
+                    break
+                q = translate(q, 0, -2)
+            return q
+        right = bounds(base)[2]
+        for x in np.arange(s1 + 1.2 * gap, right - aw + 1, 2.0):     # the dot's left edge, clear of the stem
+            q = translate(m, x - a0, top_under(base, x, x + aw) + gap - b0)
+            if clearance(q, base) >= gap - 1:
+                return q
+        return translate(m, (s0 + s1) / 2 - (a0 + a1) / 2, top_under(base, s0, s1) + gap - b0)
 
     def composites(self):
         P, cfg = self.P, self.cfg
@@ -1096,6 +1128,11 @@ class Font2:
             rules = [f'        sub {self.comp[n]} {acute} by {n};' for n in own]
             rules += [f'        sub i {acute} by {n};' for n in own if self.comp[n] == 'dotlessi']
             fea[-2:-2] = ['    lookup OWN_ACUTE {', *rules, '    } OWN_ACUTE;']     # after the dotless i
+        ponc = sorted(n for n, b in self.comp.items() if b in getattr(self, 'ponc_bases', ()) and self.comp_marks[n] == ['dot'])
+        if ponc:
+            # a letter + U+0307 becomes the precomposed letter, whose ponc stands where Irish types set it
+            dot = gname(0x307)
+            fea[-2:-2] = ['    lookup PONC {', *[f'        sub {self.comp[n]} {dot} by {n};' for n in ponc], '    } PONC;']
         salt = {}
         for b, al in cfg['alts'].items():
             for alt in al:

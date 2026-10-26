@@ -78,24 +78,131 @@ def grow(p, rx, ry, miter=4.0):
     return SH.transform(g, (rx, 0, 0, ry, 0, 0))
 
 
-def grow_nodes(p, rx, ry, miter=4.0, fallback=None):
+def cut_nodes(contours, reach, res=0.5, step=1.5):
+    """The nodes (contour, index) beside a cut: a gap narrower than `reach` across background to another
+    piece, or to the same outline where it has come the long way round (a slit, a small counter, a narrow
+    crotch: further along the outline than half as much again as straight across). A node is beside the
+    cut when its own outline faces one within `reach` of it. Also returns {(contour, index): t}, where a
+    segment faces a cut more than half `reach` from both its nodes (a long stem's edge beside a slit):
+    the place on it nearest the other side, for a node of its own."""
+    import settle
+    from scipy.spatial import cKDTree
+    from outline_util import raster
+    pts, cid, seg_of, tt, arc, nodes, length = [], [], [], [], [], [], []
+    for ci, segs in enumerate(contours):
+        s = 0.0; a = settle._start(segs, 0)
+        for i, seg in enumerate(segs):
+            P = settle._sample(a, seg, 24); ts = np.linspace(0, 1, len(P)); s0 = s
+            for k, (u, v) in enumerate(zip(P[:-1], P[1:])):
+                d = float(np.hypot(*(v - u))); n = max(1, int(d / step))
+                f = np.arange(n) / n
+                pts.append(u + (v - u) * f[:, None]); cid += [ci] * n; seg_of += [i] * n
+                tt.append(ts[k] + (ts[k + 1] - ts[k]) * f); arc.append(s + d * f); s += d
+            nodes.append((ci, i, s0, s)); a = seg[1][-1]
+        length.append(s)
+    pts, cid, seg_of = np.vstack(pts), np.array(cid), np.array(seg_of)
+    tt, arc, length = np.concatenate(tt), np.concatenate(arc), np.array(length)
+    x0, y0 = pts.min(0) - 4; x1, y1 = pts.max(0) + 4
+    W, H = int((x1 - x0) / res) + 1, int((y1 - y0) / res) + 1
+    polys = [settle._poly(settle._start(segs, 0), segs).tolist() for segs in contours]
+    ink = raster(polys, (W, H), lambda q: ((q[0] - x0) / res, (y1 - q[1]) / res))
+    pairs = cKDTree(pts).query_pairs(reach, output_type='ndarray')
+    if not len(pairs):
+        return {}, {}
+    i, j = pairs[:, 0], pairs[:, 1]
+    d = np.hypot(*(pts[i] - pts[j]).T)
+    od = np.abs(arc[i] - arc[j]); od = np.minimum(od, length[cid[i]] - od)
+    keep = (cid[i] != cid[j]) | (od > 1.5 * d + 4)
+    for t in (0.25, 0.5, 0.75):                     # seen across background
+        q = pts[i] + (pts[j] - pts[i]) * t
+        c, r = ((q[:, 0] - x0) / res).astype(int), ((y1 - q[:, 1]) / res).astype(int)
+        keep &= ~ink[np.clip(r, 0, H - 1), np.clip(c, 0, W - 1)]
+    across, partner = np.full(len(pts), np.inf), np.zeros(len(pts), int)
+    order = np.argsort(-d[keep])                    # the nearest partner written last
+    for a, b in ((i[keep][order], j[keep][order]), (j[keep][order], i[keep][order])):
+        partner[a] = b
+    np.minimum.at(across, i[keep], d[keep]); np.minimum.at(across, j[keep], d[keep])
+    facing = np.isfinite(across)
+    held, splits = {}, {}
+    for ci, k, s0, s1 in nodes:
+        on = np.nonzero(facing & (cid == ci))[0]
+        if not len(on):
+            continue
+        gap = np.abs(arc[on] - s1); gap = np.minimum(gap, length[ci] - gap)
+        if gap.min() <= reach:
+            m = on[np.argmin(gap)]
+            held[(ci, k)] = tuple(pts[partner[m]] - pts[m])       # across the cut, from beside the node
+        mine = on[seg_of[on] == k]
+        if len(mine):
+            m = mine[np.argmin(across[mine])]
+            if min(arc[m] - s0, s1 - arc[m]) > reach / 2 and 0.02 < tt[m] < 0.98:
+                splits[(ci, k)] = float(tt[m])
+    return held, splits
+
+
+def _hold(d, frame):
+    """The move of a node held beside a cut whose width across is d (dx, dy): none, or, with `frame` =
+    (narrowing, slope), back from the cut by half what the narrowing and the later slope take from it
+    (or towards it by half what the slope adds)."""
+    if not frame:
+        return (0.0, 0.0)
+    c, t = frame; dx, dy = d; n = math.hypot(dx, dy)
+    if n < 1e-6:
+        return (0.0, 0.0)
+    step = (math.hypot(dx / c, dy) - math.hypot(dx + t * dy, dy)) / 2
+    return (-step * dx / n, -step * dy / n)
+
+
+def _split(segs, splits):
+    """segs with each segment named in splits ({index: t}) divided in two at t."""
+    import settle
+    out = []
+    for i, (k, pts) in enumerate(segs):
+        if i not in splits:
+            out.append([k, list(pts)]); continue
+        t = splits[i]; a = np.array(settle._start(segs, i), float)
+        if k == 'L':
+            b = np.array(pts[0], float); out += [['L', [tuple(a + (b - a) * t)]], ['L', [tuple(b)]]]
+            continue
+        c1, c2, b = (np.array(q, float) for q in pts)
+        ab, bc, cd = a + (c1 - a) * t, c1 + (c2 - c1) * t, c2 + (b - c2) * t
+        abc, bcd = ab + (bc - ab) * t, bc + (cd - bc) * t
+        m = abc + (bcd - abc) * t
+        out += [['C', [tuple(ab), tuple(abc), tuple(m)]], ['C', [tuple(bcd), tuple(cd), tuple(b)]]]
+    return out
+
+
+def grow_nodes(p, rx, ry, miter=4.0, fallback=None, keep_cuts=0.0, cut_frame=None):
     """grow() for a small pen that keeps the outline's own nodes: each node moves out by the pen (to
     where the offsets of its two sides meet, at a corner) and its handles move with it, so the grown
     outline has the drawing's nodes, not the many short pieces a stroked offset leaves. Accurate where
     the pen is small against the outline's curvature (the sloped styles' hair of weight); where the
-    result would not cover the shape it grew from, `fallback` (grow()) instead."""
+    result would not cover the shape it grew from, `fallback` (grow()) instead. With `keep_cuts`, the
+    nodes that face other ink across a gap narrower than that (cut_nodes) stay where they are, so the
+    drawing's cuts and slits keep their width; a long segment beside a cut is given a node there to hold.
+    `cut_frame` = (narrowing, slope): p is the upright narrowed by that much, to be sloped by that shear
+    (tan) later, and each held node steps back from its cut by what those take from the cut's width, so
+    the finished cut has the upright's."""
     import math
     from fontTools.pens.recordingPen import RecordingPen, replayRecording
     import settle
     q = pathops.simplify(p, fix_winding=True, keep_starting_points=True, clockwise=False)
     r = RecordingPen(); q.draw(r)
+    held = {}
+    if keep_cuts:
+        cs = settle._contours(r.value)
+        held, splits = cut_nodes(cs, keep_cuts)
+        if splits:                 # a node of its own where a long segment faces a cut
+            cs = [_split(segs, {k: t for (c, k), t in splits.items() if c == ci}) for ci, segs in enumerate(cs)]
+            held, _ = cut_nodes(cs, keep_cuts)
+            r.value = settle._record(cs)
 
     def out(t):                     # the pen's support point on the right of travel (away from the ink)
         nx, ny = t[1], -t[0]
         k = math.hypot(rx * nx, ry * ny)
         return (rx * rx * nx / k, ry * ry * ny / k) if k > 1e-12 else (0.0, 0.0)
-    contours = []
-    for segs in settle._contours(r.value):
+    contours, stepped = [], []
+    for ci, segs in enumerate(settle._contours(r.value)):
         moves = []
         for i in range(len(segs)):
             j = (i + 1) % len(segs)
@@ -117,18 +224,28 @@ def grow_nodes(p, rx, ry, miter=4.0, fallback=None):
             if math.hypot(*m) > lim:
                 m = (m[0] * lim / math.hypot(*m), m[1] * lim / math.hypot(*m))
             moves.append(m)
-        new = []
-        for i, (k, pts) in enumerate(segs):
-            a, b = moves[i - 1], moves[i]                           # this segment's start and end moves
-            if k == 'L':
-                new.append(['L', [(pts[0][0] + b[0], pts[0][1] + b[1])]])
-            else:
-                c1, c2, e = pts
-                new.append(['C', [(c1[0] + a[0], c1[1] + a[1]), (c2[0] + b[0], c2[1] + b[1]), (e[0] + b[0], e[1] + b[1])]])
-        contours.append(new)
+        held_moves = [_hold(held[(ci, i)], cut_frame) if (ci, i) in held else (0.0, 0.0) for i in range(len(segs))]
+        moves = [held_moves[i] if (ci, i) in held else m for i, m in enumerate(moves)]
+        contours.append(_moved(segs, moves)); stepped.append(_moved(segs, held_moves))
     g = pathops.Path(); replayRecording(settle._record(contours), g.getPen())
     g = pathops.simplify(g, fix_winding=True, keep_starting_points=True, clockwise=False)
+    if held and cut_frame:                  # the held nodes' steps back belong to what the pen grows from
+        q = pathops.Path(); replayRecording(settle._record(stepped), q.getPen())
+        q = pathops.simplify(q, fix_winding=True, keep_starting_points=True, clockwise=False)
     return g if _sound(q, g) else (fallback or grow)(p, rx, ry, miter)
+
+
+def _moved(segs, moves):
+    """segs with each node moved by its move and its handles with it."""
+    new = []
+    for i, (k, pts) in enumerate(segs):
+        a, b = moves[i - 1], moves[i]                           # this segment's start and end moves
+        if k == 'L':
+            new.append(['L', [(pts[0][0] + b[0], pts[0][1] + b[1])]])
+        else:
+            c1, c2, e = pts
+            new.append(['C', [(c1[0] + a[0], c1[1] + a[1]), (c2[0] + b[0], c2[1] + b[1]), (e[0] + b[0], e[1] + b[1])]])
+    return new
 
 
 def remap(p, fn):

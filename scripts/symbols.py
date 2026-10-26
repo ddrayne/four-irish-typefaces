@@ -235,6 +235,129 @@ def pointed_brace(top, bottom, w, reach, point=0.55, cusp=0.45, corner=0.35):
     return pathops.simplify(p, fix_winding=True, keep_starting_points=False, clockwise=False)
 
 
+# ---------------------------------------------------------------- % ‰ # in the figures' weight
+# A face whose figures are black (Carrick's, Tuam's: stems a third of the x-height) sets % and ‰ beside
+# them: drawn from its small zeros at their own weight and a thin rule, they print half as black as the
+# figures. With FIGURE_PERCENT a face's % and ‰ are its own 0 made small with strokes PERCENT_WEIGHT of the
+# figure stem (the 1's), a slash of SLASH_WEIGHT, and # has bars of NUMBER_WEIGHT.
+PERCENT_WEIGHT, SLASH_WEIGHT, NUMBER_WEIGHT, PERCENT_ZERO, PERCENT_SLOPE, PERCENT_GAP = 0.63, 0.58, 0.50, 0.46, 0.62, 0.35
+
+
+def _outline_points(p, step=3.0):
+    from fontTools.pens.recordingPen import RecordingPen
+    from outline_util import flatten
+    rec = RecordingPen(); p.draw(rec); pts = []
+    for poly in flatten(rec.value, 24):
+        a = np.array(poly + poly[:1], float)
+        for u, v in zip(a[:-1], a[1:]):
+            n = max(1, int(np.hypot(*(v - u)) / step))
+            pts.append(u + (v - u) * np.linspace(0, 1, n, endpoint=False)[:, None])
+    return np.vstack(pts)
+
+
+def clearance(a, b):
+    """The narrowest white between two outlines (0 where they overlap)."""
+    from scipy.spatial import cKDTree
+    from fontTools.pens.areaPen import AreaPen
+    ap = AreaPen(); SH.op(a, b, pathops.PathOp.INTERSECTION).draw(ap)
+    if abs(ap.value) > 1:
+        return 0.0
+    return float(cKDTree(_outline_points(a)).query(_outline_points(b))[0].min())
+
+
+def figure_stem(P, top):
+    from letters import stem_at
+    a, b = stem_at(P['one'], 0.45 * top, 'left')
+    return b - a
+
+
+def figure_zero(f, P, top, T):
+    """The face's 0 made small (PERCENT_ZERO of the figure height) with its thick sides T: scaled, then
+    grown by a pen in the zero's own contrast (its thinnest stroke against its sides) that moves the
+    zero's own nodes, so its corners stay cut and a cut through it (Tuam's) keeps its width
+    (bolden.grow_nodes); a counter the pen would still shut is kept open as the bold keeps them."""
+    import bolden
+    from letters import stem_at
+    zero = P['zero']; zb = bounds(zero); h0 = zb[3] - zb[1]; cx, cy = (zb[0] + zb[2]) / 2, (zb[1] + zb[3]) / 2
+    s0, s1 = stem_at(zero, cy, 'left'); w0 = s1 - s0
+    turned = SH.transform(zero, (0, 1, 1, 0, 0, 0))            # x <-> y: runs down the middle of the 0
+    v = [stem_at(turned, cx, side) for side in ('left', 'right')]
+    c = float(np.clip(min(b - a for a, b in v) / w0, 0.35, 1.0))
+    k = (PERCENT_ZERO * top - c * T) / (h0 - c * w0)
+    rx = max(0.0, (T - k * w0) / 2); ry = c * rx
+    q = SH.transform(zero, (k, 0, 0, k, 0, 0))
+    z = bolden.grow_nodes(q, rx, ry, fallback=bolden.grow, keep_cuts=0.3 * T) if rx > 0.5 else q
+    if rx > 0.5 and bolden.closes(q, z):
+        z = bolden.protect(q, z, T, (rx, ry), sliver=getattr(f, 'SLIVER', bolden.SLIVER))
+    b = bounds(z)
+    return translate(z, -b[0], -b[1])
+
+
+def figure_signs(f, P, top, st):
+    """% and ‰ from the face's own 0 and # with bars in the figures' weight (FIGURE_PERCENT): the zeros
+    PERCENT_WEIGHT of the figure stem, a slash SLASH_WEIGHT (level ends, as the faces' own slashes have)
+    set between them, the zeros and slash parted by PERCENT_GAP of the figure stem; ‰'s third zero
+    follows the second a third of the zeros' weight away. #: the release construction's counter, with
+    bars NUMBER_WEIGHT of the stem."""
+    xh = f.xh; w1 = figure_stem(P, top)
+    T, Ts, Tb = PERCENT_WEIGHT * w1, SLASH_WEIGHT * w1, NUMBER_WEIGHT * w1
+    z = figure_zero(f, P, top, T); zb = bounds(z); zw, zh = zb[2], zb[3]
+    # the slash runs the figure height through the middle at PERCENT_SLOPE; each zero is slid towards it
+    # until the white between them is `gap`
+    run = top * PERCENT_SLOPE / 2
+    if st == 'round':
+        sl = stroke_polyline([(-run, 0), (run, top)], Ts, st)
+    else:
+        hw = Ts / 2 * math.hypot(2 * run, top) / top            # half its level width
+        sl = SH.polygon([(-run - hw, 0), (-run + hw, 0), (run + hw, top), (run - hw, top)])
+    gap = PERCENT_GAP * w1
+
+    def slid(y0, toward):                    # the zero at height y0, as near the slash as `gap` allows
+        lo, hi = 0.0, 2 * zw + 2 * run
+        for _ in range(14):
+            mid = (lo + hi) / 2
+            q = translate(z, -mid - zw if toward > 0 else mid, y0)
+            lo, hi = (lo, mid) if clearance(sl, q) >= gap else (mid, hi)
+        return translate(z, -hi - zw if toward > 0 else hi, y0)
+    up, dn = slid(top - zh, 1), slid(0, -1)
+    pc = SH.union(up, dn, sl)
+    pm = SH.union(pc, translate(dn, zw + max(0.06 * xh, T / 3), 0))
+    # #
+    t = f.hyphen_thick; h = top; sh = math.tan(math.radians(12))
+    ci, cv = 0.30 * xh - 0.85 * t, 0.33 * h - 0.85 * t        # the release #'s counter, kept
+    dx = ci + Tb; xs = [0.18 * xh, 0.18 * xh + dx]
+    verts = [stroke_polyline([(x, 0), (x + sh * h, h)], Tb, st) for x in xs]
+    hb = [bar(st, -0.02 * xh, 0.72 * xh + dx - 0.30 * xh, h / 2 + s * (cv + Tb) / 2, Tb) for s in (-1, 1)]
+    return {'numbersign': (SH.union(*verts, *hb), 'sheared grid, bars half the figure stem'),
+            'percent': (pc, 'the face\'s 0 made small in the figures\' weight + slash'),
+            'perthousand': (pm, 'percent + zero')}
+
+
+def counter_widths(p, res=1.0):
+    """The inscribed width of each closed counter of p."""
+    from scipy import ndimage as ndi
+    from fontTools.pens.recordingPen import RecordingPen
+    from outline_util import flatten, raster
+    b = bounds(p); x0, y1 = b[0] - 4, b[3] + 4
+    W, H = int((b[2] - b[0] + 8) / res) + 1, int((b[3] - b[1] + 8) / res) + 1
+    rec = RecordingPen(); p.draw(rec)
+    bg = ~(raster(flatten(rec.value), (W, H), lambda q: ((q[0] - x0) / res, (y1 - q[1]) / res)) > 0)
+    lab, n = ndi.label(bg); edge = set(np.unique(np.r_[lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
+    return [2 * res * ndi.distance_transform_edt(lab == k).max() for k in range(1, n + 1)
+            if k not in edge and (lab == k).sum() > 2]
+
+
+def clear_bar(c, bar, x, least):
+    """Where the ¢ bar (bar(x), at x) leaves no piece of the c's counter narrower than `least` closed off
+    beside it: the nearest place towards the c's back, else the nearest beyond. (Carrick's c is open
+    behind a narrow inner curve, and the bar at the middle shut a lens of it off.)"""
+    w = bounds(c)[2] - bounds(c)[0]
+    for dx in list(np.arange(0, -0.3 * w, -2.0)) + list(np.arange(2, 0.3 * w, 2.0)):
+        if all(v >= least for v in counter_widths(SH.union(c, bar(x + dx)))):
+            return x + dx + (np.sign(dx) * 0.01 * w if dx else 0)
+    return x
+
+
 def make_symbols(f):
     global CUT
     CUT = f.key == 'carrick'
@@ -291,6 +414,9 @@ def make_symbols(f):
     put('percent', SH.union(z_up, z_dn, sl), 'scaled zeros + slash')
     pc = P['percent']; pb = bounds(pc)
     put('perthousand', SH.union(pc, translate(z_dn, zw + 0.06 * xh, 0)), 'percent + zero')
+    if getattr(f, 'FIGURE_PERCENT', False):
+        for name, (p, how) in figure_signs(f, P, top, st).items():
+            put(name, p, how)
 
     # asterisk: five tapering arms
     r = 0.29 * xh; cy = top - 0.30 * xh
@@ -365,7 +491,11 @@ def make_symbols(f):
         qb = bounds(q); return translate(q, 0, xh - qb[3])
     put('exclamdown', inverted('exclam'), 'rotated !'); put('questiondown', inverted('question'), 'rotated ?')
     c = P['c']; cb = bounds(c)
-    put('cent', SH.union(c, vbar(st, (cb[0] + cb[2]) / 2 + 0.03 * xh, cb[1] - 0.14 * xh, cb[3] + 0.14 * xh, 0.4 * S)), 'c + bar')
+    if getattr(f, 'CENT_CLEAR', False):
+        cbar = lambda x: vbar(st, x, cb[1] - 0.14 * xh, cb[3] + 0.14 * xh, 0.4 * S)
+        put('cent', SH.union(c, cbar(clear_bar(c, cbar, (cb[0] + cb[2]) / 2 + 0.03 * xh, S / 3))), 'c + bar, clear of its counter')
+    else:
+        put('cent', SH.union(c, vbar(st, (cb[0] + cb[2]) / 2 + 0.03 * xh, cb[1] - 0.14 * xh, cb[3] + 0.14 * xh, 0.4 * S)), 'c + bar')
     # yen: a Y (roman alternate where the face has one) with two bars
     if 'Y.alt1' in P:
         y = P['Y.alt1']

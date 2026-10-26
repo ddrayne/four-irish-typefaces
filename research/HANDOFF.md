@@ -27,7 +27,9 @@ glyphs change; body letters remain as in Study 1. All 123 tests pass. Carrick ch
 included, which resolves C1) redrawn from the averaged impressions on the N514 production sheets, with
 each letter's pieces and counters read from its impressions, not from their mean; x and y traced from
 N513 at last. Start Carrick work from round 6. Remaining: letters after q are not on the photographed
-sheets.
+sheets. The release adds two studio finishing passes ([judged-edits.json](round-06/carrick/judged-edits.json),
+round 6 README): the second gives % ‰ # the figures' weight, sets the ponc of ḃ beside its ascender and of
+ḋ ḟ well above, clears the ¢ bar of the counter, puts the figures on one line and keeps the Italic's cuts.
 
 **Kilfane: [Study 5](kilfane-sheet-frame/README.md)** is Study 4 with its sixteen production capitals averaged
 again in the sheet's own frame (Letraset's spacing marks give each letter its upright and its line, so L no
