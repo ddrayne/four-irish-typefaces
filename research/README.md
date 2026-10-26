@@ -8,7 +8,8 @@ archive images and PDFs into a local cache from a fresh clone.
 The latest Carrick candidate is [round 6](round-06/README.md), Carrick Study 3, from the N514 production
 sheets; [round 5](round-05/README.md) holds Carrick's named original marks,
 with retained and derived components distinguished. [Round 4](round-04/README.md) recovers Céilí's named original punctuation
-and the language marks derived from it. [Round 3](round-03/README.md) supplies Tuam and Céilí outline studies
+and the language marks derived from it; Céilí's latest candidate is [Study 4](ceili-judgement/README.md), the
+judgement pass, every letter from the mean of N46 and N45 with N44 deciding their disagreements. [Round 3](round-03/README.md) supplies Tuam and Céilí outline studies
 from larger original reproductions, with topology-preserving tracing and explicit
 source disagreements; Tuam's latest candidate is [Study 3](tuam-judgement/README.md), the judgement pass
 on round 3, traced from both prints and checked against the production sheet. Kilfane's latest candidate is [Study 5](kilfane-sheet-frame/README.md): the production-sheet
