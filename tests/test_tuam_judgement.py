@@ -1,4 +1,4 @@
-"""Tuam Uncial Study 3, the judgement pass (research/tuam-judgement), and the tools it uses."""
+"""Tuam Uncial Study 3 (research/tuam-judgement), the tools it uses, and the release's finishing pass."""
 import json, os
 import numpy as np
 import pytest
@@ -188,3 +188,109 @@ def test_study3_all_latin_pairs(ext):
     result = audit_font_pairs(font(ext))
     assert result['pairs_tested'] > 70000 and result['skipped_non_pair_shaping'] == 0
     assert result['collisions'] == 0, result['worst']
+
+
+# ---------------------------------------------------------------- the finishing pass, in the release (judged-edits.json)
+def release(style='Regular', ext='otf'):
+    from conftest import static
+    return static('TuamUncialDigital', style, ext)
+
+
+def outline(path, name):
+    import pathops
+    from fontTools.ttLib import TTFont
+    p = pathops.Path(); TTFont(path).getGlyphSet()[name].draw(p.getPen())
+    return pathops.simplify(p, fix_winding=True, keep_starting_points=False, clockwise=False)
+
+
+def piece_gaps(p):
+    """The narrowest white between each pair of a glyph's pieces, narrowest first."""
+    import bolden, tuam_studio as T
+    from scipy.spatial import cKDTree
+    pts = [T.samples(T.contours(c), 1.0)[0] for c in bolden.components(p)]
+    return sorted(float(cKDTree(pts[j]).query(pts[i])[0].min()) for i in range(len(pts)) for j in range(i + 1, len(pts)))
+
+
+def test_studio_operations_set_what_they_state():
+    import tuam_studio as T, shapes as SH
+    from glyphs import bounds
+    stem = SH.polygon([(0, 0), (200, 0), (200, 500), (0, 500)])
+    p, was = T.stem(stem, (100, 250), 220)
+    assert was == pytest.approx(200, abs=0.5) and bounds(p)[2] - bounds(p)[0] == pytest.approx(220, abs=0.5)
+    # a spur (a wedge pointing at a stem 40 units away) is brought to 28 at its tip; its far end stays put
+    wedge = SH.polygon([(240, 300), (500, 360), (500, 240)])
+    p, was = T.spur(SH.union(stem, wedge), (240, 300), 28)
+    assert was == pytest.approx(40, abs=0.5) and piece_gaps(p)[0] == pytest.approx(28, abs=0.5)
+    assert bounds(p)[2] == pytest.approx(500, abs=0.5)
+    # a blunt end drawn as one point where its sides meet
+    blunt = SH.polygon([(100, 0), (300, 40), (300, 60), (100, 100)])
+    p, _ = T.point(blunt, (300, 50), 15)
+    assert bounds(p)[2] == pytest.approx(350, abs=0.5) and len(T.contours(p)[0][1]) == 3
+
+
+def test_finishing_edits_are_recorded():
+    doc = load(ROUND, 'judged-edits.json')
+    names = {g['name'] for g in evidence()['glyphs']}
+    ops = {'height', 'level', 'stem_top', 'stem', 'point', 'smooth', 'spur', 'cut', 'dot'}
+    assert all(e['op'] in ops and e['glyph'] in names for e in doc['edits'])
+    assert all(any('why' in e for e in doc['edits'] if e['op'] == op) for op in {e['op'] for e in doc['edits']})
+    assert all(c['why'] for c in doc['constructions'].values())
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_keeps_the_decided_topology(style):
+    for g in evidence()['glyphs']:
+        if g['status'] == 'candidate' and g['name'] not in ACCENTED:
+            assert topology_of(release(style), g['name']) == g['topology']['decided'], g['name']
+
+
+def test_release_italic_keeps_every_piece_and_counter():
+    import topo
+    assert not topo.compare(release('Regular'), release('Italic'), small=0.35)
+
+
+@pytest.mark.parametrize('ext', ['otf', 'ttf'])
+def test_release_cuts_stems_and_dots_are_even(ext):
+    import tuam_studio as T
+    p = release('Regular', ext)
+    for n in ('n', 'h', 'r', 'u', 'y', 'f'):
+        assert piece_gaps(outline(p, n))[0] == pytest.approx(28, abs=1.5), n
+    assert piece_gaps(outline(p, 'm'))[:2] == pytest.approx([28, 28], abs=1.5)
+    assert piece_gaps(outline(p, 'v'))[0] == pytest.approx(15, abs=2)
+    assert piece_gaps(outline(p, 'w'))[:2] == pytest.approx([15, 15], abs=2)
+    assert piece_gaps(outline(p, 'five'))[0] == pytest.approx(21, abs=2)
+    for n in ('i', 'j', 'exclam', 'question'):
+        assert piece_gaps(outline(p, n))[0] == pytest.approx(40, abs=1.5), n
+    stems = {'n': [0, 1], 'm': [0, 1, 2], 'h': [0, 1], 'u': [0, 1], 'y': [0, 1], 'i': [0], 'j': [0], 'l': [0],
+             'r': [0], 'b': [0], 'p': [0], 'q': [1], 'a': [1], 'g': [1]}
+    for n, which in stems.items():
+        runs = T.runs_at(outline(p, n), 300)
+        assert [round(runs[k][1] - runs[k][0]) for k in which] == pytest.approx([220] * len(which), abs=2.5), n
+    at = piece_gaps(outline(p, 'at'))
+    assert len(at) == 1 and at[0] > 25                                     # the a stands clear inside the ring
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_all_latin_pairs(style):
+    from audit_font_pairs import audit_font_pairs
+    result = audit_font_pairs(release(style))
+    assert result['pairs_tested'] > 70000 and result['collisions'] == 0, result['worst']
+
+
+def test_release_flat_tops_sit_on_the_x_height():
+    """Each letter's flat top (the longest level stretch near the x-height, within 2.5 units) is on it, and every
+    other stretch level over 80 units is within 3 of it."""
+    import tuam_studio as T
+    from fontTools.ttLib import TTFont
+    p = release(); xh = TTFont(p)['OS/2'].sxHeight
+    for n in 'abcdeghmnopqrsuvwyz':
+        q = outline(p, n); x0, _, x1, _ = T.bounds(q)
+        tops = [T.level_of(q, x, x, 'top') for x in np.arange(x0 + 2, x1 - 2, 4)]
+        runs, cur = [], []
+        for t in tops:
+            if xh - 25 < t < xh + 10 and (not cur or max(cur + [t]) - min(cur + [t]) <= 2.5):
+                cur.append(t); continue
+            runs.append(cur); cur = [t] if xh - 25 < t < xh + 10 else []
+        runs = sorted((r for r in runs + [cur] if len(r) >= 10), key=len, reverse=True)
+        assert runs and abs(np.median(runs[0]) - xh) <= 2, (n, [round(np.median(r)) for r in runs])
+        assert all(abs(np.median(r) - xh) <= 3 for r in runs if len(r) >= 20), (n, [round(np.median(r)) for r in runs])

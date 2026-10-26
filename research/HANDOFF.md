@@ -45,7 +45,9 @@ from the mean of N46 (a blurred photocopy) and N45 (a clean offset print) in N46
 cuts and slits N46's blur fills, and the production sheet photographed in Bolger fig. 206
 (`scripts/tuam_sheet_check.py`) prints h, u, r and f in two pieces on every impression; Study 3 draws them,
 and those of v, w, 5, d, p, q, s and 6 on N45's evidence. The five fadas keep the prints' own acutes; the
-braces are drawn with a point. N47 and N44 do not print Tuam. Start Tuam work from Study 3.
+braces are drawn with a point. N47 and N44 do not print Tuam. Start Tuam work from Study 3. The release adds a
+studio finishing pass ([judged-edits.json](tuam-judgement/judged-edits.json), `scripts/tuam_studio.py`): even cuts,
+stems and x-height, the slits and seams at N45's widths, the dots and accents clear, and an Italic that keeps them.
 
 Next concrete source lead: N514 contains repeated isolated e/f on the upper sheet.
 Round 5 records native crop coordinates. Compare local perspective and repeated

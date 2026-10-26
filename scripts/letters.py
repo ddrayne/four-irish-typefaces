@@ -73,7 +73,7 @@ def make_letters(f):
 
     # --- đ ð Đ Ð: bar across the ascender / left stem
     if 'd' in P:
-        yb = xh + 0.42 * (asc - xh)
+        yb = xh + getattr(f, 'CROSSBAR_AT', 0.42) * (asc - xh)
         s0, s1 = stem_at(P['d'], yb, 'right') if f.key == 'tuam' else stem_at(P['d'], yb, 'left')
         w = s1 - s0
         P['dcroat'] = SH.union(P['d'], bar(f, s0 - 0.55 * w - 0.05 * xh, s1 + 0.55 * w + 0.05 * xh, yb, t_bar))
