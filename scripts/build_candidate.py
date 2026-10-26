@@ -34,7 +34,7 @@ def build(face, traces, version):
         # keeps them. The sloped styles add only a hair of weight, so they keep every gap there is.
         SLIVER, SLIVER_SLOPED = 0.05, 0.01
         FINISH = True
-        BRACKETS_FROM_PARENS = True      # symbols.make_symbols: the drawn brackets match the parentheses
+        MATCHED_BRACKETS = True          # symbols.make_symbols: the drawn brackets match the parentheses
         # a single stem's square foot (Kilfane's F, P, V, 4 and 7) sits on the baseline, not 8 units below
         # it. Kilfane's and Carrick's feet have been reviewed against their sheets (Carrick's are slanted
         # cuts, s's bottom among them, so n, h and s now sit as m and i do); elsewhere the rule would also
