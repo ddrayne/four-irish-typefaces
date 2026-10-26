@@ -640,9 +640,19 @@ def make_symbols(f):
         mid = lambda p: translate(p, 0, yc - (bounds(p)[1] + bounds(p)[3]) / 2)
         rr = SH.union(pc['guil.r1'], pc['guil.r2'])
         ll = SH.union(pc['guil.l1'], pc['guil.l2']) if 'guil.l1' in pc else mirror(rr)
-        put('guilsinglright', mid(pc['guil.r1']), 'chevron from the sheet')
-        put('guilsinglleft', mid(pc['guil.l1'] if 'guil.l1' in pc else mirror(pc['guil.r1'])), 'chevron from the sheet')
-        put('guillemotright', mid(rr), 'chevrons from the sheet'); put('guillemotleft', mid(ll), 'chevrons from the sheet')
+        one = getattr(f, 'ONE_CHEVRON', None)
+        if one:
+            # each pair one drawing turned about: the sheet's chevron `one` (and its repeat) as drawn, mirrored for
+            # the other direction
+            single, double = pc[one], SH.union(pc[one], pc[one[:-1] + '2'])
+            own, other = ('left', 'right') if one.startswith('guil.l') else ('right', 'left')
+            for side, how in ((own, f'the sheet\'s chevron {one}'), (other, f'the sheet\'s chevron {one}, mirrored')):
+                turn = mirror if side == other else (lambda p: p)
+                put('guilsingl' + side, mid(turn(single)), how); put('guillemot' + side, mid(turn(double)), 'two of ' + how)
+        else:
+            put('guilsinglright', mid(pc['guil.r1']), 'chevron from the sheet')
+            put('guilsinglleft', mid(pc['guil.l1'] if 'guil.l1' in pc else mirror(pc['guil.r1'])), 'chevron from the sheet')
+            put('guillemotright', mid(rr), 'chevrons from the sheet'); put('guillemotleft', mid(ll), 'chevrons from the sheet')
     else:
         gw, gh = 0.30 * xh, 0.52 * xh; gt = min(0.55 * S, 0.17 * xh)
         gl = translate(chevron(st, gw, gh, gt, True), 0, yc - gh / 2); gr = translate(chevron(st, gw, gh, gt, False), 0, yc - gh / 2)

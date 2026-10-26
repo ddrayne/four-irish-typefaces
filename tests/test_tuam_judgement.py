@@ -504,3 +504,21 @@ def test_release_r_is_on_the_x_height(style):
             runs.append(cur); cur = [t] if xh - 25 < t < xh + 10 else []
         longest = max(runs + [cur], key=len)
         assert abs(np.median(longest) - xh) <= 1, (n, np.median(longest))
+
+
+# ---------------------------------------------------------------- the fourth finishing pass, in the release
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_word_space_is_half_the_n(style):
+    """The word space was 320, 0.36 of the 897-unit n (the builder caps every face's space at 320), so that short Irish
+    words ran into their neighbours at every size: it is half the n, the rule the builder sets the other faces' spaces
+    by (448, the Italic's 435), and the no-break space is the same glyph."""
+    from fontTools.ttLib import TTFont
+    from glyphs import bounds
+    rule = load(ROUND, 'judged-edits.json')['constructions']['word_space']['share']
+    for ext in ('otf', 'ttf'):
+        f = TTFont(release(style, ext)); cm = f.getBestCmap(); hm = f['hmtx']
+        assert cm[0x20] == cm[0xA0] == 'space'
+        assert hm['space'][0] == round(rule * hm['n'][0]) and hm['space'][0] >= 430, (ext, hm['space'][0], hm['n'][0])
+        # the space against the n's two sidebearings: 2.2 times them before (3.0 to 6.7 in the other faces' Regulars)
+        x0, _, x1, _ = bounds(outline(release(style, ext), 'n'))
+        assert hm['space'][0] / (hm['n'][0] - (x1 - x0)) >= 3.0, ext

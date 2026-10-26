@@ -216,6 +216,47 @@ values in `signs`). Numbers are font units; the figure stem (the 1's) is 176.
   no specks and convert byte for byte as before, and Kilfane's TrueType K, Ķ, ! (Bold Italic), q (Bold) and
   Ã.alt1 (Regular) lose specks of 0.001 to 0.043 units square the same way.
 
+## The fourth finishing pass
+
+A third independent review of the released fonts (font outlines only) raised four Carrick items; each correction
+is in [judged-edits.json](carrick/judged-edits.json) with its reason (values in `figures.signs`, `signs.one_chevron`,
+`kerning` and `quotes`). Numbers are font units.
+
+- **£ and $** stood off the figures' lines: £'s foot 29 above the baseline and its top at 647, the S of $ 36
+  above it with its top at 607, where the figures stand on the baseline with flat tops at 550 (cut and pointed
+  ones 558). N513 prints both in its row of & ? !, drawn as tall as they are (£ 115 px above that row's line
+  against the figures' 96 to 102, its foot 5 px above the line), but they price figures, and beside them they
+  read as a larger size. Each body (the $ without its bar) is now set and scaled as the second pass set the
+  figures (`carrick_studio.signs`): £'s flat foot on the baseline and its flat top at 550; the S's cut foot 8
+  below the baseline and its top at 550, the bar going with it (−107 to 683). £ is scaled down by 11%, nearly
+  twice the figures' most, so the weight that takes from its horizontal strokes is given back in height by the
+  drawing's own nodes, 6 units a side, the cut between its foot and its body held: foot 107 to 110 thick, bar 62
+  to 72, hook 99 to 112 (before 110 to 119, 56 to 68 and 102 to 116; scaled alone 97 to 106, 50 to 61 and 91 to
+  103), its stems 182 as before and the cut 22 (it was 26). € and ¥ stood on the line already
+  (0 to 550); ¢ is the c (−8 to 529) with its bar.
+- **‹ › « »** were drawn from N513's two chevrons, ‹ « from the one pointing left (189 by 322, its repeat 166 on)
+  and › » from the one pointing right (166 by 311, its repeat 146 on), so « was 432 wide and » 388, ‹ 265 and › 242.
+  The left chevron is the better drawing, a clear angle with an inner corner and two cut ends, where the right one
+  bends like a bracket with a round inside, and it is the larger. Every guillemet is now it, the other direction its
+  mirror image (`symbols.make_symbols`, `ONE_CHEVRON`): each pair has one advance (432 and 265; Italic 422 and 262),
+  sidebearings of 38 either side, and one outline turned about (to within 0.8% of its ink, rounding; the Italic's,
+  its slope taken out, within 1.8%, where its hair of weight holds by the slit between the chevrons).
+- **f before an ascender**: f's flag came within 9 to 12 units of the next ascender (fb 9.4, fk and fl 10.5, fh
+  11.3; Italic fl 8.1, fb 12.0, fh and fk 12.5) after the protection kerns of +55 to +80, where Carrick's own ascenders stand 15 (lb)
+  and 18 (ll) apart. Tuam's rule (`tuam_studio.upper_clearance`) now holds here at Carrick's cut: above the
+  x-height every pair stands at least 13.5 apart, the white between Carrick's chiselled pieces (the m's cut is
+  13.3, the third pass parted ™'s strokes at 13.5), as Tuam's stand its 28-unit arch cut apart. Kerned up in
+  steps of 5: fh 16.3, fl and fk 15.5, fb 14.4 (Italic fh and fk 17.5, fl 18.1, fb 17.0), the same before ĺ ľ ļ ŀ ḃ ł, and
+  after ḟ. ll and lb keep their spacing; a wider cut would loosen them, and ll is everywhere in Irish. The rule
+  adds +5 (a few +10) to 484 pairs (500 in the Italic), nearly all of them ſ, the slash, brackets and the accents above the
+  x-height beside an ascender (čl and ĩl were 8 apart).
+- **' and "** were the builder's wedge 140 deep and 112 wide, with 0.68 of the ink of ’ (198 by 140), so they
+  set small and grey beside the curly quotes. Scaled whole to ’'s depth, as Tuam's were to its weight, they
+  would carry 1.36 times its ink and stand wider than ’; so the wedge is drawn to ’'s depth about the middle of
+  its top, its top on the quotes' line and its widths at top and foot (0.8 and 0.35 of the period's half width,
+  the builder's taper) kept (`carrick_studio.straight_quotes`): 112 by 198, with 0.96 of ’'s ink (Italic 0.97).
+  The primes ′ ″, made from it, follow.
+
 ## Reproduce
 
 ```sh

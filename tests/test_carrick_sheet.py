@@ -376,3 +376,136 @@ def test_the_trademark_m_keeps_its_cuts(style):
     m = sorted(order, key=lambda i: np.nonzero(lab == i)[1].min())[1:]
     for a, b in zip(m, m[1:]):
         assert whites.get((a, b), whites.get((b, a))) >= 12, (style, whites)
+
+
+# ---------------------------------------------------------------- the fourth finishing pass
+def outline(font, name, unslant=False):
+    """A glyph's outline as a pathops path; with `unslant`, the Italic's slope taken out (about the middle of the
+    x-height, as build2.Font2.slant slopes it)."""
+    import math, pathops, build2
+    from fontTools.pens.transformPen import TransformPen
+    p = pathops.Path(); pen = p.getPen()
+    if unslant and font['post'].italicAngle:
+        t = math.tan(math.radians(build2.SLANT)); yc = font['OS/2'].sxHeight / 2
+        pen = TransformPen(pen, (1, 0, -t, 1, yc * t, 0))
+    font.getGlyphSet()[name].draw(pen)
+    return pathops.simplify(p, fix_winding=True, keep_starting_points=False, clockwise=False)
+
+
+def body_bounds(font, name):
+    """The bounds of a currency sign's body (the $'s): the ink beside the bar that alone reaches the top and foot,
+    less any sliver where the bar flares."""
+    from scipy import ndimage as ndi
+    import tuam_studio
+    m, x0, y1 = tuam_studio.ink_raster(outline(font, name, unslant=True))      # the Italic's bar upright again
+    rows = np.nonzero(m.any(1))[0]
+    cols = np.nonzero(m[rows[:30]].any(0) | m[rows[-30:]].any(0))[0]
+    side = m.copy(); side[:, max(cols.min() - 6, 0):cols.max() + 7] = False
+    lab, n = ndi.label(side)
+    big = np.isin(lab, [i for i in range(1, n + 1) if (lab == i).sum() >= 0.02 * m.sum()])
+    r = np.nonzero(big.any(1))[0]
+    return y1 - r.max() - 0.5, y1 - r.min() - 0.5
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_currency_signs_stand_on_the_figure_line(style):
+    """£ floated 29 units above the baseline with its top at 647, against the figures' line at 550 (558 for a cut or
+    pointed top), and the S of $ stood 36 above the baseline, its top at 607: each has its foot on the baseline and its
+    top on the figure line, as the figures have. € and ¥ stood there already (¢ is the c with its bar). £, scaled down
+    by 11%, keeps the weight of its horizontal strokes and the cut between its foot and its body."""
+    from fontTools.pens.boundsPen import BoundsPen
+    spec = load(ROUND, 'carrick', 'judged-edits.json')['figures']
+    line, over = spec['line'], spec['overshoot']
+    f = release(style); gs = f.getGlyphSet()
+    def b(n):
+        p = BoundsPen(gs); gs[n].draw(p); return p.bounds
+    for n in ('sterling', 'Euro', 'yen'):
+        assert -over - 2 <= b(n)[1] <= 1 and line - 2 <= b(n)[3] <= line + over + 2, (style, n, b(n))
+    lo, hi = body_bounds(f, 'dollar')
+    assert -over - 2 <= lo <= 2 and line - 2 <= hi <= line + over + 2, (style, lo, hi)
+    assert b('dollar')[1] < -60 and b('dollar')[3] > line + 100          # the bar still runs through it
+    # £'s foot (its lower piece) as thick as it was drawn (110 to 119 units), and its cut no hairline (26 before)
+    lab, order, whites = piece_whites(f, 'sterling')
+    assert len(order) == 2 and min(whites.values()) >= 20, whites
+    foot = max(order, key=lambda i: np.nonzero(lab == i)[0].mean())          # lowest on the raster
+    cols = (lab == foot).sum(0); cols = cols[cols > 0]
+    assert np.percentile(cols, 75) >= 105, np.percentile(cols, 75)
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_guillemets_are_one_drawing_turned_about(style):
+    """« and » were drawn from two different chevrons of the sheet (189 by 322 units, advance 432, against 166 by 311,
+    advance 388; ‹ 265 against › 242): each pair is now the sheet's ‹ chevron and its mirror image, so the two have one
+    advance, one pair of sidebearings and the same outline turned about (the Italic's, with its slope taken out, to
+    within 2.5% of its ink: the hair of weight the sloped style adds holds by the slit between the two chevrons, which
+    the slope narrows on one side and widens on the other; the two pairs differed by 35 to 52%)."""
+    import pathops
+    from fontTools.pens.transformPen import TransformPen
+    from glyphs import bounds
+    f = release(style); hm = f['hmtx']
+    for left, right in (('guillemotleft', 'guillemotright'), ('guilsinglleft', 'guilsinglright')):
+        assert hm[left][0] == hm[right][0], (left, hm[left][0], hm[right][0])
+        a, b = outline(f, left, unslant=True), outline(f, right, unslant=True)
+        mirrored = pathops.Path(); b.draw(TransformPen(mirrored.getPen(), (-1, 0, 0, 1, hm[right][0], 0)))
+        apart = pathops.op(a, mirrored, pathops.PathOp.XOR, fix_winding=True)
+        assert abs(apart.area) <= (0.01 if style == 'Regular' else 0.025) * abs(a.area), (left, abs(apart.area) / abs(a.area))
+        ba = bounds(a)
+        assert abs(ba[0] - (hm[left][0] - ba[2])) <= 1.5 or style == 'Italic', (left, ba, hm[left][0])
+    # the drawing of ‹, not ›'s narrower one
+    s = bounds(outline(f, 'guilsinglleft', unslant=True))
+    assert s[2] - s[0] >= 175 and s[3] - s[1] >= 315, s
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_f_stands_a_cut_from_the_next_ascender(style):
+    """f's flag came within 9 to 14 units of the next ascender (fh fl fb fk, after kerns of +55 to +80), where the face's
+    own ascenders stand 15 to 18 apart (lb, ll): above the x-height every pair now stands at least Carrick's cut (13.5,
+    the third pass's cut for ™'s strokes) apart, as Tuam's stand its own, f before the accented and dotted ascenders too.
+    ll and lb keep their spacing."""
+    import uharfbuzz as hb
+    from scipy.ndimage import minimum_filter1d
+    from study_spacing import silhouette
+    from conftest import static
+    clearance = load(ROUND, 'carrick', 'judged-edits.json')['kerning']['upper_clearance']
+    f = release(style); order = f.getGlyphOrder(); cm = f.getBestCmap(); hm = f['hmtx']
+    font = hb.Font(hb.Face(open(static('CarrickDigital', style), 'rb').read()))
+    xh = f['OS/2'].sxHeight
+    ys = np.arange(xh + 0.5, 1100, 1.0)
+    def gap(text):
+        buf = hb.Buffer(); buf.add_str(text); buf.guess_segment_properties(); hb.shape(font, buf, {})
+        (ga, gb), pa = [order[i.codepoint] for i in buf.glyph_infos], buf.glyph_positions[0]
+        right = silhouette(outline(f, ga), ys)[1]
+        left = minimum_filter1d(silhouette(outline(f, gb), ys)[0], size=5, mode='constant', cval=np.inf)
+        return float(np.min(pa.x_advance + left - right)), pa.x_advance - hm[ga][0]
+    for a in 'fḟ':
+        for b in 'hlbkdḃḋḟĺľļŀłíìîïĩĵ':
+            g, k = gap(a + b)
+            assert g >= clearance - 1, (style, a + b, g, k)
+    assert gap('ll')[1] == gap('lb')[1] == 0
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_straight_quotes_match_the_curly_quotes(style):
+    """' and " stood 140 units tall and 110 wide with 0.68 of the ink of ’ (198 by 139), so they set small and grey
+    beside it: the builder's wedge drawn to the curly quotes' depth, its widths at its top and foot (its taper from the
+    period) kept, its top on the quotes' line, so that it carries at least 0.85 of ’'s ink and no more than ’."""
+    from fontTools.pens.boundsPen import BoundsPen
+    from fontTools.pens.areaPen import AreaPen
+    f = release(style); gs = f.getGlyphSet()
+    def b(n):
+        p = BoundsPen(gs); gs[n].draw(p); return p.bounds
+    def area(n):
+        p = AreaPen(gs); gs[n].draw(p); return abs(p.value)
+    q, curly = b('quotesingle'), b('quoteright')
+    assert abs((q[3] - q[1]) - (curly[3] - curly[1])) <= 2 and abs(q[3] - curly[3]) <= 1, (q, curly)
+    assert 0.85 <= area('quotesingle') / area('quoteright') <= 1.0, area('quotesingle') / area('quoteright')
+    assert area('quotedbl') == pytest.approx(2 * area('quotesingle'), rel=0.01)
+    assert len(piece_whites(f, 'quotedbl')[1]) == 2
+    assert abs((b('minute')[3] - b('minute')[1]) - (q[3] - q[1])) <= 2          # the primes follow
+    if style == 'Regular':
+        # the builder's taper: 0.8 of the period's half width at the top, 0.35 at the foot
+        hw = (b('period')[2] - b('period')[0]) / 2
+        m, _ = mask(f, 'quotesingle', pad=0)
+        rows = np.nonzero(m.any(1))[0]
+        width = lambda r: np.ptp(np.nonzero(m[r])[0]) + 1
+        assert width(rows[2]) == pytest.approx(1.6 * hw, abs=4) and width(rows[-3]) == pytest.approx(0.7 * hw, abs=6)

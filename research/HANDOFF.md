@@ -32,6 +32,8 @@ round 6 README): the second gives % ‰ # the figures' weight, sets the ponc of 
 ḋ ḟ well above, clears the ¢ bar of the counter, puts the figures on one line and keeps the Italic's cuts.
 A third pass gives ¤'s and @'s rings the figures' weight and keeps ™'s small m cut apart; the TrueType
 conversion no longer leaves a speck in the Italic's ı, i and į (`build2.ttf_glyph`, for every face).
+A fourth pass sets £ and $ on the figure line, draws ‹ › « » from one chevron and its mirror image, keeps every pair
+above the x-height Carrick's cut (13.5) apart, as Tuam's rule does at Tuam's, and draws ' and " to the curly quotes' depth.
 
 **Kilfane: [Study 5](kilfane-sheet-frame/README.md)** is Study 4 with its sixteen production capitals averaged
 again in the sheet's own frame (Letraset's spacing marks give each letter its upright and its line, so L no
@@ -57,7 +59,8 @@ stems and x-height, the slits and seams at N45's widths, the dots and accents cl
 A second pass (the same file and module) steepens í's acute so it is told from i at text sizes, sets the ponc of
 ḃ and ḋ beside the ascender as Hayes's 1974 lettering does (Bolger fig. 204) and ḟ's 60 above the stem, draws the §
 in continuous curves, gives the quotes a heavier tail, and gives the Italic the Regular's weight with its openings kept.
-A third pass brings ' and " (and the primes) to the curly quotes' weight.
+A third pass brings ' and " (and the primes) to the curly quotes' weight; a fourth sets the word space to half the n
+(448, the Italic's 435), which the builder's cap had held to 320.
 
 Next concrete source lead: N514 contains repeated isolated e/f on the upper sheet.
 Round 5 records native crop coordinates. Compare local perspective and repeated

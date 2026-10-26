@@ -156,6 +156,12 @@ A type review of the release found six defects. Each fix is in [judged-edits.jso
 |---|---|---|---|
 | ' and " | the builder's wedge, 160 by 116 units: skeleton weight 82 (median 57) against the curly quotes' and apostrophe's 123 (92), so it set grey beside them | the same wedge scaled by 1.53 about the middle of its top: 245 by 177, weight 124 (median 86); its taper (0.8 to 0.35 of the period's half width), proportions and top on the quotes' line kept | no print sets a straight quote; the curly quotes, the comma and the apostrophe set the punctuation's weight. The primes ′ ″, made from the straight quote, follow it (`constructions`, `straight_quotes`) |
 
+### The fourth pass (a third review)
+
+| What | Third pass | Now | Reasoning |
+|---|---|---|---|
+| Word space | 320 (Italic 320): 0.36 of the 897-unit n and 2.2 times n's sidebearings (3.0 to 6.7 in the other faces), held there by the builder's cap of `min(max(0.5 n, 220), 320)`; short Irish words (a, an, ar, na, i) ran into their neighbours in every line | 448 (Italic 435): half the n, the rule the builder sets every face's space by, without the cap; the no-break space is the same glyph | 320, 380, 400, 420, 448 and 470 were set in Irish and English at 14 to 28 px and at 48 px: from 400 the words part at 14 to 16 px, where 320 runs them together; 448 is the family's rule and the most that opens no holes (470 does, at 14 and 28 px); at 48 px it is generous but even. Its word white (the space with the letters' sidebearings beside it, 568 on average) is 4.9 times the white between letters, still the least in the family (5.7 to 9.2), so it is not loose for the face (`constructions`, `word_space`; `tuam_studio.word_space`) |
+
 The traced í acute stays in the Study 3 fonts here. A stylistic alternate for it was not added: build2's stylistic
 sets would carry it, but the alternate has to be made as a composite of the dotless i between the composites and
 the spacing, where the release build has no Tuam step.

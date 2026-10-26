@@ -20,7 +20,8 @@ is an operation a type designer makes by hand, and states its target, measured a
 The second pass adds constructions and edits to glyphs made from the traced ones (`derived`, applied in each style's
 own frame: smooth, point, settle): í's acute drawn steeper (steepen), the comma and everything made from it
 (comma), the ponc on the ascender letters (ponc), the sloped style's weight given back with its openings kept
-(grow_back) and its outlines settled after the slant (settled).
+(grow_back) and its outlines settled after the slant (settled). The fourth pass sets the word space from the n
+(word_space); upper_clearance is the kerning rule above the x-height, which Carrick's finishing takes at its own cut.
 """
 import json, math
 from pathlib import Path
@@ -489,10 +490,15 @@ def kern(f, path=EDITS):
     c = doc.get('constructions', {}).get('upper_clearance')
     if not c:
         return []
+    return upper_clearance(f, c['value'])
+
+
+def upper_clearance(f, clearance):
+    """Kern every pair that comes closer than `clearance` above the x-height that far apart (f.kern_exc, after the
+    builder's kerning and its 8-unit protection); Tuam's kern() and Carrick's (carrick_studio.kern) use it."""
     import math as m
     from scipy.ndimage import minimum_filter1d
     from study_spacing import silhouette
-    clearance = c['value']
     names = [n for n, p in f.final.items() if n not in f.mark_glyphs and n not in {'space', 'underscore'} and bounds(p)]
     high = m.ceil(max(bounds(f.final[n])[3] for n in names)) + 3
     ys = np.arange(m.floor(f.xh) + 0.5, high, 1.0)
@@ -522,6 +528,19 @@ def kern(f, path=EDITS):
             changes.append(dict(left=a, right=b, before=cur, after=new, measured_gap=round(low, 1)))
     f.upper_clearance = changes
     return changes
+
+
+def word_space(f, path=EDITS):
+    """The word space as a share of the n, where the constructions ask for it (after Font2.space), instead of the
+    builder's min(max(0.5 n, 220), 320): Tuam's n is so wide (897) that the cap held its space to 0.36 of it. The
+    no-break space is the same glyph. Returns (before, after)."""
+    c = load(path).get('constructions', {}).get('word_space')
+    if not c:
+        return None
+    was = f.adv['space']
+    f.adv['space'] = int(round(c['share'] * f.adv['n']))
+    f.word_space = (was, f.adv['space'])
+    return f.word_space
 
 
 def condense(f, k, path=EDITS):
