@@ -333,15 +333,28 @@ export async function init(root) {
       for (const [dx, dy, row] of list) { ctx.beginPath(); ctx.arc(dx, dy, dotR * (row ? 0.85 : 1), 0, Math.PI * 2); ctx.fill(); }
     };
     if (first && !reduced()) {
-      // the scribe works round the letter
-      first = false;
-      const per = Math.ceil(dotList.length / 40);
-      let k = 0;
-      const step = () => { paint(dotList.slice(k, k + per)); k += per; if (k < dotList.length) requestAnimationFrame(step); };
-      requestAnimationFrame(step);
+      // the scribe works round the letter, once the page is in view
+      if (seen) scribe(dotList, paint); else waiting = [dotList, paint];
     } else paint(dotList);
     void r;
   }
+
+  function scribe(list, paint) {
+    first = false;
+    const per = Math.ceil(list.length / 60);
+    let k = 0;
+    const step = () => { paint(list.slice(k, k + per)); k += per; if (k < list.length) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  // The page is drawn before it scrolls into view; the dots wait until it is there to see.
+  let seen = false, waiting = null;
+  const io = new IntersectionObserver((en) => {
+    if (!en.some((e) => e.isIntersecting)) return;
+    io.disconnect();
+    seen = true;
+    if (waiting) { scribe(...waiting); waiting = null; }
+  }, { threshold: 0.35 });
+  io.observe(canvas);
 
   draw();
   input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(draw, 220); });
