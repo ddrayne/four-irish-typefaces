@@ -187,7 +187,7 @@ def build(face, traces, version):
             if face == 'carrick':
                 import carrick_studio
                 carrick_studio.figures(self)                 # the figures on one figure line
-                carrick_studio.signs(self)                   # and £ and $ with them (the fourth pass)
+                carrick_studio.signs(self)                   # and £ and $ on the baseline (the fourth pass)
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.apply(self)

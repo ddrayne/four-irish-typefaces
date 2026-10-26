@@ -408,28 +408,32 @@ def body_bounds(font, name):
 
 
 @pytest.mark.parametrize('style', ['Regular', 'Italic'])
-def test_currency_signs_stand_on_the_figure_line(style):
-    """£ floated 29 units above the baseline with its top at 647, against the figures' line at 550 (558 for a cut or
-    pointed top), and the S of $ stood 36 above the baseline, its top at 607: each has its foot on the baseline and its
-    top on the figure line, as the figures have. € and ¥ stood there already (¢ is the c with its bar). £, scaled down
-    by 11%, keeps the weight of its horizontal strokes and the cut between its foot and its body."""
+def test_currency_signs_stand_on_the_baseline(style):
+    """£ floated 29 units above the baseline (29 to 647) and the S of $ 36 above it (36 to 607): each now stands on the
+    baseline as a figure does, £'s flat foot on it and the S's cut foot 8 below, at the heights N513 prints them (as
+    tall as its & ? !, not the figures): the drawings only move, so £ is 618 tall, the S 571 and the $ with its bar 806,
+    and the line box still covers the bar. € and ¥ stand on the figure line (¢ is the c with its bar)."""
     from fontTools.pens.boundsPen import BoundsPen
     spec = load(ROUND, 'carrick', 'judged-edits.json')['figures']
     line, over = spec['line'], spec['overshoot']
     f = release(style); gs = f.getGlyphSet()
     def b(n):
         p = BoundsPen(gs); gs[n].draw(p); return p.bounds
-    for n in ('sterling', 'Euro', 'yen'):
+    for n in ('Euro', 'yen'):
         assert -over - 2 <= b(n)[1] <= 1 and line - 2 <= b(n)[3] <= line + over + 2, (style, n, b(n))
+    pound = b('sterling')
+    assert -1 <= pound[1] <= 1 and pound[3] - pound[1] == pytest.approx(618, abs=2), (style, pound)
     lo, hi = body_bounds(f, 'dollar')
-    assert -over - 2 <= lo <= 2 and line - 2 <= hi <= line + over + 2, (style, lo, hi)
-    assert b('dollar')[1] < -60 and b('dollar')[3] > line + 100          # the bar still runs through it
-    # £'s foot (its lower piece) as thick as it was drawn (110 to 119 units), and its cut no hairline (26 before)
+    assert -over - 2 <= lo <= -over + 2 and hi - lo == pytest.approx(571, abs=4), (style, lo, hi)
+    dollar = b('dollar')
+    assert dollar[3] - dollar[1] == pytest.approx(806, abs=2) and dollar[1] < lo - 90, (style, dollar)
+    assert f['hhea'].descent <= dollar[1] and f['hhea'].ascent >= dollar[3]
+    # £'s foot (its lower piece) as thick as it was drawn (110 to 119 units), and the cut between them as it was (26)
     lab, order, whites = piece_whites(f, 'sterling')
-    assert len(order) == 2 and min(whites.values()) >= 20, whites
+    assert len(order) == 2 and min(whites.values()) >= 24, whites
     foot = max(order, key=lambda i: np.nonzero(lab == i)[0].mean())          # lowest on the raster
     cols = (lab == foot).sum(0); cols = cols[cols > 0]
-    assert np.percentile(cols, 75) >= 105, np.percentile(cols, 75)
+    assert np.percentile(cols, 75) >= 110, np.percentile(cols, 75)
 
 
 @pytest.mark.parametrize('style', ['Regular', 'Italic'])

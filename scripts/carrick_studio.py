@@ -10,7 +10,7 @@ and a cut or pointed top stands the round overshoot above it, as the builder's f
 baseline. The 8 stands about 12 source pixels (67 units) above the others on N513 and on N47, its feet on
 the line with theirs: drawn so, it keeps its height.
 
-The fourth pass adds, from the same file: £ and $ on the figure line with the figures (signs, "figures", "signs");
+The fourth pass adds, from the same file: £ and $ on the baseline at their printed heights (signs, "figures", "signs");
 ' and " to the curly quotes' depth (straight_quotes, "quotes"); and Tuam's rule for the white above the x-height
 at Carrick's own cut (kern, "kerning"). ‹ › « » from one chevron are symbols.make_symbols' (ONE_CHEVRON).
 """
@@ -62,34 +62,22 @@ def body(p, bar):
 
 
 def signs(font, edits=EDITS):
-    """The fourth pass ("figures", "signs"): £ and $ stand with the figures. Each sign's body (with "bar", the $
-    without its bar) has its foot set on the baseline as the builder sets a figure's (a flat foot on it, a cut or
-    round one `overshoot` below) and is scaled about the baseline as figures() scales the figures: a flat top to the
-    figure line, a cut or pointed one `overshoot` above it. With "regrow", the weight that scale takes from a
-    horizontal stroke that share of the stem is given back in height by the drawing's own nodes (bolden.grow_nodes),
-    the cuts between its pieces held, so a sign scaled well down keeps the weight of its foot, bar and hook.
-    Returns {sign: (body before, body after, the height given back on each side)}."""
-    import bolden, build2
+    """The fourth pass ("figures", "signs"): £ and $ stand on the baseline with the figures, at the heights N513
+    prints them. Each sign's body (with "bar", the $ without its bar) has its foot set as the builder sets a
+    figure's: a flat foot on the baseline, a cut or round one `overshoot` below it; the whole glyph moves, its
+    drawing and size unchanged. Returns {sign: (body before, body after)}."""
+    import build2
     from glyphs import bounds
     spec = json.loads(Path(edits).read_text(encoding='utf-8'))['figures']
-    line, over, band = float(spec['line']), float(spec['overshoot']), 0.015 * font.xh
+    over, band = float(spec['overshoot']), 0.015 * font.xh
     report = {}
     for n, how in spec.get('signs', {}).items():
         if n not in font.P:
             continue
-        bar = bool(how.get('bar'))
-        p = font.P[n]; q = body(p, bar); b = bounds(q)
+        p = font.P[n]; q = body(p, bool(how.get('bar'))); b = bounds(q)
         foot = 0.0 if font.flat(q, b[1], band, top=False) else -over
-        p = build2.translate(p, 0, foot - b[1])
-        q = body(p, bar); top = bounds(q)[3]
-        target = line if font.flat(q, top, band) else line + over
-        ry = (1 - target / top) * how.get('regrow', 0.0) * font.S_regular / 2
-        p = build2.remap(p, lambda x, y, k=(target - 2 * ry) / top: (x, y * k if y > 0 else y))
-        if ry > 0:
-            p = bolden.grow_nodes(p, 0.01, ry, fallback=bolden.grow, keep_cuts=0.22 * font.S_regular)
-            p = build2.translate(p, 0, foot - bounds(body(p, bar))[1])
-        font.P[n] = p
-        report[n] = ((round(b[1], 1), round(b[3], 1)), (foot, target), round(ry, 1))
+        font.P[n] = build2.translate(p, 0, foot - b[1])
+        report[n] = ((round(b[1], 1), round(b[3], 1)), (foot, round(b[3] - b[1] + foot, 1)))
     font.signs_on_line = report
     return report
 

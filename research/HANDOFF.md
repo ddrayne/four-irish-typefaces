@@ -32,7 +32,7 @@ round 6 README): the second gives % ‰ # the figures' weight, sets the ponc of 
 ḋ ḟ well above, clears the ¢ bar of the counter, puts the figures on one line and keeps the Italic's cuts.
 A third pass gives ¤'s and @'s rings the figures' weight and keeps ™'s small m cut apart; the TrueType
 conversion no longer leaves a speck in the Italic's ı, i and į (`build2.ttf_glyph`, for every face).
-A fourth pass sets £ and $ on the figure line, draws ‹ › « » from one chevron and its mirror image, keeps every pair
+A fourth pass sets £ and $ on the baseline at their printed heights, draws ‹ › « » from one chevron and its mirror image, keeps every pair
 above the x-height Carrick's cut (13.5) apart, as Tuam's rule does at Tuam's, and draws ' and " to the curly quotes' depth.
 
 **Kilfane: [Study 5](kilfane-sheet-frame/README.md)** is Study 4 with its sixteen production capitals averaged
