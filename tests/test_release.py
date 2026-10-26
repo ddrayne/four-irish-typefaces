@@ -80,3 +80,20 @@ def test_bold_keeps_counters(config):
         flagged = topo.compare(static(cfg['ps'], 'Regular'), static(cfg['ps'], 'Bold'), small=0.30)
         names = {n for n, *_ in flagged} - allowed.get(key, set())
         assert not names, f'{cfg["ps"]}: {sorted(names)}'
+
+
+def test_brackets_stand_with_the_parentheses():
+    # the drawn brackets and bar take the face's (often traced) parentheses' height, and a bracket's
+    # arms reach well past its stem, or it reads as a bar
+    from fontTools.pens.boundsPen import BoundsPen
+    for p in files('otf'):
+        f = TTFont(p); gs = f.getGlyphSet(); cm = f.getBestCmap()
+        def ink(ch):
+            pen = BoundsPen(gs); gs[cm[ord(ch)]].draw(pen); return pen.bounds
+        pl, pr = ink('('), ink(')')
+        for ch, tol in (('[', 2), (']', 2), ('|', 25)):        # Carrick's bar has cut ends, like its stems
+            b = ink(ch)
+            assert abs(b[1] - (pl[1] + pr[1]) / 2) <= tol and abs(b[3] - (pl[3] + pr[3]) / 2) <= tol, (os.path.basename(p), ch)
+        width = lambda b: b[2] - b[0]
+        if 'Italic' not in p:                                    # a slope widens the bar's box
+            assert width(ink('[')) >= 2 * width(ink('|')), os.path.basename(p)

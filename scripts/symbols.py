@@ -321,6 +321,14 @@ def make_symbols(f):
 
     pt, pbm = asc + 0.02 * xh, -0.30 * xh
     sw = 0.62 * S; arm = 0.24 * xh
+    if getattr(f, 'MATCHED_BRACKETS', False):
+        # brackets, braces and bar stand as tall as the face's own parentheses: Carrick's and Céilí's are
+        # traced and reach only to their figures, so the fixed span left the drawn ones a third taller.
+        # And a bracket's arms reach twice its stem: Tuam's stem is as wide as the fixed arm, so its
+        # brackets read as bars
+        pb = [bounds(P[n]) for n in ('parenleft', 'parenright')]
+        pbm, pt = sum(b[1] for b in pb) / 2, sum(b[3] for b in pb) / 2
+        arm = max(arm, 2 * sw)
     lb = SH.union(SH.polygon([(0, pbm), (sw, pbm), (sw, pt), (0, pt)]),
                   SH.polygon([(0, pt - 0.55 * t), (arm, pt - 0.55 * t), (arm, pt), (0, pt)]),
                   SH.polygon([(0, pbm), (arm, pbm), (arm, pbm + 0.55 * t), (0, pbm + 0.55 * t)]))
