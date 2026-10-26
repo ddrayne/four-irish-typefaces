@@ -327,7 +327,9 @@ def figure_signs(f, P, top, st):
     ci, cv = 0.30 * xh - 0.85 * t, 0.33 * h - 0.85 * t        # the release #'s counter, kept
     dx = ci + Tb; xs = [0.18 * xh, 0.18 * xh + dx]
     verts = [stroke_polyline([(x, 0), (x + sh * h, h)], Tb, st) for x in xs]
-    hb = [bar(st, -0.02 * xh, 0.72 * xh + dx - 0.30 * xh, h / 2 + s * (cv + Tb) / 2, Tb) for s in (-1, 1)]
+    # each bar centred on the strokes at its own height (the sloped strokes move right as they rise)
+    mid, half = 0.18 * xh + dx / 2, 0.22 * xh + dx / 2
+    hb = [bar(st, mid + sh * y - half, mid + sh * y + half, y, Tb) for y in (h / 2 + s * (cv + Tb) / 2 for s in (-1, 1))]
     return {'numbersign': (SH.union(*verts, *hb), 'sheared grid, bars half the figure stem'),
             'percent': (pc, 'the face\'s 0 made small in the figures\' weight + slash'),
             'perthousand': (pm, 'percent + zero')}
@@ -403,7 +405,12 @@ def make_symbols(f):
     h = top; sh = math.tan(math.radians(12))
     xs = [0.18 * xh, 0.48 * xh]
     verts = [stroke_polyline([(x - sh * 0.0, 0), (x + sh * h, h)], 0.85 * t, st) for x in xs]
-    hb = [bar(st, -0.02 * xh, 0.72 * xh, y, 0.85 * t) for y in (0.33 * h, 0.66 * h)]
+    if getattr(f, 'CENTRED_NUMBERSIGN', False):
+        # each bar centred on the strokes at its own height: level bars at one span overhung the sloped
+        # strokes far more on the left than the right (the upper bar 199 to 23 in Kilfane)
+        hb = [bar(st, 0.33 * xh + sh * y - 0.37 * xh, 0.33 * xh + sh * y + 0.37 * xh, y, 0.85 * t) for y in (0.33 * h, 0.66 * h)]
+    else:
+        hb = [bar(st, -0.02 * xh, 0.72 * xh, y, 0.85 * t) for y in (0.33 * h, 0.66 * h)]
     put('numbersign', SH.union(*verts, *hb), 'sheared grid')
 
     # heavy faces keep the small zeros' own weight: re-emboldening would close their counters
