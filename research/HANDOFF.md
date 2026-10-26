@@ -45,7 +45,9 @@ neck; the e's notch is eased as a recorded judged edit. `scripts/evidence_board.
 `scripts/pinches.py` are the review tools: every print of a glyph side by side, in the font's own
 coordinates. Start Kilfane work from Study 4. The release's finishing passes are `scripts/kilfane_studio.py`
 ([judged-edits.json](kilfane-sheet-frame/judged-edits.json)); the third draws the bold's faceted curves (G S s v w x
-y ß W, alternate g and y) as curves and its cedilla and ogonek with its pen.
+y ß W, alternate g and y) as curves and its cedilla and ogonek with its pen; the fourth grows the bold's math signs in
+place, clears its dots, weights its small signs, spaces j and ? by one rule, keeps 30 units between capitals and
+before lowercase, adds a `case` feature and makes the near-smooth joins smooth.
 
 **Tuam Uncial: [Study 3](tuam-judgement/README.md), the judgement pass**, on round 3. Each glyph is traced
 from the mean of N46 (a blurred photocopy) and N45 (a clean offset print) in N46's frame

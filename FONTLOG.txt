@@ -55,7 +55,12 @@ ChangeLog
   drawing and its mirror image, so each pair matches; f stands clear of a following ascender, as every
   pair above the x-height now stands at least Carrick's cut apart; ' and " (and the primes) are as deep
   as the curly quotes, with their ink.
-- Names, coverage and features are unchanged; spacing follows the new outlines.
+- Kilfane: the bold's math signs grow in place, keeping the Regular's white between their pieces; the
+  bold's ! ? ¡ ¿ i j keep their dots clear; the bold's bullet, % ‰, the letters in @ © ® and the small
+  figures and letters take its weight; j and ? are spaced by one rule in every style; capitals keep 30
+  units from capitals and lowercase, accented ones too; near-smooth joins are smooth (the sloped
+  styles' stem joins); and a case feature sets dashes, guillemets, colon, bullets, @ and ¡ ¿ for capitals.
+- Names, coverage and features are unchanged (but Kilfane's case feature); spacing follows the new outlines.
 
 2.101 (2026-10-25)
 - No copyright is claimed: the fonts are dedicated to the public domain under CC0 1.0 Universal
