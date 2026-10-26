@@ -12,6 +12,16 @@ def files(ext):
                   if os.sep + 'variable' + os.sep not in p)
 
 
+# Code points only the release builds, which the research studies' fonts do not have: the fifth pass's combining
+# dot below (build2.Font2.MARK_STACKS, set by scripts/build_candidate.py; research/*/judged-edits.json, fifth_pass).
+RELEASE_ONLY = {0x323}
+
+
+def study_coverage(release):
+    """The code points of a release font (a TTFont) that a study font of the face keeps: all but RELEASE_ONLY."""
+    return set(release.getBestCmap()) - RELEASE_ONLY
+
+
 def static(ps, style, ext='otf'):
     name = f'{ps}-{style.replace(" ", "")}.{ext}'
     hits = [p for p in files(ext) if os.path.basename(p) == name]

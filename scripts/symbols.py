@@ -376,6 +376,242 @@ def clear_bar(c, bar, x, least):
     return x
 
 
+# ---------------------------------------------------------------- ≈ at the ='s spacing and weight (APPROX_WHITE)
+# The release drew ≈ as two of the face's tildes, each 1.25 times its height, set out from the axis by 0.6 of the
+# rules' weight: taller than = in every face (Carrick's 570 units against the ='s 257, its waves 145 apart where the
+# bars stand 101 and 109 heavy against bars of 79). With APPROX_WHITE (a finishing pass) each wave is drawn at the rules' weight and centred where
+# the = bars are, and flattened until the white between the waves is that share of the white between the bars.
+def cubic(p):
+    """p drawn in cubic curves: the offsets below (bolden.grow, erode) come back as quadratic splines, and an offset
+    circle as a contour of off-curve points alone, which the builder's clean-up (build2.final_clean) cannot read."""
+    from fontTools.pens.basePen import BasePen
+
+    class Cubic(BasePen):
+        def __init__(self, out):
+            super().__init__(None); self.out = out
+        def _moveTo(self, pt):
+            self.out.moveTo(pt)
+        def _lineTo(self, pt):
+            self.out.lineTo(pt)
+        def _curveToOne(self, a, b, c):
+            self.out.curveTo(a, b, c)
+        def _closePath(self):
+            self.out.closePath()
+        def _endPath(self):
+            self.out.closePath()
+    q = pathops.Path(); p.draw(Cubic(q.getPen()))
+    return pathops.simplify(q, fix_winding=True, keep_starting_points=False, clockwise=False)
+
+
+def stroke_weight(p, res=0.5):
+    """A shape's median stroke weight: twice the distance from its skeleton to the paper."""
+    from scipy import ndimage as ndi
+    from skimage.morphology import skeletonize
+    from fontTools.pens.recordingPen import RecordingPen
+    from outline_util import flatten, raster
+    b = bounds(p); x0, y1 = b[0] - 4, b[3] + 4
+    W, H = int((b[2] - b[0] + 8) / res) + 1, int((b[3] - b[1] + 8) / res) + 1
+    rec = RecordingPen(); p.draw(rec)
+    ink = np.pad(raster(flatten(rec.value), (W, H), lambda q: ((q[0] - x0) / res, (y1 - q[1]) / res)) > 0, 2)
+    return float(2 * np.median(ndi.distance_transform_edt(ink)[skeletonize(ink)] * res))
+
+
+def at_stroke_weight(p, t, tries=6):
+    """p grown or thinned by its own outline (bolden.grow and erode, which keep its corners) until its median
+    stroke is t."""
+    import bolden
+    for _ in range(tries):
+        d = (t - stroke_weight(p)) / 2
+        if abs(d) < 0.25:
+            break
+        p = bolden.grow(p, d, d) if d > 0 else bolden.erode(p, -d, -d)
+    return p
+
+
+def approx_sign(tilde, L, t, yc, d, white):
+    """≈ at the ='s spacing and rule weight: two of the face's tildes, as long as the rules (L) and drawn at their
+    weight t, their middles d above and below the math axis yc as the = bars' are; the release's wave (the tilde
+    1.25 times its height) is flattened about its middle until the white between the two is `white`.
+    Returns the outline and the flattening (1: the release's wave)."""
+    tw = bounds(tilde)
+    base = SH.transform(tilde, (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); b = bounds(base)
+    base = translate(base, -(b[0] + b[2]) / 2, -(b[1] + b[3]) / 2)
+
+    def waves(kv):
+        q = at_stroke_weight(SH.transform(base, (1, 0, 0, kv, 0, 0)), t); qb = bounds(q)
+        q = SH.transform(q, (L / (qb[2] - qb[0]), 0, 0, 1, 0, 0)); qb = bounds(q)       # as long as the rules
+        q = translate(q, -qb[0], -(qb[1] + qb[3]) / 2)
+        return translate(q, 0, yc + d), translate(q, 0, yc - d)
+    lo, hi = 0.2, 1.0
+    up, dn = waves(hi)
+    if clearance(up, dn) < white:
+        for _ in range(12):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if clearance(*waves(mid)) >= white else (lo, mid)
+        hi = lo; up, dn = waves(lo)
+    return cubic(SH.union(up, dn)), hi
+
+
+# ---------------------------------------------------------------- rings at the o's weight (RING_SHARE)
+# The rings of © ® @ ° ¤ were drawn at the rules' weight or less: Kilfane's © 0.33 of the o's heavier side, Tuam's
+# 0.31, Céilí's 0.36, Carrick's © and ® 0.23. With RING_SHARE (a finishing pass) every ring is at least that share of the
+# o's heavier side. A ring grows inward as far as the letter inside it keeps its white (RING_WHITE of the ring: the
+# white it has, but no more than the upper share and no less than the lower, the sloped styles' hair of weight
+# allowed for); what it cannot take inward goes half outward and half inward, the letter drawn smaller at its own
+# weight where it must be (Carrick's @, RING_OUT). °'s counter keeps the ring's own weight across where it had that,
+# and never less than DEGREE_HOLE of it; ¤'s at least CURRENCY_HOLE: they grow outward rather than close.
+RING_WHITE = (0.20, 0.45)
+RING_OUT = 0.5
+DEGREE_HOLE = 0.7
+CURRENCY_HOLE = 1.5
+
+
+def ring_weight(f, P, rt):
+    """A ring's weight: rt, or RING_SHARE of the o's heavier side (two units over, for the grid and the slope) where
+    that is heavier; in a sloped style as much more as its narrowing takes from a ring's sides where a glyph keeps
+    the narrowing alone (Tuam's ©). The o is measured once a style, on its own o (a bold that draws its small signs
+    from the Regular's letters still measures the bold's)."""
+    share = getattr(f, 'RING_SHARE', None)
+    if not share:
+        return rt
+    if getattr(f, 'ring_o', None) is None:
+        from letters import stem_at
+        o = P['o']; b = bounds(o); y = (b[1] + b[3]) / 2
+        f.ring_o = max(x1 - x0 for x0, x1 in (stem_at(o, y, 'left'), stem_at(o, y, 'right')))
+    import build2
+    return max(rt, share * f.ring_o / (build2.CONDENSE if f.italic else 1.0) + 2.0)
+
+
+def _far(p, cx, cy):
+    from fontTools.pens.recordingPen import RecordingPen
+    from outline_util import flatten
+    rec = RecordingPen(); p.draw(rec)
+    return max(math.hypot(x - cx, y - cy) for poly in flatten(rec.value, 16) for x, y in poly)
+
+
+def _slope_allowance(f):
+    """What the sloped styles' hair of weight (build2.Font2.condense) takes from a white or a counter."""
+    import build2
+    return (1 - build2.CONDENSE) * f.S if f.italic else 0.0
+
+
+def ring_letters(f, key, cx, cy, R, rt, w, makes, sizing=None):
+    """The ring of © ® or @ (outer radius R, rt thick, centred on cx, cy) drawn w thick, and the letters inside it:
+    `makes` are functions k -> the letter drawn k times as large about the centre at its own weight (1: as drawn);
+    `sizing` names those the ring is sized for (default all: a pass that keeps only some of its signs). A style
+    keeps the largest ring any of its passes needs for each key (a bold draws its letters again at other weights;
+    build_original_study.bold_signs draws ® again once © has its ring). Returns (outer radius, [letters])."""
+    lo, hi = RING_WHITE
+    least = 16.0 + 2 * _slope_allowance(f)      # an opening within reach of closing (a bold's crack, the slope) may not narrow
+    geom = f.__dict__.setdefault('ring_geom', {})
+    whites = [R - rt - _far(m(1.0), cx, cy) for m in makes]
+    keep = [max(lo * w + _slope_allowance(f), min(wn, hi * w)) for wn in whites]
+    sized = [i for i in range(len(makes)) if sizing is None or sizing[i]]
+    if not sized:                                 # a pass that keeps none of these signs leaves the ring as it is
+        R2 = geom.get(key, R + RING_OUT * (w - rt))
+        return R2, [_smaller(m, R2 - w - k, cx, cy, least)[0] for m, k in zip(makes, keep)]
+    added = w - rt
+    room = min(whites[i] - keep[i] for i in sized)
+    free = min(max(room, 0.0), added)
+    rest = added - free + max(-room, 0.0)
+    R2 = max(R + RING_OUT * rest, geom.get(key, 0.0))            # half of what it cannot take inward goes outward
+    far_out = max(R + rest, R2)                                   # all of it: no letter drawn smaller
+    fits = lambda R_: all(_smaller(makes[i], R_ - w - keep[i], cx, cy, least)[1] for i in sized)
+    if not fits(R2):
+        # a letter drawn that much smaller would shut or narrow an opening: the ring goes further out instead
+        for _ in range(8):
+            mid = (R2 + far_out) / 2
+            R2, far_out = (R2, mid) if fits(mid) else (mid, far_out)
+        R2 = far_out
+    geom[key] = R2
+    return R2, [_smaller(m, R2 - w - k, cx, cy, least)[0] for m, k in zip(makes, keep)]
+
+
+def _smaller(m, lim, cx, cy, least):
+    """The letter m(k) drawn small enough to come no further than lim from (cx, cy): at its own weight as far as it
+    keeps its openings, the rest by scaling it whole, its weight with it (Carrick's c, whose cut a heavier pen would
+    shut). Returns (letter, whether it keeps the drawing's pieces, counters and narrowest opening)."""
+    p = m(1.0)
+    def own(lim_):                                   # at its own weight, its far point lim_ from the centre
+        s = 1.0; q = p
+        for _ in range(8):
+            fq = _far(q, cx, cy)
+            if fq <= lim_ + 0.25:
+                break
+            s *= lim_ / fq; q = m(s)
+        return q
+    whole = lambda q, lim_: SH.transform(q, (k := min(1.0, lim_ / _far(q, cx, cy)), 0, 0, k, cx * (1 - k), cy * (1 - k)))
+    far0 = _far(p, cx, cy)
+    if far0 <= lim + 0.25:
+        return p, True
+    q = own(lim)
+    if _keeps_openings(p, q, least):
+        return q, True
+    # as small at its own weight as its openings allow (between lim and as drawn), then scaled whole the rest
+    a, b = lim, far0
+    for _ in range(6):
+        mid = (a + b) / 2
+        a, b = (a, mid) if _keeps_openings(p, own(mid), least) else (mid, b)
+    q = whole(own(b) if b < far0 - 0.25 else p, lim)
+    return q, _keeps_openings(p, q, least)
+
+
+def _keeps_openings(p, q, least=16.0):
+    """Whether q, the letter p drawn smaller, keeps p's pieces and counters, the white between its pieces and its
+    narrowest opening at least `least` wide; a letter with a cut or opening already narrower than that (Carrick's c,
+    cut 5 units from its flag) may not be drawn smaller at all."""
+    if _topology(q) != _topology(p):
+        return False
+    import bolden, kilfane_studio as KS
+    def whites(r):
+        ps = bolden.components(r)
+        return [clearance(a, b) for i, a in enumerate(ps) for b in ps[i + 1:]]
+    a, b = KS.opening_fast(p), KS.opening_fast(q)
+    narrow = (a is not None and a < least) or any(w < least for w in whites(p))
+    if narrow:
+        return False
+    return all(w >= least for w in whites(q)) and (b is None or b >= least)
+
+
+def _topology(p):
+    """(pieces, counters) of an outline."""
+    from glyphs import contours
+    from fontTools.pens.areaPen import AreaPen
+    a = []
+    for c in contours(SH.union(p)):
+        ap = AreaPen(); c.draw(ap); a.append(ap.value)
+    return sum(v > 0 for v in a), sum(v < 0 for v in a)
+
+
+def _ring_sides(p):
+    """(least side, counter) of a ring: its four sides through the counter's middle, and the counter's least span."""
+    from glyphs import contours
+    from fontTools.pens.areaPen import AreaPen
+    def area(c):
+        ap = AreaPen(); c.draw(ap); return ap.value
+    hole = max((c for c in contours(p) if area(c) < 0), key=lambda c: -area(c))
+    h = bounds(hole); b = bounds(p); cx, cy = (h[0] + h[2]) / 2, (h[1] + h[3]) / 2
+    return min(h[0] - b[0], b[2] - h[2], h[1] - b[1], b[3] - h[3]), min(h[2] - h[0], h[3] - h[1]), hole
+
+
+def heavier_ring(f, P, p):
+    """A plain ring (the degree sign, the sheet's or the builder's) at the ring weight: grown outward and inward by
+    its own outline, inward only as far as its counter keeps the new weight across (where it was as wide; never less
+    than DEGREE_HOLE of it), with the sloped styles' hair of weight, the rest outward; its top stays where it stood."""
+    import bolden
+    side, span, hole = _ring_sides(p)
+    w = ring_weight(f, P, side)
+    if w <= side + 0.25:
+        return p
+    added = w - side; keep = max(DEGREE_HOLE * w, min(span, w)) + _slope_allowance(f)
+    e_in = min(added, (span - keep) / 2); e_out = added - e_in
+    solid = pathops.simplify(hole, fix_winding=True, keep_starting_points=False, clockwise=False)
+    outer = SH.union(p, solid)
+    hole2 = bolden.erode(solid, e_in, e_in) if e_in > 0 else bolden.grow(solid, -e_in, -e_in)
+    q = cubic(SH.difference(bolden.grow(outer, e_out, e_out), hole2))
+    return translate(q, 0, bounds(p)[3] - bounds(q)[3])
+
+
 def make_symbols(f):
     global CUT
     CUT = f.key == 'carrick'
@@ -415,7 +651,13 @@ def make_symbols(f):
     eq = P['equal']; eb = bounds(eq)
     put('notequal', SH.union(eq, stroke_polyline([(eb[0] + 0.25 * L, yc - 0.42 * L), (eb[0] + 0.75 * L, yc + 0.42 * L)], t, st)), 'equal + slash')
     tw = bounds(f.marks['tilde']); tl = SH.transform(f.marks['tilde'], (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); tb = bounds(tl)
-    put('approxequal', SH.union(translate(tl, -tb[0], yc + 0.6 * t - tb[1]), translate(tl, -tb[0], yc - 0.6 * t - tb[3])), 'two tildes')
+    if getattr(f, 'APPROX_WHITE', None):
+        # the waves at the rules' weight, centred where the = bars are (1.15 rules from the axis)
+        d = 1.15 * t
+        p, f.approx_flat = approx_sign(f.marks['tilde'], L, t, yc, d, f.APPROX_WHITE * (2 * d - t))
+        put('approxequal', p, 'two tildes at the rules\' weight and the equals sign\'s spacing')
+    else:
+        put('approxequal', SH.union(translate(tl, -tb[0], yc + 0.6 * t - tb[1]), translate(tl, -tb[0], yc - 0.6 * t - tb[3])), 'two tildes')
     put('logicalnot', SH.union(bar(st, 0, L, yc + 0.06 * xh, t), vbar(st, L - t / 2, yc - 0.18 * xh, yc + 0.06 * xh + t / 2, t)), 'bar + drop')
 
     # ---------------------------------------------------------------- ASCII extras
@@ -463,7 +705,14 @@ def make_symbols(f):
         k = (R - rt - gap) / far
         a = scaled(P['a'], k, S, k, Ss); ab = bounds(a)          # at its own weight: a heavier pen closes the slit
         a = inside_ring(translate(a, ccx - (ab[0] + ab[2]) / 2, ccy - (ab[1] + ab[3]) / 2), ccx, ccy, R - rt, gap)
-        put('at', SH.union(a, ring(ccx, ccy, R, rt)), 'a inside a ring')
+        w = ring_weight(f, P, rt)
+        if w > rt:
+            # the ring at the o's weight (RING_SHARE); Tuam's a, the a scaled, is made smaller by scaling it again
+            a0 = a
+            R2, (a,) = ring_letters(f, 'at', ccx, ccy, R, rt, w, [lambda k: SH.transform(a0, (k, 0, 0, k, ccx * (1 - k), ccy * (1 - k)))])
+            put('at', SH.union(a, ring(ccx, ccy, R2, w)), 'a inside a ring at the o\'s weight')
+        else:
+            put('at', SH.union(a, ring(ccx, ccy, R, rt)), 'a inside a ring')
     else:
         a = scaled(P['a'], 0.74, S, 0.85, Ss); ab = bounds(a)
         a = translate(a, ccx - (ab[0] + ab[2]) / 2 + 0.02 * xh, ccy - (ab[1] + ab[3]) / 2)
@@ -471,8 +720,9 @@ def make_symbols(f):
         if rw:
             # the ring in the figures' weight, as % and # are (RING_WEIGHT of the figure stem): it is thickened
             # outward by AT_RING_OUT of the added weight and inward by the rest, and the a, made smaller by
-            # that if need be (at its own stem weight), keeps the white it had inside the hyphen-weight ring
-            w, rt = rw * figure_stem(P, top), 0.7 * t
+            # that if need be (at its own stem weight), keeps the white it had inside the hyphen-weight ring;
+            # and never lighter than the o's weight (RING_SHARE)
+            w, rt = ring_weight(f, P, rw * figure_stem(P, top)), 0.7 * t
             white = clearance(a, ring(ccx, ccy, R, rt))
             R2 = R + getattr(f, 'AT_RING_OUT', 1.0) * (w - rt)
             far = R - rt - white
@@ -482,6 +732,14 @@ def make_symbols(f):
                 a = translate(a, ccx - (ab[0] + ab[2]) / 2 + 0.02 * xh * k, ccy - (ab[1] + ab[3]) / 2)
                 a = inside_ring(a, ccx, ccy, R2 - w, white)
             put('at', SH.union(a, ring(ccx, ccy, R2, w)), 'a in a ring in the figures\' weight')
+        elif ring_weight(f, P, 0.7 * t) > 0.7 * t:
+            # the ring at the o's weight (RING_SHARE), the a drawn smaller at its own weight where it must be
+            w = ring_weight(f, P, 0.7 * t)
+            def at_a(k):
+                q = scaled(P['a'], 0.74 * k, S, 0.85, Ss); qb = bounds(q)
+                return translate(q, ccx - (qb[0] + qb[2]) / 2 + 0.02 * xh * k, ccy - (qb[1] + qb[3]) / 2)
+            R2, (a,) = ring_letters(f, 'at', ccx, ccy, R, 0.7 * t, w, [lambda k: a if k == 1.0 else at_a(k)])
+            put('at', SH.union(a, ring(ccx, ccy, R2, w)), 'a in a ring at the o\'s weight')
         else:
             put('at', SH.union(a, ring(ccx, ccy, R, 0.7 * t)), 'a in a ring')
 
@@ -557,9 +815,20 @@ def make_symbols(f):
         # CURRENCY_REACH of that radius from the centre
         w1 = figure_stem(P, top); cw, aw = rw * w1, (getattr(f, 'ARM_WEIGHT', None) or rw) * w1
         rr = getattr(f, 'CURRENCY_RADIUS', 0.34) * xh; reach = getattr(f, 'CURRENCY_REACH', 1.45)
+        # never lighter than the o's weight (RING_SHARE): the ring thickened outward, so its counter stays as it was, and
+        # the arms with it
+        heavy = ring_weight(f, P, cw); aw *= heavy / cw; rr += heavy - cw; cw = heavy
         spurs = [stroke_polyline([(math.cos(a) * (rr - cw / 2), yc + math.sin(a) * (rr - cw / 2)), (math.cos(a) * rr * reach, yc + math.sin(a) * rr * reach)], aw, st)
                  for a in (math.radians(d) for d in (45, 135, 225, 315))]
         put('currency', SH.union(ring(0, yc, rr, cw), *spurs), 'ring + spurs in the figures\' weight')
+    elif ring_weight(f, P, 0.6 * t) > 0.6 * t:
+        # the ring at the o's weight (RING_SHARE), the arms in their proportion to it, the radius grown where the
+        # counter would fall under CURRENCY_HOLE of the ring
+        cw = ring_weight(f, P, 0.6 * t); aw = 0.55 * t * cw / (0.6 * t)
+        rr = max(rr, cw * (1 + CURRENCY_HOLE / 2) + _slope_allowance(f) / 2)
+        spurs = [stroke_polyline([(math.cos(a) * (rr - cw / 2), yc + math.sin(a) * (rr - cw / 2)), (math.cos(a) * rr * 1.45, yc + math.sin(a) * rr * 1.45)], aw, st)
+                 for a in (math.radians(d) for d in (45, 135, 225, 315))]
+        put('currency', SH.union(ring(0, yc, rr, cw), *spurs), 'ring + spurs at the o\'s weight')
     else:
         spurs = [stroke_polyline([(math.cos(a) * rr * 0.85, yc + math.sin(a) * rr * 0.85), (math.cos(a) * rr * 1.45, yc + math.sin(a) * rr * 1.45)], 0.55 * t, st)
                  for a in (math.radians(d) for d in (45, 135, 225, 315))]
@@ -576,14 +845,32 @@ def make_symbols(f):
                    vbar(st, bw2 * 2, -0.20 * xh, top, 0.42 * S), vbar(st, bw2 * 2 + 0.30 * xh, -0.20 * xh, top, 0.42 * S))
     put('paragraph', pil, 'bowl + two stems')
     R = 0.5 * top
-    cc = scaled(P['c'], 0.58, S, 0.62, Ss); ccb = bounds(cc)
     rt = 0.42 * t + 0.1 * S                                       # the ring's weight
-    cc = inside_ring(translate(cc, R - (ccb[0] + ccb[2]) / 2, R - (ccb[1] + ccb[3]) / 2), R, R, R - rt, 0.45 * rt)
-    put('copyright', SH.union(ring(R, R, R, rt), cc), 'ring + c')
     rsrc = P['R'] if not f.cfg['unicase'] else P['r']
-    rg = scaled(rsrc, 0.50 if not f.cfg['unicase'] else 0.62, S, 0.62, Ss); rgb = bounds(rg)
-    rg = inside_ring(translate(rg, R - (rgb[0] + rgb[2]) / 2, R - (rgb[1] + rgb[3]) / 2), R, R, R - rt, 0.45 * rt)
-    put('registered', SH.union(ring(R, R, R, rt), rg), 'ring + r')
+
+    def ringed(src, k0):
+        """The letter of © or ®, k times as large at its own weight, centred in the ring and clear of it."""
+        memo = {}
+        def make(k):
+            if k not in memo:
+                q = scaled(src, k0 * k, S, 0.62, Ss); qb = bounds(q)
+                memo[k] = inside_ring(translate(q, R - (qb[0] + qb[2]) / 2, R - (qb[1] + qb[3]) / 2), R, R, R - rt, 0.45 * rt)
+            return memo[k]
+        return make
+    makes = [ringed(P['c'], 0.58), ringed(rsrc, 0.50 if not f.cfg['unicase'] else 0.62)]
+    w = ring_weight(f, P, rt)
+    if w > rt:
+        # the ring at the o's weight (RING_SHARE), one for © and ®, standing on the baseline
+        only = getattr(f, 'rings_kept', None)        # a pass that keeps only some of its signs sizes the ring for those
+        R2, (cc, rg) = ring_letters(f, 'copyright', R, R, R, rt, w, makes,
+                                    sizing=None if only is None else [n in only for n in ('copyright', 'registered')])
+        band = ring(R, R2, R2, w); cc, rg = translate(cc, 0, R2 - R), translate(rg, 0, R2 - R)
+        put('copyright', SH.union(band, cc), 'ring at the o\'s weight + c')
+        put('registered', SH.union(band, rg), 'ring at the o\'s weight + r')
+    else:
+        cc, rg = makes[0](1.0), makes[1](1.0)
+        put('copyright', SH.union(ring(R, R, R, rt), cc), 'ring + c')
+        put('registered', SH.union(ring(R, R, R, rt), rg), 'ring + r')
     tm_t = P['T.alt1'] if 'T.alt1' in P else (P['T'] if not f.cfg['unicase'] else P['t'])
     tm_m = P['M'] if not f.cfg['unicase'] else P['m']
     k = 0.42 if not f.cfg['unicase'] else 0.52
@@ -596,9 +883,14 @@ def make_symbols(f):
     tmx = SH.union(translate(a1, -b1[0], top - b1[3]), translate(a2, b1[2] - b1[0] - b2[0] + 0.04 * xh, top - b2[3]))
     put('trademark', tmx, 'small T + M')
     if 'ring' in getattr(f, 'piece', {}):
-        rg_ = f.piece['ring']; put('degree', translate(rg_, 0, top - bounds(rg_)[3]), 'the sheet\'s ring')
+        rg_ = f.piece['ring']; deg, how = translate(rg_, 0, top - bounds(rg_)[3]), 'the sheet\'s ring'
     else:
-        put('degree', ring(0.15 * xh, top - 0.15 * xh, 0.15 * xh, 0.45 * t), 'small ring')
+        deg, how = ring(0.15 * xh, top - 0.15 * xh, 0.15 * xh, 0.45 * t), 'small ring'
+    if getattr(f, 'RING_SHARE', None):
+        heavy = heavier_ring(f, P, deg)                    # at the o's weight, its counter kept open
+        if heavy is not deg:
+            deg, how = heavy, how + ' at the o\'s weight'
+    put('degree', deg, how)
     for name, src in (('ordfeminine', 'a'), ('ordmasculine', 'o')):
         g = scaled(P[src], 0.55, S, 0.7, Ss); gb = bounds(g)
         g = translate(g, -gb[0], top - gb[3]); gb = bounds(g)

@@ -83,7 +83,9 @@ CONDENSE = 0.96      # the sloped styles are a little narrower, with their stems
 COMB = {0x300: 'grave', 0x301: 'acute', 0x302: 'circumflex', 0x303: 'tilde', 0x304: 'macron', 0x306: 'breve',
         0x307: 'dot', 0x308: 'dieresis', 0x30A: 'ring', 0x30B: 'hungarumlaut', 0x30C: 'caron', 0x312: 'commaturned',
         0x326: 'commabelow', 0x327: 'cedilla', 0x328: 'ogonek'}
-BOTTOM = {'commabelow', 'cedilla', 'ogonek'}
+BOTTOM = {'commabelow', 'cedilla', 'ogonek', 'dotbelow'}
+# the combining dot below, built with the mark stacks (Font2.MARK_STACKS)
+STACK_COMB = {0x323: 'dotbelow'}
 SPECIAL = {0x0122: ('G', ['commabelow']), 0x0123: ('g', ['commaturned']), 0x0136: ('K', ['commabelow']),
            0x0137: ('k', ['commabelow']), 0x013B: ('L', ['commabelow']), 0x013C: ('l', ['commabelow']),
            0x0145: ('N', ['commabelow']), 0x0146: ('n', ['commabelow']), 0x0156: ('R', ['commabelow']),
@@ -451,6 +453,13 @@ class Font2:
     # Off for the release (the shared gap above the stem's top) but where a finishing pass sets them.
     PONC_BESIDE = ()
     PONC_GAP = None
+    # Combining marks typed after a letter (the mark and mkmk features; Font2.stack_anchors): with MARK_STACKS the
+    # dot above (U+0307) has its own anchor, where the face sets its ponc, apart from every other top mark's; a
+    # letter's top anchor sits where the highest of the top marks would stand on it as the precomposed letters set
+    # them (Carrick's t, Céilí's g), and its bottom anchor clear of a descender; the precomposed letters carry anchors
+    # above and below their marks; stacked marks stand on one another at the accents' gap (mkmk); and U+0323, the
+    # combining dot below, is built. Off for the research studies.
+    MARK_STACKS = False
 
     def finish_traced(self):
         """Redraw each traced outline from its source-pixel scale up (finish.refit, where a source
@@ -531,6 +540,10 @@ class Font2:
         self.top_anchor = {n: (sh(x, y), y) for n, (x, y) in self.top_anchor.items()}
         self.bottom_anchor = {n: (sh(x, y), y) for n, (x, y) in self.bottom_anchor.items()}
         self.mark_anchor = {n: (w, sh(x, y), y) for n, (w, x, y) in self.mark_anchor.items()}
+        if self.MARK_STACKS:
+            self.ponc_anchor = {n: (sh(x, y), y) for n, (x, y) in self.ponc_anchor.items()}
+            self.mark2_anchor = {n: (w, sh(x, y), y) for n, (w, x, y) in self.mark2_anchor.items()}
+            self.mk_anchor = {n: (w, sh(x, y), y) for n, (w, x, y) in self.mk_anchor.items()}
 
     # ------------------------------------------------------------------ letters damaged on the scan
     def repairs(self):
@@ -897,7 +910,10 @@ class Font2:
                 ty = bounds(m)[3]; ys, L, R = profiles(m, ty - 0.03 * xh, ty, step=2)
                 neck = (np.nanmin(L) + np.nanmax(R)) / 2
                 return translate(m, cx - neck, bottom_under(base, cx - 10, cx + 10) + 0.05 * xh - b1)
-            return translate(m, cx - acx, -0.06 * xh - b1)
+            q = translate(m, cx - acx, -0.06 * xh - b1)
+            if self.MARK_STACKS:
+                q = translate(q, *self.bottom_clear(base, [q]))         # clear of a descender (Céilí's insular r)
+            return q
         # top marks
         if mark_kind == 'dot' and not upper and self.PONC_GAP and base_name.split('.')[0] in tuple('bdfhkl'):
             return self.ponc(base_name, base, m)
@@ -911,6 +927,37 @@ class Font2:
         if mark_kind == 'commaturned':
             gap *= 1.4
         return translate(m, cx - acx, t + gap - b0)
+
+    def bottom_clear(self, base, marks):
+        """(dx, dy) for bottom marks hung under a letter (MARK_STACKS): where one beside a descender comes closer to the
+        letter than the comma below stands under the baseline (0.06 x-height), it moves along the baseline, within
+        the letter's foot, until it stands that gap clear; where it cannot, it hangs below the descender as from a
+        baseline. A letter without a descender, and a mark already clear, stay as they are. A sloped style measures
+        them sloped, as they will stand, and allows for the hair of weight its narrowing adds (Font2.condense)."""
+        from symbols import clearance
+        xh = self.xh; gap = 0.06 * xh
+        if bounds(base)[1] > -0.05 * xh:
+            return 0.0, 0.0
+        if self.italic:
+            t = math.tan(math.radians(SLANT)); sloped = lambda p: SH.transform(p, (1, 0, t, 1, -xh / 2 * t, 0))
+            least = gap + (1 - CONDENSE) * self.S
+        else:
+            sloped = lambda p: p; least = gap
+        seen = sloped(base)
+        worst = lambda dx, dy: min(clearance(sloped(translate(m, dx, dy)), seen) for m in marks)
+        if worst(0, 0) >= gap:
+            return 0.0, 0.0
+        gap = least
+        lo, hi = ink_x_extent(base, -0.02 * xh, 0.18 * xh)
+        mb = bounds(SH.union(*marks)); cx = (mb[0] + mb[2]) / 2
+        for step in np.arange(2.0, 0.6 * xh, 2.0):
+            for dx in (step, -step):
+                if lo <= cx + dx <= hi and worst(dx, 0) >= gap:
+                    return float(dx), 0.0
+        dy = float(bottom_under(base, mb[0], mb[2]))
+        while worst(0, dy) < gap and dy > -2 * xh:
+            dy -= 2.0
+        return 0.0, dy
 
     def ponc(self, base_name, base, m):
         """The dot on an ascender letter (PONC_BESIDE, PONC_GAP): beside the ascender over the bowl (a fifth
@@ -984,9 +1031,11 @@ class Font2:
         P = self.P; xh = self.xh
         ow = bounds(P['o'])[2]
         self.mark_glyphs = {}
-        for cp, kind in COMB.items():
-            m = self.marks[kind]; b = bounds(m)
-            if kind in BOTTOM:
+        for cp, kind in {**COMB, **(STACK_COMB if self.MARK_STACKS else {})}.items():
+            m = self.marks[kind if kind != 'dotbelow' else 'dot']; b = bounds(m)
+            if kind == 'dotbelow':
+                pos = translate(m, -ow / 2 - (b[0] + b[2]) / 2, -b[3] - self.gap)      # the accents' gap under the baseline
+            elif kind in BOTTOM:
                 pos = translate(m, -ow / 2 - (b[0] + b[2]) / 2, -b[3] - (0.06 * xh if kind == 'commabelow' else -0.04 * xh))
             else:
                 pos = translate(m, -ow / 2 - (b[0] + b[2]) / 2, xh + self.gap - b[1])
@@ -1179,6 +1228,77 @@ class Font2:
                 self.mark_anchor[name] = ('bottom', int(round((b[0] + b[2]) / 2)), 0)
             else:
                 self.mark_anchor[name] = ('top', int(round((b[0] + b[2]) / 2)), int(round(b[1])))
+        if self.MARK_STACKS:
+            self.stack_anchors(bases)
+
+    def stack_anchors(self, bases):
+        """The anchors of MARK_STACKS, from the letters as the precomposed ones are built (attach):
+        - ponc_anchor: where U+0307 stands: the top anchor as the release set it (from the acute), or where the face sets
+          its ponc on an ascender letter (PONC_GAP; Tuam's tuam_studio.ponc), as on ḃ ḋ ḟ;
+        - top_anchor: where every other top mark stands: where the acute stands on the letter (attach, never by the
+          ponc's rule), raised only as far as every top mark then stands as clear of the letter as the acute does, at
+          most the accents' gap (a wider mark over Carrick's t found its flag, over Céilí's bold g its hook);
+        - bottom_anchor: clear of a descender (bottom_clear, with the comma below and the dot below);
+        - the same on each precomposed letter, so that a mark typed after it stands over (or under) its marks;
+        - mark2_anchor and mk_anchor (mkmk): each mark's top (or foot) a gap beyond it, and its own foot (or top)."""
+        xh, gap = self.xh, self.gap
+        general = getattr(self, 'general_attach', None) or self.attach
+        moved = set(getattr(self, 'ponc_letters', ())) | (set('bdfhkl') if self.PONC_GAP else set())
+        kinds = sorted({k for k in self.mark_glyphs.values() if k not in BOTTOM and k not in ('dot', 'commaturned')})
+        from scipy.spatial import cKDTree
+        from symbols import _outline_points
+        name = {k: n for n, k in self.mark_glyphs.items()}
+        drawn = {k: _outline_points(self.final[name[k]], 1.5) - self.mark_anchor[name[k]][1:] for k in kinds}
+        def top(n, p):
+            a = bounds(general(n, p, 'acute', False)); x, y = (a[0] + a[2]) / 2, a[1]
+            tree = cKDTree(_outline_points(p, 1.5))
+            white = lambda k, dy: float(tree.query(drawn[k] + (x, y + dy))[0].min())
+            need = min(gap, white('acute', 0.0)) - 0.5; dy = 0.0
+            for k in kinds:
+                if white(k, dy) < need:
+                    lo, hi = dy, dy + 4 * gap
+                    for _ in range(12):
+                        mid = (lo + hi) / 2
+                        lo, hi = (lo, mid) if white(k, mid) >= need else (mid, hi)
+                    dy = hi
+            return (int(round(x)), int(round(y + dy)))
+        def ponc(n, p):
+            m = self.attach(n, p, 'dot', False); b = bounds(m)
+            return (int(round((b[0] + b[2]) / 2)), int(round(b[1])))
+        under = [translate(self.final[name[k]], -self.mark_anchor[name[k]][1], 0) for k in ('commabelow', 'dotbelow') if k in name]
+        def bottom(p, x):
+            dx, dy = self.bottom_clear(p, [translate(m, x, 0) for m in under])
+            return (int(round(x + dx)), int(round(dy)))
+        self.ponc_anchor = {}
+        for n in bases:
+            p = self.final[n]
+            self.ponc_anchor[n] = ponc(n, p) if n.split('.')[0] in moved else self.top_anchor[n]
+            self.top_anchor[n] = top(n, p)
+            self.bottom_anchor[n] = bottom(p, self.bottom_anchor[n][0])
+        # the precomposed letters: a mark typed after one stands over its top marks (or under its bottom ones)
+        lowest = max(bounds(m)[3] for m in under) if under else 0.0        # the stacking marks' tops, from their anchor
+        for n, bn in self.comp.items():
+            if n not in self.final or bn not in self.top_anchor:
+                continue
+            p = self.final[n]; kinds_n = self.comp_marks.get(n, [])
+            self.top_anchor[n] = top(bn, p)
+            self.ponc_anchor[n] = self.top_anchor[n] if any(k not in BOTTOM for k in kinds_n) else self.ponc_anchor[bn]
+            if any(k in BOTTOM for k in kinds_n):
+                low = SH.op(SH.difference(p, self.final[bn]), SH.polygon([(-1e4, -1e4), (1e4, -1e4), (1e4, 0.3 * xh), (-1e4, 0.3 * xh)]),
+                            pathops.PathOp.INTERSECTION)
+                b = bounds(low)
+                if b is not None:
+                    self.bottom_anchor[n] = (int(round((b[0] + b[2]) / 2)), int(round(b[1] - gap - lowest)))
+                    continue
+            self.bottom_anchor[n] = self.bottom_anchor[bn]
+        # mark to mark: each mark's own foot (top marks) or top (bottom marks), and a gap beyond its other end
+        self.mark2_anchor, self.mk_anchor = {}, {}
+        for nm, kind in self.mark_glyphs.items():
+            b = bounds(self.final[nm]); cx = int(round((b[0] + b[2]) / 2))
+            if kind in BOTTOM:
+                self.mk_anchor[nm] = ('bottom', cx, int(round(b[3]))); self.mark2_anchor[nm] = ('bottom', cx, int(round(b[1] - gap)))
+            else:
+                self.mk_anchor[nm] = ('top', cx, int(round(b[1]))); self.mark2_anchor[nm] = ('top', cx, int(round(b[3] + gap)))
 
     # ------------------------------------------------------------------ features
     def variants(self, b, alt):
@@ -1195,7 +1315,8 @@ class Font2:
         bots = [n for n, k in self.mark_glyphs.items() if k in BOTTOM]
         fea += [f'@CombTop = [{" ".join(sorted(tops))}];', f'@CombBottom = [{" ".join(sorted(bots))}];', '']
         fea += ['lookup DOTLESS { sub i by dotlessi; sub j by dotlessj; } DOTLESS;', '',
-                'feature ccmp {', "    sub [i j]' lookup DOTLESS @CombTop;", '} ccmp;', '']
+                'feature ccmp {', "    sub [i j]' lookup DOTLESS @CombTop;",
+                *(["    sub [i j]' lookup DOTLESS @CombBottom @CombTop;"] if self.MARK_STACKS else []), '} ccmp;', '']
         own = sorted(n for n in getattr(self, 'own_acute', {}) if n in self.comp and n in self.final)
         if own:
             # a letter + U+0301 becomes the precomposed letter, whose acute is the letter's own
@@ -1236,15 +1357,31 @@ class Font2:
             fea.append(f'        pos @kL_{a.replace(".", "_")} @kR_{b.replace(".", "_")} {k};')
         fea += ['    } KERN;', '} kern;', '']
         # mark positioning
+        stacks = self.MARK_STACKS
         for name, (where, x, y) in sorted(self.mark_anchor.items()):
-            fea.insert(3, f'markClass {name} <anchor {x} {y}> @MC_{where};')
+            # with MARK_STACKS the dot above has an anchor of its own on every letter (stack_anchors)
+            cls = 'ponc' if stacks and self.mark_glyphs[name] == 'dot' else where
+            fea.insert(3, f'markClass {name} <anchor {x} {y}> @MC_{cls};')
         fea += ['feature mark {', '    lookup MARK_TOP {']
         for n, (x, y) in sorted(self.top_anchor.items()):
-            fea.append(f'        pos base {n} <anchor {x} {y}> mark @MC_top;')
+            ponc = f' <anchor {self.ponc_anchor[n][0]} {self.ponc_anchor[n][1]}> mark @MC_ponc' if stacks else ''
+            fea.append(f'        pos base {n} <anchor {x} {y}> mark @MC_top{ponc};')
         fea += ['    } MARK_TOP;', '    lookup MARK_BOTTOM {']
         for n, (x, y) in sorted(self.bottom_anchor.items()):
             fea.append(f'        pos base {n} <anchor {x} {y}> mark @MC_bottom;')
         fea += ['    } MARK_BOTTOM;', '} mark;']
+        if stacks:
+            # mark to mark: a top mark stands on the top mark before it and a bottom mark hangs from the bottom mark
+            # before it, the accents' gap apart (each lookup sees only its own marks)
+            for name, (where, x, y) in sorted(self.mk_anchor.items()):
+                fea.insert(3, f'markClass {name} <anchor {x} {y}> @MK_{where};')
+            fea += ['', 'feature mkmk {']
+            for where, cls in (('top', '@CombTop'), ('bottom', '@CombBottom')):
+                fea += [f'    lookup MKMK_{where.upper()} {{', f'        lookupflag UseMarkFilteringSet {cls};']
+                fea += [f'        pos mark {n} <anchor {x} {y}> mark @MK_{where};'
+                        for n, (w, x, y) in sorted(self.mark2_anchor.items()) if w == where]
+                fea += [f'    }} MKMK_{where.upper()};']
+            fea += ['} mkmk;']
         return '\n'.join(fea)
 
     # ------------------------------------------------------------------ binary
@@ -1390,11 +1527,11 @@ class Font2:
         return base
 
     # ------------------------------------------------------------------ where each glyph came from
-    DERIVED = {'grave': 'acute', 'hungarumlaut': 'acute', 'caron': 'circumflex', 'breve': 'ring', 'macron': 'endash'}
+    DERIVED = {'grave': 'acute', 'hungarumlaut': 'acute', 'caron': 'circumflex', 'breve': 'ring', 'macron': 'endash', 'dotbelow': 'dot'}
     MARK_WORDS = {'acute': 'acute', 'grave': 'grave', 'circumflex': 'circumflex', 'caron': 'caron', 'breve': 'breve',
                   'tilde': 'tilde', 'macron': 'macron', 'dot': 'dot', 'dieresis': 'diaeresis', 'ring': 'ring',
                   'hungarumlaut': 'double acute', 'commaturned': 'turned comma', 'commabelow': 'comma below',
-                  'cedilla': 'cedilla', 'ogonek': 'ogonek', 'caronvert': 'apostrophe caron'}
+                  'cedilla': 'cedilla', 'ogonek': 'ogonek', 'caronvert': 'apostrophe caron', 'dotbelow': 'dot below'}
 
     def mark_words(self, k):
         src = self.mark_source.get(k)
@@ -1408,7 +1545,7 @@ class Font2:
             return 'macron at the weight of the sheet’s rules'
         if d and self.mark_source.get(d):
             return f'{w} made from the sheet’s {self.MARK_WORDS.get(d, "rule")}'
-        if k in ('dot', 'dieresis'):
+        if k in ('dot', 'dieresis', 'dotbelow'):
             return f'{w} from the flyer’s dot'
         return f'{w} drawn to match'
 

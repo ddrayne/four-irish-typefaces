@@ -1,6 +1,7 @@
 from pathlib import Path
 import json,os
 import pytest
+from conftest import study_coverage
 from fontTools.ttLib import TTFont
 from fontTools.pens.recordingPen import RecordingPen
 
@@ -29,7 +30,7 @@ def test_round03_formats_sanitize_and_preserve_coverage(face,ps,old,ext):
     result=ots.sanitize(str(p),os.devnull,capture_output=True)
     assert result.returncode==0,result.stderr
     f=TTFont(p);baseline=TTFont(ROOT/f'fonts/otf/{old}-Regular.otf')
-    assert f.getBestCmap().keys()==baseline.getBestCmap().keys()
+    assert set(f.getBestCmap())==study_coverage(baseline)
     assert f['name'].getDebugName(6)==ps+'-Regular'
 
 @pytest.mark.parametrize('face,ps,old',FACES)

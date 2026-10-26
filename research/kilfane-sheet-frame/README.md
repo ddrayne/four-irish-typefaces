@@ -140,6 +140,26 @@ A fourth pass finishes what a third independent review found (keys `bold_math`, 
   the upright kept a corner. The bold section's terminal openings (14 and 26 units against 36 and 54) are taken from
   its terminals to 32.
 
+A fifth pass, shared by the four faces, corrects three defects a fourth independent review found in all of them
+(key `fifth_pass`; `scripts/symbols.py` and `scripts/build2.py`, switched on in `scripts/build_candidate.py`):
+
+- **≈** (judged). It was two tildes stretched to the sign's width: 362 units tall (60..422) against the ='s 198
+  (142..340), its waves heavier than the bars (72 against 61) and 97 apart where the bars stand 78. Its waves are
+  now drawn at the bars' weight (60; Bold 92 against 93), centred where the bars are on the 241 axis and 0.7 of
+  the ='s white apart (55): 236 tall (123..359; Bold 304 against the ='s 263). The fourth pass's bold ≈ (96 apart,
+  433 tall) gives way to it.
+- **Rings** (judged). The rings of © ® @ ° ¤ were hairlines of 31 to 43 units (Bold 53 to 66) beside an o whose
+  heavier side is 109 (Bold 160). Each is now at least half of it: 56 (Italic 59 to 61, Bold 82 to 83, Bold Italic
+  86 to 87), grown inward as far as the c, r and a leave room (© and ® stay 700 tall in the Regular and Italic, 709
+  and 714 in the Bold styles) and outward beyond that, the letters as drawn and clear of the ring (the Regular's a
+  33 from its ring); ° keeps a counter of 0.7 of its ring (56 by 64), ¤ one of 1.5 times it (237). at.case follows @.
+- **Combining marks** (judged). Every top mark used the ponc's anchor, there was no mkmk (x + circumflex + acute
+  set the acute 154 units into the circumflex), no precomposed letter had anchors, the comma below ran 49 to 108
+  units into the descenders of f g j y, and U+0323 had no glyph. The dot above keeps its anchor, so ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ
+  ṫ and base + U+0307 shape as before; every other top mark stands at least the accents' gap from the letter's ink
+  (45 to 46, as on á); precomposed letters carry their own anchors and mkmk stacks marks 46 apart; the comma and the
+  new dot below stand at least 21 clear (f̦ 31, g̦ 35, under the descender).
+
 ## Reproduce
 
 ```sh

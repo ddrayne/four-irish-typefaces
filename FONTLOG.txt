@@ -60,7 +60,13 @@ ChangeLog
   figures and letters take its weight; j and ? are spaced by one rule in every style; capitals keep 30
   units from capitals and lowercase, accented ones too; near-smooth joins are smooth (the sloped
   styles' stem joins); and a case feature sets dashes, guillemets, colon, bullets, @ and ¡ ¿ for capitals.
-- Names, coverage and features are unchanged (but Kilfane's case feature); spacing follows the new outlines.
+- All four faces: ≈ is drawn at the weight and spacing of =, centred on the math axis; the rings of © ® @ ° ¤
+  are at least half the weight of the o, their letters and counters kept open; combining marks stand clear of
+  their letters, stack on one another (a new mkmk feature) and follow a precomposed letter's accent, the dot
+  above keeping the ponc's place (Irish ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ are unchanged), and the comma below hangs clear of a
+  descender. Céilí Bold and Bold Italic: the comma of ŗ with the insular r stands clear of the r.
+- Names are unchanged; coverage adds U+0323 (combining dot below); features add mkmk (and Kilfane's case
+  feature); spacing follows the new outlines.
 
 2.101 (2026-10-25)
 - No copyright is claimed: the fonts are dedicated to the public domain under CC0 1.0 Universal

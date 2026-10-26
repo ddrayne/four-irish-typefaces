@@ -254,6 +254,27 @@ is in [judged-edits.json](carrick/judged-edits.json) with its reason (values in 
   the builder's taper) kept (`carrick_studio.straight_quotes`): 112 by 198, with 0.96 of ’'s ink (Italic 0.97).
   The primes ′ ″, made from it, follow.
 
+## The fifth finishing pass
+
+A fourth independent review found three defects shared by the four faces; one rule for all of them corrects each
+(`scripts/symbols.py`, `scripts/build2.py`; [judged-edits.json](carrick/judged-edits.json), `fifth_pass`). Numbers
+are font units.
+
+- **≈** stood 570 tall (−29..541, below the baseline) against the ='s 257 (127..384), its waves 109 heavy against
+  bars of 79 and 145 apart where the bars stand 101. Its waves are now drawn at the bars' weight (78), centred on
+  them on the 256 axis, 0.7 of the ='s white apart (71; Italic 67): 338 tall (87..425).
+- **Rings.** The third pass's ¤ and @ are the model; © ® ° were still rings of 40 to 52 beside an o of 223. Every
+  ring is now at least half the o, 113 (Italic 119; ¤ and @ gain 7, 0.64 of the figure stem). © and ® grow outward,
+  550 to 674 tall (Italic 700): the c's 5-unit cut and the r's joins would close if the letters were made smaller,
+  so they stay as drawn, 23 to 32 from the ring. ° has a counter of 80 by 87 (53 by 60 before) and ¤ keeps its 223.
+- **Combining marks.** The ponc's anchor was the only top anchor, so the marks followed it, and t (whose flag
+  rises over the x-height) took its marks 22 above it where the other letters stand 43 to 48; there was no mkmk
+  (x + circumflex + acute: 172 into each other), no anchor on a precomposed letter, the comma below ran 68 to 83
+  into g j y, and U+0323 had no glyph. The dot above keeps the ponc's anchor (ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ and base + U+0307
+  shape as before); every other top mark stands at least the accents' gap from the letter's ink (t 43, Italic 46);
+  precomposed letters carry anchors, mkmk stacks marks 44 apart, and the comma and the new dot below stand at least
+  23 clear.
+
 ## Reproduce
 
 ```sh

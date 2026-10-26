@@ -1,6 +1,7 @@
 """Kilfane Study 5 (research/kilfane-sheet-frame): Study 4 with the production capitals in the sheet's own frame."""
 import json, os
 import pytest
+from conftest import study_coverage
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROUND = os.path.join(ROOT, 'research', 'kilfane-sheet-frame')
@@ -49,7 +50,7 @@ def test_study5_fonts_sanitise_and_keep_the_release_coverage(ext):
     assert ots.sanitize(p, os.devnull, capture_output=True).returncode == 0
     f = TTFont(p)
     assert f['name'].getDebugName(1) == 'Kilfane Study 5'
-    assert f.getBestCmap().keys() == TTFont(os.path.join(ROOT, 'fonts', 'otf', 'KilfaneDigital-Regular.otf')).getBestCmap().keys()
+    assert set(f.getBestCmap()) == study_coverage(TTFont(os.path.join(ROOT, 'fonts', 'otf', 'KilfaneDigital-Regular.otf')))
 
 
 # ---------------------------------------------------------------- the studio finishing of the release build

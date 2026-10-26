@@ -314,14 +314,41 @@ fonts here do not change. Measurements are font units, from the fonts before and
 Topology is unchanged from the release in every style, and no letter pair collides in any style. The proof,
 which shows font outlines only, is [proofs/third-pass.png](proofs/third-pass.png).
 
+## The fifth pass
+
+The pass across all four faces that the third pass left these to. One rule for all four corrects each
+(`scripts/symbols.py`, `scripts/build2.py`, and for the bold `scripts/ceili_finish.py`; recorded in
+[judged-edits.json](judged-edits.json), `fifth_pass`).
+
+- **≈** stood 395 tall (71..466) against the ='s 267 (135..402), its waves 65 heavy against bars of 81 and 126
+  apart where the bars stand 105; the third pass kept that design in the bold (97 against 121, 463 tall). Its
+  waves are now drawn at the bars' weight (80.5; Bold 120 against 121), centred on them on the 268.5 axis, 0.7 of
+  the ='s white apart (73): 317 tall (110..427; Bold 393 against the ='s 347).
+- **Rings.** The rings of © ® @ ° ¤ were drawn at the pen's hairline, 36 to 58 (Bold 41 to 64), beside an o whose
+  heavier side is 124 (Bold 185). The review asked for half the o's weight, and no counter closes at it, so each
+  ring is now at least that: 63 (Italic 67 to 68, Bold 94 to 95, Bold Italic 99 to 100). This departs from the
+  pen-weight design the second pass kept them at; the rules' weight it refused (121 in the bold) would close them,
+  half the o does not. The c, r and a inside are as drawn; © and ® grow from 565 to 584 tall (Italic 587, Bold
+  634, Bold Italic 656, where the r's 12-unit crack may not narrow) and the Bold Italic @'s a, 4 units from its
+  ring, is 18 clear. ° keeps a counter of 64 (it was 89; Bold 79) and ¤ one of 238 (269; Bold 176).
+- **Combining marks.** There was no mkmk (x + circumflex + acute: 140 into each other), no anchor on a
+  precomposed letter, the comma below ran 90 units into j's descender and 26 into g's, the bold's g took its top
+  marks 42 above it (Bold Italic 40) where ĝ has 48, and U+0323 had no glyph. Every top mark now stands at least
+  the accents' gap from the letter's ink (47 to 48; Bold g 47, Bold Italic 52); precomposed letters carry anchors;
+  mkmk stacks marks 48 apart; the comma and the new dot below stand at least 21 clear. The dot above keeps its
+  anchor, so ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ and base + U+0307 shape as before.
+- **ŗ with the insular r** (ss01): the comma hangs under the r's descender, and the bold's pen brought the two
+  within 6.1 units (Bold) and 0.8 (Bold Italic). It moves along the line until it stands the comma's gap (0.06
+  x-height) clear: 34.0 and 32.3. The Regular's 50.1 and the Italic's 43.3 are unchanged.
+
 ## Not changed
 
 The frame (every letter's size and place is Study 3's: the overlap fit to Study 3, recorded as
 `frame_check`, lies between 0.967 and 1.009), the named period, comma and quotes (traced anew from the same N45
 components, with N46's quotes averaged in, at the face's level), every modern construction but those the
 second and third passes name, the spacing method, the Bold's designed join in 6 and the legacy `DOTS` cluster
-(discarded by the builder, as before). Left for a pass across all four faces: the design of ≈, the rings'
-weight in © ® @ ° ¤, and the mark anchors (mkmk, g with a top mark).
+(discarded by the builder, as before). The design of ≈, the rings' weight in © ® @ ° ¤ and the mark anchors
+(mkmk, g with a top mark), left by the third pass for a pass across all four faces, are the fifth pass's.
 
 ## Open questions
 

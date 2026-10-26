@@ -81,6 +81,16 @@ passes are `scripts/ceili_finish.py` ([judged-edits.json](ceili-judgement/judged
 third grows the bold's math signs in place, kerns ” over l's foot as ’, weights the bold's small signs, rounds every
 outline once from the drawing with its smooth joins kept, runs h's foot straight and sets j's bar as i's.
 
+**All four faces: the fifth finishing pass**, one rule for every face, recorded as `fifth_pass` in each face's
+judged-edits.json and README and checked by `tests/test_fifth_pass.py`. ≈ is drawn at the ='s rule weight and
+spacing, centred on the math axis (`symbols.approx_sign`). The rings of © ® @ ° ¤ are at least half the o's heavier
+side, growing outward where the letters inside would close (`symbols.ring_weight`, `ring_letters`, `heavier_ring`).
+Combining marks clear their letters and stack: the dot above keeps the ponc's anchor (the Irish dotted letters and
+base + U+0307 are unchanged), every other top mark stands the accents' gap from the letter's ink, precomposed
+letters carry anchors, an mkmk feature stacks marks, the comma and dot below clear the descenders, and U+0323 is
+added (`build2.Font2.stack_anchors`). `scripts/build_candidate.py` switches it on (`APPROX_WHITE`, `RING_SHARE`,
+`MARK_STACKS`) for the release only.
+
 [Round 4](round-04/README.md), Céilí Study 3: Four named original
 punctuation pieces replace the legacy cluster as construction inputs. Period,
 comma and opposed quotes come from N45; 64 derived glyphs change, including dotted

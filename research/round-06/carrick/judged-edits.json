@@ -46,5 +46,62 @@
    "what": "The sloped style's hair of weight is added by moving the drawing's own nodes rather than by a stroked offset, which nearly doubled the sloped outlines' nodes and left them full of short pieces."},
   {"op": "ttf_unspeck", "code": "scripts/build2.py (ttf_glyph, TTF_UNSPECK in scripts/build_candidate.py)",
    "what": "Noise, third pass. The TrueType conversion left a 0.16-unit-square loop in the Italic's ı, i and į at (335, 514): the stem's top corner is a cubic 5 units long whose first handle reaches 10 units, past its end (a hook), and cu2qu's spline for it, within 0.8 units and rounded to the grid, crossed itself. In a glyph whose TrueType outline has such a speck, each cubic within 2 units of it is converted again: one under 8 units long that strays from its chord by no more than the conversion and the grid may (1.5 units) as its chord (this hook, whose TrueType corner becomes one corner 1.2 units from the hook's tip), any other split in two on the same curve so that each half's spline follows it; a result with a speck or an out-and-back point is refused. The cubic outlines do not change, and every other glyph converts exactly as before."}
- ]
+ ],
+ "fifth_pass": {
+  "about": "A fourth independent review of the released fonts (font outlines only) found three defects shared by the four faces. Each is corrected by one rule for all of them, in scripts/symbols.py (approx_sign, ring_weight, ring_letters, heavier_ring) and scripts/build2.py (Font2.stack_anchors, bottom_clear, the mark and mkmk features), switched on for the release by scripts/build_candidate.py (APPROX_WHITE, RING_SHARE, MARK_STACKS); the study fonts do not change. Measurements are font units, from the fonts before and after.",
+  "approxequal": {
+   "glyphs": [
+    "approxequal"
+   ],
+   "white": 0.7,
+   "why": "≈ stood 570 tall (−29..541, below the baseline) against the ='s 257 (127..384), its waves 109 heavy against bars of 79 and 145 apart against the ='s 101; its waves are now drawn at the bars' weight (78, Italic 79), centred on the bars on the 256 axis, 0.7 of the ='s white apart (71, Italic 67): 338 tall (87..425)"
+  },
+  "rings": {
+   "glyphs": [
+    "copyright",
+    "registered",
+    "at",
+    "degree",
+    "currency"
+   ],
+   "share": 0.5,
+   "white_inside": [
+    0.2,
+    0.45
+   ],
+   "degree_hole": 0.7,
+   "currency_hole": 1.5,
+   "why": "the third pass drew ¤ and @ in the figures' weight (106, 0.6 of the figure stem) and they are the model; © ® ° were still rings of 40 to 52 beside an o of 223; every ring is now at least half the o, 113 (Italic 119; ¤ and @ gain 7); © and ® grow outward, 550 to 674 tall (Italic 700), because the c's 5-unit cut and the r's joins would close if the letters were made smaller, so they stay as drawn, 23 to 32 from the ring; ° has a counter of 80 by 87 (53 by 60 before), ¤ keeps its 223"
+  },
+  "marks": {
+   "added": [
+    "dotbelowcomb"
+   ],
+   "features": [
+    "mark",
+    "mkmk",
+    "ccmp"
+   ],
+   "why": "the ponc's anchor was the only top anchor, so marks followed it, and t's flag (above the x-height) took its marks 22 above it against 43 to 48 on the other letters; no mkmk (x + circumflex + acute: 172 into each other), no anchor on a precomposed letter, the comma below ran through g j y (68 to 83 into them), and U+0323 had no glyph; now top marks stand 43 to 46 clear (t 43, Italic 46), stacks 44 apart, comma and dot below at least 23 clear; one rule in every face: the dot above (U+0307) keeps the anchor the ponc is set by, so ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ and every base + U+0307 shape exactly as before; every other top mark takes the place the face's accents take on its letters (not the ponc's), raised where the letter's own ink comes closer than the face's accent gap (the white of the precomposed vowels); each precomposed letter carries top, ponc and bottom anchors of its own, so a mark typed after it stands on its accent; an mkmk feature sets a second mark above (or below) the first, the same gap apart; a comma or dot below moves along the line, then down, until it stands clear of a descender; U+0323 (combining dot below) is added, the face's dot"
+  },
+  "changed": {
+   "why": "every glyph whose outline differs from the fourth pass's fonts, per style (with the added dotbelowcomb); kerning changes only in pairs with one of them, the builder's own method applied to the new shapes; the line box, names and every other outline are unchanged",
+   "Regular": [
+    "approxequal",
+    "at",
+    "copyright",
+    "currency",
+    "degree",
+    "registered"
+   ],
+   "Italic": [
+    "approxequal",
+    "at",
+    "copyright",
+    "currency",
+    "degree",
+    "registered"
+   ]
+  }
+ }
 }

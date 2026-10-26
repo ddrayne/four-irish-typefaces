@@ -166,6 +166,26 @@ The traced í acute stays in the Study 3 fonts here. A stylistic alternate for i
 sets would carry it, but the alternate has to be made as a composite of the dotless i between the composites and
 the spacing, where the release build has no Tuam step.
 
+### The fifth pass (a fourth review, shared by the four faces)
+
+One rule for all four faces corrects each of three defects (`scripts/symbols.py`, `scripts/build2.py`;
+`judged-edits.json`, `fifth_pass`):
+
+- **≈** stood 466 tall (23..489) against the ='s 365 (73..438), its waves 99 heavy against bars of 112 and 155
+  apart where the bars stand 143. Its waves are now drawn at the bars' weight (109), centred on them on the 255.5
+  axis, 0.7 of the ='s white apart (101; Italic 98): 425 tall (43..468).
+- **Rings.** © ® @ ° ¤ had rings of 50 to 77 beside an o of 216; each is now at least half of it, 110 (Italic 109
+  to 115). © and ® grow outward (690 to 773 tall; Italic 784) and @ (807 to 839), their letters as drawn, 31 to 35
+  from the ring; ° has a counter of 77 (63 before) and ¤ one of 165 (237).
+- **Combining marks.** The ponc construction sets ḃ's and ḋ's dot beside the ascender and ḟ's 60 above its stem,
+  and the ponc's anchor was the only top anchor, so every top mark followed it: a diaeresis on b or d stood 64 and
+  58 units into the ascender, and every mark stood 60 over f where it stands 30 over h, k and l. There was no mkmk
+  (176 into each other), no anchor on a precomposed letter, the comma below ran 155 units into f's and j's
+  descenders, and U+0323 had no glyph. The dot above keeps the ponc's anchor, so ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ and base +
+  U+0307 shape as before; every other top mark stands the face's accent gap, 30, from the letter's ink, as the
+  precomposed accents do; precomposed letters carry anchors, mkmk stacks marks 30 apart, and the comma and the new
+  dot below stand at least 30 clear.
+
 ## Open
 
 - The cuts of v, w and 5, and the slits of d, p, q, s and 6, are N45's: the sheet resolves only the wider cuts.

@@ -2,6 +2,7 @@
 import json, os
 import numpy as np
 import pytest
+from conftest import study_coverage
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROUND = os.path.join(ROOT, 'research', 'kilfane-judgement')
@@ -91,4 +92,4 @@ def test_study4_fonts_sanitise_and_keep_the_release_coverage(ext):
     assert ots.sanitize(p, os.devnull, capture_output=True).returncode == 0
     f = TTFont(p)
     assert f['name'].getDebugName(1) == 'Kilfane Study 4'
-    assert f.getBestCmap().keys() == TTFont(os.path.join(ROOT, 'fonts', 'otf', 'KilfaneDigital-Regular.otf')).getBestCmap().keys()
+    assert set(f.getBestCmap()) == study_coverage(TTFont(os.path.join(ROOT, 'fonts', 'otf', 'KilfaneDigital-Regular.otf')))
