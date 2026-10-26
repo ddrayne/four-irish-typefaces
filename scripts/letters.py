@@ -51,7 +51,10 @@ def make_letters(f):
     P, S, xh = f.P, f.S, f.xh
     asc, cap = f.asc, f.cap
     made = {}
-    t_bar = 0.62 * f.hyphen_thick if f.style != 'round' else 0.7 * f.hyphen_thick
+    # a bar across a letter takes the hyphen's weight, or the weight a finishing pass gives crossbars
+    # (Céilí's bold, whose rules are drawn heavier than its pen's crossbars: build_original_study.py)
+    w = getattr(f, 'crossbar_weight', None) or f.hyphen_thick
+    t_bar = 0.62 * w if f.style != 'round' else 0.7 * w
     cases = [('', xh, asc)] if f.cfg['unicase'] else [('', xh, asc), ('UC', cap, cap)]
 
     # --- æ œ (and Æ Œ): overlap the right stroke of the first letter with the second

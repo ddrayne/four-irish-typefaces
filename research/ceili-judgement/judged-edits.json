@@ -28,5 +28,61 @@
     "regular": true,
     "tidy": true,
     "what": "Done by scripts/ceili_finish.py. In the Regular's traced letters, before the bold and sloped styles are derived, three things change. A curve that left a stem on a handle too short for its bend (a corner hidden in a smooth node, as at the shoulders of n, m and h) now leaves on the stem's tangent, within 3 units. A corner drawn as a cluster of short pieces becomes one corner, within 6 units. A node that one curve can replace within 2 units goes. Every glyph of every style, before accented letters are composed, gets the same tidying: rounding specks are folded away, and the bold's reopened joins (traced from a raster as runs of short lines) are drawn as curves. Corner clusters become one corner, extremes get nodes (again after the slope's shear) and redundant nodes are removed, all within 1.5 units. No step may join pieces or open or close a counter; where one would, the glyph keeps its outline from before that step (so the Bold Italic yen, whose narrow opening the slope's growth closed, is only narrowed there)."
+  },
+  "second_pass": {
+    "about": "A second review of the finished fonts found seven defects; each is corrected by one rule (scripts/ceili_finish.py), applied by build_original_study.py to the finished candidate only. Measurements are font units, from the fonts before and after.",
+    "stems": {
+      "target": 108,
+      "limit": 4,
+      "glyphs": {
+        "f": [[0.4, 0]],
+        "h": [[0.4, 0], [0.4, 1]],
+        "i": [[0.4, 0]],
+        "j": [[0.4, 0]],
+        "k": [[0.4, 0]],
+        "l.alt1": [[0.4, 0]],
+        "m": [[0.4, 0], [0.4, 1], [0.4, 2]],
+        "n": [[0.4, 1]],
+        "p": [[0.4, 0]],
+        "r": [[0.4, 0]],
+        "r.alt1": [[0.4, 0], [0.4, 1]],
+        "s.alt1": [[0.4, 0]],
+        "one": [[0.4, 0]],
+        "four": [[0.4, 1]]
+      },
+      "why": "Noise: the h's stems were 100 and 99 beside n's 108 and 113, m's 115, 110 and 109 and i's 106, so the h read light in every style (Bold 159 against n's 168 and 173). The prints settle no weight finer than a source pixel (about 9 units), so each straight stem is given the face's stem, 108 (the builder's, from l and n), by moving its two edges, at most 4 units each; the derived styles follow."
+    },
+    "bold_heavy_strokes": {
+      "gain": 1.5,
+      "glyphs": {"seven": "bar", "three": "bar", "hyphen": "rule"},
+      "pen_weight": ["at", "copyright", "registered", "currency", "degree"],
+      "why": "The bold's pen grows level strokes by its small vertical radius, right for the face's thin horizontals but not for the few level strokes drawn at least 0.75 of a stem in the Regular: the 7's bar went 93 to 102 and the 3's 91 to 101 while the 1's stem went 102 to 162, so 1977 read as a Regular 7 among bold figures, and the hyphen 81 to 91 (the dashes, + - = and # follow it). These take the stems' gain, 1.5 (the 7's bar 139, the hyphen and dashes 120, + - = 121, # 103): the bar's lower edge comes down, the pen's cut and the diagonal running on along their own lines, and the hyphen grows about its axis. The letters' crossbars (ð đ ħ ł ŧ, and the bars of € and ¥) keep the pen's weight, as t's and f's own do, and so do the rings of @ © ® ¤ °, which the rules' weight would close (@ joined its a, ° kept 28% of its counter)."
+    },
+    "bold_joins": {
+      "gap": 15,
+      "narrow": 0.45,
+      "close_under": 12,
+      "why": "The bold reopened the open joins of b, d, k, p, r and 9 as a channel along the middle of the Regular's passage, taking from both sides: p's stem narrowed from 166 to 141 at the join and k's from 165 to 142, and the cracks were 12 to 18 units in the Bold and 4 to 10 in the Bold Italic. Each stem now keeps the edge the pen gives it, and the arm, leg or bowl that comes back to it is cut back along one curve parallel to that edge, to stand at least 15 units clear (F_PASS of the Regular's opening where that is wider), in the Bold and again after the Bold Italic's hair of weight. A crack under close_under units that cuts a counter off is closed instead, as the Bold's 6 is: the ampersand's tail stood 8 units over its bar in both bold styles, and the yen's curl 4 and 6 units from its arm. The joins now stand 16 to 22 units open in both bold styles (the Bold Italic's were 4 to 14)."
+    },
+    "bold_dot_feet": {
+      "glyphs": ["exclam", "question"],
+      "why": "The bold's pen, mitred at the sharp foot of the pen-diamond dots, ran the ! dot 11 units below the Regular's, so the ! fell outside the baseline snap and sat 25 units low (stroke top 629, dot bottom -33, against the Regular's 643 and -8). The dots now reach down only as far as the Regular's, so ! and ? stand where the Regular's stand, their gaps unchanged."
+    },
+    "quote_over_foot": {
+      "why": "The quote rule measures only the letter's upper part, so after l (and L, ł) it pulled the quote in over the long foot to -345, 64 units from the stem, where it read as the apostrophe of ľ. A quote may still tuck in over a letter's lower part but never stands wholly over it: its far edge reaches at least the part's tip, so the quote's head stands over the foot's tip: l’ is -205 (Italic -200, Bold -255, Bold Italic -250), the quote 202 units from the Regular's stem."
+    },
+    "bar_spacing": {
+      "glyphs": {"eth": "d", "dcroat": "d"},
+      "min_lsb": -20,
+      "why": "The spacing saw the bars of ð and đ only where they dipped into the x-height zone, so the Regular's ð kept d's advance with its bar hanging 90 units into the letter before (đ 96), while the Bold's was set 130 wider than d. Both are now spaced as d by one rule in every style: d's sidebearings, the bar's overhang added to the advance, and the bar's end no further left than -20 (the Regular's ð 722 wide, the Bold's 837)."
+    },
+    "currency": {
+      "round": "zero",
+      "flat": "sterling",
+      "why": "€ was drawn 1.12 x-heights tall (602) and ¥ at the symbols' 1.05 (565), against the figures' 538 (0 and £). € now spans the zero (-8 to 538, its round overshoot) and ¥ stands from the baseline to the £'s height; both keep the release's construction, and the bold ¥ no longer dips 16 units below the baseline."
+    },
+    "bold_section": {
+      "why": "The bold drew § at the weight halfway between the styles that it gives superiors and fractions, so it went 85 to 94 while s went 91 to 123. It is a full-size sign: it now takes the bold's stem, 120 (measured as those were)."
+    }
   }
 }
