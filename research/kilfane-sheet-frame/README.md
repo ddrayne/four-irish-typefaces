@@ -110,6 +110,36 @@ A third pass finishes what the second reported and left in the bold (keys `bold_
   tolerance of its chord, as its chord; else split in two), only in a glyph that has a speck; the cubic outlines
   are unchanged (the round-6 README, where Carrick's Italic i had one, gives the detail).
 
+A fourth pass finishes what a third independent review found (keys `bold_math`, `bold_dots`, `bold_small`,
+`spacing`, `case`, `settle`, the section's `mouths` and the kerning's `clearances`):
+
+- **The bold's math signs** (judged). Each piece had moved outward instead of growing in place (= 142–202 and
+  280–340 became 88–181 and 301–394). Each piece now grows about its own centre and the Regular's white between
+  pieces stays: = 110–202 and 280–372, ± and ≤ ≥ with their underbars no lower than the Regular's less the pen's 17,
+  ÷ its dots within the Regular's extent and the pen's 17, ≈ its waves 96 apart (97), ~ and ^ grown both ways.
+- **The bold's dots** (judged). ! ? ¡ ¿ kept 14 to 16 units between dot and stroke against the Regular's 49 and 52:
+  the stroke now ends higher, its rounded end moved whole, and the white is the Regular's. The dots of i and j
+  (25 and 21 against 62 and 57) stand a little higher and smaller, 52 clear. The j's hook, raised over the line by
+  the pen, is lowered as the g's tail was.
+- **The bold's small signs** (judged). The bullet grows as the period does (174 to 261); % ‰ and the letters in
+  @ © ® are the Regular's drawn with the bold's pen, their counters kept as the section's; the superiors, fractions,
+  ordinals and ™ take the share of the pen that keeps their Regular proportion to the figures (¹ 0.68 of the 1),
+  their counters and openings checked open at each share.
+- **Spacing by one rule** (judged). j's stem stands where i's does in every style (the bold's j stood 60 units to
+  the right, with kerns to make up for it); ? stands on its stem as ! on its stroke, and ¿ as ¡ (the Regular's ?
+  stood 41 units closer than its !, the Bold's 13 further).
+- **Room for capitals** (judged). The bold's 30 units between capitals now hold in every style and for every
+  accented capital (the Regular's T Y kept 10; the Bold's T Í 16), and a capital before a lowercase letter keeps 30
+  too (T h was 10 to 14, P f 8).
+- **Case forms** (judged). An OpenType `case` feature sets the hyphen, dashes, guillemets, colon, middle dot, bullet
+  and @ on the capitals' middle (353, against the lowercase axis 241), and ¡ ¿ on the line as ! ? stand, each kerned
+  where it stands.
+- **Smooth joins** (noise). Rounding the sheared outlines to whole units turned short handles at stem and arch
+  joins by about the slope (the Italic m's six joins 8 to 11 degrees). Last of all, in every style, each near-smooth
+  join is made smooth within 1.5 units (2 where its curves are drawn again), no curve passing an extreme, a corner of
+  the upright kept a corner. The bold section's terminal openings (14 and 26 units against 36 and 54) are taken from
+  its terminals to 32.
+
 ## Reproduce
 
 ```sh

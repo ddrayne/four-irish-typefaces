@@ -124,6 +124,8 @@ def build(face, traces, version):
                 import kilfane_studio
                 kilfane_studio.symbols(self)                      # the upright styles' (done once)
             super().space(K)
+            if face == 'kilfane':
+                kilfane_studio.spacing(self)                      # j as i, ? as !, the case forms
             self.settle_final()
 
         def slant(self):
@@ -203,7 +205,15 @@ def build(face, traces, version):
                 kilfane_studio.outlines(self)
                 kilfane_studio.corners(self)
                 kilfane_studio.bold_curves(self)                  # the bold's faceted curves drawn as curves
+                kilfane_studio.settle_joins(self)                 # near-smooth joins made smooth, last
             return super().vertical()
+
+        def features(self):
+            fea = super().features()
+            if face == 'kilfane':
+                import kilfane_studio
+                fea += kilfane_studio.case_feature(self)          # the case forms
+            return fea
 
         def build(self, flavour):
             f = build2.Font2.build(self, flavour)        # the release's names, not the study's

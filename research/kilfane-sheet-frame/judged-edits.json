@@ -104,15 +104,17 @@
    "limits": [
     {"left": ["quoteright", "quoteleft", "quotedblright", "quotedblleft"], "right": "*lower", "min": -40},
     {"left": "*lower", "right": ["quoteright", "quoteleft", "quotedblright", "quotedblleft"], "min": -40},
-    {"left": "*lower", "right": ["hyphen"], "min": -30}
+    {"left": "*lower", "right": ["hyphen", "hyphen.case"], "min": -30}
    ],
    "clearances": [
     {"right": ["iacute", "igrave", "icircumflex", "idieresis", "itilde", "imacron", "ibreve", "jcircumflex",
                "Iacute", "Igrave", "Icircumflex", "Idieresis", "Itilde", "Imacron", "Ibreve"],
      "clearance": 40, "margin": 2,
      "reason": "Judged. The fada of í overhangs the i's side bearing (its ink starts at -36) and ran within 9 to 14 units of the capital before it (Sí, Cí, Rí, Pí, Fí), against 35 for Ní and Mí; kerning, not a moved fada, keeps the fada over its stem, so every glyph before an accented i keeps 40 units from its mark."},
-    {"right": "*capitals", "clearance": 30, "margin": 2, "styles": ["Bold", "Bold Italic"],
-     "reason": "Judged. The bold's wider pen took the white between capitals' arms and diagonals (A V 9 units after kerning, A W, A Y, T W, T Y, Z V, F V, V L 7 to 10) where the Regular's A V keeps 29: the bold's capitals keep 30, their class kerning eased or opened."}
+    {"right": "*capitals", "clearance": 30, "margin": 2, "accented": true,
+     "reason": "Judged. The bold's wider pen took the white between capitals' arms and diagonals (A V 9 units after kerning, A W, A Y, T W, T Y, Z V, F V, V L 7 to 10) where the Regular's A V keeps 29: the bold's capitals keep 30, their class kerning eased or opened. Fourth pass: every style keeps it (the Regular's T Y kept 10, F V 11, T W 12, T I 13, the Italic's 11 to 18), and so does each accented capital, which its letter's class does not hold where its mark sticks out (the Bold's T Í 16 against T I 36, F Í 17, T Ĺ 17 against T L 37): an exception opens the pair."},
+    {"left": "*capitals", "right": "*lower", "clearance": 30, "margin": 2, "accented": true,
+     "reason": "Judged (fourth pass). The optical kerning closes a capital's arm over the next letter's ascender (T h 12/13/14/10 in the four styles, F h 12, P i 17/10/13/10, the Bold's P m 9, P f 8, T b 8, V k 9, Z h 10), and the collision protection keeps only 8: a capital before a lowercase letter keeps 30, as between capitals, and so do their accented forms."}
    ]
   },
   "bold_pieces": {
@@ -131,8 +133,10 @@
    "glyph": "g", "at": [120, 17], "drop": 30, "reach": 170
   },
   "symbols": {
-   "reason": "Judged. The bold's section interlaced the bold s, which it had to lighten until its loop opened (stroke 96 against the bold s's 133, its foot raised from 66 to 122): it is drawn as the Regular's section with the bold's pen, in its own frame (66 to 700), as black as the bold s, its loop keeping half its area (a letter's least counter keeps 0.36), so that the sloped style's narrowing leaves it open. The bold's number sign, drawn at 0.85 of the rules, keeps the Regular's proportion to the stems (81 thinned to 75).",
-   "section": {"counter_area": 0.5, "counter_radius": 0.66},
+   "reason": "Judged. The bold's section interlaced the bold s, which it had to lighten until its loop opened (stroke 96 against the bold s's 133, its foot raised from 66 to 122): it is drawn as the Regular's section with the bold's pen, in its own frame (66 to 700), as black as the bold s, its loop keeping half its area (a letter's least counter keeps 0.36), so that the sloped style's narrowing leaves it open. The bold's number sign, drawn at 0.85 of the rules, keeps the Regular's proportion to the stems (81 thinned to 75). Fourth pass: the pen narrowed the bold section's terminal openings to 14 and 26 units (the Regular's 36 and 54); each terminal is moved away from the stroke across its bay (\"mouths\": lower_tip, falling off within 200 units) until the opening is 32, the stroke keeping its edge.",
+   "section": {"counter_area": 0.5, "counter_radius": 0.66, "mouth": 32,
+               "mouths": [{"bay": [210, 209], "at": [89, 241], "away": 1, "reach": 200},
+                          {"bay": [203, 565], "at": [284, 550], "away": -1, "reach": 200}]},
    "numbersign": {"stroke": 0.85}
   },
   "marks_on_line": {
@@ -149,6 +153,36 @@
   "bold_marks": {
    "reason": "Judged (third pass). The builder draws the cedilla and the ogonek (marks.MarkSet) with a stroke taken from the ring's width, and the bold's ring is a hairline grown by 0.45 of the pen, so they went only from 40 and 43 units in the Regular to 46 and 48 against the bold's acute of 90 and stems of 166. They are drawn as the Regular's and grown with the bold's pen by the stroke accents' share, 0.72, as bold_pieces grows the acute: 67 and 70 (70 and 73 in the Bold Italic), the weight of the bold's comma below (67). Font2.attach sets them by the neck as before, so they join their letters as before and the hook's white under the letter stays (ç 28 against the Regular's 26, ş 26 against 28, ą 33 against 33). Their hooks reach 20 units deeper (Ç to -194), so the family's line box grows at the foot from -190 to -204, as the second pass raised it for the bold's capital accents; the Regular and Italic change in their vertical metrics only.",
    "share": {"cedilla": 0.72, "ogonek": 0.72}
+  },
+  "bold_math": {
+   "reason": "Judged (fourth pass). The bold drew its math signs with its rules (60 to 92 units) about the Regular's centres, so each piece grew towards its neighbour and make_symbols set them apart by its weight: = 142-202 and 280-340 became 88-181 and 301-394 (white 78 to 120), the underbar of ± -14..46 became -82..10, that of ≤ ≥ 38..98 became -31..62, the dots of ÷ stood 84 off the bar (54), the waves of ≈ 141 apart (97), and ~ and ^ grew upward only (190-352 to 190-396, 434-668 to 434-706). Each piece now grows about its own centre and the pieces are set apart again so the white between them is the Regular's: = 110-202 and 280-372 on the 241 axis; ± its underbar -30..62 (the Regular's foot less the pen's 17 is -31) and the plus raised 16; ≤ ≥ the bar 22..114 and the chevron raised 29, 41 units off it as in the Regular; ÷ its dots the bold's period made no taller than leaves the Regular's 54 of white within the Regular's extent and the pen's 17 (53..429); ≈ 96 apart; ~ 168-374 and ^ 415-687 about the Regular's centres. + − × < > ¬ were centred already, and ≠ follows =."
+  },
+  "bold_small": {
+   "reason": "Judged (fourth pass). The bold's bullet was the Regular's disc (174 units while the period grew from 107 to 159), and its small glyphs, drawn halfway to the Regular's weight so that their counters stay open, gained about 20 units of stem where the letters gain 52 (¹ 84 to 103, % 85 to 105, the a of @ 93 to 115). The bullet is now a disc as much larger than the Regular's as the bold's period is (261). The small glyphs are drawn as the Regular draws them (symbols.make_symbols, from the Regular's letters at the Regular's weight) with the bold's pen: % ‰ and the a, c and R inside @ © ® with all of it, their counters kept as the section's are (half their area, 0.66 of their radius), so they gain in the letters' proportion (the zeros of % 85 to 123, stems 114 to 166); the superiors, fractions, ordinals and ™ with the share of the pen that keeps their Regular proportion to the full-size figures (¹ 0.68 of the 1; 0.65 of the pen, ™ 0.5), their counters kept at 0.7 of their radius, at the heaviest share at which every opening keeps 0.65 of the Regular's (a closing measure, kilfane_studio.opening_fast; the 4 of ¼ and ¾ keeps 28 of 40). The rings of © ® @ are left for the family's pass.",
+   "bullet": 0.17, "sources": ["zero", "a", "c", "R", "T.alt1", "M", "o", "one", "two", "three", "four"],
+   "counter_area": 0.5, "counter_radius": 0.66, "bold_stem": ["percent", "perthousand", "at", "copyright", "registered"],
+   "small": {"onesuperior": 0.7, "twosuperior": 0.7, "threesuperior": 0.7, "onequarter": 0.7, "onehalf": 0.7,
+             "threequarters": 0.7, "ordfeminine": 0.7, "ordmasculine": 0.7, "trademark": 0.55},
+   "small_counter": [0.5, 0.7], "open": 0.65, "rmax": 48, "step": 0.05
+  },
+  "bold_dots": {
+   "reason": "Judged (fourth pass). The pen grows a dot and its stroke towards each other: the Bold's ! and ? kept 14 and 16 units (the Bold Italic's 12 and 15) against the Regular's 49 and 52, and read as solid strokes at 12 to 18 px, and the dots of i and j 25 and 21 against 62 and 57 (true distances; a vertex measure gives 41 and 37 against 75 and 71). The stroke of ! and ? now ends higher, its last 30 units moved whole and the 120 above them drawn shorter, until the white is the Regular's (¡ and ¿ are drawn from them); the Bold Italic is allowed 3 units more, for its slope's hair of weight (which is horizontal, so Céilí's 1.3 is not needed). The dot of i and j is raised by half of what it lacks and drawn smaller about its top by the other half, to 52 units clear (166 by 147, its top at 705 against 691). The j's hook, whose tip the pen and the restored heights raised above the baseline to +13 (under the n's foot, where the collision protection then opened n j by 40), has its tip lowered to -10, falling off along the hook within 120 units, as the second pass lowered the g's tail.",
+   "glyphs": {"exclam": "stroke", "question": "stroke", "i": "dot", "j": "dot"},
+   "cap": 30, "reach": 150, "dot_gap": 52, "dot_rise": 0.5, "sloped_extra": 3,
+   "j_hook": {"below": 10, "reach": 120}
+  },
+  "spacing": {
+   "reason": "Judged (fourth pass). The builder spaces a glyph on its outline across the x-height, depth limited, where j's hook and the bowl of ? reach further than the limit: the bold's j stood 60 units right of where i stands (advance 369 against 309, n j 191 against n i 146, with kerns of -15 to -25 making up for it), and ? stood 41 units closer than ! in the Regular (n ? 96 against n ! 137 at mid x-height) and 13 further in the Bold. One rule in every style, measured from 0.4 to 0.6 of the x-height: j's stem stands where i's does, with i's right side (the Bold's j: advance 309, left side -128), so the optical kerning adds none to j; ? stands on its stem as ! on its stroke, and ¿ as ¡."
+  },
+  "case": {
+   "reason": "Judged (fourth pass). Kilfane has true capitals, but its hyphen, dashes, guillemets, middle dot, bullet and colon sit on the lowercase axis (241) against the capitals' middle (353), @ on the lowercase, and ¡ ¿ hang from the x-height. The case feature (OpenType case) takes case forms: each centred on the capitals' middle (the hyphen, dashes, guillemets, · and • raised 112, the colon 96, @ 138), and ¡ ¿ set over the line as ! and ? are (raised 157 and 167), spaced as their glyphs. Each joins its glyph's kerning classes; where, raised, it would come closer to a neighbour than its glyph does, an exception eases the pair by the difference, never past no kerning, never closer than the glyph, never within 8 units (the low hyphen tucks under F's arm at -110; the raised one, level with it, is not kerned). The parentheses, brackets, braces and bar already stand about the capitals' middle (356 to 366) and keep their glyphs.",
+   "glyphs": {"hyphen": "centre", "endash": "centre", "emdash": "centre", "guilsinglleft": "centre", "guilsinglright": "centre",
+              "guillemotleft": "centre", "guillemotright": "centre", "colon": "centre", "periodcentered": "centre", "bullet": "centre",
+              "at": "centre", "exclamdown": "exclam", "questiondown": "question"}
+  },
+  "settle": {
+   "reason": "Noise (fourth pass). Rounding the sheared outlines to whole units turned the short handles at stem and arch joins by about the slope (the Italic m's joins 8 to 11 degrees, the n's and h's 8), and the uprights kept joins their finishing could not turn within its tolerance (the Bold's section 6 to 10 degrees): 425 Italic and 432 Bold Italic glyphs had a near-smooth join (a curve on one side, bending 2 to 12 degrees once the slope is sheared off) left bent, 201 Regular and 338 Bold. Last of all, in every style, each such join is made smooth: its handles turned to the join's tangent on whole units (as settle.py settles Carrick's), each curve within 1.5 units, or else the curves either side drawn again on whole-unit handles leaving the join along that tangent, within 2, or a piece under 12 units beside it drawn as one curve with its neighbour; no curve may come to pass an extreme, a join the slope brings under 12 degrees from a corner of the upright stays a corner, and a glyph whose pieces or area would change is left as it was.",
+   "smooth": 12, "tolerance": 1.5, "refit": 2.0
   }
  }
 }
