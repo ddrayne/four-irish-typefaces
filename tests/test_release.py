@@ -73,7 +73,8 @@ def test_bold_keeps_counters(config):
     """A bold may not lose, merge or nearly close a counter of its regular, except where it joins by design."""
     import topo
     FONTS, STYLES, _ = config
-    allowed = {'ceili': {'six'}}
+    # Céilí's 6, and the cracks its second pass closes (research/ceili-judgement/judged-edits.json, bold_joins)
+    allowed = {'ceili': {'six', 'ampersand', 'yen'}}
     for key, cfg in FONTS.items():
         if 'Bold' not in STYLES[key]:
             continue

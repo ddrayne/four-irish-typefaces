@@ -60,7 +60,18 @@ def study_class(face,traces):
                 for n,p in list(self.P.items()):
                     if n not in ('DOTS','ornament'):
                         self.P[n]=CF.safely(p,lambda r:CF.regular(r,terminals=bool(self.J.get('pen_terminals'))))
+            self.even_stems()
             self.judged_dots()
+
+        def even_stems(self):
+            # the second pass: the straight stems given the face's weight, every style following (judged-edits.json)
+            spec=self.J.get('second_pass',{}).get('stems')
+            if not spec:return
+            import ceili_finish as CF
+            self.stems_evened={}
+            for n,st in spec['glyphs'].items():
+                if n in self.P:
+                    self.P[n],self.stems_evened[n]=CF.even_stems(self.P[n],st,self.xh,spec['target'],spec['limit'])
 
         def judged_dots(self):
             # the dots of ! and ? drawn as the face's period, the pen diamond the prints show (judged-edits.json)
@@ -125,6 +136,7 @@ def study_class(face,traces):
 
         def embolden_traced(self):
             apart={n:self.P[n] for n in derived.get('bold_keep_apart',{}).get('glyphs',()) if n in self.P}
+            regular=dict(self.P)
             super().embolden_traced()
             # a dot the wider pen brings within a hair of its stroke is set apart as a joined one is
             import bolden,shapes as SH
@@ -137,6 +149,53 @@ def study_class(face,traces):
                 core=bolden.heights_back(SH.union(*wide),self.xh,b['ry'])
                 self.P[n]=bolden._separate(core,self.P[n],pen,close=True,share=share)
             self.tidy_derived()
+            self.bold_second_pass(regular)
+
+        def bold_second_pass(self,regular):
+            # the second pass on the bold (judged-edits.json, second_pass; ceili_finish): its heavy level strokes take
+            # the stems' gain, its open joins are kept open from the terminal's side only, and the dots of ! and ?
+            # reach down no further than the Regular's
+            sp=self.J.get('second_pass',{})
+            if not sp:return
+            import bolden,ceili_finish as CF,shapes as SH
+            b=build2.BOLD[self.key];pen=(b['rx'],b['ry'])
+            def bolder(p,apertures=True):
+                return bolden.embolden(p,b['rx'],b['ry'],b['k'],self.xh,self.S_regular,apertures=apertures,sliver=self.SLIVER)
+            def core(p):          # the drawing in the bold's frame, as bolden.embolden makes it
+                wide=[SH.transform(q,(b['k'],0,0,1,0,0)) for q in bolden.components(p) if abs(bolden.area(q))>1]
+                return bolden.heights_back(SH.union(*wide),self.xh,b['ry'])
+            tidy=CF.tidy_path if self.J.get('finish',{}).get('tidy') else (lambda p:p)
+            self.second_pass={}
+            heavy=sp.get('bold_heavy_strokes')
+            if heavy:
+                # the letters' crossbars (letters.py) keep the pen's weight, the hyphen's before it is made heavier
+                h=build2.bounds(self.P['hyphen']);self.crossbar_weight=h[3]-h[1]
+                c=self.xh/(self.xh+2*b['ry'])                     # heights_back's scale through the x-height
+                for n,kind in heavy['glyphs'].items():
+                    xm,(y0,y1)=CF.level_stroke(regular[n])
+                    run=lambda p:max(CF.vertical_runs(p,xm*b['k']),key=lambda r:min(r[1],y1+b['ry'])-max(r[0],y0-b['ry']))
+                    was=run(self.P[n]);want=heavy['gain']*(y1-y0)
+                    self.P[n]=tidy(bolder(CF.heavier_bar(regular[n],(want-(was[1]-was[0]))/c,kind)))
+                    now=run(self.P[n])
+                    self.second_pass[n]=dict(regular=round(y1-y0,1),pen=round(was[1]-was[0],1),now=round(now[1]-now[0],1))
+            joins=sp.get('bold_joins')
+            if joins:
+                self.bold_joins={}
+                for n in sorted(self.kept_open):
+                    necks=[(e[1],e[2]) for e in self.kept_open[n] if e[0]=='aperture' and e[2]<joins['narrow']*self.S_regular]
+                    if not necks or n not in regular:continue
+                    out,cr,done=bolder(regular[n],apertures=False),core(regular[n]),[]
+                    for neck,w in necks:
+                        r=CF.terminal_gap(cr,out,pen,neck,max(joins['gap'],bolden.F_PASS*w))
+                        if r is None:break
+                        out=r[0];done.append(r[1])
+                    if len(done)==len(necks) and CF.topology(out)==CF.topology(self.P[n]):
+                        self.P[n]=tidy(out);self.bold_joins[n]=done
+            feet=sp.get('bold_dot_feet')
+            if feet:
+                from glyphs import contours
+                for n in feet['glyphs']:
+                    self.P[n]=tidy(CF.dot_foot(self.P[n],min(build2.bounds(q)[1] for q in contours(regular[n]))))
 
         def tidy_derived(self):
             # the derived outlines finished: rounding specks folded, the raster-traced reopened joins drawn as
@@ -174,7 +233,43 @@ def study_class(face,traces):
             if self.J.get('finish',{}).get('tidy'):
                 self.tidied|=set(self.P)
 
+        def parens_slash_misc(self):
+            super().parens_slash_misc()
+            cur=self.J.get('second_pass',{}).get('currency')
+            if cur:
+                # the second pass: € stands with the figures, as tall as the zero (ceili_finish.euro)
+                import ceili_finish as CF
+                z=build2.bounds(self.P[cur['round']])
+                self.P['Euro']=CF.euro(self,z[1],z[3],getattr(self,'crossbar_weight',self.hyphen_thick))
+                self.made['Euro']=self.made['Euro']+f', as tall as the {cur["round"]}'
+
+        def figure_symbols(self):
+            # the second pass: ¥ stands with the figures, as tall as the £, and the bold's § takes the bold's weight
+            sp=self.J.get('second_pass',{})
+            import ceili_finish as CF
+            top=self.fig if self.cfg['lining'] else self.xh*1.05          # symbols.make_symbols' figure-size height
+            rings=sp.get('bold_heavy_strokes',{}).get('pen_weight')
+            if rings and getattr(self,'crossbar_weight',None):
+                # the rings keep the pen's weight, as the crossbars do: the same constructions drawn again with it
+                import symbols
+                P,t=self.P,self.hyphen_thick
+                self.P,self.hyphen_thick=dict(P),self.crossbar_weight
+                try:symbols.make_symbols(self)
+                finally:light,self.P,self.hyphen_thick=self.P,P,t
+                for n in rings:P[n]=light[n]
+            cur=sp.get('currency')
+            if cur:
+                self.P['yen']=CF.yen(self,top,build2.bounds(self.P[cur['flat']])[3],getattr(self,'crossbar_weight',self.hyphen_thick))
+                self.made['yen']=self.made['yen']+f', as tall as the {cur["flat"]}'
+            if sp.get('bold_section') and self.bold:
+                import symbols
+                sec=symbols.section(self.P['s'],self.S,self.S,top)
+                if sec is not None:
+                    self.P['section']=self.norm_x(sec);self.made['section']+=', at the bold\'s full weight'
+
         def combining_and_spacing_marks(self):
+            self.figure_symbols()
+            self.close_cracks()
             if self.J.get('finish',{}).get('tidy'):
                 import ceili_finish as CF
                 for n,p in list(self.P.items()):
@@ -184,6 +279,11 @@ def study_class(face,traces):
 
         def space(self,K):
             super().space(K)
+            bars=self.J.get('second_pass',{}).get('bar_spacing')
+            if bars:
+                # the second pass: ð and đ spaced as d, by one rule in every style (ceili_finish.bar_spacing)
+                import ceili_finish as CF
+                self.bars_spaced={n:CF.bar_spacing(self,n,base,bars['min_lsb']) for n,base in bars['glyphs'].items() if n in self.P}
             if not self.J.get('finish',{}).get('tidy'):return
             # a short curve or corner that rounding to the grid turned into facets is drawn again
             for n,p in list(self.final.items()):
@@ -216,7 +316,48 @@ def study_class(face,traces):
                 for n,p in before.items():
                     if build2.bounds(p) is not None and CF.topology(self.P[n])!=CF.topology(p):
                         self.P[n]=SH.transform(p,(build2.CONDENSE,0,0,1,0,0))
+                self.sloped_joins(before)
+                self.close_cracks()
             self.tidy_derived()
+
+        def close_cracks(self):
+            # the second pass: a crack the bold leaves narrower than close_under, cutting a counter off, is closed
+            # instead, as the bold's 6 is (ceili_finish.close_cracks); run on every glyph of the bold styles
+            joins=self.J.get('second_pass',{}).get('bold_joins')
+            if not joins or not self.bold:return
+            import ceili_finish as CF
+            self.cracks_closed=getattr(self,'cracks_closed',{})
+            for n,p in list(self.P.items()):
+                if n in ('DOTS','ornament') or build2.bounds(p) is None:continue
+                q,k=CF.close_cracks(p,joins['close_under'])
+                if k:
+                    self.P[n]=CF.tidy_path(q) if self.J.get('finish',{}).get('tidy') else q
+                    self.cracks_closed[n]=self.cracks_closed.get(n,0)+k
+
+        def sloped_joins(self,before):
+            # the second pass: the Bold Italic's hair of weight narrows the Bold's reopened joins; they are cut back
+            # from the terminal again, in the letter and in every glyph drawn from it (ḃ, þ, ĸ, ð ...)
+            joins=getattr(self,'bold_joins',{})
+            if not joins:return
+            import bolden,ceili_finish as CF,shapes as SH,pathops
+            rx=(1-build2.CONDENSE)*self.S/2;narrow=lambda p:SH.transform(p,(build2.CONDENSE,0,0,1,0,0))
+            def near(p,c,r=60):
+                return SH.op(p,SH.circle(c[0],c[1],r),pathops.PathOp.INTERSECTION)
+            self.sloped_joined={}
+            for n,done in joins.items():
+                necks=[(d['neck'][0]*build2.CONDENSE,d['neck'][1],d['gap']) for d in done]
+                ref=[near(narrow(before[n]),c) for c in necks]
+                for g,p in before.items():
+                    if build2.bounds(p) is None or not all(abs(bolden.area(SH.op(near(narrow(p),c),r_,pathops.PathOp.XOR)))<1
+                                                           for c,r_ in zip(necks,ref)):
+                        continue
+                    q,out,ok=narrow(p),self.P[g],True
+                    for x,y,gap in necks:
+                        r=CF.terminal_gap(q,out,(rx,0.5),(x,y),gap)
+                        if r is None:ok=False;break
+                        out=r[0]
+                    if ok and CF.topology(out)==CF.topology(self.P[g]):
+                        self.P[g]=out;self.sloped_joined[g]=n
 
         def condense_growth(self):
             if not derived.get('sound_sloped_growth'):return super().condense()
@@ -237,7 +378,7 @@ def study_class(face,traces):
             super().kerning()
             if self.J.get('quote_kerning'):
                 import ceili_finish as CF
-                CF.quote_kerning(self,self.J['quote_kerning']['share'])
+                CF.quote_kerning(self,self.J['quote_kerning']['share'],over_foot='quote_over_foot' in self.J.get('second_pass',{}))
             from study_spacing import protect_kerning
             protect_kerning(self)
 

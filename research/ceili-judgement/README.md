@@ -215,12 +215,66 @@ dollar's small counter at 33%, as it did before. The proofs, which show font out
 red) and [proofs/finishing-bold-nodes.png](proofs/finishing-bold-nodes.png) (the Bold's nodes, before
 and after).
 
+## The second pass
+
+A second review of the finished fonts found seven defects. Each is corrected by one rule, recorded in
+[judged-edits.json](judged-edits.json) (`second_pass`) and made by `scripts/ceili_finish.py`; Study 4's own
+fonts here do not change. Measurements are font units, from the fonts before and after.
+
+- **Heavy level strokes in the bold.** The bold's pen grows level strokes by its small vertical radius,
+  which suits the face's thin horizontals but not the few level strokes drawn at least 0.75 of a stem in
+  the Regular. The 7's bar went 93 → 102 and the 3's 91 → 101 while the 1's stem went 102 → 162, so
+  "1977" read as a Regular 7 among bold figures. The hyphen went 81 → 91, and the dashes, math signs and #
+  are drawn from it. These strokes now take the stems' gain, 1.5: the 7's bar is 139 and the 3's 136 to 138,
+  the bar's lower edge coming down with the pen's cut and the diagonal running on along their own lines.
+  The hyphen and dashes are 120 to 122, the math signs 121 to 123 and # 103. The letters' crossbars (ð đ ħ ł ŧ
+  and the bars of € and ¥) keep the pen's weight, as t's and f's own do. So do the rings of @ © ® ¤ °,
+  which the rules' weight would close: @ joined its a, and ° kept only 28% of its counter. The bold's § was
+  drawn at the reduced weight the bold gives superiors (85 → 94 while s went 91 → 123); it is a full-size
+  sign, so it now takes the bold's stem (120).
+- **The quote after l.** The quote rule measures only a letter's upper part, so after l, L and ł it pulled
+  the quote in over the long foot to −345, 64 units from the stem, where it read as the apostrophe of ľ. A
+  quote may still tuck in over a lower part, but it never stands wholly over it: its far edge reaches at
+  least the part's tip. l’, L’ and ł’ are now −205 (Italic −200, Bold −255, Bold Italic −250), with the
+  quote's head over the foot's tip, 202 units from the stem in the Regular (it was 62).
+- **The bold's open joins.** The bold reopened the joins of b, d, k, p, r and 9 as a channel down the
+  middle of the Regular's passage, which took from both sides: p's stem narrowed from 166 to 141 at the
+  join and k's from 165 to 142, and the cracks were 12 to 18 units in the Bold and 4 to 10 in the Bold
+  Italic. Each stem now keeps the edge the pen gives it (p 169 from top to foot, k 166 to 168). The arm, leg
+  or bowl that comes back to it is cut back along one curve parallel to that edge, to stand at least 15
+  units clear (F_PASS of the Regular's opening where that is wider). The Bold Italic's hair of weight
+  narrows the joins again, so they are cut
+  back again there, in every glyph drawn from them (ḃ, þ, ĸ, ð …). A crack under 12 units that cuts off a
+  counter is closed instead, as the Bold's 6 is. This applies to the ampersand's tail over its bar (8
+  units in both bold styles) and the yen's curl (4 and 6).
+- **The bold !.** The pen, mitred at the sharp foot of the pen-diamond dot, ran the ! dot 11 units below
+  the Regular's. The ! then missed the baseline snap and sat 25 units low (stroke top 629, dot bottom −33).
+  The dots of ! and ? now reach down only as far as the Regular's, so both stand where the Regular's do
+  (! −8 to 643, ? −8 to 637), with their gaps unchanged.
+- **Stems.** The h's stems were 100 and 99 beside n's 108 and 113, m's 115, 110 and 109 and i's 106, so
+  the h read light in every style (Bold 159 against n's 168 and 173). The prints settle no weight finer
+  than a source pixel, so the straight stems of f h i j k l.alt1 m n p r r.alt1 s.alt1 1 4 are given the
+  face's stem, 108, by moving each edge at most 4 units (kilfane_studio.harmonise_stems). The Bold's are
+  about 168.
+- **ð and đ.** The spacing saw their bars only where they dipped into the x-height zone. So the Regular's
+  ð kept d's advance with its bar hanging 90 units into the letter before (đ 96), while the Bold's was set
+  130 wider than d. Both are now spaced as d in every style: d's sidebearings, with the bar's overhang added
+  to the advance, and the bar's end no further left than −20. The Regular's ð is 722 wide and the Bold's 837.
+- **€ and ¥.** € was 1.12 x-heights tall (602) and ¥ stood at the symbols' 1.05 (565), against 538 for 0
+  and £. € now spans the zero (−8 to 538) and ¥ stands from the baseline to the £'s height. Both keep the
+  release's construction, and the bold ¥ no longer dips 16 units below the baseline.
+
+Regular → Bold and Bold Italic topology now also flags the closed ampersand and yen, and no letter pair
+collides in any style. The proof, which shows font outlines only, is
+[proofs/second-pass.png](proofs/second-pass.png).
+
 ## Not changed
 
 The frame (every letter's size and place is Study 3's: the overlap fit to Study 3, recorded as
 `frame_check`, lies between 0.967 and 1.009), the named period, comma and quotes (traced anew from the same N45
-components, with N46's quotes averaged in, at the face's level), every modern construction, the spacing
-method, the Bold's joins and the legacy `DOTS` cluster (discarded by the builder, as before).
+components, with N46's quotes averaged in, at the face's level), every modern construction but those the
+second pass names, the spacing method, the Bold's designed join in 6 and the legacy `DOTS` cluster
+(discarded by the builder, as before).
 
 ## Open questions
 

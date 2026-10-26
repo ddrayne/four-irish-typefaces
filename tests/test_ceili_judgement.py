@@ -302,6 +302,44 @@ def test_the_pen_diamond_keeps_the_dots_corners():
     assert corners == sorted(tuple(np.round(s[1][-1])) for s in dot)
 
 
+def test_a_heavier_bar_runs_its_cut_and_its_diagonal_on():
+    import ceili_finish as CF, shapes as SH
+    from glyphs import bounds
+    # a 7: a level bar with a slanted pen cut at its free end, turning into a diagonal
+    seven = SH.polygon([(30, 550), (330, 550), (130, 0), (60, 0), (250, 460), (0, 460)])
+    out = CF.heavier_bar(seven, 30, 'bar')
+    assert bounds(out)[3] == pytest.approx(550)                                  # the top stays on its line
+    assert CF.vertical_runs(out, 120)[-1] == pytest.approx((430, 550), abs=0.5)  # the lower edge came down
+    run = [r for r in CF.vertical_runs(out, -5) if r[1] > 400]                 # the cut ran on along its own line
+    assert run and run[0][0] == pytest.approx(430, abs=1) and bounds(out)[0] == pytest.approx(-10, abs=1)
+
+
+def test_a_terminal_gap_keeps_the_stem_and_cuts_the_terminal():
+    import bolden, ceili_finish as CF, shapes as SH
+    box = lambda x0, y0, x1, y1: SH.polygon([(x0, y0), (x1, y0), (x1, y1), (x0, y1)])
+    core = SH.union(box(0, 0, 40, 300), box(40, 280, 200, 300), box(56, 100, 200, 140), box(180, 140, 200, 280))
+    bold = bolden.grow(core, 10, 2)                                              # the pen joins the stem and the arm
+    import pathops
+    out, info = CF.terminal_gap(core, bold, (10, 2), (48, 120), 15)
+    assert info['width'] == pytest.approx(16, abs=1)
+    # the stem keeps its grown edge (x = 50) all the way past the join, and nothing of the arm stands within 15 of it
+    assert any(r[0] <= 2 and r[1] >= 298 for r in CF.vertical_runs(out, 49.5))
+    assert abs(bolden.area(SH.op(out, box(50.5, 80, 64.5, 160), pathops.PathOp.INTERSECTION))) < 1
+    assert CF.vertical_runs(out, 66) and CF.topology(out) == (1, 0)           # the arm is there beyond the gap
+
+
+def test_close_cracks_closes_a_counter_but_keeps_a_dots_gap():
+    import ceili_finish as CF, shapes as SH
+    box = lambda x0, y0, x1, y1: SH.polygon([(x0, y0), (x1, y0), (x1, y1), (x0, y1)])
+    hook = SH.difference(box(0, 0, 200, 200), SH.union(box(40, 40, 160, 160), box(100, 160, 108, 200)))   # an 8-unit crack
+    out, n = CF.close_cracks(hook, 12)
+    assert n == 1 and CF.topology(out) == (1, 1)
+    dot = SH.union(box(0, 0, 40, 40), box(0, 48, 40, 200))                                                 # 8 apart
+    assert CF.close_cracks(dot, 12) == (dot, 0)
+    wide = SH.difference(box(0, 0, 200, 200), SH.union(box(40, 40, 160, 160), box(100, 160, 116, 200)))   # 16 open
+    assert CF.close_cracks(wide, 12)[1] == 0
+
+
 # the finished fonts (fonts/, or FONTDIR=build/fonts for a fresh build)
 STYLES = ('Regular', 'Italic', 'Bold', 'Bold Italic')
 LOWER = 'a a.alt1 a.alt2 b c d d.alt1 e e.alt1 f g h i j j.alt1 k l l.alt1 m n n.alt1 o p q r r.alt1 s s.alt1 t u v v.alt1 w x y z'.split()
@@ -392,5 +430,174 @@ def test_the_sloped_styles_keep_the_regulars_topology(style):
     import topo
     from conftest import static
     flagged = {n: why for n, why, *_ in topo.compare(static('CeiliDigital', 'Regular'), static('CeiliDigital', style))}
-    allowed = {'Italic': {}, 'Bold Italic': {'six': 'counters 0->1', 'dollar': 'smallest counter'}}[style]
+    allowed = {'Italic': {}, 'Bold Italic': {'six': 'counters 0->1', 'dollar': 'smallest counter',
+                                             # the second pass closed their cracks (judged-edits.json, bold_joins)
+                                             'ampersand': 'counters 1->2', 'yen': 'counters 0->1'}}[style]
     assert set(flagged) <= set(allowed) and all(flagged[n].startswith(allowed[n]) for n in flagged), flagged
+
+
+# ---------------------------------------------------------------- the second pass (judged-edits.json, second_pass)
+def _polys(style, n, upright=False):
+    """The glyph's polygons; with `upright`, a sloped style's shear taken back (about the middle of the x-height,
+    as the builder slopes them), so that what the builder measured before the slope can be measured again."""
+    import evidence_board as EB
+    f = finished(style); polys = [np.asarray(P, float) for P in EB.glyph_polygons(f, n)]
+    t = -np.tan(np.radians(f['post'].italicAngle))
+    if upright and t:
+        yc = f['OS/2'].sxHeight / 2
+        polys = [np.column_stack([P[:, 0] - (P[:, 1] - yc) * t, P[:, 1]]) for P in polys]
+    return polys
+
+
+def _box(polys):
+    P = np.vstack(polys); return P[:, 0].min(), P[:, 1].min(), P[:, 0].max(), P[:, 1].max()
+
+
+def _runs(polys, v, axis):
+    """Ink runs across a line: axis 0, the vertical x = v (runs in y); axis 1, the level y = v (runs in x)."""
+    out, o = [], 1 - axis
+    for P in polys:
+        a, b = P, np.roll(P, -1, axis=0)
+        m = ((a[:, axis] <= v) & (b[:, axis] > v)) | ((b[:, axis] <= v) & (a[:, axis] > v))
+        t = (v - a[m, axis]) / (b[m, axis] - a[m, axis]); out += list(a[m, o] + t * (b[m, o] - a[m, o]))
+    out = sorted(out); return list(zip(out[0::2], out[1::2]))
+
+
+def _raster(polys, pad=40):
+    """The glyph's ink at one unit a pixel (even-odd), with the frame's origin."""
+    from PIL import Image, ImageDraw
+    x0, y0, x1, y1 = _box(polys); W, H = int(x1 - x0) + 2 * pad, int(y1 - y0) + 2 * pad
+    acc = np.zeros((H, W), bool)
+    for P in polys:
+        im = Image.new('1', (W, H), 0); ImageDraw.Draw(im).polygon([(x - x0 + pad, y1 - y + pad) for x, y in P], fill=1)
+        acc ^= np.asarray(im)
+    return acc
+
+
+def _topology(ink):
+    from scipy import ndimage as ndi
+    pieces = ndi.label(ink, structure=np.ones((3, 3)))[1]
+    lab, n = ndi.label(~ink); edge = set(np.unique(np.r_[lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
+    return pieces, sum(1 for k in range(1, n + 1) if k not in edge and (lab == k).sum() > 4)
+
+
+def _closes_under(style, n, width):
+    """Does closing the glyph's ink with a disc `width` wide change its pieces or counters?"""
+    from scipy import ndimage as ndi
+    ink = _raster(_polys(style, n)); r = width // 2
+    yy, xx = np.mgrid[-r:r + 1, -r:r + 1]
+    return _topology(ndi.binary_closing(ink, structure=xx ** 2 + yy ** 2 <= r * r)) != _topology(ink)
+
+
+def test_the_second_pass_is_recorded():
+    sp = load(ROUND, 'judged-edits.json')['second_pass']
+    assert {'stems', 'bold_heavy_strokes', 'bold_joins', 'bold_dot_feet', 'quote_over_foot', 'bar_spacing', 'currency',
+            'bold_section'} <= set(sp) and all(v.get('why') for k, v in sp.items() if k != 'about')
+
+
+@pytest.mark.parametrize('style', ('Bold', 'Bold Italic'))
+def test_the_bolds_heavy_level_strokes_take_the_stems_gain(style):
+    """Level strokes drawn at least 0.75 of a stem in the Regular gain as the stems do: the bold's 7 bar went
+    from 93 to 102 while the 1's stem went from 102 to 162, and the hyphen, dashes and math signs from 81 to 91."""
+    def weight(st, n):
+        P = _polys(st, n, upright=True); b = _box(P)
+        if n in ('seven', 'three'):         # the bar at the figure's top, a third of the way along
+            return next(r[1] - r[0] for r in _runs(P, b[0] + 0.3 * (b[2] - b[0]), 0) if r[1] > b[3] - 3)
+        x = b[0] + (0.15 if n == 'plus' else 0.5) * (b[2] - b[0])
+        return min(r[1] - r[0] for r in _runs(P, x, 0))
+    stem = lambda st: min(r[1] - r[0] for r in _runs(_polys(st, 'one'), 250, 1))
+    gain = stem(style) / stem('Regular')
+    for n in ('seven', 'three', 'hyphen', 'endash', 'emdash', 'minus', 'plus', 'equal'):
+        k = weight(style, n) / weight('Regular', n)
+        assert 1.4 <= k <= gain + 0.05, (n, round(k, 2), round(gain, 2))
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_a_quote_after_l_stands_clear_of_its_stem(style):
+    """l’ (and L’ and ł’) were kerned -330 to -350: the quote stood over l's long foot 64 units from the stem
+    and read as ľ. A quote may tuck in over a lower part but never stands wholly over it: its far edge reaches
+    the foot's tip, so it stands well clear of the stem."""
+    import uharfbuzz as hb
+    from conftest import static
+    f = finished(style); order = f.getGlyphOrder(); hm = f['hmtx']
+    font = hb.Font(hb.Face(open(static('CeiliDigital', style), 'rb').read()))
+    q = _box(_polys(style, 'quoteright', upright=True))
+    n = _box(_polys(style, 'n', upright=True)); nn = hm['n'][0] - (n[2] - n[0])                # the white of n n
+    for text in ('l’', 'L’', 'ł’'):
+        b = hb.Buffer(); b.add_str(text); b.guess_segment_properties(); hb.shape(font, b, {'kern': True})
+        a = order[b.glyph_infos[0].codepoint]; pos = b.glyph_positions[0].x_advance
+        P = np.vstack(_polys(style, a, upright=True)); tip = P[:, 0].max()
+        stem = P[P[:, 1] >= 0.55 * f['OS/2'].sxHeight][:, 0].max()
+        assert pos - hm[a][0] < -100, (text, pos - hm[a][0])                     # it still tucks in
+        assert -1 <= pos + q[2] - tip <= 6, (text, pos + q[2] - tip)             # over the foot's tip
+        if a == 'l':
+            assert pos + q[0] - stem >= 1.8 * nn, (pos + q[0] - stem, nn)
+
+
+@pytest.mark.parametrize('style', ('Bold', 'Bold Italic'))
+def test_the_bolds_open_joins_keep_their_stems_whole(style):
+    """The bold reopened the joins of b, k, p and r through the stem (p's narrowed from 166 to 141 at the join,
+    k's from 165 to 142), leaving cracks of 4 to 18 units. The stems now keep their width, each join stays at
+    least 13 units open, and the ampersand's 8-unit crack is closed, as the bold 6's join is."""
+    xh = finished(style)['OS/2'].sxHeight
+    for n, lo, hi in (('p', 0.05, 0.6), ('k', 0.1, 0.6), ('r', 0.1, 0.6)):
+        P = _polys(style, n)
+        w = [_runs(P, f * xh, 1)[0] for f in np.linspace(lo, hi, 15)]
+        widths = [b - a for a, b in w]
+        assert max(widths) - min(widths) <= 6, (n, [round(v) for v in widths])
+    for n in ('b', 'd', 'k', 'p', 'r', 'nine', 'thorn'):
+        assert not _closes_under(style, n, 13), n
+    assert _topology(_raster(_polys(style, 'ampersand')))[1] == _topology(_raster(_polys('Regular', 'ampersand')))[1] + 1
+
+
+@pytest.mark.parametrize('style', ('Bold', 'Bold Italic'))
+def test_the_bold_exclamation_stands_where_the_regulars_does(style):
+    """The bold's pen ran the ! dot's sharp foot 11 units further down, so the ! missed the baseline snap and sat
+    25 units low (stroke top 629, dot bottom -33, against the Regular's 643 and -8)."""
+    for n in ('exclam', 'question'):
+        b, r = _box(_polys(style, n)), _box(_polys('Regular', n))
+        assert abs(b[1] - r[1]) <= 2 and abs(b[3] - r[3]) <= 3, (n, b, r)
+
+
+@pytest.mark.parametrize('style', ('Regular', 'Bold'))
+def test_the_straight_stems_share_the_faces_weight(style):
+    """The h's stems were 100 against n's 107 and 112, m's 115 and i's 106 (Bold 159 against n's 168 and 173)."""
+    y = 0.4 * finished(style)['OS/2'].sxHeight
+    w = {n: [round(b - a) for a, b in _runs(_polys(style, n), y, 1)] for n in ('h', 'n', 'm', 'i', 'k', 'p', 'r')}
+    stems = w['h'] + w['n'] + w['m'] + w['i'] + [w[n][0] for n in 'kpr']
+    assert max(stems) - min(stems) <= 4, w
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_eth_and_dcroat_are_spaced_as_d(style):
+    """The Regular's ð kept d's advance with its bar 90 units into the letter before; the Bold's was 130 wider than
+    d. Both take d's right sidebearing and its advance plus the bar's overhang, the bar ending no further left than -20."""
+    f = finished(style); hm = f['hmtx']
+    d = _box(_polys(style, 'd'))
+    for n in ('eth', 'dcroat'):
+        e = _box(_polys(style, n))
+        assert abs((hm[n][0] - e[2]) - (hm['d'][0] - d[2])) <= 1.5, n          # d's right sidebearing
+        if 'Italic' not in style:                     # the slope moves the bar's end off the letter's left
+            over = e[2] - (d[2] - d[0]) - e[0]                                 # the bar's reach left of the d
+            assert abs(e[0] - max(-20, d[0] - over)) <= 1.5, (n, e[0], d[0] - over)
+        assert e[0] >= -30, (n, e[0])
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_euro_and_yen_stand_with_the_figures(style):
+    """€ was 602 units tall and ¥ 565, against 538 for 0 and £."""
+    z, s = _box(_polys(style, 'zero')), _box(_polys(style, 'sterling'))
+    e, y = _box(_polys(style, 'Euro')), _box(_polys(style, 'yen'))
+    assert abs(e[1] - z[1]) <= 2 and abs(e[3] - z[3]) <= 2, (e, z)
+    assert -1 <= y[1] <= 1 and abs(y[3] - s[3]) <= 2, (y, s)
+
+
+@pytest.mark.parametrize('style', ('Bold', 'Bold Italic'))
+def test_the_bold_section_takes_the_bolds_weight(style):
+    """The bold drew § at the weight it gives superiors: 85 to 94 while s went from 91 to 123."""
+    from scipy import ndimage as ndi
+    from skimage.morphology import skeletonize
+    def weight(st, n):
+        ink = np.pad(_raster(_polys(st, n)), 2); return 2 * np.median(ndi.distance_transform_edt(ink)[skeletonize(ink)])
+    assert weight(style, 'section') / weight(style, 's') >= 0.85
+    assert weight(style, 'section') / weight('Regular', 'section') >= 1.3

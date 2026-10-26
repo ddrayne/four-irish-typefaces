@@ -14,6 +14,16 @@ judged-edits.json asks for it; nothing else uses it.
   one, extremes given nodes, then economy(). sloped() gives a sheared outline its new extremes.
 - pen_diamond(): a dot redrawn as the face's period, fitted to the dot's own corners.
 - quote_kerning(): one rule for the space between a letter and a quote.
+
+The second pass (judged-edits.json, "second_pass"), from a review of the finished fonts:
+- even_stems(): the Regular's straight stems given the face's weight (kilfane_studio.harmonise_stems).
+- heavier_bar(): a heavy level stroke (the 7's and 3's bars, the hyphen) drawn heavier for the bold, so
+  that it takes the stems' gain rather than the pen's thin vertical growth.
+- terminal_gap(): an open join the bold's pen closes, kept open from the terminal's side only: the stem
+  keeps its grown edge and the arm, leg or bowl coming back to it is cut back along one curve.
+- dot_foot(): the bold's dot of ! and ? brought down no further than the Regular's.
+- bar_spacing(): ð and đ spaced as d, the bar's overhang added to the advance.
+- euro(), yen(): € and ¥ standing with the figures.
 """
 import math
 import numpy as np
@@ -741,12 +751,17 @@ QUOTES_AFTER = ('quoteright', 'quotedblright')                  # set after a le
 QUOTES_BEFORE = ('quoteleft', 'quotedblleft', 'quoteright')     # set before one: “an, ‘s, ’s é
 
 
-def quote_kerning(font, share, cap=350):
+def quote_kerning(font, share, cap=350, over_foot=False):
     """Kerning between letters and quotes from one rule: the quote stands `share` of the n|n gap clear of
     the letter's upper part (from 0.55 x-height up), whatever the letter. The release's rule measured
     only where letter and quote share a height, so a letter whose top just reached the quote's foot
     was kerned 150 and its neighbour not at all (o’ -150 against e’ 0). Exceptions for accented
-    letters are made again from the new values, as kerning() makes them."""
+    letters are made again from the new values, as kerning() makes them.
+
+    With `over_foot`, a quote may tuck in over the letter's lower part (the long foot of l, a leg) but
+    never stand wholly over it: its far edge reaches at least the part's tip. Measured from the upper
+    part alone, l’ set the quote over the foot 64 units from the stem, where it read as the apostrophe
+    of ľ."""
     from spacing import profiles
     from glyphs import bounds
     xh, fin = font.xh, font.final
@@ -763,18 +778,22 @@ def quote_kerning(font, share, cap=350):
     def whole(n):
         b = bounds(fin[n]); return b[0], b[2]
     k5 = lambda v: int(round(v / 5.0) * 5)
+    # over a lower part the quote's far edge reaches at least the part's tip: a kern no tighter (rounded up)
+    floor = lambda v: int(math.ceil(v / 5.0) * 5) if over_foot else -cap
     changed = {}
     for a in letters:
         for q in QUOTES_AFTER:
             if q in fin:
                 gap = font.adv[a] + whole(q)[0] - upper(a)[1]
-                changed[(a, q)] = max(-cap, min(0, k5(target - gap)))
+                lo = floor(whole(a)[1] - font.adv[a] - whole(q)[1])
+                changed[(a, q)] = max(-cap, lo, min(0, k5(target - gap)))
     for q in QUOTES_BEFORE:
         if q not in fin:
             continue
         for b in letters:
             gap = font.adv[q] + upper(b)[0] - whole(q)[1]
-            changed[(q, b)] = max(-cap, min(0, k5(target - gap)))
+            lo = floor(whole(q)[0] - font.adv[q] - whole(b)[0])
+            changed[(q, b)] = max(-cap, lo, min(0, k5(target - gap)))
     for pair, k in changed.items():
         if k <= -15:
             font.kern_pairs[pair] = k
@@ -824,3 +843,249 @@ def spread_pair(p, gap):
         d += 0.5
         now = float(np.linalg.norm(da[:, None] - (db + [d, 0])[None], axis=2).min())
     return translate(SH.union(a, translate(b, d, 0)), -d / 2, 0)
+
+
+# ================================================================ the second pass
+# (research/ceili-judgement/judged-edits.json, "second_pass"; build_original_study.py applies each step)
+
+def outline_points(p, step=1.0):
+    """Dense points along every contour of a path."""
+    return np.vstack([_dense([[k, list(q)] for k, q in segs], step) for segs in F._contours(recording(p))])
+
+
+def vertical_runs(p, x):
+    """The ink runs (y0, y1) that the vertical at x crosses, from the bottom up."""
+    from spacing import polys
+    ys = []
+    for P in polys(p):
+        a, b = P, np.roll(P, -1, axis=0)
+        m = ((a[:, 0] <= x) & (b[:, 0] > x)) | ((b[:, 0] <= x) & (a[:, 0] > x))
+        if m.any():
+            t = (x - a[m, 0]) / (b[m, 0] - a[m, 0]); ys += list(a[m, 1] + t * (b[m, 1] - a[m, 1]))
+    ys = sorted(ys)
+    return list(zip(ys[0::2], ys[1::2]))
+
+
+# ---------------------------------------------------------------- stems
+def even_stems(p, specs, height, target, limit):
+    """The straight stems of a traced letter given the face's weight: each [fraction of height, run index]
+    (kilfane_studio.harmonise_stems) has its two edges moved apart or together, at most `limit` units
+    each. Returns the path and, per stem, (fraction, run, width before, width after)."""
+    import kilfane_studio as KS
+    c, report = KS.harmonise_stems(KS.segments(p), specs, height, target, limit)
+    return KS.path(c), report
+
+
+# ---------------------------------------------------------------- the bold's heavy level strokes
+def _level_line(p, min_length=60.0):
+    """The longest level line of the outline with ink just above it (the lower edge of a level stroke):
+    (contours, contour index, segment index, x at the line's middle, the stroke's (y0, y1) there)."""
+    cs = [[[k, list(q)] for k, q in segs] for segs in F._contours(recording(p))]
+    best = None
+    for ci, segs in enumerate(cs):
+        for i, (k, pts) in enumerate(segs):
+            if k != 'L':
+                continue
+            a, b = _start(segs, i), _a(pts[0])
+            if abs(a[1] - b[1]) > 1.0 or abs(b[0] - a[0]) < min_length:
+                continue
+            run = next((r for r in vertical_runs(p, (a[0] + b[0]) / 2) if abs(r[0] - a[1]) < 1.5), None)
+            if run is not None and (best is None or abs(b[0] - a[0]) > best[0]):
+                best = (abs(b[0] - a[0]), ci, i, (a[0] + b[0]) / 2, run)
+    return None if best is None else (cs, *best[1:])
+
+
+def level_stroke(p):
+    """(x at its middle, (y0, y1)) of a glyph's heavy level stroke, or None."""
+    found = _level_line(p)
+    return None if found is None else found[3:]
+
+
+def heavier_bar(p, delta, kind, margin=15.0):
+    """The heavy level stroke drawn `delta` units heavier. A 'rule' (the hyphen) grows about its axis. A
+    'bar' (the 7's and the 3's, at the figure's top) keeps its top on the line and its lower edge comes
+    down: the pen's cut at its free end and the stroke it turns into run on along their own lines to meet
+    it, so the cut keeps the pen's angle and the join stays a corner."""
+    import shapes as SH
+    found = _level_line(p)
+    if found is None or delta < 0.5:
+        return p
+    cs, ci, i, xm, (y0, y1) = found
+    if kind == 'rule':
+        k = (y1 - y0 + delta) / (y1 - y0); yc = (y0 + y1) / 2
+        return SH.transform(p, (1, 0, 0, k, 0, yc * (1 - k)))
+    segs = cs[ci]; n = len(segs)
+    def line(step):            # the first long straight edge either side of the lower edge
+        j = i
+        for _ in range(n - 1):
+            j = (j + step) % n
+            a, b = _start(segs, j), _a(segs[j][1][-1])
+            if segs[j][0] == 'L' and np.linalg.norm(b - a) >= 40 and abs(b[1] - a[1]) > 1:
+                return a, b
+        return None
+    A, B = line(-1), line(1)
+    if A is None or B is None:
+        return p
+    at = lambda l, y: l[0][0] + (y - l[0][1]) * (l[1][0] - l[0][0]) / (l[1][1] - l[0][1])
+    lo, hi = y0 - delta, y0 + margin
+    return SH.union(p, SH.polygon([(at(A, hi), hi), (at(B, hi), hi), (at(B, lo), lo), (at(A, lo), lo)]))
+
+
+# ---------------------------------------------------------------- the bold's open joins
+def terminal_gap(core, bold, pen, seed, gap, reach=150.0, res=1.0, speck=100.0):
+    """`bold` with the open join near `seed` kept open from the terminal's side only. `core` is the
+    drawing in the bold's frame and `pen` (rx, ry) the growth from it to `bold`. Around the join the core
+    falls into two pieces: the stem (the straighter outline where they face) and the arm, leg or bowl
+    that comes back to it. The stem keeps the edge the pen grows it to; the terminal is cut back to stand
+    `gap` clear of that edge, along the one curve parallel to it. Returns (path, details) or None."""
+    import bolden, pathops, shapes as SH
+    from scipy import ndimage as ndi
+    from scipy.spatial import cKDTree
+    from skimage.measure import find_contours
+    from outline_util import flatten, raster
+    from fontTools.pens.recordingPen import RecordingPen
+    rx, ry = pen
+    def pieces(c):
+        local = SH.op(core, SH.circle(c[0], c[1], reach), pathops.PathOp.INTERSECTION)
+        out = []
+        for q in (q for q in bolden.components(local) if abs(bolden.area(q)) > 1):
+            P = outline_points(q)
+            d = 0.0 if q.contains(tuple(map(float, c))) else float(np.linalg.norm(P - c, axis=1).min())
+            out.append((d, q, P))
+        return sorted(out, key=lambda t: t[0])
+    ps = pieces(np.asarray(seed, float))
+    if len(ps) < 2:
+        return None
+    dd, ii = cKDTree(ps[1][2]).query(ps[0][2]); j = int(np.argmin(dd))
+    neck = (ps[0][2][j] + ps[1][2][ii[j]]) / 2; width = float(dd[j])
+    ps = pieces(neck)
+    if len(ps) < 2:
+        return None
+    def bend(P):               # distance from the best straight line, where the piece faces the join
+        near = P[np.linalg.norm(P - neck, axis=1) < width / 2 + 40]
+        if len(near) < 5:
+            return np.inf
+        return float(np.linalg.svd(near - near.mean(0), compute_uv=False)[1] / math.sqrt(len(near)))
+    (_, a, Pa), (_, b, Pb) = ps[:2]
+    stem, term = (a, b) if bend(Pa) <= bend(Pb) else (b, a)
+    grown = bolden.grow(stem, rx, ry)
+    band = SH.difference(bolden.grow(grown, gap, gap), grown)
+    # the terminal's side of the join: nearer the terminal than any other part of the drawing
+    rest = SH.difference(core, term)
+    x0, y1 = neck[0] - reach - 4, neck[1] + reach + 4
+    W = H = int((2 * reach + 8) / res) + 1
+    frame = lambda q: ((q[0] - x0) / res, (y1 - q[1]) / res)
+    def ras(p):
+        r = RecordingPen(); p.draw(r); return raster(flatten(r.value, 24), (W, H), frame)
+    cell = ndi.distance_transform_edt(~ras(term)) < ndi.distance_transform_edt(~ras(rest))
+    yy, xx = np.mgrid[:H, :W]
+    cell &= np.hypot(x0 + (xx + 0.5) * res - neck[0], y1 - (yy + 0.5) * res - neck[1]) < reach
+    cs = find_contours(np.pad(cell.astype(float), 1), 0.5)
+    if not cs:
+        return None
+    c = max(cs, key=len) - 1
+    region = SH.polygon([(x0 + (q[1] + 0.5) * res, y1 - (q[0] + 0.5) * res) for q in c])
+    out = SH.difference(bold, SH.op(band, region, pathops.PathOp.INTERSECTION))
+    # a speck the cut leaves where it meets the side's edge goes
+    from glyphs import contours, bounds
+    keep = [q for q in contours(out) if abs(bolden.area(q)) >= speck or
+            math.hypot((bounds(q)[0] + bounds(q)[2]) / 2 - neck[0], (bounds(q)[1] + bounds(q)[3]) / 2 - neck[1]) > reach]
+    out = pathops.simplify(bolden.concat(keep), fix_winding=True, keep_starting_points=False, clockwise=False)
+    return out, dict(neck=[round(float(v), 1) for v in neck], width=round(width, 1), gap=gap)
+
+
+def close_cracks(p, width):
+    """Cracks narrower than `width` that cut a counter off from the outside (the ampersand's tail over its
+    bar, 8 units in the bold styles) closed, as the bold's designed join in 6 is: what a disc of that width
+    closes, kept only where it closes a counter without joining two pieces (a dot keeps its gap) and the
+    counter is a real one, not a pinhole left where the disc fills a sharp inner corner.
+    Returns the path and the number of cracks closed."""
+    import bolden, pathops, shapes as SH
+    from glyphs import contours
+    def counters(p):          # (pieces, counters' areas), as topology() counts them
+        a = [bolden.area(c) for c in contours(pathops.simplify(p, fix_winding=True, keep_starting_points=False, clockwise=False))]
+        outer, holes = [x for x in a if x > 0], [-x for x in a if x < 0]
+        return (len(outer), holes) if outer or not holes else (len(holes), outer)
+    r, small = width / 2, (4 * width) ** 2
+    add = SH.difference(bolden.erode(bolden.grow(p, r, r), r, r), p)
+    if abs(bolden.area(add)) < 1:
+        return p, 0
+    out, n = p, 0
+    for q in bolden.components(add):
+        if abs(bolden.area(q)) < 1:
+            continue
+        u = SH.union(out, q); (pb, hb), (pa, ha) = counters(out), counters(u)
+        if pa == pb and len(ha) == len(hb) + 1 and sum(h < small for h in ha) <= sum(h < small for h in hb):
+            out, n = u, n + 1
+    return out, n
+
+
+# ---------------------------------------------------------------- the bold's dots
+def dot_foot(p, bottom):
+    """The glyph's lowest piece (the dot of ! or ?) drawn from its top down to `bottom` and no further:
+    the bold's pen, mitred at the diamond's sharp foot, ran it out 8 to 11 units below the Regular's."""
+    import shapes as SH
+    from glyphs import contours, bounds
+    cs = contours(p)
+    lo = min(range(len(cs)), key=lambda i: bounds(cs[i])[1])
+    b = bounds(cs[lo])
+    if b[1] >= bottom - 0.5:
+        return p
+    k = (b[3] - bottom) / (b[3] - b[1])
+    return SH.union(SH.transform(cs[lo], (1, 0, 0, k, 0, b[3] * (1 - k))), *[q for i, q in enumerate(cs) if i != lo])
+
+
+# ---------------------------------------------------------------- spacing of the barred d
+def bar_spacing(font, name, base, min_lsb=-20.0):
+    """A letter made of `base` and a bar across it (ð, đ) spaced as the base: the base keeps its own
+    sidebearings, the bar's overhang beyond it is added to the advance, and the bar's end stands no
+    further left of the origin than `min_lsb`. Run after space(), on the font's P, lsb, adv and final."""
+    import build2
+    from glyphs import bounds, translate
+    bn, bb = bounds(font.P[name]), bounds(font.P[base])
+    left, right = bb[0] - bn[0], max(0.0, bn[2] - bb[2])
+    lsb = font.lsb[base] - left
+    shift = max(0.0, min_lsb - lsb)
+    font.lsb[name] = lsb + shift
+    font.adv[name] = int(round(font.adv[base] + shift + right))
+    font.final[name] = build2.final_clean(translate(font.P[name], font.lsb[name] - bn[0], 0))
+    return dict(lsb=round(font.lsb[name], 1), adv=font.adv[name], overhang=round(left + right, 1))
+
+
+# ---------------------------------------------------------------- € and ¥ with the figures
+def euro(font, bottom, top, t):
+    """The release's € (the c with two bars, build2.parens_slash_misc) set from `bottom` to `top`, the
+    zero's extent, with bars 0.55 `t` thick at two fifths and three fifths of its height."""
+    import shapes as SH
+    from glyphs import bounds, translate
+    src = font.P['C'] if not font.cfg['unicase'] else font.P['c']
+    b = bounds(src); H = top - bottom; k = H / (b[3] - b[1])
+    c = SH.transform(src, (k, 0, 0, k, 0, 0)); cb = bounds(c)
+    c = translate(c, -cb[0] + 0.12 * (cb[2] - cb[0]), bottom - cb[1])
+    cb = bounds(c); w = cb[2] - cb[0]; bh = 0.55 * t
+    bars = [SH.polygon([(0, y - bh / 2), (cb[0] + 0.62 * w, y - bh / 2), (cb[0] + 0.62 * w, y + bh / 2), (0, y + bh / 2)])
+            for y in (bottom + 0.40 * H, bottom + 0.60 * H)]
+    return font.norm_x(SH.union(c, *bars))
+
+
+def yen(font, top, line, t):
+    """The release's ¥ (symbols.make_symbols: a Y from v with two bars 0.7 `t` thick), drawn at its own
+    height `top` and then set from the baseline to `line`, the figures' height."""
+    import shapes as SH, symbols as SY
+    from glyphs import bounds, translate
+    P, S, xh, st = font.P, font.S, font.xh, font.style
+    Ss = S if not font.bold else font.S_regular + 0.5 * (S - font.S_regular)
+    if 'Y.alt1' in P:
+        y = P['Y.alt1']
+    else:
+        v = P['v.alt1'] if 'v.alt1' in P else P['v']; vb = bounds(v)
+        kk = top / (vb[3] - vb[1]) * 0.62
+        y = SY.embolden(SH.transform(v, (kk, 0, 0, kk, 0, 0)), (Ss - kk * S) / 2 * 0.8)
+        yb = bounds(y); y = translate(y, 0, top - yb[3])
+        yb = bounds(y); cx = (yb[0] + yb[2]) / 2; ys = yb[1] + 0.2 * (yb[3] - yb[1])
+        y = SH.union(y, SH.polygon([(cx - 0.42 * S, 0), (cx + 0.42 * S, 0), (cx + 0.42 * S, ys), (cx - 0.42 * S, ys)]))
+    yb = bounds(y); ycx = (yb[0] + yb[2]) / 2
+    q = SH.union(y, SY.bar(st, ycx - 0.27 * xh, ycx + 0.27 * xh, 0.30 * top, 0.7 * t),
+                 SY.bar(st, ycx - 0.27 * xh, ycx + 0.27 * xh, 0.30 * top - 1.7 * t, 0.7 * t))
+    b = bounds(q); k = line / (b[3] - b[1])
+    return font.norm_x(SH.transform(q, (1, 0, 0, k, 0, -b[1] * k)))
