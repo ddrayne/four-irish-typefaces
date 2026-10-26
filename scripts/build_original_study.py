@@ -18,6 +18,9 @@ def study_class(face,traces):
     if punctuation_data is not None and face!='ceili':raise ValueError('named punctuation is currently defined only for Ceili')
     source_acute=next((p for p in punctuation_data['pieces'] if p['name']=='acute' and p.get('use')=='built'),None) if punctuation_data else None
     derived=evidence.get('derived_styles',{})    # Céilí Study 4: two judged repairs to the derived styles
+    # Céilí Study 4's finishing pass: judged corrections and the studio finish (scripts/ceili_finish.py)
+    judged_file=Path(traces).parent/'judged-edits.json'
+    judged=json.loads(judged_file.read_text(encoding='utf-8')) if face=='ceili' and judged_file.exists() else {}
 
     constructions=evidence.get('constructions',{})
 
@@ -26,6 +29,11 @@ def study_class(face,traces):
         # keep their own traced acutes, and braces drawn with a point; absent, the release's constructions
         OWN_ACUTES=tuple(constructions.get('own_acutes',()))
         BRACE_POINT=constructions.get('brace')=='pointed'
+
+        @property
+        def J(self):
+            # the finishing pass belongs to the finished candidate (FINISH), not to the study's own fonts
+            return judged if self.FINISH else {}
 
         def __init__(self,key,style_name='Regular'):
             fixed=evidence.get('line_baselines')
@@ -43,11 +51,35 @@ def study_class(face,traces):
             try:super().__init__(key,style_name)
             finally:glyphs.line_baselines=metrics.line_baselines=measured
 
+        def finish_traced(self):
+            super().finish_traced()
+            if self.J.get('finish',{}).get('regular'):
+                # hidden corners smoothed, pen terminals cut straight between sharp corners, clusters of short
+                # pieces made one corner, redundant nodes removed (ceili_finish.regular)
+                import ceili_finish as CF
+                for n,p in list(self.P.items()):
+                    if n not in ('DOTS','ornament'):
+                        self.P[n]=CF.safely(p,lambda r:CF.regular(r,terminals=bool(self.J.get('pen_terminals'))))
+            self.judged_dots()
+
+        def judged_dots(self):
+            # the dots of ! and ? drawn as the face's period, the pen diamond the prints show (judged-edits.json)
+            if getattr(self,'dots_done',False) or not self.J.get('pen_diamond'):return
+            import ceili_finish as CF,finish as F
+            period=next(q for q in punctuation_data['pieces'] if q['name']=='period')
+            period=F._contours([(op,[tuple(v) for v in a]) for op,a in period['rec']])[0]
+            for n in self.J['pen_diamond']['glyphs']:
+                cs=F._contours(CF.recording(self.P[n]))
+                lo=min(range(len(cs)),key=lambda i:min(q[1][-1][1] for q in cs[i]))
+                cs[lo]=CF.pen_diamond(cs[lo],period)
+                self.P[n]=CF.path(F._record(cs))
+            self.dots_done=True
+
         def snap(self):
             super().snap()
-            # letters a print set off its line (evidence.json, sit_on_baseline) are put on it, flat feet on the
-            # baseline and round ones just below it, as snap() does for letters within its tolerance
-            for n in evidence.get('sit_on_baseline',{}):
+            # letters a print set off its line (evidence.json, sit_on_baseline; judged-edits.json) are put on it,
+            # flat feet on the baseline and round ones just below it, as snap() does for letters within its tolerance
+            for n in {**evidence.get('sit_on_baseline',{}),**self.J.get('sit_on_baseline',{})}:
                 if n not in self.P:continue
                 p=self.P[n];y0=build2.bounds(p)[1]
                 over=0 if self.flat(p,y0,0.015*self.xh,top=False) else 8
@@ -94,16 +126,99 @@ def study_class(face,traces):
         def embolden_traced(self):
             apart={n:self.P[n] for n in derived.get('bold_keep_apart',{}).get('glyphs',()) if n in self.P}
             super().embolden_traced()
-            if not apart:return
             # a dot the wider pen brings within a hair of its stroke is set apart as a joined one is
             import bolden,shapes as SH
             b=build2.BOLD[self.key];pen=(b['rx'],b['ry'])
+            share=self.J.get('bold_dot_gap',{}).get('share')
+            if share and self.italic:
+                share+=self.J['bold_dot_gap'].get('sloped_extra',0)   # the slope's hair of weight takes some back
             for n,p in apart.items():
                 wide=[SH.transform(q,(b['k'],0,0,1,0,0)) for q in bolden.components(p) if abs(bolden.area(q))>1]
                 core=bolden.heights_back(SH.union(*wide),self.xh,b['ry'])
-                self.P[n]=bolden._separate(core,self.P[n],pen,close=True)
+                self.P[n]=bolden._separate(core,self.P[n],pen,close=True,share=share)
+            self.tidy_derived()
+
+        def tidy_derived(self):
+            # the derived outlines finished: rounding specks folded, the raster-traced reopened joins drawn as
+            # curves, corner clusters made one corner, extremes given nodes, redundant nodes removed
+            if not self.J.get('finish',{}).get('tidy'):return
+            import ceili_finish as CF
+            for n,p in list(self.P.items()):
+                if n not in ('DOTS','ornament') and build2.bounds(p) is not None:
+                    self.P[n]=CF.tidy_path(p)
+
+        def make_marks(self):
+            super().make_marks()
+            gap=self.J.get('double_acute',{}).get('gap')
+            if gap and self.italic:
+                gap+=(1-build2.CONDENSE)*self.S           # what the sloped styles' growth will take back
+            if gap:
+                # the double acute's two fadas kept apart as the Regular keeps them, however wide the pen
+                import ceili_finish as CF
+                for marks in (self.marks,self.case_marks):
+                    marks['hungarumlaut']=CF.spread_pair(marks['hungarumlaut'],gap)
+
+        def composites(self):
+            # the finish reaches every glyph before accented letters are composed from them, so a base and
+            # its accented forms share one outline: the letters, punctuation and marks now; the symbols below
+            if self.J.get('finish',{}).get('tidy'):
+                import ceili_finish as CF
+                for n,p in list(self.P.items()):
+                    if n not in ('DOTS','ornament') and build2.bounds(p) is not None:
+                        self.P[n]=CF.tidy_path(p)
+                for marks in (self.marks,self.case_marks):
+                    for k,m in list(marks.items()):
+                        marks[k]=CF.tidy_path(m)
+                self.tidied=set(self.P)
+            super().composites()
+            if self.J.get('finish',{}).get('tidy'):
+                self.tidied|=set(self.P)
+
+        def combining_and_spacing_marks(self):
+            if self.J.get('finish',{}).get('tidy'):
+                import ceili_finish as CF
+                for n,p in list(self.P.items()):
+                    if n not in self.tidied and build2.bounds(p) is not None:
+                        self.P[n]=CF.tidy_path(p)
+            super().combining_and_spacing_marks()
+
+        def space(self,K):
+            super().space(K)
+            if not self.J.get('finish',{}).get('tidy'):return
+            # a short curve or corner that rounding to the grid turned into facets is drawn again
+            for n,p in list(self.final.items()):
+                if build2.bounds(p) is not None:
+                    self.final[n]=self.unfaceted(p)
+
+        def unfaceted(self,p):
+            import ceili_finish as CF
+            for _ in range(2):
+                if not CF.polygonal(CF.recording(p)):break
+                p=build2.final_clean(CF.safely(p,CF.unpolygon))
+            return p
+
+        def slant(self):
+            super().slant()
+            if not self.J.get('finish',{}).get('tidy'):return
+            # the shear moves every extreme off its node: extremes get nodes again, then the redundant ones go
+            import ceili_finish as CF
+            for n,p in list(self.final.items()):
+                if build2.bounds(p) is not None:
+                    self.final[n]=self.unfaceted(build2.final_clean(CF.safely(p,CF.sloped)))
 
         def condense(self):
+            before=dict(self.P) if self.J.get('finish',{}).get('tidy') else {}
+            self.condense_growth()
+            if before:
+                # the slope's hair of weight never joins what the upright keeps apart: where it closes a
+                # narrow opening its protection misses (the yen's, in the Bold Italic), the glyph is only narrowed
+                import ceili_finish as CF,shapes as SH
+                for n,p in before.items():
+                    if build2.bounds(p) is not None and CF.topology(self.P[n])!=CF.topology(p):
+                        self.P[n]=SH.transform(p,(build2.CONDENSE,0,0,1,0,0))
+            self.tidy_derived()
+
+        def condense_growth(self):
             if not derived.get('sound_sloped_growth'):return super().condense()
             # pathops can resolve the sloped pen's inner loops wrongly, losing part of a letter (oe's e);
             # the same outline, simplified first, grows soundly
@@ -120,6 +235,9 @@ def study_class(face,traces):
 
         def kerning(self):
             super().kerning()
+            if self.J.get('quote_kerning'):
+                import ceili_finish as CF
+                CF.quote_kerning(self,self.J['quote_kerning']['share'])
             from study_spacing import protect_kerning
             protect_kerning(self)
 

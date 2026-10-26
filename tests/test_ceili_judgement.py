@@ -198,3 +198,199 @@ def test_a_dot_the_bold_brings_close_is_set_apart_only_when_asked():
 def test_the_bold_keeps_its_designed_join():
     import build2
     assert build2.BOLD['ceili']['joins'] == ('six',)
+
+
+# ---------------------------------------------------------------- the finishing pass (judged-edits.json)
+def test_the_bold_can_keep_the_regulars_whole_gap():
+    import bolden, shapes as SH
+    from glyphs import contours, bounds
+    box = lambda x0, y0, x1, y1: SH.polygon([(x0, y0), (x1, y0), (x1, y1), (x0, y1)])
+    core = SH.union(box(0, 60, 40, 200), box(0, 0, 40, 40))
+    bold = SH.union(box(-10, 52, 50, 210), box(-10, -10, 50, 48))
+    out = bolden._separate(core, bold, (10, 10), close=True, share=1.0)
+    lo, hi = sorted((bounds(c) for c in contours(out)), key=lambda b: b[1])
+    assert hi[1] - lo[3] == pytest.approx(20, abs=2.5)
+
+
+def _segs(rec):
+    import finish as F
+    return [[k, list(p)] for k, p in F._contours(rec)[0]]
+
+
+def _rec(points, closed=True):
+    """A polygon recording (lines) from points."""
+    return [('moveTo', (points[0],))] + [('lineTo', (p,)) for p in points[1:]] + [('closePath', ())]
+
+
+def test_economy_draws_one_curve_for_two_and_keeps_extremes():
+    import ceili_finish as CF, shapes as SH
+    from fontTools.pens.recordingPen import RecordingPen
+    import pathops
+    o = SH.ellipse(0, 0, 200, 120)                                   # four extremes, four curves
+    rec = CF.recording(o)
+    # split every curve in two at its middle: eight nodes, four of them redundant
+    import finish as F
+    from curvefit import _split_cubic
+    segs = _segs(rec); split = []
+    for i in range(len(segs)):
+        a, b = _split_cubic(CF._ctrl(segs, i), 0.5)
+        split += [CF._seg('C', a), CF._seg('C', b)]
+    out = CF.economy(F._record([split]))
+    assert len(_segs(out)) == 4
+    pts = CF._dense(_segs(out), 1.0)
+    assert {round(pts[:, 0].max()), round(pts[:, 0].min()), round(pts[:, 1].max()), round(pts[:, 1].min())} == {200, -200, 120, -120}
+
+
+def test_a_hidden_corner_leaves_on_the_stems_tangent():
+    import ceili_finish as CF, finish as F
+    # a stem rising to (100, 300), then a curve that bends 20 degrees within a 1-unit handle
+    segs = [['L', [(100.0, 300.0)]], ['C', [(100.0, 301.0), (90.0, 330.0), (60.0, 380.0)]],
+            ['L', [(0.0, 380.0)]], ['L', [(0.0, 0.0)]], ['L', [(100.0, 0.0)]]]
+    out = CF.smooth_hidden_corners([list(s) for s in segs])
+    curve = next(CF._ctrl(out, i) for i in range(len(out)) if out[i][0] == 'C')
+    assert np.linalg.norm(curve[1] - curve[0]) > 6                              # a real handle now
+    assert abs(CF._dirs(curve)[0][0]) < 1e-6                                     # along the stem
+    assert CF._dist(CF._dense(out, 1.0), CF._dense(segs, 1.0)) <= 3.0
+
+
+def test_a_rounded_pen_cut_is_drawn_straight_between_sharp_corners():
+    import ceili_finish as CF, finish as F, shapes as SH
+    from glyphs import contours
+    # a bar 60 deep whose square end the print rounded at both corners (radius 8)
+    box = lambda x0, y0, x1, y1: SH.polygon([(x0, y0), (x1, y0), (x1, y1), (x0, y1)])
+    p = SH.union(box(0, 0, 395, 60), box(395, 8, 403, 52), SH.circle(395, 8, 8), SH.circle(395, 52, 8))
+    rec = CF.recording(p)
+    segs = _segs(rec)
+    out = CF.pen_terminals(segs, CF.orientation(rec))
+    pts = CF._dense(out, 0.5)
+    assert pts[:, 0].max() == pytest.approx(403, abs=0.5)                       # the cut where it was
+    for corner in ((403, 0), (403, 60)):                                         # and both corners sharp
+        assert np.linalg.norm(pts - corner, axis=1).min() < 1
+    # the foot of an upright stem keeps its rounding, as the face's feet do
+    stem = SH.union(box(0, 8, 60, 400), box(8, 0, 52, 8), SH.circle(8, 8, 8), SH.circle(52, 8, 8))
+    rec = CF.recording(stem)
+    assert len(CF.pen_terminals(_segs(rec), CF.orientation(rec))) == len(_segs(rec))
+
+
+def test_a_corner_drawn_as_facets_becomes_one_corner():
+    import ceili_finish as CF
+    # a square corner at (100, 100) cut by three short facets
+    pts = [(0, 0), (100, 0), (100, 92), (99, 97), (97, 99), (92, 100), (0, 100)]
+    out = CF.collapse_clusters(_segs(_rec(pts)))
+    corners = sorted(tuple(np.round(CF._a(s[1][-1]), 3)) for s in out)
+    assert corners == [(0, 0), (0, 100), (100, 0), (100, 100)]
+
+
+def test_tidy_draws_a_rasters_polyline_as_curves():
+    import ceili_finish as CF
+    # a half disc whose arc is a run of short lines, as the bold's reopened joins come out
+    arc = [(100 * np.cos(t), 100 * np.sin(t)) for t in np.linspace(0, np.pi, 40)]
+    out = CF.tidy(_rec(arc))
+    segs = _segs(out)
+    assert sum(1 for k, _ in segs if k == 'L') <= 1 and len(segs) <= 5
+    assert CF._dist(CF._dense(segs, 1.0), np.array(arc)) <= 1.6
+
+
+def test_the_pen_diamond_keeps_the_dots_corners():
+    import ceili_finish as CF
+    period = [['C', [(40, 10), (60, 30), (60, 60)]], ['C', [(50, 90), (30, 110), (0, 120)]],
+              ['C', [(-30, 110), (-50, 90), (-60, 60)]], ['C', [(-60, 30), (-40, 10), (0, 0)]]]
+    dot = [['C', [(140, 20), (150, 40), (150, 50)]], ['C', [(150, 80), (120, 100), (100, 100)]],
+           ['C', [(80, 100), (50, 80), (50, 50)]], ['C', [(50, 20), (70, 0), (100, 0)]]]
+    out = CF.pen_diamond(dot, period)
+    corners = sorted(tuple(np.round(s[1][-1])) for s in out)
+    assert corners == sorted(tuple(np.round(s[1][-1])) for s in dot)
+
+
+# the finished fonts (fonts/, or FONTDIR=build/fonts for a fresh build)
+STYLES = ('Regular', 'Italic', 'Bold', 'Bold Italic')
+LOWER = 'a a.alt1 a.alt2 b c d d.alt1 e e.alt1 f g h i j j.alt1 k l l.alt1 m n n.alt1 o p q r r.alt1 s s.alt1 t u v v.alt1 w x y z'.split()
+
+
+def finished(style):
+    from conftest import static
+    from fontTools.ttLib import TTFont
+    return TTFont(static('CeiliDigital', style))
+
+
+def test_the_finishing_pass_is_recorded():
+    ev = load(ROUND, 'judged-edits.json')
+    assert set(ev['sit_on_baseline']) == {'h'} and ev['pen_diamond']['glyphs'] == ['exclam', 'question']
+    assert ev['finish']['regular'] and ev['finish']['tidy']
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_the_h_stands_on_the_baseline_with_n_and_k(style):
+    from fontTools.pens.boundsPen import BoundsPen
+    f = finished(style); gs = f.getGlyphSet()
+    def box(n):
+        bp = BoundsPen(gs); gs[n].draw(bp); return bp.bounds
+    assert abs(box('h')[1]) <= 1 and abs(box('n')[1]) <= 1
+    assert abs(box('h')[3] - box('k')[3]) < 15                       # its ascender with k's, not 40 above it
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_the_finished_outlines_are_economical_and_clean(style):
+    """No glyph keeps a polygonal run (three short lines in a row) or a curve that passes an extreme
+    without a node, and the lowercase is drawn with few nodes (the release had 22, 44, 86 and 82 a letter)."""
+    import ceili_finish as CF, finish as F
+    from fontTools.pens.recordingPen import RecordingPen
+    f = finished(style); gs = f.getGlyphSet()
+    nodes, runs, missing = [], set(), set()
+    for n in f.getGlyphOrder():
+        r = RecordingPen(); gs[n].draw(r)
+        for segs in F._contours(r.value):
+            m = len(segs)
+            short = [k == 'L' and np.linalg.norm(CF._ctrl(segs, i)[3] - CF._ctrl(segs, i)[0]) < 14 for i, (k, _) in enumerate(segs)]
+            if m > 4 and any(all(short[(i + j) % m] for j in range(3)) for i in range(m)):
+                runs.add(n)
+            if any(k == 'C' and CF._interior_extreme(CF._ctrl(segs, i), margin=1.5) for i, (k, _) in enumerate(segs)):
+                missing.add(n)
+            if n in LOWER:
+                nodes.append(m)
+    per_letter = sum(nodes) / len(LOWER)
+    assert per_letter < {'Regular': 21, 'Italic': 25, 'Bold': 27, 'Bold Italic': 31}[style], per_letter
+    assert not missing, sorted(missing)
+    assert not runs, sorted(runs)
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_the_dots_stand_clear_in_every_style(style):
+    """The dots of ! and ? and the strokes of the double acute keep their distance (the Bold Italic's
+    double acute touched, and the bold dots stood 5 to 10 units from their strokes)."""
+    import evidence_board as EB
+    f = finished(style)
+    def gap(n):
+        ps = [np.vstack([p + (q - p) * t for p, q in zip(P, np.roll(P, -1, axis=0)) for t in np.linspace(0, 1, 6)]) for P in EB.glyph_polygons(f, n)]
+        assert len(ps) == 2, n
+        return float(np.linalg.norm(ps[0][:, None] - ps[1][None], axis=2).min())
+    assert gap('exclam') > 9 and gap('question') > 11
+    assert gap('hungarumlaut') > 9
+
+
+def test_letters_and_quotes_kern_by_one_rule():
+    """The space between a letter's upper part and a quote varies little from letter to letter (in the
+    release it ran from 100 units for e’ to -50 for o’)."""
+    import uharfbuzz as hb
+    import evidence_board as EB
+    from conftest import static
+    path = static('CeiliDigital', 'Regular'); f = finished('Regular'); order = f.getGlyphOrder(); xh = f['OS/2'].sxHeight
+    font = hb.Font(hb.Face(open(path, 'rb').read()))
+    def clear(a, q):
+        b = hb.Buffer(); b.add_str(a + q); b.guess_segment_properties(); hb.shape(font, b, {'kern': True})
+        na = order[b.glyph_infos[0].codepoint]; nq = order[b.glyph_infos[1].codepoint]
+        pa = np.vstack(EB.glyph_polygons(f, na)); pq = np.vstack(EB.glyph_polygons(f, nq))
+        return b.glyph_positions[0].x_advance + pq[:, 0].min() - pa[pa[:, 1] >= 0.55 * xh][:, 0].max()
+    room = [clear(c, '’') for c in 'cdemnosu']
+    assert max(room) - min(room) < 25, room
+
+
+@pytest.mark.parametrize('style', ('Italic', 'Bold Italic'))
+def test_the_sloped_styles_keep_the_regulars_topology(style):
+    """Only the Bold's designed join in 6 (and, in the Bold Italic, the dollar's small counters, which
+    the 3.000 release already narrowed to a third) may differ from the Regular."""
+    import topo
+    from conftest import static
+    flagged = {n: why for n, why, *_ in topo.compare(static('CeiliDigital', 'Regular'), static('CeiliDigital', style))}
+    allowed = {'Italic': {}, 'Bold Italic': {'six': 'counters 0->1', 'dollar': 'smallest counter'}}[style]
+    assert set(flagged) <= set(allowed) and all(flagged[n].startswith(allowed[n]) for n in flagged), flagged
