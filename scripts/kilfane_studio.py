@@ -18,6 +18,20 @@ outlines(font)  on the final outlines of every style: one node where a fitter (o
                 shorter than two units, nodes at the extremes with level handles; each change kept
                 only within TOL units of the outline it replaces (a unit more where a kink is turned
                 or a corner chain rounded), and a glyph left as it was if its topology would change.
+
+The second finishing pass (judged-edits.json, "finishing", the keys named below) completes the bold
+and the derived glyphs:
+
+bold_pieces(font)  the sheet's loose marks, rules and chevrons drawn with the bold's pen ("bold_pieces"),
+                   called as the pieces are read (build_original_study.specimen_pieces).
+bold_joins(font)   the bold's drawn open joins (k, r, 6, 9) kept as a gap taken from the terminal
+                   alone, the stem's edge left straight, and the g's tail tip lowered ("bold_joins",
+                   "g_tail"), on the bold's letters before anything is derived from them.
+symbols(font)      the bold's section drawn from the regular's with the bold's pen, the number sign
+                   at the bold's weight ("symbols"), before spacing.
+clearances(font)   room after kerning: before a fada over i, and between a bold's capitals
+                   ("kerning", "clearances").
+corners(font)      a corner a union or the grid left as a run of tiny pieces made one node ("corners").
 """
 import json, math
 from pathlib import Path
@@ -328,6 +342,7 @@ def shapes(font, edits=EDITS):
                 continue
             c, rep = harmonise_stems(segments(font.P[name]), st, height, group['target'], group['limit'])
             font.P[name] = path(c); font.studio.setdefault(name, {})['stems'] = rep
+    font.regular_P = dict(font.P)              # what the bold's pen draws (bold_joins, symbols)
 
 
 # ---------------------------------------------------------------- outline finishing
@@ -625,6 +640,14 @@ def outlines(font, tol=None):
 
 # ---------------------------------------------------------------- kerning
 LOWER = set('abcdefghijklmnopqrstuvwxyz')
+LOWER_NAMED = {'dotlessi', 'dotlessj', 'ae', 'oe', 'oslash', 'eth', 'thorn', 'germandbls', 'eng', 'lslash', 'kgreenlandic'}
+
+
+def lowercase(font, n):
+    """A lowercase letter: a to z, an alternate of one, a named lowercase letter (æ, ð, ı...), or an
+    accented form of any of these."""
+    base = getattr(font, 'comp', {}).get(n, n)
+    return base.split('.')[0] in LOWER or base in LOWER_NAMED
 
 
 def _profile(p, top, step=8.0):
@@ -667,11 +690,14 @@ def kern(font, edits=EDITS):
     closed by part of the difference. The builder's collision protection runs after this."""
     spec = load(edits)['kerning']
     pk = font.kern_pairs
-    side = lambda names, n: n in LOWER if names == '*lower' else n in names
-    for (a, b), k in list(pk.items()):
-        for rule in spec['limits']:
-            if side(rule['left'], a) and side(rule['right'], b):
-                pk[a, b] = max(k, rule['min'])
+    side = lambda names, n: lowercase(font, n) if names == '*lower' else n in names
+    # the class pairs, and the builder's exceptions for the accented letters that stick out of their base's
+    # class (’â was -110 there while ’a was eased to -40)
+    for table in (pk, font.kern_exc):
+        for (a, b), k in list(table.items()):
+            for rule in spec['limits']:
+                if side(rule['left'], a) and side(rule['right'], b):
+                    table[a, b] = max(k, rule['min'])
     letters = [n for n in spec['letters'] if n in font.left_group and n in font.right_group]
     gaps = optical_gaps(font, [(a, b) for a in letters for b in letters])
     # the white of two straight stems: n n, H H, H n or n H. (Where a capital or an ascender meets the
@@ -685,3 +711,521 @@ def kern(font, edits=EDITS):
         k = max(-int(round(spec['share'] * excess / 5.0)) * 5, spec['max'])
         if k <= -5:
             pk[a, b] = k; font.optical[a, b] = (round(excess, 1), k)
+
+
+# ---------------------------------------------------------------- the bold's sheet pieces
+def bold_pieces(font, edits=EDITS):
+    """The sheet's loose marks, rules and chevrons (font.piece, read from pieces.json after the letters were
+    drawn with the bold's pen) drawn with that pen too: each piece grown on its own by its judged share of
+    the pen, its hole kept open as build2.bold_pieces keeps a ring's, and each pair (the diaeresis, the
+    guillemets) set apart again by the width its pen added, so the white between them stays as drawn."""
+    import build2, bolden
+    from glyphs import bounds, translate
+    spec = load(edits)['bold_pieces']; b = build2.BOLD[font.key]
+    share = lambda n: spec['share'].get(n, spec['share'].get(n.split('.')[0], 1.0))
+    font.piece_regular = dict(font.piece)
+    for n, p in list(font.piece.items()):
+        pen = (share(n) * b['rx'], share(n) * b['ry'])
+        font.piece[n] = bolden.concat([bolden.protect(q, bolden.grow(q, *pen), font.S_regular, pen, sliver=font.SLIVER)
+                                       for q in bolden.components(p)])
+    for pair in spec['pairs']:
+        if not all(n in font.piece for n in pair):
+            continue
+        left, right = sorted(pair, key=lambda n: bounds(font.piece_regular[n])[0])
+        font.piece[left] = translate(font.piece[left], -share(left) * b['rx'], 0)
+        font.piece[right] = translate(font.piece[right], share(right) * b['rx'], 0)
+
+
+def rule_weight(pieces):
+    """The weight of the sheet's two rules, as Font2.dashes measures it (their area over their width)."""
+    from glyphs import bounds
+    w = lambda p: abs(_area(p)) / (bounds(p)[2] - bounds(p)[0])
+    return float(np.mean([w(pieces['endash']), w(pieces['emdash'])]))
+
+
+# ---------------------------------------------------------------- the bold's open joins
+def _point(a, seg, t):
+    k, p = seg; a = np.array(a, float)
+    if k == 'L':
+        return a + (np.array(p[0], float) - a) * t
+    c1, c2, e = (np.array(q, float) for q in p)
+    return (1 - t) ** 3 * a + 3 * (1 - t) ** 2 * t * c1 + 3 * (1 - t) * t * t * c2 + t ** 3 * e
+
+
+def _split(a, seg, t):
+    """seg (from a) split at t into two."""
+    k, p = seg
+    m = tuple(_point(a, seg, t))
+    if k == 'L':
+        return ['L', [m]], ['L', [p[0]]]
+    a = np.array(a, float); c1, c2, e = (np.array(q, float) for q in p)
+    ab, bc, cd = a + (c1 - a) * t, c1 + (c2 - c1) * t, c2 + (e - c2) * t
+    abc, bcd = ab + (bc - ab) * t, bc + (cd - bc) * t
+    return ['C', [tuple(ab), tuple(abc), m]], ['C', [tuple(bcd), tuple(cd), tuple(e)]]
+
+
+def _arc(a, seg, n=64):
+    ts = np.linspace(0, 1, n); pts = np.array([_point(a, seg, t) for t in ts])
+    return ts, np.r_[0, np.cumsum(np.linalg.norm(np.diff(pts, axis=0), axis=1))]
+
+
+def _tangent(a, seg, t, e=1e-4):
+    v = _point(a, seg, min(1, t + e)) - _point(a, seg, max(0, t - e)); return v / np.linalg.norm(v)
+
+
+def round_face(segs, face, r):
+    """The face (segments face[0]..face[-1] of a closed contour) and r units of outline either side of it
+    drawn as one curve, tangent to the outline at both ends, its handles reaching to the face's line."""
+    n = len(segs); i, j = face[0], face[-1]
+    def walk(k, step):
+        need = r
+        while True:
+            ts, d = _arc(FN._start(segs, k), segs[k])
+            if d[-1] >= need:
+                return k, float(np.interp(d[-1] - need if step < 0 else need, d, ts))
+            need -= d[-1]; k = (k + step) % n
+    kA, tA = walk((i - 1) % n, -1)
+    kB, tB = walk((j + 1) % n, 1)
+    sA, sB = FN._start(segs, kA), FN._start(segs, kB)
+    firstA, _ = _split(sA, segs[kA], tA)
+    _, secondB = _split(sB, segs[kB], tB)
+    A, B = np.array(firstA[1][-1]), _point(sB, segs[kB], tB)
+    ta, tb = _tangent(sA, segs[kA], tA), _tangent(sB, segs[kB], tB)
+    f0, f1 = np.array(FN._start(segs, i)), np.array(segs[j][1][-1])
+    fd = (f1 - f0) / np.linalg.norm(f1 - f0); fn = np.array([-fd[1], fd[0]])
+    def reach(P, t):                     # along t from P to the face's line
+        den = float(np.dot(t, fn))
+        return float(np.dot(f0 - P, fn)) / den if abs(den) > 1e-6 else r
+    la = min(max(reach(A, ta), 0.3 * r), 2.5 * r); lb = min(max(-reach(B, tb), 0.3 * r), 2.5 * r)
+    out = [secondB]; k = (kB + 1) % n
+    while k != kA:
+        out.append(segs[k]); k = (k + 1) % n
+    return out + [firstA, ['C', [tuple(A + ta * la), tuple(B - tb * lb), tuple(B)]]]
+
+
+def wall(P, at, side, S, margin=45):
+    """The stem's edge on `side` (+1: its right, the terminal beyond it) near a join at `at`, where the
+    bold has run the terminal into it: a curve x = f(y) (degree two) fitted to the edge where it runs free
+    either side of the join. Returns (f, (y0, y1) the heights where the two are joined)."""
+    polys = polygons(segments(P)); c0 = at[0] - side * S / 2
+    def edge(y):
+        run = next(((a, b) for a, b in crossings(polys, y) if a - 1 <= c0 <= b + 1), None)
+        return (None, 0.0) if run is None else ((run[1] if side > 0 else run[0]), run[1] - run[0])
+    joined = [y for y in np.arange(at[1] - 90, at[1] + 90, 1.0) if edge(y)[1] > S + 12]
+    y0, y1 = min(joined), max(joined)
+    ys, xs = [], []
+    for y in list(np.arange(y0 - margin, y0 - 2, 1.0)) + list(np.arange(y1 + 3, y1 + margin, 1.0)):
+        e, w = edge(y)
+        if e is not None and w < S + 12:
+            ys.append(y); xs.append(e)
+    return np.poly1d(np.polyfit(ys, xs, 2)), (float(y0), float(y1))
+
+
+def gap_at(P, at, side, S, window=90):
+    """The narrowest white, across, between the stem and the terminal beyond it near `at`."""
+    polys = polygons(segments(P)); c0 = at[0] - side * S / 2; best = None
+    for y in np.arange(at[1] - window, at[1] + window, 1.0):
+        runs = crossings(polys, y)
+        i = next((k for k, (a, b) in enumerate(runs) if a - 1 <= c0 <= b + 1), None)
+        if i is None or not 0 <= i + side < len(runs):
+            continue
+        g = runs[i + side][0] - runs[i][1] if side > 0 else runs[i][0] - runs[i + side][1]
+        best = g if best is None else min(best, g)
+    return best
+
+
+def cut_join(P, at, side, S, gap, r, reach=200):
+    """P (a bold whose join at `at` is closed) with a gap `gap` wide taken from the terminal alone: the
+    white runs along the stem's own edge, which stays as it is, and the terminal's face is one curve."""
+    import shapes as SH
+    f, joined = wall(P, at, side, S)
+    face = f + side * gap
+    polys = polygons(segments(P))
+    def clear(y):                        # nothing of P between the stem's edge and the face
+        lo, hi = sorted((f(y) + side * 0.5, face(y)))
+        return all(b <= lo or a >= hi for a, b in crossings(polys, y))
+    top = next(y for y in np.arange(at[1], at[1] + reach, 1.0) if clear(y)) + 3
+    bot = next(y for y in np.arange(at[1], at[1] - reach, -1.0) if clear(y)) - 3
+    def along(g, y0, y1):                # x = g(y), of degree two, from y0 to y1: exactly one cubic
+        p0, p3 = np.array([g(y0), y0]), np.array([g(y1), y1])
+        q = np.array([g(y0) + g.deriv()(y0) * (y1 - y0) / 2, (y0 + y1) / 2])
+        return tuple(p0 + 2 / 3 * (q - p0)), tuple(p3 + 2 / 3 * (q - p3)), tuple(p3)
+    cut = pathops.Path(); pen = cut.getPen()
+    pen.moveTo((f(bot), bot)); pen.lineTo((face(bot), bot)); pen.curveTo(*along(face, bot, top))
+    pen.lineTo((f(top), top)); pen.curveTo(*along(f, top, bot)); pen.closePath()
+    cut = pathops.simplify(cut, fix_winding=True, keep_starting_points=False, clockwise=False)
+    on_face = lambda q: abs(q[0] - face(q[1])) < 0.6 and bot - 1 < q[1] < top + 1
+    out = []
+    for segs in segments(SH.difference(P, cut)):
+        idx = [i for i, sg in enumerate(segs) if all(on_face(q) for q in _bez(FN._start(segs, i), sg, 8))]
+        out.append(round_face(segs, idx, r) if idx else segs)
+    return path(out), dict(wall=[round(float(v), 4) for v in f.coeffs], joined=joined, cut=(float(bot), float(top)))
+
+
+def _closed_bold(font, p, at):
+    """p drawn with the bold's pen as Font2.embolden_traced draws it, but with its join at `at` left to
+    close: the aperture there not eased (the ease thinned the stem as well as the terminal) and no crack
+    reopened in its place."""
+    import build2, bolden
+    b = build2.BOLD[font.key]
+    ease, reopen = bolden._ease, bolden._reopen
+    def eased(core, frame_b, neck, across, w, pen, res=1.0):
+        return None if math.dist(neck, at) < 30 else ease(core, frame_b, neck, across, w, pen, res)
+    bolden._ease, bolden._reopen = eased, (lambda core, bold, *a, **k: bold)
+    try:
+        return bolden.embolden(p, b['rx'], b['ry'], b['k'], font.xh, font.S_regular, sliver=font.SLIVER)
+    finally:
+        bolden._ease, bolden._reopen = ease, reopen
+
+
+def lower_tip(p, at, drop, reach):
+    """The outline near `at` moved down by `drop`, falling off smoothly with the distance along the
+    contour (to nothing at `reach`): the tip of a tail lowered, the stroke it ends left where it is."""
+    out = []
+    for segs in segments(p):
+        n = len(segs); nodes = [sg[1][-1] for sg in segs]
+        i0 = int(np.argmin([math.dist(q, at) for q in nodes]))
+        if math.dist(nodes[i0], at) > 40:
+            out.append(segs); continue
+        length = [_arc(FN._start(segs, i), sg, 24)[1][-1] for i, sg in enumerate(segs)]
+        s = [math.inf] * n; s[i0] = 0.0
+        for step in (1, -1):
+            acc, j = 0.0, i0
+            for _ in range(n):
+                acc += length[(j + 1) % n] if step > 0 else length[j]
+                j = (j + step) % n; s[j] = min(s[j], acc)
+        w = lambda v: 1 - (lambda t: t * t * (3 - 2 * t))(min(1.0, v / reach))
+        moved = []
+        for i, (k, q) in enumerate(segs):
+            wa, wb = w(s[(i - 1) % n]), w(s[i])
+            if k == 'L':
+                moved.append(['L', [(q[0][0], q[0][1] - drop * wb)]])
+            else:
+                c1, c2, e = q
+                moved.append(['C', [(c1[0], c1[1] - drop * wa), (c2[0], c2[1] - drop * wb), (e[0], e[1] - drop * wb)]])
+        out.append(moved)
+    return path(out)
+
+
+def bold_joins(font, edits=EDITS):
+    """In a bold, on its letters before anything is derived from them (and before the zones, in the frame
+    the pen drew them in): each drawn open join ("bold_joins") closed by the pen and opened again from the
+    terminal alone, so that the stem keeps its straight edge and full weight and the terminal's face is
+    one curve; and the g's tail tip, which the pen and the restored heights raised against the bowl,
+    lowered ("g_tail")."""
+    if not font.bold:
+        return
+    import build2
+    from glyphs import bounds, translate
+    spec = load(edits); J, G = spec['bold_joins'], spec['g_tail']
+    S = font.stem_width()
+    # a sloped style narrows every glyph and adds a hair of weight each side (Font2.condense): its gap is
+    # cut that much wider here, so that it is as wide as the upright's once sloped
+    hair = (1 - build2.CONDENSE) * S / 2 if font.italic else 0.0
+    target = (J['gap'] + 2 * hair) / (build2.CONDENSE if font.italic else 1.0)
+    font.joins = {}
+    for n, j in J['glyphs'].items():
+        if n not in font.P:
+            continue
+        closed = _closed_bold(font, font.regular_P[n], j['at'])
+        closed = translate(closed, 0, bounds(font.P[n])[1] - bounds(closed)[1])     # where snap() set the bold
+        cut = target
+        for _ in range(5):               # the curved face stands off the cut a little: aim at the gap itself
+            q, info = cut_join(closed, j['at'], j['side'], S, cut, J['round'])
+            g = gap_at(q, j['at'], j['side'], S)
+            if g is None or abs(g - target) < 0.5:
+                break
+            cut = max(4.0, cut + target - g)
+        font.P[n] = q; font.joins[n] = dict(info, gap=None if g is None else round(g, 1))
+    n = G['glyph']
+    if n in font.P:
+        font.P[n] = lower_tip(font.P[n], G['at'], G['drop'], G['reach'])
+
+
+# ---------------------------------------------------------------- symbols
+def symbols(font, edits=EDITS):
+    """Before spacing, and before a sloped style narrows its glyphs: in a bold, the section drawn as the
+    regular's (two interlaced s, symbols.section, at the regular's weight) with the bold's pen in its own
+    frame, so that it keeps the regular's extent and is as black as the bold's s (interlacing the bold s
+    itself lightens it until a loop opens); and the number sign, drawn at the rules' weight, kept to the
+    proportion of the stems that the regular's has ("symbols")."""
+    if getattr(font, 'symbols_done', False):
+        return
+    font.symbols_done = True
+    if not font.bold:
+        return
+    import build2, bolden, symbols as SY
+    from glyphs import bounds, translate
+    spec = load(edits)['symbols']; b = build2.BOLD[font.key]
+    top = font.fig if font.cfg['lining'] else font.xh * 1.05
+    sec = SY.section(font.regular_P['s'], font.S_regular, font.S_regular, top)
+    y0, y1 = bounds(sec)[1], bounds(sec)[3]
+    # its loop, its one counter, kept a little more open than a letter's least counter is (bolden.F_AREA, F_HOLE)
+    kept = bolden.F_AREA, bolden.F_HOLE
+    bolden.F_AREA, bolden.F_HOLE = spec['section']['counter_area'], spec['section']['counter_radius']
+    try:
+        g = bolden.embolden(translate(sec, 0, -y0), b['rx'], b['ry'], b['k'], y1 - y0, font.S_regular, sliver=font.SLIVER)
+    finally:
+        bolden.F_AREA, bolden.F_HOLE = kept
+    font.P['section'] = font.norm_x(translate(g, 0, y0))
+    font.made['section'] = 'two interlaced s at the regular\'s weight, drawn with the bold\'s pen'
+    if 'numbersign' in font.P and 'endash' in getattr(font, 'piece_regular', {}):
+        k = spec['numbersign']['stroke']                    # its strokes against the rules (symbols.make_symbols)
+        now, want = k * font.hyphen_thick, k * rule_weight(font.piece_regular) * font.S / font.S_regular
+        if now - want > 1:
+            font.P['numbersign'] = font.norm_x(bolden.erode(font.P['numbersign'], (now - want) / 2, (now - want) / 2))
+            font.made['numbersign'] = 'sheared grid at the bold\'s weight'
+
+
+# ---------------------------------------------------------------- room after kerning
+def clearances(font, edits=EDITS):
+    """After kerning and its collision protection, the room a pair needs, as the white across at each
+    height (one-unit steps, with the two units of vertical allowance study_spacing.protect_kerning gives):
+    before a fada (or another mark) over i, which overhangs the i's side bearing and ran into a capital's
+    arm, measured across the mark; and in a bold, between capitals, whose wider pen brought A V, T Y and
+    Z V within ten units. A pair of letters is opened by its class kerning, so that their accented forms
+    follow; an accented i, which no class holds, by an exception. Both are rounded up to five units."""
+    from study_spacing import silhouette
+    from scipy.ndimage import minimum_filter1d
+    from glyphs import bounds
+    spec = load(edits)['kerning']['clearances']
+    names = [n for n, p in font.final.items() if n not in font.mark_glyphs and n not in ('space', 'underscore') and bounds(p)]
+    lo = math.floor(min(bounds(font.final[n])[1] for n in names)) - 3
+    hi = math.ceil(max(bounds(font.final[n])[3] for n in names)) + 3
+    ys = np.arange(lo + .5, hi, 1.); prof = {}
+    def side(n):
+        if n not in prof:
+            left, right = silhouette(font.final[n], ys)
+            prof[n] = (minimum_filter1d(left, size=5, mode='constant', cval=np.inf), right)
+        return prof[n]
+    owner_l = {g: a for a, gs in font.left_group.items() for g in gs}
+    owner_r = {g: b for b, gs in font.right_group.items() for g in gs}
+    def kern(a, b):
+        return font.kern_exc[a, b] if (a, b) in font.kern_exc else font.kern_pairs.get((owner_l.get(a, a), owner_r.get(b, b)), 0)
+    def least(a, b, k, above=None):
+        g = font.adv[a] + k + side(b)[0] - side(a)[1]
+        g = g[np.isfinite(g) & (ys > above if above is not None else True)]
+        return float(g.min()) if g.size else None
+    font.clearance_fixes = []
+    for rule in spec:
+        if font.style_name not in rule.get('styles', [font.style_name]):
+            continue
+        want = rule['clearance'] + rule.get('margin', 0)
+        if rule['right'] == '*capitals':
+            caps = [n for n in font.left_group if n in font.right_group and n[:1].isupper() and n not in font.comp]
+            for a in caps:
+                for b in caps:
+                    k = kern(a, b); m = least(a, b, k)
+                    if m is None or m >= want:
+                        continue
+                    new = int(math.ceil((k + want - m) / 5.0) * 5)
+                    font.kern_pairs[a, b] = new
+                    for ga in font.left_group[a]:
+                        for gb in font.right_group[b]:
+                            if (ga, gb) in font.kern_exc:
+                                font.kern_exc[ga, gb] = max(font.kern_exc[ga, gb], new)
+                    font.clearance_fixes.append(dict(left=a, right=b, before=k, after=new, measured_gap=round(m, 1)))
+            continue
+        for b in [n for n in rule['right'] if n in font.final and n in font.comp]:
+            above = bounds(font.final[font.comp[b]])[3] + 5          # across the mark, above its letter
+            for a in names:
+                k = kern(a, b); m = least(a, b, k, above)
+                if m is None or m >= want:
+                    continue
+                new = int(math.ceil((k + want - m) / 5.0) * 5)
+                font.kern_exc[a, b] = new
+                font.clearance_fixes.append(dict(left=a, right=b, before=k, after=new, measured_gap=round(m, 1)))
+
+
+# ---------------------------------------------------------------- corners
+def clean_corners(segs, short=8.0, near=5.0, tol=2.5):
+    """A corner drawn as a run of pieces shorter than `short` (where a union of two strokes or a rounded
+    offset left them, and the grid kept them) becomes one node, where the outline either side would meet;
+    a short piece along a smooth run is merged into a neighbour."""
+    from scipy.spatial import cKDTree
+    segs = [[k, list(p)] for k, p in segs]
+    original = cKDTree(np.vstack([_samples(FN._start(segs, i), s, 1.0) for i, s in enumerate(segs)]))
+    changed = True
+    while changed and len(segs) > 3:
+        changed = False; n = len(segs)
+        L = [math.dist(FN._start(segs, i), s[1][-1]) for i, s in enumerate(segs)]
+        for i in range(n):
+            if L[i] >= short or L[(i - 1) % n] < short:
+                continue
+            run = [i]
+            while L[(run[-1] + 1) % n] < short and len(run) < n - 2:
+                run.append((run[-1] + 1) % n)
+            prev, nxt = (i - 1) % n, (run[-1] + 1) % n
+            t1, t2 = _tan_in(segs, prev), _tan_out(segs, nxt)
+            if t1 is None or t2 is None or _angle(t1, t2) < 20:
+                continue                                    # a smooth run: tidy() merges those
+            a = np.array(FN._start(segs, i)); e = np.array(segs[run[-1]][1][-1])
+            C = (a + e) / 2
+            M = np.array([t1, -t2]).T
+            if abs(np.linalg.det(M)) > 1e-6:
+                s_, _ = np.linalg.solve(M, e - a)
+                if math.dist(a + s_ * t1, C) <= near:
+                    C = a + s_ * t1
+            k, p = segs[prev]
+            segs[prev] = ['L', [tuple(C)]] if k == 'L' else ['C', [p[0], tuple(np.array(p[1]) + C - a), tuple(C)]]
+            k, p = segs[nxt]
+            if k == 'C':
+                segs[nxt] = ['C', [tuple(np.array(p[0]) + C - e), p[1], p[2]]]
+            for r in sorted(run, reverse=True):
+                del segs[r]
+            changed = True
+            break
+    # a short piece along a smooth run (what easing an aperture leaves): one with a neighbour, where a
+    # single curve draws both within `tol`
+    global REF
+    ref, REF = REF, original                 # each merge kept within tol of the outline as it came
+    try:
+        i = 0
+        while i < len(segs) and len(segs) > 3:
+            n = len(segs)
+            if math.dist(FN._start(segs, i), segs[i][1][-1]) >= short:
+                i += 1; continue
+            for j in sorted(((i - 1) % n, i), key=lambda j: math.dist(FN._start(segs, j), segs[(j + 1) % n][1][-1])):
+                m = _merge(segs, j, tol)
+                if m:
+                    segs[(j + 1) % n] = m[0]; del segs[j]; i = max(0, min(i, j) - 1)
+                    break
+            else:
+                i += 1
+    finally:
+        REF = ref
+    # and one that no curve takes in (a small zigzag where a cut met the pen's offset): dropped, its
+    # neighbours meeting at its middle, their handles turned to one tangent there where that stays within tol
+    i = 0
+    while i < len(segs) and len(segs) > 3:
+        n = len(segs); a, e = np.array(FN._start(segs, i)), np.array(segs[i][1][-1])
+        if math.dist(a, e) >= short:
+            i += 1; continue
+        prev, nxt = (i - 1) % n, (i + 1) % n
+        M = (a + e) / 2
+        (kp, pp), (kn, pn) = segs[prev], segs[nxt]
+        P = ['C', [pp[0], tuple(np.array(pp[1]) + M - a), tuple(M)]] if kp == 'C' else ['L', [tuple(M)]]
+        N = ['C', [tuple(np.array(pn[0]) + M - e), pn[1], pn[2]]] if kn == 'C' else [kn, list(pn)]
+        options = []
+        trial = list(segs); trial[prev], trial[nxt] = P, N
+        t1, t2 = _tan_in(trial, prev), _tan_out(trial, nxt)
+        if t1 is not None and t2 is not None and _angle(t1, t2) < 20:
+            d = t1 if kp == 'L' else t2 if kn == 'L' else (t1 + t2) / np.linalg.norm(t1 + t2)
+            P2, N2 = [P[0], list(P[1])], [N[0], list(N[1])]
+            if kp == 'C':
+                P2[1][1] = tuple(M - d * math.dist(P[1][1], M))
+            if kn == 'C':
+                N2[1][0] = tuple(M + d * math.dist(N[1][0], M))
+            options.append((P2, N2))
+        options.append((P, N))
+        for P_, N_ in options:
+            pts = np.vstack([_samples(FN._start(segs, prev), P_, 1.0), _samples(tuple(M), N_, 1.0)])
+            if original.query(pts)[0].max() <= tol:
+                segs[prev], segs[nxt] = P_, N_; del segs[i]
+                break
+        else:
+            i += 1
+    return segs
+
+
+def smooth_facets(segs, tol=1.5, turn=35.0, longest=60.0):
+    """A run of straight pieces that each turn a little (an eased aperture's cut, traced from a raster as a
+    polygon) drawn as the curve it stands for: one cubic, or two, tangent to the outline either side where it
+    runs on smoothly, kept only within `tol` of the polygon."""
+    from scipy.spatial import cKDTree
+    segs = [[k, list(p)] for k, p in segs]
+    def unit(v):
+        v = np.asarray(v, float); n = np.linalg.norm(v); return v / n if n > 1e-9 else None
+    i = 0
+    while i < len(segs):
+        n = len(segs)
+        if n < 4:
+            break
+        is_facet = lambda j: segs[j % n][0] == 'L' and math.dist(FN._start(segs, j % n), segs[j % n][1][-1]) < longest
+        bend = lambda j: _angle(_tan_in(segs, (j - 1) % n), _tan_out(segs, j % n))      # at the start of j
+        if not is_facet(i) or (is_facet(i - 1) and 0.5 < bend(i) < turn):
+            i += 1; continue                                # not the start of a run
+        run = [i]
+        while len(run) < n - 2 and is_facet(run[-1] + 1) and 0.5 < bend(run[-1] + 1) < turn:
+            run.append((run[-1] + 1) % n)
+        if len(run) < 2:
+            i += 1; continue
+        prev, nxt = (run[0] - 1) % n, (run[-1] + 1) % n
+        pts = np.vstack([_samples(FN._start(segs, r), segs[r], 1.0) for r in run])
+        first, last = unit(np.subtract(segs[run[0]][1][-1], FN._start(segs, run[0]))), unit(np.subtract(segs[run[-1]][1][-1], FN._start(segs, run[-1])))
+        t_in, t_out = _tan_in(segs, prev), _tan_out(segs, nxt)
+        t1 = t_in if t_in is not None and _angle(t_in, first) < turn else first
+        t2 = t_out if t_out is not None and _angle(last, t_out) < turn else last
+        ref = cKDTree(pts)
+        def fits(a, b, ta, tb):
+            """[pieces] of one cubic from a to b through the run's points (split at its extremes), or None."""
+            import curvefit as CF
+            sub = pts[(np.linalg.norm(pts - a, axis=1).argmin()):(np.linalg.norm(pts - b, axis=1).argmin() + 1)]
+            if len(sub) < 4:
+                return None
+            c = _fit(sub, ta, tb)
+            seg = ['C', [tuple(c[1]), tuple(c[2]), tuple(b)]]
+            drawn = _samples(tuple(a), seg, 1.0)
+            if ref.query(drawn)[0].max() > tol or cKDTree(drawn).query(sub)[0].max() > tol:
+                return None
+            ts = sorted(t for ax in (0, 1) for t in CF._extrema_t(np.array([a, c[1], c[2], b], float), ax) if 0.08 < t < 0.92)
+            pieces, start, last = [], tuple(a), 0.0
+            for t in ts:                                   # a node at each extreme, as the outlines have
+                if (t - last) / (1 - last) < 0.05:
+                    continue
+                one, seg = _split(start, seg, (t - last) / (1 - last))
+                pieces.append(one); start = one[1][-1]; last = t
+            return pieces + [seg]
+        a, b = np.array(FN._start(segs, run[0])), np.array(segs[run[-1]][1][-1])
+        new = fits(a, b, t1, t2)
+        if new is None and len(run) >= 3:
+            mid = run[len(run) // 2]; m = np.array(FN._start(segs, mid))
+            tm = unit(np.subtract(segs[mid][1][-1], FN._start(segs, (mid - 1) % n)))
+            one, two = fits(a, m, t1, tm), fits(m, b, tm, t2)
+            new = one + two if one is not None and two is not None else None
+        if new is None:
+            i += 1; continue
+        keep = [s for j, s in enumerate(segs) if j not in run]
+        at = sum(1 for j in range(run[0]) if j not in run) if run[0] <= run[-1] else 0
+        if run[0] > run[-1]:                               # the run wraps past the contour's start
+            segs = keep + new
+            i = len(segs)
+        else:
+            segs = keep[:at] + new + keep[at:]
+            i = at + len(new)
+    return segs
+
+
+def corners(font, edits=EDITS):
+    """The listed glyphs' corners, on the final outlines of every style, cleaned by clean_corners ("corners")."""
+    spec = load(edits)['corners']
+    names = list(spec['glyphs']) + (list(spec['bold']) if font.bold else [])
+    names += [n for n, b in font.comp.items() if b in names]            # and their accented forms
+    for n in names:
+        if n in font.final:
+            font.final[n] = path([clean_corners(smooth_facets(c, spec['facets']), spec['short'], tol=spec['tolerance'])
+                                  for c in segments(font.final[n])])
+
+
+def opening(p, rmax=48):
+    """The narrowest opening of a glyph, in units: the diameter of the smallest disc whose closing (on a
+    one-unit raster) changes its pieces or counters, as a reviewer measures an opening."""
+    from scipy import ndimage
+    from outline_util import flatten, raster
+    from glyphs import bounds
+    b = bounds(p); pad = rmax + 4
+    x0, y1 = b[0] - pad, b[3] + pad
+    W, H = int(b[2] - b[0] + 2 * pad) + 1, int(b[3] - b[1] + 2 * pad) + 1
+    r = RecordingPen(); p.draw(r)
+    a = raster(flatten(r.value, 16), (W, H), lambda q: (q[0] - x0, y1 - q[1])) > 0
+    def topology(m):
+        _, n = ndimage.label(m, structure=np.ones((3, 3)))
+        lab, nw = ndimage.label(~m)
+        edge = set(np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]])))
+        return n, sum(1 for i in range(1, nw + 1) if i not in edge and (lab == i).sum() >= 3)
+    t0 = topology(a)
+    for rad in range(1, rmax):
+        yy, xx = np.ogrid[-rad:rad + 1, -rad:rad + 1]
+        if topology(ndimage.binary_closing(a, structure=xx * xx + yy * yy <= rad * rad)) != t0:
+            return 2 * rad
+    return None

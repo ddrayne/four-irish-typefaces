@@ -68,6 +68,26 @@ The release build (`scripts/build_candidate.py kilfane`) finishes these traces a
   whose white is wider than n n, H H or H n by more than 12 units close by 60% of the excess (l and L with their
   feet, F, V, K, X, Z, P, T before lowercase).
 
+A second pass, after an independent review of the four styles, completes the bold and the derived glyphs (the
+same file, keys `bold_pieces`, `bold_joins`, `g_tail`, `symbols`, `marks_on_line`, `corners` and the kerning's
+`clearances`):
+
+- **The bold's marks, rules and chevrons** (judged). The sheet's loose pieces were read after the letters were
+  bolded, so the bold kept the Regular's accents, dashes, math signs, guillemets, © and °. They are drawn with the
+  bold's pen: dots, rules and chevrons with all of it, the stroke accents with the share that keeps the Regular's
+  proportion to the stems (0.72; the ring's hairline 0.45), each pair set apart again so its gap stays as drawn.
+  The family's ascender rises from 1010 to 1023 units to hold the bold's taller capital accents (Ó).
+- **The bold's open joins** (judged). The pen closed the drawn open joins of k, r, 6 and 9, and easing them open
+  again notched the stem. The join is drawn closed and a 20-unit gap is taken from the terminal alone, its face one
+  curve, the stem straight and whole. The g's tail tip, raised onto the bowl by the pen, is lowered 30 units.
+- **The bold's section and number sign** (judged): the Regular's section drawn with the bold's pen in its own
+  frame; the number sign at the Regular's proportion to the stems.
+- **Marks and corners** (noise). Ů's ring, which found the floor of the U's counter, sits on the line as Å's
+  does; the section's corners are single nodes.
+- **Room** (judged, in text). Every glyph keeps 40 units from the mark of an accented i (the fada overhangs its
+  side bearing and ran into C, S, R, P, F); the bold's capitals keep 30 units; the quotes' −40 limit covers the
+  accented lowercase.
+
 ## Reproduce
 
 ```sh
