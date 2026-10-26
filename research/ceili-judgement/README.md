@@ -268,13 +268,60 @@ Regular → Bold and Bold Italic topology now also flags the closed ampersand an
 collides in any style. The proof, which shows font outlines only, is
 [proofs/second-pass.png](proofs/second-pass.png).
 
+## The third pass
+
+A third review found six more defects. Each is corrected by one rule, recorded in
+[judged-edits.json](judged-edits.json) (`third_pass`) and made by `scripts/ceili_finish.py`; Study 4's own
+fonts here do not change. Measurements are font units, from the fonts before and after.
+
+- **The bold's math signs grow in place.** The bold set each piece out from its own rule weight, so when the
+  second pass made the rules heavier (81 → 121) the pieces moved apart: = stood 157 between its bars against
+  the Regular's 105, the bar of ± dropped to −121..0, that of ≤ ≥ to −67..54, ÷ ran from −40 to 576 (over the
+  538 x-height) and ≈ stood 221 apart (175); ~ and ^ grew upward only. Each piece now keeps its weight and
+  grows about its Regular counterpart's centre, and the white beside a rule stays the Regular's: = 105 about
+  the 268 axis (95..442), ≈ 173, ± −77..598, ≤ ≥ −43..528. The dots of ÷ are the Regular's drawn with the
+  bold's pen, about their own centres (28..509); ~ and ^ stand about their centres (195..401, 331..622).
+- **No quote stands wholly over a low foot.** The second pass's rule measured the far edge of the whole
+  double quote, so l” and L” stayed kerned −345, −330, −350 and −350 with the first comma 64, 64, 69 and 52
+  units from the stem. It now measures the quote's nearest piece: l”, L” and ł” kern as l’ does (−205, −200,
+  −255, −250), and the rule holds for ‘ and “ after a letter too.
+- **The bold's small signs gain weight.** The bullet is drawn with the bold's pen (ink 1.000 → 1.47 of the
+  Regular's); % and ‰ take the bold's stem as § does (ink 1.34 → 1.58), and so do the c of © (stem 71 → 110)
+  and the a of @ (102 → 147), the a kept as far inside its ring as the release's. The superiors, fractions,
+  ordinals, ™ and the r of ® go 0.75 of the way from the Regular's stem to the bold's (the release's 0.5): the
+  heaviest weight, of those tried from 0.5 to 1.0, at which every counter keeps at least 0.40 of the
+  Regular's area and every opening 0.61 of its width in the Bold and the Bold Italic (at 0.8 the 4's small
+  counter in ¼ ¾ fell to 0.37 in the Bold Italic, at 1.0 to 0.23). Their ink is now 1.36 to 1.43 of the
+  Regular's (it was 1.13 to 1.28).
+- **One rounding, the smooth joins kept smooth.** The drawing has no kinked smooth joins; rounding its short
+  handles to whole units made them, and in the sloped styles pathops chopped the sheared curves at extremes a
+  unit or two from their corners into pieces of 2 to 5 units: the Italic m had 8-degree joins at its arches and
+  10 to 14 degree clusters at its feet, and the h's shoulder met its stem in a 5-degree kink (Bold 12). Every
+  outline is now put on the grid once from the drawing (the sloped ones after the shear), each handle at the
+  whole-unit place truest to its direction, a join the drawing makes smooth on one tangent, and nodes only at
+  extremes a curve passes by more than a unit; an outline is kept only if its pieces and counters stand and it
+  lies within 1.5 units of the drawing. m, n and h have no kinked join in any style. Base letters and figures
+  with a kink of 5 degrees or more: Regular 37 → 23, Italic 53 → 22, Bold 43 → 29, Bold Italic 56 → 31 (all
+  glyphs 164 → 74, 230 → 87, 169 → 124, 242 → 130); what remains are the drawing's own shallow corners.
+- **The stems run straight to their feet.** h's left edge bulged out below its line (87 above y 160, 78 at
+  y 90, 82 at y 40; Bold 80, 71, 75), the prints' mean, where n, m and k run straight. An evened stem whose edge
+  bulges out past its line and comes back to the foot's corner now has its line carried on to the corner; a
+  foot that flares out (l.alt1's) is kept. Only h (9 units) and r.alt1 (3 and 4) qualified: h's edge runs at 86
+  to its foot (Bold 78).
+- **j's bar stands as i's does.** j's bar stood 22 units above its stem against i's 31 (Italic 22 and 30, Bold
+  11 and 20, Bold Italic 10 and 18, closest points); it now stands 31, 30, 19 and 19.
+
+Topology is unchanged from the release in every style, and no letter pair collides in any style. The proof,
+which shows font outlines only, is [proofs/third-pass.png](proofs/third-pass.png).
+
 ## Not changed
 
 The frame (every letter's size and place is Study 3's: the overlap fit to Study 3, recorded as
 `frame_check`, lies between 0.967 and 1.009), the named period, comma and quotes (traced anew from the same N45
 components, with N46's quotes averaged in, at the face's level), every modern construction but those the
-second pass names, the spacing method, the Bold's designed join in 6 and the legacy `DOTS` cluster
-(discarded by the builder, as before).
+second and third passes name, the spacing method, the Bold's designed join in 6 and the legacy `DOTS` cluster
+(discarded by the builder, as before). Left for a pass across all four faces: the design of ≈, the rings'
+weight in © ® @ ° ¤, and the mark anchors (mkmk, g with a top mark).
 
 ## Open questions
 

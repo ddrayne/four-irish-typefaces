@@ -381,8 +381,9 @@ def make_symbols(f):
     CUT = f.key == 'carrick'
     P, S, xh, st = f.P, f.S, f.xh, f.style
     # Small glyphs (superiors, fractions, the letters in ® and ©) in a bold are drawn lighter in
-    # proportion than its full-size letters, or their counters close: halfway to the regular's stem.
-    Ss = S if not f.bold else f.S_regular + 0.5 * (S - f.S_regular)
+    # proportion than its full-size letters, or their counters close: halfway to the regular's stem
+    # (SMALL_GLYPH_WEIGHT, where a face's finishing has found how far they can go).
+    Ss = S if not f.bold else f.S_regular + getattr(f, 'SMALL_GLYPH_WEIGHT', 0.5) * (S - f.S_regular)
     fig, asc, cap = f.fig, f.asc, f.cap
     top = fig if f.cfg['lining'] else xh * 1.05      # height of "figure-size" symbols
     t = f.hyphen_thick                                # bar weight for math and rules

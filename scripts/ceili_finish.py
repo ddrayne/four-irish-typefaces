@@ -24,6 +24,17 @@ The second pass (judged-edits.json, "second_pass"), from a review of the finishe
 - dot_foot(): the bold's dot of ! and ? brought down no further than the Regular's.
 - bar_spacing(): ð and đ spaced as d, the bar's overhang added to the advance.
 - euro(), yen(): € and ¥ standing with the figures.
+
+The third pass (judged-edits.json, "third_pass"), from a third review:
+- math_signs(): the bold's math signs with every piece grown about its own centre, the white beside a rule
+  kept as the Regular has it, rather than each piece set out from the bold's heavier rule.
+- quote_kerning(near=True): a double quote tucks in over a low foot no further than a single one.
+- the bold's small signs (build_original_study.bold_signs): the bullet drawn with the bold's pen, % ‰ and the
+  letters of @ © at its stem (at_sign()), superiors, fractions and ® at symbols.make_symbols' SMALL_GLYPH_WEIGHT.
+- settled(): an outline put on the whole-unit grid once, from the drawing before rounding, its smooth joins
+  kept smooth (round_smooth()), nodes only at extremes it passes by more than a unit (overshoot_extremes()).
+- straight_feet(): an evened stem carried straight down to its foot where its edge bulged out and back.
+- bar_gap(), set_bar_gap(): the bar over j as far above its stem as i's.
 """
 import math
 import numpy as np
@@ -751,7 +762,7 @@ QUOTES_AFTER = ('quoteright', 'quotedblright')                  # set after a le
 QUOTES_BEFORE = ('quoteleft', 'quotedblleft', 'quoteright')     # set before one: “an, ‘s, ’s é
 
 
-def quote_kerning(font, share, cap=350, over_foot=False):
+def quote_kerning(font, share, cap=350, over_foot=False, near=False):
     """Kerning between letters and quotes from one rule: the quote stands `share` of the n|n gap clear of
     the letter's upper part (from 0.55 x-height up), whatever the letter. The release's rule measured
     only where letter and quote share a height, so a letter whose top just reached the quote's foot
@@ -761,9 +772,14 @@ def quote_kerning(font, share, cap=350, over_foot=False):
     With `over_foot`, a quote may tuck in over the letter's lower part (the long foot of l, a leg) but
     never stand wholly over it: its far edge reaches at least the part's tip. Measured from the upper
     part alone, l’ set the quote over the foot 64 units from the stem, where it read as the apostrophe
-    of ľ."""
+    of ľ.
+
+    With `near` (the third pass), the far edge is that of the quote's piece nearest the letter, so that a
+    double quote tucks in no further than a single one (l” had stood its first comma 64 units from l's stem,
+    as l’ did before the rule), and the rule also holds for the pairs of ‘ and “ after a letter that the
+    builder's own kerning makes."""
     from spacing import profiles
-    from glyphs import bounds
+    from glyphs import bounds, contours
     xh, fin = font.xh, font.final
     target = share * font.neutral
     quotes = set(QUOTES_AFTER) | set(QUOTES_BEFORE)
@@ -777,6 +793,11 @@ def quote_kerning(font, share, cap=350, over_foot=False):
         return cache[n]
     def whole(n):
         b = bounds(fin[n]); return b[0], b[2]
+    def far(q, after):        # the quote's far edge from the letter: of its nearest piece, with `near`
+        if not near:
+            return whole(q)[1] if after else whole(q)[0]
+        bs = [bounds(c) for c in contours(fin[q])]
+        return min(bs, key=lambda b: b[0])[2] if after else max(bs, key=lambda b: b[2])[0]
     k5 = lambda v: int(round(v / 5.0) * 5)
     # over a lower part the quote's far edge reaches at least the part's tip: a kern no tighter (rounded up)
     floor = lambda v: int(math.ceil(v / 5.0) * 5) if over_foot else -cap
@@ -785,15 +806,23 @@ def quote_kerning(font, share, cap=350, over_foot=False):
         for q in QUOTES_AFTER:
             if q in fin:
                 gap = font.adv[a] + whole(q)[0] - upper(a)[1]
-                lo = floor(whole(a)[1] - font.adv[a] - whole(q)[1])
+                lo = floor(whole(a)[1] - font.adv[a] - far(q, True))
                 changed[(a, q)] = max(-cap, lo, min(0, k5(target - gap)))
     for q in QUOTES_BEFORE:
         if q not in fin:
             continue
         for b in letters:
             gap = font.adv[q] + upper(b)[0] - whole(q)[1]
-            lo = floor(whole(q)[0] - font.adv[q] - whole(b)[0])
+            lo = floor(far(q, False) - font.adv[q] - whole(b)[0])
             changed[(q, b)] = max(-cap, lo, min(0, k5(target - gap)))
+    if near and over_foot:
+        # the builder's own kerning sets ‘ and “ after a letter: the same floor holds for them
+        for a in letters:
+            for q in ('quoteleft', 'quotedblleft'):
+                if (a, q) in font.kern_pairs and q in fin:
+                    lo = floor(whole(a)[1] - font.adv[a] - far(q, True))
+                    if font.kern_pairs[(a, q)] < lo:
+                        changed[(a, q)] = lo
     for pair, k in changed.items():
         if k <= -15:
             font.kern_pairs[pair] = k
@@ -1089,3 +1118,317 @@ def yen(font, top, line, t):
                  SY.bar(st, ycx - 0.27 * xh, ycx + 0.27 * xh, 0.30 * top - 1.7 * t, 0.7 * t))
     b = bounds(q); k = line / (b[3] - b[1])
     return font.norm_x(SH.transform(q, (1, 0, 0, k, 0, -b[1] * k)))
+
+
+# ================================================================ the third pass
+# (research/ceili-judgement/judged-edits.json, "third_pass"; build_original_study.py applies each step)
+
+# ---------------------------------------------------------------- one rounding, its smooth joins kept smooth
+SMOOTH = 2.0           # degrees: a join of the exact outline that turns less than this is smooth, and stays so
+
+
+def overshoot_extremes(segs, beyond=1.0):
+    """Exact splits at a curve's interior extremes, where it passes them by more than `beyond` units beyond both
+    of its ends. An extreme a unit from a node needs no node of its own: a split there (extremes() splits at 4
+    units) leaves a sliver of a segment whose short handles the grid then turns by 10 to 14 degrees."""
+    out = []
+    for i, (k, p) in enumerate(segs):
+        if k != 'C':
+            out.append([k, list(p)]); continue
+        c = _ctrl(segs, i); ts = []
+        for ax in (0, 1):
+            p0, p1, p2, p3 = c[:, ax]
+            A = -p0 + 3 * p1 - 3 * p2 + p3; B = 2 * (p0 - 2 * p1 + p2); C = p1 - p0
+            if abs(A) < 1e-12:
+                roots = [-C / B] if abs(B) > 1e-12 else []
+            else:
+                disc = B * B - 4 * A * C
+                roots = [(-B + q * math.sqrt(disc)) / (2 * A) for q in (1, -1)] if disc >= 0 else []
+            for t in roots:
+                if 1e-3 < t < 1 - 1e-3:
+                    v = _bez(c, [t])[0][ax]
+                    if (v - p0) * (v - p3) > 0 and min(abs(v - p0), abs(v - p3)) > beyond:
+                        ts.append(t)
+        rest, done = c, 0.0
+        for t in sorted(set(round(t, 6) for t in ts)):
+            a, rest = _split_cubic(rest, (t - done) / (1 - done)); done = t
+            out.append(_seg('C', a))
+        out.append(_seg('C', rest))
+    return out
+
+
+def _unit(v):
+    n = float(np.linalg.norm(v))
+    return v / n if n > 1e-9 else None
+
+
+def _handle_error(q, node, d):
+    u = _unit(np.asarray(q, float) - node)
+    return 180.0 if u is None else abs(math.degrees(_angle(u, d)))
+
+
+def _handles(node, d, h, extra=6.0, k=12):
+    """Whole-unit handle positions about the ray from `node` along `d`, from a little shorter than the exact
+    handle `h` to `extra` units longer, the truest in direction first (to a quarter degree), then the nearest h."""
+    L = float(np.linalg.norm(h - node)); seen = {}
+    for e in np.arange(-min(2.0, 0.4 * L), extra + 0.01, 0.5):
+        ideal = node + d * max(L + e, 1.0)
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                q = (float(round(ideal[0]) + dx), float(round(ideal[1]) + dy))
+                if q not in seen:
+                    seen[q] = (round(_handle_error(q, node, d) * 4) / 4, float(np.linalg.norm(np.asarray(q) - h)))
+    return [q for q, _ in sorted(seen.items(), key=lambda kv: kv[1])[:k]]
+
+
+def _deviation(new, old):
+    A = _bez(np.asarray(new, float), np.linspace(0, 1, 32)); B = _bez(np.asarray(old, float), np.linspace(0, 1, 64))
+    return max(_dist(A, B, closed=False), _dist(B, A, closed=False))
+
+
+def round_smooth(segs, tol=1.0, loose=1.5):
+    """One contour of an exact outline put on the whole-unit grid: each node rounded, and each handle set at
+    the whole-unit place nearest its exact direction, a little longer where that points it truer (settle.py's
+    rule), while the curve stays within `tol` units (failing that `loose`) of the exact one. At a join the exact
+    outline draws smooth (turning under SMOOTH degrees) both handles take the join's one tangent, or the line's
+    direction where one side is a line; at a corner each keeps its own. Rounding handles of a few units on their
+    own turns them by up to 14 degrees, a visible kink along a curve."""
+    n = len(segs)
+    node = [np.asarray(segs[i][1][-1], float) for i in range(n)]
+    R = [np.round(q) for q in node]
+    tin = [_dirs(_ctrl(segs, i))[1] for i in range(n)]
+    tout = [_dirs(_ctrl(segs, (i + 1) % n))[0] for i in range(n)]
+    din, dout = list(tin), list(tout)
+    for i in range(n):
+        if abs(math.degrees(_angle(tin[i], tout[i]))) >= SMOOTH:
+            continue
+        j = (i + 1) % n
+        d = _unit(R[i] - R[i - 1]) if segs[i][0] == 'L' else _unit(R[j] - R[i]) if segs[j][0] == 'L' else _unit(tin[i] + tout[i])
+        if d is not None:
+            din[i] = dout[i] = d
+    out = []
+    for j in range(n):
+        k, p = segs[j]
+        if k == 'L':
+            out.append(['L', [tuple(R[j])]]); continue
+        a, b, old = R[j - 1], R[j], _ctrl(segs, j)
+        h1, h2 = old[1] - old[0] + a, old[2] - old[3] + b
+        plain = (tuple(np.round(old[1])), tuple(np.round(old[2])))
+        c1s = [tuple(a)] if np.linalg.norm(old[1] - old[0]) < 0.5 else _handles(a, dout[j - 1], h1) + [plain[0]]
+        c2s = [tuple(b)] if np.linalg.norm(old[2] - old[3]) < 0.5 else _handles(b, -din[j], h2) + [plain[1]]
+        err = lambda q, at, d: 0.0 if q == tuple(at) else _handle_error(q, at, d)
+        best = None
+        for limit in (tol, loose):
+            for c1 in c1s:
+                for c2 in c2s:
+                    e = max(err(c1, a, dout[j - 1]), err(c2, b, -din[j]))
+                    if best is not None and e >= best[0]:
+                        continue
+                    if _deviation([a, c1, c2, b], old) <= limit:
+                        best = (e, c1, c2)
+            if best is not None:
+                break
+        c1, c2 = (best[1], best[2]) if best is not None else plain
+        out.append(['C', [tuple(map(float, c1)), tuple(map(float, c2)), tuple(map(float, b))]])
+    return out
+
+
+def _dense_points(p, step=0.5):
+    return np.vstack([_dense([[k, list(q)] for k, q in segs], step) for segs in F._contours(recording(p))])
+
+
+def ink_distance(p, q):
+    """The furthest any point of either outline lies from the other (to a quarter unit)."""
+    from scipy.spatial import cKDTree
+    A, B = _dense_points(p), _dense_points(q)
+    return max(float(cKDTree(B).query(A)[0].max()), float(cKDTree(A).query(B)[0].max()))
+
+
+def missing_extremes(p, margin=1.5):
+    return any(k == 'C' and _interior_extreme(_ctrl(segs, i), margin=margin)
+               for segs in F._contours(recording(p)) for i, (k, _) in enumerate(segs))
+
+
+def settled(exact, current, sloped=False, keep=1.5, cap=2.0, tol=1.0):
+    """`exact` (an outline before the builder rounds it) put on the whole-unit grid once by round_smooth(),
+    after nodes at the extremes it passes by more than a unit (and, when `sloped`, with the nodes the shear
+    left redundant removed, as sloped() removes them). Returned in place of `current` (the builder's rounding
+    of the same outline, which can stray 1.7 units from it where it was rounded twice) only if it keeps
+    current's pieces and counters, lies within `keep` units of the exact outline and `cap` of current's ink,
+    and leaves no extreme without a node and no run of facets; otherwise current is kept.
+
+    The result is not simplified again (as build2.final_clean would): the drawing is simplified already, and
+    pathops chops a sheared curve at the x-extreme it passes a unit or two from a corner, which is where the
+    release's sloped clusters of 2 to 5 unit pieces came from. It is refused if rounding has made it overlap."""
+    import pathops, settle
+    cs = [overshoot_extremes([[k, list(q)] for k, q in segs]) for segs in F._contours(recording(exact))]
+    rec = economy(F._record(cs), tol=1.0) if sloped else F._record(cs)
+    rec = F._record([round_smooth([[k, list(q)] for k, q in segs], tol=tol, loose=keep) for segs in F._contours(rec)])
+    q = path(rec)
+    if missing_extremes(q):
+        # an extreme the grid moved past its node: a node there, its handles level (settle.py)
+        q = path(settle._record([settle._extremes(segs) for segs in settle._contours(recording(q))]))
+    simple = pathops.simplify(q, fix_winding=True, keep_starting_points=False, clockwise=False)
+    if (abs(simple.area - q.area) > 1.0 or topology(q) != topology(current) or missing_extremes(q)
+            or polygonal(recording(q)) or ink_distance(q, exact) > keep or ink_distance(q, current) > cap):
+        return current
+    return q
+
+
+# ---------------------------------------------------------------- stems run straight to their feet
+def _reversed(segs):
+    """A closed contour drawn the other way round (the same nodes and handles)."""
+    n = len(segs); node = lambda i: tuple(segs[i % n][1][-1])
+    return [['L', [node(i - 1)]] if segs[i][0] == 'L' else ['C', [tuple(segs[i][1][1]), tuple(segs[i][1][0]), node(i - 1)]]
+            for i in reversed(range(n))]
+
+
+def _carry_edge(segs, si, out, least, corner=35.0):
+    """Segment si of `segs` is a stem's straight edge, its lower end its end node; `out` is +1 where the edge
+    faces right, -1 left. The smooth run of segments that follows it down to the foot's first corner is drawn
+    as the edge carried on, if it bulges out past the edge by more than `least` and comes back in to the
+    corner (within `least` of the edge): a foot that flares out to its corner (l.alt1's) is drawn so. Returns
+    the new contour and the bulge, or None."""
+    n = len(segs); line_x = float(segs[si][1][-1][0])
+    run, j = [], si
+    for _ in range(n - 1):
+        k2 = (j + 1) % n
+        c_in, c_out = _ctrl(segs, j), _ctrl(segs, k2)
+        if run and abs(math.degrees(_angle(_dirs(c_in)[1], _dirs(c_out)[0]))) >= corner:
+            break
+        if c_out[3][1] >= c_out[0][1]:                     # the edge has turned into the foot
+            break
+        run.append(k2); j = k2
+    if not run or (len(run) == 1 and segs[run[0]][0] == 'L'):
+        return None
+    pts = np.vstack([_bez(_ctrl(segs, i), np.linspace(0, 1, 24)) for i in run])
+    bulge = float(((pts[:, 0] - line_x) * out).max())
+    last = run[-1]; corner_pt = np.asarray(segs[last][1][-1], float)
+    if bulge <= least or (corner_pt[0] - line_x) * out > least:
+        return None
+    dx = line_x - corner_pt[0]; new_corner = (line_x, float(corner_pt[1]))
+    nxt = (last + 1) % n
+    segs = [[k, list(p)] for k, p in segs]
+    if segs[nxt][0] == 'C':
+        c1 = segs[nxt][1][0]; segs[nxt][1][0] = (c1[0] + dx, c1[1])
+    segs[si] = ['L', [new_corner]]                       # the edge's line, carried on down to the corner
+    gone = set(run)
+    return [s for i, s in enumerate(segs) if i not in gone], round(bulge, 1)
+
+
+def straight_feet(p, specs, height, least=2.0):
+    """A letter's straight stems (specs: [fraction of height, run index], as even_stems() takes them) carried
+    straight down to their feet: where an edge, below its straight line, bulges out past the line by more than
+    `least` units before the foot's corner (the h's left foot stood 9 units out, the prints' mean, where n's,
+    m's and k's run straight), the line is carried on to the corner instead. Returns (path, report)."""
+    import kilfane_studio as KS
+    cs = [[[k, list(q)] for k, q in segs] for segs in F._contours(recording(p))]
+    report = []
+    for frac, run in specs:
+        y = frac * height
+        st = KS.stem(cs, y, run)
+        if st is None:
+            continue
+        for x, out in ((st[0], -1), (st[1], 1)):
+            for ci, segs in enumerate(cs):
+                hit = None
+                for si, (k, q) in enumerate(segs):
+                    a, b = _start(segs, si), _a(q[-1])
+                    if k == 'L' and abs(a[0] - b[0]) < 0.5 and min(a[1], b[1]) <= y <= max(a[1], b[1]) and abs(a[0] - x) < 1.0:
+                        hit = (si, a[1] > b[1])
+                if hit is None:
+                    continue
+                si, downward = hit
+                work = segs if downward else _reversed(segs)
+                if not downward:
+                    si = len(segs) - 1 - si
+                r = _carry_edge(work, si, out, least)
+                if r is not None:
+                    cs[ci] = r[0] if downward else _reversed(r[0])
+                    report.append(dict(stem=[frac, run], side='left' if out < 0 else 'right', bulge=r[1]))
+                break
+    return path(F._record(cs)), report
+
+
+# ---------------------------------------------------------------- the bar over i and j
+def bar_gap(p):
+    """The distance from a glyph's highest piece (the bar over i or j) to the rest of it."""
+    from scipy.spatial import cKDTree
+    from glyphs import contours, bounds
+    cs = sorted(contours(p), key=lambda c: bounds(c)[1])
+    if len(cs) < 2:
+        return None
+    top = outline_points(cs[-1]); rest = np.vstack([outline_points(c) for c in cs[:-1]])
+    return float(cKDTree(rest).query(top)[0].min())
+
+
+def set_bar_gap(p, gap, tries=6):
+    """p with its highest piece moved up or down until it stands `gap` from the rest (to a tenth of a unit)."""
+    import shapes as SH
+    from glyphs import contours, bounds, translate
+    for _ in range(tries):
+        now = bar_gap(p)
+        if now is None or abs(now - gap) < 0.1:
+            break
+        cs = sorted(contours(p), key=lambda c: bounds(c)[1])
+        p = SH.union(*cs[:-1], translate(cs[-1], 0, gap - now))
+    return p
+
+
+# ---------------------------------------------------------------- the bold's @
+def at_sign(f, rule, light):
+    """symbols.make_symbols' @ (the face's a in a ring 0.7 `rule` thick), its a drawn at the bold's whole stem
+    and made smaller, about the ring's centre, where it must be to keep the white that the release's a (drawn
+    at the stem `light`) had inside the ring: at the whole stem alone its corner met the ring. Returns the
+    glyph and that white."""
+    import shapes as SH, symbols as SY
+    from glyphs import bounds, translate
+    P, S, xh = f.P, f.S, f.xh
+    R = 0.64 * xh + 0.25 * S; ccx, ccy = R, 0.42 * xh; rt = 0.7 * rule
+    ring = SY.ring(ccx, ccy, R, rt)
+    def a(Ss):
+        q = SY.scaled(P['a'], 0.74, S, 0.85, Ss); b = bounds(q)
+        return translate(q, ccx - (b[0] + b[2]) / 2 + 0.02 * xh, ccy - (b[1] + b[3]) / 2)
+    white = SY.clearance(a(light), ring)
+    return f.norm_x(SH.union(SY.inside_ring(a(S), ccx, ccy, R - rt, white), ring)), white
+
+
+# ---------------------------------------------------------------- the bold's math signs
+def math_signs(f, tr, dot, marks_r):
+    """The bold's math signs (symbols.make_symbols' constructions), every piece drawn at the bold's weight about
+    its Regular counterpart's own centre. Before, each was set out from the bold's rule weight, so the pieces
+    moved apart: = 157 between its bars against the Regular's 105, the bar of ± down to -121. A piece stacked
+    over a rule keeps the Regular's white to it (= and ≈ about the axis, the underbars of ± ≤ ≥ under the plus
+    and the chevron, so ≠ too); the dots of ÷ are the Regular's drawn with the bold's pen, about their own
+    centres; ~ and ^, which grew upward only, grow about their own. `tr` is the Regular's rule weight, `dot` its
+    ÷ dot and `marks_r` its tilde and circumflex. Returns the new ink extents."""
+    import shapes as SH
+    from glyphs import bounds, translate
+    from symbols import bar, vbar, chevron
+    from marks import stroke_polyline
+    P, xh, st, t, yc = f.P, f.xh, f.style, f.hyphen_thick, f.hyphen_yc
+    L = 0.95 * xh
+    def put(n, p):
+        P[n] = f.norm_x(p)
+    o = 0.65 * tr + t / 2                                 # the Regular's bars at yc +- 1.15 tr: 1.3 tr of white
+    put('equal', SH.union(bar(st, 0, L, yc - o, t), bar(st, 0, L, yc + o, t)))
+    eq = P['equal']; eb = bounds(eq)
+    put('notequal', SH.union(eq, stroke_polyline([(eb[0] + 0.25 * L, yc - 0.42 * L), (eb[0] + 0.75 * L, yc + 0.42 * L)], t, st)))
+    pc = yc + 0.18 * xh; lo = pc - L / 2.2                # the plus, and under it a bar 1.1 tr clear
+    put('plusminus', SH.union(bar(st, 0, L, pc, t), vbar(st, L / 2, lo, pc + L / 2.2, t), bar(st, 0, L, lo - 1.1 * tr - t / 2, t)))
+    cw, chh = 0.66 * xh, 0.84 * xh; y0 = yc - 0.18 * chh      # the chevron's lower arm, and a bar 0.6 tr under it
+    for n, left in (('lessequal', True), ('greaterequal', False)):
+        put(n, SH.union(translate(chevron(st, cw, 0.62 * chh, t, left), 0, y0), bar(st, 0, cw, y0 - 0.6 * tr - t, t)))
+    db = bounds(dot); h = db[3] - db[1]; pen = f.bold_pieces(dot); pb = bounds(pen)
+    cx = L / 2 - (pb[0] + pb[2]) / 2
+    put('divide', SH.union(bar(st, 0, L, yc, t), *[translate(pen, cx, y - (pb[1] + pb[3]) / 2)
+                                                    for y in (yc + 1.4 * tr + h / 2, yc - 1.4 * tr - h / 2)]))
+    tw = bounds(f.marks['tilde']); tl = SH.transform(f.marks['tilde'], (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); tb = bounds(tl)
+    put('approxequal', SH.union(translate(tl, -tb[0], yc + 0.6 * tr - tb[1]), translate(tl, -tb[0], yc - 0.6 * tr - tb[3])))
+    for n, mark, k, base in (('asciitilde', 'tilde', 1.4, yc - 0.10 * xh), ('asciicircum', 'circumflex', 1.35, None)):
+        b, r = bounds(P[n]), bounds(marks_r[mark])
+        bottom = base if base is not None else b[1]
+        centre = bottom + k * (r[3] - r[1]) / 2              # where the Regular's stands: its mark sits on `bottom`
+        P[n] = translate(P[n], 0, centre - (b[1] + b[3]) / 2)
+    return {n: [round(v) for v in bounds(P[n])[1::2]] for n in
+            ('equal', 'notequal', 'plusminus', 'lessequal', 'greaterequal', 'divide', 'approxequal', 'asciitilde', 'asciicircum')}
