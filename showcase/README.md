@@ -16,9 +16,9 @@ plate and the poster maker's blue wall are art-directed, the same in both themes
 | Hero | `js/hero.js` | Every letter of *ceithre chló* is a cell that changes face under the pointer, printed in two overprinting inks over a third-ink sun |
 | Results | `js/board.js` | The 1978 awards as the competition brochure gives them, a band in each face's colours, each name fitted to its row |
 | The flyer | `js/evidence.js` | The scan at its real pixels, with the outlines and their points drawn over it and a wipe between print and font |
-| Céilí | `js/ceili.js` | Letters dance to a synthesised bodhrán (jig, reel, slip jig, polka) and change into their alternates on the beat |
-| Carrick | `js/carrick.js` | *Carraig*, rock: letters fall and stack into a drystone wall (Matter.js physics on each letter's hull) |
-| Kilfane | `js/kilfane.js` | Rub letters down from transfer sheet S53909 onto a cutting mat, by hand or by typing a word; accents come from the sheet's loose marks |
+| Céilí | `js/ceili.js` | Choose your letters: tap a letter to cycle its other forms (insular r and s, uncial a and n, the second a, d, e, j, l and v), or set the whole line in one hand; the line is real text, so it keeps the face's own spacing |
+| Carrick | `js/carrick.js` | *Carraig*, rock: letters tumble in as stones (Matter.js physics on each letter's hull) and settle into courses of set type, each where the font's spacing and kerning put it; a stone knocked out finds its way back, and Shake brings the wall down |
+| Kilfane | `js/kilfane.js` | Capitals and three forms: a line set large on a cutting mat over its cap height, x-height and baseline, in its standard, Roman (ss01) or insular (ss02) forms, in four styles, and in capitals as Irish writes them (nÓG); each change is rubbed down letter by letter, as from a transfer sheet |
 | Tuam Uncial | `js/tuam.js` | An insular page: counters filled with pigment, red-lead dots traced round the initial, generated knotwork |
 | Studies | `js/study.js` | Each face's latest study from the archive beside the release, closed until opened, its letters overprinted in two inks |
 | Posters | `js/poster.js` | A two-ink risograph poster: ten ready-made posters with Irish phrases to start from, ten layouts, a face, style and alternates for each ink, fourteen inks, six papers, six sheet sizes, three finishes; saved as a PNG at print size, or as clean vectors (SVG, and a PDF with each ink's plate on its own page) |

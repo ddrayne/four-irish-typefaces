@@ -1,94 +1,269 @@
-import { $, reduced, loadFace, watchVisible, rng } from './util.js';
+import { $, $$, reduced, loadFace, rng, lcs, slideFrom, watchVisible } from './util.js';
 
-// Céilí's letters dance to a bodhrán. The drum is synthesised (a pitched thump for
-// the skin, filtered noise for the slap), scheduled ahead on the audio clock, and the
-// dancers move on the same clock so they land exactly on the beat. On strong beats
-// letters with alternates change into them: insular r and s, uncial a and n, and so on.
+// Choose your letters. Céilí has other forms for some letters, in three stylistic sets:
+// insular r and s (ss01), uncial a and n (ss02), and alternate a, d, e, j, l and v (ss03).
+// The line is real text, set by the browser with the face's own spacing; a letter with
+// other forms is a button that cycles them, and the whole line can be set in one hand.
+// A change is gentle: the letter fades up and out, comes back in its new form, and the
+// letters after it slide to where the face now sets them.
 
-const RHYTHMS = {
-  // pulse: milliseconds per eighth note at 100% tempo; accents per eighth; where the second strong beat falls
-  jig: { pulse: 178, acc: [1, .3, .5, .85, .3, .5], half: 3 },
-  reel: { pulse: 140, acc: [1, .3, .6, .3, .85, .3, .6, .3], half: 4 },
-  slip: { pulse: 168, acc: [1, .3, .5, .85, .3, .5, .85, .3, .5], half: 3 },
-  polka: { pulse: 215, acc: [1, .35, .8, .35], half: 2 },
-};
-
-function noiseBuffer(ctx) {
-  const buf = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate);
-  const d = buf.getChannelData(0);
-  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-  return buf;
-}
-
-function drum(ctx, out, noise, t, acc) {
-  const deep = acc > 0.7;
-  // the skin: a sine that drops in pitch
-  const o = ctx.createOscillator();
-  const og = ctx.createGain();
-  o.type = 'sine';
-  o.frequency.setValueAtTime(deep ? 105 : 175, t);
-  o.frequency.exponentialRampToValueAtTime(deep ? 46 : 92, t + (deep ? 0.22 : 0.1));
-  og.gain.setValueAtTime(0.0001, t);
-  og.gain.exponentialRampToValueAtTime(0.85 * acc, t + 0.004);
-  og.gain.exponentialRampToValueAtTime(0.0001, t + (deep ? 0.5 : 0.16));
-  o.connect(og).connect(out);
-  o.start(t); o.stop(t + 0.55);
-  // the slap of the tipper: band-passed noise
-  const n = ctx.createBufferSource();
-  n.buffer = noise;
-  const bp = ctx.createBiquadFilter();
-  bp.type = 'bandpass'; bp.frequency.value = deep ? 340 : 1400; bp.Q.value = deep ? 0.9 : 1.4;
-  const ng = ctx.createGain();
-  ng.gain.setValueAtTime(0.0001, t);
-  ng.gain.exponentialRampToValueAtTime((deep ? 0.5 : 0.22) * acc, t + 0.002);
-  ng.gain.exponentialRampToValueAtTime(0.0001, t + (deep ? 0.09 : 0.05));
-  n.connect(bp).connect(ng).connect(out);
-  n.start(t, Math.random() * 0.4); n.stop(t + 0.12);
-}
+const NAMES = { ss01: 'insular', ss02: 'uncial', ss03: 'alternate' };
+const MODES = [
+  { id: 'plain', label: 'Plain', preview: [['a', null], ['n', null], ['r', null], ['s', null]] },
+  { id: 'ss01', label: 'Insular', preview: [['r', 'ss01'], ['s', 'ss01']] },
+  { id: 'ss02', label: 'Uncial', preview: [['a', 'ss02'], ['n', 'ss02']] },
+  { id: 'ss03', label: 'Alternate', preview: [['a', 'ss03'], ['d', 'ss03'], ['e', 'ss03'], ['l', 'ss03'], ['v', 'ss03']] },
+  { id: 'mixed', label: 'Mixed', preview: [['r', 'ss01'], ['a', 'ss02'], ['d', 'ss03']] },
+];
+const feat = (tag) => (tag ? `"${tag}" 1` : 'normal');
 
 export async function init(root, data) {
-  await Promise.all([loadFace('ceili'), loadFace('ceili', 700)]);
-  const floor = $('[data-dance-floor]', root);
-  const line = $('[data-dance-line]', root);
-  const input = $('[data-dance-text]', root);
-  const play = $('[data-dance-play]', root);
-  const rhythmSel = $('[data-dance-rhythm]', root);
-  const tempo = $('[data-dance-tempo]', root);
-  const sound = $('[data-dance-sound]', root);
+  await loadFace('ceili');
   const section = root.closest('section');
+  const floor = $('[data-choose-floor]', root);
+  const line = $('[data-choose-line]', root);
+  const said = $('[data-choose-said]', root);
+  const live = $('[data-choose-live]', root);
+  const input = $('[data-choose-text]', root);
+  const modesHost = $('[data-choose-modes]', root);
+  const formsHost = $('[data-choose-forms]', root);
   const buntingHost = $('[data-bunting]', section);
+  const rand = rng(1978);
 
-  // Which letters have alternates, and under which stylistic set.
-  const alts = {};
-  for (const set of data.faces.ceili.sets) for (const ch of set.chars.toLowerCase()) (alts[ch] ||= []).push(set.tag);
+  // Which letters each set changes. The face is unicase, so a capital in the list stands
+  // for both cases; a lower-case letter (j) only for itself. Accented letters follow their base.
+  const sets = data.faces.ceili.sets.map((s) => {
+    const has = new Set();
+    for (const c of s.chars) { has.add(c); if (c !== c.toLowerCase()) has.add(c.toLowerCase()); }
+    return { tag: s.tag, label: s.label, has };
+  });
+  const formsOf = (ch) => [null, ...sets.filter((s) => s.has.has(ch.normalize('NFD')[0])).map((s) => s.tag)];
+  const formName = (tag) => (tag ? NAMES[tag] || tag : 'standard');
 
-  let dancers = [];
-  function setLine(text) {
-    line.textContent = '';
-    dancers = [...text].map((ch, i) => {
-      const d = document.createElement('span');
-      d.className = ch === ' ' ? 'dancer space' : 'dancer';
-      if (ch !== ' ') {
-        const g = document.createElement('span');
-        g.className = 'g';
-        g.style.display = 'inline-block';
-        g.textContent = ch;
-        const sh = document.createElement('i');
-        d.append(g, sh);
+  let letters = [];       // {ch, word, forms, k, el}
+  let mode = 'plain', current = null;
+
+  // ------------------------------------------------------------------ the line
+  function build(text, keep = []) {
+    line.replaceChildren();
+    letters = [];
+    for (const part of text.split(/(\s+)/)) {
+      if (!part) continue;
+      if (/^\s+$/.test(part)) { line.append(' '); continue; }
+      const w = document.createElement('span');
+      w.className = 'cw';
+      for (const ch of part) {
+        const el = document.createElement('span');
+        el.className = 'cl';
+        el.textContent = ch;
+        const L = { ch, word: part, forms: formsOf(ch), k: 0, el };
+        if (L.forms.length > 1) {
+          el.classList.add('can');
+          el.setAttribute('role', 'button');
+          el.tabIndex = -1;
+          el.addEventListener('click', () => { pick(L); cycle(L); });
+          el.addEventListener('focus', () => pick(L));
+        } else el.setAttribute('aria-hidden', 'true');
+        w.appendChild(el);
+        letters.push(L);
       }
-      line.appendChild(d);
-      return { el: d, g: d.firstChild, sh: d.lastChild, ch, i, sets: alts[ch.toLowerCase()] || [], alt: 0 };
-    });
-    // Keep the line inside the floor.
-    line.style.fontSize = '';
-    const max = floor.clientWidth * 0.92;
-    const w = line.scrollWidth;
-    if (w > max) line.style.fontSize = `${parseFloat(getComputedStyle(line).fontSize) * (max / w)}px`;
+      line.appendChild(w);
+    }
+    // carry over the forms of the letters that are still there; new ones follow the line's hand
+    const kept = new Set();
+    for (const [i, j] of lcs(keep.map((l) => l.ch), letters.map((l) => l.ch))) { letters[j].k = keep[i].next ?? keep[i].k; kept.add(j); }
+    letters.forEach((L, j) => { if (!kept.has(j)) L.k = mode ? target(L, mode) : 0; });
+    letters.forEach(paint);
+    const can = letters.filter((L) => L.forms.length > 1);
+    (can.find((L) => L === current) || can[0])?.el.setAttribute('tabindex', '0');
+    if (!can.includes(current)) current = null;
+    said.textContent = text;
+    fit();
+    showForms();
   }
-  setLine(input.value);
-  input.addEventListener('input', () => setLine(input.value || ' '));
 
-  // Bunting across the top of the hall.
+  function paint(L) {
+    const tag = L.forms[L.k];
+    L.el.style.fontFeatureSettings = feat(tag);
+    if (tag) L.el.dataset.set = tag; else delete L.el.dataset.set;
+    if (L.forms.length > 1) L.el.setAttribute('aria-label', `${L.ch} in ${L.word}: ${formName(tag)}, ${L.k + 1} of ${L.forms.length}`);
+  }
+
+  // As large as the floor allows: two lines at most on a wide floor, three on a phone,
+  // with a little room to spare for a wider form.
+  const widest = () => Math.max(0, ...$$('.cw', line).map((w) => w.getBoundingClientRect().width));
+  function fit() {
+    const avail = floor.clientWidth;
+    if (!avail) return;
+    const pad = parseFloat(getComputedStyle(floor).paddingLeft) * 2;
+    const maxLines = avail > 700 ? 2 : 3;
+    const hi = Math.min(170, Math.max(40, (avail - pad) / 3.4));
+    for (let s = Math.floor(hi); s >= 30; s -= 3) {
+      line.style.fontSize = `${s}px`;
+      const rows = new Set($$('.cw', line).map((w) => w.offsetTop)).size;
+      if (rows <= maxLines && widest() <= line.clientWidth - s * 0.25) return;
+    }
+  }
+
+  // ------------------------------------------------------------------ changing a letter
+  // the letter fades up and out, and back in its new form; the rest slide to their new places
+  const fade = (el, from, to, duration, easing, fill = 'none') => {
+    el.animate([{ top: from }, { top: to }], { duration, easing, composite: 'add' });
+    return el.animate([{ opacity: from === '0em' ? 1 : 0 }, { opacity: from === '0em' ? 0 : 1 }], { duration, easing, fill });
+  };
+  function change(L, k, quiet = false) {
+    if (k === (L.next ?? L.k)) return;
+    const first = L.next === undefined;
+    L.next = k;
+    const swap = () => {
+      if (L.next === undefined || !L.el.isConnected) return;
+      const els = letters.map((l) => l.el);
+      const before = els.map((el) => el.getBoundingClientRect());
+      L.k = L.next;
+      L.next = undefined;
+      L.out?.cancel();
+      paint(L);
+      if (widest() > line.clientWidth) fit();   // a wider form no longer fits
+      if (!reduced()) {
+        slideFrom(els.map((el) => (el === L.el ? null : el)), before);
+        fade(L.el, '.16em', '0em', 380, 'cubic-bezier(.2, .7, .2, 1)');
+      }
+      if (L === current) showForms();
+    };
+    if (reduced()) swap();
+    else if (first) (L.out = fade(L.el, '0em', '-.14em', 150, 'ease-in', 'forwards')).onfinish = swap;
+    flutter(letters.indexOf(L));
+    if (!quiet) live.textContent = `${L.ch}: ${formName(L.forms[k])}`;
+  }
+  function cycle(L) { setMode(null); change(L, ((L.next ?? L.k) + 1) % L.forms.length); }
+
+  function target(L, m) {
+    if (m === 'plain') return 0;
+    if (m === 'mixed') return (rand() * L.forms.length) | 0;
+    return Math.max(0, L.forms.indexOf(m));
+  }
+  // A mix that uses every set it can: each letter takes the form least used so far.
+  function mix(can) {
+    const used = {};
+    return can.map((L) => {
+      if (rand() < 0.15) return 0;
+      const opts = L.forms.map((t, k) => [t, k]).filter(([t]) => t).sort((a, b) => (used[a[0]] || 0) - (used[b[0]] || 0) || rand() - 0.5);
+      used[opts[0][0]] = (used[opts[0][0]] || 0) + 1;
+      return opts[0][1];
+    });
+  }
+  function wholeLine(m) {
+    setMode(m);
+    const can = letters.filter((L) => L.forms.length > 1);
+    if (m === 'mixed') {
+      // a fresh mix each time, never the same as the line already is
+      let ks;
+      for (let tries = 0; tries < 8; tries++) {
+        ks = mix(can);
+        if (ks.some((k, i) => k !== can[i].k)) break;
+      }
+      can.forEach((L, i) => setTimeout(() => change(L, ks[i], true), reduced() ? 0 : i * 70));
+    } else can.forEach((L, i) => setTimeout(() => change(L, target(L, m), true), reduced() ? 0 : i * 55));
+    live.textContent = m === 'plain' ? 'The whole line in its standard letters' : m === 'mixed' ? 'The whole line mixed' : `The whole line with ${NAMES[m]} letters`;
+  }
+
+  // ------------------------------------------------------------------ the whole line at once
+  const modeBtns = MODES.map((m) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'tog cm';
+    b.dataset.mode = m.id;
+    b.setAttribute('role', 'radio');
+    b.setAttribute('aria-checked', 'false');
+    const g = document.createElement('span');
+    g.className = 'cm-g f-ceili';
+    g.setAttribute('aria-hidden', 'true');
+    for (const [ch, tag] of m.preview) {
+      const s = document.createElement('span');
+      s.textContent = ch;
+      s.style.fontFeatureSettings = feat(tag);
+      g.append(s);
+    }
+    b.append(g, m.label);
+    b.addEventListener('click', () => wholeLine(m.id));
+    modesHost.appendChild(b);
+    return b;
+  });
+  function setMode(m) {
+    mode = m;
+    modeBtns.forEach((b, i) => {
+      b.setAttribute('aria-checked', String(b.dataset.mode === m));
+      b.tabIndex = b.dataset.mode === m || (!m && i === 0) ? 0 : -1;
+    });
+  }
+  // a radio group is one stop for the keyboard; the arrows move along it
+  modesHost.addEventListener('keydown', (e) => {
+    const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (!dir) return;
+    e.preventDefault();
+    const i = modeBtns.indexOf(document.activeElement);
+    const b = modeBtns[(i + dir + modeBtns.length) % modeBtns.length];
+    b.focus(); b.click();
+  });
+
+  // ------------------------------------------------------------------ the letter's forms, side by side
+  function pick(L) {
+    if (current === L) return;
+    current = L;
+    letters.forEach((l) => { if (l.forms.length > 1) l.el.tabIndex = l === L ? 0 : -1; l.el.classList.toggle('on', l === L); });
+    showForms();
+  }
+  function showForms() {
+    formsHost.replaceChildren();
+    if (!current) {
+      const p = document.createElement('p');
+      p.className = 'cf-hint';
+      p.textContent = 'Tap a letter with a dot under it to see its other forms.';
+      formsHost.appendChild(p);
+      return;
+    }
+    const L = current;
+    const head = document.createElement('p');
+    head.className = 'cf-head mono';
+    head.textContent = `${L.ch} · ${L.forms.length} forms`;
+    const row = document.createElement('div');
+    row.className = 'cf-row';
+    row.setAttribute('role', 'group');
+    row.setAttribute('aria-label', `Forms of ${L.ch}`);
+    L.forms.forEach((tag, k) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cf';
+      if (tag) b.dataset.set = tag;
+      b.setAttribute('aria-pressed', String(k === L.k));
+      const g = document.createElement('span');
+      g.className = 'cf-g f-ceili';
+      g.textContent = L.ch;
+      g.style.fontFeatureSettings = feat(tag);
+      g.setAttribute('aria-hidden', 'true');
+      const t = document.createElement('span');
+      t.className = 'cf-t mono';
+      t.textContent = tag ? `${formName(tag)} · ${tag}` : 'standard';
+      b.append(g, t);
+      b.setAttribute('aria-label', `${L.ch}, ${formName(tag)}${tag ? ` (${tag})` : ''}`);
+      b.addEventListener('click', () => { setMode(null); change(L, k); });
+      row.appendChild(b);
+    });
+    formsHost.append(head, row);
+  }
+
+  // the letters are one stop for the keyboard too: arrows move, Enter or Space changes
+  line.addEventListener('keydown', (e) => {
+    const can = letters.filter((L) => L.forms.length > 1);
+    const i = can.indexOf(current);
+    if (e.key === 'Enter' || e.key === ' ') { if (current) { e.preventDefault(); cycle(current); } return; }
+    const to = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: can.length - 1 }[e.key];
+    if (to === undefined || !can.length) return;
+    e.preventDefault();
+    can[(to + can.length) % can.length].el.focus();
+  });
+
+  // ------------------------------------------------------------------ bunting across the hall
   let flags = buildBunting(buntingHost);
   let lastW = buntingHost?.clientWidth;
   if (buntingHost) new ResizeObserver(() => {
@@ -97,120 +272,29 @@ export async function init(root, data) {
     buntingHost.replaceChildren();
     flags = buildBunting(buntingHost);
   }).observe(buntingHost);
-
-  // ------------------------------------------------------------------ moves
-  const live = () => dancers.filter((d) => d.g && d.g.nodeType === 1);
-  function hop(d, unit, high) {
-    const tilt = (d.i % 2 ? -1 : 1) * (high ? 7 : 3);
-    d.g.animate([
-      { transform: 'translateY(0) scale(1,1)' },
-      { transform: 'translateY(0) scale(1.07,.9)', offset: 0.12 },
-      { transform: `translateY(${high ? -0.3 : -0.1}em) scale(.96,1.05) rotate(${tilt}deg)`, offset: 0.45 },
-      { transform: 'translateY(0) scale(1.05,.95)', offset: 0.86 },
-      { transform: 'none' },
-    ], { duration: unit * (high ? 2.3 : 1.4), easing: 'ease-out' });
-    d.sh.animate([{ transform: 'scaleX(1)', opacity: 1 }, { transform: 'scaleX(.55)', opacity: 0.4, offset: 0.45 }, { transform: 'scaleX(1)', opacity: 1 }],
-      { duration: unit * (high ? 2.3 : 1.4), easing: 'ease-out' });
-  }
-  function swing(a, b, dur) {
-    const ra = a.el.getBoundingClientRect(), rb = b.el.getBoundingClientRect();
-    const half = (rb.left + rb.width / 2 - (ra.left + ra.width / 2)) / 2;
-    const frames = (sign) => Array.from({ length: 13 }, (_, k) => {
-      const th = (k / 12) * Math.PI * 2;
-      const x = sign * (half - half * Math.cos(th));
-      const y = -sign * half * 0.32 * Math.sin(th);
-      return { transform: `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)` };
-    });
-    a.el.animate(frames(1), { duration: dur, easing: 'ease-in-out' });
-    b.el.animate(frames(-1), { duration: dur, easing: 'ease-in-out' });
-  }
-  function costume(d) {
-    if (!d.sets.length) return;
-    d.alt = (d.alt + 1) % (d.sets.length + 1);
-    d.g.style.fontFeatureSettings = d.alt ? `"${d.sets[d.alt - 1]}" 1` : 'normal';
-    d.el.classList.toggle('lit', d.alt === 1);
-    d.el.classList.toggle('lit2', d.alt > 1);
+  // a changed letter stirs the flag above it
+  function flutter(i) {
+    if (reduced() || !flags.length || i < 0) return;
+    const f = flags[Math.min(flags.length - 1, Math.floor((i / Math.max(1, letters.length)) * flags.length))];
+    f.style.transform = `rotate(${(i % 2 ? -1 : 1) * 9}deg)`;
+    setTimeout(() => { f.style.transform = ''; }, 200);
   }
 
-  function onBeat(step, bar, acc, R, unit) {
-    const pos = step % R.acc.length;
-    const ds = live();
-    if (pos === 0 || pos === R.half) {
-      const parity = pos === 0 ? 0 : 1;
-      ds.forEach((d, k) => { if (k % 2 === parity) hop(d, unit, true); });
-      ds.forEach((d) => { if (Math.random() < 0.5) costume(d); });
-      flags.forEach((f, k) => { f.style.transform = `rotate(${(k % 2 === parity ? 1 : -1) * 9}deg)`; });
-      setTimeout(() => flags.forEach((f) => { f.style.transform = ''; }), unit * 1.2);
-    } else if (acc > 0.45) {
-      ds.forEach((d, k) => { if ((k + pos) % 3 === 0) hop(d, unit, false); });
-    }
-    if (pos === 0 && bar % 2 === 1) {
-      for (let k = 0; k + 1 < ds.length; k += 2) swing(ds[k], ds[k + 1], unit * R.acc.length);
-    }
-  }
+  // ------------------------------------------------------------------ start
+  input.addEventListener('input', () => build(input.value.replace(/\s+/g, ' ').trim() || 'céilí', letters));
+  setMode('plain');
+  build(input.value.trim() || 'céilí mór anocht');
+  let lastFloorW = floor.clientWidth;
+  new ResizeObserver(() => { if (floor.clientWidth !== lastFloorW) { lastFloorW = floor.clientWidth; fit(); } }).observe(floor);
 
-  // ------------------------------------------------------------------ clock
-  let ctx = null, out = null, noise = null, timer = 0, raf = 0, playing = false;
-  let nextTime = 0, step = 0, queue = [];
-  const R = () => RHYTHMS[rhythmSel.value] || RHYTHMS.jig;
-  const unitMs = () => R().pulse * (100 / +tempo.value);
-
-  function schedule() {
-    const now = ctx.currentTime;
-    while (nextTime < now + 0.12) {
-      const r = R(), pos = step % r.acc.length, acc = r.acc[pos];
-      if (sound.checked) drum(ctx, out, noise, nextTime, acc);
-      queue.push({ t: nextTime, step, bar: Math.floor(step / r.acc.length), acc, r, unit: unitMs() });
-      nextTime += unitMs() / 1000;
-      step++;
-    }
-  }
-  function frame() {
-    const now = ctx.currentTime;
-    while (queue.length && queue[0].t <= now) {
-      const e = queue.shift();
-      onBeat(e.step, e.bar, e.acc, e.r, e.unit);
-    }
-    raf = requestAnimationFrame(frame);
-  }
-  function start() {
-    if (!ctx) {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      ctx = new AC();
-      const comp = ctx.createDynamicsCompressor();
-      out = ctx.createGain(); out.gain.value = 0.8;
-      out.connect(comp).connect(ctx.destination);
-      noise = noiseBuffer(ctx);
-    }
-    ctx.resume();
-    playing = true;
-    play.setAttribute('aria-pressed', 'true');
-    play.innerHTML = '<span lang="ga">Stad</span> · Stop';
-    nextTime = ctx.currentTime + 0.08; step = 0; queue = [];
-    timer = setInterval(schedule, 25);
-    schedule();
-    raf = requestAnimationFrame(frame);
-  }
-  function stop() {
-    playing = false;
-    clearInterval(timer); cancelAnimationFrame(raf); queue = [];
-    play.setAttribute('aria-pressed', 'false');
-    play.innerHTML = '<span lang="ga">Seinn</span> · Play';
-    live().forEach((d) => { d.g.style.fontFeatureSettings = 'normal'; d.alt = 0; d.el.classList.remove('lit', 'lit2'); });
-  }
-  play.addEventListener('click', () => (playing ? stop() : start()));
-  rhythmSel.addEventListener('change', () => { if (playing) { step = 0; } });
-  // Leave the hall and the band stops.
-  watchVisible(section, (v) => { if (!v && playing) stop(); });
-
-  // At rest, someone is always tapping a foot.
-  if (!reduced()) {
-    setInterval(() => {
-      if (playing || document.hidden) return;
-      const ds = live();
-      if (ds.length) hop(ds[(Math.random() * ds.length) | 0], 200, false);
-    }, 1600);
-  }
+  // The first time the hall comes into view, the line changes into a mix of its other
+  // letters, one at a time, to show what it can do.
+  let shown = false;
+  watchVisible(floor, (v) => {
+    if (!v || shown) return;
+    shown = true;
+    setTimeout(() => { if (mode === 'plain' && letters.every((L) => L.k === 0)) wholeLine('mixed'); }, reduced() ? 0 : 500);
+  }, '-25% 0px');
 }
 
 function buildBunting(host) {
@@ -254,5 +338,6 @@ function buildBunting(host) {
     }
   });
   host.appendChild(svg);
-  return flags;
+  // flags in order across the hall, so a letter stirs the one above it
+  return flags.sort((a, b) => a.parentNode.transform.baseVal[0].matrix.e - b.parentNode.transform.baseVal[0].matrix.e);
 }

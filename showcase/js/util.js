@@ -122,3 +122,33 @@ export function copyText(text, btn) {
 }
 
 export const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+/** A longest common subsequence of two lists: the [i, j] index pairs that match, in order. */
+export function lcs(a, b, same = (x, y) => x === y) {
+  const n = a.length, m = b.length, t = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) {
+    t[i][j] = same(a[i], b[j]) ? t[i + 1][j + 1] + 1 : Math.max(t[i + 1][j], t[i][j + 1]);
+  }
+  const out = [];
+  for (let i = 0, j = 0; i < n && j < m;) {
+    if (same(a[i], b[j])) { out.push([i, j]); i++; j++; } else if (t[i + 1][j] >= t[i][j + 1]) i++; else j++;
+  }
+  return out;
+}
+
+/**
+ * Slide inline letters from where they were to where the line now sets them. The
+ * letters are position: relative spans, so they keep the text's own shaping (a
+ * transform would need inline-blocks, and inline-blocks are not kerned).
+ */
+export function slideFrom(els, before, duration = 320) {
+  els.forEach((el, k) => {
+    const a = before[k];
+    if (!a || !el?.isConnected) return;
+    const b = el.getBoundingClientRect();
+    const dx = a.left - b.left, dy = a.top - b.top;
+    if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) return;
+    el.animate([{ left: `${dx}px`, top: `${dy}px` }, { left: '0px', top: '0px' }],
+      { duration, easing: 'cubic-bezier(.3, .7, .2, 1)', composite: 'add', id: 'slide' });
+  });
+}
