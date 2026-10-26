@@ -2,7 +2,7 @@
 PY      ?= .venv/bin/python
 FACES   ?= kilfane tuam carrick ceili
 
-.PHONY: help setup fonts candidate release test validate specimen audit package site showcase serve deploy-site trace clean
+.PHONY: help setup fonts release test validate specimen audit package site showcase serve deploy-site trace clean
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
@@ -10,11 +10,8 @@ help:
 setup:  ## a Python 3.13 venv with the pinned tools
 	python3.13 -m venv .venv && $(PY) -m pip install -q -r requirements.txt
 
-fonts:  ## build every style of every face into build/fonts
-	$(PY) scripts/build2.py $(FACES)
-
-candidate:  ## every style from the latest original-source studies, into build/candidate (not a release)
-	$(PY) scripts/build_candidate.py $(FACES) && $(PY) scripts/candidate_proofs.py
+fonts:  ## build every style of every face from its latest study (scripts/build_candidate.py LATEST) into build/fonts
+	$(PY) scripts/build_candidate.py $(FACES) --output build/fonts
 
 release: fonts  ## copy the built fonts into fonts/, regenerate css/ and index.html
 	$(PY) scripts/release.py

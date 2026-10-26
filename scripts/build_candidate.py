@@ -21,7 +21,8 @@ LATEST = {'kilfane': 'research/kilfane-sheet-frame/traces', 'carrick': 'research
 
 def build(face, traces, version):
     import build2, build_original_study as study
-    build2.VERSION = version
+    if version:
+        build2.VERSION = version
     cfg = build2.FONTS[face]
     Study, evidence, piece_data = study.study_class(face, traces)
     retained = any(g['status'] == 'retained' for g in evidence['glyphs'])
@@ -72,7 +73,7 @@ def build(face, traces, version):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('faces', nargs='*', help=f'any of {", ".join(LATEST)} (default: all four)')
-    ap.add_argument('--version', default='3.000')
+    ap.add_argument('--version', default=None, help="the fonts' version (default: build2.VERSION)")
     ap.add_argument('--output', type=Path, default=ROOT / 'build' / 'candidate' / 'fonts')
     ap.add_argument('--traces', type=Path, help='another trace folder for the one face named (a round under study)')
     args = ap.parse_args()
@@ -85,7 +86,7 @@ def main():
     if len(faces) > 1:
         # build2 reads TRACED when it is imported, so each face is built in a fresh interpreter
         for face in faces:
-            subprocess.run([sys.executable, __file__, face, '--version', args.version, '--output', str(args.output)], check=True)
+            subprocess.run([sys.executable, __file__, face, *(['--version', args.version] if args.version else []), '--output', str(args.output)], check=True)
         return
     traces = args.traces.resolve() if args.traces else ROOT / LATEST[faces[0]]
     os.environ['OUT'] = str(args.output.resolve())

@@ -33,6 +33,16 @@ named above.
 ChangeLog
 ---------
 
+3.000 (2026-10-26)
+- The fonts are redrawn from the 1978 originals in the National Irish Visual Arts Library (NIVAL),
+  not the photocopied flyer: Kilfane from the N516 alphabet specimen and the averaged impressions of
+  its Letraset production sheet; Carrick from the N513 specimen and the averaged impressions of its
+  two production sheets, each letter set in the sheet's own frame by Letraset's spacing marks; Tuam
+  Uncial and Céilí from the mean of the flyer (N46) and the catalogue (N45), with Céilí's
+  disagreements decided by a third print (N44). Each study's evidence is in research/.
+- Tuam Uncial's braces are drawn with a point; Kilfane's and Carrick's stem feet sit on the baseline.
+- Names, coverage and features are unchanged; spacing follows the new outlines.
+
 2.101 (2026-10-25)
 - No copyright is claimed: the fonts are dedicated to the public domain under CC0 1.0 Universal
   (LICENSE.txt) instead of being licensed under the SIL Open Font License 1.1. The name table's

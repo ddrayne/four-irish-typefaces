@@ -1,4 +1,4 @@
-# Four Irish Typefaces: digital revival, version 2.101
+# Four Irish Typefaces: digital revival, version 3.000
 
 **Céilí · Carrick · Kilfane · Tuam Uncial**
 
@@ -35,7 +35,13 @@ not serve them to other sites.
 Open `index.html` to see and test the fonts in a browser. It's a live type tester
 with style pickers, stylistic-set toggles and character grids.
 
-## What's new in 2.101
+## What's new in 3.000
+
+- **Redrawn from the 1978 originals.** Every face is now built from the original specimens and
+  Letraset production sheets in the National Irish Visual Arts Library, not the photocopied flyer:
+  see `research/` for each face's study and evidence. Names, coverage and features are unchanged.
+
+## What was new in 2.101
 
 - **No copyright is claimed.** The fonts are dedicated to the public domain under CC0 1.0
   (`LICENSE.txt`) instead of the SIL Open Font License; the name tables say so.

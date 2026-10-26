@@ -24,7 +24,7 @@ from letters import make_letters, stem_at, clip
 from symbols import make_symbols
 
 OUT = paths.FONTS
-VERSION = '2.101'
+VERSION = '3.000'
 CC0 = 'https://creativecommons.org/publicdomain/zero/1.0/'
 RELEASE_DATE = '2026-10-25'          # stamped into head.created/modified, so a rebuild is byte-identical
 import calendar as _cal, time as _time
@@ -1180,7 +1180,9 @@ class Font2:
             cs = {}
             for n in order:
                 pen = T2CharStringPen(adv[n], None); paths[n].draw(CleanPen(pen)); cs[n] = pen.getCharString()
-            info = {'FullName': f'{cfg["family"]} {style}', 'FamilyName': cfg['family'], 'Weight': 'Bold' if self.bold else 'Regular'}
+            # CFF strings are ASCII (Céilí's accents stay in the name table)
+            ascii_ = lambda s: unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
+            info = {'FullName': ascii_(f'{cfg["family"]} {style}'), 'FamilyName': ascii_(cfg['family']), 'Weight': 'Bold' if self.bold else 'Regular'}
             if self.italic:
                 info['ItalicAngle'] = -SLANT
             fb.setupCFF(ps, info, cs, {})
