@@ -83,7 +83,7 @@
       "right": "idieresis",
       "before": 0,
       "after": 25,
-      "measured_gap": -13.46460387155065
+      "measured_gap": -12.64268978714415
     },
     {
       "left": "f",
@@ -726,8 +726,8 @@
       "left": "slash",
       "right": "idieresis",
       "before": 0,
-      "after": 70,
-      "measured_gap": -59.29694380634868
+      "after": 65,
+      "measured_gap": -53.91419314525956
     },
     {
       "left": "slash",
@@ -859,8 +859,8 @@
       "left": "slash",
       "right": "dieresis",
       "before": 0,
-      "after": 50,
-      "measured_gap": -38.99963381206288
+      "after": 40,
+      "measured_gap": -30.205728348264813
     },
     {
       "left": "slash",
@@ -1266,7 +1266,7 @@
       "right": "idieresis",
       "before": 0,
       "after": 145,
-      "measured_gap": -134.42925530428892
+      "measured_gap": -133.50830564001149
     },
     {
       "left": "longs",
@@ -1287,7 +1287,7 @@
       "right": "ydieresis",
       "before": 0,
       "after": 15,
-      "measured_gap": -2.971258943386431
+      "measured_gap": -2.073203268057
     },
     {
       "left": "longs",
@@ -1538,8 +1538,8 @@
       "left": "longs",
       "right": "dieresis",
       "before": 0,
-      "after": 120,
-      "measured_gap": -110.44495187233133
+      "after": 115,
+      "measured_gap": -106.45416858152998
     },
     {
       "left": "longs",
@@ -1692,8 +1692,15 @@
       "left": "idieresis",
       "right": "jcircumflex",
       "before": 0,
-      "after": 60,
-      "measured_gap": -50.28839541182009
+      "after": 45,
+      "measured_gap": -33.199073725634776
+    },
+    {
+      "left": "idieresis",
+      "right": "backslash",
+      "before": 0,
+      "after": 15,
+      "measured_gap": -4.749984485667426
     },
     {
       "left": "yacute",
@@ -2484,7 +2491,7 @@
       "right": "idieresis",
       "before": 0,
       "after": 25,
-      "measured_gap": -13.46460387155065
+      "measured_gap": -12.64268978714415
     },
     {
       "left": "uni1E1F",
@@ -3408,7 +3415,7 @@
       "right": "yen",
       "before": 0,
       "after": 25,
-      "measured_gap": -15.200957602903713
+      "measured_gap": -15.043470131812654
     },
     {
       "left": "fraction",
@@ -3422,7 +3429,7 @@
       "right": "trademark",
       "before": 0,
       "after": 15,
-      "measured_gap": -4.524570751924216
+      "measured_gap": -4.5079040852575645
     },
     {
       "left": "fraction",
@@ -3436,14 +3443,14 @@
       "right": "twosuperior",
       "before": 0,
       "after": 35,
-      "measured_gap": -24.834564320124713
+      "measured_gap": -24.101140352244045
     },
     {
       "left": "fraction",
       "right": "threesuperior",
       "before": 0,
       "after": 35,
-      "measured_gap": -23.492989235970356
+      "measured_gap": -22.492989235970356
     },
     {
       "left": "fraction",
@@ -3463,8 +3470,8 @@
       "left": "fraction",
       "right": "threequarters",
       "before": 0,
-      "after": 35,
-      "measured_gap": -22.836512114477586
+      "after": 30,
+      "measured_gap": -21.836512114477586
     },
     {
       "left": "fraction",
@@ -3478,7 +3485,7 @@
       "right": "fraction",
       "before": 0,
       "after": 25,
-      "measured_gap": -12.98200490998363
+      "measured_gap": -12.835186976144428
     },
     {
       "left": "dagger",
@@ -3664,45 +3671,80 @@
     },
     {
       "left": "dieresis",
-      "right": "dcroat",
-      "before": 0,
-      "after": 15,
-      "measured_gap": -6.087900795382552
-    },
-    {
-      "left": "dieresis",
-      "right": "hbar",
-      "before": 0,
-      "after": 5,
-      "measured_gap": 7.247327950546946
-    },
-    {
-      "left": "dieresis",
-      "right": "icircumflex",
-      "before": 0,
-      "after": 10,
-      "measured_gap": 2.9029896260224746
-    },
-    {
-      "left": "dieresis",
-      "right": "itilde",
+      "right": "b",
       "before": 0,
       "after": 25,
-      "measured_gap": -12.570573975697926
+      "measured_gap": -15.707189212825142
+    },
+    {
+      "left": "dieresis",
+      "right": "k",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 1.146756463850636
+    },
+    {
+      "left": "dieresis",
+      "right": "l",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -8.782668242364252
+    },
+    {
+      "left": "dieresis",
+      "right": "ldot",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -8.782668242364252
     },
     {
       "left": "dieresis",
       "right": "jcircumflex",
       "before": 0,
-      "after": 90,
-      "measured_gap": -77.93371131903285
+      "after": 60,
+      "measured_gap": -47.78828650119897
+    },
+    {
+      "left": "dieresis",
+      "right": "uni0137",
+      "before": 0,
+      "after": 10,
+      "measured_gap": 1.146756463850636
+    },
+    {
+      "left": "dieresis",
+      "right": "lacute",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -8.782668242364252
+    },
+    {
+      "left": "dieresis",
+      "right": "uni013C",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -8.782668242364252
+    },
+    {
+      "left": "dieresis",
+      "right": "lcaron",
+      "before": 0,
+      "after": 20,
+      "measured_gap": -8.782668242364252
+    },
+    {
+      "left": "dieresis",
+      "right": "uni1E03",
+      "before": 0,
+      "after": 25,
+      "measured_gap": -15.707189212825142
     },
     {
       "left": "dieresis",
       "right": "backslash",
       "before": 0,
-      "after": 10,
-      "measured_gap": -1.8537043158301003
+      "after": 45,
+      "measured_gap": -32.46194046517246
     },
     {
       "left": "macron",

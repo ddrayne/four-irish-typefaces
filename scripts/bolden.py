@@ -78,6 +78,59 @@ def grow(p, rx, ry, miter=4.0):
     return SH.transform(g, (rx, 0, 0, ry, 0, 0))
 
 
+def grow_nodes(p, rx, ry, miter=4.0, fallback=None):
+    """grow() for a small pen that keeps the outline's own nodes: each node moves out by the pen (to
+    where the offsets of its two sides meet, at a corner) and its handles move with it, so the grown
+    outline has the drawing's nodes, not the many short pieces a stroked offset leaves. Accurate where
+    the pen is small against the outline's curvature (the sloped styles' hair of weight); where the
+    result would not cover the shape it grew from, `fallback` (grow()) instead."""
+    import math
+    from fontTools.pens.recordingPen import RecordingPen, replayRecording
+    import settle
+    q = pathops.simplify(p, fix_winding=True, keep_starting_points=True, clockwise=False)
+    r = RecordingPen(); q.draw(r)
+
+    def out(t):                     # the pen's support point on the right of travel (away from the ink)
+        nx, ny = t[1], -t[0]
+        k = math.hypot(rx * nx, ry * ny)
+        return (rx * rx * nx / k, ry * ry * ny / k) if k > 1e-12 else (0.0, 0.0)
+    contours = []
+    for segs in settle._contours(r.value):
+        moves = []
+        for i in range(len(segs)):
+            j = (i + 1) % len(segs)
+            node = segs[i][1][-1]
+            t1, t2 = settle._tin(segs, i), settle._tout(segs, j)
+            if t1 is None or t2 is None:
+                moves.append((0.0, 0.0)); continue
+            e1, e2 = out(t1), out(t2)
+            cross = t1[0] * t2[1] - t1[1] * t2[0]
+            lim = miter * max(rx, ry)
+            if abs(cross) < 1e-3 and t1[0] * t2[0] + t1[1] * t2[1] < 0:      # a cusp: its tip runs on
+                moves.append((t1[0] * lim, t1[1] * lim)); continue
+            if abs(cross) < 1e-3:                                   # smooth, or a straight run
+                moves.append(((e1[0] + e2[0]) / 2, (e1[1] + e2[1]) / 2)); continue
+            # where node + e1 + s * t1 meets node + e2 + u * t2
+            dx, dy = e2[0] - e1[0], e2[1] - e1[1]
+            s = (dx * t2[1] - dy * t2[0]) / cross
+            m = (e1[0] + s * t1[0], e1[1] + s * t1[1])
+            if math.hypot(*m) > lim:
+                m = (m[0] * lim / math.hypot(*m), m[1] * lim / math.hypot(*m))
+            moves.append(m)
+        new = []
+        for i, (k, pts) in enumerate(segs):
+            a, b = moves[i - 1], moves[i]                           # this segment's start and end moves
+            if k == 'L':
+                new.append(['L', [(pts[0][0] + b[0], pts[0][1] + b[1])]])
+            else:
+                c1, c2, e = pts
+                new.append(['C', [(c1[0] + a[0], c1[1] + a[1]), (c2[0] + b[0], c2[1] + b[1]), (e[0] + b[0], e[1] + b[1])]])
+        contours.append(new)
+    g = pathops.Path(); replayRecording(settle._record(contours), g.getPen())
+    g = pathops.simplify(g, fix_winding=True, keep_starting_points=True, clockwise=False)
+    return g if _sound(q, g) else (fallback or grow)(p, rx, ry, miter)
+
+
 def remap(p, fn):
     """Apply a point-wise mapping to every point of a path."""
     from fontTools.pens.recordingPen import RecordingPen, replayRecording

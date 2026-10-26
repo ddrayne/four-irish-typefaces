@@ -168,6 +168,8 @@ def study_class(face,traces):
                 if kind in {'acute','tilde','dot','ring','circumflex'}:
                     return f'{word}; directly traced NIVAL N513 {kind} in pieces.json'
                 if kind=='dieresis':
+                    if any(p['name']=='dieresis.l' and p['status']=='judged' for p in piece_data['pieces']):
+                        return 'diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json)'
                     return 'diaeresis retained from legacy construction; N513 lower paired component remains unassigned'
                 if kind in {'grave','hungarumlaut','breve','caron'}:
                     parent={'grave':'acute','hungarumlaut':'acute','breve':'ring','caron':'circumflex'}[kind]

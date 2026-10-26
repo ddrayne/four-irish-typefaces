@@ -100,9 +100,45 @@ square top on both prints: the curled flag of round 5's y was the flyer's blur.
 
 ## Not changed
 
-p to w, z, the figures, punctuation and the round-5 marks are unchanged; so are the accented letters'
-marks, though the accented e, a and others take their new bodies. No N514 impressions exist for x, y or
-any letter after q.
+p to w, z, the figures, punctuation and the round-5 marks are unchanged (but for the diaeresis, below);
+so are the accented letters' marks, though the accented e, a and others take their new bodies. No N514
+impressions exist for x, y or any letter after q.
+
+## The finishing pass
+
+The released fonts were judged as a studio would at 96 to 300 px and in Irish and English text. Each
+judged correction and its reason is in [judged-edits.json](carrick/judged-edits.json):
+
+- **f** sits on the baseline. Its foot is a stem's cut like i's and l's, but the flat-foot test read it
+  against the whole (wide) letter and set it 8 units below them.
+- **The diaeresis is N513's lower paired piece**: the accent set's only pair, two blocks the size of its
+  dot, in place of the flyer's two tall wedges. They touch at their feet on N513 and N47, so they are
+  parted there and each moved 15 units out, so that the pair reads as two dots and not a v
+  (`scripts/carrick_diaeresis.py`; the inner chevrons stay unassigned).
+- **Small figures and letters** (¹²³ ¼ ½ ¾ ª º ™ © @ ¥ §) take a mitred offset, keeping Carrick's cut
+  corners, and keep their small counters and openings: the 4 of ¼ and ¾ had shut to a slit 11 units
+  across (5 in the Italic); it is now 21 (14).
+- **The Italic** adds its hair of weight by moving the drawing's own nodes (`bolden.grow_nodes`), not by
+  a stroked offset: the average sloped letter had 62 nodes against the upright's 34, and now has 39.
+  © and ™, whose cuts are narrower than that hair, keep the upright's weight, so the Italic now has the
+  Regular's pieces and counters in every glyph (`scripts/topo.py`: 4 glyphs flagged before, none after).
+
+The noise clean-up (`scripts/settle.py`) changes no design: the finished outlines are put on the
+whole-unit grid without the kinks and stubs rounding left. In the Regular's letters and figures, 175 of
+1209 joins at a curve were bent by 1.5 to 10 degrees (23 now) and 25 pieces were under 4 units long
+(none now); no outline moves more than 2 units (median 1). The Italic's move up to 3.4 (median 2.2),
+the difference between the two ways of adding its weight.
+
+Looked at and left as drawn. *x-height*: the production n and m are shorter than N513's (523 and 524
+units against 541 and 562), but N513's own a, u and z are lower still (532 to 534); the zones set every
+flat top (a c m n u z) at 529, and the cut, pointed tops (e o r s v w x) rise 15 to 25 above it, as on
+both sheets. *Weight*: stems at 0.4 x-height are 178 to 191 units on the production letters and 177 to
+202 on N513's; bowls 214 to 236 and 200 to 217. *Gaps*: the narrowest hairlines are e's lower wedge
+(5 units) and m's strokes (8 and 13), which ink spread closes in half their impressions. *Feet*: each
+letter keeps its own feet as both sources print them (n's left foot above its right, r's stem foot above
+its leg); u's right foot stays below its rounded left. *Spacing*: Letraset's spacing marks span each
+letter's ink to within 0 to 20 units (o's lies 35 inside its left edge): they set ink box to ink box and
+argue nothing against the optical spacing, which sets nn, oo and prose evenly with no letter pair kerned.
 
 ## Reproduce
 
@@ -112,6 +148,7 @@ python scripts/fetch_sources.py --source N514 --format jpg
 python scripts/trace_production.py carrick --base research/round-05/carrick/traces       # about 15 minutes
 python scripts/fit_production.py carrick --round research/round-06/carrick --base research/round-05/carrick/traces --lock-frame
 python scripts/separate_touching.py carrick --traces research/round-06/carrick/traces
+python scripts/carrick_diaeresis.py --traces research/round-06/carrick/traces
 python scripts/build_original_study.py --face carrick --study 3 --traces research/round-06/carrick/traces --output research/round-06/carrick/fonts
 python scripts/evidence_board.py carrick research/round-06/carrick/fonts/CarrickStudy3-Regular.otf \
     --evidence research/round-06/carrick/traces/evidence.json      # the boards, into build/judgement/carrick

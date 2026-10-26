@@ -7,14 +7,98 @@ from glyphs import bounds, translate
 from marks import stroke_polyline, stroke_cubics, centre
 
 
+# Carrick's letters are cut, not written: its small figures and letters (superiors, fractions, ª º, ™,
+# ©, @, ¥, §) keep their cut corners (a mitred offset, not a rounded one), and a small counter or
+# opening (the 4 and the 3 of ¾) narrows by at most a quarter of its own width on each side rather than
+# shutting. Set per face by make_symbols; the other faces keep the round offset.
+CUT = False
+
+
 def embolden(p, d):
     """Offset an outline by d units (negative thins it)."""
     if abs(d) < 0.5:
         return p
     s = pathops.Path(p)
-    s.stroke(2 * abs(d), pathops.LineCap.ROUND_CAP, pathops.LineJoin.ROUND_JOIN, 4.0)
+    if CUT:
+        s.stroke(2 * abs(d), pathops.LineCap.BUTT_CAP, pathops.LineJoin.MITER_JOIN, 2.0)
+    else:
+        s.stroke(2 * abs(d), pathops.LineCap.ROUND_CAP, pathops.LineJoin.ROUND_JOIN, 4.0)
     s.convertConicsToQuads()
-    return SH.union(p, s) if d > 0 else SH.difference(p, s)
+    out = SH.union(p, s) if d > 0 else SH.difference(p, s)
+    return _keep_openings(p, _keep_counters(p, out, d), d) if CUT and d > 0 else out
+
+
+def _keep_openings(p, grown, d, share=0.25, res=0.5):
+    """`grown` (p offset by d) with every narrow opening of p (the mouth of the small 3's lower bowl)
+    kept open: through an opening narrower than d / share, the growth on each side is limited to
+    `share` of its width. An opening is a narrowing that divides p's background at that width (a corner
+    of the ink does not); the channel kept runs along the widest way through it."""
+    from scipy import ndimage as ndi
+    from skimage.graph import route_through_array
+    from skimage import measure
+    from outline_util import flatten, raster
+    from fontTools.pens.recordingPen import RecordingPen, replayRecording
+    from curvefit import curves_to_recording
+    from curvefit3 import contour_to_curves4
+    from glyphs import SCALE
+    b = bounds(grown)
+    if b is None:
+        return grown
+    m = d + 8
+    x0, y1 = b[0] - m, b[3] + m
+    W, H = int((b[2] - b[0] + 2 * m) / res) + 1, int((b[3] - b[1] + 2 * m) / res) + 1
+    rec = RecordingPen(); p.draw(rec)
+    bg = ~(raster(flatten(rec.value), (W, H), lambda q: ((q[0] - x0) / res, (y1 - q[1]) / res)) > 0)
+    D = ndi.distance_transform_edt(bg) * res                  # distance to p's ink, font units
+    reach = d / (2 * share)                                   # half-widths under this are limited
+    lab, n = ndi.label(bg); wl, _ = ndi.label(bg & (D >= reach))
+    cost = np.where(bg, 1.0 / (D + 0.5) ** 2, 1e6)
+    channel = np.zeros(bg.shape, bool)
+    yy, xx = np.mgrid[:H, :W]
+    for k in range(1, n + 1):                                  # each background region of p that
+        parts = sorted((j for j in np.unique(wl[lab == k]) if j), key=lambda j: -(wl == j).sum())
+        anchor = lambda j: np.unravel_index(np.argmax(np.where(wl == j, D, -1)), D.shape)
+        for j in parts[1:]:                                    # a narrowing divides
+            path, _ = route_through_array(cost, anchor(parts[0]), anchor(j), fully_connected=True)
+            for r, c in path:
+                if D[r, c] < reach:
+                    rad = (D[r, c] - share * 2 * D[r, c]) / res
+                    channel |= (yy - r) ** 2 + (xx - c) ** 2 <= rad * rad
+    channel &= bg
+    if not channel.any():
+        return grown
+    s = SCALE['carrick']; curves = []
+    for c in measure.find_contours(np.pad(ndi.gaussian_filter(channel.astype(float), 1.0), 2), 0.5):
+        xy = np.column_stack((x0 + (c[:, 1] - 2 + 0.5) * res, y1 - (c[:, 0] - 2 + 0.5) * res))
+        if len(xy) > 8:
+            fit = contour_to_curves4(xy[:-1] / [s, -s], cutoff=6, corner_deg=55, rms_tol=.07, max_tol=.22,
+                                     line_tol=.18, line_bulge=.055, line_min=4.5, snap_deg=1.5)
+            curves.append([np.asarray(q) * [s, -s] for q in fit])
+    cut = pathops.Path(); replayRecording(curves_to_recording(curves), cut.getPen())
+    cut = pathops.simplify(cut, fix_winding=True, keep_starting_points=False, clockwise=False)
+    return SH.difference(grown, cut)
+
+
+def _keep_counters(p, grown, d, share=0.25):
+    """`grown` (p offset by d) with each counter of p shrunk by no more than `share` of its own width
+    (four times its area over its perimeter: the diameter for a round counter)."""
+    from glyphs import contours
+    from fontTools.pens.areaPen import AreaPen
+    from fontTools.pens.perimeterPen import PerimeterPen
+    out = grown
+    for c in contours(SH.union(p)):
+        ap = AreaPen(); c.draw(ap)
+        if ap.value >= 0:                       # an outer contour (counter-clockwise)
+            continue
+        pp = PerimeterPen(); c.draw(pp)
+        keep = min(d, share * 4 * -ap.value / max(pp.value, 1e-9))
+        if keep >= d - 0.5:
+            continue
+        hole = pathops.simplify(c, fix_winding=True, keep_starting_points=False, clockwise=False)   # filled
+        s = pathops.Path(hole)
+        s.stroke(2 * keep, pathops.LineCap.BUTT_CAP, pathops.LineJoin.MITER_JOIN, 2.0); s.convertConicsToQuads()
+        out = SH.difference(out, SH.difference(hole, s))
+    return out
 
 
 def scaled(p, k, S, target=0.82, S_to=None):
@@ -152,6 +236,8 @@ def pointed_brace(top, bottom, w, reach, point=0.55, cusp=0.45, corner=0.35):
 
 
 def make_symbols(f):
+    global CUT
+    CUT = f.key == 'carrick'
     P, S, xh, st = f.P, f.S, f.xh, f.style
     # Small glyphs (superiors, fractions, the letters in ® and ©) in a bold are drawn lighter in
     # proportion than its full-size letters, or their counters close: halfway to the regular's stem.

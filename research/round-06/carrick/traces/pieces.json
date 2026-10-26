@@ -2052,14 +2052,45 @@
     },
     {
       "name": "dieresis.l",
-      "status": "retained",
+      "row": 0,
+      "labels": [
+        12
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        823,
+        924,
+        847,
+        951
+      ],
+      "status": "judged",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "parent": "unassigned.lower-pair",
+      "smoothing_sigma": 0.8,
+      "source_to_font": [
+        5.65583008605533,
+        0,
+        0,
+        -5.65583008605533,
+        -3959.0810602387314,
+        5514.434333903947
+      ],
+      "gap_px": 2.0,
+      "moved_out": -15.0,
       "rec": [
         [
           "moveTo",
           [
             [
-              728.98583984375,
-              180.47576904296875
+              684.2135009765625,
+              270.5174255371094
             ]
           ]
         ],
@@ -2067,16 +2098,33 @@
           "curveTo",
           [
             [
-              729.38720703125,
-              125.91748046875
+              683.1578369140625,
+              210.32489013671875
             ],
             [
-              746.77685546875,
-              81.67671203613281
+              706.637451171875,
+              143.1351776123047
             ],
             [
-              771.8583984375,
-              34.023277282714844
+              762.717529296875,
+              143.1351776123047
+            ]
+          ]
+        ],
+        [
+          "curveTo",
+          [
+            [
+              776.201416015625,
+              143.1351776123047
+            ],
+            [
+              791.570068359375,
+              147.01953125
+            ],
+            [
+              808.9354858398438,
+              155.8194580078125
             ]
           ]
         ],
@@ -2084,8 +2132,17 @@
           "lineTo",
           [
             [
-              799.7001953125,
-              32.44533157348633
+              811.9932861328125,
+              168.5535430908203
+            ]
+          ]
+        ],
+        [
+          "lineTo",
+          [
+            [
+              793.4759521484375,
+              277.3481750488281
             ]
           ]
         ],
@@ -2093,16 +2150,16 @@
           "curveTo",
           [
             [
-              824.08984375,
-              32.44533157348633
+              776.34814453125,
+              285.15478515625
             ],
             [
-              843.82568359375,
-              36.933349609375
+              759.60107421875,
+              289.22216796875
             ],
             [
-              871.11181640625,
-              47.57271194458008
+              743.15234375,
+              289.22216796875
             ]
           ]
         ],
@@ -2110,50 +2167,16 @@
           "curveTo",
           [
             [
-              866.0361328125,
-              100.73758697509766
+              723.1128540039062,
+              289.22216796875
             ],
             [
-              851.79345703125,
-              145.14352416992188
+              703.5162353515625,
+              283.1850891113281
             ],
             [
-              827.18994140625,
-              192.4380645751953
-            ]
-          ]
-        ],
-        [
-          "curveTo",
-          [
-            [
-              812.23388671875,
-              195.6915283203125
-            ],
-            [
-              799.73193359375,
-              197.533447265625
-            ],
-            [
-              788.02685546875,
-              197.533447265625
-            ]
-          ]
-        ],
-        [
-          "curveTo",
-          [
-            [
-              768.66943359375,
-              197.533447265625
-            ],
-            [
-              751.4892578125,
-              192.496337890625
-            ],
-            [
-              728.98583984375,
-              180.47576904296875
+              684.2135009765625,
+              270.5174255371094
             ]
           ]
         ],
@@ -2162,18 +2185,49 @@
           []
         ]
       ],
-      "note": "Legacy flyer construction; right repeats left because the low-resolution cluster was fused. Identification of the larger lower paired component remains unresolved."
+      "note": "The accent set's lower paired piece, identified by judgement as the diaeresis (the set's only pair; each block is the size of its dot). Traced from N513 as the other marks; the two dots touch at their inner lower corners on N513 and N47 and are divided at the narrowest neck with a 2-pixel cut, and each is moved 15 units outward so the pair reads as two dots: both constructions."
     },
     {
       "name": "dieresis.r",
-      "status": "retained",
+      "row": 0,
+      "labels": [
+        12
+      ],
+      "row_box": [
+        700,
+        835,
+        960,
+        975
+      ],
+      "threshold": 130,
+      "box": [
+        849,
+        924,
+        875,
+        951
+      ],
+      "status": "judged",
+      "source": "Carrick-alphabet-specimen.jpg",
+      "source_id": "N513",
+      "parent": "unassigned.lower-pair",
+      "smoothing_sigma": 0.8,
+      "source_to_font": [
+        5.65583008605533,
+        0,
+        0,
+        -5.65583008605533,
+        -3959.0810602387314,
+        5514.434333903947
+      ],
+      "gap_px": 2.0,
+      "moved_out": 15.0,
       "rec": [
         [
           "moveTo",
           [
             [
-              894.1827392578125,
-              180.47576904296875
+              946.9724731445312,
+              148.9921417236328
             ]
           ]
         ],
@@ -2181,16 +2235,33 @@
           "curveTo",
           [
             [
-              894.5841064453125,
-              125.91748046875
+              963.8119506835938,
+              178.9586181640625
             ],
             [
-              911.9737548828125,
-              81.67671203613281
+              991.2765502929688,
+              245.11134338378906
             ],
             [
-              937.0552978515625,
-              34.023277282714844
+              997.110107421875,
+              278.416259765625
+            ]
+          ]
+        ],
+        [
+          "curveTo",
+          [
+            [
+              975.6094970703125,
+              286.54791259765625
+            ],
+            [
+              958.184326171875,
+              289.5437316894531
+            ],
+            [
+              938.9606323242188,
+              289.5437316894531
             ]
           ]
         ],
@@ -2198,8 +2269,8 @@
           "lineTo",
           [
             [
-              964.8970947265625,
-              32.44533157348633
+              907.1055297851562,
+              287.46112060546875
             ]
           ]
         ],
@@ -2207,16 +2278,16 @@
           "curveTo",
           [
             [
-              989.2867431640625,
-              32.44533157348633
+              875.3837890625,
+              254.58226013183594
             ],
             [
-              1009.0225830078125,
-              36.933349609375
+              865.719482421875,
+              194.1113739013672
             ],
             [
-              1036.3087158203125,
-              47.57271194458008
+              861.0888671875,
+              149.3170623779297
             ]
           ]
         ],
@@ -2224,16 +2295,16 @@
           "curveTo",
           [
             [
-              1031.2330322265625,
-              100.73758697509766
+              876.1439819335938,
+              146.59230041503906
             ],
             [
-              1016.9903564453125,
-              145.14352416992188
+              889.32763671875,
+              145.4301300048828
             ],
             [
-              992.3868408203125,
-              192.4380645751953
+              902.4435424804688,
+              145.4301300048828
             ]
           ]
         ],
@@ -2241,33 +2312,16 @@
           "curveTo",
           [
             [
-              977.4307861328125,
-              195.6915283203125
+              916.6082763671875,
+              145.4301300048828
             ],
             [
-              964.9288330078125,
-              197.533447265625
+              930.6939086914062,
+              146.78558349609375
             ],
             [
-              953.2237548828125,
-              197.533447265625
-            ]
-          ]
-        ],
-        [
-          "curveTo",
-          [
-            [
-              933.8663330078125,
-              197.533447265625
-            ],
-            [
-              916.6861572265625,
-              192.496337890625
-            ],
-            [
-              894.1827392578125,
-              180.47576904296875
+              946.9724731445312,
+              148.9921417236328
             ]
           ]
         ],
@@ -2276,7 +2330,7 @@
           []
         ]
       ],
-      "note": "Legacy flyer construction; right repeats left because the low-resolution cluster was fused. Identification of the larger lower paired component remains unresolved."
+      "note": "The accent set's lower paired piece, identified by judgement as the diaeresis (the set's only pair; each block is the size of its dot). Traced from N513 as the other marks; the two dots touch at their inner lower corners on N513 and N47 and are divided at the narrowest neck with a 2-pixel cut, and each is moved 15 units outward so the pair reads as two dots: both constructions."
     },
     {
       "name": "guil.r2",
@@ -2860,7 +2914,11 @@
         -3959.0810602387314,
         5514.434333903947
       ]
-    },
+    }
+  ],
+  "decision": "Ten isolated components traced; the lower paired piece is the diaeresis (judged), its two dots divided at their neck. The fused inner chevrons remain unassigned; paired guillemets repeat the original outer chevrons.",
+  "body": "Carrick Study 1 body traces unchanged",
+  "assigned_by_judgement": [
     {
       "name": "unassigned.lower-pair",
       "row": 0,
@@ -2880,7 +2938,6 @@
         875,
         951
       ],
-      "status": "unassigned",
       "source": "Carrick-alphabet-specimen.jpg",
       "source_id": "N513",
       "rec": [
@@ -3103,9 +3160,12 @@
         -5.65583008605533,
         -3959.0810602387314,
         5514.434333903947
+      ],
+      "status": "assigned",
+      "assigned_to": [
+        "dieresis.l",
+        "dieresis.r"
       ]
     }
-  ],
-  "decision": "Ten isolated components traced. Lower paired shape and fused inner chevrons remain unassigned. Diaeresis retained; paired guillemets repeat original outer chevrons.",
-  "body": "Carrick Study 1 body traces unchanged"
+  ]
 }

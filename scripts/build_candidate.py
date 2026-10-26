@@ -26,6 +26,8 @@ def build(face, traces, version):
     cfg = build2.FONTS[face]
     Study, evidence, piece_data = study.study_class(face, traces)
     retained = any(g['status'] == 'retained' for g in evidence['glyphs'])
+    edits = Path(traces).parent / 'judged-edits.json'
+    judged = json.loads(edits.read_text(encoding='utf-8'))['edits'] if face == 'carrick' and edits.exists() else []
 
     class Candidate(Study):
         # The sheets are drawings, not a photocopy: their narrow open joins are drawn, and the bold
@@ -41,6 +43,62 @@ def build(face, traces, version):
         # scale is source pixels per trace unit); letters kept from the flyer were designer-fitted already
         REFIT_PX = {g['name']: 1.0 / g['scale'] for g in evidence['glyphs']
                     if g['status'] == 'candidate' and g.get('scale')}
+        # Carrick's finishing pass (research/round-06/carrick/judged-edits.json): letters whose lowest
+        # point is a stem's cut foot that the flat-foot test misreads, and the finished outlines settled
+        # on the whole-unit grid without the kinks and stubs that rounding leaves (scripts/settle.py)
+        CUT_FEET = tuple(e['glyph'] for e in judged if e['op'] == 'cut_foot')
+        SETTLE = face == 'carrick'
+
+        def snap(self):
+            super().snap()
+            for n in self.CUT_FEET:
+                if n in self.P:
+                    self.P[n] = build2.translate(self.P[n], 0, -build2.bounds(self.P[n])[1])
+
+        def condense(self):
+            if not self.SETTLE:
+                return super().condense()
+            # the sloped styles' hair of extra weight must not join a glyph's pieces or close an opening
+            # its upright keeps (in © the c's cut, in ™ the m's strokes, both narrower than the hair):
+            # such a glyph keeps the upright's weight, only narrowed
+            import bolden, math, shapes as SH
+            t = math.tan(math.radians(build2.SLANT)); yc = self.xh / 2
+            def topology(p, slope=True):  # pieces and counters as the font has them: sloped, on the unit grid
+                q = SH.transform(p, (1, 0, t, 1, -yc * t, 0)) if slope else p
+                a = [bolden.area(c) for c in build2.contours(build2.final_clean(q))]
+                outer, holes = sum(x > 0 for x in a), sum(x < 0 for x in a)
+                return (outer, holes) if outer else (holes, outer)
+            upright = {n: topology(p, slope=False) for n, p in self.P.items() if build2.bounds(p) is not None}
+            narrow = {n: SH.transform(p, (build2.CONDENSE, 0, 0, 1, 0, 0)) for n, p in self.P.items()
+                      if build2.bounds(p) is not None}
+            # and the hair is added by moving the drawing's own nodes (bolden.grow_nodes), not by a
+            # stroked offset, which nearly doubled the sloped outlines' nodes
+            grow = bolden.grow
+            bolden.grow = lambda p, rx, ry, miter=4.0: bolden.grow_nodes(p, rx, ry, miter, fallback=grow)
+            try:
+                super().condense()
+            finally:
+                bolden.grow = grow
+            self.kept_upright_weight = sorted(n for n, q in narrow.items()
+                                              if topology(self.P[n]) != upright[n] and topology(q) == upright[n])
+            for n in self.kept_upright_weight:
+                self.P[n] = narrow[n]
+
+        def space(self, K):
+            super().space(K)
+            self.settle_final()
+
+        def slant(self):
+            super().slant()
+            self.settle_final()
+
+        def settle_final(self):
+            if not self.SETTLE:
+                return
+            import settle
+            for n, p in self.final.items():
+                if build2.bounds(p) is not None:
+                    self.final[n] = settle.settle_path(p)
 
         def build(self, flavour):
             f = build2.Font2.build(self, flavour)        # the release's names, not the study's

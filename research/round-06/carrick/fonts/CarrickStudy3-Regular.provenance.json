@@ -333,7 +333,7 @@
   ],
   "adieresis": [
     "composite",
-    "a + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
+    "a + diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json); base source a: NIVAL Carrick-alphabet-specimen.jpg, region [151, 160, 263, 255]"
   ],
   "aring": [
     "composite",
@@ -357,7 +357,7 @@
   ],
   "edieresis": [
     "composite",
-    "e + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source e: NIVAL Carrick-Letraset.jpg (60pt sheet, mean of 24 impressions) over the flyer trace (sources/traced), region 24 impressions on the 60pt S53914 sheet"
+    "e + diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json); base source e: NIVAL Carrick-Letraset.jpg (60pt sheet, mean of 24 impressions) over the flyer trace (sources/traced), region 24 impressions on the 60pt S53914 sheet"
   ],
   "igrave": [
     "composite",
@@ -373,7 +373,7 @@
   ],
   "idieresis": [
     "composite",
-    "dotlessi + diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+    "dotlessi + diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json)"
   ],
   "ntilde": [
     "composite",
@@ -397,7 +397,7 @@
   ],
   "odieresis": [
     "composite",
-    "o + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source o: NIVAL Carrick-Letraset.jpg (36pt sheet, mean of 17 impressions) over Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
+    "o + diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json); base source o: NIVAL Carrick-Letraset.jpg (36pt sheet, mean of 17 impressions) over Carrick-alphabet-specimen.jpg, region [506, 328, 624, 426]"
   ],
   "ugrave": [
     "composite",
@@ -413,7 +413,7 @@
   ],
   "udieresis": [
     "composite",
-    "u + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
+    "u + diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json); base source u: NIVAL Carrick-alphabet-specimen.jpg, region [162, 507, 274, 602]"
   ],
   "yacute": [
     "composite",
@@ -421,7 +421,7 @@
   ],
   "ydieresis": [
     "composite",
-    "y + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source y: NIVAL Carrick-alphabet-specimen.jpg, region [641, 506, 740, 631]"
+    "y + diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json); base source y: NIVAL Carrick-alphabet-specimen.jpg, region [641, 506, 740, 631]"
   ],
   "amacron": [
     "composite",
@@ -681,7 +681,7 @@
   ],
   "wdieresis": [
     "composite",
-    "w + diaeresis retained from legacy construction; N513 lower paired component remains unassigned; base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
+    "w + diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json); base source w: NIVAL Carrick-alphabet-specimen.jpg, region [386, 505, 537, 603]"
   ],
   "ygrave": [
     "composite",
@@ -961,7 +961,7 @@
   ],
   "uni0308": [
     "mark",
-    "diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+    "diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json)"
   ],
   "uni030A": [
     "mark",
@@ -997,7 +997,7 @@
   ],
   "dieresis": [
     "made",
-    "spacing diaeresis retained from legacy construction; N513 lower paired component remains unassigned"
+    "spacing diaeresis; the lower paired NIVAL N513 component, identified by judgement, its two dots parted at their neck and set apart (pieces.json)"
   ],
   "macron": [
     "made",

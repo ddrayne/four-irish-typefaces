@@ -106,3 +106,107 @@ def test_study3_fonts_sanitise_and_keep_the_release_coverage(ext):
     f = TTFont(p)
     assert f['name'].getDebugName(1) == 'Carrick Study 3'
     assert f.getBestCmap().keys() == TTFont(os.path.join(ROOT, 'fonts', 'otf', 'CarrickDigital-Regular.otf')).getBestCmap().keys()
+
+
+# ---------------------------------------------------------------- the finishing pass (judged-edits.json)
+def release(style='Regular'):
+    from conftest import static
+    from fontTools.ttLib import TTFont
+    return TTFont(static('CarrickDigital', style))
+
+
+def ink(font, name):
+    import evidence_board as EB
+    return EB.glyph_polygons(font, name)
+
+
+def test_judged_edits_are_recorded_and_applied():
+    from fontTools.pens.boundsPen import BoundsPen
+    edits = load(ROUND, 'carrick', 'judged-edits.json')['edits']
+    assert edits and all(e.get('op') and len(e.get('reason', '')) > 40 for e in edits)
+    gs = release().getGlyphSet()
+    def bottom(n):
+        b = BoundsPen(gs); gs[n].draw(b); return round(b.bounds[1])
+    assert [e['glyph'] for e in edits if e['op'] == 'cut_foot'] == ['f']
+    # f's foot is a stem's cut like i's and l's: they sit on the baseline together, the rounds just below
+    assert bottom('f') == bottom('i') == bottom('l') == bottom('n') == 0 and bottom('o') < 0
+
+
+def test_the_lower_pair_is_the_diaeresis():
+    from fontTools.pens.recordingPen import replayRecording
+    from test_ceili_punctuation import origin_path, overlap
+    data = load(ROUND, 'carrick', 'traces', 'pieces.json')
+    pieces = {p['name']: p for p in data['pieces']}
+    assert [r['name'] for r in data['unassigned']] == ['unassigned.inner-chevrons']
+    assert data['assigned_by_judgement'][0]['assigned_to'] == ['dieresis.l', 'dieresis.r']
+    for n in ('dieresis.l', 'dieresis.r'):
+        assert pieces[n]['status'] == 'judged' and pieces[n]['source_id'] == 'N513', n
+    font = release()
+    def pair(pen):
+        for n in ('dieresis.l', 'dieresis.r'):
+            replayRecording(pieces[n]['rec'], pen)
+    assert overlap(origin_path(pair), origin_path(font.getGlyphSet()['dieresis'].draw)) > .97
+    # two dots, each the width of the set's own dot to within 15%, parted at their feet by about a third of one
+    dots = sorted(ink(font, 'dieresis'), key=lambda p: p[:, 0].min())
+    dot = ink(font, 'dotaccent')[0]; w = np.ptp(dot[:, 0])
+    assert len(dots) == 2 and all(0.85 < np.ptp(d[:, 0]) / w < 1.15 for d in dots)
+    gap = min(np.hypot(*(dots[0] - q).T).min() for q in dots[1])
+    assert 0.25 * w < gap < 0.45 * w, gap
+
+
+def counters(font, name, upx=2.0):
+    """The inscribed diameter of each counter of a glyph, font units."""
+    import evidence_board as EB
+    from scipy import ndimage as ndi
+    polys = ink(font, name)
+    pts = np.vstack(polys); lo, hi = pts.min(0) - 10, pts.max(0) + 10
+    m = EB.rasterise(polys, upx, (int((hi[1] - lo[1]) * upx), int((hi[0] - lo[0]) * upx)), np.array([lo[0], hi[1]]))
+    bg, n = ndi.label(~m)
+    edge = set(np.unique(np.r_[bg[0], bg[-1], bg[:, 0], bg[:, -1]]))
+    return sorted(2 * ndi.distance_transform_edt(bg == i).max() / upx for i in range(1, n + 1)
+                  if i not in edge and (bg == i).sum() > 4 * upx * upx)
+
+
+@pytest.mark.parametrize('style,least', [('Regular', 18), ('Italic', 12)])
+def test_small_figures_keep_their_counters(style, least):
+    f = release(style)
+    for name in ('onequarter', 'threequarters'):
+        holes = counters(f, name)
+        # one counter, the small 4's (11 and 5 units across before the finishing pass); the small 3's
+        # lower bowl stays open in both styles
+        assert len(holes) == 1 and holes[0] >= least, (name, holes)
+
+
+def test_the_sloped_style_keeps_the_upright_drawing():
+    """The Italic has the Regular's pieces and counters in every glyph, and about its nodes: its hair of
+    extra weight moves the drawing's own nodes (bolden.grow_nodes) instead of a stroked offset, which
+    left 61 nodes in the average sloped letter against the upright's 34."""
+    import topo
+    from conftest import static
+    from fontTools.pens.recordingPen import RecordingPen
+    assert topo.compare(static('CarrickDigital', 'Regular'), static('CarrickDigital', 'Italic')) == []
+    def nodes(font):
+        gs = font.getGlyphSet(); cm = font.getBestCmap(); n = 0
+        for ch in 'abcdefghijklmnopqrstuvwxyz':
+            r = RecordingPen(); gs[cm[ord(ch)]].draw(r)
+            n += sum(op in ('lineTo', 'curveTo', 'qCurveTo') for op, _ in r.value)
+        return n
+    assert nodes(release('Italic')) < 1.25 * nodes(release('Regular'))
+
+
+def test_outlines_are_settled_on_the_grid():
+    """No stub of a segment, and the joins that rounding bent are smooth again (scripts/settle.py)."""
+    import math, settle
+    from fontTools.pens.recordingPen import RecordingPen
+    font = release(); gs = font.getGlyphSet(); cm = font.getBestCmap()
+    bent = joins = 0
+    for ch in 'abcdefghijklmnopqrstuvwxyz0123456789':
+        r = RecordingPen(); gs[cm[ord(ch)]].draw(r)
+        for segs in settle._contours(r.value):
+            for i in range(len(segs)):
+                j = (i + 1) % len(segs)
+                assert math.dist(settle._start(segs, i), segs[i][1][-1]) >= settle.TINY, (ch, segs[i])
+                turn = settle._angle(settle._tin(segs, i), settle._tout(segs, j))
+                joins += 1
+                bent += 'C' in segs[i][0] + segs[j][0] and 1.5 < turn < settle.SMOOTH
+    assert bent < 0.04 * joins, (bent, joins)          # 175 of 1209 joins before, 23 of 1184 after

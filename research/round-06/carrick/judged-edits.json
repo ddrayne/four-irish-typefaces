@@ -1,0 +1,21 @@
+{
+ "face": "carrick",
+ "note": "The studio finishing pass on Carrick Study 3: each judged correction, what and why. scripts/build_candidate.py applies the cut_foot edits by name; the others are constructions in the code named.",
+ "edits": [
+  {"glyph": "f", "op": "cut_foot",
+   "reason": "f's foot is a slanted stem cut like i's and l's, but the flat-foot test measures against the whole letter's width (the crossbar and hook make f wide), so it took the foot for round and set it 8 units below the baseline. It now sits on the baseline as i, l, n and m do, and fi, fl and ff line up."},
+  {"glyphs": ["dieresis.l", "dieresis.r"], "op": "diaeresis_from_lower_pair", "code": "scripts/carrick_diaeresis.py",
+   "reason": "N513's accent set has one paired piece, two blocks the size of the set's dot, leaning together under the ring; it is the set's only pair and the only mark a European set needs that is otherwise missing, so it is the diaeresis. It replaces the flyer's two tall wedges, which read as a double quote. The blocks touch at their inner feet on N513 and N47: they are parted there by a 2-pixel cut, and each moved 15 units outward so the pair reads as two dots, not a v, at text sizes."},
+  {"glyphs": ["onequarter", "threequarters", "onehalf", "onesuperior", "twosuperior", "threesuperior", "ordfeminine", "ordmasculine", "trademark", "copyright", "at", "yen", "section"],
+   "op": "small_letters_cut", "code": "scripts/symbols.py (CUT)",
+   "reason": "The small figures and letters were weighted with a rounded offset, which softened every corner of a face that is cut, not written, and shut the 4 of the fractions to a slit 5 to 12 units across. They now take a mitred offset, keeping Carrick's cut corners, and a small counter or opening (the small 3's lower bowl) narrows by at most a quarter of its own width on each side: the 4's counter is 21 units across (14 in the Italic)."},
+  {"glyphs": ["copyright", "trademark"], "op": "sloped_keeps_topology", "code": "scripts/build_candidate.py (Candidate.condense)",
+   "reason": "The sloped style's hair of extra weight joined the c's cut in the copyright sign to its bowl and the m's strokes in the trade mark to each other (both gaps are narrower than the hair at that size). A sloped glyph whose pieces or counters the hair would change keeps the upright's weight, only narrowed."}
+ ],
+ "finishing": [
+  {"op": "settle", "code": "scripts/settle.py",
+   "what": "Noise clean-up, not a judged change of shape: the finished outlines are put on the whole-unit grid without the marks rounding leaves. Joins that rounding bent by 1.5 to 10 degrees are smooth again, pieces under 4 units are folded into one node, extremes get nodes; nothing moves more than 2 units, and corners of 10 degrees or more are untouched."},
+  {"op": "sloped_growth_keeps_nodes", "code": "scripts/bolden.py (grow_nodes)",
+   "what": "The sloped style's hair of weight is added by moving the drawing's own nodes rather than by a stroked offset, which nearly doubled the sloped outlines' nodes and left them full of short pieces."}
+ ]
+}
