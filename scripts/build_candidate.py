@@ -56,6 +56,10 @@ def build(face, traces, version):
                     self.P[n] = build2.translate(self.P[n], 0, -build2.bounds(self.P[n])[1])
 
         def condense(self):
+            if self.STUDIO:
+                import tuam_studio
+                if tuam_studio.condense(self, build2.CONDENSE):
+                    return
             if not self.SETTLE:
                 return super().condense()
             # the sloped styles' hair of extra weight must not join a glyph's pieces or close an opening
@@ -90,6 +94,9 @@ def build(face, traces, version):
 
         def slant(self):
             super().slant()
+            if self.STUDIO:
+                import tuam_studio
+                tuam_studio.extremes(self)
             self.settle_final()
 
         def settle_final(self):
@@ -99,6 +106,29 @@ def build(face, traces, version):
             for n, p in self.final.items():
                 if build2.bounds(p) is not None:
                     self.final[n] = settle.settle_path(p)
+
+        # Tuam: the studio finishing pass (research/tuam-judgement/judged-edits.json, scripts/tuam_studio.py):
+        # judged edits to the traced letters, construction values for the marks, kerning and sloped style, and
+        # the @ drawn inside its ring as the (c) and (R) letters are (symbols.make_symbols)
+        STUDIO = AT_INSIDE_RING = face == 'tuam'
+
+        def zones(self):
+            super().zones()
+            if self.STUDIO:
+                import tuam_studio
+                tuam_studio.apply(self)
+
+        def make_marks(self):
+            super().make_marks()
+            if self.STUDIO:
+                import tuam_studio
+                tuam_studio.marks(self)
+
+        def kerning(self):
+            super().kerning()
+            if self.STUDIO:
+                import tuam_studio
+                tuam_studio.kern(self)
 
         def build(self, flavour):
             f = build2.Font2.build(self, flavour)        # the release's names, not the study's

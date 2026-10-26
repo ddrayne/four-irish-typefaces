@@ -103,15 +103,43 @@ on for a round whose evidence asks for them, and 2.101 rebuilds byte-identical.
 A mean of two prints fits each less closely than its own trace; the two differ from each other by about 7%
 IoU in N46's own pixels. These are fits to correlated reproductions, not authenticity scores.
 
+## The finishing pass (the release only)
+
+The release builds Tuam from these traces through a studio pass, [judged-edits.json](judged-edits.json), applied by
+`scripts/tuam_studio.py` from `build_candidate.py`; the Study 3 fonts here stay as traced. Each edit states its
+target and is measured again on the outline; units are font units (one N46 pixel is about 10.6).
+
+| What | 3.000 | Now | Why |
+|---|---|---|---|
+| Arch cuts of n, m, h, r, u, y, f | 23 to 37 | 28 | N45 prints n, m, h, u, f at 25 to 29; the spread was averaging and refitting |
+| Seams of v and w; the cut of 5 | 8 to 13; 14 | 15 to 16; 21 | N45's widths: averaging with N46, which fills them, had halved them |
+| Slits of a, b, d, g, o, p, q, 6, 9, 0 | b, o, p, 0 8 to 14 off N45 | within 2 of N45 | as N45 prints each (measured alike) |
+| Spur and hook ends | spikes, flats, blunt ends | one sharp point | consistent ends; the prints cannot resolve them |
+| Vertical stems | 213 to 228 | 218 to 222 | N45 prints them 211 to 222; N46's blur thickened some |
+| Flat tops at the x-height | 529 to 545 | 542 to 544 | the builder's baseline snap left o (530), d, m's first arch, g low |
+| o, l, 9 | 530, 761, 669 (9 below the line) | 544, 774, 690 (on it) | as tall as their neighbours on both prints |
+| Bowls of p, q, y | 6 to 10 above the baseline | on it | as every other bowl |
+| Dots of i, j, !, ? | 25 to 32 from the stroke | 40 (j takes i's dot, ? takes !'s) | N45 prints them 37 to 45 apart; ? and ! at the figures' height, their dots on the line |
+| Gap under every accent | 19 | 30 | N45 prints the fadas 26 to 38 above their letters |
+| @ | its a pressed into the ring, joined to it | an a inside the ring, 34 clear | as (c) and (R) are drawn |
+| Italic | cuts 13 to 27, seams 3 to 6, ˚ without its counter | cuts 26 to 27, seams 14 to 15, ˚ open | narrowed as drawn, without the hair of weight that closed them; nodes at its extremes |
+| f before an ascender or fada | flag 10 units from it (fl +10) | 28 (fl +30, fb and fk +40) | the face's cut width, above the x-height |
+
+Also: corners blurred into two or three nodes drawn as one (the beaks of r and u, b's foot, the crotches of p
+and g, made sharp as q's, e's eye, l's foot); s's inner turn one curve; ð's bar raised to clear d's lifted bowl.
+Outline totals over the 41 traced letters, figures and symbols: Regular 2711 points, 29 segments under 8 units and
+86 joins bent 3 to 25 degrees, now 2644, 17 and 76; Italic 4223, 279 and 462, now 2990, 62 and 194.
+
+**The cut widths.** Evened only within each construction, where N45 shows one width: the arch cuts (28) and the
+vertex seams (15), which N45 prints distinctly narrower and which stay so. The slits are left at N45's own widths
+(20 to 33), which differ by under two N45 pixels; evening them to one width (about 27) would be the next step, but
+nothing in the prints asks for it.
+
 ## Open
 
 - The cuts of v, w and 5, and the slits of d, p, q, s and 6, are N45's: the sheet resolves only the wider cuts.
   A sharper photograph of S53912 or the 30 pt S53911 would settle them.
-- The cuts and slits are as printed, so their widths vary: at their narrowest, 20 to 36 units for h, n, u, r
-  and f, 12 for v, w and 5, and 8 where p's hook meets its stem. A studio might even them out; no judged edit
-  has been made.
-- Accents other than the five fadas, the accents' vertical gap and all modern extensions are constructions.
-- The builder's text-height regularisation and spacing protection are unchanged from round 3.
+- Accents other than the five fadas and all modern extensions are constructions.
 
 ## Reproduce
 

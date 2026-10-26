@@ -301,10 +301,23 @@ def make_symbols(f):
     put('asterisk', SH.union(*arms), 'five arms')
 
     # @: the face's own a inside an open ring
-    a = scaled(P['a'], 0.74, S, 0.85, Ss); ab = bounds(a)
     R = 0.64 * xh + 0.25 * S; ccx = R; ccy = 0.42 * xh
-    a = translate(a, ccx - (ab[0] + ab[2]) / 2 + 0.02 * xh, ccy - (ab[1] + ab[3]) / 2)
-    put('at', SH.union(a, ring(ccx, ccy, R, 0.7 * t)), 'a in a ring')
+    if getattr(f, 'AT_INSIDE_RING', False):
+        # the a scaled to stand clear inside the ring, as the c of (c) and the r of (R) do: a wide a pressed
+        # against the ring closes its slit and joins it
+        from fontTools.pens.recordingPen import RecordingPen
+        from outline_util import flatten
+        ab = bounds(P['a']); rec = RecordingPen(); P['a'].draw(rec)
+        far = max(math.hypot(x - (ab[0] + ab[2]) / 2, y - (ab[1] + ab[3]) / 2) for poly in flatten(rec.value, 16) for x, y in poly)
+        rt = 0.7 * t; gap = 0.45 * rt
+        k = (R - rt - gap) / far
+        a = scaled(P['a'], k, S, k, Ss); ab = bounds(a)          # at its own weight: a heavier pen closes the slit
+        a = inside_ring(translate(a, ccx - (ab[0] + ab[2]) / 2, ccy - (ab[1] + ab[3]) / 2), ccx, ccy, R - rt, gap)
+        put('at', SH.union(a, ring(ccx, ccy, R, rt)), 'a inside a ring')
+    else:
+        a = scaled(P['a'], 0.74, S, 0.85, Ss); ab = bounds(a)
+        a = translate(a, ccx - (ab[0] + ab[2]) / 2 + 0.02 * xh, ccy - (ab[1] + ab[3]) / 2)
+        put('at', SH.union(a, ring(ccx, ccy, R, 0.7 * t)), 'a in a ring')
 
     pt, pbm = asc + 0.02 * xh, -0.30 * xh
     sw = 0.62 * S; arm = 0.24 * xh
