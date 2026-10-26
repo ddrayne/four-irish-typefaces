@@ -41,7 +41,7 @@ DOTTED = 'ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ  Ḃ Ċ Ḋ Ḟ Ġ Ṁ Ṗ Ṡ Ṫ  
 FIGURES = ['1978 · £24 · €5 · $3 · ¥9 · 50% · 3‰ · 12:30', '½ ¼ ¾ · x² y³ · Nº 1 · 1ª · #1 · @ · § ¶ † ‡ · © ® ™ · ° • …']
 SIGNS = ['+ − × ÷ = ≠ ≈ ± < > ≤ ≥ ¬ ~ ^ |', '( ) [ ] { } ‹ › « » ‚ „ ‘ ’ “ ” \' " ¡ ¿', 'a-b a–b a—b · an, an. an; an: an! an? an…']
 WATERFALL = 'Is fearr Gaeilge bhriste ná Béarla cliste.'
-SIZES = [72, 48, 36, 28, 24, 18, 14, 12, 10, 9, 8]
+SIZES = [72, 48, 36, 24, 18, 14, 12, 10, 9, 8]
 IRISH = ('Bhí an oíche fuar agus fliuch, ach níor stad an ceol go maidin. Chonaic mé éan beag ag eitilt thar '
          'an loch; d’fhan sé ar feadh tamaill ar chrann ard. Tá fáilte romhat go Tuaim, a chara! Is fearr '
          'Gaeilge bhriste ná Béarla cliste, agus ní neart go cur le chéile.')
@@ -72,34 +72,38 @@ QUESTIONS = [
          note='The print’s fada is short and nearly flat, and at text sizes í could not be told from i (fíor and fior '
               'are different words). The release raises its right end, from 19° to 40°, keeping its width and place. '
               'Top: the release; bottom: as printed.',
-         samples=[('tuam', 'Regular', 'fíor fior · sí si · mílí', 28), ('study', 'Regular', 'fíor fior · sí si · mílí', 28),
+         samples=[('tuam', 'Regular', 'fíor fior · sí si · mílí', 24), ('study', 'Regular', 'fíor fior · sí si · mílí', 24),
                   ('tuam', 'Regular', 'Is fíor go bhfuil sí ag teacht, a mhíle stór.', 11),
                   ('study', 'Regular', 'Is fíor go bhfuil sí ag teacht, a mhíle stór.', 11)]),
     dict(title='Céilí: the ampersand',
          note='The prints disagree: N46 and the flyer close the lower counter where the bowl’s end meets the diagonal; '
               'N45 leaves a hairline of paper. It is closed, as N46 draws it.',
-         samples=[('ceili', 'Regular', '& &', 52), ('ceili', 'Regular', 'ceol & craic · Pádraig & Bríd', 16)]),
+         samples=[('ceili', 'Regular', '& &', 44), ('ceili', 'Regular', 'ceol & craic · Pádraig & Bríd', 16)]),
     dict(title='Céilí: the weight',
          note='N46’s and N45’s stems differ by about 10%; the weight is a calibration between them. '
               'Is the colour of the text right?',
          samples=[('ceili', 'Regular', SHORT, 10.5)]),
     dict(title='Tuam Uncial: the slits',
          note='Each slit keeps the print’s own width (20 to 33 units) rather than one shared width (about 27).',
-         samples=[('tuam', 'Regular', 'abdgopq 690', 39)]),
+         samples=[('tuam', 'Regular', 'abdgopq 690', 33)]),
     dict(title='Kilfane: the serifs',
          note='The serifs keep their traced variety; they could instead be redrawn to one master serif.',
-         samples=[('kilfane', 'Regular', 'HIKLMNTU nhiklmu', 33)]),
+         samples=[('kilfane', 'Regular', 'HIKLMNTU nhiklmu', 28)]),
+    dict(title='Carrick: £ and $ at their printed height',
+         note='N513 prints £ as tall as & ? ! and taller than the figures. The release keeps that height and only '
+              'sets both signs on the baseline, where they had floated. The alternative is to scale them to the figures.',
+         samples=[('carrick', 'Regular', '£24 · $3 · 1978 · £ & ? !', 28)]),
     dict(title='Figures that break the line',
          note='Carrick’s 8 stands taller, as both prints show; Tuam’s 4 and 7 drop below the baseline, as printed.',
-         samples=[('carrick', 'Regular', '1978 · 2468', 33), ('tuam', 'Regular', '1974 · 4747', 33)]),
+         samples=[('carrick', 'Regular', '1978 · 2468', 28), ('tuam', 'Regular', '1974 · 4747', 28)]),
     dict(title='The ponc (dot of lenition)',
          note='Carrick and Tuam set it beside the ascender of ḃ (Tuam also ḋ), as Irish types often do; '
               'Kilfane and Céilí set it above.',
-         samples=[(k, 'Regular', 'ḃeag ḋún ḟear ṡíl ṫú', 21) for k in ('kilfane', 'carrick', 'tuam', 'ceili')]),
+         samples=[(k, 'Regular', 'ḃeag ḋún ḟear ṡíl ṫú', 18) for k in ('kilfane', 'carrick', 'tuam', 'ceili')]),
     dict(title='Small figures in the Bolds',
          note='Superiors, fractions and ordinals are drawn lighter than full-size figures so their counters stay open. '
               'Heavy enough beside the Bold?',
-         samples=[('kilfane', 'Bold', 'x² y³ ½ ¼ ¾ 1ª Nº 1978', 26), ('ceili', 'Bold', 'x² y³ ½ ¼ ¾ 1ª Nº 1978', 26)]),
+         samples=[('kilfane', 'Bold', 'x² y³ ½ ¼ ¾ 1ª Nº 1978', 22), ('ceili', 'Bold', 'x² y³ ½ ¼ ¾ 1ª Nº 1978', 22)]),
 ]
 
 CSS = '''
@@ -124,7 +128,7 @@ h2 { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spaci
 .wf .sz { width: 9mm; flex: none; font-size: 6.5pt; color: #444; text-align: right; }
 .wf .line { flex: 1; }
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
-.q { border: .5pt solid #000; padding: 2.5mm 3mm; margin: 0 0 3mm; break-inside: avoid; }
+.q { border: .5pt solid #000; padding: 2mm 3mm; margin: 0 0 2.5mm; break-inside: avoid; }
 .q .h { font-weight: 700; font-size: 9pt; }
 .q .n { margin: .8mm 0 1.5mm; }
 .q .ticks { margin-top: 1.5mm; font-size: 8pt; }
