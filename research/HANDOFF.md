@@ -30,6 +30,8 @@ N513 at last. Start Carrick work from round 6. Remaining: letters after q are no
 sheets. The release adds two studio finishing passes ([judged-edits.json](round-06/carrick/judged-edits.json),
 round 6 README): the second gives % ‰ # the figures' weight, sets the ponc of ḃ beside its ascender and of
 ḋ ḟ well above, clears the ¢ bar of the counter, puts the figures on one line and keeps the Italic's cuts.
+A third pass gives ¤'s and @'s rings the figures' weight and keeps ™'s small m cut apart; the TrueType
+conversion no longer leaves a speck in the Italic's ı, i and į (`build2.ttf_glyph`, for every face).
 
 **Kilfane: [Study 5](kilfane-sheet-frame/README.md)** is Study 4 with its sixteen production capitals averaged
 again in the sheet's own frame (Letraset's spacing marks give each letter its upright and its line, so L no
@@ -39,7 +41,9 @@ round 2. Redrawn capitals keep N516's frame (Study 3's affine registration had l
 1–2% in size); T, U, k and l are traced from N516 at last, their fused ink divided at the narrowest
 neck; the e's notch is eased as a recorded judged edit. `scripts/evidence_board.py` and
 `scripts/pinches.py` are the review tools: every print of a glyph side by side, in the font's own
-coordinates. Start Kilfane work from Study 4.
+coordinates. Start Kilfane work from Study 4. The release's finishing passes are `scripts/kilfane_studio.py`
+([judged-edits.json](kilfane-sheet-frame/judged-edits.json)); the third draws the bold's faceted curves (G S s v w x
+y ß W, alternate g and y) as curves and its cedilla and ogonek with its pen.
 
 **Tuam Uncial: [Study 3](tuam-judgement/README.md), the judgement pass**, on round 3. Each glyph is traced
 from the mean of N46 (a blurred photocopy) and N45 (a clean offset print) in N46's frame
@@ -53,6 +57,7 @@ stems and x-height, the slits and seams at N45's widths, the dots and accents cl
 A second pass (the same file and module) steepens í's acute so it is told from i at text sizes, sets the ponc of
 ḃ and ḋ beside the ascender as Hayes's 1974 lettering does (Bolger fig. 204) and ḟ's 60 above the stem, draws the §
 in continuous curves, gives the quotes a heavier tail, and gives the Italic the Regular's weight with its openings kept.
+A third pass brings ' and " (and the primes) to the curly quotes' weight.
 
 Next concrete source lead: N514 contains repeated isolated e/f on the upper sheet.
 Round 5 records native crop coordinates. Compare local perspective and repeated

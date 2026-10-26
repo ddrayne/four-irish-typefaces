@@ -846,6 +846,8 @@ def marks(f, path=EDITS):
         f.own_acute['iacute'] = (steepen(shape, c['iacute_rise']['value']), dx)
     if 'comma' in c:
         comma(f, c['comma'])
+    if 'straight_quotes' in c:
+        straight_quotes(f, c['straight_quotes'])
     if 'ponc' in c:
         ponc(f, c['ponc'])
 
@@ -898,6 +900,17 @@ def comma(f, c):
     for k, m in made.items():
         f.marks[k] = m
         f.case_marks[k] = m if k in BOTTOM else SH.transform(m, (1, 0, 0, 0.82, 0, 0))
+
+
+def straight_quotes(f, c):
+    """The straight quotes at the curly quotes' weight: the builder's wedge (build2.punctuation) scaled by
+    `scale` about the middle of its top, so it keeps its shape and its top on the quotes' line; the double quote
+    is two of them, set as the builder sets them. The primes (symbols.make_symbols) are made from it after."""
+    P = f.P; q = P['quotesingle']; b = bounds(q); k = c['scale']
+    cx, top = (b[0] + b[2]) / 2, b[3]
+    q = f.norm_x(SH.transform(q, (k, 0, 0, k, cx - k * cx, top - k * top)))
+    P['quotesingle'] = q
+    P['quotedbl'] = SH.union(q, translate(q, bounds(q)[2] * 1.6, 0))
 
 
 def ponc(f, c):

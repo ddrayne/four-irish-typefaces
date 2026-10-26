@@ -34,7 +34,8 @@ def build(face, traces, version):
     Study, evidence, piece_data = study.study_class(face, traces)
     retained = any(g['status'] == 'retained' for g in evidence['glyphs'])
     edits = Path(traces).parent / 'judged-edits.json'
-    judged = json.loads(edits.read_text(encoding='utf-8'))['edits'] if face == 'carrick' and edits.exists() else []
+    doc = json.loads(edits.read_text(encoding='utf-8')) if face == 'carrick' and edits.exists() else {}
+    judged, signs = doc.get('edits', []), doc.get('signs', {})
 
     class Candidate(Study):
         # The sheets are drawings, not a photocopy: their narrow open joins are drawn, and the bold
@@ -49,6 +50,11 @@ def build(face, traces, version):
         # (build2.Font2.ponc)
         FIGURE_PERCENT = face in ('carrick', 'tuam')
         CENT_CLEAR = face == 'carrick'
+        # Carrick's third pass (judged-edits.json, "signs"): the rings of ¤ and @ and ¤'s arms in the figures'
+        # weight, as % and # are; the small m of ™ from its own pieces, kept apart (symbols.make_symbols)
+        RING_WEIGHT, ARM_WEIGHT, AT_RING_OUT = signs.get('ring_weight'), signs.get('arm_weight'), signs.get('at_ring_out', 1.0)
+        CURRENCY_RADIUS, CURRENCY_REACH = signs.get('currency_radius', 0.34), signs.get('currency_reach', 1.45)
+        TM_CUT = signs.get('tm_cut')
         PONC_BESIDE, PONC_GAP = (('b',), 0.13) if face == 'carrick' else ((), None)
         # a single stem's square foot (Kilfane's F, P, V, 4 and 7) sits on the baseline, not 8 units below
         # it. Kilfane's and Carrick's feet have been reviewed against their sheets (Carrick's are slanted
@@ -64,6 +70,9 @@ def build(face, traces, version):
         # on the whole-unit grid without the kinks and stubs that rounding leaves (scripts/settle.py)
         CUT_FEET = tuple(e['glyph'] for e in judged if e['op'] == 'cut_foot')
         SETTLE = face == 'carrick'
+        # the TrueType conversion leaves no speck where a tiny hooked cubic's spline crosses itself (Carrick
+        # Italic's i, 0.16 units square): only glyphs that had one change (build2.ttf_glyph)
+        TTF_UNSPECK = True
 
         def snap(self):
             super().snap()
@@ -139,6 +148,9 @@ def build(face, traces, version):
 
         def make_marks(self):
             super().make_marks()
+            if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.bold_marks(self)                   # the bold's cedilla and ogonek with its pen
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.marks(self)
@@ -190,6 +202,7 @@ def build(face, traces, version):
                 import kilfane_studio
                 kilfane_studio.outlines(self)
                 kilfane_studio.corners(self)
+                kilfane_studio.bold_curves(self)                  # the bold's faceted curves drawn as curves
             return super().vertical()
 
         def build(self, flavour):

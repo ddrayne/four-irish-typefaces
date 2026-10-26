@@ -88,6 +88,28 @@ same file, keys `bold_pieces`, `bold_joins`, `g_tail`, `symbols`, `marks_on_line
   side bearing and ran into C, S, R, P, F); the bold's capitals keep 30 units; the quotes' −40 limit covers the
   accented lowercase.
 
+A third pass finishes what the second reported and left in the bold (keys `bold_curves` and `bold_marks`):
+
+- **The bold's faceted curves** (noise). Where the curve fitter could not follow the bold's pen, its offset stayed a
+  polygon: G, S, s, v, w, x, y, ß, W and the alternate g and y, with their accented forms (47 glyphs a style), drew
+  curves as chains of straight facets 7 to 80 units long, with pieces of 1 to 7 units at their corners. Each run of
+  facets is fitted with cubics, nodes at its extremes, and each piece under 8 units folded away, everything within
+  1.5 units of the outline as it was, pieces, counters and area kept (`kilfane_studio.bold_curves`). The marks of
+  the accented forms go with them; three keep one bevel of 5 to 7 units that no fold takes within 1.5 units (the
+  Bold Italic's š caron, the comma below of Ģ and Ș), as the same marks on every other letter do.
+- **The bold's cedilla and ogonek** (judged). They took their weight from the ring's hairline and went only from
+  40–43 to 46–48 against acutes of 90 and stems of 166. They are the Regular's grown with the bold's pen by the
+  stroke accents' share (0.72): 67 and 70 (70 and 73 in the Bold Italic), the weight of the bold's comma below,
+  joined to their letters as before with the hook's white under the letter as before (ç 28 against the Regular's
+  26). Their hooks reach 20 units deeper, so the family's line box grows at the foot from −190 to −204 (as the
+  second pass raised it for the bold's capital accents); the Regular and Italic change in their vertical metrics
+  only, and in one TrueType glyph (below).
+- **TrueType specks** (noise). The conversion to quadratic splines left loops of 0.001 to 0.04 units square where a
+  cubic a few units long doubles back on itself: K, Ķ and ! in the Bold Italic, q in the Bold, Ã.alt1 in the
+  Regular. `build2.ttf_glyph` converts such a cubic again (under 8 units long and within the conversion's
+  tolerance of its chord, as its chord; else split in two), only in a glyph that has a speck; the cubic outlines
+  are unchanged (the round-6 README, where Carrick's Italic i had one, gives the detail).
+
 ## Reproduce
 
 ```sh

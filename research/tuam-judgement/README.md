@@ -150,6 +150,12 @@ A type review of the release found six defects. Each fix is in [judged-edits.jso
 | Italic joins | 194 joins bent 3 to 25 degrees, 62 pieces under 8 units (the Regular 76 and 17) | 72 and 8 | settled on the grid after the slant (`scripts/settle.py`, pieces under 8 folded) |
 | r | its arm's top 542 | 544, with n, m and h | a level edit, as the other flat tops |
 
+### The third pass (what the second pass reported and left)
+
+| What | Second pass | Now | Reasoning |
+|---|---|---|---|
+| ' and " | the builder's wedge, 160 by 116 units: skeleton weight 82 (median 57) against the curly quotes' and apostrophe's 123 (92), so it set grey beside them | the same wedge scaled by 1.53 about the middle of its top: 245 by 177, weight 124 (median 86); its taper (0.8 to 0.35 of the period's half width), proportions and top on the quotes' line kept | no print sets a straight quote; the curly quotes, the comma and the apostrophe set the punctuation's weight. The primes ′ ″, made from the straight quote, follow it (`constructions`, `straight_quotes`) |
+
 The traced í acute stays in the Study 3 fonts here. A stylistic alternate for it was not added: build2's stylistic
 sets would carry it, but the alternate has to be made as a composite of the dotless i between the composites and
 the spacing, where the release build has no Tuam step.

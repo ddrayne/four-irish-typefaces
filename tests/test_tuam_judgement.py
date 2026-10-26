@@ -397,6 +397,24 @@ def test_release_quotes_carry_the_faces_weight(style):
     assert len(pieces_of(p, 'quoteright')) == 1
 
 
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_straight_quotes_match_the_curly_quotes(style):
+    """' and " at the weight of the curly quotes and the apostrophe (they were 82 against 123): the builder's wedge
+    scaled about its top, so its taper and proportions stay and its top stays on the quotes' line."""
+    from glyphs import bounds
+    p = release(style)
+    curly = skeleton_weight(outline(p, 'quoteright'))
+    for n in ('quotesingle', 'quotedbl'):
+        assert abs(skeleton_weight(outline(p, n)) - curly) <= 0.05 * curly, n
+    q = outline(p, 'quotesingle'); b = bounds(q)
+    assert b[3] == pytest.approx(bounds(outline(p, 'quoteright'))[3], abs=1)
+    if style == 'Regular':                    # the builder's wedge: 0.8 to 0.35 of the period's half width, upright
+        import tuam_studio as T
+        top, foot = (lambda r: r[-1] - r[0])(T.runs_at(q, b[3] - 2)[0]), (lambda r: r[-1] - r[0])(T.runs_at(q, b[1] + 2)[0])
+        assert top / foot == pytest.approx(0.8 / 0.35, rel=0.08) and (b[3] - b[1]) / (b[2] - b[0]) == pytest.approx(116 / 160, rel=0.05)
+    assert len(pieces_of(p, 'quotedbl')) == 2
+
+
 def drawn(path, name):
     """A glyph's outline as the font stores it (not simplified)."""
     import pathops

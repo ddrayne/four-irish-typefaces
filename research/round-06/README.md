@@ -188,6 +188,34 @@ correction is in [judged-edits.json](carrick/judged-edits.json) with its reason.
   12 px (about 67 units) above the others with its feet on their line, so it is drawn taller and keeps
   its height (617).
 
+## The third finishing pass
+
+The leftovers the second pass reported (font outlines only; [judged-edits.json](carrick/judged-edits.json), the
+values in `signs`). Numbers are font units; the figure stem (the 1's) is 176.
+
+- **¤ and @** had rings at the hyphen's weight: ¤ 46 (0.26 of the figure stem, its arms as light), @'s ring 54
+  (0.31), beside % ‰ at 0.6 and # at 0.53. The rings are now 0.58 of the figure stem (¤ 103 overall, @'s ring
+  105; 106 and 102.5 in the Italic) and ¤'s arms 0.55 (`symbols.make_symbols`, `RING_WEIGHT` and the rest from
+  `signs`). ¤'s ring grows from 0.34 to 0.40 of the x-height so its counter stays open (222 across; it was 275,
+  and would have been 157 at the old size), its arms reaching 1.55 of the ring's radius. @'s ring is thickened half
+  outward and half inward (789 to 841 across) and its a drawn at 0.92 of its size at its own stem weight, so the
+  white between them stays as it was (26.1 to 26.4; Italic 25.5 to 25.9) and the line box keeps 988/−213.
+- **™**: the small m, scaled and weighted whole, had one of its cuts joined and the other 1.4 units wide (2 in
+  the Italic), a hairline that fills in. It is now drawn from the m's own three pieces, each weighted alone, and
+  where two come closer than 13.5 units the left one's arm is cut back along the next stroke's edge
+  (`symbols.parted`): the strokes stand 12.5 to 12.8 apart (12.5 in the Italic), read as Carrick's cut pieces.
+- **The Italic's TrueType ı, i and į** had a 0.16-unit-square speck at (335, 514), made by the conversion: the
+  stem's top corner is a 5-unit cubic whose first handle reaches 10 units, past its end, and cu2qu's spline for it
+  (0.8 units' tolerance, then rounded to the grid) crossed itself. `build2.ttf_glyph` now converts each cubic
+  within 2 units of such a speck again, only in a glyph that has one: a cubic under 8 units long that strays from
+  its chord by no more than the conversion and the grid may (1.5 units) as its chord (this hook: the TrueType
+  corner is one clean corner, 1.2 units from the hook's tip), any other split in two halves on the same curve so
+  each half's spline follows it; a result with a speck or a point the contour runs out to and back from is
+  refused. The cubic outlines are
+  unchanged. The clean-up is the conversion's, so it runs for every face (`TTF_UNSPECK`); Céilí and Tuam have
+  no specks and convert byte for byte as before, and Kilfane's TrueType K, Ķ, ! (Bold Italic), q (Bold) and
+  Ã.alt1 (Regular) lose specks of 0.001 to 0.043 units square the same way.
+
 ## Reproduce
 
 ```sh
