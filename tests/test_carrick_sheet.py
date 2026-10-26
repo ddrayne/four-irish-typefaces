@@ -333,3 +333,46 @@ def test_figures_share_one_figure_line():
         for n in 'zero one two three four five six seven nine'.split():
             assert line - 2 <= b(n)[3] <= line + over + 2 and -10 <= b(n)[1] <= 0, (style, n, b(n))
         assert b('eight')[3] >= line + 55, style
+
+
+# ---------------------------------------------------------------- the third finishing pass
+def piece_whites(font, name):
+    """A glyph's pieces at a unit a pixel, largest first, and the white between each pair of them."""
+    from scipy import ndimage as ndi
+    m, _ = mask(font, name)
+    lab, n = ndi.label(m, structure=np.ones((3, 3)))
+    order = sorted(range(1, n + 1), key=lambda i: -np.ptp(np.nonzero(lab == i)[1]))
+    whites = {}
+    for a in order:
+        d = ndi.distance_transform_edt(lab != a)
+        for b in order:
+            if b != a and (b, a) not in whites:
+                whites[a, b] = float(d[lab == b].min())
+    return lab, order, whites
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_rings_take_the_figures_weight(style):
+    """¤'s ring and arms and @'s ring at about 0.55 to 0.6 of the figure stem, the family of % and # (they were
+    0.26 to 0.32: 46 to 56 units against the 1's 176); @'s a keeps the white it had inside the ring (26)."""
+    from scipy import ndimage as ndi
+    from skimage.morphology import skeletonize
+    f = release(style); stem = weight(f, 'one')
+    assert 0.55 * stem <= weight(f, 'currency') <= 0.63 * stem
+    assert len(counters(f, 'currency')) == 1 and counters(f, 'currency')[0] >= stem
+    lab, order, whites = piece_whites(f, 'at')
+    ring = lab == order[0]
+    w = 2 * np.median(ndi.distance_transform_edt(ring)[skeletonize(ring)])
+    assert 0.55 * stem <= w <= 0.63 * stem, w
+    assert len(order) == 2 and 24 <= whites[order[0], order[1]] <= 30, whites
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_the_trademark_m_keeps_its_cuts(style):
+    """™'s small m: its strokes stood 1.4 units apart in the Regular and 2 in the Italic (the other pair had
+    joined), a hairline that fills in; it is drawn from the m's own three pieces, at least 12 apart."""
+    lab, order, whites = piece_whites(release(style), 'trademark')
+    assert len(order) == 4, len(order)                       # the T and the m's three pieces
+    m = sorted(order, key=lambda i: np.nonzero(lab == i)[1].min())[1:]
+    for a, b in zip(m, m[1:]):
+        assert whites.get((a, b), whites.get((b, a))) >= 12, (style, whites)

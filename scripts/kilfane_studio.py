@@ -32,6 +32,14 @@ symbols(font)      the bold's section drawn from the regular's with the bold's p
 clearances(font)   room after kerning: before a fada over i, and between a bold's capitals
                    ("kerning", "clearances").
 corners(font)      a corner a union or the grid left as a run of tiny pieces made one node ("corners").
+
+The third pass (the same file, keys "bold_curves" and "bold_marks") finishes what the second left in the bold:
+
+bold_marks(font)   the cedilla and ogonek drawn as the regular's with the bold's pen, as the stroke accents
+                   are, once the marks are made ("bold_marks").
+bold_curves(font)  on the final outlines of the listed letters and their accented forms, the runs of straight
+                   facets the bold's pen left on their curves drawn as curves and every piece under eight
+                   units folded away, all within 1.5 units of the outline as it was ("bold_curves").
 """
 import json, math
 from pathlib import Path
@@ -736,6 +744,26 @@ def bold_pieces(font, edits=EDITS):
         font.piece[right] = translate(font.piece[right], share(right) * b['rx'], 0)
 
 
+def bold_marks(font, edits=EDITS):
+    """In a bold, once the marks are made (Font2.make_marks): the cedilla and the ogonek, which the builder draws
+    at a weight taken from the ring (marks.MarkSet: 0.27 and 0.29 of the ring's width, and the bold's ring is a
+    hairline grown by 0.45 of the pen), drawn as the regular draws them and grown with the bold's pen by their
+    share of it, as bold_pieces grows the stroke accents ("bold_marks"). Font2.attach sets them by their neck, so
+    they join the letter as before and the hook's white under the letter stays."""
+    if not font.bold:
+        return
+    import build2, bolden
+    from marks import MarkSet, centre
+    spec = load(edits)['bold_marks']; b = build2.BOLD[font.key]
+    ms = MarkSet(font.style, font.S_regular, font.xh, period=font.period, comma=font.P['comma'],
+                 weight=font.cfg['mark_weight'], given={'ring': font.piece_regular['ring']})
+    for kind, share in spec['share'].items():
+        q = getattr(ms, kind)()
+        pen = (share * b['rx'], share * b['ry'])
+        g = centre(bolden.protect(q, bolden.grow(q, *pen), font.S_regular, pen, sliver=font.SLIVER), top=False)
+        font.marks[kind] = font.case_marks[kind] = g
+
+
 def rule_weight(pieces):
     """The weight of the sheet's two rules, as Font2.dashes measures it (their area over their width)."""
     from glyphs import bounds
@@ -1205,6 +1233,327 @@ def corners(font, edits=EDITS):
         if n in font.final:
             font.final[n] = path([clean_corners(smooth_facets(c, spec['facets']), spec['short'], tol=spec['tolerance'])
                                   for c in segments(font.final[n])])
+
+
+# ---------------------------------------------------------------- the bold's curves (third pass)
+def _seg_len(segs, j):
+    return math.dist(FN._start(segs, j), segs[j][1][-1])
+
+
+def _fewer(curves, ref, tol):
+    """Neighbouring fitted cubics drawn as one where one cubic draws both within tol of the run (`ref`) and
+    passes no extreme between its ends, so the nodes at extremes stay."""
+    from scipy.spatial import cKDTree
+    curves = [np.asarray(c, float) for c in curves]
+    seg = lambda c: ['C', [tuple(c[1]), tuple(c[2]), tuple(c[3])]]
+    changed = True
+    while changed and len(curves) > 1:
+        changed = False
+        for k in range(len(curves) - 1):
+            A, B = curves[k], curves[k + 1]
+            t1, t2 = A[1] - A[0], B[3] - B[2]
+            if np.linalg.norm(t1) < 1e-9 or np.linalg.norm(t2) < 1e-9:
+                continue
+            pts = np.vstack([_samples(tuple(A[0]), seg(A), 1.0), _samples(tuple(B[0]), seg(B), 1.0)[1:]])
+            c = _fit(pts, t1 / np.linalg.norm(t1), t2 / np.linalg.norm(t2))
+            if _bulges(c):
+                continue
+            drawn = _samples(tuple(c[0]), seg(c), 1.0)
+            if ref.query(drawn)[0].max() <= tol and cKDTree(drawn).query(pts)[0].max() <= tol:
+                curves[k:k + 2] = [np.array([A[0], c[1], c[2], B[3]])]
+                changed = True
+                break
+    return curves
+
+
+def facet_curves(segs, tol=1.5, longest=90.0, turn=35.0, smooth=12.0, short_curve=12.0):
+    """Each run of straight facets on a curve (two or more lines under `longest` units, with pieces of curve
+    under `short_curve` between them, each join turning by under `turn` degrees: what the bold's pen left where
+    its offset was drawn as a polygon) drawn as the curve it stands for. The run is fitted with cubics
+    (curvefit.fit_cubics), nodes at its extremes, as few as draw it within `tol` of the polygon both ways,
+    tangent to the outline either side where it joins smoothly (under `smooth` degrees)."""
+    import curvefit as CF
+    from scipy.spatial import cKDTree
+    segs = [[k, list(p)] for k, p in segs]
+    unit = lambda v: (lambda n: np.asarray(v, float) / n if n > 1e-9 else None)(np.linalg.norm(v))
+    i = 0
+    for _ in range(400):
+        n = len(segs)
+        if i >= n or n < 4:
+            break
+        facet = lambda j: (segs[j % n][0] == 'L' and _seg_len(segs, j % n) < longest) or \
+            (segs[j % n][0] == 'C' and _seg_len(segs, j % n) < short_curve)
+        bend = lambda j: _angle(_tan_in(segs, (j - 1) % n), _tan_out(segs, j % n))
+        if not facet(i) or (i > 0 and facet(i - 1) and 0.3 < bend(i) < turn):
+            i += 1; continue                                # not the start of a run
+        run = [i]
+        while len(run) < n - 2 and facet(run[-1] + 1) and 0.3 < bend(run[-1] + 1) < turn:
+            run.append((run[-1] + 1) % n)
+        if len(run) < 2 or sum(segs[r][0] == 'L' for r in run) < 2:
+            i += 1; continue
+        prev, nxt = (run[0] - 1) % n, (run[-1] + 1) % n
+        pts = np.vstack([_samples(FN._start(segs, r), segs[r], 1.0) for r in run])
+        pts = pts[np.r_[True, np.linalg.norm(np.diff(pts, axis=0), axis=1) > 1e-6]]
+        k0, p0 = segs[run[0]]; k1, p1 = segs[run[-1]]
+        first = unit(np.subtract(p0[-1] if k0 == 'L' else p0[0], FN._start(segs, run[0])))
+        last = unit(np.subtract(p1[-1], FN._start(segs, run[-1]) if k1 == 'L' else p1[1]))
+        t_in, t_out = _tan_in(segs, prev), _tan_out(segs, nxt)
+        t1 = t_in if t_in is not None and bend(run[0]) < smooth else first
+        t2 = t_out if t_out is not None and bend(nxt) < smooth else last
+        ref = cKDTree(pts)
+        for share, fewer in ((0.8, True), (0.6, True), (0.4, True), (0.4, False)):   # the fitter's own measure
+            cs = CF.add_extrema(CF.fit_cubics(pts, t1, -t2, share * tol))                # is not quite the distance
+            cs = _fewer(cs, ref, tol) if fewer else cs
+            new = [['C', [tuple(c[1]), tuple(c[2]), tuple(c[3])]] for c in cs]
+            drawn = np.vstack([_samples(tuple(c[0]), s, 1.0) for c, s in zip(cs, new)])
+            if ref.query(drawn)[0].max() <= tol and cKDTree(drawn).query(pts)[0].max() <= tol:
+                break
+        else:
+            i += 1; continue
+        keep = [s for j, s in enumerate(segs) if j not in run]
+        if run[0] > run[-1]:                                # the run wraps past the contour's start
+            segs = keep + new; i = len(segs)
+        else:
+            segs = keep[:run[0]] + new + keep[run[0]:]; i = run[0] + len(new)
+    return segs
+
+
+def _merged(segs, i, j, ref, tol, short_first=True):
+    """Segments i and j (= i + 1) as one: a line if both are lines, else one cubic leaving along i's start
+    tangent and arriving along j's end; at the short piece's own corner end the longer neighbour's tangent may
+    be taken instead, whichever draws the two closer. None unless it stays within tol of the outline (`ref`)
+    and of the two pieces."""
+    from scipy.spatial import cKDTree
+    a, e = FN._start(segs, i), segs[j][1][-1]
+    pts = np.vstack([_samples(a, segs[i], 1.0), _samples(segs[i][1][-1], segs[j], 1.0)[1:]])
+    if segs[i][0] == 'L' and segs[j][0] == 'L':
+        options = [['L', [e]]]
+    else:
+        t1, t2 = _tan_out(segs, i), _tan_in(segs, j)
+        if t1 is None or t2 is None:
+            return None
+        alt = [(t1, t2), (_tan_out(segs, j), t2) if short_first else (t1, _tan_in(segs, i))]
+        options = []
+        for u1, u2 in alt:
+            if u1 is not None and u2 is not None:
+                c = _fit(pts, u1, u2)
+                if not _bulges(c):
+                    options.append(['C', [tuple(c[1]), tuple(c[2]), tuple(e)]])
+    best = None
+    for seg in options:
+        drawn = _samples(a, seg, 1.0)
+        err = max(ref.query(drawn)[0].max(), cKDTree(drawn).query(pts)[0].max())
+        if err <= tol and (best is None or err < best[0]):
+            best = (err, seg)
+    return best and best[1]
+
+
+def _cut_at(segs, j, length, from_end):
+    """Segment j split `length` units (along it) from its end (or its start): (first part, second part, unit
+    tangent at the split), or None if it is not longer than that."""
+    a = FN._start(segs, j); ts, d = _arc(a, segs[j])
+    if d[-1] <= length + 1:
+        return None
+    t = float(np.interp(d[-1] - length if from_end else length, d, ts))
+    one, two = _split(a, segs[j], t)
+    return one, two, _tangent(a, segs[j], t)
+
+
+def _unit_or(v):
+    v = np.asarray(v, float); m = np.linalg.norm(v)
+    return v / m if m > 1e-9 else None
+
+
+def _fold_options(segs, i, L, short):
+    """Ways of folding away the short piece i, most faithful first, each as (new contour, indices of the pieces
+    that changed in it)."""
+    import curvefit as CF
+    n = len(segs); prev, nxt = (i - 1) % n, (i + 1) % n
+    tin = _angle(_tan_in(segs, prev), _tan_out(segs, i))
+    tout = _angle(_tan_in(segs, i), _tan_out(segs, nxt))
+    copy = lambda: [[k, list(p)] for k, p in segs]
+    sides = sorted(((i, nxt, tout), (prev, i, tin)), key=lambda o: o[2])
+    # beside a smooth join: one curve with the neighbour there, or the neighbour drawn on over it
+    for j0, j1, bent in sides:
+        if bent <= 20:
+            yield ('merge', j0, j1, j0 == i)
+    spike = max(tin, tout) > 90                          # a spur: out and back
+    for j, bent in sorted(((nxt, tout), (prev, tin)), key=lambda o: o[1]):
+        if (bent <= 20 or spike) and segs[j][0] == 'C':
+            a, e = np.array(FN._start(segs, i)), np.array(segs[i][1][-1])
+            trial = copy(); p = trial[j][1]
+            trial[j] = ['C', [tuple(np.array(p[0]) + a - e), p[1], p[2]]] if j == nxt else \
+                ['C', [p[0], tuple(np.array(p[1]) + e - a), tuple(e)]]
+            del trial[i]
+            yield ('trial', trial, [j if j < i else j - 1])
+            if spike:                                   # or fitted again to its own points beyond the spur
+                a, e = (FN._start(segs, i), segs[i][1][-1]) if j == nxt else (segs[i][1][-1], FN._start(segs, i))
+                own = _samples(FN._start(segs, j), segs[j], 1.0)
+                own = own[np.linalg.norm(own - np.array(e), axis=1) > _seg_len(segs, i)]
+                if len(own) > 4:
+                    pts = np.vstack([a, own]) if j == nxt else np.vstack([own, a])
+                    u1 = _unit_or(np.subtract(pts[3], a)) if j == nxt else _tan_out(segs, j)
+                    u2 = _tan_in(segs, j) if j == nxt else _unit_or(np.subtract(a, pts[-4]))
+                    if u1 is not None and u2 is not None:
+                        c = _fit(pts, u1, u2); trial = copy()
+                        trial[j] = ['C', [tuple(c[1]), tuple(c[2]), tuple(c[3])]]
+                        del trial[i]
+                        yield ('trial', trial, [j if j < i else j - 1])
+    # a run of short pieces at a corner: one node, where the outline either side meets or at the run's middle
+    run = [i]
+    while L[(run[-1] + 1) % n] < short and len(run) < n - 3:
+        run.append((run[-1] + 1) % n)
+    p, q = (run[0] - 1) % n, (run[-1] + 1) % n
+    t1, t2 = _tan_in(segs, p), _tan_out(segs, q)
+    a, e = np.array(FN._start(segs, run[0])), np.array(segs[run[-1]][1][-1])
+    spots = [(a + e) / 2]
+    if t1 is not None and t2 is not None and abs(np.linalg.det(np.array([t1, -t2]).T)) > 1e-6:
+        spots.insert(0, a + np.linalg.solve(np.array([t1, -t2]).T, e - a)[0] * t1)
+    for C in spots:
+        for refit in (False, True):
+            trial = copy()
+            for x, end in ((p, True), (q, False)):
+                k, pp = trial[x]; s0 = np.array(FN._start(segs, x))
+                if k == 'L':
+                    trial[x] = ['L', [tuple(C)]] if end else ['L', list(pp)]
+                elif not refit:
+                    trial[x] = ['C', [pp[0], tuple(np.array(pp[1]) + C - a), tuple(C)]] if end else \
+                        ['C', [tuple(np.array(pp[0]) + C - e), pp[1], pp[2]]]
+                else:                                   # the neighbour fitted again to its own points, to C
+                    pts = _samples(tuple(s0), segs[x], 1.0)
+                    pts = np.vstack([pts, C]) if end else np.vstack([C, pts])
+                    u1 = _tan_out(segs, x) if end else _unit_or(np.subtract(pts[3], C))
+                    u2 = _unit_or(np.subtract(C, pts[-4])) if end else _tan_in(segs, x)
+                    if u1 is None or u2 is None:
+                        break
+                    c = _fit(pts, u1, u2)
+                    trial[x] = ['C', [tuple(c[1]), tuple(c[2]), tuple(c[3])]]
+            else:
+                kept = [s for k, s in enumerate(trial) if k not in run]
+                at = [next(k for k, s in enumerate(kept) if s is trial[x]) for x in (p, q)]
+                yield ('trial', kept, at)
+    # at a corner: one curve with a neighbour all the same, where it stays within tol
+    for j0, j1, bent in sides:
+        if bent > 20:
+            yield ('merge', j0, j1, j0 == i)
+    # or the corner rounded: the piece and a few units of each neighbour drawn as one curve tangent to both
+    for r in (4.0, 6.0, 8.0, 12.0):
+        A, B = _cut_at(segs, prev, r, True), _cut_at(segs, nxt, r, False)
+        if A is None or B is None:
+            continue
+        pts = np.vstack([_samples(A[0][1][-1], A[1], 1.0), _samples(FN._start(segs, i), segs[i], 1.0)[1:],
+                         _samples(segs[i][1][-1], B[0], 1.0)[1:]])
+        c = _fit(pts, A[2], B[2])
+        if _bulges(c):                                  # a corner at an extreme: a node there, as the outlines have
+            cs = CF.add_extrema([c])
+            if any(math.dist(q[0], q[3]) < short for q in cs):
+                continue
+        else:
+            cs = [c]
+        arc = [['C', [tuple(q[1]), tuple(q[2]), tuple(q[3])]] for q in cs]
+        trial = copy(); trial[prev] = A[0]; trial[nxt] = B[1]
+        trial[i:i + 1] = arc
+        k = len(arc)
+        yield ('trial', trial, [prev if prev < i else prev + k - 1] + list(range(i, i + k)) + [(nxt + k - 1) if nxt > i else nxt])
+
+
+
+def fold_short(segs, tol=1.5, short=9.0, ref=None):
+    """Every piece shorter than `short` folded away, the shortest first, each change kept within `tol` of the
+    outline as it came (`ref`, a KD tree of its samples) and every node on its ink: beside a smooth join the
+    piece and its neighbour there are drawn as one curve, or the neighbour is drawn on over it (the corner's node
+    stays where it is), and a spur of a few units is dropped, its neighbour drawn on past it; a run of short
+    pieces at a corner becomes one node, where the outline either side meets or at the run's middle; failing
+    these, the piece is drawn as one curve with a neighbour across the corner, or the corner is rounded, a node
+    at its extreme. A piece none of these folds within tol stays."""
+    from scipy.spatial import cKDTree
+    segs = [[k, list(p)] for k, p in segs]
+    if ref is None:
+        ref = cKDTree(np.vstack([_samples(FN._start(segs, i), s, 1.0) for i, s in enumerate(segs)]))
+    import curvefit as CF
+    bulging = lambda c: sum(k == 'C' and _bulges([FN._start(c, j)] + list(p)) for j, (k, p) in enumerate(c))
+    def ok(trial, idx):
+        """The trial, a node put at the extreme of each changed curve that passes one, if it stays within tol
+        and leaves no new piece under `short`; else None."""
+        idx = {k % len(trial) for k in idx}
+        out, changed = [], []
+        for k, (kind, p) in enumerate(trial):
+            if k in idx and kind == 'C' and _bulges([FN._start(trial, k)] + list(p)):
+                cs = CF.add_extrema([np.array([FN._start(trial, k)] + list(p), float)])
+                if any(math.dist(q[0], q[3]) < short for q in cs):
+                    return None
+                pieces = [['C', [tuple(q[1]), tuple(q[2]), tuple(q[3])]] for q in cs]
+            else:
+                pieces = [[kind, p]]
+            changed += list(range(len(out), len(out) + len(pieces))) if k in idx else []
+            out += pieces
+        if bulging(out) > bulging(segs):
+            return None                             # a curve passing an extreme between its nodes
+        drawn = np.vstack([_samples(FN._start(out, k), out[k], 1.0) for k in changed])
+        nodes = np.array([out[k][1][-1] for k in changed] + [FN._start(out, k) for k in changed])
+        return out if ref.query(drawn)[0].max() <= tol and ref.query(nodes)[0].max() <= tol else None
+    stuck = set()
+    for _ in range(300):
+        n = len(segs)
+        if n <= 3:
+            break
+        L = [_seg_len(segs, k) for k in range(n)]
+        cand = sorted((k for k in range(n) if L[k] < short and tuple(np.round(segs[k][1][-1], 3)) not in stuck), key=lambda k: L[k])
+        if not cand:
+            break
+        i = cand[0]; done = False
+        for o in _fold_options(segs, i, L, short):
+            if o[0] == 'merge':
+                _, j0, j1, sf = o
+                m = _merged(segs, j0, j1, ref, tol, sf)
+                if m is not None and ref.query(np.atleast_2d(m[1][-1]))[0].max() <= tol:
+                    segs[j1] = m; del segs[j0]; done = True
+                    break
+            else:
+                t = ok(o[1], o[2])
+                if t is not None:
+                    segs = t; done = True
+                    break
+        if done:
+            stuck = set()                           # its neighbours have changed: try the others again
+        else:
+            stuck.add(tuple(np.round(segs[i][1][-1], 3)))
+    return segs
+
+
+def bold_contour(segs, tol=1.5, short=9.0):
+    """One contour of a bold letter, its facets drawn as curves and its short pieces folded, every node and the
+    outline within tol of the outline as it came; kept as it was where they would stray further (or where the
+    outline as it came would stand more than twice tol from the new one: only a spur of a few units may go)."""
+    from scipy.spatial import cKDTree
+    segs = [[k, list(p)] for k, p in segs]
+    ref = cKDTree(np.vstack([_samples(FN._start(segs, i), s, 1.0) for i, s in enumerate(segs)]))
+    new = fold_short(facet_curves(segs, tol), tol, short, ref)
+    drawn = np.vstack([_samples(FN._start(new, i), s, 1.0) for i, s in enumerate(new)])
+    nodes = np.array([s[1][-1] for s in new])
+    if max(ref.query(drawn)[0].max(), ref.query(nodes)[0].max()) > tol or cKDTree(drawn).query(ref.data)[0].max() > 2 * tol:
+        return segs
+    return new
+
+
+def bold_curves(font, edits=EDITS):
+    """In a bold, on the final outlines of the listed letters and their accented forms ("bold_curves"): each
+    contour through bold_contour, and the glyph left as it was if its pieces, counters or area would change."""
+    if not font.bold:
+        return
+    spec = load(edits)['bold_curves']
+    names = list(spec['glyphs']); names += [n for n, b in font.comp.items() if b in names]
+    font.bold_curved = {}
+    for n in names:
+        if n not in font.final:
+            continue
+        p = font.final[n]
+        q = path([bold_contour(c, spec['tolerance'], spec['short'] + 1) if len(c) > 3 else c for c in segments(p)])
+        s0, s1 = (pathops.simplify(x, fix_winding=True, keep_starting_points=False, clockwise=False) for x in (p, q))
+        a0, a1 = _area(s0), _area(s1)
+        if len(segments(s0)) != len(segments(s1)) or abs(a1 - a0) > 0.005 * abs(a0):
+            continue
+        font.final[n] = q; font.bold_curved[n] = round(100 * (a1 - a0) / a0, 3)
 
 
 def opening(p, rmax=48):

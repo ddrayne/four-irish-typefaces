@@ -23,6 +23,21 @@ def test_sanitizer(ext):
     assert not bad
 
 
+def test_truetype_outlines_have_no_specks():
+    """The TrueType conversion leaves no loop where a spline crosses its own contour: cu2qu's splines for a hooked
+    cubic a few units long, rounded to the grid, crossed themselves (Carrick Italic's ı, i and į kept a 0.16 unit
+    square speck at 335, 514; Kilfane's K, ! and q specks of 0.003 to 0.04). build2.ttf_glyph splits such a cubic."""
+    import pathops, glyphs
+    found = []
+    for path in files('ttf'):
+        f = TTFont(path); gs = f.getGlyphSet()
+        for n in f.getGlyphOrder():
+            p = pathops.Path(); gs[n].draw(p.getPen())
+            s = pathops.simplify(p, fix_winding=True, keep_starting_points=False, clockwise=False)
+            found += [(os.path.basename(path), n, round(abs(c.area), 3)) for c in glyphs.contours(s) if abs(c.area) < 4]
+    assert not found, found
+
+
 def test_style_linking(config):
     FONTS, STYLES, VERSION = config
     for key, cfg in FONTS.items():

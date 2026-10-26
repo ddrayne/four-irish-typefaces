@@ -44,6 +44,12 @@ ChangeLog
 - Carrick: % ‰ # in the figures' weight; ḃ's ponc beside its ascender, ḋ's and ḟ's well clear above
   theirs (b, d, f + U+0307 compose to them); ¢'s bar clear of the counter; the figures on one figure
   line; the Italic keeps the Regular's cuts. Its line box rises 7 units about the baseline (988/-213).
+- Carrick: the rings of ¤ and @ and ¤'s arms in the figures' weight; ™'s small m keeps its cuts open.
+  Tuam Uncial: ' and " (and the primes) at the weight of the curly quotes. Kilfane Bold and Bold
+  Italic: the curves of G S s v w x y ß W and the alternate g and y drawn as curves, not runs of
+  straight facets; the cedilla and ogonek drawn with the bold's pen, so the family's line box
+  deepens 14 units (1023/-204). The TrueType files keep no speck where a tiny curve's conversion
+  crossed itself (Carrick Italic's ı i į, a few Kilfane glyphs).
 - Names, coverage and features are unchanged; spacing follows the new outlines.
 
 2.101 (2026-10-25)

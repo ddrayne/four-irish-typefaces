@@ -296,6 +296,81 @@ def despike(p):
     return out
 
 
+def _tt_specks(glyph, small=4.0):
+    """The pieces of a TrueType glyph's filled outline under `small` units square: loops its own contour makes
+    where it crosses itself (the cubic outlines have none: final_clean removes pieces under 16)."""
+    q = pathops.Path(); glyph.draw(q.getPen(), None)
+    s = pathops.simplify(q, fix_winding=True, keep_starting_points=False, clockwise=False)
+    return [bounds(c) for c in GL.contours(s) if abs(c.area) < small]
+
+
+def _tt_spikes(glyph):
+    """On-curve points a TrueType contour runs out to and straight back from, or repeats."""
+    out, start = [], 0
+    for e in glyph.endPtsOfContours:
+        pts = [(tuple(glyph.coordinates[k]), glyph.flags[k] & 1) for k in range(start, e + 1)]
+        n = len(pts)
+        for k in range(n):
+            a, b, c = pts[k], pts[(k + 1) % n], pts[(k + 2) % n]
+            if a[0] == b[0] or a[1] and b[1] and c[1] and a[0] == c[0]:
+                out.append(b[0])
+        start = e + 1
+    return out
+
+
+def ttf_glyph(p, unspeck=False, max_err=0.8, near=2.0, rounds=3):
+    """p as a TrueType glyph: on the unit grid, its cubics converted to quadratic splines within max_err.
+
+    With `unspeck`, a speck that the conversion leaves is removed. cu2qu draws each cubic within max_err of it
+    and the spline's points are rounded to the grid, so a cubic a few units long that doubles back on itself (a
+    hook at a corner: Carrick Italic's i stem, 5 units long with a handle 10 units past its end) is drawn as a
+    spline that crosses its own path, and a loop of a fraction of a unit square is left (0.16 in Carrick Italic's
+    i). Only in such a glyph, each cubic passing within `near` units of a speck is converted again: one under 8
+    units long that strays from its chord by no more than the conversion and the grid may (max_err and half a
+    unit diagonally: the hook) is drawn as its chord, any other is split in two halves on the same curve, so that
+    each half's spline follows it; the result is kept only if it has neither a speck nor a point the contour runs
+    out to and back from. The cubic outline does not change, and every other glyph converts exactly as before."""
+    pen = TTGlyphPen(None)
+    if bounds(p) is None:
+        return pen.glyph()
+    if not unspeck:
+        p.draw(CleanPen(Cu2QuPen(CleanPen(pen), max_err=max_err, reverse_direction=True)))
+        return pen.glyph()
+    from fontTools.misc.bezierTools import splitCubicAtT
+    grid = RecordingPen(); p.draw(CleanPen(grid))            # the cubic outline as the conversion takes it
+
+    def convert(rec):
+        out = TTGlyphPen(None); replayRecording(rec, Cu2QuPen(CleanPen(out), max_err=max_err, reverse_direction=True))
+        return out.glyph()
+    first = g = convert(grid.value)
+    if not _tt_specks(g):
+        return g
+    rec = grid.value
+    for _ in range(rounds):
+        at = [((b[0] + b[2]) / 2, (b[1] + b[3]) / 2) for b in _tt_specks(g)]
+        out, cur = [], None
+        for op, a in rec:
+            if op == 'curveTo':
+                P = np.array([cur, *a], float); t = np.linspace(0, 1, 65)[:, None]
+                curve = (1 - t) ** 3 * P[0] + 3 * (1 - t) ** 2 * t * P[1] + 3 * (1 - t) * t * t * P[2] + t ** 3 * P[3]
+                if any(np.hypot(*(curve - q).T).min() <= near for q in at):
+                    d = P[3] - P[0]; L2 = max(float(d @ d), 1e-12)
+                    s = np.clip((curve - P[0]) @ d / L2, 0, 1)[:, None]
+                    if L2 < 64 and np.hypot(*(curve - P[0] - s * d).T).max() <= max_err + 0.71:
+                        out.append(('lineTo', (a[-1],)))
+                    else:
+                        out += [('curveTo', tuple(map(tuple, h[1:]))) for h in splitCubicAtT(*map(tuple, P), 0.5)]
+                    cur = a[-1]
+                    continue
+            out.append((op, a))
+            if op in ('moveTo', 'lineTo', 'curveTo', 'qCurveTo'):
+                cur = a[-1]
+        rec = out; g = convert(rec)
+        if not _tt_specks(g):
+            return first if set(_tt_spikes(g)) - set(_tt_spikes(first)) else g
+    return first
+
+
 def final_clean(p):
     """Round to the integer grid, then let pathops remove the spurs and slivers that rounding exposes."""
     q = pathops.Path()
@@ -1207,10 +1282,7 @@ class Font2:
         if is_ttf:
             glyf = {}
             for n in order:
-                pen = TTGlyphPen(None)
-                if bounds(paths[n]) is not None:
-                    paths[n].draw(CleanPen(Cu2QuPen(CleanPen(pen), max_err=0.8, reverse_direction=True)))
-                glyf[n] = pen.glyph()
+                glyf[n] = ttf_glyph(paths[n], unspeck=getattr(self, 'TTF_UNSPECK', False))
             fb.setupGlyf(glyf)
             metrics = {n: (adv[n], getattr(fb.font['glyf'][n], 'xMin', 0)) for n in order}
         else:

@@ -335,6 +335,22 @@ def figure_signs(f, P, top, st):
             'perthousand': (pm, 'percent + zero')}
 
 
+def parted(pieces, gap):
+    """Pieces of a letter, left to right, each kept at least `gap` from the next: where two come closer, the
+    left one's end is cut back along the right one's edge (offset by gap, mitred), so the right piece keeps
+    its drawing and the white between them runs at one width."""
+    pieces = sorted(pieces, key=lambda p: bounds(p)[0])
+    out = []
+    for i, p in enumerate(pieces):
+        for q in pieces[i + 1:]:
+            if clearance(p, q) < gap:
+                s = pathops.Path(q)
+                s.stroke(2 * gap, pathops.LineCap.BUTT_CAP, pathops.LineJoin.MITER_JOIN, 2.0); s.convertConicsToQuads()
+                p = SH.difference(p, SH.union(q, s))
+        out.append(p)
+    return SH.union(*out)
+
+
 def counter_widths(p, res=1.0):
     """The inscribed width of each closed counter of p."""
     from scipy import ndimage as ndi
@@ -450,7 +466,23 @@ def make_symbols(f):
     else:
         a = scaled(P['a'], 0.74, S, 0.85, Ss); ab = bounds(a)
         a = translate(a, ccx - (ab[0] + ab[2]) / 2 + 0.02 * xh, ccy - (ab[1] + ab[3]) / 2)
-        put('at', SH.union(a, ring(ccx, ccy, R, 0.7 * t)), 'a in a ring')
+        rw = getattr(f, 'RING_WEIGHT', None)
+        if rw:
+            # the ring in the figures' weight, as % and # are (RING_WEIGHT of the figure stem): it is thickened
+            # outward by AT_RING_OUT of the added weight and inward by the rest, and the a, made smaller by
+            # that if need be (at its own stem weight), keeps the white it had inside the hyphen-weight ring
+            w, rt = rw * figure_stem(P, top), 0.7 * t
+            white = clearance(a, ring(ccx, ccy, R, rt))
+            R2 = R + getattr(f, 'AT_RING_OUT', 1.0) * (w - rt)
+            far = R - rt - white
+            k = min(1.0, (R2 - w - white) / far)
+            if k < 1:
+                a = scaled(P['a'], 0.74 * k, S, 0.85, Ss); ab = bounds(a)
+                a = translate(a, ccx - (ab[0] + ab[2]) / 2 + 0.02 * xh * k, ccy - (ab[1] + ab[3]) / 2)
+                a = inside_ring(a, ccx, ccy, R2 - w, white)
+            put('at', SH.union(a, ring(ccx, ccy, R2, w)), 'a in a ring in the figures\' weight')
+        else:
+            put('at', SH.union(a, ring(ccx, ccy, R, 0.7 * t)), 'a in a ring')
 
     pt, pbm = asc + 0.02 * xh, -0.30 * xh
     sw = 0.62 * S; arm = 0.24 * xh
@@ -517,9 +549,20 @@ def make_symbols(f):
     put('yen', SH.union(y, bar(st, ycx - 0.27 * xh, ycx + 0.27 * xh, 0.30 * top, 0.7 * t),
                         bar(st, ycx - 0.27 * xh, ycx + 0.27 * xh, 0.30 * top - 1.7 * t, 0.7 * t)), 'Y + bars')
     rr = 0.34 * xh
-    spurs = [stroke_polyline([(math.cos(a) * rr * 0.85, yc + math.sin(a) * rr * 0.85), (math.cos(a) * rr * 1.45, yc + math.sin(a) * rr * 1.45)], 0.55 * t, st)
-             for a in (math.radians(d) for d in (45, 135, 225, 315))]
-    put('currency', SH.union(ring(0, yc, rr, 0.6 * t), *spurs), 'ring + spurs')
+    rw = getattr(f, 'RING_WEIGHT', None)
+    if rw:
+        # ring and arms in the figures' weight (RING_WEIGHT and ARM_WEIGHT of the figure stem), the ring's
+        # radius CURRENCY_RADIUS of the x-height so that its counter stays open, the arms reaching
+        # CURRENCY_REACH of that radius from the centre
+        w1 = figure_stem(P, top); cw, aw = rw * w1, (getattr(f, 'ARM_WEIGHT', None) or rw) * w1
+        rr = getattr(f, 'CURRENCY_RADIUS', 0.34) * xh; reach = getattr(f, 'CURRENCY_REACH', 1.45)
+        spurs = [stroke_polyline([(math.cos(a) * (rr - cw / 2), yc + math.sin(a) * (rr - cw / 2)), (math.cos(a) * rr * reach, yc + math.sin(a) * rr * reach)], aw, st)
+                 for a in (math.radians(d) for d in (45, 135, 225, 315))]
+        put('currency', SH.union(ring(0, yc, rr, cw), *spurs), 'ring + spurs in the figures\' weight')
+    else:
+        spurs = [stroke_polyline([(math.cos(a) * rr * 0.85, yc + math.sin(a) * rr * 0.85), (math.cos(a) * rr * 1.45, yc + math.sin(a) * rr * 1.45)], 0.55 * t, st)
+                 for a in (math.radians(d) for d in (45, 135, 225, 315))]
+        put('currency', SH.union(ring(0, yc, rr, 0.6 * t), *spurs), 'ring + spurs')
     sec = section(P['s'], S, Ss, top)
     if sec is not None:
         put('section', sec, 'two interlaced s')
@@ -543,7 +586,12 @@ def make_symbols(f):
     tm_t = P['T.alt1'] if 'T.alt1' in P else (P['T'] if not f.cfg['unicase'] else P['t'])
     tm_m = P['M'] if not f.cfg['unicase'] else P['m']
     k = 0.42 if not f.cfg['unicase'] else 0.52
-    a1 = scaled(tm_t, k, S, 0.55, Ss); a2 = scaled(tm_m, k, S, 0.55, Ss); b1 = bounds(a1); b2 = bounds(a2)
+    a1 = scaled(tm_t, k, S, 0.55, Ss); a2 = scaled(tm_m, k, S, 0.55, Ss)
+    if getattr(f, 'TM_CUT', None):
+        # the small m from its own pieces (Carrick's are cut apart), each weighted alone and kept TM_CUT apart
+        import bolden
+        a2 = parted([scaled(c, k, S, 0.55, Ss) for c in bolden.components(tm_m)], f.TM_CUT)
+    b1 = bounds(a1); b2 = bounds(a2)
     tmx = SH.union(translate(a1, -b1[0], top - b1[3]), translate(a2, b1[2] - b1[0] - b2[0] + 0.04 * xh, top - b2[3]))
     put('trademark', tmx, 'small T + M')
     if 'ring' in getattr(f, 'piece', {}):
