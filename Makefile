@@ -2,7 +2,7 @@
 PY      ?= .venv/bin/python
 FACES   ?= kilfane tuam carrick ceili
 
-.PHONY: help setup fonts release test validate specimen proof audit package site showcase serve deploy-site trace clean
+.PHONY: help setup fonts release test validate specimen proof tester audit package site showcase serve deploy-site trace clean
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
@@ -27,6 +27,9 @@ specimen:  ## the PDF and PNG specimen, into docs/specimen
 
 proof:  ## a proof of the release fonts to print and mark up, build/proof/four-irish-typefaces-proof.pdf
 	$(PY) scripts/proof_sheet.py
+
+tester:  ## a short tester, one page per face, build/proof/four-irish-typefaces-tester.pdf
+	$(PY) scripts/proof_sheet.py --tester
 
 package:  ## the release ZIPs, into build/dist
 	$(PY) scripts/package.py

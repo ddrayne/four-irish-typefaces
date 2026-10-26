@@ -1,6 +1,9 @@
 """A proof for review by eye: an A4 PDF of the release fonts, to print at actual size and mark up.
 
-usage: python scripts/proof_sheet.py [--out build/proof/four-irish-typefaces-proof.pdf]
+usage: python scripts/proof_sheet.py [--tester] [--out PDF]
+
+With --tester, a short tester instead: one page per face (its letters, styles, a waterfall and text),
+into build/proof/four-irish-typefaces-tester.pdf.
 
 Every face in every style: letters and alternates, accents and signs, a waterfall and text blocks for
 colour, spacing and kerning strings, the four together, and the design calls only an eye can settle,
@@ -16,12 +19,16 @@ STUDY_TUAM = ROOT / 'research' / 'tuam-judgement' / 'fonts' / 'TuamUncialStudy3-
 
 FACES = [
     dict(key='kilfane', name='Kilfane Digital', ps='KilfaneDigital', designer='William Curran', caps=True,
+         display='Fáilte go Cill Chainnigh',
          styles=['Regular', 'Italic', 'Bold', 'BoldItalic'], sets=[('ss01', 'Roman forms'), ('ss02', 'Insular forms')]),
     dict(key='carrick', name='Carrick Digital', ps='CarrickDigital', designer='William Curran', caps=False,
+         display='Carraig agus cloch',
          styles=['Regular', 'Italic'], sets=[]),
     dict(key='tuam', name='Tuam Uncial Digital', ps='TuamUncialDigital', designer='Jarlath Hayes', caps=False,
+         display='Tús maith leath na hoibre',
          styles=['Regular', 'Italic'], sets=[]),
     dict(key='ceili', name='Céilí Digital', ps='CeiliDigital', designer='Hermann Hecht', caps=False,
+         display='Céilí mór anocht!',
          styles=['Regular', 'Italic', 'Bold', 'BoldItalic'],
          sets=[('ss01', 'Insular r and s'), ('ss02', 'Uncial A and N'), ('ss03', 'Alternate a d e j l v')]),
 ]
@@ -106,11 +113,12 @@ h2 { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spaci
      border-top: .4pt solid #000; padding-top: 1.2mm; }
 .facehead { display: flex; justify-content: space-between; align-items: baseline; border-bottom: .8pt solid #000;
             padding-bottom: 1.5mm; margin-bottom: 2mm; }
-.facehead .t { font-size: 26pt; line-height: 1.1; }
+.facehead .t { font-size: 26pt; line-height: 1.1; white-space: nowrap; }
 .facehead .m { font-size: 7.5pt; text-align: right; }
 .lab { font-size: 6.5pt; color: #444; margin: 2.5mm 0 .3mm; }
 .line { white-space: nowrap; overflow: hidden; line-height: 1.2; }
 .fit { white-space: nowrap; line-height: 1.25; }
+.display { margin: 3mm 0 1mm; line-height: 1.15; }
 .para { line-height: 1.38; margin: 0 0 2.5mm; hyphens: manual; }
 .wf { display: flex; align-items: baseline; gap: 3mm; }
 .wf .sz { width: 9mm; flex: none; font-size: 6.5pt; color: #444; text-align: right; }
@@ -192,13 +200,50 @@ def face_pages(fc):
     return pages
 
 
-def build_html(version, commit, today):
+def font_faces():
     faces = []
     for fc in FACES:
         for st in fc['styles']:
             src = (ROOT / 'fonts' / 'ttf' / f'{fc["ps"]}-{st}.ttf').as_uri()
             faces.append(f"@font-face{{font-family:'{fam(fc['key'], st)}';src:url('{src}')}}")
     faces.append(f"@font-face{{font-family:'{fam('study', 'Regular')}';src:url('{STUDY_TUAM.as_uri()}')}}")
+    return ''.join(faces)
+
+
+def document(title, pages):
+    out = ''.join(f'<section class="page">{"".join(p)}</section>' for p in pages)
+    return (f'<!doctype html><html><head><meta charset="utf-8"><title>{esc(title)}</title>'
+            f'<style>{font_faces()}{CSS}</style></head><body>{out}</body></html>')
+
+
+def build_tester_html(version, commit, today):
+    """One page per face: its name, a display line, letters, every style, a waterfall and text."""
+    pages = []
+    for fc in FACES:
+        k, rs = fc['key'], fc['styles']
+        label = lambda st: st.replace('BoldItalic', 'Bold Italic')
+        body = [f'<div class="facehead"><span class="t" style="font-family:\'{fam(k, "Regular")}\'">{esc(fc["name"])}</span>'
+                f'<span class="m">{esc(fc["designer"])}, 1978 · digitised from the originals<br>'
+                f'{" · ".join(label(s) for s in rs)} · version {esc(version)}</span></div>',
+                setin(k, 'Regular', fc['display'], 56, 'fit display')]
+        body.append('<h2>Letters</h2>')
+        for t in ([LOWER, UPPER] if fc['caps'] else [LOWER]) + [FIGS, DOTTED]:
+            body.append(setin(k, 'Regular', t, 24, 'fit'))
+        body.append('<h2>Styles</h2>')
+        for st in rs:
+            body.append(f'<div class="lab">{label(st)}</div>')
+            body.append(setin(k, st, WATERFALL, 18, 'fit'))
+        body.append('<h2>Sizes</h2>')
+        for pt in (36, 24, 18, 14, 11, 9):
+            body.append(f'<div class="wf"><span class="sz">{pt} pt</span>{setin(k, "Regular", SHORT, pt)}</div>')
+        body.append('<h2>Text</h2>')
+        body.append(setin(k, 'Regular', IRISH, 10.5, 'para'))
+        body.append(setin(k, 'Regular', ENGLISH, 9, 'para'))
+        pages.append(body)
+    return document('Four Irish Typefaces tester', pages)
+
+
+def build_html(version, commit, today):
     pages = []
     # cover
     ticks = ''.join(f'<i style="left:{x}mm"></i>' for x in range(0, 101, 10))
@@ -240,9 +285,7 @@ def build_html(version, commit, today):
                     '<div class="ticks"><span class="box"></span>keep as it is<span class="box"></span>change'
                     '<span class="box"></span>not sure</div><div class="notes"></div></div>')
     pages.append(body)
-    out = ''.join(f'<section class="page">{"".join(p)}</section>' for p in pages)
-    return (f'<!doctype html><html><head><meta charset="utf-8"><title>Four Irish Typefaces proof</title>'
-            f'<style>{"".join(faces)}{CSS}</style></head><body>{out}</body></html>')
+    return document('Four Irish Typefaces proof', pages)
 
 
 FIT = '''() => {
@@ -255,17 +298,20 @@ FIT = '''() => {
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--out', type=Path, default=ROOT / 'build' / 'proof' / 'four-irish-typefaces-proof.pdf')
+    ap.add_argument('--tester', action='store_true', help='one page per face instead of the full proof')
+    ap.add_argument('--out', type=Path)
     args = ap.parse_args()
+    kind = 'tester' if args.tester else 'proof'
+    args.out = args.out or ROOT / 'build' / 'proof' / f'four-irish-typefaces-{kind}.pdf'
     version = re.search(r"^VERSION = '([^']+)'", (ROOT / 'scripts' / 'build2.py').read_text(encoding='utf-8'), re.M).group(1)
     git = lambda *a: subprocess.run(['git', *a], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     commit = git('rev-parse', '--short', 'HEAD') + ('+' if git('status', '--porcelain', '--', 'fonts') else '')
     today = datetime.date.today().isoformat()
     args.out.parent.mkdir(parents=True, exist_ok=True)
     page_html = args.out.with_suffix('.html')
-    page_html.write_text(build_html(version, commit, today), encoding='utf-8')
+    page_html.write_text((build_tester_html if args.tester else build_html)(version, commit, today), encoding='utf-8')
     footer = ('<div style="font:6.5pt sans-serif;width:100%;padding:0 18mm;display:flex;justify-content:space-between">'
-              f'<span>Four Irish Typefaces · proof of {esc(version)} ({esc(commit)}) · {esc(today)}</span>'
+              f'<span>Four Irish Typefaces · {kind} of {esc(version)} ({esc(commit)}) · {esc(today)} · CC0</span>'
               '<span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>')
     with sync_playwright() as p:
         exe = Path('/opt/pw-browsers/chromium')           # the preinstalled Chromium, as famproof.py uses
