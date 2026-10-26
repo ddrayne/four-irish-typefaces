@@ -49,6 +49,25 @@ The changes are small: L stands straighter (its N516 lean was the print's, not t
 letters move by under three per cent in width. They are recorded per letter in `traces/evidence.json`
 (`frame_lock.sheet_frame`, `frame_lock.baseline`).
 
+## The release's finishing pass
+
+The release build (`scripts/build_candidate.py kilfane`) finishes these traces as a studio would, in
+`scripts/kilfane_studio.py`; the traces and the Study 5 fonts here are unchanged. Each step and its reason is in
+`judged-edits.json` (`finishing`):
+
+- **Heights** (judged). The prints set letters up to two source pixels off one another, so flat tops ran from
+  489 to 514 units at the x-height and 690 to 716 at the capitals, ascenders 680 to 692. Each letter is scaled
+  about its baseline onto the lines (x-height 506, overshoot 513; ascender 692; capitals 706 and 719; figures 693
+  and 700; descenders −157 and tails −168), keeping what the prints draw as design: the tall tilted o and O, r's
+  high bowl, the flags of t, T, D.alt1 and S.alt1, X's raised accent, the short descenders of f and j.
+- **Stems** (noise). Straight stems measured 108–119 (lowercase) and 121–139 (capitals), a pixel or two at
+  random; their edges move by at most 3 units each towards 114 and 130.
+- **Outlines** (noise). Every style's final outlines: nodes a fitter or the bold's pen left in chains merged,
+  near-smooth joins made smooth, nodes at extremes, each change within 1.5 units (2.5 where a kink is turned).
+- **Kerning** (judged, in text). Quotes and hyphens no longer tuck onto lowercase (’a was −105, c- −115); pairs
+  whose white is wider than n n, H H or H n by more than 12 units close by 60% of the excess (l and L with their
+  feet, F, V, K, X, Z, P, T before lowercase).
+
 ## Reproduce
 
 ```sh

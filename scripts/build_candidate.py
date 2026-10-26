@@ -42,8 +42,41 @@ def build(face, traces, version):
         REFIT_PX = {g['name']: 1.0 / g['scale'] for g in evidence['glyphs']
                     if g['status'] == 'candidate' and g.get('scale')}
 
+        # Kilfane: the studio finishing pass (scripts/kilfane_studio.py; research/kilfane-sheet-frame/judged-edits.json)
+        def finish_traced(self):
+            super().finish_traced()
+            if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.shapes(self)
+
+        def zones(self):
+            if face != 'kilfane':
+                return super().zones()
+            keep = {n: self.P[n] for n in self.studio}          # the studio pass has set their heights
+            super().zones()
+            self.P.update(keep)
+
+        def kerning(self):
+            if face != 'kilfane':
+                return super().kerning()
+            import kilfane_studio
+            from study_spacing import protect_kerning
+            build2.Font2.kerning(self)
+            kilfane_studio.kern(self)
+            protect_kerning(self)
+
+        def vertical(self):
+            if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.outlines(self)
+            return super().vertical()
+
         def build(self, flavour):
             f = build2.Font2.build(self, flavour)        # the release's names, not the study's
+            if face == 'kilfane':
+                import kilfane_studio
+                lines = kilfane_studio.load()['lines']
+                f['OS/2'].sxHeight, f['OS/2'].sCapHeight = lines['x'], lines['cap']      # the flat lines
             name = f['name']
             text = name.getDebugName(10).replace(
                 'Traced from the "Four Irish Typefaces" flyer;',
