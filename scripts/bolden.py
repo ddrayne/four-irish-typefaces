@@ -447,10 +447,11 @@ def _reopen(core, bold, stem, pen, sliver, tries=3):
     return bold
 
 
-def _separate(core, bold, pen):
+def _separate(core, bold, pen, close=False):
     """Pieces the regular keeps apart that the bold joins (the dot of a ! that sits close to its
     stroke): cut apart again along the line midway between them, F_PASS of their gap wide, so both
-    keep their weight and the gap its place."""
+    keep their weight and the gap its place. With `close`, pieces the bold brings within that width
+    without joining them are set apart the same way (Céilí Study 4's ? and !, build_original_study)."""
     from scipy import ndimage as ndi
     from skimage.measure import find_contours
     b = bounds(bold)
@@ -468,7 +469,7 @@ def _separate(core, bold, pen):
     for i in range(nr):
         for j in range(i + 1, nr):
             ki, kj = set(np.unique(lb[lr == i + 1])) - {0}, set(np.unique(lb[lr == j + 1])) - {0}
-            if not ki & kj:
+            if not ki & kj and not close:
                 continue                                    # still apart in the bold
             gap = float((dist[i] + dist[j])[~R].min())
             if gap < 1:

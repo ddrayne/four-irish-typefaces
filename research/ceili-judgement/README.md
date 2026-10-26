@@ -1,0 +1,211 @@
+# Céilí Study 4: the judgement pass
+
+[Céilí Study 4](fonts/) draws every one of Céilí's 54 traced letters, figures and signs from the two
+complete prints of Hermann Hecht's 1978 alphabet taken together, instead of from one of them, and adds
+the sheet's own síneadh fada. It is built on [round 4](../round-04/README.md) (Study 3) and keeps its
+frame, its named punctuation and its builder. It is a research candidate, not a release; it follows the
+method of [Kilfane Study 4](../kilfane-judgement/README.md) and [Carrick Study 3](../round-06/README.md).
+
+## The prints, and what they can settle
+
+Céilí has no production sheet. What survives is one artwork reproduced several times:
+
+| Print | What it is | Used |
+|---|---|---|
+| N46 | D. O'Sullivan's leaflet, NIVAL's copy ([46](https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/46/), `0adeda27…`): a photocopy. Study 3 traced 50 of its 54 letters here | averaged |
+| N45 | The competition brochure, NIVAL's copy ([45](https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/), `57d14ab3…`): offset on textured stock, the alphabet set out in different lines (its own paste-up) | averaged |
+| N44 | The brochure's cover ([44](https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/44/), `172ddcd2…`), whose heading "design an irish typeface" is set in Céilí (Bolger, vol. 1, pp. 279-80): 21 separately made impressions of 15 letters | a check |
+| S53915, S53916 | The leaflet's samples of the 24 pt and 42 pt Letraset sheets ("a1", on N46) | a check |
+| B2 | Bolger's photograph of Trinity College's copy of the brochure (thesis vol. 2, p. 159, fig. 203b; PDF `f7532cc1…`, the extracted JPEG `a8a80957…`): the same plate as N45 on another sheet, at half its resolution | a check |
+| flyer | `sources/flyer.jpg` (`84ef750e…`), the release's scan of the leaflet, a third of N46's resolution | a check |
+
+N47 does not print Céilí (it shows Carrick and Kilfane only). The leaflet's title is American Uncial, not
+Céilí (Bolger, fig. 202). N45, N44 and B2 share the brochure's press; N46 and the flyer the leaflet's
+copying. Agreement inside a branch is not confirmation; across branches it is the best evidence there is.
+
+The prints can settle shape: where they agree, that is the drawing; where one shows a gap, a notch, a
+blob or a lost tip that another does not, that is print. They cannot settle weight: at their own
+midpoints N45's stems print about 10% lighter than N46's, while N46's hairlines print thinner than
+N45's (a photocopy spreads stems and drops hairlines). They cannot settle the drawing's finest
+detail below about one source pixel (0.4 trace units, about 9 font units), nor how the letters were
+spaced: both alphabets are paste-ups. Only a production sheet or the artwork can settle those.
+
+## How the letters were drawn
+
+`scripts/ceili_prints.py` finds each letter on every print (N46 and N45 by round 3's regions; N44 by its
+ink components, its forms read by eye and confirmed by registration; B2 by one projective transform from
+N45; the flyer by the legacy traces, which are in its pixels). Each print's ink is registered onto the
+letter's Study 3 trace by a **similarity** transform: one scale, a rotation and a shift, never a stretch
+(a free affine squashed 1, z and ! to fit). The prints are then registered onto their own mean and the
+frame pinned back in the trace's coordinates, so every letter keeps Study 3's size and place.
+
+`scripts/trace_ceili_judgement.py` draws each letter as one level of the mean of N46 and N45, each print
+taken at its own midpoint. Only these two are averaged: both print every letter, so the alphabet is
+drawn from the same evidence throughout, and N44 stays a check the averaging never saw (N44 prints
+heavier hairlines; averaged in, its fifteen letters came out heavier than the rest). The level is the
+face's, not the letter's: 0.36, where the mean's stems are as wide as the median high-resolution print's
+(N46, N44 and the sheet samples agree, about 3% lighter than Study 3 traced them; N45 is the outlier).
+Across twenty stemmed letters the median stem is 4.69 trace units against Study 3's 4.62, and the spread
+is narrower. The builder's stem, measured on l and n alone, falls from 115 to 109.5 units because Study
+3's l was one of its heaviest letters. The hairlines lie between the two prints', about 6% heavier than
+Study 3's.
+
+Topology is the prints', not the mean's. Every letter's pieces and counters were read on each print; N46
+and N45 agree on all of them but the ampersand. Where the two prints disagree by more than edge noise
+(0.3 trace units), each region one print inks and the other leaves white is decided by one rule
+(`disagreements()`, recorded region by region in each letter's `topology`):
+
+- **A notch**, where the other print's outline closes over the region at 0.75 units, is a gap or dropout
+  in that print and is filled. A gap or notch one print shows and another fills is print, so the rule
+  fills these. It did so 28 times: 25 where N45 left the notch, 3 where N46 did (the white streaks of h
+  and 7).
+- **A protrusion** of one print beyond the other is decided by the cover heading N44 wherever N44
+  prints the letter. N44 voted 17 times. It kept 14 of N45's tips. It voted out two N45 spurs, on g and
+  p, and one N46 lump, the toner blob in g's lower bowl.
+- **Where N44 does not print the letter**, a protrusion of N45 is drawn: 36 tips and spurs that the
+  photocopy lost (the photocopy loses fine ends, the offset print does not). A lump of N46's toner at
+  least a unit thick would be dropped, but no such lump occurs outside the letters N44 votes on. N46's
+  thinner excess along its edges is its heavier weight, which the face's level already accounts for.
+
+The ink-map sampling, levels, transforms and residuals of every print of every letter are in
+[traces/evidence.json](traces/evidence.json), with the files' hashes.
+
+**Checked against a print it never saw.** The cover heading N44 (21 impressions of 15 letters) matches
+the mean of N46 and N45 better than it matches Study 3 or N46. On shape IoU, with weight set aside, the
+mean scores 0.915, Study 3 0.893 and N46 0.878. N45 alone scores as well (0.916), but it shares N44's
+press. The check scores the plain mean, before any votes, so N44's votes do not feed into it. The frame check (the overlap fit of each letter to Study 3, recorded and not applied) lies
+between 0.967 (the left parenthesis, whose tips N45 restores) and 1.009.
+
+## What changed
+
+| | Study 3 | Study 4 |
+|---|---|---|
+| Source of each letter | N46 (50), N45 (b, e, e.alt1, h) | the mean of N46 and N45, all 54 |
+| Weight across the alphabet | stems vary 4.19-5.44 trace units (cv 7.4%); b, e, h lighter | 4.50-5.31 (cv 5.4%); one weight throughout |
+| Hairlines (bowls' thin points) | 1.62 median | 1.72; contrast 2.85 → 2.73 |
+| Acute and its family | drawn to match | the sheet's síneadh fada |
+| Median ink change per letter | | 15% (aligned at the left; mostly edge noise removed). The 8 and £ change most (68%, 54%) because they now sit on the line |
+| Lowercase mean advance | 616 | 622 (the spacing method is unchanged; the letters are a little wider) |
+
+Letter by letter, the changes the boards show are print removed, not drawing added:
+
+- **g**: a blob of toner inside the lower bowl (N46 only) is gone; the counter is round, as N45, N44 and B2 print it.
+- **h**: N46 prints it broken by white streaks across the stem and leg; Study 3 had used N45, and Study 4 is
+  the two together, at the face's weight (Study 3's h, b, e and e.alt1 were N45's lighter weight).
+- **7, z, x, k, l, d, n**: nicks and lumps along N46's edges (its toner) are gone; the 7's top bar is clean.
+- **d, d.alt1, t, j.alt1, f**: the flags at the top of the stems are pointed, as N45 and N44 print them, not blunted.
+- **a.alt2**: the counter is the diamond N45 and B2 print, not N46's rounded one.
+- **r**: N46's notch where the bowl meets the leg (one print only) is filled.
+- **e, e.alt1**: the eye is closed on every print and stays closed; the tongue of e.alt1 keeps its pointed tip.
+- **b**: the bowl's open join is on every print and stays open. **6**: its tip stays apart from the stem
+  (the Bold's designed join, `BOLD['ceili']['joins']`, is untouched). **! and ?**: their dots stay separate.
+
+Pen and modulation, across the alphabet: the thin points of the round bowls lie on a near-vertical axis.
+Angles are from the horizontal, with N46's and N45's own readings in brackets:
+
+| Letter | Study 4 | N46, N45 |
+|---|---|---|
+| o | 92° | 88°, 82° |
+| zero | 90° | 92°, 92° |
+| d.alt1 | 96° | 88°, 90° |
+| a.alt1 | 102° | 104°, 96° |
+| a | 104° | 102°, 114° |
+| q | 106° | 92°, 96° |
+
+The 8's upper bowl tilts to 136°, as both prints draw it (134°, 130°); Study 3's read 90°. The measure is
+unstable where a bowl is not round: on e the prints themselves read 120° and 78°, and on g Study 4 reads
+74° against 82° and 80°. No letter breaks from the rest of the alphabet in pen angle or terminals.
+
+## Judgements, recorded as such
+
+There are no judged edits: no outline was drawn that a print does not show. The calls are these.
+
+- **The ampersand** is the one letter the prints disagree on. N46 (and the flyer) close its lower counter
+  where the bowl's terminal meets the diagonal; N45 (and B2, the same plate) leave a sliver of paper about
+  one pixel wide. It is kept closed, as N46 draws it and Study 3 has it (a gap one print shows and another
+  fills is print). Against this: two copies of the brochure show the gap, and the photocopy prints heavier.
+- **The weight** is a calibration, not a measurement (above).
+- **Which print draws a disagreement.** Filling notches is the rule the evidence gives. Drawing N45's
+  tips where N44 does not vote trusts the offset print over the photocopy for fine ends. That holds where
+  N44 votes (it kept 14 of N45's 16 tips) and where B2 resolves them, but B2 is the same plate as N45.
+- **The 8 sits on the baseline.** N46 sets it about 2 px higher on its line than 0, 1, 2, 6 and £ (Study 3's
+  8 floated 37 units above the baseline); N45 sets it level with them. Placement on a paste-up is setting.
+- **Each line keeps Study 3's baseline.** The builder takes a line's baseline as the median of its letters'
+  bottoms, which moves with the overshoots of round and pointed letters; on the figures' line it moved by
+  0.75 trace units and lifted 2, 6, 8 and £ off the line. `build_original_study.py` reads the baselines
+  from the evidence (`line_baselines`).
+- **The síneadh fada.** Both prints set three pieces together, in the same order, apart from the
+  punctuation: N45's upper row (components 3, 4, 5, beside the quotes) and the foot of N46's stack
+  (26, 28, 27). The thin wedge rising to the right (N45 5, N46 27) is no punctuation mark, and Irish cannot
+  be set without a fada: it is the face's acute. Its shape is the mean of the two prints, and it builds the
+  acute, the grave and the double acute (the grave and double acute are modern constructions from it).
+  The sheet's fada is narrower than the drawn acute it replaces, so over an open letter (u, v, w, y) the
+  builder now finds the letter's top across half an x-height, not the counter.
+- **The round dot** (N45 3, N46 26) is the only round piece in the face: every other dot is a pen-made
+  diamond, and it is larger (131 px against 96 for the period on N45) and rounder. Most probably it is the
+  ponc séimhithe. It is recorded, not built: the dot accent stays the period, as in Study 3. **The diamond**
+  (N45 4, N46 28) is the period's size and shape and stays unassigned. (N46's 26, which round 4 compared with
+  the N45 period, is this round dot; N46 prints no separate period.)
+
+## The derived styles
+
+The prints show only the Regular. In the candidate (`make candidate`) the Bold and the sloped styles are
+derived from Study 4 by the release's pen model, and two outcomes needed a repair. Both are recorded in
+`evidence.json` (`derived_styles`) and read by `build_original_study.py` for this study only. Every
+other face and study builds exactly as before.
+
+- **The dot of ? in the Bold.** Every print sets the dot of ! and ? well clear of its stroke (13 and 17
+  units in Study 4's Regular). The Bold's wider pen leaves the ? dot only 1.6 units from its stroke
+  without joining them (Study 3's: 5), so the Bold has nothing to reopen, and the Bold Italic's extra
+  weight then joins them. The dots of ! and ? are now set apart as the Bold sets apart a dot it joins: a
+  cut along the midline, F_PASS (0.62) of the Regular's gap wide (`bolden._separate(close=True)`). The
+  Bold's ? now has a 9.7-unit gap and the Bold Italic's 8.0; the ! is almost unchanged (7.3 and 5.0).
+  This is a judged repair to a derivation, not to the drawing.
+- **oe in the Italic.** The sloped styles' extra weight (`build2` condense) came out of pathops unsound
+  for oe: part of the e resolved as a hole and the eye was lost. Growing the same outline after
+  simplifying it gives a sound result. It is the only growth in the four styles that failed the check.
+
+With both repairs the candidate's topology matches Study 3's: the only flag is the Bold's designed join
+in 6 (`BOLD['ceili']['joins']`, untouched).
+
+## Not changed
+
+The frame (every letter's size and place is Study 3's: the overlap fit to Study 3, recorded as
+`frame_check`, lies between 0.967 and 1.009), the named period, comma and quotes (traced anew from the same N45
+components, with N46's quotes averaged in, at the face's level), every modern construction, the spacing
+method, the Bold's joins and the legacy `DOTS` cluster (discarded by the builder, as before).
+
+## Open questions
+
+- The ampersand's join (above); the identity of the round dot and the diamond.
+- The weight: N46's and N45's stems differ by about 10%; a production sheet would settle it.
+- The dots of ! and ? come out as rounded diamonds: N45 and B2 print them as sharp ones, N46 rounds them,
+  and the mean of two prints rounds a corner. A judged sharpening (the period's pen diamond) is possible.
+- The fine tips the photocopy shortens (the ends of the parentheses, the beak of v) are drawn as N45
+  prints them. B2 agrees with N45 where it resolves them, but it is the same plate.
+- The Bold's ! and ? dots sit close to their strokes in any derivation from these Regulars (5-10 units,
+  against 16-17 in 2.101, whose flyer traces set the dots 29 units clear). A designer might lower the dots
+  in the Bold.
+
+## Evidence boards
+
+`python scripts/ceili_prints.py boards --candidate research/ceili-judgement/traces` writes one board per
+letter into ignored `build/ceili-judgement/boards/`: every print registered into the letter's frame at its
+own midpoint, the consensus of N46 and N45 (black: both; colour: one), and their mean with Study 3's
+outline (red) and Study 4's (blue). They hold archive pixels and are not committed ([RIGHTS](../RIGHTS.md)).
+[proofs/study3-study4.png](proofs/study3-study4.png) sets the same lines in Study 3 and Study 4 (font only).
+
+## Reproduce
+
+```sh
+python scripts/fetch_sources.py --source N44 --format jpg
+python scripts/fetch_sources.py --source N45 --format jpg
+python scripts/fetch_sources.py --source N46 --format jpg
+python scripts/fetch_sources.py --source B2                      # Bolger vol. 2; pdfimages extracts fig. 203b
+python scripts/ceili_prints.py locate                            # into build/ceili-judgement/prints
+python scripts/ceili_prints.py average                           # about 15 minutes on four cores
+python scripts/trace_ceili_judgement.py --round research/ceili-judgement
+python scripts/build_original_study.py --face ceili --study 4 --traces research/ceili-judgement/traces --output research/ceili-judgement/fonts
+python scripts/ceili_prints.py boards --candidate research/ceili-judgement/traces
+CEILI_JUDGEMENT_DIR=research/ceili-judgement python -m pytest -q tests/test_ceili_judgement.py
+```

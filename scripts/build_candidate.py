@@ -18,6 +18,9 @@ ROOT = Path(__file__).resolve().parent.parent
 LATEST = {'kilfane': 'research/kilfane-judgement/traces', 'carrick': 'research/round-06/carrick/traces',
           'tuam': 'research/round-03/tuam/traces', 'ceili': 'research/round-04/ceili/traces'}
 
+# Céilí Study 4, the judgement pass, on round 4's Study 3 (research/ceili-judgement/README.md)
+LATEST['ceili'] = 'research/ceili-judgement/traces'
+
 
 def build(face, traces, version):
     import build2, build_original_study as study
