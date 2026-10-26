@@ -119,14 +119,9 @@ def test_round02_decomposed_accents_match_precomposed(face,ps,baseline):
         assert area(overlap)/area(union)>.93,ch
 
 
-@pytest.mark.parametrize('face,ps,baseline',FACES)
-def test_spacing_only_faces_keep_existing_outlines(face,ps,baseline):
-    if face not in ['tuam','ceili']:return
-    old=TTFont(ROOT/f'fonts/otf/{baseline}-Regular.otf').getGlyphSet()
-    new=TTFont(DIR/f'{face}/fonts/{ps}-Regular.otf').getGlyphSet()
-    for name in old.keys():
-        a=RecordingPen();b=RecordingPen();old[name].draw(a);new[name].draw(b)
-        assert a.value==b.value,name
+# Round 2's Tuam and Céilí studies changed spacing only and were checked outline for outline against the
+# flyer-traced release of the time (2.0x). Release 3.000 is built from the later studies, so that release is
+# no longer in fonts/ to compare with; the studies' own fonts and manifests are checked above.
 
 
 @pytest.mark.parametrize('face,ps,sets',[('kilfane','KilfaneStudy2',['ss01','ss02']),('ceili','CeiliStudy1',['ss01','ss02','ss03'])])
