@@ -114,7 +114,7 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
 | `FONTDIR=build/candidate/fonts pytest tests/test_release.py tests/test_shaping.py` | 20 of 21 pass. Style linking fails only because the expected version is the release's (2.101). Bold counters: 0 flags beyond the designed Céilí 6. The "Digital" naming check passes. |
 | Pair collisions, all 12 styles ([summary](release-candidate/pair-audit.json)) | 0 collisions in 1,346,872 HarfBuzz-shaped pairs: Latin letters, figures and punctuation, default features (rerun on the candidate's Tuam Study 3, Céilí Study 4, Kilfane Study 5 and Carrick's sheet-frame Study 3: 0 collisions) |
 | OTS, 48 files (OTF, TTF, WOFF, WOFF2) | no failures (rerun with every candidate study above) |
-| Font Bakery `check-universal`, per family | 0 FAIL, 0 ERROR; the same two WARN kinds as 2.010 (decomposed carons, contour counts); rerun on Tuam Study 3, not yet on Céilí Study 4, Kilfane Study 5 or Carrick's sheet frame |
+| Font Bakery `check-universal`, per family (TTF, as `make validate` runs it) | 0 FAIL, 0 ERROR for all four candidate families; the same two WARN kinds as 2.010 (decomposed carons, contour counts) |
 | Full test suite on the committed fonts | all pass; the release rebuilds byte-identical |
 
 ## Before promotion
@@ -135,6 +135,9 @@ Topology after the fixes (`scripts/topo.py`, pieces and counters per glyph):
    disagreements and its five fadas are resolved in Study 3; the cuts of v, w and 5 and the slits of d, p, q, s and 6
    rest on N45 alone (the production sheet is too coarse for them), and Tuam's other accents remain constructions. Each glyph's provenance file already labels it
    as traced, retained legacy or modern construction.
+5. **ASCII CFF names.** On the OTFs, Font Bakery's `cff_ascii_strings` check cannot read Céilí's CFF
+   name strings ("Céilí Digital" in the Top DICT); 2.101 has the same. Write the CFF names as ASCII
+   ("Ceili Digital") at promotion; the name table keeps the accents.
 
 ## Proposed release mechanics, when approved
 
