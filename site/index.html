@@ -193,30 +193,25 @@
       <p class="world-text">A light, calligraphic unicase drawn with a broad flat pen, with insular forms and old-style figures. Hecht was born in Bingen, came to England in 1939, assisted Hans Schleger and later taught at Croydon College of Art. Céilí won him £250 and a silver medallion; the brochure prints its name as <i>Caill</i>.</p>
     </header>
 
-    <div class="toy dance" data-dance>
+    <div class="toy choose" data-choose>
       <div class="toy-bar">
-        <p class="toy-title"><span class="f-ceili" lang="ga">damhsa</span><span>Dance</span></p>
+        <p class="toy-title"><span class="f-ceili" lang="ga">roghnaigh</span><span>Choose your letters</span></p>
         <div class="toy-controls">
-          <button type="button" class="btn btn-pink" data-dance-play aria-pressed="false"><span lang="ga">Seinn</span> · Play</button>
-          <label class="sel"><span class="vh">Rhythm</span>
-            <select id="dance-rhythm" data-dance-rhythm>
-              <option value="jig">Jig · 6/8</option>
-              <option value="reel">Reel · 4/4</option>
-              <option value="slip">Slip jig · 9/8</option>
-              <option value="polka">Polka · 2/4</option>
-            </select>
-          </label>
-          <label class="rng"><span>Tempo</span><input id="dance-tempo" type="range" min="70" max="140" value="100" data-dance-tempo></label>
-          <label class="chk"><input id="dance-sound" type="checkbox" checked data-dance-sound> Bodhrán</label>
+          <div class="choose-modes" role="radiogroup" aria-label="Set the whole line" data-choose-modes></div>
         </div>
       </div>
-      <div class="dance-floor" data-dance-floor aria-live="off">
-        <p class="dance-line f-ceili" data-dance-line></p>
+      <div class="choose-floor" data-choose-floor>
+        <p class="vh" data-choose-said></p>
+        <div class="choose-line f-ceili" role="toolbar" aria-label="Letters with other forms: arrows move, Enter changes" data-choose-line></div>
       </div>
-      <label class="dance-input"><span class="vh">Words to dance</span>
-        <input id="dance-text" type="text" value="céilí mór anocht" maxlength="40" spellcheck="false" autocomplete="off" data-dance-text>
-      </label>
-      <p class="toy-note">The dancers change into Céilí's alternate letters on the beat: insular r and s, uncial a and n, and its other a, d, e, j, l and v.</p>
+      <div class="choose-under">
+        <label class="choose-input"><span class="vh">Your words</span>
+          <input id="choose-text" type="text" value="céilí mór anocht" maxlength="40" spellcheck="false" autocomplete="off" data-choose-text>
+        </label>
+        <div class="choose-forms" data-choose-forms></div>
+      </div>
+      <p class="vh" aria-live="polite" data-choose-live></p>
+      <p class="toy-note">Céilí has other forms for some of its letters: insular r and s, uncial a and n, and a second a, d, e, j, l and v. Tap a letter with a dot under it to change it, or set the whole line at once. In your own work they are the stylistic sets ss01, ss02 and ss03.</p>
     </div>
 
     <div class="styles-strip" data-styles="ceili">
@@ -247,18 +242,17 @@
       <div class="toy-bar">
         <p class="toy-title"><span class="f-carrick" lang="ga">tóg balla</span><span>Build a wall</span></p>
         <div class="toy-controls">
-          <label class="txt"><span class="vh">Type letters to drop</span>
-            <input id="wall-text" type="text" placeholder="Type to drop stones" maxlength="60" spellcheck="false" autocomplete="off" data-wall-input>
+          <label class="txt"><span class="vh">Words for the wall</span>
+            <input id="wall-text" type="text" value="de réir a chéile a thógtar na caisleáin" maxlength="60" spellcheck="false" autocomplete="off" data-wall-input>
           </label>
-          <button type="button" class="btn btn-stone" data-wall-proverb>Drop the proverb</button>
+          <button type="button" class="btn btn-stone" data-wall-proverb>Another proverb</button>
           <button type="button" class="btn btn-line" data-wall-shake>Shake</button>
-          <button type="button" class="btn btn-line" data-wall-clear>Clear</button>
         </div>
       </div>
       <div class="wall-field" data-wall-field>
-        <canvas class="wall-canvas" data-wall-canvas aria-label="Carrick letters piled up like a drystone wall"></canvas>
+        <canvas class="wall-canvas" role="img" data-wall-canvas aria-label="Carrick letters set as a drystone wall"></canvas>
       </div>
-      <p class="toy-note"><span class="f-carrick" lang="ga">de réir a chéile a thógtar na caisleáin</span> · Castles are built a little at a time. Drag a stone to move it, or tap to drop one.</p>
+      <p class="toy-note"><span data-wall-gloss>Castles are built a little at a time. </span>Every stone falls into the place Carrick sets its letter, with the face's own spacing, so the wall reads as a line of type. Knock a stone out and it finds its way back; Shake brings the wall down, and it builds itself again.</p>
     </div>
 
     <div class="styles-strip" data-styles="carrick">
@@ -283,23 +277,28 @@
       <p class="world-text">Curran's second winner, and the only one of the four with capitals as well as lower case, plus Roman and insular alternates. It is named after Kilfane in County Kilkenny, and is reported on the Series C Irish banknotes designed by Robert Ballagh.</p>
     </header>
 
-    <div class="toy rub" data-rub>
+    <div class="toy hands" data-hands>
       <div class="toy-bar">
-        <p class="toy-title"><span class="f-kilfane" lang="ga">Cuimil</span><span>Rub it down</span></p>
+        <p class="toy-title"><span class="f-kilfane" lang="ga">Trí chruth</span><span>Capitals and three forms</span></p>
         <div class="toy-controls">
-          <label class="txt"><span class="vh">A word to rub down</span>
-            <input id="rub-word" type="text" placeholder="Type a word" maxlength="16" spellcheck="false" autocomplete="off" data-rub-word>
+          <label class="txt"><span class="vh">Words to set in Kilfane</span>
+            <input id="hands-text" type="text" value="Fáilte go Tír na nÓg" maxlength="32" spellcheck="false" autocomplete="off" data-hands-text>
           </label>
-          <button type="button" class="btn btn-ink" data-rub-auto>Rub it down</button>
-          <button type="button" class="btn btn-line" data-rub-lift>Lift the sheet</button>
-          <button type="button" class="btn btn-line" data-rub-fresh>New sheet</button>
-          <button type="button" class="btn btn-line" data-rub-clear>Clear the mat</button>
         </div>
       </div>
-      <div class="rub-mat" data-rub-mat>
-        <canvas class="rub-canvas" data-rub-canvas aria-label="A cutting mat with a Kilfane transfer sheet. Rub over a letter to transfer it."></canvas>
+      <div class="hands-mat" data-hands-mat>
+        <canvas class="hands-grid" aria-hidden="true" data-hands-grid></canvas>
+        <div class="hands-guides" aria-hidden="true" data-hands-guides></div>
+        <p class="hands-line f-kilfane" data-hands-line></p>
+        <span class="hands-burnisher" aria-hidden="true" data-hands-burnisher></span>
       </div>
-      <p class="toy-note">Drag the sheet by its top band to position a letter, then rub over the letter to transfer it. The sheet has no accented letters, only loose accents, as on the flyer: rub one over a vowel to give it a fada. Or type a word and let the machine rub it down.</p>
+      <div class="hands-picks">
+        <div class="hands-pick"><span class="mono" id="hands-forms-l">Forms</span><div class="hands-opts" role="radiogroup" aria-labelledby="hands-forms-l" data-hands-forms></div></div>
+        <div class="hands-pick"><span class="mono" id="hands-styles-l">Style</span><div class="hands-opts" role="radiogroup" aria-labelledby="hands-styles-l" data-hands-styles></div></div>
+        <div class="hands-pick"><span class="mono">Case</span><div class="hands-opts"><button type="button" class="tog hp" aria-pressed="false" data-hands-caps>Capitals</button></div></div>
+      </div>
+      <p class="vh" aria-live="polite" data-hands-live></p>
+      <p class="toy-note">Kilfane is the only one of the four with true capitals, so Irish keeps its lower-case prefixes when it is set in capitals: <span class="f-kilfane" lang="ga">TÍR NA nÓG</span>. Its standard letters are Irish; its stylistic sets call up Roman forms (ss01) and insular forms (ss02), in all four styles. Each change is rubbed down letter by letter, as the face was from its 1978 transfer sheets.</p>
     </div>
 
     <div class="styles-strip" data-styles="kilfane">
