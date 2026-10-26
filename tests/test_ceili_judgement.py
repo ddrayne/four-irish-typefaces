@@ -340,6 +340,54 @@ def test_close_cracks_closes_a_counter_but_keeps_a_dots_gap():
     assert CF.close_cracks(wide, 12)[1] == 0
 
 
+def test_one_rounding_keeps_a_smooth_join_smooth():
+    import ceili_finish as CF
+    # a sloped stem (an upright one sheared as the italic is, off the grid) leaving into an arch on a 3-unit handle
+    t = np.tan(np.radians(8)); sh = lambda x, y: (x + 0.37 + y * t, y + 0.21)
+    segs = [['L', [sh(100, 400)]], ['C', [sh(100, 403), sh(115, 470), sh(170, 480)]], ['L', [sh(300, 480)]],
+            ['L', [sh(300, 0)]], ['L', [sh(100, 0)]]]
+    def join(s):
+        return abs(np.degrees(CF._angle(CF._dirs(CF._ctrl(s, 0))[1], CF._dirs(CF._ctrl(s, 1))[0])))
+    plain = [[k, [tuple(np.round(q)) for q in p]] for k, p in segs]
+    assert join(plain) > 4                                                     # rounding alone turns the short handle
+    out = CF.round_smooth([[k, list(p)] for k, p in segs])
+    assert join(out) < 2 and all(float(v).is_integer() for _, p in out for q in p for v in q)
+    assert CF._dist(CF._dense(out, 1.0), CF._dense(segs, 1.0)) <= 1.0
+
+
+def test_an_extreme_a_unit_from_a_node_gets_no_node():
+    import ceili_finish as CF
+    # a curve that passes its x extreme 0.4 units beyond its start, and one that passes it 30 units out
+    near = [['L', [(0.0, 0.0)]], ['C', [(1.0, 20.0), (-10.0, 60.0), (-60.0, 80.0)]], ['L', [(-60.0, -100.0)]]]
+    far = [['L', [(0.0, 0.0)]], ['C', [(40.0, 20.0), (40.0, 60.0), (0.0, 80.0)]], ['L', [(-60.0, -100.0)]]]
+    assert len(CF.overshoot_extremes(near)) == 3 and len(CF.overshoot_extremes(far)) == 4
+
+
+def test_a_stem_runs_straight_to_its_foot_unless_it_flares():
+    import ceili_finish as CF
+    from glyphs import bounds
+    foot = [('curveTo', ((140, 0), (170, 0), (200, 10))), ('lineTo', ((200, 500),)), ('lineTo', ((100, 500),)), ('lineTo', ((100, 160),))]
+    # the left edge bulges 9 units out above the foot and comes back to its corner, as the h's did
+    bulge = CF.path([('moveTo', ((100, 20),))] + foot + [('curveTo', ((100, 130), (91, 118), (91, 84))),
+                                                          ('curveTo', ((91, 63), (94, 44), (100, 20))), ('closePath', ())])
+    q, rep = CF.straight_feet(bulge, [[0.5, 0]], 500, 2.0)
+    assert [r['side'] for r in rep] == ['left'] and rep[0]['bulge'] == pytest.approx(9, abs=0.5)
+    assert bounds(q)[0] == pytest.approx(100) and CF.topology(q) == (1, 0)
+    # a foot that flares out to its corner is drawn so
+    flare = CF.path([('moveTo', ((80, 20),)), ('curveTo', ((140, 0), (170, 0), (200, 10))), ('lineTo', ((200, 500),)),
+                     ('lineTo', ((100, 500),)), ('lineTo', ((100, 160),)), ('curveTo', ((100, 100), (95, 40), (80, 20))), ('closePath', ())])
+    assert CF.straight_feet(flare, [[0.5, 0]], 500, 2.0)[1] == []
+
+
+def test_the_bar_is_set_its_gap_above_the_stem():
+    import ceili_finish as CF, shapes as SH
+    from glyphs import bounds
+    box = lambda x0, y0, x1, y1: SH.polygon([(x0, y0), (x1, y0), (x1, y1), (x0, y1)])
+    j = SH.union(box(0, -150, 100, 500), box(-10, 520, 110, 570))                # 20 apart
+    out = CF.set_bar_gap(j, 31)
+    assert CF.bar_gap(out) == pytest.approx(31, abs=0.15) and bounds(out)[3] == pytest.approx(581, abs=0.2)
+
+
 # the finished fonts (fonts/, or FONTDIR=build/fonts for a fresh build)
 STYLES = ('Regular', 'Italic', 'Bold', 'Bold Italic')
 LOWER = 'a a.alt1 a.alt2 b c d d.alt1 e e.alt1 f g h i j j.alt1 k l l.alt1 m n n.alt1 o p q r r.alt1 s s.alt1 t u v v.alt1 w x y z'.split()
@@ -601,3 +649,170 @@ def test_the_bold_section_takes_the_bolds_weight(style):
         ink = np.pad(_raster(_polys(st, n)), 2); return 2 * np.median(ndi.distance_transform_edt(ink)[skeletonize(ink)])
     assert weight(style, 'section') / weight(style, 's') >= 0.85
     assert weight(style, 'section') / weight('Regular', 'section') >= 1.3
+
+
+# ---------------------------------------------------------------- the third pass (judged-edits.json, third_pass)
+def _weight(style, n):
+    """A glyph's median stroke weight: twice the distance from its skeleton to the paper."""
+    from scipy import ndimage as ndi
+    from skimage.morphology import skeletonize
+    ink = np.pad(_raster(_polys(style, n)), 2)
+    return 2 * np.median(ndi.distance_transform_edt(ink)[skeletonize(ink)])
+
+
+def _upright_of(style):
+    return 'Italic' if 'Italic' in style else 'Regular'
+
+
+def test_the_third_pass_is_recorded():
+    tp = load(ROUND, 'judged-edits.json')['third_pass']
+    assert {'math_signs', 'quote_near_piece', 'small_signs', 'settle', 'straight_feet', 'j_bar'} <= set(tp)
+    assert all(v.get('why') and 'PENDING' not in v['why'] for k, v in tp.items() if k != 'about')
+
+
+@pytest.mark.parametrize('style', ('Bold', 'Bold Italic'))
+def test_the_bold_math_signs_grow_in_place(style):
+    """The bold set its math signs out from its own rule weight, so each piece moved outward instead of growing:
+    = stood 157 between its bars against the Regular's 105, the bar of ± dropped to -121..0, that of ≤ and ≥ to
+    -67..54, ÷ ran from -40 to 576 (over the 538 x-height) and ≈ stood 221 apart against 175, while ~ and ^ grew
+    upward only. Each piece now grows about its own centre: the white beside a rule stays the Regular's, and ÷'s
+    dots grow about theirs, within the Regular's reach plus the pen's growth."""
+    reg = _upright_of(style)
+    def column(st, n):
+        P = _polys(st, n, upright=True); b = _box(P)
+        return _runs(P, b[0] + 0.5 * (b[2] - b[0]), 0), b
+    def whites(st, n):
+        r = column(st, n)[0]; return [b[0] - a[1] for a, b in zip(r, r[1:])]
+    for n in ('equal', 'approxequal', 'plusminus', 'lessequal', 'greaterequal'):
+        w, wr = whites(style, n), whites(reg, n)          # the lowest white: between a rule and the piece over it
+        assert len(w) == len(wr) and abs(w[0] - wr[0]) <= 5, (n, w, wr)
+    for n in ('equal', 'approxequal', 'asciitilde', 'asciicircum', 'multiply', 'plus', 'minus'):
+        b, r = column(style, n)[1], column(reg, n)[1]
+        assert abs((b[1] + b[3]) - (r[1] + r[3])) / 2 <= 3, (n, b, r)            # grown about its own centre
+    bar = lambda st: [(a + z) / 2 for a, z in _runs(_polys(st, 'logicalnot', upright=True), column(st, 'logicalnot')[1][0] + 60, 0)]
+    assert abs(bar(style)[0] - bar(reg)[0]) <= 3                                 # ¬'s bar too (its drop keeps its end)
+    b, r = column(style, 'divide')[1], column(reg, 'divide')[1]
+    xh = finished(style)['OS/2'].sxHeight
+    assert r[1] - 20 <= b[1] and b[3] <= r[3] + 20 and b[3] < xh, (b, r)
+    for n in ('plusminus', 'lessequal', 'greaterequal'):                          # the underbar: its own growth and the piece's above
+        grow = (_weight(style, 'minus') - _weight(reg, 'minus')) * 1.6
+        assert column(style, n)[1][1] >= column(reg, n)[1][1] - grow, (n, column(style, n)[1], column(reg, n)[1])
+
+
+def _shaped(style, text):
+    import uharfbuzz as hb
+    from conftest import static
+    f = finished(style); order = f.getGlyphOrder()
+    font = hb.Font(hb.Face(open(static('CeiliDigital', style), 'rb').read()))
+    b = hb.Buffer(); b.add_str(text); b.guess_segment_properties(); hb.shape(font, b, {'kern': True})
+    return [order[g.codepoint] for g in b.glyph_infos], [p.x_advance for p in b.glyph_positions]
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_no_quote_stands_wholly_over_a_low_foot(style):
+    """The rule that keeps l’ off l's long foot measured the double quote's far edge, so l” and L” stayed kerned
+    -345 to -350: the first comma of ” stood 64 units from the stem and read as ľ”. Every quote after l, L and ł
+    now stands as the single one does: the far edge of its nearest piece reaches the foot's tip at least."""
+    f = finished(style); hm = f['hmtx']
+    for a in ('l', 'L', 'ł'):
+        for q in ('’', '”', '‘', '“'):
+            (na, nq), (pos, _) = _shaped(style, a + q)
+            tip = _box(_polys(style, na, upright=True))[2]
+            near = min((P for P in _polys(style, nq, upright=True)), key=lambda P: P[:, 0].min())
+            assert pos + near[:, 0].max() - tip >= -1.5, (a + q, pos + near[:, 0].max() - tip)
+        assert _shaped(style, a + '”')[1][0] == _shaped(style, a + '’')[1][0], a
+
+
+@pytest.mark.parametrize('style', ('Bold', 'Bold Italic'))
+def test_the_bold_small_signs_gain_weight(style):
+    """The bold's bullet was the Regular's outline (ink 1.000), and %, ‰ and the letters of @ © ® gained about a
+    fifth of the stem where the letters gain a half (stem 108 to 169). The bullet is drawn with the bold's pen,
+    those signs take its stem, and the superiors and fractions go as far as their counters allow (third_pass)."""
+    from scipy import ndimage as ndi
+    from skimage.morphology import skeletonize
+    reg = _upright_of(style)
+    ink = lambda st, n: _raster(_polys(st, n)).sum()
+    gain = _weight(style, 'n') / _weight(reg, 'n')
+    assert ink(style, 'bullet') / ink(reg, 'bullet') >= 1.3
+    for n in ('percent', 'perthousand'):
+        assert _weight(style, n) / _weight(reg, n) >= 0.9 * gain, (n, _weight(style, n), _weight(reg, n), gain)
+    def letter(st, n):          # the stem of the letter inside the ring (the ring, two contours, keeps the pen's weight)
+        P = sorted(_polys(st, n, upright=True), key=lambda P: np.ptp(P[:, 0]) * np.ptp(P[:, 1]))[:-2]
+        b = _box(P); a, z = _runs(P, b[1] + 0.4 * (b[3] - b[1]), 1)[0]; return z - a
+    for n in ('at', 'copyright'):
+        assert letter(style, n) / letter(reg, n) >= 0.9 * gain, (n, letter(style, n), letter(reg, n), gain)
+    # the r of ® takes the small glyphs' weight: at the whole stem the bold r's open join, made small, closes
+    assert letter(style, 'registered') / letter(reg, 'registered') >= 1.2, (letter(style, 'registered'), letter(reg, 'registered'))
+    for n in ('onesuperior', 'twosuperior', 'threesuperior', 'onehalf', 'onequarter', 'threequarters', 'ordfeminine',
+              'ordmasculine', 'trademark'):
+        assert ink(style, n) / ink(reg, n) >= 1.3, (n, ink(style, n) / ink(reg, n))
+
+
+def _joins(style, n):
+    """The angle at each join of a glyph's outline where a curve meets a curve or a line (handle directions)."""
+    from fontTools.pens.recordingPen import DecomposingRecordingPen
+    import finish as F
+    f = finished(style); gs = f.getGlyphSet(); pen = DecomposingRecordingPen(gs); gs[n].draw(pen)
+    out = []
+    for segs in F._contours(pen.value):
+        m = len(segs)
+        for i in range(m):
+            a, b = segs[i], segs[(i + 1) % m]
+            pa = [F._start(segs, i)] + list(a[1]); pb = [a[1][-1]] + list(b[1])
+            u = next((np.subtract(pa[-1], q) for q in reversed(pa[:-1]) if np.hypot(*np.subtract(pa[-1], q)) > 0.01), None)
+            v = next((np.subtract(q, pb[0]) for q in pb[1:] if np.hypot(*np.subtract(q, pb[0])) > 0.01), None)
+            if u is not None and v is not None and 'C' in (a[0], b[0]):
+                out.append(abs(np.degrees(np.arctan2(u[0] * v[1] - u[1] * v[0], u @ v))))
+    return out
+
+
+@pytest.mark.parametrize('style', ('Italic', 'Bold Italic'))
+def test_the_sloped_outlines_keep_their_smooth_joins(style):
+    """Rounding the sheared outlines to whole units turned their short handles by up to 14 degrees: the Italic m had
+    8-degree joins at its arches and 10-14 degree clusters at its feet where the Regular has none, and 53 of the 74
+    letters and figures had a kink of 5 degrees or more (Regular 37). The sloped outlines are put on the grid once,
+    from the drawing, their smooth joins kept within 2 degrees; what remains are the drawing's own shallow corners."""
+    for n in ('m', 'n', 'h', 'i', 'r'):
+        assert not [a for a in _joins(style, n) if 2 < a < 15], (n, [round(a, 1) for a in _joins(style, n) if 2 < a < 15])
+    kinked = lambda st: sum(any(5 <= a < 15 for a in _joins(st, n)) for n in LOWER)
+    assert kinked(style) <= kinked('Regular' if style == 'Italic' else 'Bold') + 3, (kinked(style), style)
+
+
+@pytest.mark.parametrize('style', ('Regular', 'Bold'))
+def test_the_stems_run_straight_to_their_feet(style):
+    """The second pass gave the stems the face's weight by moving their straight edges, but h's left foot still
+    bulged 9 units out below the line (its edge 87 above y 160, 78 at y 90; Bold 80 and 71), where n, m and k run
+    straight; and the h's shoulder met its right stem in a 5-degree kink (Bold 12). Every evened stem now runs
+    straight to its foot, and the h's joins are smooth."""
+    xh = finished(style)['OS/2'].sxHeight
+    stems = load(ROUND, 'judged-edits.json')['second_pass']['stems']['glyphs']
+    for n, spec in stems.items():
+        P = _polys(style, n)
+        for frac, run in spec:
+            ref = _runs(P, frac * xh, 1); out = {0: [], 1: []}
+            for y in np.arange(frac, 0.03, -0.01) * xh:       # from the stem down to its foot
+                r = _runs(P, y, 1)
+                if len(r) != len(ref):
+                    continue
+                (a, b), (a0, b0) = r[run], ref[run]
+                if b - a > b0 - a0 + 20:
+                    continue                          # the stem has met another stroke (f's foot)
+                out[0].append(a0 - a); out[1].append(b - b0)
+            for side, d in out.items():
+                # a bulge: the edge out past the stem's line and back in again lower down (a foot that flares stays out)
+                back = max((d[i] - min(d[i:]) for i in range(len(d)) if d[i] > 2.5), default=0)
+                assert back <= 2.5, (n, frac, run, 'left' if side == 0 else 'right', round(back, 1))
+    assert not [a for a in _joins(style, 'h') if 2 < a < 15], [round(a, 1) for a in _joins(style, 'h')]
+
+
+@pytest.mark.parametrize('style', STYLES)
+def test_the_bar_of_j_stands_as_far_as_is(style):
+    """j's bar stood 22 units above its stem (Bold 19, Bold Italic 18) against 31 for i's (19 and 18 in the bolds,
+    as the bars' closest points measure it)."""
+    def gap(n):
+        ps = [np.vstack([p + (q - p) * t for p, q in zip(P, np.roll(P, -1, axis=0)) for t in np.linspace(0, 1, 8)]) for P in _polys(style, n)]
+        top = max(range(len(ps)), key=lambda k: ps[k][:, 1].min())
+        rest = np.vstack([P for k, P in enumerate(ps) if k != top])
+        from scipy.spatial import cKDTree
+        return float(cKDTree(rest).query(ps[top])[0].min())
+    assert abs(gap('j') - gap('i')) <= 1.5, (gap('j'), gap('i'))

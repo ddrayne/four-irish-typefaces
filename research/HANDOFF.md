@@ -74,7 +74,10 @@ built on Study 3 and keeping its frame. Each of the 54 letters is the mean of N4
 a protrusion wherever it prints the letter, and otherwise the protrusion is drawn as N45 has it.
 `scripts/ceili_prints.py` is the review tool: one evidence board per letter. The sheet's síneadh fada is
 the acute. The round dot (probably the ponc séimhithe) and the diamond are recorded, not built. The
-ampersand stays closed, as N46 draws it: a recorded call. Start Céilí work from Study 4.
+ampersand stays closed, as N46 draws it: a recorded call. Start Céilí work from Study 4. The release's finishing
+passes are `scripts/ceili_finish.py` ([judged-edits.json](ceili-judgement/judged-edits.json), Study 4 README); the
+third grows the bold's math signs in place, kerns ” over l's foot as ’, weights the bold's small signs, rounds every
+outline once from the drawing with its smooth joins kept, runs h's foot straight and sets j's bar as i's.
 
 [Round 4](round-04/README.md), Céilí Study 3: Four named original
 punctuation pieces replace the legacy cluster as construction inputs. Period,

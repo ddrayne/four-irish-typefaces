@@ -61,7 +61,33 @@ def study_class(face,traces):
                     if n not in ('DOTS','ornament'):
                         self.P[n]=CF.safely(p,lambda r:CF.regular(r,terminals=bool(self.J.get('pen_terminals'))))
             self.even_stems()
+            self.stem_feet()
             self.judged_dots()
+            self.bar_over_j()
+
+        def stem_feet(self):
+            # the third pass: the evened stems run straight down to their feet (the h's left foot bulged 9 units out)
+            spec=self.J.get('third_pass',{}).get('straight_feet')
+            if not spec:return
+            import ceili_finish as CF
+            stems=self.J['second_pass']['stems']['glyphs'];self.feet={}
+            for n,st in stems.items():
+                if n in self.P:
+                    q,rep=CF.straight_feet(self.P[n],st,self.xh,spec['least'])
+                    if rep and CF.topology(q)==CF.topology(self.P[n]):
+                        self.P[n],self.feet[n]=q,rep
+
+        def bar_over_j(self):
+            # the third pass: j's bar stands as far above its stem as i's does (in the Regular, and again once the bold's pen has drawn both)
+            spec=self.J.get('third_pass',{}).get('j_bar')
+            if not spec:return
+            import ceili_finish as CF
+            self.j_bar=getattr(self,'j_bar',[])
+            for n in spec['glyphs']:
+                if n in self.P and spec['like'] in self.P:
+                    gap=CF.bar_gap(self.P[spec['like']]);was=CF.bar_gap(self.P[n])
+                    self.P[n]=CF.set_bar_gap(self.P[n],gap)
+                    self.j_bar.append(dict(glyph=n,was=round(was,1),now=round(CF.bar_gap(self.P[n]),1),like=round(gap,1)))
 
         def even_stems(self):
             # the second pass: the straight stems given the face's weight, every style following (judged-edits.json)
@@ -150,6 +176,10 @@ def study_class(face,traces):
                 self.P[n]=bolden._separate(core,self.P[n],pen,close=True,share=share)
             self.tidy_derived()
             self.bold_second_pass(regular)
+            if 'hyphen' in regular and self.J.get('third_pass'):
+                import ceili_finish as CF
+                y0,y1=CF.level_stroke(regular['hyphen'])[1];self.regular_rule=y1-y0     # the Regular's rule weight (bold_signs)
+            self.bar_over_j()
 
         def bold_second_pass(self,regular):
             # the second pass on the bold (judged-edits.json, second_pass; ceili_finish): its heavy level strokes take
@@ -266,6 +296,46 @@ def study_class(face,traces):
                 sec=symbols.section(self.P['s'],self.S,self.S,top)
                 if sec is not None:
                     self.P['section']=self.norm_x(sec);self.made['section']+=', at the bold\'s full weight'
+            self.bold_signs()
+
+        @property
+        def SMALL_GLYPH_WEIGHT(self):
+            # symbols.make_symbols: how far from the Regular's stem to the bold's its small glyphs go (0.5 in the release)
+            return getattr(self,'small_weight_now',None) or self.J.get('third_pass',{}).get('small_signs',{}).get('small_weight',0.5)
+
+        def bold_signs(self):
+            # the third pass on the bold's signs (judged-edits.json, third_pass; ceili_finish.math_signs): the math signs'
+            # pieces grow in place, the bullet is drawn with the bold's pen, and % ‰ and the letters of @ © take its stem
+            # (® and the other small glyphs take SMALL_GLYPH_WEIGHT)
+            tp=self.J.get('third_pass',{})
+            if not tp or not self.bold:return
+            import bolden,symbols,shapes as SH,ceili_finish as CF
+            from marks import MarkSet
+            b=build2.BOLD[self.key]
+            if tp.get('math_signs'):
+                r=self.norm_x(self.source_punctuation['period']);r=build2.translate(r,0,-build2.bounds(r)[1])
+                dot=SH.transform(r,(0.85,0,0,0.85,0,0))
+                ms=MarkSet(self.style,self.S_regular,self.xh,period=self.period,comma=self.P['comma'],weight=self.cfg['mark_weight'])
+                marks_r={k:CF.tidy_path(getattr(ms,k)()) for k in ('tilde','circumflex')}
+                self.math_moved=CF.math_signs(self,self.regular_rule,dot,marks_r)
+            sm=tp.get('small_signs',{})
+            if sm.get('bullet'):
+                self.P['bullet']=self.norm_x(bolden.grow(SH.ellipse(0,self.hyphen_yc,0.17*self.xh,0.17*self.xh),b['rx'],b['ry']))
+                self.made['bullet']='disc drawn with the bold\'s pen'
+            full=sm.get('full_stem',{})
+            ring_rule=getattr(self,'crossbar_weight',self.hyphen_thick)
+            for names,t in ((full.get('signs',()),self.hyphen_thick),(full.get('in_rings',()),ring_rule)):
+                if not names:continue
+                # the same constructions drawn again with the bold's whole stem (and the rings' weight as before)
+                P,t0=self.P,self.hyphen_thick
+                self.P,self.hyphen_thick,self.small_weight_now=dict(P),t,1.0
+                try:symbols.make_symbols(self)
+                finally:heavy,self.P,self.hyphen_thick,self.small_weight_now=self.P,P,t0,None
+                for n in names:
+                    P[n]=heavy[n];self.made[n]+=', at the bold\'s full stem'
+            if 'at' in full.get('in_rings',()):
+                # the a at the whole stem met its ring: it keeps the white the release's a had inside it
+                self.P['at'],self.at_white=CF.at_sign(self,ring_rule,self.S_regular+0.5*(self.S-self.S_regular))
 
         def combining_and_spacing_marks(self):
             self.figure_symbols()
@@ -289,6 +359,24 @@ def study_class(face,traces):
             for n,p in list(self.final.items()):
                 if build2.bounds(p) is not None:
                     self.final[n]=self.unfaceted(p)
+            if not self.italic:
+                self.settled_finals()
+
+        def settled_finals(self,sloped=False):
+            # the third pass: each outline put on the whole-unit grid once, from the drawing as it stood before rounding,
+            # its smooth joins kept smooth (ceili_finish.settled); the sloped styles' after the slope
+            spec=self.J.get('third_pass',{}).get('settle')
+            if not spec:return
+            import math,ceili_finish as CF,shapes as SH
+            t=math.tan(math.radians(build2.SLANT));yc=self.xh/2
+            self.settled=getattr(self,'settled',set())
+            for n,p in list(self.final.items()):
+                if n not in self.P or build2.bounds(p) is None or (n in self.mark_glyphs and not sloped):continue
+                q=self.P[n] if n in self.mark_glyphs else build2.translate(self.P[n],self.lsb[n]-build2.bounds(self.P[n])[0],0)
+                if sloped:q=SH.transform(q,(1,0,t,1,-yc*t,0))
+                new=CF.settled(q,p,sloped=sloped,keep=spec['keep'],cap=spec['cap'])
+                if new is not p:
+                    self.final[n]=new;self.settled.add(n)
 
         def unfaceted(self,p):
             import ceili_finish as CF
@@ -305,6 +393,7 @@ def study_class(face,traces):
             for n,p in list(self.final.items()):
                 if build2.bounds(p) is not None:
                     self.final[n]=self.unfaceted(build2.final_clean(CF.safely(p,CF.sloped)))
+            self.settled_finals(sloped=True)
 
         def condense(self):
             before=dict(self.P) if self.J.get('finish',{}).get('tidy') else {}
@@ -378,7 +467,8 @@ def study_class(face,traces):
             super().kerning()
             if self.J.get('quote_kerning'):
                 import ceili_finish as CF
-                CF.quote_kerning(self,self.J['quote_kerning']['share'],over_foot='quote_over_foot' in self.J.get('second_pass',{}))
+                CF.quote_kerning(self,self.J['quote_kerning']['share'],over_foot='quote_over_foot' in self.J.get('second_pass',{}),
+                                 near='quote_near_piece' in self.J.get('third_pass',{}))
             from study_spacing import protect_kerning
             protect_kerning(self)
 
