@@ -13,6 +13,13 @@ docs/superpowers/plans/2026-10-25-continuation.md).
 import argparse, json, os, subprocess, sys
 from pathlib import Path
 
+# The same arithmetic on every machine, set before numpy loads (and inherited by each face's build):
+# numpy's CPU-specific loops and OpenBLAS's CPU-specific kernels round differently in the last bits,
+# which can flip a point by a unit, and the CI runners are a mix of CPUs
+for k, v in (('NPY_DISABLE_CPU_FEATURES', 'X86_V3 X86_V4 AVX512_ICL AVX512_SPR'),
+             ('OPENBLAS_CORETYPE', 'Haswell'), ('OPENBLAS_NUM_THREADS', '1'), ('OMP_NUM_THREADS', '1')):
+    os.environ.setdefault(k, v)
+
 ROOT = Path(__file__).resolve().parent.parent
 # the latest accepted study of each face (research/HANDOFF.md)
 LATEST = {'kilfane': 'research/kilfane-sheet-frame/traces', 'carrick': 'research/round-06/carrick/traces',
