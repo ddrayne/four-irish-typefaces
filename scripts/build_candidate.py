@@ -112,26 +112,56 @@ def build(face, traces, version):
         # the @ drawn inside its ring as the (c) and (R) letters are (symbols.make_symbols)
         STUDIO = AT_INSIDE_RING = face == 'tuam'
 
-        def zones(self):
-            super().zones()
-            if self.STUDIO:
-                import tuam_studio
-                tuam_studio.apply(self)
-
         def make_marks(self):
             super().make_marks()
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.marks(self)
 
+        # Kilfane: the studio finishing pass (scripts/kilfane_studio.py; research/kilfane-sheet-frame/judged-edits.json)
+        def finish_traced(self):
+            super().finish_traced()
+            if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.shapes(self)
+
+        # each finishing pass's zone and kerning steps, one method per step
+        def zones(self):
+            if face == 'kilfane':
+                keep = {n: self.P[n] for n in self.studio}          # the studio pass has set their heights
+                super().zones()
+                self.P.update(keep)
+                return
+            super().zones()
+            if self.STUDIO:
+                import tuam_studio
+                tuam_studio.apply(self)
+
         def kerning(self):
+            if face == 'kilfane':
+                import kilfane_studio
+                from study_spacing import protect_kerning
+                build2.Font2.kerning(self)
+                kilfane_studio.kern(self)
+                protect_kerning(self)
+                return
             super().kerning()
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.kern(self)
 
+        def vertical(self):
+            if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.outlines(self)
+            return super().vertical()
+
         def build(self, flavour):
             f = build2.Font2.build(self, flavour)        # the release's names, not the study's
+            if face == 'kilfane':
+                import kilfane_studio
+                lines = kilfane_studio.load()['lines']
+                f['OS/2'].sxHeight, f['OS/2'].sCapHeight = lines['x'], lines['cap']      # the flat lines
             name = f['name']
             text = name.getDebugName(10).replace(
                 'Traced from the "Four Irish Typefaces" flyer;',
