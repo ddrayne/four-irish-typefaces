@@ -35,11 +35,13 @@ def build(face, traces, version):
         SLIVER, SLIVER_SLOPED = 0.05, 0.01
         FINISH = True
         MATCHED_BRACKETS = True          # symbols.make_symbols: the drawn brackets match the parentheses
+        CENTRED_NUMBERSIGN = True        # symbols.make_symbols: the # bars centred on its sloped strokes
         # Carrick's second finishing pass (research/round-06/carrick/judged-edits.json): % and ‰ from the
         # face's own 0 and # in the figures' weight (symbols.figure_signs), the ¢ bar clear of the c's
         # counter (symbols.clear_bar), the ponc of ḃ beside its ascender and ḋ's and ḟ's well above theirs
         # (build2.Font2.ponc)
-        FIGURE_PERCENT = CENT_CLEAR = face == 'carrick'
+        FIGURE_PERCENT = face in ('carrick', 'tuam')
+        CENT_CLEAR = face == 'carrick'
         PONC_BESIDE, PONC_GAP = (('b',), 0.13) if face == 'carrick' else ((), None)
         # a single stem's square foot (Kilfane's F, P, V, 4 and 7) sits on the baseline, not 8 units below
         # it. Kilfane's and Carrick's feet have been reviewed against their sheets (Carrick's are slanted
