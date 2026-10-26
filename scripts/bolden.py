@@ -500,11 +500,13 @@ def _reopen(core, bold, stem, pen, sliver, tries=3):
     return bold
 
 
-def _separate(core, bold, pen, close=False):
+def _separate(core, bold, pen, close=False, share=None):
     """Pieces the regular keeps apart that the bold joins (the dot of a ! that sits close to its
     stroke): cut apart again along the line midway between them, F_PASS of their gap wide, so both
     keep their weight and the gap its place. With `close`, pieces the bold brings within that width
-    without joining them are set apart the same way (Céilí Study 4's ? and !, build_original_study)."""
+    without joining them are set apart the same way (Céilí Study 4's ? and !, build_original_study),
+    `share` of the regular's gap wide where given."""
+    share = F_PASS if share is None else share
     from scipy import ndimage as ndi
     from skimage.measure import find_contours
     b = bounds(bold)
@@ -527,8 +529,8 @@ def _separate(core, bold, pen, close=False):
             gap = float((dist[i] + dist[j])[~R].min())
             if gap < 1:
                 continue
-            # a smooth field whose zero line runs either side of the midline, F_PASS * gap apart
-            field = F_PASS * gap - np.abs(dist[i] - dist[j])
+            # a smooth field whose zero line runs either side of the midline, share * gap apart
+            field = share * gap - np.abs(dist[i] - dist[j])
             near = (dist[i] < gap + reach) & (dist[j] < gap + reach) & np.isin(nearest, (i, j))
             field = np.where(near, field, -1.0)
             polys = []

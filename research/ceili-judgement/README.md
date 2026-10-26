@@ -118,7 +118,9 @@ unstable where a bowl is not round: on e the prints themselves read 120° and 78
 
 ## Judgements, recorded as such
 
-There are no judged edits: no outline was drawn that a print does not show. The calls are these.
+Study 4 itself has no judged edits: none of its outlines was drawn where a print does not show it. The
+release's finishing pass (below) adds a few edits, each recorded in [judged-edits.json](judged-edits.json).
+Study 4's calls are these.
 
 - **The ampersand** is the one letter the prints disagree on. N46 (and the flyer) close its lower counter
   where the bowl's terminal meets the diagonal; N45 (and B2, the same plate) leave a sliver of paper about
@@ -168,6 +170,51 @@ other face and study builds exactly as before.
 With both repairs the candidate's topology matches Study 3's: the only flag is the Bold's designed join
 in 6 (`BOLD['ceili']['joins']`, untouched).
 
+## The finishing pass
+
+The release (`fonts/`, built by `scripts/build_candidate.py`) finishes Study 4 as a type studio would.
+[judged-edits.json](judged-edits.json) records each edit and its reasons, and `scripts/ceili_finish.py`
+makes them. `build_original_study.py` applies them only to Céilí's finished candidate (`FINISH`), so
+Study 4's own fonts here do not change.
+
+The judged corrections, which the prints support but do not draw:
+
+- **The h** stood 40 units above the baseline (since Study 2, from the frame of N45's h). Both prints set
+  it on its line, so it now sits on the baseline with its ascender level with k and l.
+- **Pen terminals.** The mean of two prints domes a pen's straight cut and rounds both its corners, while
+  N45 and N44 print the cuts crisp. Each stroke end is now drawn as a straight cut between sharp corners,
+  each corner within 9 units of the drawn outline. This changes c, e, e.alt1, t, a.alt1, f, g, p (the
+  bowl's end), x, z, the ampersand, the parentheses, 3, 4, 5, 7 and ?. The feet of upright stems stay
+  rounded, as n and m are on every print.
+- **The dots of ! and ?** are the period's pen diamond, fitted to each dot's own corners. N45 and B2
+  print them that way. The dots had been 6 to 16% heavier than the period and now share its weight.
+- **The Bold's dots** keep the Regular's whole gap, and the Bold Italic's keep 1.3 of it. ! and ? now
+  stand 12 and 14 units clear in the Bold (they were 7 and 10) and 13 and 15 in the Bold Italic (they
+  were 5 and 8).
+- **The double acute** keeps its strokes 13 to 14 units apart in every style. In the Bold Italic they
+  had been 3 units apart.
+- **Quote kerning** follows one rule: the quote stands 0.65 of the n|n gap clear of the letter's upper
+  part. Before, o’ was kerned -150, e’ 0, d’ -85 and m’ 0.
+
+The noise clean-up stays within 2 to 3 units. In the Regular, a curve that left a stem on a handle too
+short for its bend (the shoulders of n, m and h) now leaves on the stem's tangent, corner clusters become
+single corners, and redundant nodes go. In every style, the Bold's reopened joins (traced from a raster
+as runs of short lines) are drawn as curves, rounding specks go, and extremes get nodes again after the
+slope's shear. No step may join pieces or open or close a counter. Where one would, the glyph keeps its
+outline from before that step.
+
+| From the 3.000 release | Regular | Italic | Bold | Bold Italic |
+|---|---|---|---|---|
+| nodes per lowercase letter | 22.3 → 19.9 | 43.8 → 22.4 | 85.5 → 23.2 | 82.4 → 26.2 |
+| segments under 6 units, whole font | 243 → 53 | 1774 → 278 | 8816 → 122 | 8417 → 281 |
+| curves overshooting an extreme by more than a unit | 73 → 1 | 491 → 1 | 71 → 1 | 495 → 0 |
+
+Topology is unchanged. Regular → Bold flags only the designed 6. Regular → Bold Italic also flags the
+dollar's small counter at 33%, as it did before. The proofs, which show font outlines only, are
+[proofs/finishing.png](proofs/finishing.png) (the Regular after, in black, with the release outlined in
+red) and [proofs/finishing-bold-nodes.png](proofs/finishing-bold-nodes.png) (the Bold's nodes, before
+and after).
+
 ## Not changed
 
 The frame (every letter's size and place is Study 3's: the overlap fit to Study 3, recorded as
@@ -179,13 +226,11 @@ method, the Bold's joins and the legacy `DOTS` cluster (discarded by the builder
 
 - The ampersand's join (above); the identity of the round dot and the diamond.
 - The weight: N46's and N45's stems differ by about 10%; a production sheet would settle it.
-- The dots of ! and ? come out as rounded diamonds: N45 and B2 print them as sharp ones, N46 rounds them,
-  and the mean of two prints rounds a corner. A judged sharpening (the period's pen diamond) is possible.
 - The fine tips the photocopy shortens (the ends of the parentheses, the beak of v) are drawn as N45
   prints them. B2 agrees with N45 where it resolves them, but it is the same plate.
-- The Bold's ! and ? dots sit close to their strokes in any derivation from these Regulars (5-10 units,
-  against 16-17 in 2.101, whose flyer traces set the dots 29 units clear). A designer might lower the dots
-  in the Bold.
+- The period sits on the baseline while the dots of ! and ? overshoot it by 8 units, as the round letters
+  do (N46 sets them level with the 0). The builder places the period; no print sets it beside a letter.
+- (Settled in the finishing pass: the rounded dots of ! and ?, and the Bold's dots set too close.)
 
 ## Evidence boards
 
@@ -208,4 +253,5 @@ python scripts/trace_ceili_judgement.py --round research/ceili-judgement
 python scripts/build_original_study.py --face ceili --study 4 --traces research/ceili-judgement/traces --output research/ceili-judgement/fonts
 python scripts/ceili_prints.py boards --candidate research/ceili-judgement/traces
 CEILI_JUDGEMENT_DIR=research/ceili-judgement python -m pytest -q tests/test_ceili_judgement.py
+python scripts/build_candidate.py ceili --output build/fonts       # the release, with the finishing pass
 ```

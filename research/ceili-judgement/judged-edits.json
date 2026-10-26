@@ -1,0 +1,32 @@
+{
+  "about": "Céilí's finishing pass on Study 4, read by scripts/build_original_study.py for Céilí only. The judged corrections are drawing and spacing decisions that the prints support but do not settle. The finish is noise clean-up, kept within about two units of the drawing.",
+  "sit_on_baseline": {
+    "h": "The h stood 40 units above the baseline in Studies 2 to 4, from the frame of the N45 h. Both prints set it on its line. N46 prints its feet level with i, e and d.alt1 (1508 px), and on N45 it stands no higher than its neighbours i and j. Its ascender (803) also stood 40 units above k (767) and l (759). Placement on a paste-up is setting, not drawing, so the h sits on the baseline like n and m."
+  },
+  "pen_terminals": "A broad pen cuts a stroke straight, with two sharp corners. N45 and N44 print the cuts crisp, N46's toner rounds them, and the mean of the two prints domes the cut and rounds both corners (c, e, e.alt1, t, a.alt1, f, g, p, x, z, the ampersand, the parentheses, 3, 4, 5, 7 and ?). Where a stroke end turns at least 150 degrees within 120 units through two corners, the cut is drawn straight through the middle of the drawn one and the stroke's edges run on to meet it. The feet of upright stems stay rounded, as every print draws those of n and m. This is done only where each new corner lies within 9 units (about a source pixel) of the drawn outline and the straight cut lies within 6 units of the drawn one.",
+  "pen_diamond": {
+    "glyphs": [
+      "exclam",
+      "question"
+    ],
+    "why": "The dots of ! and ? came out as rounded diamonds whose sides bulge, so that each corner turns only about 30 degrees. N46 rounds them, while N45 and B2 print sharp pen diamonds with near-straight sides. Each dot is now the face's period (the N45 pen diamond), mapped by the affine that best takes its four corners onto the dot's. The dot keeps its printed corners, and with them its place and its gap to the stroke. Its weight, 6 to 16% above the period's, comes down to the period's."
+  },
+  "bold_dot_gap": {
+    "share": 1.0,
+    "sloped_extra": 0.3,
+    "why": "The Bold set the dots of ! and ? 7 and 10 units from their strokes (F_PASS of the Regular's gap), and the Bold Italic 5 and 8, close enough to read as joined at text sizes. The Bold now keeps the whole of the Regular's gap, cut along the midline, and the Bold Italic 1.3 of it, since the slope's extra weight takes some of it back."
+  },
+  "double_acute": {
+    "gap": 14,
+    "why": "The double acute (a modern construction from the fada) set its two strokes 14 units apart in the Regular, 9 in the Italic, 6 in the Bold and 3 in the Bold Italic, all but touching. Every style now keeps them about 14 units apart (the sloped styles allow for the growth that follows)."
+  },
+  "quote_kerning": {
+    "share": 0.65,
+    "why": "The release's kerning measured letter and quote only where they share a height. A letter whose top just reached the quote's foot was kerned by up to 150 units, and its neighbour not at all: o’ -150 but e’ 0, ’a -150 but ’e 0, d’ -85 but m’ 0. One rule now holds for every letter: the quote stands 0.65 of the n|n gap clear of the letter's upper part, measured from 0.55 x-height up."
+  },
+  "finish": {
+    "regular": true,
+    "tidy": true,
+    "what": "Done by scripts/ceili_finish.py. In the Regular's traced letters, before the bold and sloped styles are derived, three things change. A curve that left a stem on a handle too short for its bend (a corner hidden in a smooth node, as at the shoulders of n, m and h) now leaves on the stem's tangent, within 3 units. A corner drawn as a cluster of short pieces becomes one corner, within 6 units. A node that one curve can replace within 2 units goes. Every glyph of every style, before accented letters are composed, gets the same tidying: rounding specks are folded away, and the bold's reopened joins (traced from a raster as runs of short lines) are drawn as curves. Corner clusters become one corner, extremes get nodes (again after the slope's shear) and redundant nodes are removed, all within 1.5 units. No step may join pieces or open or close a counter; where one would, the glyph keeps its outline from before that step (so the Bold Italic yen, whose narrow opening the slope's growth closed, is only narrowed there)."
+  }
+}
