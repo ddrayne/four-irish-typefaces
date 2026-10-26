@@ -1,0 +1,4685 @@
+{
+ "N46": [
+  {
+   "name": "a",
+   "box": [
+    1154,
+    1450,
+    1228,
+    1511
+   ],
+   "labels": [
+    14
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "a.alt1",
+   "box": [
+    1232,
+    1450,
+    1314,
+    1511
+   ],
+   "labels": [
+    15
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "a.alt2",
+   "box": [
+    1316,
+    1449,
+    1384,
+    1510
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "b",
+   "box": [
+    1384,
+    1424,
+    1451,
+    1511
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "c",
+   "box": [
+    1459,
+    1447,
+    1517,
+    1510
+   ],
+   "labels": [
+    7
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "d",
+   "box": [
+    1525,
+    1425,
+    1592,
+    1509
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "d.alt1",
+   "box": [
+    1587,
+    1444,
+    1667,
+    1508
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "e",
+   "box": [
+    1676,
+    1448,
+    1735,
+    1508
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "e.alt1",
+   "box": [
+    1743,
+    1449,
+    1826,
+    1509
+   ],
+   "labels": [
+    13
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "f",
+   "box": [
+    1826,
+    1447,
+    1889,
+    1534
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "g",
+   "box": [
+    1890,
+    1441,
+    1954,
+    1532
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "h",
+   "box": [
+    1959,
+    1420,
+    2022,
+    1508
+   ],
+   "labels": [
+    1,
+    9
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "i",
+   "box": [
+    2024,
+    1439,
+    2047,
+    1508
+   ],
+   "labels": [
+    4,
+    10
+   ],
+   "row_box": [
+    1130,
+    1410,
+    2070,
+    1537
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "j",
+   "box": [
+    1154,
+    1556,
+    1179,
+    1642
+   ],
+   "labels": [
+    6,
+    17
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "j.alt1",
+   "box": [
+    1186,
+    1562,
+    1239,
+    1625
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "k",
+   "box": [
+    1246,
+    1537,
+    1312,
+    1625
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "l",
+   "box": [
+    1307,
+    1537,
+    1370,
+    1625
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "l.alt1",
+   "box": [
+    1362,
+    1536,
+    1388,
+    1624
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "m",
+   "box": [
+    1398,
+    1562,
+    1487,
+    1623
+   ],
+   "labels": [
+    13
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "n",
+   "box": [
+    1494,
+    1562,
+    1553,
+    1623
+   ],
+   "labels": [
+    14
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "n.alt1",
+   "box": [
+    1560,
+    1562,
+    1621,
+    1623
+   ],
+   "labels": [
+    15
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "o",
+   "box": [
+    1631,
+    1559,
+    1700,
+    1622
+   ],
+   "labels": [
+    7
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "p",
+   "box": [
+    1700,
+    1561,
+    1773,
+    1648
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "q",
+   "box": [
+    1779,
+    1563,
+    1851,
+    1649
+   ],
+   "labels": [
+    16
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "r",
+   "box": [
+    1858,
+    1561,
+    1919,
+    1623
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "r.alt1",
+   "box": [
+    1922,
+    1560,
+    1982,
+    1648
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "s",
+   "box": [
+    1992,
+    1561,
+    2050,
+    1622
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    1130,
+    1525,
+    2070,
+    1680
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "s.alt1",
+   "box": [
+    1152,
+    1652,
+    1213,
+    1738
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "t",
+   "box": [
+    1209,
+    1672,
+    1280,
+    1736
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "u",
+   "box": [
+    1283,
+    1676,
+    1346,
+    1736
+   ],
+   "labels": [
+    18
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "v",
+   "box": [
+    1356,
+    1677,
+    1422,
+    1736
+   ],
+   "labels": [
+    19
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "v.alt1",
+   "box": [
+    1420,
+    1675,
+    1484,
+    1736
+   ],
+   "labels": [
+    15
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "w",
+   "box": [
+    1488,
+    1674,
+    1571,
+    1734
+   ],
+   "labels": [
+    14
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "x",
+   "box": [
+    1578,
+    1675,
+    1673,
+    1754
+   ],
+   "labels": [
+    16
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "y",
+   "box": [
+    1673,
+    1675,
+    1736,
+    1755
+   ],
+   "labels": [
+    17
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "ampersand",
+   "box": [
+    1749,
+    1652,
+    1851,
+    1735
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "z",
+   "box": [
+    1852,
+    1672,
+    1921,
+    1736
+   ],
+   "labels": [
+    13
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "parenleft",
+   "box": [
+    1934,
+    1671,
+    1957,
+    1743
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "parenright",
+   "box": [
+    2018,
+    1664,
+    2042,
+    1742
+   ],
+   "labels": [
+    8,
+    10
+   ],
+   "row_box": [
+    1130,
+    1645,
+    2070,
+    1795
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "zero",
+   "box": [
+    1159,
+    1797,
+    1222,
+    1858
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "one",
+   "box": [
+    1229,
+    1798,
+    1250,
+    1856
+   ],
+   "labels": [
+    14
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "two",
+   "box": [
+    1259,
+    1794,
+    1314,
+    1855
+   ],
+   "labels": [
+    9,
+    20
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "three",
+   "box": [
+    1306,
+    1795,
+    1365,
+    1876
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "four",
+   "box": [
+    1366,
+    1797,
+    1436,
+    1876
+   ],
+   "labels": [
+    13
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "five",
+   "box": [
+    1425,
+    1794,
+    1486,
+    1875
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "six",
+   "box": [
+    1485,
+    1776,
+    1545,
+    1854
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "seven",
+   "box": [
+    1548,
+    1793,
+    1602,
+    1875
+   ],
+   "labels": [
+    7
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "eight",
+   "box": [
+    1602,
+    1776,
+    1660,
+    1853
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "nine",
+   "box": [
+    1666,
+    1792,
+    1726,
+    1870
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "sterling",
+   "box": [
+    1733,
+    1793,
+    1789,
+    1854
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "dollar",
+   "box": [
+    1797,
+    1785,
+    1849,
+    1859
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "question",
+   "box": [
+    1855,
+    1784,
+    1903,
+    1857
+   ],
+   "labels": [
+    3,
+    17
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "exclam",
+   "box": [
+    1911,
+    1785,
+    1933,
+    1858
+   ],
+   "labels": [
+    5,
+    18
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "hyphen",
+   "box": [
+    1959,
+    1822,
+    1998,
+    1831
+   ],
+   "labels": [
+    16
+   ],
+   "row_box": [
+    1130,
+    1770,
+    2070,
+    1885
+   ],
+   "how": "round-3 region"
+  }
+ ],
+ "N45": [
+  {
+   "name": "a",
+   "box": [
+    773,
+    373,
+    838,
+    426
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "a.alt1",
+   "box": [
+    841,
+    374,
+    913,
+    427
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "a.alt2",
+   "box": [
+    914,
+    373,
+    974,
+    428
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "b",
+   "box": [
+    975,
+    353,
+    1032,
+    429
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "c",
+   "box": [
+    1040,
+    375,
+    1091,
+    429
+   ],
+   "labels": [
+    7
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "d",
+   "box": [
+    1098,
+    355,
+    1156,
+    430
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "d.alt1",
+   "box": [
+    1150,
+    373,
+    1222,
+    430
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "e",
+   "box": [
+    1229,
+    378,
+    1281,
+    431
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "e.alt1",
+   "box": [
+    1288,
+    378,
+    1359,
+    432
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "f",
+   "box": [
+    1357,
+    378,
+    1413,
+    455
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    755,
+    340,
+    1430,
+    465
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "g",
+   "box": [
+    773,
+    473,
+    828,
+    555
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "h",
+   "box": [
+    831,
+    457,
+    887,
+    533
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "i",
+   "box": [
+    889,
+    473,
+    910,
+    533
+   ],
+   "labels": [
+    7,
+    10
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "j",
+   "box": [
+    921,
+    473,
+    941,
+    549
+   ],
+   "labels": [
+    8,
+    11
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "j.alt1",
+   "box": [
+    947,
+    478,
+    994,
+    535
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "k",
+   "box": [
+    1000,
+    458,
+    1059,
+    536
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "l",
+   "box": [
+    1054,
+    460,
+    1108,
+    537
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "l.alt1",
+   "box": [
+    1103,
+    459,
+    1125,
+    537
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "m",
+   "box": [
+    1133,
+    483,
+    1210,
+    537
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "n",
+   "box": [
+    1217,
+    484,
+    1269,
+    537
+   ],
+   "labels": [
+    13
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "n.alt1",
+   "box": [
+    1274,
+    486,
+    1329,
+    539
+   ],
+   "labels": [
+    15
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "o",
+   "box": [
+    1337,
+    484,
+    1396,
+    540
+   ],
+   "labels": [
+    14
+   ],
+   "row_box": [
+    755,
+    450,
+    1430,
+    560
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "p",
+   "box": [
+    774,
+    587,
+    836,
+    663
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "q",
+   "box": [
+    844,
+    589,
+    905,
+    663
+   ],
+   "labels": [
+    7
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "r",
+   "box": [
+    909,
+    588,
+    965,
+    641
+   ],
+   "labels": [
+    4
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "r.alt1",
+   "box": [
+    966,
+    588,
+    1019,
+    663
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "s",
+   "box": [
+    1028,
+    588,
+    1077,
+    642
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "s.alt1",
+   "box": [
+    1079,
+    567,
+    1133,
+    642
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "t",
+   "box": [
+    1128,
+    585,
+    1191,
+    642
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "u",
+   "box": [
+    1194,
+    590,
+    1248,
+    643
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "v",
+   "box": [
+    1259,
+    592,
+    1315,
+    645
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "v.alt1",
+   "box": [
+    1313,
+    591,
+    1369,
+    646
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "hyphen",
+   "box": [
+    1375,
+    612,
+    1413,
+    624
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    755,
+    560,
+    1430,
+    665
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "w",
+   "box": [
+    773,
+    694,
+    845,
+    748
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "x",
+   "box": [
+    852,
+    695,
+    935,
+    765
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "y",
+   "box": [
+    935,
+    696,
+    989,
+    766
+   ],
+   "labels": [
+    13
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "ampersand",
+   "box": [
+    1001,
+    677,
+    1089,
+    749
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "z",
+   "box": [
+    1089,
+    693,
+    1150,
+    751
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "parenleft",
+   "box": [
+    1180,
+    685,
+    1201,
+    755
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "parenright",
+   "box": [
+    1358,
+    686,
+    1380,
+    756
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "exclam",
+   "box": [
+    1385,
+    692,
+    1404,
+    757
+   ],
+   "labels": [
+    9,
+    20
+   ],
+   "row_box": [
+    755,
+    665,
+    1430,
+    770
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "zero",
+   "box": [
+    770,
+    804,
+    825,
+    859
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "one",
+   "box": [
+    831,
+    804,
+    849,
+    857
+   ],
+   "labels": [
+    7
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "two",
+   "box": [
+    858,
+    803,
+    906,
+    856
+   ],
+   "labels": [
+    5
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "three",
+   "box": [
+    898,
+    804,
+    950,
+    875
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "four",
+   "box": [
+    951,
+    806,
+    1013,
+    876
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "five",
+   "box": [
+    1003,
+    805,
+    1058,
+    875
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "six",
+   "box": [
+    1057,
+    790,
+    1108,
+    858
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "seven",
+   "box": [
+    1111,
+    805,
+    1158,
+    876
+   ],
+   "labels": [
+    10
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "eight",
+   "box": [
+    1159,
+    791,
+    1208,
+    858
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "nine",
+   "box": [
+    1214,
+    806,
+    1265,
+    875
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "sterling",
+   "box": [
+    1270,
+    807,
+    1321,
+    860
+   ],
+   "labels": [
+    13
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "dollar",
+   "box": [
+    1326,
+    800,
+    1370,
+    865
+   ],
+   "labels": [
+    3
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  },
+  {
+   "name": "question",
+   "box": [
+    1376,
+    801,
+    1417,
+    866
+   ],
+   "labels": [
+    4,
+    14
+   ],
+   "row_box": [
+    755,
+    770,
+    1430,
+    880
+   ],
+   "how": "round-3 region"
+  }
+ ],
+ "flyer": [
+  {
+   "name": "a",
+   "box": [
+    433,
+    544,
+    461,
+    567
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "a.alt1",
+   "box": [
+    462,
+    544,
+    493,
+    567
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "a.alt2",
+   "box": [
+    494,
+    543,
+    520,
+    567
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "b",
+   "box": [
+    519,
+    534,
+    545,
+    567
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "c",
+   "box": [
+    547,
+    543,
+    570,
+    566
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "d",
+   "box": [
+    572,
+    535,
+    598,
+    566
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "d.alt1",
+   "box": [
+    595,
+    541,
+    626,
+    566
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "e",
+   "box": [
+    629,
+    543,
+    652,
+    566
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "e.alt1",
+   "box": [
+    654,
+    543,
+    685,
+    566
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "f",
+   "box": [
+    685,
+    542,
+    709,
+    576
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "g",
+   "box": [
+    709,
+    540,
+    733,
+    575
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "h",
+   "box": [
+    735,
+    532,
+    759,
+    566
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "i",
+   "box": [
+    760,
+    539,
+    768,
+    566
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "j",
+   "box": [
+    433,
+    583,
+    443,
+    616
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "j.alt1",
+   "box": [
+    445,
+    586,
+    465,
+    610
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "k",
+   "box": [
+    467,
+    576,
+    492,
+    610
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "l",
+   "box": [
+    491,
+    576,
+    514,
+    610
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "l.alt1",
+   "box": [
+    512,
+    576,
+    521,
+    609
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "m",
+   "box": [
+    525,
+    586,
+    558,
+    609
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "n",
+   "box": [
+    561,
+    586,
+    583,
+    609
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "n.alt1",
+   "box": [
+    585,
+    586,
+    609,
+    609
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "o",
+   "box": [
+    612,
+    585,
+    638,
+    609
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "p",
+   "box": [
+    638,
+    585,
+    666,
+    618
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "q",
+   "box": [
+    667,
+    586,
+    695,
+    619
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "r",
+   "box": [
+    697,
+    586,
+    720,
+    609
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "r.alt1",
+   "box": [
+    721,
+    585,
+    744,
+    618
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "s",
+   "box": [
+    748,
+    585,
+    769,
+    609
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "s.alt1",
+   "box": [
+    433,
+    619,
+    455,
+    652
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "t",
+   "box": [
+    454,
+    627,
+    480,
+    651
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "u",
+   "box": [
+    481,
+    628,
+    505,
+    651
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "v",
+   "box": [
+    509,
+    629,
+    534,
+    652
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "v.alt1",
+   "box": [
+    533,
+    628,
+    557,
+    651
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "w",
+   "box": [
+    558,
+    627,
+    590,
+    651
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "x",
+   "box": [
+    592,
+    628,
+    628,
+    658
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "y",
+   "box": [
+    628,
+    628,
+    651,
+    659
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "ampersand",
+   "box": [
+    656,
+    620,
+    695,
+    651
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "z",
+   "box": [
+    695,
+    627,
+    721,
+    651
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "parenleft",
+   "box": [
+    726,
+    626,
+    734,
+    654
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "parenright",
+   "box": [
+    757,
+    624,
+    766,
+    654
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "zero",
+   "box": [
+    435,
+    674,
+    459,
+    698
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "one",
+   "box": [
+    461,
+    674,
+    469,
+    697
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "two",
+   "box": [
+    472,
+    673,
+    493,
+    696
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "three",
+   "box": [
+    490,
+    673,
+    512,
+    704
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "four",
+   "box": [
+    513,
+    674,
+    539,
+    704
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "five",
+   "box": [
+    535,
+    673,
+    557,
+    704
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "six",
+   "box": [
+    557,
+    666,
+    580,
+    696
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "seven",
+   "box": [
+    581,
+    672,
+    601,
+    704
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "eight",
+   "box": [
+    601,
+    666,
+    623,
+    695
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "nine",
+   "box": [
+    625,
+    672,
+    648,
+    702
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "sterling",
+   "box": [
+    649,
+    672,
+    672,
+    695
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "dollar",
+   "box": [
+    674,
+    669,
+    694,
+    698
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "question",
+   "box": [
+    696,
+    669,
+    714,
+    697
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "exclam",
+   "box": [
+    717,
+    669,
+    726,
+    697
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  },
+  {
+   "name": "hyphen",
+   "box": [
+    735,
+    683,
+    750,
+    687
+   ],
+   "how": "bounds of the legacy trace (sources/traced/ceili.json is in flyer pixels)"
+  }
+ ],
+ "N44": [
+  {
+   "name": "d",
+   "box": [
+    1591,
+    394,
+    1654,
+    476
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "d": 0.914,
+    "d.alt1": 0.4203
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "e",
+   "box": [
+    1659,
+    418,
+    1714,
+    476
+   ],
+   "labels": [
+    23
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "e": 0.8858,
+    "e.alt1": 0.8368
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "s",
+   "box": [
+    1719,
+    417,
+    1772,
+    477
+   ],
+   "labels": [
+    21
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "s": 0.8806,
+    "s.alt1": 0.1207
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "i",
+   "box": [
+    1775,
+    408,
+    1799,
+    474
+   ],
+   "labels": [
+    5,
+    16
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "i": 0.8778
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "g",
+   "box": [
+    1806,
+    414,
+    1864,
+    502
+   ],
+   "labels": [
+    9
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "g": 0.8309
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "n",
+   "box": [
+    1868,
+    416,
+    1923,
+    474
+   ],
+   "labels": [
+    17
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "n": 0.8911,
+    "n.alt1": 0.7149
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "a",
+   "box": [
+    1969,
+    416,
+    2041,
+    475
+   ],
+   "labels": [
+    18
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "a": 0.8771,
+    "a.alt1": 0.6549,
+    "a.alt2": 0.2738
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "n",
+   "box": [
+    2042,
+    415,
+    2098,
+    473
+   ],
+   "labels": [
+    11
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "n": 0.8929,
+    "n.alt1": 0.7148
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "i",
+   "box": [
+    2127,
+    406,
+    2151,
+    473
+   ],
+   "labels": [
+    3,
+    7
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "i": 0.884
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "r",
+   "box": [
+    2156,
+    415,
+    2216,
+    475
+   ],
+   "labels": [
+    12
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "r": 0.8863,
+    "r.alt1": 0.4809
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "i",
+   "box": [
+    2215,
+    407,
+    2240,
+    474
+   ],
+   "labels": [
+    4,
+    13
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "i": 0.8874
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "s",
+   "box": [
+    2248,
+    415,
+    2302,
+    474
+   ],
+   "labels": [
+    14
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "s": 0.8896,
+    "s.alt1": 0.1248
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "h",
+   "box": [
+    2298,
+    391,
+    2359,
+    474
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "h": 0.9077
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "t",
+   "box": [
+    2398,
+    411,
+    2467,
+    474
+   ],
+   "labels": [
+    6
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "t": 0.8596
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "y",
+   "box": [
+    2470,
+    416,
+    2528,
+    493
+   ],
+   "labels": [
+    19
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "y": 0.8661
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "p",
+   "box": [
+    2533,
+    415,
+    2599,
+    497
+   ],
+   "labels": [
+    15
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "p": 0.8848
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "e",
+   "box": [
+    2601,
+    417,
+    2656,
+    475
+   ],
+   "labels": [
+    22
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "e": 0.9049,
+    "e.alt1": 0.8273
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "f",
+   "box": [
+    2657,
+    413,
+    2717,
+    496
+   ],
+   "labels": [
+    8
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "f": 0.8473
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "a",
+   "box": [
+    2714,
+    416,
+    2785,
+    475
+   ],
+   "labels": [
+    20
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "a": 0.8807,
+    "a.alt1": 0.6514,
+    "a.alt2": 0.269
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "c",
+   "box": [
+    2786,
+    418,
+    2841,
+    478
+   ],
+   "labels": [
+    24
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "c": 0.8785
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  },
+  {
+   "name": "e.alt1",
+   "box": [
+    2841,
+    418,
+    2919,
+    476
+   ],
+   "labels": [
+    25
+   ],
+   "row_box": [
+    1550,
+    350,
+    2950,
+    650
+   ],
+   "variant_iou": {
+    "e": 0.8328,
+    "e.alt1": 0.9113
+   },
+   "how": "component labels in the heading row; form read by eye, checked by registration"
+  }
+ ],
+ "S53915": [
+  {
+   "name": "a",
+   "box": [
+    1294,
+    2000,
+    1352,
+    2049
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1250,
+    1940,
+    1500,
+    2066
+   ],
+   "how": "the sample's two components, left to right"
+  },
+  {
+   "name": "one",
+   "box": [
+    1365,
+    2001,
+    1382,
+    2047
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1250,
+    1940,
+    1500,
+    2066
+   ],
+   "how": "the sample's two components, left to right"
+  }
+ ],
+ "S53916": [
+  {
+   "name": "a",
+   "box": [
+    1678,
+    1967,
+    1779,
+    2048
+   ],
+   "labels": [
+    1
+   ],
+   "row_box": [
+    1640,
+    1930,
+    2000,
+    2066
+   ],
+   "how": "the sample's two components, left to right"
+  },
+  {
+   "name": "one",
+   "box": [
+    1790,
+    1969,
+    1819,
+    2048
+   ],
+   "labels": [
+    2
+   ],
+   "row_box": [
+    1640,
+    1930,
+    2000,
+    2066
+   ],
+   "how": "the sample's two components, left to right"
+  }
+ ],
+ "B2": [
+  {
+   "name": "a",
+   "box": [
+    487,
+    242,
+    528,
+    278
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 0.67
+  },
+  {
+   "name": "a.alt1",
+   "box": [
+    526,
+    245,
+    571,
+    281
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.78
+  },
+  {
+   "name": "a.alt2",
+   "box": [
+    568,
+    248,
+    605,
+    284
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.61
+  },
+  {
+   "name": "b",
+   "box": [
+    603,
+    239,
+    638,
+    287
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 0.75
+  },
+  {
+   "name": "c",
+   "box": [
+    639,
+    254,
+    670,
+    289
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.81
+  },
+  {
+   "name": "d",
+   "box": [
+    671,
+    246,
+    705,
+    292
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 0.37
+  },
+  {
+   "name": "d.alt1",
+   "box": [
+    699,
+    258,
+    741,
+    294
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.83
+  },
+  {
+   "name": "e",
+   "box": [
+    741,
+    264,
+    772,
+    297
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.36
+  },
+  {
+   "name": "e.alt1",
+   "box": [
+    772,
+    266,
+    813,
+    300
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 4.83
+  },
+  {
+   "name": "f",
+   "box": [
+    808,
+    269,
+    840,
+    315
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.55
+  },
+  {
+   "name": "g",
+   "box": [
+    487,
+    299,
+    522,
+    350
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.74
+  },
+  {
+   "name": "h",
+   "box": [
+    521,
+    292,
+    556,
+    340
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.45
+  },
+  {
+   "name": "i",
+   "box": [
+    554,
+    303,
+    569,
+    340
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.4
+  },
+  {
+   "name": "j",
+   "box": [
+    572,
+    304,
+    587,
+    350
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.33
+  },
+  {
+   "name": "j.alt1",
+   "box": [
+    587,
+    308,
+    617,
+    344
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 4.32
+  },
+  {
+   "name": "k",
+   "box": [
+    617,
+    299,
+    653,
+    347
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.05
+  },
+  {
+   "name": "l",
+   "box": [
+    647,
+    302,
+    680,
+    349
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.51
+  },
+  {
+   "name": "l.alt1",
+   "box": [
+    674,
+    303,
+    689,
+    349
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.27
+  },
+  {
+   "name": "m",
+   "box": [
+    690,
+    317,
+    735,
+    352
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.49
+  },
+  {
+   "name": "n",
+   "box": [
+    735,
+    321,
+    766,
+    354
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.54
+  },
+  {
+   "name": "n.alt1",
+   "box": [
+    766,
+    324,
+    798,
+    357
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.32
+  },
+  {
+   "name": "o",
+   "box": [
+    798,
+    324,
+    832,
+    359
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.14
+  },
+  {
+   "name": "p",
+   "box": [
+    488,
+    364,
+    527,
+    412
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.29
+  },
+  {
+   "name": "q",
+   "box": [
+    529,
+    367,
+    567,
+    413
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.78
+  },
+  {
+   "name": "r",
+   "box": [
+    566,
+    368,
+    601,
+    402
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 0.15
+  },
+  {
+   "name": "r.alt1",
+   "box": [
+    598,
+    370,
+    631,
+    416
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.94
+  },
+  {
+   "name": "s",
+   "box": [
+    633,
+    372,
+    663,
+    406
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 0.65
+  },
+  {
+   "name": "s.alt1",
+   "box": [
+    661,
+    362,
+    694,
+    407
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 5.72
+  },
+  {
+   "name": "t",
+   "box": [
+    688,
+    373,
+    725,
+    409
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.76
+  },
+  {
+   "name": "u",
+   "box": [
+    723,
+    377,
+    755,
+    410
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.96
+  },
+  {
+   "name": "v",
+   "box": [
+    758,
+    380,
+    791,
+    413
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.53
+  },
+  {
+   "name": "v.alt1",
+   "box": [
+    786,
+    381,
+    819,
+    415
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.82
+  },
+  {
+   "name": "hyphen",
+   "box": [
+    819,
+    394,
+    841,
+    404
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.12
+  },
+  {
+   "name": "w",
+   "box": [
+    488,
+    425,
+    533,
+    460
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 0.54
+  },
+  {
+   "name": "x",
+   "box": [
+    534,
+    427,
+    584,
+    471
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 4.84
+  },
+  {
+   "name": "y",
+   "box": [
+    581,
+    429,
+    615,
+    473
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.02
+  },
+  {
+   "name": "ampersand",
+   "box": [
+    618,
+    420,
+    670,
+    465
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.48
+  },
+  {
+   "name": "z",
+   "box": [
+    667,
+    431,
+    703,
+    467
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.0
+  },
+  {
+   "name": "parenleft",
+   "box": [
+    716,
+    429,
+    731,
+    470
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.02
+  },
+  {
+   "name": "parenright",
+   "box": [
+    810,
+    433,
+    825,
+    474
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.38
+  },
+  {
+   "name": "exclam",
+   "box": [
+    824,
+    437,
+    837,
+    475
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.33
+  },
+  {
+   "name": "zero",
+   "box": [
+    486,
+    487,
+    522,
+    522
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.19
+  },
+  {
+   "name": "one",
+   "box": [
+    522,
+    488,
+    536,
+    522
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.44
+  },
+  {
+   "name": "two",
+   "box": [
+    538,
+    488,
+    568,
+    522
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 0.92
+  },
+  {
+   "name": "three",
+   "box": [
+    561,
+    489,
+    593,
+    533
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.79
+  },
+  {
+   "name": "four",
+   "box": [
+    591,
+    491,
+    629,
+    534
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.11
+  },
+  {
+   "name": "five",
+   "box": [
+    620,
+    492,
+    654,
+    534
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.78
+  },
+  {
+   "name": "six",
+   "box": [
+    650,
+    484,
+    681,
+    525
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.65
+  },
+  {
+   "name": "seven",
+   "box": [
+    679,
+    493,
+    708,
+    536
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 6.18
+  },
+  {
+   "name": "eight",
+   "box": [
+    705,
+    486,
+    735,
+    526
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 1.57
+  },
+  {
+   "name": "nine",
+   "box": [
+    735,
+    495,
+    765,
+    536
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.07
+  },
+  {
+   "name": "sterling",
+   "box": [
+    765,
+    496,
+    795,
+    529
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.13
+  },
+  {
+   "name": "dollar",
+   "box": [
+    794,
+    494,
+    820,
+    532
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 2.43
+  },
+  {
+   "name": "question",
+   "box": [
+    820,
+    495,
+    844,
+    533
+   ],
+   "how": "N45 box through the fitted homography",
+   "homography_from_N45": [
+    [
+     0.70407135,
+     0.00180896,
+     -10.47450293
+    ],
+    [
+     0.07826073,
+     0.62179141,
+     -25.88252213
+    ],
+    [
+     0.00012461,
+     -3.77e-06,
+     1.0
+    ]
+   ],
+   "centre_residual_px": 3.38
+  }
+ ]
+}

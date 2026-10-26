@@ -53,6 +53,14 @@ instances before accepting a replacement. It does not expose x/y; N517 does not
 expose Kilfane T/U or lowercase k/l (Study 4 now separates them on N516). Do not redo the mark recovery or erase the
 remaining diaeresis uncertainty. Review retained versus derived pieces explicitly.
 
+**Céilí: [Study 4](ceili-judgement/README.md), the judgement pass** (branch `research/ceili-judgement`),
+built on Study 3 and keeping its frame. Each of the 54 letters is the mean of N46 (photocopy) and N45
+(offset), at one level for the whole face. Where the two prints disagree, a notch is filled; N44 decides
+a protrusion wherever it prints the letter, and otherwise the protrusion is drawn as N45 has it.
+`scripts/ceili_prints.py` is the review tool: one evidence board per letter. The sheet's síneadh fada is
+the acute. The round dot (probably the ponc séimhithe) and the diamond are recorded, not built. The
+ampersand stays closed, as N46 draws it: a recorded call. Start Céilí work from Study 4.
+
 [Round 4](round-04/README.md), Céilí Study 3: Four named original
 punctuation pieces replace the legacy cluster as construction inputs. Period,
 comma and opposed quotes come from N45; 64 derived glyphs change, including dotted

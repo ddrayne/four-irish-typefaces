@@ -16,6 +16,8 @@ def study_class(face,traces):
     punctuation_file=traces/'punctuation.json'
     punctuation_data=json.loads(punctuation_file.read_text(encoding='utf-8')) if punctuation_file.exists() else None
     if punctuation_data is not None and face!='ceili':raise ValueError('named punctuation is currently defined only for Ceili')
+    source_acute=next((p for p in punctuation_data['pieces'] if p['name']=='acute' and p.get('use')=='built'),None) if punctuation_data else None
+    derived=evidence.get('derived_styles',{})    # Céilí Study 4: two judged repairs to the derived styles
 
     constructions=evidence.get('constructions',{})
 
@@ -25,6 +27,32 @@ def study_class(face,traces):
         OWN_ACUTES=tuple(constructions.get('own_acutes',()))
         BRACE_POINT=constructions.get('brace')=='pointed'
 
+        def __init__(self,key,style_name='Regular'):
+            fixed=evidence.get('line_baselines')
+            if not fixed:
+                return super().__init__(key,style_name)
+            # Céilí Study 4: each source line's baseline as Study 3 measured it. The builder takes a line's
+            # baseline as the median of its letters' bottoms, which moves with the overshoots of the round
+            # and pointed ones; the redrawn letters keep Study 3's frame, so their line does too
+            import glyphs,metrics
+            fixed={int(k):float(v['baseline']) for k,v in fixed.items()}
+            measured=metrics.line_baselines
+            def pinned(res):
+                measured(res);return dict(fixed)
+            glyphs.line_baselines=metrics.line_baselines=pinned
+            try:super().__init__(key,style_name)
+            finally:glyphs.line_baselines=metrics.line_baselines=measured
+
+        def snap(self):
+            super().snap()
+            # letters a print set off its line (evidence.json, sit_on_baseline) are put on it, flat feet on the
+            # baseline and round ones just below it, as snap() does for letters within its tolerance
+            for n in evidence.get('sit_on_baseline',{}):
+                if n not in self.P:continue
+                p=self.P[n];y0=build2.bounds(p)[1]
+                over=0 if self.flat(p,y0,0.015*self.xh,top=False) else 8
+                self.P[n]=build2.translate(p,0,-y0-over)
+
         def punctuation(self):
             if punctuation_data is not None:
                 self.source_punctuation={}
@@ -33,16 +61,22 @@ def study_class(face,traces):
                     self.source_punctuation[record['name']]=clean(p)
             super().punctuation()
             if punctuation_data is not None:
+                src={}
                 for name in ['period','comma','quoteleft','quoteright']:
                     record=next(p for p in punctuation_data['pieces'] if p['name']==name)
-                    self.made[name]=f'named NIVAL N45 {name}; region {record["box"]}; text position adjusted'
-                self.made.update(colon='two NIVAL N45 periods; modern text placement',
-                    semicolon='NIVAL N45 comma and period; modern text placement',
-                    ellipsis='three NIVAL N45 periods; modern text spacing',
-                    quotedblleft='two NIVAL N45 opening quotes; modern text spacing',
-                    quotedblright='two NIVAL N45 closing quotes; modern text spacing',
-                    quotesingle='modern wedge; width calibrated to named NIVAL N45 period',
-                    quotedbl='two modern wedges; width calibrated to named NIVAL N45 period')
+                    src[name]=record.get('source_id','N45')
+                    self.made[name]=f'named NIVAL {src[name]} {name}; region {record["box"]}; text position adjusted'
+                self.made.update(colon=f'two NIVAL {src["period"]} periods; modern text placement',
+                    semicolon=f'NIVAL {src["comma"]} comma and period; modern text placement',
+                    ellipsis=f'three NIVAL {src["period"]} periods; modern text spacing',
+                    quotedblleft=f'two NIVAL {src["quoteleft"]} opening quotes; modern text spacing',
+                    quotedblright=f'two NIVAL {src["quoteright"]} closing quotes; modern text spacing',
+                    quotesingle=f'modern wedge; width calibrated to named NIVAL {src["period"]} period',
+                    quotedbl=f'two modern wedges; width calibrated to named NIVAL {src["period"]} period')
+                # Céilí Study 4: the sheet's síneadh fada, identified by judgement, is the acute (and the marks made from it)
+                if source_acute is not None:
+                    a=self.source_punctuation['acute']
+                    self.piece['acute']=self.bold_pieces(a) if self.bold else a
 
         def hairlines(self):
             disabled=set(evidence.get('disable_legacy_hairlines',[]))
@@ -57,6 +91,33 @@ def study_class(face,traces):
             if self.key=='ceili' and 'h' in evidence.get('disable_legacy_repairs',[]):return
             super().repairs()
 
+        def embolden_traced(self):
+            apart={n:self.P[n] for n in derived.get('bold_keep_apart',{}).get('glyphs',()) if n in self.P}
+            super().embolden_traced()
+            if not apart:return
+            # a dot the wider pen brings within a hair of its stroke is set apart as a joined one is
+            import bolden,shapes as SH
+            b=build2.BOLD[self.key];pen=(b['rx'],b['ry'])
+            for n,p in apart.items():
+                wide=[SH.transform(q,(b['k'],0,0,1,0,0)) for q in bolden.components(p) if abs(bolden.area(q))>1]
+                core=bolden.heights_back(SH.union(*wide),self.xh,b['ry'])
+                self.P[n]=bolden._separate(core,self.P[n],pen,close=True)
+
+        def condense(self):
+            if not derived.get('sound_sloped_growth'):return super().condense()
+            # pathops can resolve the sloped pen's inner loops wrongly, losing part of a letter (oe's e);
+            # the same outline, simplified first, grows soundly
+            import bolden
+            grow=bolden.grow
+            def sound(p,rx,ry,miter=4.0):
+                g=grow(p,rx,ry,miter)
+                if bolden._sound(p,g):return g
+                h=grow(pathops.simplify(p,fix_winding=True,keep_starting_points=False,clockwise=False),rx,ry,miter)
+                return h if bolden._sound(p,h) else g
+            bolden.grow=sound
+            try:super().condense()
+            finally:bolden.grow=grow
+
         def kerning(self):
             super().kerning()
             from study_spacing import protect_kerning
@@ -70,9 +131,23 @@ def study_class(face,traces):
                 self.piece[record['name']]=clean(p)
             self.made['accents']=piece_data.get('decision','named original-source marks; see pieces.json; ambiguous lower pair is unassigned')
 
+        def attach(self,base_name,base,mark_kind,upper,stack_top=None):
+            m=super().attach(base_name,base,mark_kind,upper,stack_top)
+            if source_acute is None or mark_kind in build2.BOTTOM or mark_kind=='caronvert' or stack_top is not None:return m
+            # Céilí Study 4: the sheet's fada is narrower than the drawn acute it replaces, and over an open
+            # letter (u, v, w, y) the window under it found the counter: clear the letter's top across at
+            # least half an x-height, as the drawn acute did
+            b=build2.bounds(m);cx=(b[0]+b[2])/2;half=max(b[2]-b[0],0.5*self.xh)/2
+            t=build2.top_under(base,cx-half,cx+half)+self.gap*(0.85 if upper else 1.0)*(1.4 if mark_kind=='commaturned' else 1.0)
+            return build2.translate(m,0,t-b[1]) if t>b[1] else m
+
         def mark_words(self,kind):
             description=super().mark_words(kind)
             if punctuation_data is not None:
+                if source_acute is not None and kind=='acute':
+                    return f'acute (síneadh fada); named NIVAL {source_acute["source_id"]} piece, identified by judgement (punctuation.json)'
+                if source_acute is not None and kind in {'grave','hungarumlaut'}:
+                    return f'{self.MARK_WORDS[kind]}; modern construction from the named NIVAL {source_acute["source_id"]} fada'
                 if kind in {'commabelow','commaturned'}:
                     return f'{self.MARK_WORDS[kind]}; modern transformation of the named NIVAL N45 comma'
                 if kind=='caronvert':
