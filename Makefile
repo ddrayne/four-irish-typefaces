@@ -2,7 +2,7 @@
 PY      ?= .venv/bin/python
 FACES   ?= kilfane tuam carrick ceili
 
-.PHONY: help setup fonts release test validate specimen audit package site showcase serve deploy-site trace clean
+.PHONY: help setup fonts release test validate specimen proof audit package site showcase serve deploy-site trace clean
 
 help:
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
@@ -24,6 +24,9 @@ validate:  ## OTS, Font Bakery per family and the flyer audit, into docs/validat
 
 specimen:  ## the PDF and PNG specimen, into docs/specimen
 	SPECIMEN=docs/specimen OUT=$(CURDIR)/build/fonts $(PY) scripts/specimen2.py
+
+proof:  ## a proof of the release fonts to print and mark up, build/proof/four-irish-typefaces-proof.pdf
+	$(PY) scripts/proof_sheet.py
 
 package:  ## the release ZIPs, into build/dist
 	$(PY) scripts/package.py
