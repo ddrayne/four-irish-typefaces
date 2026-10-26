@@ -9,6 +9,10 @@ cut or round foot), as it does Carrick's lowercase cut feet, and that moved the 
 and a cut or pointed top stands the round overshoot above it, as the builder's feet stand below the
 baseline. The 8 stands about 12 source pixels (67 units) above the others on N513 and on N47, its feet on
 the line with theirs: drawn so, it keeps its height.
+
+The fourth pass adds, from the same file: £ and $ on the baseline at their printed heights (signs, "figures", "signs");
+' and " to the curly quotes' depth (straight_quotes, "quotes"); and Tuam's rule for the white above the x-height
+at Carrick's own cut (kern, "kerning"). ‹ › « » from one chevron are symbols.make_symbols' (ONE_CHEVRON).
 """
 import json
 from pathlib import Path
@@ -41,3 +45,69 @@ def figures(font, edits=EDITS):
     font.fig = line
     font.figure_line = report
     return report
+
+
+def body(p, bar):
+    """The glyph's body: with `bar`, without the vertical bar that alone reaches its top and bottom (the $'s): the ink
+    beside the bar's widest extent at its ends, less any sliver where the bar flares."""
+    import bolden, build2, shapes as SH
+    from glyphs import bounds
+    if not bar:
+        return p
+    x0, y0, x1, y1 = bounds(p); h = 0.04 * (y1 - y0)
+    ends = [build2.ink_x_extent(p, y1 - h, y1), build2.ink_x_extent(p, y0, y0 + h)]
+    lo, hi = min(e[0] for e in ends) - 4, max(e[1] for e in ends) + 4
+    rest = SH.difference(p, SH.polygon([(lo, y0 - 10), (hi, y0 - 10), (hi, y1 + 10), (lo, y1 + 10)]))
+    return bolden.concat([c for c in bolden.components(rest) if abs(bolden.area(c)) >= 0.02 * abs(bolden.area(p))])
+
+
+def signs(font, edits=EDITS):
+    """The fourth pass ("figures", "signs"): £ and $ stand on the baseline with the figures, at the heights N513
+    prints them. Each sign's body (with "bar", the $ without its bar) has its foot set as the builder sets a
+    figure's: a flat foot on the baseline, a cut or round one `overshoot` below it; the whole glyph moves, its
+    drawing and size unchanged. Returns {sign: (body before, body after)}."""
+    import build2
+    from glyphs import bounds
+    spec = json.loads(Path(edits).read_text(encoding='utf-8'))['figures']
+    over, band = float(spec['overshoot']), 0.015 * font.xh
+    report = {}
+    for n, how in spec.get('signs', {}).items():
+        if n not in font.P:
+            continue
+        p = font.P[n]; q = body(p, bool(how.get('bar'))); b = bounds(q)
+        foot = 0.0 if font.flat(q, b[1], band, top=False) else -over
+        font.P[n] = build2.translate(p, 0, foot - b[1])
+        report[n] = ((round(b[1], 1), round(b[3], 1)), (foot, round(b[3] - b[1] + foot, 1)))
+    font.signs_on_line = report
+    return report
+
+
+def straight_quotes(font, edits=EDITS):
+    """The fourth pass ("quotes"): the straight quote and double quote (build2.punctuation's wedge) drawn to the
+    curly quotes' depth, the wedge lengthened about the middle of its top so that its top on the quotes' line
+    and its widths at top and foot (its taper from the period) stay as the builder draws them; the double quote
+    is two of them, set as the builder sets them, and the primes (symbols.make_symbols) follow."""
+    import shapes as SH
+    from glyphs import bounds, translate
+    spec = json.loads(Path(edits).read_text(encoding='utf-8')).get('quotes')
+    if not spec:
+        return None
+    P = font.P; q = P['quotesingle']; b = bounds(q); ref = bounds(P[spec['depth_of']])
+    ky, kx = (ref[3] - ref[1]) / (b[3] - b[1]), spec.get('width', 1.0)
+    cx, top = (b[0] + b[2]) / 2, b[3]
+    q = font.norm_x(SH.transform(q, (kx, 0, 0, ky, cx - kx * cx, top - ky * top)))
+    P['quotesingle'] = q
+    P['quotedbl'] = SH.union(q, translate(q, bounds(q)[2] * 1.6, 0))
+    font.straight_quotes = ((round(b[2] - b[0], 1), round(b[3] - b[1], 1)), (round(bounds(q)[2], 1), round(bounds(q)[3] - bounds(q)[1], 1)))
+    return font.straight_quotes
+
+
+def kern(font, edits=EDITS):
+    """The fourth pass ("kerning"): above the x-height every pair stands at least Carrick's cut width apart, as
+    Tuam's do at Tuam's (tuam_studio.upper_clearance, after the builder's kerning and its 8-unit protection): f's
+    flag came within 8 to 13 units of the next ascender."""
+    spec = json.loads(Path(edits).read_text(encoding='utf-8')).get('kerning', {})
+    if 'upper_clearance' not in spec:
+        return []
+    import tuam_studio
+    return tuam_studio.upper_clearance(font, spec['upper_clearance'])

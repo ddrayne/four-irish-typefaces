@@ -484,6 +484,8 @@ def update_provenance(base,f,cfg,evidence,piece_data):
           'Euro':'c' if cfg['unicase'] else 'C','uni204A':'seven',**f.comp}
     piece_sources={'degree':'ring','guilsinglright':'guil.r1','guilsinglleft':'guil.l1',
                    'guillemotright':'guil.r1 + guil.r2','guillemotleft':'guil.l1 + guil.l2'}
+    one=getattr(f,'ONE_CHEVRON',None)       # every guillemet from one of the sheet's chevrons (Carrick's fourth pass)
+    if one:piece_sources.update({g+s:one+('' if g=='guilsingl' else ' + '+one[:-1]+'2') for g in ('guilsingl','guillemot') for s in ('left','right')})
     own_acutes=evidence.get('constructions',{}).get('own_acutes',[])
     def source_words(g):
         region=g['box'] if 'box' in g else f'{len(g.get("boxes",[]))} impressions on the {g.get("sheet","")} sheet'

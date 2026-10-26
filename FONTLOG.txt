@@ -50,6 +50,11 @@ ChangeLog
   straight facets; the cedilla and ogonek drawn with the bold's pen, so the family's line box
   deepens 14 units (1023/-204). The TrueType files keep no speck where a tiny curve's conversion
   crossed itself (Carrick Italic's ı i į, a few Kilfane glyphs).
+- Tuam Uncial: the word space (and the no-break space) is half the n, 448 (Italic 435), not 320.
+  Carrick: £ and $ stand on the baseline with the figures, at their printed heights; ‹ › « » are one
+  drawing and its mirror image, so each pair matches; f stands clear of a following ascender, as every
+  pair above the x-height now stands at least Carrick's cut apart; ' and " (and the primes) are as deep
+  as the curly quotes, with their ink.
 - Names, coverage and features are unchanged; spacing follows the new outlines.
 
 2.101 (2026-10-25)

@@ -55,6 +55,8 @@ def build(face, traces, version):
         RING_WEIGHT, ARM_WEIGHT, AT_RING_OUT = signs.get('ring_weight'), signs.get('arm_weight'), signs.get('at_ring_out', 1.0)
         CURRENCY_RADIUS, CURRENCY_REACH = signs.get('currency_radius', 0.34), signs.get('currency_reach', 1.45)
         TM_CUT = signs.get('tm_cut')
+        # Carrick's fourth pass: ‹ › « » all from the sheet's one ‹ chevron, mirrored (symbols.make_symbols)
+        ONE_CHEVRON = signs.get('one_chevron')
         PONC_BESIDE, PONC_GAP = (('b',), 0.13) if face == 'carrick' else ((), None)
         # a single stem's square foot (Kilfane's F, P, V, 4 and 7) sits on the baseline, not 8 units below
         # it. Kilfane's and Carrick's feet have been reviewed against their sheets (Carrick's are slanted
@@ -124,6 +126,9 @@ def build(face, traces, version):
                 import kilfane_studio
                 kilfane_studio.symbols(self)                      # the upright styles' (done once)
             super().space(K)
+            if self.STUDIO:
+                import tuam_studio
+                tuam_studio.word_space(self)                      # Tuam's word space from its own n, uncapped
             self.settle_final()
 
         def slant(self):
@@ -154,6 +159,9 @@ def build(face, traces, version):
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.marks(self)
+            if face == 'carrick':
+                import carrick_studio
+                carrick_studio.straight_quotes(self)      # ' and " to the curly quotes' depth (the fourth pass)
 
         # Kilfane: the studio finishing pass (scripts/kilfane_studio.py; research/kilfane-sheet-frame/judged-edits.json):
         # the bold draws the sheet's pieces with its pen (build_original_study.specimen_pieces), and a mark that finds
@@ -179,6 +187,7 @@ def build(face, traces, version):
             if face == 'carrick':
                 import carrick_studio
                 carrick_studio.figures(self)                 # the figures on one figure line
+                carrick_studio.signs(self)                   # and £ and $ on the baseline (the fourth pass)
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.apply(self)
@@ -196,6 +205,9 @@ def build(face, traces, version):
             if self.STUDIO:
                 import tuam_studio
                 tuam_studio.kern(self)
+            if face == 'carrick':
+                import carrick_studio
+                carrick_studio.kern(self)                 # f's flag a cut's width from an ascender (the fourth pass)
 
         def vertical(self):
             if face == 'kilfane':
