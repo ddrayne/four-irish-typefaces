@@ -57,6 +57,9 @@ def build(face, traces, version):
                     self.P[n] = build2.translate(self.P[n], 0, -build2.bounds(self.P[n])[1])
 
         def condense(self):
+            if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.symbols(self)                      # drawn upright, then narrowed with the rest
             if self.STUDIO:
                 import tuam_studio
                 if tuam_studio.condense(self, build2.CONDENSE):
@@ -90,6 +93,9 @@ def build(face, traces, version):
                 self.P[n] = narrow[n]
 
         def space(self, K):
+            if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.symbols(self)                      # the upright styles' (done once)
             super().space(K)
             self.settle_final()
 
@@ -119,7 +125,11 @@ def build(face, traces, version):
                 import tuam_studio
                 tuam_studio.marks(self)
 
-        # Kilfane: the studio finishing pass (scripts/kilfane_studio.py; research/kilfane-sheet-frame/judged-edits.json)
+        # Kilfane: the studio finishing pass (scripts/kilfane_studio.py; research/kilfane-sheet-frame/judged-edits.json):
+        # the bold draws the sheet's pieces with its pen (build_original_study.specimen_pieces), and a mark that finds
+        # an open letter's counter sits on the letter's line (build_original_study.attach)
+        BOLD_PIECES = MARK_ON_LINE = face == 'kilfane'
+
         def finish_traced(self):
             super().finish_traced()
             if face == 'kilfane':
@@ -129,6 +139,8 @@ def build(face, traces, version):
         # each finishing pass's zone and kerning steps, one method per step
         def zones(self):
             if face == 'kilfane':
+                import kilfane_studio
+                kilfane_studio.bold_joins(self)                   # in the frame the bold's pen drew them in
                 keep = {n: self.P[n] for n in self.studio}          # the studio pass has set their heights
                 super().zones()
                 self.P.update(keep)
@@ -145,6 +157,7 @@ def build(face, traces, version):
                 build2.Font2.kerning(self)
                 kilfane_studio.kern(self)
                 protect_kerning(self)
+                kilfane_studio.clearances(self)
                 return
             super().kerning()
             if self.STUDIO:
@@ -155,6 +168,7 @@ def build(face, traces, version):
             if face == 'kilfane':
                 import kilfane_studio
                 kilfane_studio.outlines(self)
+                kilfane_studio.corners(self)
             return super().vertical()
 
         def build(self, flavour):

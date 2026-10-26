@@ -100,11 +100,47 @@
    "letters": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
    "threshold": 12, "share": 0.6, "max": -60,
+   "limits_reason": "Judged, in text (second pass). \"*lower\" is every lowercase letter, its alternates and its accented forms: the builder's exceptions for accented letters that stick out of their base's class kept the quotes' old kerning there (’â -110, ’ê -75, the quote touching the circumflex) while ’a was eased.",
    "limits": [
     {"left": ["quoteright", "quoteleft", "quotedblright", "quotedblleft"], "right": "*lower", "min": -40},
     {"left": "*lower", "right": ["quoteright", "quoteleft", "quotedblright", "quotedblleft"], "min": -40},
     {"left": "*lower", "right": ["hyphen"], "min": -30}
+   ],
+   "clearances": [
+    {"right": ["iacute", "igrave", "icircumflex", "idieresis", "itilde", "imacron", "ibreve", "jcircumflex",
+               "Iacute", "Igrave", "Icircumflex", "Idieresis", "Itilde", "Imacron", "Ibreve"],
+     "clearance": 40, "margin": 2,
+     "reason": "Judged. The fada of í overhangs the i's side bearing (its ink starts at -36) and ran within 9 to 14 units of the capital before it (Sí, Cí, Rí, Pí, Fí), against 35 for Ní and Mí; kerning, not a moved fada, keeps the fada over its stem, so every glyph before an accented i keeps 40 units from its mark."},
+    {"right": "*capitals", "clearance": 30, "margin": 2, "styles": ["Bold", "Bold Italic"],
+     "reason": "Judged. The bold's wider pen took the white between capitals' arms and diagonals (A V 9 units after kerning, A W, A Y, T W, T Y, Z V, F V, V L 7 to 10) where the Regular's A V keeps 29: the bold's capitals keep 30, their class kerning eased or opened."}
    ]
+  },
+  "bold_pieces": {
+   "reason": "Judged. The sheet's loose marks, rules and chevrons were read after the letters were bolded, so the bold's accents, dashes, math signs, guillemets, © and ° kept the Regular's outlines (acute stroke 61 against stems of 166, rules 60). Each piece is grown with the bold's pen (rx 24.2, ry 17.4): the dots, rules and chevrons by all of it, like the bold's i dot, period and horizontal strokes; the stroke accents by 0.72 of it, which keeps the Regular's proportion to the stems (acute 61 to 90, circumflex and tilde 54-57 to 81-83), the ring's hairline by 0.45 (32 to 49, its hole kept round); each pair is set apart again by the width the pen added. The rules come to 92 (the math signs with them), the ponc to 168 by 142 beside the i dot's 182 by 160.",
+   "share": {"acute": 0.72, "circumflex": 0.72, "tilde": 0.72, "ring": 0.45, "dot": 1.0, "dieresis": 1.0, "endash": 1.0, "emdash": 1.0, "guil": 1.0},
+   "pairs": [["dieresis.l", "dieresis.r"], ["guil.r1", "guil.r2"], ["guil.l1", "guil.l2"]]
+  },
+  "bold_joins": {
+   "reason": "Judged. The bold's pen closes the drawn open joins of k, r, 6 and 9, and easing the aperture back took the pen off both sides of it: the stem narrowed from 166 to 146 in faceted steps and a 4 to 12-unit crack remained. The join is drawn closed and its gap taken from the terminal alone, 20 units wide (the sloped style's cut wider by its hair of weight, so it is 20 once sloped), the terminal's face one curve; the stem keeps its straight edge and its 166 units.",
+   "gap": 20, "round": 30,
+   "glyphs": {"k": {"at": [200, 235], "side": 1}, "r": {"at": [187, 220], "side": 1},
+              "six": {"at": [132, 345], "side": 1}, "nine": {"at": [336, 353], "side": -1}}
+  },
+  "g_tail": {
+   "reason": "Judged. In the bold the pen and the restored baseline raise the tip of g's tail 34 units, onto the bowl (opening 8 units in Bold, 4 in Bold Italic, 50 in the Regular): the tip is lowered 30 units, falling off along the tail within 170 units, so the opening is about 34 and the tail's foot stays on its line.",
+   "glyph": "g", "at": [120, 17], "drop": 30, "reach": 170
+  },
+  "symbols": {
+   "reason": "Judged. The bold's section interlaced the bold s, which it had to lighten until its loop opened (stroke 96 against the bold s's 133, its foot raised from 66 to 122): it is drawn as the Regular's section with the bold's pen, in its own frame (66 to 700), as black as the bold s, its loop keeping half its area (a letter's least counter keeps 0.36), so that the sloped style's narrowing leaves it open. The bold's number sign, drawn at 0.85 of the rules, keeps the Regular's proportion to the stems (81 thinned to 75).",
+   "section": {"counter_area": 0.5, "counter_radius": 0.66},
+   "numbersign": {"stroke": 0.85}
+  },
+  "marks_on_line": {
+   "reason": "Noise. A mark narrower than an open capital's counter (the ring on U) found the counter's floor under it (Ů's ring sat inside the U at 208 to 342): where a top mark would sit below 0.8 of its letter's line, the letter's top is found under the acute's wider window instead, so Ů's ring sits at 745 as Å's and Ú's marks do."
+  },
+  "corners": {
+   "reason": "Noise. Where the section's two s meet, and at the corners the round offset of its s left, the outlines kept pieces of 2 to 5 units (a spur turning 122 degrees on 2 units in the Regular, facets in the bold): each run of pieces under 8 units at a corner is one node where the outline either side meets, a short piece along a smooth run is merged into a neighbour within 2.5 units, and a run of straight facets (an eased aperture's cut, traced as a polygon) is drawn as the curve it stands for, within 2 units; in a bold, also on the letters whose joins were cut (k, r, 6, 9, g) and their accented forms.",
+   "glyphs": ["section"], "bold": ["k", "r", "six", "nine", "g"], "short": 8, "tolerance": 2.5, "facets": 2.0
   }
  }
 }

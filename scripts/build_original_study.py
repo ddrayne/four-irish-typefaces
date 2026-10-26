@@ -248,9 +248,20 @@ def study_class(face,traces):
                 p=pathops.Path();replayRecording(record['rec'],p.getPen())
                 self.piece[record['name']]=clean(p)
             self.made['accents']=piece_data.get('decision','named original-source marks; see pieces.json; ambiguous lower pair is unassigned')
+            if self.bold and getattr(self,'BOLD_PIECES',False):
+                # the pieces arrive after the letters were bolded: Kilfane's finishing draws them with the bold's pen too
+                import kilfane_studio;kilfane_studio.bold_pieces(self)
 
         def attach(self,base_name,base,mark_kind,upper,stack_top=None):
             m=super().attach(base_name,base,mark_kind,upper,stack_top)
+            if getattr(self,'MARK_ON_LINE',False) and mark_kind not in build2.BOTTOM and mark_kind!='caronvert' and stack_top is None:
+                # Kilfane's finishing: a mark narrower than an open letter's counter (the ring on U) found the counter's
+                # floor; it is set over the letter's top as the acute's wider window finds it
+                line=self.cap if upper else self.xh;b=build2.bounds(m)
+                gap=self.gap*(0.85 if upper else 1.0)*(1.4 if mark_kind=='commaturned' else 1.0)
+                if b[1]-gap<0.8*line:
+                    a=build2.bounds((self.case_marks if upper else self.marks)['acute']);cx=(b[0]+b[2])/2;half=(a[2]-a[0])/2
+                    m=build2.translate(m,0,build2.top_under(base,cx-half,cx+half)+gap-b[1])
             if source_acute is None or mark_kind in build2.BOTTOM or mark_kind=='caronvert' or stack_top is not None:return m
             # Céilí Study 4: the sheet's fada is narrower than the drawn acute it replaces, and over an open
             # letter (u, v, w, y) the window under it found the counter: clear the letter's top across at
