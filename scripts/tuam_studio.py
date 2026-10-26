@@ -16,6 +16,11 @@ is an operation a type designer makes by hand, and states its target, measured a
             gap, fading out along the outline, so only that end is redrawn
   cut       a long seam's width: the piece named moves bodily along the gap
   dot       the dot of i, j, ! or ? a gap from its stroke (with `like`, another glyph's dot)
+
+The second pass adds constructions and edits to glyphs made from the traced ones (`derived`, applied in each style's
+own frame: smooth, point, settle): í's acute drawn steeper (steepen), the comma and everything made from it
+(comma), the ponc on the ascender letters (ponc), the sloped style's weight given back with its openings kept
+(grow_back) and its outlines settled after the slant (settled).
 """
 import json, math
 from pathlib import Path
@@ -469,8 +474,19 @@ def apply(f, path=EDITS):
 
 def kern(f, path=EDITS):
     """Above the x-height, every pair stands at least the cut's width apart (after Font2.kerning and the
-    builder's 8-unit protection): f's flag over the next ascender or fada is drawn apart, as the cuts are."""
-    c = load(path).get('constructions', {}).get('upper_clearance')
+    builder's 8-unit protection): f's flag over the next ascender or fada is drawn apart, as the cuts are. First, in
+    the upright, the judged edits to the glyphs made from the traced ones (the sloped style has them before its
+    narrowing, in condense())."""
+    import build2
+    doc = load(path)
+    if not f.italic:
+        for n in sorted({e['glyph'] for e in doc.get('derived', [])}):
+            if n in f.final:
+                was = bounds(f.final[n])
+                f.final[n] = build2.final_clean(derived_edits(doc, n, f.final[n]))
+                if max(abs(u - v) for u, v in zip(bounds(f.final[n]), was)) > 1:     # it was spaced on its extent
+                    raise ValueError(f'the derived edits moved the extent of {n}: {was} -> {bounds(f.final[n])}')
+    c = doc.get('constructions', {}).get('upper_clearance')
     if not c:
         return []
     import math as m
@@ -509,33 +525,428 @@ def kern(f, path=EDITS):
 
 
 def condense(f, k, path=EDITS):
-    """The sloped style's narrowing as an affine transform alone, where the constructions ask for it (returns
-    whether it did). The builder grows every narrowed outline by a hair (4.4 units a side) to give the stems
-    their weight back, which takes 9 units out of every cut, slit and seam and draws them in short pieces."""
-    if load(path).get('constructions', {}).get('italic_condense', {}).get('value') != 'affine':
+    """The sloped style's narrowing, where the constructions ask for it (returns whether it did): 'affine', the
+    narrowing alone; 'grown', the narrowing with the stems' and bowls' weight given back (grow_back). The builder
+    grows every narrowed outline by a hair (4.4 units a side) with a stroked offset, which takes 9 units out of every
+    cut, slit and seam and draws them in short pieces."""
+    doc = load(path)
+    how = doc.get('constructions', {}).get('italic_condense', {}).get('value')
+    if how not in ('affine', 'grown'):
         return False
+    rx = (1 - k) * f.S / 2
+    import build2
+    t = math.tan(math.radians(build2.SLANT)); slope = (1, 0, t, 1, -f.xh / 2 * t, 0)     # as Font2.slant
+    f.grown_back = {}
+    narrow = {}
     for n, p in list(f.P.items()):
         if bounds(p) is not None:
-            f.P[n] = SH.transform(p, (k, 0, 0, 1, 0, 0))
+            narrow[n] = derived_edits(doc, n, SH.transform(p, (k, 0, 0, 1, 0, 0)), k)
+    if how == 'affine':
+        f.P.update(narrow)
+        return True
+    comp = getattr(f, 'comp', {})
+    for n, q in narrow.items():
+        if n not in comp or comp[n] not in narrow:
+            f.P[n], f.grown_back[n] = grow_back(q, rx, f.S, slope)
+    # an accented letter is its letter as grown, with its marks grown on their own and moved with the letter
+    for n, q in narrow.items():
+        if n in comp and comp[n] in narrow:
+            base = narrow[comp[n]]; grown = f.P[comp[n]]
+            rest = SH.difference(q, base)
+            if bounds(rest) is None:
+                f.P[n] = grown; f.grown_back[n] = f.grown_back[comp[n]]; continue
+            rest, f.grown_back[n] = grow_back(rest, rx, f.S, slope)
+            dx = (bounds(grown)[0] + bounds(grown)[2] - bounds(base)[0] - bounds(base)[2]) / 2
+            f.P[n] = SH.union(grown, translate(rest, dx, 0))
     return True
 
 
+def derived_edits(doc, name, p, k=1.0):
+    """The judged edits to a glyph made from the traced ones (judged-edits.json, `derived`), in its own frame: x
+    from its left edge, narrowed by k in the sloped style."""
+    eds = [e for e in doc.get('derived', []) if e['glyph'] == name]
+    if not eds:
+        return p
+    x0 = bounds(p)[0]
+    at = lambda q: (x0 + k * q[0], q[1])
+    for e in eds:
+        if e['op'] == 'smooth':
+            p, _ = smooth(p, at(e['from']), at(e['to']), tuple(e.get('ends', ('smooth', 'smooth'))))
+        elif e['op'] == 'point':
+            p, _ = point(p, at(e['tip']), e.get('radius', 18.0))
+        elif e['op'] == 'settle':
+            import build2
+            p = settled(build2.final_clean(p), e.get('tiny', 8))
+        else:
+            raise ValueError(f'unknown derived edit {e["op"]}')
+    return p
+
+
+# ---------------------------------------------------------------- the sloped style's weight
+def ink_raster(p, pad=4):
+    """The ink on a one-unit grid: (mask, x0, y1), row r at y = y1 - r, column c at x = x0 + c (even-odd)."""
+    from PIL import Image, ImageDraw
+    b = bounds(p); x0, y1 = math.floor(b[0]) - pad, math.ceil(b[3]) + pad
+    W, H = int(math.ceil(b[2]) - x0) + pad + 1, int(y1 - math.floor(b[1])) + pad + 1
+    m = np.zeros((H, W), bool)
+    for start, segs in contours(p):
+        pts, _, _ = samples([[start, segs]], step=1.0)
+        img = Image.new('1', (W, H), 0)
+        ImageDraw.Draw(img).polygon([(x - x0, y1 - y) for x, y in pts], fill=1)
+        m ^= np.asarray(img, dtype=bool)
+    return m, x0, y1
+
+
+def white_necks(p, limit, step=2.0, far=150.0, window=40.0):
+    """The narrow whites of an outline (cuts, slits, seams): [(width, a, b)], narrowest first, where the white
+    across from a point of the outline (to the nearest point across it, b) is narrowest within `window` units of
+    outline either side; points along one contour count as across only when more than `far` (and three widths)
+    apart along it."""
+    from scipy.spatial import cKDTree
+    cs = contours(p)
+    xy, ci, arc = samples(cs, step)
+    tot = np.array([arc[ci == i].max() for i in range(len(cs))])
+    pairs = cKDTree(xy).query_pairs(limit, output_type='ndarray')
+    if not len(pairs):
+        return []
+    i, j = np.r_[pairs[:, 0], pairs[:, 1]], np.r_[pairs[:, 1], pairs[:, 0]]
+    d = np.linalg.norm(xy[i] - xy[j], axis=1)
+    da = np.abs(arc[i] - arc[j]); da = np.minimum(da, tot[ci[i]] - da)
+    keep = (ci[i] != ci[j]) | (da > np.maximum(far, 3 * d))
+    i, j, d = i[keep], j[keep], d[keep]
+    if not len(d):
+        return []
+    m, x0, y1 = ink_raster(p)
+    mid = (xy[i] + xy[j]) / 2
+    c = np.clip(np.round(mid[:, 0] - x0).astype(int), 0, m.shape[1] - 1)
+    r = np.clip(np.round(y1 - mid[:, 1]).astype(int), 0, m.shape[0] - 1)
+    keep = ~m[r, c]
+    i, j, d = i[keep], j[keep], d[keep]
+    if not len(d):
+        return []
+    o = np.lexsort((d, i)); first = np.unique(i[o], return_index=True)[1]
+    best = np.full(len(xy), np.inf); partner = np.full(len(xy), -1)
+    best[i[o][first]] = d[o][first]; partner[i[o][first]] = j[o][first]
+    out = []
+    for k in np.argsort(best):
+        if not np.isfinite(best[k]):
+            break
+        da = np.abs(arc - arc[k]); da = np.minimum(da, tot[ci[k]] - da)
+        near = (ci == ci[k]) & (da <= window)
+        if best[k] > best[near].min():
+            continue                                    # not the narrowest point of its stretch
+        a, b = xy[k], xy[partner[k]]
+        if any(math.dist(a, B) < window and math.dist(b, A) < window for _, A, B in out) or \
+                any(math.dist(a, A) < window and math.dist(b, B) < window for _, A, B in out):
+            continue                                    # the same white, found from its other side
+        if _notch(m, x0, y1, a, b):
+            continue                                    # the inside of a V, not a white between strokes
+        out.append((float(best[k]), a, b))
+    return out
+
+
+def _notch(m, x0, y1, a, b, small=2500.0):
+    """Whether the white across a..b closes off a small pocket on one side (the inside of a V or a sharp notch,
+    under `small` square units), rather than joining two open whites, as a cut, slit or seam does."""
+    from scipy import ndimage as ndi
+    from PIL import Image, ImageDraw
+    pad = 60
+    white = np.pad(~m, pad, constant_values=True)
+    img = Image.fromarray(white.astype(np.uint8) * 255)
+    P = lambda q: (q[0] - x0 + pad, y1 - q[1] + pad)
+    ImageDraw.Draw(img).line([P(a), P(b)], fill=0, width=3)
+    lab, _ = ndi.label(np.asarray(img) > 0)
+    u = (b - a) / np.linalg.norm(b - a); nrm = np.array([-u[1], u[0]]); mid = (a + b) / 2
+    sizes = []
+    for sgn in (1, -1):
+        c, r = P(mid + sgn * 4 * nrm)
+        r, c = int(round(r)), int(round(c))
+        if not (0 <= r < lab.shape[0] and 0 <= c < lab.shape[1]) or lab[r, c] == 0:
+            return False
+        sizes.append(int((lab == lab[r, c]).sum()))
+    return min(sizes) < small
+
+
+def _across(p, a, b, r=20.0):
+    """The narrowest white now between the outline near a (on a's side of the gap) and near b: (width, point on
+    a's side, its contour, its arc position, point on b's side, its contour, its arc position)."""
+    xy, ci, arc = samples(contours(p), 1.0)
+    u = (a - b) / np.linalg.norm(a - b); mid = (a + b) / 2
+    side = (xy - mid) @ u
+    A = np.where((np.linalg.norm(xy - a, axis=1) < r) & (side > 0))[0]
+    B = np.where((np.linalg.norm(xy - b, axis=1) < r) & (side < 0))[0]
+    if not len(A) or not len(B):
+        return None
+    D = np.linalg.norm(xy[A][:, None] - xy[B][None], axis=2)
+    ka, kb = np.unravel_index(int(np.argmin(D)), D.shape)
+    A, B = A[ka], B[kb]
+    return float(D[ka, kb]), xy[A], int(ci[A]), float(arc[A]), xy[B], int(ci[B]), float(arc[B])
+
+
+def _behind(m, x0, y1, pt, u, cap=400):
+    """How far the ink runs from pt in the direction u (the stroke's thickness behind a wall)."""
+    for t in range(2, cap):
+        x, y = pt + u * t
+        c, r = int(round(x - x0)), int(round(y1 - y))
+        if not (0 <= r < m.shape[0] and 0 <= c < m.shape[1]) or not m[r, c]:
+            return float(t)
+    return float(cap)
+
+
+def _shift(p, i, s0, move, reach):
+    """Move contour i's outline by `move` where it passes arc position s0, fading (cosine) to nothing `reach`
+    units of outline either side, as spur() moves a spur's end."""
+    cs = contours(p)
+    start, segs = cs[i]
+    L = seg_lengths(start, segs); pos = np.r_[0, np.cumsum(L)]; total = pos[-1]
+    def wt(s):
+        dd = abs(s - s0); dd = min(dd, total - dd)
+        return 0.5 * (1 + math.cos(math.pi * dd / reach)) if dd < reach else 0.0
+    mv = lambda q, w: (q[0] + move[0] * w, q[1] + move[1] * w)
+    new = []
+    for j, (kk, pts) in enumerate(segs):
+        w0, w1 = wt(pos[j]), wt(pos[j + 1])
+        new.append(('L', [mv(pts[0], w1)]) if kk == 'L' else ('C', [mv(pts[0], w0), mv(pts[1], w1), mv(pts[2], w1)]))
+    cs[i] = [new[-1][1][-1], new]
+    return pathops.simplify(path_of(cs), fix_winding=True, keep_starting_points=True, clockwise=False)
+
+
+def grow_back(q, rx, stem, slope=None, limit=45.0, reach=110.0, spur_share=0.4, tolerance=0.6):
+    """Give a narrowed outline its weight back: every edge moved out by rx across (bolden.grow_nodes, which keeps
+    the drawing's nodes), then each white narrower than `limit` (a cut, a slit, a seam) put back to its width before
+    the growth, by the side that ends there: a spur or hook (a side under `spur_share` of a stem thick behind the
+    white) drawn back along the gap, as spur() draws it; between two separate strokes, the right-hand one moved over
+    bodily, as cut() moves it; otherwise (one stroke, or a piece inside another) half each. Where a white cannot be
+    put back (the growth would close it), the glyph keeps the narrowing alone. Returns the outline and, for each
+    white, (width before, width after, how). With `slope` (the slant's matrix), the whites are measured and put
+    back as the sloped style will have them: the growth and the moves are across, which the slant keeps."""
+    import bolden
+    if slope is not None:
+        from fontTools.misc.transform import Transform
+        g, report = grow_back(SH.transform(q, slope), rx, stem, None, limit, reach, spur_share, tolerance)
+        return SH.transform(g, tuple(Transform(*slope).inverse())), report
+    necks = white_necks(q, limit)
+    g = bolden.grow_nodes(q, rx, 0.01, fallback=bolden.grow)      # across only (grow() needs some height)
+    if not necks:
+        return (g, []) if _topology(g) == _topology(q) else (q, [('kept narrow',)])
+    m, x0, y1 = ink_raster(q)
+    comps = bolden.components(q)
+    pts = [samples(contours(c), 4.0)[0] for c in comps]
+    piece = lambda pt: min(range(len(comps)), key=lambda c: float(np.min(np.linalg.norm(pts[c] - pt, axis=1))))
+    centre_x = lambda c: (bounds(comps[c])[0] + bounds(comps[c])[2]) / 2
+    within = lambda s, t: s[0] >= t[0] and s[1] >= t[1] and s[2] <= t[2] and s[3] <= t[3]
+    offset = {}                                             # each piece moved over so far
+    # the growth was across, so a side is put back across too (heights never move): the move that widens the
+    # white by `amount` where it runs in direction v
+    across = lambda v, amount: np.array([math.copysign(amount / max(abs(v[0]), 0.3), v[0]), 0.0])
+    report = []
+    for w0, a, b in sorted(necks, key=lambda n: (n[1][0] + n[2][0]) / 2):        # left to right
+        u = (a - b) / np.linalg.norm(a - b)
+        ta, tb = _behind(m, x0, y1, a, u), _behind(m, x0, y1, b, -u)
+        pa, pb = piece(a), piece(b)
+        nested = pa != pb and (within(bounds(comps[pa]), bounds(comps[pb])) or within(bounds(comps[pb]), bounds(comps[pa])))
+        if nested:
+            mode = 'both'                                   # a letter inside a ring (@, (c), (R))
+        elif min(ta, tb) <= spur_share * stem:
+            mode = 'spur'
+        elif pa != pb:
+            mode = 'piece'                                  # two strokes: the right-hand one moves over
+        else:
+            mode = 'both'
+        moving_a = centre_x(pa) > centre_x(pb) if mode == 'piece' else ta <= tb
+        for _ in range(6):
+            aa, bb = a + offset.get(pa, 0.0), b + offset.get(pb, 0.0)
+            now = _across(g, aa, bb)
+            if now is None:
+                break
+            w, A, ia, sa, B, ib, sb = now
+            if abs(w - w0) < 0.25:
+                break
+            dlt = w0 - w
+            if mode == 'piece':
+                # the right-hand stroke moves over, and the strokes beyond it with it (w's third)
+                which, pt, mv = (pa, A, across(u, dlt)) if moving_a else (pb, B, across(-u, dlt))
+                gc = bolden.components(g)
+                k = min(range(len(gc)), key=lambda c: float(np.min(np.linalg.norm(samples(contours(gc[c]), 2.0)[0] - pt, axis=1))))
+                cx = lambda c: (bounds(c)[0] + bounds(c)[2]) / 2
+                moved = [j for j, c in enumerate(gc) if j == k or cx(c) > cx(gc[k])]
+                g = bolden.concat([translate(c, *mv) if j in moved else c for j, c in enumerate(gc)])
+                for c in range(len(comps)):
+                    if c == which or centre_x(c) > centre_x(which):
+                        offset[c] = offset.get(c, 0.0) + mv
+            elif mode == 'both':
+                g = _shift(g, ia, sa, across(u, dlt / 2), reach)
+                again = _across(g, aa, bb)
+                if again is not None:
+                    g = _shift(g, again[5], again[6], across(-u, dlt / 2), reach)
+            elif moving_a:
+                g = _shift(g, ia, sa, across(u, dlt), reach)
+            else:
+                g = _shift(g, ib, sb, across(-u, dlt), reach)
+        after = _across(g, a + offset.get(pa, 0.0), b + offset.get(pb, 0.0))
+        report.append((round(w0, 1), None if after is None else round(after[0], 1), mode))
+    if any(w1 is None or abs(w1 - w0) > tolerance for w0, w1, _ in report) or _topology(g) != _topology(q):
+        return q, report + [('kept narrow',)]
+    return g, report
+
+
+def _topology(p):
+    """(pieces, counters) of the outline as it will be filled."""
+    import bolden, glyphs
+    a = [bolden.area(c) for c in glyphs.contours(pathops.simplify(p, fix_winding=True, keep_starting_points=False, clockwise=False))]
+    return sum(x > 0 for x in a), sum(x < 0 for x in a)
+
+
 def extremes(f):
-    """After the slant: a node where each sloped curve passes its extreme, as the upright has them."""
+    """After the slant: a node where each sloped curve passes its extreme, as the upright has them; then, where the
+    constructions ask for it, each outline settled on the unit grid (settled())."""
     import build2, finish
+    c = load().get('constructions', {}).get('italic_settle', {})
     for n, p in list(f.final.items()):
         if not bounds(p):
             continue
         rec = RecordingPen(); p.draw(rec)
         if any(op == 'qCurveTo' for op, _ in rec.value):
-            continue
-        out = [finish._split_extrema([[k, list(q)] for k, q in segs]) for segs in finish._contours(rec.value)]
-        q = pathops.Path(); replayRecording(finish._record(out), q.getPen())
-        f.final[n] = build2.final_clean(q)
+            q = p                                       # pathops' exact quadratics: settle() reads them as cubics
+        else:
+            out = [finish._split_extrema([[k, list(q)] for k, q in segs]) for segs in finish._contours(rec.value)]
+            q = pathops.Path(); replayRecording(finish._record(out), q.getPen())
+            q = build2.final_clean(q)
+        f.final[n] = settled(q, c['tiny']) if c.get('value') else q
+
+
+def settled(p, tiny, passes=3):
+    """settle.settle_path (as Carrick's outlines are settled) with pieces under `tiny` units folded, repeated until
+    it changes nothing: the joins that rounding after the slant left bent by a few degrees made smooth again, and
+    the pieces of a unit or two that splitting the sloped curves at their extremes left folded into one node."""
+    import settle
+    from fontTools.pens.recordingPen import RecordingPen as R
+    keep = settle.TINY
+    settle.TINY = tiny
+    try:
+        for _ in range(passes):
+            q = settle.settle_path(p)
+            a, b = R(), R(); p.draw(a); q.draw(b)
+            if a.value == b.value:
+                break
+            p = q
+    finally:
+        settle.TINY = keep
+    return p
 
 
 def marks(f, path=EDITS):
-    """Construction values for the marks (after Font2.make_marks): the gap above the letter."""
+    """Construction values for the marks (after Font2.make_marks, before the letters, composites and symbols are
+    made from them): the gap above the letter, í's acute, the comma and the marks made from it, and the ponc."""
     c = load(path).get('constructions', {})
     if 'accent_gap' in c:
         f.gap = c['accent_gap']['value']
+    if 'iacute_rise' in c and 'iacute' in getattr(f, 'own_acute', {}):
+        shape, dx = f.own_acute['iacute']
+        f.own_acute['iacute'] = (steepen(shape, c['iacute_rise']['value']), dx)
+    if 'comma' in c:
+        comma(f, c['comma'])
+    if 'ponc' in c:
+        ponc(f, c['ponc'])
+
+
+# ---------------------------------------------------------------- the second pass: constructions
+def steepen(shape, rise):
+    """An acute drawn steeper: its right end raised `rise` units over its width (a vertical shear about its left
+    end), so its left end, its width and each column's thickness stay as drawn."""
+    x0, y0, x1, y1 = bounds(shape)
+    k = rise / (x1 - x0)
+    return SH.transform(shape, (1, k, 0, 1, 0, -k * x0))
+
+
+def comma_tail(dot, root, inner, tip, corner):
+    """The comma: the period with a tail drawn down to the left, as the builder draws it (build2.punctuation), in
+    the dot's frame (shares of its width w and height h, depths below its foot). The tail's outer side leaves the dot
+    at its right extreme, so the two make one outline there; `root` and `inner` set the tail's inner side."""
+    dx0, dy0, dx1, dy1 = bounds(dot); w, h = dx1 - dx0, dy1 - dy0
+    ys = np.arange(dy0 + 1.0, dy1 - 0.5, 1.0)
+    right = [max((r[1] for r in runs_at(dot, y)), default=-1e9) for y in ys]
+    ry = float(ys[int(np.argmax(right))])
+    tail = SH.polygon([(dx0 + root * w, ry), (dx1, ry), (dx1 - corner[0] * w, dy0 - corner[1] * h),
+                       (dx0 + tip[0] * w, dy0 - tip[1] * h), (dx0 + inner[0] * w, dy0 - inner[1] * h)])
+    return SH.union(dot, tail)
+
+
+def comma(f, c):
+    """Redraw the comma and everything made from it, as Font2.punctuation and Font2.make_marks make them: the
+    quotes (the comma raised; turned), the semicolon, and the marks taken from the comma (the turned comma above,
+    the comma below, the apostrophe caron)."""
+    import marks as MK
+    from build2 import BOTTOM
+    P = f.P; period = P['period']
+    cm = comma_tail(period, c['root'], tuple(c['inner']), tuple(c['tip']), tuple(c['corner']))
+    cm = translate(cm, -bounds(cm)[0], bounds(period)[3] - bounds(cm)[3])
+    P['comma'] = cm
+    qtop = f.asc if f.cfg['unicase'] else f.cap
+    qr = translate(cm, 0, qtop - bounds(cm)[3]); P['quoteright'] = qr
+    b = bounds(qr); ql = SH.rotate(qr, 180, (b[0] + b[2]) / 2, (b[1] + b[3]) / 2)
+    P['quoteleft'] = translate(ql, -bounds(ql)[0], qtop - bounds(ql)[3])
+    for single, double in (('quoteleft', 'quotedblleft'), ('quoteright', 'quotedblright')):
+        q = P[single]; w = bounds(q)[2]
+        P[double] = SH.union(q, translate(q, w + 0.45 * w, 0))
+    ph = bounds(period)[3]; top_dot = translate(period, 0, f.xh - ph)
+    P['semicolon'] = SH.union(cm, translate(top_dot, (bounds(cm)[2] - bounds(period)[2]) / 2, 0))
+    small = SH.transform(cm, (0.8, 0, 0, 0.8, 0, 0)); sb = bounds(small)
+    made = {'commaturned': MK.centre(SH.rotate(small, 180, (sb[0] + sb[2]) / 2, (sb[1] + sb[3]) / 2)),
+            'commabelow': MK.centre(SH.transform(cm, (0.85, 0, 0, 0.85, 0, 0)), top=False),
+            'caronvert': MK.centre(SH.transform(qr, (0.85, 0, 0, 0.85, 0, 0)))}
+    for k, m in made.items():
+        f.marks[k] = m
+        f.case_marks[k] = m if k in BOTTOM else SH.transform(m, (1, 0, 0, 0.82, 0, 0))
+
+
+def ponc(f, c):
+    """The ponc (dot above) and every top mark on the ascender letters, through Font2.attach (so the precomposed
+    letters and the mark feature's anchors agree): on b and d over the bowl, beside the ascender, as Hayes sets
+    ḃ in his 1974 lettering of the face (Bolger fig. 204): centred over the counter and on the height of the
+    ascender above the x-height, and at least `clear` from the ascender; on f above the stem, `above` clear of it."""
+    from build2 import BOTTOM, top_under
+    from scipy.spatial import cKDTree
+    import letters
+    orig = f.attach
+    bowl, above, clear = set(c['beside']), c['above'], c['clear']
+
+    def place(base):
+        """(centre x, foot y) of the dot over the bowl of b or d."""
+        xh, asc = f.xh, f.asc
+        s0, s1 = letters.stem_at(base, xh + 0.6 * (asc - xh), 'left')
+        runs = runs_at(base, 0.5 * xh)
+        gaps = [(a[1], b[0]) for a, b in zip(runs, runs[1:])]
+        counter = min(gaps, key=lambda g: min(abs(g[0] - s1), abs(g[1] - s0)))
+        cx = (counter[0] + counter[1]) / 2
+        away = 1.0 if cx > (s0 + s1) / 2 else -1.0
+        dot = f.marks['dot']; d0, e0, d1, e1 = bounds(dot)
+        stem = SH.op(base, SH.polygon([(-1e4, xh + 1), (1e4, xh + 1), (1e4, 1e4), (-1e4, 1e4)]), pathops.PathOp.INTERSECTION)
+        tree = cKDTree(samples(contours(stem), 1.0)[0])
+        mid = xh + (asc - xh) / 2 - (e1 - e0) / 2
+        def at(x):
+            foot = max(top_under(base, x - (d1 - d0) / 2, x + (d1 - d0) / 2) + f.gap, mid)
+            m = translate(dot, x - (d0 + d1) / 2, foot - e0)
+            return foot, float(tree.query(samples(contours(m), 1.0)[0])[0].min())
+        if at(cx)[1] < clear:                       # moved away from the ascender only as far as it needs
+            lo, hi = 0.0, 300.0
+            for _ in range(14):
+                if at(cx + away * (lo + hi) / 2)[1] >= clear:
+                    hi = (lo + hi) / 2
+                else:
+                    lo = (lo + hi) / 2
+            cx += away * hi
+        return cx, at(cx)[0]
+
+    def attach(base_name, base, mark_kind, upper, stack_top=None):
+        letter = base_name.split('.')[0]
+        if upper or stack_top is not None or mark_kind in BOTTOM or mark_kind == 'caronvert' or \
+                letter not in bowl and letter not in above:
+            return orig(base_name, base, mark_kind, upper, stack_top)
+        if letter in above:
+            return translate(orig(base_name, base, mark_kind, upper, stack_top), 0, above[letter] - f.gap)
+        cx, foot = place(base)
+        m = f.marks[mark_kind]; b = bounds(m)
+        return translate(m, cx - (b[0] + b[2]) / 2, foot - b[1])
+
+    f.attach = attach

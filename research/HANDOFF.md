@@ -50,6 +50,9 @@ and those of v, w, 5, d, p, q, s and 6 on N45's evidence. The five fadas keep th
 braces are drawn with a point. N47 and N44 do not print Tuam. Start Tuam work from Study 3. The release adds a
 studio finishing pass ([judged-edits.json](tuam-judgement/judged-edits.json), `scripts/tuam_studio.py`): even cuts,
 stems and x-height, the slits and seams at N45's widths, the dots and accents clear, and an Italic that keeps them.
+A second pass (the same file and module) steepens í's acute so it is told from i at text sizes, sets the ponc of
+ḃ and ḋ beside the ascender as Hayes's 1974 lettering does (Bolger fig. 204) and ḟ's 60 above the stem, draws the §
+in continuous curves, gives the quotes a heavier tail, and gives the Italic the Regular's weight with its openings kept.
 
 Next concrete source lead: N514 contains repeated isolated e/f on the upper sheet.
 Round 5 records native crop coordinates. Compare local perspective and repeated

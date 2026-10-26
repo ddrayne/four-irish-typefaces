@@ -235,6 +235,11 @@ def test_finishing_edits_are_recorded():
     assert all(e['op'] in ops and e['glyph'] in names for e in doc['edits'])
     assert all(any('why' in e for e in doc['edits'] if e['op'] == op) for op in {e['op'] for e in doc['edits']})
     assert all(c['why'] for c in doc['constructions'].values())
+    # the edits to glyphs made from the traced ones (the section sign), each kind with its reason
+    from fontTools.ttLib import TTFont
+    made = set(TTFont(release()).getGlyphOrder())
+    assert doc['derived'] and all(e['op'] in {'smooth', 'point', 'settle'} and e['glyph'] in made for e in doc['derived'])
+    assert all(any('why' in e for e in doc['derived'] if e['op'] == op) for op in {e['op'] for e in doc['derived']})
 
 
 @pytest.mark.parametrize('style', ['Regular', 'Italic'])
@@ -294,3 +299,190 @@ def test_release_flat_tops_sit_on_the_x_height():
         runs = sorted((r for r in runs + [cur] if len(r) >= 10), key=len, reverse=True)
         assert runs and abs(np.median(runs[0]) - xh) <= 2, (n, [round(np.median(r)) for r in runs])
         assert all(abs(np.median(r) - xh) <= 3 for r in runs if len(r) >= 20), (n, [round(np.median(r)) for r in runs])
+
+
+# ---------------------------------------------------------------- the second finishing pass, in the release
+def pieces_of(path, name):
+    """A glyph's pieces, lowest first."""
+    import bolden
+    from glyphs import bounds
+    return sorted(bolden.components(outline(path, name)), key=lambda c: bounds(c)[1])
+
+
+def white(a, b):
+    import tuam_studio as T
+    from scipy.spatial import cKDTree
+    return float(cKDTree(T.samples(T.contours(b), 1.0)[0]).query(T.samples(T.contours(a), 1.0)[0])[0].min())
+
+
+def renders(path, name, px):
+    """FreeType renders of a glyph at four horizontal phases (antialiased, unhinted), each on its own canvas."""
+    freetype = pytest.importorskip('freetype')
+    out = []
+    for phase in (0.0, 0.25, 0.5, 0.75):
+        face = freetype.Face(path); face.set_char_size(int(px * 64))
+        face.set_transform(freetype.Matrix(65536, 0, 0, 65536), freetype.Vector(int(phase * 64), 0))
+        face.load_glyph(face.get_name_index(name.encode()), freetype.FT_LOAD_NO_HINTING | freetype.FT_LOAD_RENDER)
+        bm = face.glyph.bitmap
+        a = np.array(bm.buffer, float).reshape(bm.rows, bm.pitch)[:, :bm.width] / 255 if bm.rows else np.zeros((0, 0))
+        can = np.zeros((3 * px, 3 * px)); y0, x0 = 2 * px - face.glyph.bitmap_top, px // 2 + face.glyph.bitmap_left
+        can[y0:y0 + a.shape[0], x0:x0 + a.shape[1]] = a
+        out.append(can)
+    return out
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_iacute_is_told_from_i_at_text_sizes(style):
+    """The acute of í is its traced short wedge drawn steeper (judged-edits.json, iacute_rise): it rises well above the
+    dot of i, and at 14 to 20 px the two render at least as differently as í and i do in Liberation Serif, the least
+    distinct of DejaVu Sans, DejaVu Serif and Liberation Serif measured the same way (the renders blurred by half a
+    pixel, their summed difference over the marks' ink: 0.55, 0.58, 0.69, 0.73). The first pass rendered 0.18 to 0.30."""
+    import bolden
+    from glyphs import bounds
+    from scipy import ndimage as ndi
+    p = release(style)
+    acute, dot = pieces_of(p, 'iacute')[-1], pieces_of(p, 'i')[-1]
+    (a0, b0, a1, b1), (c0, d0, c1, d1) = bounds(acute), bounds(dot)
+    assert b1 - b0 >= 1.8 * (d1 - d0) and b1 >= d1 + 80, (bounds(acute), bounds(dot))
+    shared = bounds(pieces_of(p, 'uacute')[-1])
+    assert a1 - a0 < 0.8 * (shared[2] - shared[0])         # still the short acute the prints set on i
+    ink = (abs(bolden.area(acute)) + abs(bolden.area(dot))) / 2
+    for px, least in ((14, 0.55), (16, 0.58), (18, 0.69), (20, 0.73)):
+        s = px / 1000
+        diff = min(np.abs(ndi.gaussian_filter(A, 0.5) - ndi.gaussian_filter(B, 0.5)).sum() / (ink * s * s)
+                   for A, B in zip(renders(p, 'i', px), renders(p, 'iacute', px)))
+        assert diff >= least, (px, round(diff, 3))
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_ponc_stands_clear_of_the_ascenders(style):
+    """ḃ and ḋ carry the ponc beside the ascender over the bowl, as Hayes letters ḃ in this face (Bolger fig. 204),
+    centred on the ascender's height above the x-height, well clear of the ascender and the bowl; ḟ's stands 60
+    above the stem. At 14 to 20 px each renders as a piece of its own (at half ink), where at 14 px all three merged."""
+    import shapes as SH, pathops
+    from glyphs import bounds
+    from scipy import ndimage as ndi
+    p = release(style)
+    for name, base in (('uni1E03', 'b'), ('uni1E0B', 'd')):
+        dot = pieces_of(p, name)[-1]; body = outline(p, base)
+        cut = lambda y0, y1: SH.op(body, SH.polygon([(-1e4, y0), (1e4, y0), (1e4, y1), (-1e4, y1)]), pathops.PathOp.INTERSECTION)
+        asc, bowl = cut(545, 1e4), cut(-1e4, 545)
+        assert abs((bounds(dot)[1] + bounds(dot)[3]) / 2 - (544 + 776) / 2) <= 15, (name, bounds(dot))
+        assert white(asc, dot) >= 60 and white(bowl, dot) >= 55, (name, round(white(asc, dot), 1), round(white(bowl, dot), 1))
+    stem, flag, dot = pieces_of(p, 'uni1E1F')
+    assert white(stem, dot) >= 58
+    count = lambda A: ndi.label(A >= 0.5, structure=np.ones((3, 3)))[1]
+    for name, base in (('uni1E03', 'b'), ('uni1E0B', 'd'), ('uni1E1F', 'f')):
+        for px in (14, 16, 18, 20):
+            apart = sum(count(B) > count(A) for A, B in zip(renders(p, base, px), renders(p, name, px)))
+            assert apart >= 3, (name, px, apart)
+
+
+def skeleton_weight(p):
+    """The stroke weight the review measured: twice the distance to the edge along the skeleton, its 75th percentile."""
+    pytest.importorskip('skimage')
+    from skimage.morphology import skeletonize
+    from scipy import ndimage as ndi
+    import tuam_studio as T
+    m, _, _ = T.ink_raster(p)
+    return float(np.percentile(2 * ndi.distance_transform_edt(m)[skeletonize(m)], 75))
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_quotes_carry_the_faces_weight(style):
+    """The comma, and the quotes and apostrophe made from it, with a tail about 120 thick (the first pass 78 to 85)."""
+    p = release(style)
+    for n in ('comma', 'quoteright', 'quoteleft', 'quotedblright', 'quotesinglbase'):
+        assert 112 <= skeleton_weight(outline(p, n)) <= 135, n
+    assert len(pieces_of(p, 'quoteright')) == 1
+
+
+def drawn(path, name):
+    """A glyph's outline as the font stores it (not simplified)."""
+    import pathops
+    from fontTools.ttLib import TTFont
+    p = pathops.Path(); TTFont(path).getGlyphSet()[name].draw(p.getPen())
+    return p
+
+
+def joins(p, short=8.0):
+    """(pieces under `short` units, joins bending 3 to 25 degrees) of an outline, as the first pass counted them (a
+    piece's length along its control points)."""
+    import math, tuam_studio as T
+    shorts = bent = 0
+    for start, segs in T.contours(p):
+        ends = [start] + [q[-1] for _, q in segs]
+        shorts += sum(sum(math.dist(*pp) for pp in zip([ends[i]] + q[:-1], q)) < short for i, (_, q) in enumerate(segs))
+        for i, (k, q) in enumerate(segs):
+            k2, q2 = segs[(i + 1) % len(segs)]; e = q[-1]
+            a = next((v for v in ([q[-2], q[0]] if k == 'C' else []) + [ends[i]] if math.dist(v, e) > 0.01), ends[i])
+            b = next((v for v in ([q2[0], q2[1]] if k2 == 'C' else []) + [q2[-1]] if math.dist(v, e) > 0.01), q2[-1])
+            u, w = (e[0] - a[0], e[1] - a[1]), (b[0] - e[0], b[1] - e[1])
+            d = abs(math.degrees(math.atan2(u[0] * w[1] - u[1] * w[0], u[0] * w[0] + u[1] * w[1])))
+            bent += 3 < d < 25
+    return shorts, bent
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_section_sign_is_drawn_in_continuous_curves(style):
+    """Where the two s of the section sign meet, continuous curves (the first pass: a 76 degree corner on pieces of 2
+    to 8 units and stubs at the counters' tips, 11 pieces under 8 units in all)."""
+    shorts, bent = joins(drawn(release(style), 'section'))
+    assert shorts == 0 and bent <= 4, (shorts, bent)
+
+
+TRACED41 = list('abcdefghijklmnopqrstuvwxyz') + ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+                                                 'zero', 'sterling', 'dollar', 'ampersand', 'question', 'exclam']
+
+
+def test_release_italic_has_the_regulars_weight():
+    """The Italic narrowed and given its weight back on the stems' and bowls' edges (the first pass: stems 210 to 213
+    against 220, o 207 against 216), every cut, slit and seam kept as wide as the first pass had it."""
+    import tuam_studio as T
+    reg, it = release('Regular'), release('Italic')
+    stems = {'n': [0, 1], 'm': [0, 1, 2], 'h': [0, 1], 'u': [0, 1], 'y': [0, 1], 'i': [0], 'j': [0], 'l': [0],
+             'r': [0], 'b': [0], 'p': [0], 'q': [1], 'a': [1], 'g': [1]}
+    for n, which in stems.items():
+        for p in (reg, it):
+            runs = T.runs_at(outline(p, n), 300)
+            assert [round(runs[k][1] - runs[k][0]) for k in which] == pytest.approx([220] * len(which), abs=2.5), (p, n)
+    bowl = lambda p: [b - a for a, b in T.runs_at(outline(p, 'o'), 272)]
+    assert bowl(it) == pytest.approx(bowl(reg), abs=2)
+    first_pass = {'n': 26.2, 'h': 26.7, 'r': 26.5, 'u': 26.5, 'y': 26.2, 'f': 26.5, 'v': 14.1, 'five': 19.8}
+    for n, w in first_pass.items():
+        assert piece_gaps(outline(it, n))[0] == pytest.approx(w, abs=1.75), n
+    assert piece_gaps(outline(it, 'm'))[:2] == pytest.approx([26.5, 27.2], abs=1.75)
+    assert piece_gaps(outline(it, 'w'))[:2] == pytest.approx([15.1, 15.2], abs=1.75)
+    slits = {'a': 31.6, 'b': 28.9, 'd': 24.0, 'g': 35.5, 'o': 29.1, 'p': 21.2, 'q': 28.2, 'six': 25.1, 'nine': 19.6, 'zero': 33.8}
+    for n, w in slits.items():
+        assert T.white_necks(outline(it, n), 45)[0][0] == pytest.approx(w, abs=1.75), n
+    # an accented letter is its letter as grown
+    for n, base in (('ntilde', 'n'), ('uacute', 'u'), ('ecaron', 'e'), ('wcircumflex', 'w'), ('uni1E03', 'b')):
+        for y in (150, 300):
+            assert [b - a for a, b in T.runs_at(outline(it, n), y)] == \
+                pytest.approx([b - a for a, b in T.runs_at(outline(it, base), y)], abs=1.5), (n, y)
+
+
+def test_release_italic_outlines_are_settled():
+    """After the slant the Italic's outlines are settled on the grid: no more bent joins or short pieces than the
+    Regular has (the first pass: 194 joins bent 3 to 25 degrees and 62 pieces under 8 units, against 76 and 17)."""
+    count = lambda p: [sum(x) for x in zip(*(joins(drawn(p, n)) for n in TRACED41))]
+    (rs, rb), (i_s, ib) = count(release('Regular')), count(release('Italic'))
+    assert i_s <= rs and ib <= rb + 5, ((rs, rb), (i_s, ib))
+
+
+@pytest.mark.parametrize('style', ['Regular', 'Italic'])
+def test_release_r_is_on_the_x_height(style):
+    """r's flat top, its arm, on the x-height with the arches of n and h (it was 2 units low)."""
+    import tuam_studio as T
+    from fontTools.ttLib import TTFont
+    p = release(style); xh = TTFont(p)['OS/2'].sxHeight
+    for n in ('r', 'n', 'h'):
+        q = outline(p, n); x0, _, x1, _ = T.bounds(q)
+        runs, cur = [], []                                 # level stretches of the top near the x-height
+        for t in [T.level_of(q, x, x, 'top') for x in np.arange(x0 + 2, x1 - 2, 4)]:
+            if xh - 25 < t < xh + 10 and (not cur or max(cur + [t]) - min(cur + [t]) <= 2.5):
+                cur.append(t); continue
+            runs.append(cur); cur = [t] if xh - 25 < t < xh + 10 else []
+        longest = max(runs + [cur], key=len)
+        assert abs(np.median(longest) - xh) <= 1, (n, np.median(longest))
