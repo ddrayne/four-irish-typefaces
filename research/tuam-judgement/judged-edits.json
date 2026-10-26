@@ -112,5 +112,62 @@
   {"glyph": "section", "op": "smooth", "from": [529, 45], "to": [574, 100], "why": "the rounded corners at the foot of each s, two pieces of 5 and 7 units, one curve"},
   {"glyph": "section", "op": "smooth", "from": [529, 260], "to": [574, 315], "ends": ["corner", "smooth"]},
   {"glyph": "section", "op": "settle", "tiny": 8, "why": "then the whole outline settled (settled(), as the Italic is): the joins of the s it is made from that bend 3 to 8 degrees made smooth"}
- ]
+ ],
+ "fifth_pass": {
+  "about": "A fourth independent review of the released fonts (font outlines only) found three defects shared by the four faces. Each is corrected by one rule for all of them, in scripts/symbols.py (approx_sign, ring_weight, ring_letters, heavier_ring) and scripts/build2.py (Font2.stack_anchors, bottom_clear, the mark and mkmk features), switched on for the release by scripts/build_candidate.py (APPROX_WHITE, RING_SHARE, MARK_STACKS); the study fonts do not change. Measurements are font units, from the fonts before and after.",
+  "approxequal": {
+   "glyphs": [
+    "approxequal"
+   ],
+   "white": 0.7,
+   "why": "≈ stood 466 tall (23..489) against the ='s 365 (73..438), its waves 99 heavy against bars of 112 and 155 apart against the ='s 143; its waves are now drawn at the bars' weight (109, Italic 110), centred on the bars on the 255.5 axis, 0.7 of the ='s white apart (101, Italic 98): 425 tall (43..468)"
+  },
+  "rings": {
+   "glyphs": [
+    "copyright",
+    "registered",
+    "at",
+    "degree",
+    "currency"
+   ],
+   "share": 0.5,
+   "white_inside": [
+    0.2,
+    0.45
+   ],
+   "degree_hole": 0.7,
+   "currency_hole": 1.5,
+   "why": "the rings of © ® @ ° ¤ were 50 to 77 beside an o of 216; each is now at least half of it, 110 (Italic 109 to 115), © and ® grown outward (690 to 773 tall, Italic 784) and @ (807 to 839) with their letters as drawn, 31 to 35 from the ring; ° has a counter of 77 (63 before), ¤ one of 165 (237)"
+  },
+  "marks": {
+   "added": [
+    "dotbelowcomb"
+   ],
+   "features": [
+    "mark",
+    "mkmk",
+    "ccmp"
+   ],
+   "why": "the ponc construction (constructions, ponc) sets the dot of ḃ and ḋ beside the ascender and ḟ's 60 above its stem, and the ponc's anchor was the only top anchor, so every top mark followed it: a dieresis on b or d stood 64 and 58 into the ascender, and any mark stood 60 over f where it stands 30 over h k l; no mkmk (176 into each other), no anchor on a precomposed letter, the comma below ran through f's and j's descenders (155 into them), and U+0323 had no glyph; now top marks stand the face's accent gap of 30 clear, as the precomposed accents do, on every letter, stacks 30 apart, comma and dot below at least 30 clear; one rule in every face: the dot above (U+0307) keeps the anchor the ponc is set by, so ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ and every base + U+0307 shape exactly as before; every other top mark takes the place the face's accents take on its letters (not the ponc's), raised where the letter's own ink comes closer than the face's accent gap (the white of the precomposed vowels); each precomposed letter carries top, ponc and bottom anchors of its own, so a mark typed after it stands on its accent; an mkmk feature sets a second mark above (or below) the first, the same gap apart; a comma or dot below moves along the line, then down, until it stands clear of a descender; U+0323 (combining dot below) is added, the face's dot"
+  },
+  "changed": {
+   "why": "every glyph whose outline differs from the fourth pass's fonts, per style (with the added dotbelowcomb); kerning changes only in pairs with one of them, the builder's own method applied to the new shapes; the line box, names and every other outline are unchanged",
+   "Regular": [
+    "approxequal",
+    "at",
+    "copyright",
+    "currency",
+    "degree",
+    "registered"
+   ],
+   "Italic": [
+    "approxequal",
+    "at",
+    "copyright",
+    "currency",
+    "degree",
+    "registered"
+   ]
+  }
+ }
 }

@@ -1,6 +1,7 @@
 from pathlib import Path
 import json,os
 import pytest
+from conftest import study_coverage
 from fontTools.ttLib import TTFont
 from fontTools.pens.recordingPen import RecordingPen
 
@@ -32,7 +33,7 @@ def test_kilfane_second_candidate_formats(ext):
     f=TTFont(p)
     assert f['name'].getDebugName(1)=='Kilfane Study 2'
     baseline=TTFont(ROOT/'fonts/otf/KilfaneDigital-Regular.otf')
-    assert f.getBestCmap().keys()==baseline.getBestCmap().keys()
+    assert set(f.getBestCmap())==study_coverage(baseline)
     gs=f.getGlyphSet()
     for name,count in [('dieresis',2),('ring',2),('caron',1)]:
         rec=RecordingPen();gs[name].draw(rec)
@@ -75,7 +76,7 @@ def test_carrick_reconstructs_supported_entries_and_keeps_detached_strokes():
     f=TTFont(DIR/'carrick/fonts/CarrickStudy1-Regular.otf')
     assert f['name'].getDebugName(1)=='Carrick Study 1'
     baseline=TTFont(ROOT/'fonts/otf/CarrickDigital-Regular.otf')
-    assert f.getBestCmap().keys()==baseline.getBestCmap().keys()
+    assert set(f.getBestCmap())==study_coverage(baseline)
     for name in ['c','k','u','v','w']:
         rec=RecordingPen();f.getGlyphSet()[name].draw(rec)
         assert sum(op=='closePath' for op,_ in rec.value)>=2,name
@@ -91,7 +92,7 @@ def test_all_round02_formats_sanitize_and_keep_coverage(face,ps,baseline,ext):
     assert result.returncode==0,result.stderr
     f=TTFont(p);old=TTFont(ROOT/f'fonts/otf/{baseline}-Regular.otf')
     assert f['name'].getDebugName(6)==ps+'-Regular'
-    assert f.getBestCmap().keys()==old.getBestCmap().keys()
+    assert set(f.getBestCmap())==study_coverage(old)
 
 
 @pytest.mark.parametrize('face,ps,baseline',FACES)

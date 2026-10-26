@@ -1696,16 +1696,23 @@ def bold_math(font, edits=EDITS):
         put(n, SH.union(translate(ch, 0, lo + up), bb), 'chevron + bar at the bold\'s weight, the Regular\'s white between them')
         font.bold_math[n] = round(up, 1)
 
-    # ≈: each wave grown about the Regular's wave's centre, the two set apart until the white between them is the Regular's
-    def waves(tl, t):
-        tw = bounds(tl); w = SH.transform(tl, (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); b = bounds(w)
-        return translate(w, -b[0], yc + 0.6 * t - b[1]), translate(w, -b[0], yc - 0.6 * t - b[3])
-    ru, rl = waves(centre(font.piece_regular['tilde']), tr)
-    bu, bl = waves(font.marks['tilde'], tb)
-    bu, bl = translate(bu, 0, mid(ru) - mid(bu)), translate(bl, 0, mid(rl) - mid(bl))
-    s = _solve(lambda s: white(translate(bu, 0, s), translate(bl, 0, -s)), white(ru, rl), 0.0, 0.5)
-    put('approxequal', SH.union(translate(bu, 0, s), translate(bl, 0, -s)), 'two tildes, the Regular\'s white between them')
-    font.bold_math['approxequal'] = round(s, 1)
+    if getattr(font, 'APPROX_WHITE', None):
+        # ≈ as the Regular draws it (symbols.approx_sign): the waves at the bold's rule weight, centred where the bold's
+        # = bars are, the white between them the same share of the ='s white (the Regular's, kept above)
+        p, font.approx_flat = SY.approx_sign(font.marks['tilde'], L, tb, yc, d, font.APPROX_WHITE * (2 * d - tb))
+        put('approxequal', p, 'two tildes at the bold\'s rule weight and its equals sign\'s spacing')
+        font.bold_math['approxequal'] = round(d, 1)
+    else:
+        # ≈: each wave grown about the Regular's wave's centre, the two set apart until the white between them is the Regular's
+        def waves(tl, t):
+            tw = bounds(tl); w = SH.transform(tl, (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); b = bounds(w)
+            return translate(w, -b[0], yc + 0.6 * t - b[1]), translate(w, -b[0], yc - 0.6 * t - b[3])
+        ru, rl = waves(centre(font.piece_regular['tilde']), tr)
+        bu, bl = waves(font.marks['tilde'], tb)
+        bu, bl = translate(bu, 0, mid(ru) - mid(bu)), translate(bl, 0, mid(rl) - mid(bl))
+        s = _solve(lambda s: white(translate(bu, 0, s), translate(bl, 0, -s)), white(ru, rl), 0.0, 0.5)
+        put('approxequal', SH.union(translate(bu, 0, s), translate(bl, 0, -s)), 'two tildes, the Regular\'s white between them')
+        font.bold_math['approxequal'] = round(s, 1)
 
     # ~ and ^: grown about the Regular's centre (they grew upward only)
     def tilde(tl):

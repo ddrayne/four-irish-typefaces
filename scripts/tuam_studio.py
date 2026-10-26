@@ -982,3 +982,6 @@ def ponc(f, c):
         return translate(m, cx - (b[0] + b[2]) / 2, foot - b[1])
 
     f.attach = attach
+    # the mark feature's dot above follows the ponc on these letters; every other top mark stands as on any letter
+    # (build2.Font2.stack_anchors, the fifth pass)
+    f.general_attach, f.ponc_letters = orig, bowl | set(above)

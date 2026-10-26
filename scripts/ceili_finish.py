@@ -1386,10 +1386,17 @@ def at_sign(f, rule, light):
     P, S, xh = f.P, f.S, f.xh
     R = 0.64 * xh + 0.25 * S; ccx, ccy = R, 0.42 * xh; rt = 0.7 * rule
     ring = SY.ring(ccx, ccy, R, rt)
-    def a(Ss):
-        q = SY.scaled(P['a'], 0.74, S, 0.85, Ss); b = bounds(q)
-        return translate(q, ccx - (b[0] + b[2]) / 2 + 0.02 * xh, ccy - (b[1] + b[3]) / 2)
+    def a(Ss, k=1.0):
+        q = SY.scaled(P['a'], 0.74 * k, S, 0.85, Ss); b = bounds(q)
+        return translate(q, ccx - (b[0] + b[2]) / 2 + 0.02 * xh * k, ccy - (b[1] + b[3]) / 2)
     white = SY.clearance(a(light), ring)
+    w = SY.ring_weight(f, P, rt)
+    if w > rt:
+        # the ring at the o's weight (symbols.RING_SHARE, ring_letters): the a at the whole stem, made smaller at that
+        # stem where it must be to keep its white inside the heavier ring
+        full = SY.inside_ring(a(S), ccx, ccy, R - rt, white)
+        R2, (q,) = SY.ring_letters(f, 'at', ccx, ccy, R, rt, w, [lambda k: full if k == 1.0 else a(S, k)])
+        return f.norm_x(SH.union(q, SY.ring(ccx, ccy, R2, w))), SY.clearance(q, SY.ring(ccx, ccy, R2, w))
     return f.norm_x(SH.union(SY.inside_ring(a(S), ccx, ccy, R - rt, white), ring)), white
 
 
@@ -1423,8 +1430,15 @@ def math_signs(f, tr, dot, marks_r):
     cx = L / 2 - (pb[0] + pb[2]) / 2
     put('divide', SH.union(bar(st, 0, L, yc, t), *[translate(pen, cx, y - (pb[1] + pb[3]) / 2)
                                                     for y in (yc + 1.4 * tr + h / 2, yc - 1.4 * tr - h / 2)]))
-    tw = bounds(f.marks['tilde']); tl = SH.transform(f.marks['tilde'], (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); tb = bounds(tl)
-    put('approxequal', SH.union(translate(tl, -tb[0], yc + 0.6 * tr - tb[1]), translate(tl, -tb[0], yc - 0.6 * tr - tb[3])))
+    if getattr(f, 'APPROX_WHITE', None):
+        # ≈ as the Regular draws it (symbols.approx_sign): the waves at the bold's rule weight, centred where the bold's
+        # = bars are, the white between them the same share of the ='s white (the Regular's, kept above)
+        from symbols import approx_sign
+        p, f.approx_flat = approx_sign(f.marks['tilde'], L, t, yc, o, f.APPROX_WHITE * (2 * o - t))
+        put('approxequal', p)
+    else:
+        tw = bounds(f.marks['tilde']); tl = SH.transform(f.marks['tilde'], (L / (tw[2] - tw[0]), 0, 0, 1.25, 0, 0)); tb = bounds(tl)
+        put('approxequal', SH.union(translate(tl, -tb[0], yc + 0.6 * tr - tb[1]), translate(tl, -tb[0], yc - 0.6 * tr - tb[3])))
     for n, mark, k, base in (('asciitilde', 'tilde', 1.4, yc - 0.10 * xh), ('asciicircum', 'circumflex', 1.35, None)):
         b, r = bounds(P[n]), bounds(marks_r[mark])
         bottom = base if base is not None else b[1]

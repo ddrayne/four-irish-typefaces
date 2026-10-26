@@ -75,6 +75,14 @@ def build(face, traces, version):
         # the TrueType conversion leaves no speck where a tiny hooked cubic's spline crosses itself (Carrick
         # Italic's i, 0.16 units square): only glyphs that had one change (build2.ttf_glyph)
         TTF_UNSPECK = True
+        # The fifth pass, shared by the four faces (research/*/judged-edits.json, "fifth_pass"): ≈ drawn at the rules'
+        # weight and the ='s spacing, its waves 0.7 of the ='s white apart (symbols.approx_sign); the rings of © ® @ ° ¤
+        # at least half the o's heavier side (symbols.ring_weight, ring_letters, heavier_ring); and combining marks
+        # that stack, the dot above on an anchor of its own, top and bottom anchors clear of the letter, anchors on the
+        # precomposed letters and U+0323 (build2.Font2.stack_anchors)
+        APPROX_WHITE = 0.7
+        RING_SHARE = 0.5
+        MARK_STACKS = True
 
         def snap(self):
             super().snap()

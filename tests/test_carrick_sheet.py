@@ -2,6 +2,7 @@
 import json, os
 import numpy as np
 import pytest
+from conftest import study_coverage
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROUND = os.environ.get('ROUND06_DIR', os.path.join(ROOT, 'research', 'round-06'))
@@ -105,7 +106,7 @@ def test_study3_fonts_sanitise_and_keep_the_release_coverage(ext):
     assert ots.sanitize(p, os.devnull, capture_output=True).returncode == 0
     f = TTFont(p)
     assert f['name'].getDebugName(1) == 'Carrick Study 3'
-    assert f.getBestCmap().keys() == TTFont(os.path.join(ROOT, 'fonts', 'otf', 'CarrickDigital-Regular.otf')).getBestCmap().keys()
+    assert set(f.getBestCmap()) == study_coverage(TTFont(os.path.join(ROOT, 'fonts', 'otf', 'CarrickDigital-Regular.otf')))
 
 
 # ---------------------------------------------------------------- the finishing pass (judged-edits.json)
@@ -354,16 +355,18 @@ def piece_whites(font, name):
 @pytest.mark.parametrize('style', ['Regular', 'Italic'])
 def test_rings_take_the_figures_weight(style):
     """¤'s ring and arms and @'s ring at about 0.55 to 0.6 of the figure stem, the family of % and # (they were
-    0.26 to 0.32: 46 to 56 units against the 1's 176); @'s a keeps the white it had inside the ring (26)."""
+    0.26 to 0.32: 46 to 56 units against the 1's 176); @'s a keeps the white it had inside the ring (26). The fifth
+    pass sets every ring of the four faces at least half the o's heavier side (223): Carrick's go from 106 to 113,
+    0.64 of the figure stem, ¤'s arms with them (tests/test_fifth_pass.py)."""
     from scipy import ndimage as ndi
     from skimage.morphology import skeletonize
     f = release(style); stem = weight(f, 'one')
-    assert 0.55 * stem <= weight(f, 'currency') <= 0.63 * stem
+    assert 0.55 * stem <= weight(f, 'currency') <= 0.67 * stem
     assert len(counters(f, 'currency')) == 1 and counters(f, 'currency')[0] >= stem
     lab, order, whites = piece_whites(f, 'at')
     ring = lab == order[0]
     w = 2 * np.median(ndi.distance_transform_edt(ring)[skeletonize(ring)])
-    assert 0.55 * stem <= w <= 0.63 * stem, w
+    assert 0.55 * stem <= w <= 0.67 * stem, w
     assert len(order) == 2 and 24 <= whites[order[0], order[1]] <= 30, whites
 
 

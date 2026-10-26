@@ -113,5 +113,86 @@
       "like": "i",
       "why": "j's bar stood 22 units above its stem against i's 31 (closest points; Italic 22 and 30, Bold 11 and 20, Bold Italic 10 and 18), so the j read as dotted closer than the i. j's bar is moved up to stand as far from its stem as i's, in the Regular before anything is derived from it and again in the bold once its pen has drawn both: 31, 30, 19 and 19 against i's 31, 30, 20 and 18. The ij follows; ĵ is the dotless j with a circumflex and is not built this way."
     }
+  },
+  "fifth_pass": {
+    "about": "A fourth independent review of the released fonts (font outlines only) found three defects shared by the four faces. Each is corrected by one rule for all of them, in scripts/symbols.py (approx_sign, ring_weight, ring_letters, heavier_ring) and scripts/build2.py (Font2.stack_anchors, bottom_clear, the mark and mkmk features), switched on for the release by scripts/build_candidate.py (APPROX_WHITE, RING_SHARE, MARK_STACKS); the study fonts do not change. Measurements are font units, from the fonts before and after.",
+    "approxequal": {
+      "glyphs": [
+        "approxequal"
+      ],
+      "white": 0.7,
+      "why": "≈ stood 395 tall (71..466) against the ='s 267 (135..402), its waves 65 heavy against bars of 81 and 126 apart against the ='s 105, and the third pass kept that design in the bold (97 against 121, 463 tall); its waves are now drawn at the bars' weight (80.5, Italic 81.5, Bold 120, Bold Italic 121), centred on the bars on the 268.5 axis, 0.7 of the ='s white apart (73): 317 tall (110..427; Bold 393, 72..465)"
+    },
+    "rings": {
+      "glyphs": [
+        "copyright",
+        "registered",
+        "at",
+        "degree",
+        "currency"
+      ],
+      "share": 0.5,
+      "white_inside": [
+        0.2,
+        0.45
+      ],
+      "degree_hole": 0.7,
+      "currency_hole": 1.5,
+      "why": "the rings of © ® @ ° ¤ were drawn at the pen's hairline, 36 to 58 (Bold 41 to 64), beside an o whose heavier side is 124 (Bold 185); the review asked for half the o and no counter closes at it, so each ring is now at least that, 63 (Italic 67 to 68, Bold 94 to 95, Bold Italic 99 to 100), a departure from the pen-weight design (README, the fifth pass); © and ® grow from 565 to 584 tall (Italic 587, Bold 634, Bold Italic 656, where the r's 12-unit crack may not narrow), the Bold Italic @'s a, 4 from its ring, now 18 clear; ° keeps a counter of 64 (89 before; Bold 79), ¤ one of 238 (269; Bold 176)"
+    },
+    "marks": {
+      "added": [
+        "dotbelowcomb"
+      ],
+      "features": [
+        "mark",
+        "mkmk",
+        "ccmp"
+      ],
+      "why": "no mkmk (x + circumflex + acute: 140 into each other), no anchor on a precomposed letter, the comma below ran through j's and g's descenders (90 and 26 into them), the bold's g took its top marks 42 above (Bold Italic 40) against ĝ's 48, and U+0323 had no glyph; now top marks stand 47 to 48 clear (Bold g 47, Bold Italic 52), stacks 48 apart, comma and dot below at least 21 clear; one rule in every face: the dot above (U+0307) keeps the anchor the ponc is set by, so ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ and every base + U+0307 shape exactly as before; every other top mark takes the place the face's accents take on its letters (not the ponc's), raised where the letter's own ink comes closer than the face's accent gap (the white of the precomposed vowels); each precomposed letter carries top, ponc and bottom anchors of its own, so a mark typed after it stands on its accent; an mkmk feature sets a second mark above (or below) the first, the same gap apart; a comma or dot below moves along the line, then down, until it stands clear of a descender; U+0323 (combining dot below) is added, the face's dot"
+    },
+    "insular_r_comma": {
+      "glyphs": [
+        "uni0157.alt1"
+      ],
+      "why": "ŗ with the insular r (ss01) hangs its comma under the r's descender, and the bold's pen brought the two within 6.1 units (Bold) and 0.8 (Bold Italic); the comma now moves along the line until it stands at least the comma's gap (0.06 x-height) clear, 34.0 and 32.3; the Regular's 50.1 and the Italic's 43.3 are unchanged"
+    },
+    "changed": {
+      "why": "every glyph whose outline differs from the fourth pass's fonts, per style (with the added dotbelowcomb); kerning changes only in pairs with one of them, the builder's own method applied to the new shapes; the line box, names and every other outline are unchanged",
+      "Regular": [
+        "approxequal",
+        "at",
+        "copyright",
+        "currency",
+        "degree",
+        "registered"
+      ],
+      "Italic": [
+        "approxequal",
+        "at",
+        "copyright",
+        "currency",
+        "degree",
+        "registered"
+      ],
+      "Bold": [
+        "approxequal",
+        "at",
+        "copyright",
+        "currency",
+        "degree",
+        "registered",
+        "uni0157.alt1"
+      ],
+      "BoldItalic": [
+        "approxequal",
+        "at",
+        "copyright",
+        "currency",
+        "degree",
+        "registered",
+        "uni0157.alt1"
+      ]
+    }
   }
 }

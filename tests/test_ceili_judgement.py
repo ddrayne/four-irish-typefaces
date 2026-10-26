@@ -2,6 +2,7 @@
 import json, os
 import numpy as np
 import pytest
+from conftest import study_coverage
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROUND = os.environ.get('CEILI_JUDGEMENT_DIR', os.path.join(ROOT, 'research', 'ceili-judgement'))
@@ -149,7 +150,7 @@ def test_study4_fonts_sanitise_and_keep_the_release_coverage(ext):
     assert ots.sanitize(font(ext), os.devnull, capture_output=True).returncode == 0
     f = TTFont(font(ext))
     assert f['name'].getDebugName(1) == 'Céilí Study 4' and f['name'].getDebugName(6) == 'CeiliStudy4-Regular'
-    assert f.getBestCmap().keys() == TTFont(os.path.join(ROOT, 'fonts', 'otf', 'CeiliDigital-Regular.otf')).getBestCmap().keys()
+    assert set(f.getBestCmap()) == study_coverage(TTFont(os.path.join(ROOT, 'fonts', 'otf', 'CeiliDigital-Regular.otf')))
 
 
 @built

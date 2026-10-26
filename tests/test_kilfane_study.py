@@ -4,6 +4,7 @@ from pathlib import Path
 from fontTools.ttLib import TTFont
 from fontTools.pens.recordingPen import RecordingPen
 import pytest
+from conftest import study_coverage
 
 ROOT=Path(__file__).resolve().parents[1]
 DIR=Path(os.environ.get('STUDY_FONT_DIR', ROOT/'research/kilfane-study-01/fonts'))
@@ -33,7 +34,7 @@ def test_candidate_keeps_coverage_and_shapes_irish_marks():
     import uharfbuzz as hb
     p=DIR/'KilfaneStudy1-Regular.otf'
     f=TTFont(p);before=TTFont(ROOT/'fonts/otf/KilfaneDigital-Regular.otf')
-    assert f.getBestCmap().keys()==before.getBestCmap().keys()
+    assert set(f.getBestCmap())==study_coverage(before)
     font=hb.Font(hb.Face(p.read_bytes()));hb.ot_font_set_funcs(font)
     for text in ['ÁÉÍÓÚ áéíóú','A\u0301 E\u0301 I\u0301 O\u0301 U\u0301','Ḃḃ Ċċ Ḋḋ Ḟḟ Ṁṁ Ṗṗ Ṡṡ Ṫṫ']:
         buf=hb.Buffer();buf.add_str(text);buf.guess_segment_properties();hb.shape(font,buf)
