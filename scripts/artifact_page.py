@@ -528,9 +528,9 @@ footer p + p {{ margin-top: 8px; }}
 &lt;/style&gt;
 
 &lt;!-- ready-made classes, including the stylistic sets --&gt;
-&lt;h2 class="tuam-uncial"&gt;Fáilte go Tuaim&lt;/h2&gt;
+&lt;h2 class="tuam-uncial"&gt;Tuaim Dá Ghualann&lt;/h2&gt;
 &lt;p class="kilfane kilfane-roman-forms"&gt;Banc Ceannais na hÉireann&lt;/p&gt;
-&lt;p class="ceili ceili-insular-r-s"&gt;Ceol agus craic&lt;/p&gt;</pre>
+&lt;p class="ceili ceili-insular-r-s"&gt;Leabhar na hUidhre&lt;/p&gt;</pre>
       </div>
     </div>
   </section>

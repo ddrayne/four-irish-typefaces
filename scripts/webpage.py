@@ -8,14 +8,14 @@ INFO = {
                     display='Banc Ceannais na hÉireann',
                     note='The only one of the four with true capitals. Reportedly used on the Series C Irish pound notes.'),
     'tuam': dict(css='Tuam Uncial Digital', credit='Jarlath Hayes', place='Commended',
-                 display='Fáilte go Tuaim',
+                 display='Tuaim Dá Ghualann',
                  note='A heavy, square uncial reportedly made by cutting up Helvetica Bold; seen on Clannad sleeves and the Glenroe credits. Its hairline cuts are part of the design.'),
-    'carrick': dict(css='Carrick Digital', credit='William Curran', place='Highly Commended', display='Ceol ⁊ craic',
+    'carrick': dict(css='Carrick Digital', credit='William Curran', place='Highly Commended', display='Cath Chluain Tarbh',
                     note='A chunky, lower-case-only display face; the name comes from carraig, “rock”.'),
     'ceili': dict(css='Céilí Digital', credit='Hermann Hecht', place='First prize', display='Céilí mór anocht!',
                   note='The winner: a light, calligraphic unicase with insular letterforms and old-style figures.'),
 }
-TEXT = 'Is fearr Gaeilge bhriste ná Béarla cliste. A ċara, mo ġrá ṫú! Ciamar a tha thu? The quick brown fox jumps over the lazy dog — 1978.'
+TEXT = 'Is fearr Gaeilge bhriste ná Béarla cliste. Scríoḃaḋ Leaḃar Ċeanannais timpeall na bliana 800. Ciamar a tha thu? The quick brown fox jumps over the lazy dog — 1978.'
 
 
 def chars(key):

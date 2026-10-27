@@ -22,7 +22,7 @@ FAMILY = {'ceili': 'Céilí', 'carrick': 'Carrick', 'kilfane': 'Kilfane', 'tuam'
 STACK = {k: f'"{FAMILY[k]}"' + (', "Ceili"' if k == 'ceili' else '') + ', Georgia, serif' for k in FAMILY}
 PRESETS = [
     ('ga', 'Irish', 'Is fearr Gaeilge bhriste ná Béarla cliste'),
-    ('ga', 'Irish, traditional dots', 'A ċara, mo ġrá ṫú! Cá ḃfuil do ṁáṫair?'),
+    ('ga', 'Irish, traditional dots', 'Scríoḃaḋ Leaḃar Ċeanannais timpeall na bliana 800.'),
     ('gd', 'Scottish Gaelic', 'Ciamar a tha thu? Tha gu math, tapadh leibh.'),
     ('gv', 'Manx', 'Moghrey mie! Kys t’ou? Ta mee braew, gura mie ayd.'),
     ('cy', 'Welsh', 'Parciais fy jac codi baw hud llawn dŵr ger tŷ Mabon.'),
@@ -480,9 +480,9 @@ footer p + p {{ margin-top: 8px; }}
 &lt;/style&gt;
 
 &lt;!-- ready-made classes, including the stylistic sets --&gt;
-&lt;h2 class="tuam-uncial"&gt;Fáilte go Tuaim&lt;/h2&gt;
+&lt;h2 class="tuam-uncial"&gt;Tuaim Dá Ghualann&lt;/h2&gt;
 &lt;p class="kilfane kilfane-roman-forms"&gt;Banc Ceannais na hÉireann&lt;/p&gt;
-&lt;p class="ceili ceili-insular-r-s"&gt;Ceol agus craic&lt;/p&gt;</pre>
+&lt;p class="ceili ceili-insular-r-s"&gt;Leabhar na hUidhre&lt;/p&gt;</pre>
       </div>
     </div>
   </section>

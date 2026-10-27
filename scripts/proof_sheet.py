@@ -19,7 +19,7 @@ STUDY_TUAM = ROOT / 'research' / 'tuam-judgement' / 'fonts' / 'TuamUncialStudy3-
 
 FACES = [
     dict(key='kilfane', name='Kilfane Digital', ps='KilfaneDigital', designer='William Curran', caps=True,
-         display='Fáilte go Cill Chainnigh',
+         display='Annála na gCeithre Máistrí',
          styles=['Regular', 'Italic', 'Bold', 'BoldItalic'], sets=[('ss01', 'Roman forms'), ('ss02', 'Insular forms')]),
     dict(key='carrick', name='Carrick Digital', ps='CarrickDigital', designer='William Curran', caps=False,
          display='Carraig agus cloch',
@@ -42,11 +42,12 @@ FIGURES = ['1978 · £24 · €5 · $3 · ¥9 · 50% · 3‰ · 12:30', '½ ¼ �
 SIGNS = ['+ − × ÷ = ≠ ≈ ± < > ≤ ≥ ¬ ~ ^ |', '( ) [ ] { } ‹ › « » ‚ „ ‘ ’ “ ” \' " ¡ ¿', 'a-b a–b a—b · an, an. an; an: an! an? an…']
 WATERFALL = 'Is fearr Gaeilge bhriste ná Béarla cliste.'
 SIZES = [72, 48, 36, 24, 18, 14, 12, 10, 9, 8]
-IRISH = ('Bhí an oíche fuar agus fliuch, ach níor stad an ceol go maidin. Chonaic mé éan beag ag eitilt thar '
-         'an loch; d’fhan sé ar feadh tamaill ar chrann ard. Tá fáilte romhat go Tuaim, a chara! Is fearr '
-         'Gaeilge bhriste ná Béarla cliste, agus ní neart go cur le chéile.')
-SHORT = 'Bhí an oíche fuar agus fliuch, ach níor stad an ceol go maidin. Tá fáilte romhat go Tuaim, a chara!'
-OLD = 'A ċara, mo ġrá ṫú! A Ṡeáin, cá ḃfuil do ṁáṫair? Ḃí an oíċe fuar ⁊ fliuċ, aċ níor stad an ceol.'
+IRISH = ('Tógadh Brú na Bóinne timpeall 3200 RC, roimh phirimidí na hÉigipte. Scríobhadh Leabhar Cheanannais '
+         'timpeall na bliana 800, agus tá sé i gColáiste na Tríonóide i mBaile Átha Cliath. Troideadh Cath Chluain '
+         'Tarbh sa bhliain 1014, agus maraíodh Brian Bóramha ann. Chuir Mícheál Ó Cléirigh agus a chomhghleacaithe '
+         'Annála na gCeithre Máistrí le chéile idir 1632 agus 1636.')
+SHORT = 'Tógadh Brú na Bóinne timpeall 3200 RC, roimh phirimidí na hÉigipte. Scríobhadh Leabhar Cheanannais timpeall na bliana 800.'
+OLD = 'Scríoḃaḋ Leaḃar Ċeanannais timpeall na bliana 800. Troideaḋ Caṫ Ċluain Tarḃ sa ḃliain 1014, ⁊ maraíoḋ Brian Bóraṁa ann.'
 ENGLISH = ('In 1978 Letraset, the Kilkenny Design Workshops and D. O’Sullivan Graphic Supplies asked designers for '
            'an Irish typeface. Four were chosen and sold as dry-transfer lettering: Céilí by Hermann Hecht, '
            'Carrick and Kilfane by William Curran, and Tuam Uncial by Jarlath Hayes. “The quick brown fox jumps '
@@ -73,12 +74,12 @@ QUESTIONS = [
               'are different words). The release raises its right end, from 19° to 40°, keeping its width and place. '
               'Top: the release; bottom: as printed.',
          samples=[('tuam', 'Regular', 'fíor fior · sí si · mílí', 24), ('study', 'Regular', 'fíor fior · sí si · mílí', 24),
-                  ('tuam', 'Regular', 'Is fíor go bhfuil sí ag teacht, a mhíle stór.', 11),
-                  ('study', 'Regular', 'Is fíor go bhfuil sí ag teacht, a mhíle stór.', 11)]),
+                  ('tuam', 'Regular', 'Bhí Brian Bóramha ina Ard-Rí ar Éirinn ó 1002 go 1014.', 11),
+                  ('study', 'Regular', 'Bhí Brian Bóramha ina Ard-Rí ar Éirinn ó 1002 go 1014.', 11)]),
     dict(title='Céilí: the ampersand',
          note='The prints disagree: N46 and the flyer close the lower counter where the bowl’s end meets the diagonal; '
               'N45 leaves a hairline of paper. It is closed, as N46 draws it.',
-         samples=[('ceili', 'Regular', '& &', 44), ('ceili', 'Regular', 'ceol & craic · Pádraig & Bríd', 16)]),
+         samples=[('ceili', 'Regular', '& &', 44), ('ceili', 'Regular', 'Pádraig & Bríd & Colm Cille', 16)]),
     dict(title='Céilí: the weight',
          note='N46’s and N45’s stems differ by about 10%; the weight is a calibration between them. '
               'Is the colour of the text right?',
@@ -274,7 +275,7 @@ def build_html(version, commit, today):
     # the four together
     body = ['<h1>The four together</h1>', '<h2>Display · Regular</h2>']
     for fc in FACES:
-        body.append(setin(fc['key'], 'Regular', 'Fáilte go hÉirinn, a chara', 30, 'fit'))
+        body.append(setin(fc['key'], 'Regular', 'Cath Chluain Tarbh, 1014', 30, 'fit'))
     body.append('<h2>Text · every style · 10 pt</h2>')
     for fc in FACES:
         for st in fc['styles']:

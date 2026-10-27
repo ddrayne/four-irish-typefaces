@@ -14,9 +14,9 @@ INFO = {
     'kilfane': dict(credit='William Curran · Commended', display='Banc Ceannais na hÉireann',
                     alpha=['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:) '],
                     sets=[('ss01', 'ss01 · Roman forms'), ('ss02', 'ss02 · Insular forms')]),
-    'tuam': dict(credit='Jarlath Hayes · Commended', display='Fáilte go Tuaim',
+    'tuam': dict(credit='Jarlath Hayes · Commended', display='Tuaim Dá Ghualann',
                  alpha=['abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:)'], sets=[]),
-    'carrick': dict(credit='William Curran · Highly Commended', display='Ceol ⁊ craic',
+    'carrick': dict(credit='William Curran · Highly Commended', display='Cath Chluain Tarbh',
                     alpha=['abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:) '], sets=[]),
     'ceili': dict(credit='Hermann Hecht · first prize', display='Céilí mór anocht!',
                   alpha=['abcdefghijklmnopqrstuvwxyz', '0123456789 £$€&?!(;:)'],
@@ -24,7 +24,7 @@ INFO = {
                         ('ss03', 'ss03 · Alternate a d e j l v')]),
 }
 IRISH = 'Is fearr Gaeilge bhriste ná Béarla cliste. Tír gan teanga, tír gan anam. Ní neart go cur le chéile.'
-LENITION = 'A ċara, mo ġrá ṫú! A Ṡeáin, cá ḃfuil do ṁáṫair? Ceol ⁊ craic.'
+LENITION = 'Scríoḃaḋ Leaḃar Ċeanannais timpeall na bliana 800. Troideaḋ Caṫ Ċluain Tarḃ sa ḃliain 1014.'
 GAIDHLIG = 'Ciamar a tha thu? Tha gu math, tapadh leibh. Fàilte gu Dùn Èideann!'
 ENGLISH = 'The quick brown fox jumps over the lazy dog. Sphinx of black quartz, judge my vow — “1978”.'
 

@@ -8,9 +8,10 @@ sold as Letraset dry-transfer sheets.
 
 These fonts, **Céilí Digital**, **Carrick Digital**, **Kilfane Digital** and **Tuam Uncial
 Digital**, are independent digitisations of them, not the original type: the "Digital" in each name
-keeps them apart from the 1978 faces. They were digitised from a scan of the competition's "Four
-Irish Typefaces" flyer, then completed to roughly 400 characters each so they work on the web and in
-any app. Further original-source research, a source register and the separately
+keeps them apart from the 1978 faces. They were first digitised from a scan of the competition's "Four
+Irish Typefaces" flyer; since 3.000 they are drawn from better prints of the originals in the National
+Irish Visual Arts Library. They are completed to roughly 400 characters each so they work on the web and
+in any app. Further original-source research, a source register and the separately
 named candidates are in [research/](research/README.md). The latest
 [round 5](research/round-05/README.md) recovers Carrick's original mark components,
 following [round 4](research/round-04/README.md) for Céilí's original punctuation.
@@ -281,6 +282,11 @@ Award wording follows the [original competition brochure](https://nival.contentd
 
 ### Source and tracing
 
+This is how versions 1.000 to 2.101 were made, from the flyer. Since 3.000 each face is drawn again from
+the original specimens and Letraset production sheets in the William Curran Archive (National Irish Visual
+Arts Library), by the studies in [research/](research/README.md), and then finished by judged passes
+recorded there; the tracing and checking below are the method those studies grew from.
+
 1. **Source.** The flyer scan is 803 × 1125 px (about 97 dpi), so each letter was only
    20–35 px tall.
 2. **Segmentation.** Each glyph was cut out and checked by eye. Letters that touched on
@@ -411,7 +417,7 @@ reconstructions:
 | Check | Result |
 |---|---|
 | OpenType Sanitizer (OTS, as used by Chrome and Firefox) | All 48 font files pass |
-| Every flyer glyph against the scan | 224 glyphs, mean overlap 0.948 after registration (`specimen/validation/flyer-glyph-audit.md`) |
+| Every flyer glyph against the scan | 224 glyphs, mean overlap 0.865 after registration (`docs/validation/flyer-glyph-audit.md`). Up to 2.101 the fonts were traced from this scan (0.948); since 3.000 they follow better prints, so it is a cross-check: Céilí is drawn about a fifth heavier than this photocopy, Carrick about a tenth lighter |
 | Font Bakery universal profile, run per family | Zero FAIL and zero ERROR in all four families, including the family checks (the online name-registry check was skipped; it needs network access). The remaining WARNs are informational (`alt_caron` asks for a manual check of ď ľ ť; `contour_count` flags glyphs that differ from typical fonts by design, such as Kilfane's insular r). Reports are in `specimen/validation/`. |
 | Style linking | Every file's names, style bits, weight class, italic angle, caret slope, `STAT` and CFF data agree with its style; all styles of a family share line metrics and the same characters |
 | Bold against regular | Every glyph's pieces and counters compared: none lost or merged, except Céilí's 6, which joins by design |

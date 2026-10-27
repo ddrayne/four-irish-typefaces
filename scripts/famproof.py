@@ -15,7 +15,7 @@ for st in FAMILY_STYLES[key]:
 big = 'abcdefghijklm nopqrstuvwxyz' if FONTS[key]['unicase'] else 'Kilfane Hamburgefonts ÁÉÍ'
 text = ('Is fearr Gaeilge bhriste ná Béarla cliste. <b>Tír gan teanga, tír gan anam.</b> '
         '<i>Ní neart go cur le chéile</i>, agus <b><i>ar scáth a chéile a mhaireann na daoine</i></b>. '
-        'Céilí mór anocht i dTuaim: ceol ⁊ craic, 1978–2026.')
+        'Troideadh Cath Chluain Tarbh sa bhliain 1014.')
 rows = ''.join(f'<div class="big" style="font-weight:{700 if "Bold" in st else 400};font-style:{"italic" if "Italic" in st else "normal"}">'
                f'<span class="tag">{st}</span>{html.escape(big)}</div>' for st in FAMILY_STYLES[key])
 doc = (f'<!doctype html><meta charset=utf-8><style>{css} body{{margin:24px 30px;background:#fbf8f1;color:#171513;width:1560px;font-synthesis:none}}'

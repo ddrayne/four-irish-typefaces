@@ -16,11 +16,7 @@ from build2 import FONTS as CFG, VERSION
 FONTDIR = os.path.join(paths.ROOT, 'fonts')
 DOCS = os.path.join(paths.ROOT, 'docs', 'validation')
 FAMS = {'kilfane': 'Kilfane', 'tuam': 'Tuam Uncial', 'carrick': 'Carrick', 'ceili': 'Céilí'}
-NOTE = {('h', 'ceili'): 'right leg replaced from n (the printed leg is broken)',
-        ('e', 'ceili'): 'hairlines restored at the top of the eye and in the crossbar (grey on the scan, so not counted as print)',
-        ('e.alt1', 'ceili'): 'hairline restored in the crossbar',
-        ('b', 'ceili'): 'hairline restored where the bowl joins the stem',
-        ('semicolon', None): 'the font builds ; from this comma and dot, spaced like its colon, not the sheet’s compact pair'}
+NOTE = {('semicolon', None): 'the font builds ; from this comma and dot, spaced like its colon, not the sheet’s compact pair'}
 
 
 def ots_all():
@@ -54,7 +50,16 @@ def flyer_audit():
            '(1.000 is identical). **Miss** and **extra** are how far, in flyer pixels, the deepest spot of print',
            'the font lacks, and of font the print lacks, reaches. At this scan (about 97 dpi) a quarter of a pixel',
            'is about 0.07 mm on the flyer. Letters are listed from the lowest overlap up. The regular of each face',
-           'is the one compared: the italics and bolds were drawn from it and have no print to match.', '']
+           'is the one compared: the italics and bolds were drawn from it and have no print to match.', '',
+           'Versions up to 2.101 were traced from this scan (mean overlap 0.948). Since 3.000 each face is drawn from',
+           'better prints in the National Irish Visual Arts Library (see `research/`): Kilfane and Carrick from their',
+           'specimens and Letraset production sheets, Tuam Uncial and Céilí from a sharper scan of this flyer averaged',
+           'with the competition brochure. This photocopy is now a cross-check, not the target, and the overlap here is',
+           'lower where those prints differ from it. Céilí\'s is weight: it is drawn about a fifth heavier than this copy',
+           '(median area +20%, which alone caps the overlap near 0.83; its weight is a calibration between N46 and N45,',
+           'an open question in the proof). Carrick is about a tenth lighter (−9%), and its figures and ? follow its own',
+           'specimen, N513. Kilfane and Tuam Uncial are within a few per cent in weight and differ in detail, where their',
+           'better prints differ from this copy.', '']
     total = []
     for key in ('ceili', 'carrick', 'kilfane', 'tuam'):
         rows, _ = audit_glyph.audit(key, fontpath=os.path.join(FONTDIR, 'otf', f'{CFG[key]["ps"]}-Regular.otf'))

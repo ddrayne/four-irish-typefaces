@@ -26,7 +26,7 @@ INFO = {
     'carrick': dict(prize='Highly Commended', who='William Curran', sheets=[('S53913', '36 pt', '9 mm'), ('S53914', '60 pt', '15 mm')],
                     sample='carraig', feats=[]),
     'kilfane': dict(prize='Commended', who='William Curran', sheets=[('S53909', '30 pt', '7.5 mm'), ('S53910', '48 pt', '13 mm')],
-                    sample='Fáilte', feats=[('ss01', 'Roman forms'), ('ss02', 'Insular forms')]),
+                    sample='Teamhair', feats=[('ss01', 'Roman forms'), ('ss02', 'Insular forms')]),
     'tuam': dict(prize='Commended', who='Jarlath Hayes', sheets=[('S53911', '30 pt', '7.5 mm'), ('S53912', '48 pt', '12.5 mm')],
                  sample='Tuaim', feats=[]),
 }
@@ -81,7 +81,7 @@ def tester_rows():
 
 
 STYLES = ['Regular', 'Italic', 'Bold', 'Bold Italic']
-SAMPLE2 = {'ceili': 'Céilí mór anocht!', 'carrick': 'Ceol ⁊ craic', 'kilfane': 'Banc Ceannais na hÉireann', 'tuam': 'Fáilte go Tuaim'}
+SAMPLE2 = {'ceili': 'Céilí mór anocht!', 'carrick': 'Cath Chluain Tarbh', 'kilfane': 'Banc Ceannais na hÉireann', 'tuam': 'Tuaim Dá Ghualann'}
 weight = lambda st: 700 if 'Bold' in st else 400
 slope = lambda st: 'italic' if 'Italic' in st else 'normal'
 
