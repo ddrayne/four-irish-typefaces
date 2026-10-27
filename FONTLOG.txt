@@ -33,6 +33,47 @@ named above.
 ChangeLog
 ---------
 
+3.100 (2026-10-27)
+- Finishing passes on every face after independent type reviews. Outlines are settled on the unit
+  grid with smooth joins, nodes at extremes and no slivers; each correction and its reason is in
+  research/ (each face's judged-edits.json and README).
+- Kilfane: the letters on one set of lines and stems evened. The Bold and Bold Italic draw their
+  accents, rules, math signs, bullet, % ‰, small figures and the letters in @ © ® with the bold's
+  pen. Their curves (G S s v w x y ß W) are true curves, the joins of k r 6 9 and the g's tail stay
+  open, the dots of ! ? i j stand clear, and the cedilla and ogonek take the bold's weight. Capitals
+  keep 30 units from capitals and from lowercase (20 before lowercase in the bolds), and 40 before
+  an accented i. The bolds' j is spaced as i, and ? as ! in every style. A case feature sets dashes,
+  guillemets, colon, bullets, @ and ¡ ¿ for capitals (CSS: font-feature-settings: "case").
+- Carrick: f on the baseline; the diaeresis is N513's paired dots; % ‰ # ¤ @ in the figures' weight,
+  and ™'s small m with its cuts open; ¢'s bar clear of the counter; the figures on one line; ḃ's
+  ponc beside its ascender, ḋ's and ḟ's well above theirs (b, d, f + U+0307 compose to them); £ and
+  $ on the baseline at their printed heights; ‹ › « » one drawing and its mirror image; f clear of a
+  following ascender; ' and " as deep as the curly quotes. The Italic keeps the Regular's cuts and
+  counters.
+- Tuam Uncial: the arch cuts, slits and seams at the widths N45 prints; stems evened; dots and
+  accents at N45's gaps; í's fada steeper, so í and i are told apart at text sizes; ḃ's and ḋ's ponc
+  beside the ascender, ḟ's above; a heavier comma, quotes and apostrophe, and ' " to match; § in
+  continuous curves; % ‰ from its own 0. The Italic has the Regular's weight and cuts. The word
+  space (and the no-break space) is half the n, 448 (Italic 435), not 320.
+- Céilí: the h on the baseline; stems evened; pen terminals as straight cuts; the dots of ! ? are
+  the period's pen diamond; l' L' ł' kern by one rule with the other quote pairs; ð and đ spaced as
+  d; € and ¥ on the figures' line; h's foot straight and j's bar as i's. The Bold and Bold Italic
+  keep the Regular's dot gaps and open joins (b d k p r 9); their heavy level strokes (7 3, dashes,
+  + = #), math signs, bullet, % ‰ and the letters of @ © ® take the bold's weight.
+- All four faces: the brackets, braces and bar stand with each face's parentheses; #'s bars are
+  centred on its sloped strokes; ≈ is drawn at the weight and spacing of =; the rings of @ and ¤ are
+  at least half the weight of the o, © and ® keep the figures' height with heavier rings, and ° is
+  heavier with its counter open, no taller than 0.3 of the figures. Combining marks stand clear of
+  their letters, stack on one another and follow a precomposed letter's accent; the dot above keeps
+  the ponc's place, so Irish ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ are unchanged, and the comma below hangs clear of a
+  descender.
+- The line box changes in Kilfane (999/-214 to 1023/-204), Carrick (965/-235 to 988/-213) and Tuam
+  Uncial (936/-264 to 951/-258), for taller accents and the bolds' cedillas; Céilí's is unchanged.
+  The TrueType files keep no speck where a tiny curve's conversion crossed itself, and the fonts
+  build byte for byte the same on any machine.
+- Names are unchanged; coverage adds U+0323 (combining dot below); features add mkmk (and Kilfane's
+  case).
+
 3.000 (2026-10-26)
 - The fonts are redrawn from the 1978 originals in the National Irish Visual Arts Library (NIVAL),
   not the photocopied flyer: Kilfane from the N516 alphabet specimen and the averaged impressions of
@@ -41,32 +82,7 @@ ChangeLog
   Uncial and Céilí from the mean of the flyer (N46) and the catalogue (N45), with Céilí's
   disagreements decided by a third print (N44). Each study's evidence is in research/.
 - Tuam Uncial's braces are drawn with a point; Kilfane's and Carrick's stem feet sit on the baseline.
-- Carrick: % ‰ # in the figures' weight; ḃ's ponc beside its ascender, ḋ's and ḟ's well clear above
-  theirs (b, d, f + U+0307 compose to them); ¢'s bar clear of the counter; the figures on one figure
-  line; the Italic keeps the Regular's cuts. Its line box rises 7 units about the baseline (988/-213).
-- Carrick: the rings of ¤ and @ and ¤'s arms in the figures' weight; ™'s small m keeps its cuts open.
-  Tuam Uncial: ' and " (and the primes) at the weight of the curly quotes. Kilfane Bold and Bold
-  Italic: the curves of G S s v w x y ß W and the alternate g and y drawn as curves, not runs of
-  straight facets; the cedilla and ogonek drawn with the bold's pen, so the family's line box
-  deepens 14 units (1023/-204). The TrueType files keep no speck where a tiny curve's conversion
-  crossed itself (Carrick Italic's ı i į, a few Kilfane glyphs).
-- Tuam Uncial: the word space (and the no-break space) is half the n, 448 (Italic 435), not 320.
-  Carrick: £ and $ stand on the baseline with the figures, at their printed heights; ‹ › « » are one
-  drawing and its mirror image, so each pair matches; f stands clear of a following ascender, as every
-  pair above the x-height now stands at least Carrick's cut apart; ' and " (and the primes) are as deep
-  as the curly quotes, with their ink.
-- Kilfane: the bold's math signs grow in place, keeping the Regular's white between their pieces; the
-  bold's ! ? ¡ ¿ i j keep their dots clear; the bold's bullet, % ‰, the letters in @ © ® and the small
-  figures and letters take its weight; j and ? are spaced by one rule in every style; capitals keep 30
-  units from capitals and lowercase, accented ones too; near-smooth joins are smooth (the sloped
-  styles' stem joins); and a case feature sets dashes, guillemets, colon, bullets, @ and ¡ ¿ for capitals.
-- All four faces: ≈ is drawn at the weight and spacing of =, centred on the math axis; the rings of © ® @ ° ¤
-  are at least half the weight of the o, their letters and counters kept open; combining marks stand clear of
-  their letters, stack on one another (a new mkmk feature) and follow a precomposed letter's accent, the dot
-  above keeping the ponc's place (Irish ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ ṫ are unchanged), and the comma below hangs clear of a
-  descender. Céilí Bold and Bold Italic: the comma of ŗ with the insular r stands clear of the r.
-- Names are unchanged; coverage adds U+0323 (combining dot below); features add mkmk (and Kilfane's case
-  feature); spacing follows the new outlines.
+- Names, coverage and features are unchanged; spacing follows the new outlines.
 
 2.101 (2026-10-25)
 - No copyright is claimed: the fonts are dedicated to the public domain under CC0 1.0 Universal

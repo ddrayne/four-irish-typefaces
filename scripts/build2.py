@@ -24,7 +24,7 @@ from letters import make_letters, stem_at, clip
 from symbols import make_symbols
 
 OUT = paths.FONTS
-VERSION = '3.000'
+VERSION = '3.100'
 CC0 = 'https://creativecommons.org/publicdomain/zero/1.0/'
 RELEASE_DATE = '2026-10-25'          # stamped into head.created/modified, so a rebuild is byte-identical
 import calendar as _cal, time as _time

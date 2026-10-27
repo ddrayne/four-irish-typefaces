@@ -130,7 +130,10 @@ A fourth pass finishes what a third independent review found (keys `bold_math`, 
   stood 41 units closer than its !, the Bold's 13 further).
 - **Room for capitals** (judged). The bold's 30 units between capitals now hold in every style and for every
   accented capital (the Regular's T Y kept 10; the Bold's T Í 16), and a capital before a lowercase letter keeps 30
-  too (T h was 10 to 14, P f 8).
+  too (T h was 10 to 14, P f 8), 20 in the Bold and Bold Italic: the final review found 30 too much there, where A l,
+  T h, F h and F l had opened from +20/+25 to +45 and A b, T b to +60, the white beside A l's diagonal more than
+  between two l (the Bold's H l, two straight sides, keeps 43, the Regular's 69), so All, Abú and The gaped at
+  display sizes.
 - **Case forms** (judged). An OpenType `case` feature sets the hyphen, dashes, guillemets, colon, middle dot, bullet
   and @ on the capitals' middle (353, against the lowercase axis 241), and ¡ ¿ on the line as ! ? stand, each kerned
   where it stands.

@@ -113,8 +113,10 @@
      "reason": "Judged. The fada of í overhangs the i's side bearing (its ink starts at -36) and ran within 9 to 14 units of the capital before it (Sí, Cí, Rí, Pí, Fí), against 35 for Ní and Mí; kerning, not a moved fada, keeps the fada over its stem, so every glyph before an accented i keeps 40 units from its mark."},
     {"right": "*capitals", "clearance": 30, "margin": 2, "accented": true,
      "reason": "Judged. The bold's wider pen took the white between capitals' arms and diagonals (A V 9 units after kerning, A W, A Y, T W, T Y, Z V, F V, V L 7 to 10) where the Regular's A V keeps 29: the bold's capitals keep 30, their class kerning eased or opened. Fourth pass: every style keeps it (the Regular's T Y kept 10, F V 11, T W 12, T I 13, the Italic's 11 to 18), and so does each accented capital, which its letter's class does not hold where its mark sticks out (the Bold's T Í 16 against T I 36, F Í 17, T Ĺ 17 against T L 37): an exception opens the pair."},
-    {"left": "*capitals", "right": "*lower", "clearance": 30, "margin": 2, "accented": true,
-     "reason": "Judged (fourth pass). The optical kerning closes a capital's arm over the next letter's ascender (T h 12/13/14/10 in the four styles, F h 12, P i 17/10/13/10, the Bold's P m 9, P f 8, T b 8, V k 9, Z h 10), and the collision protection keeps only 8: a capital before a lowercase letter keeps 30, as between capitals, and so do their accented forms."}
+    {"left": "*capitals", "right": "*lower", "clearance": 30, "margin": 2, "accented": true, "styles": ["Regular", "Italic"],
+     "reason": "Judged (fourth pass). The optical kerning closes a capital's arm over the next letter's ascender (T h 12/13/14/10 in the four styles, F h 12, P i 17/10/13/10, the Bold's P m 9, P f 8, T b 8, V k 9, Z h 10), and the collision protection keeps only 8: a capital before a lowercase letter keeps 30, as between capitals, and so do their accented forms."},
+    {"left": "*capitals", "right": "*lower", "clearance": 20, "margin": 2, "accented": true, "styles": ["Bold", "Bold Italic"],
+     "reason": "Judged (final review). At 30 the bolds' capitals stood too far from an ascender: A l, T h, F h and F l opened from +20/+25 to +45 and A b, T b from +35 to +60, the white beside A l's diagonal more than between two l (the Bold's H l, two straight sides, keeps 43, the Regular's 69), so All, Abú and The were gappy at display sizes. The bolds' capitals before lowercase keep 20, two and a half times the collision protection's 8; between capitals they keep 30."}
    ]
   },
   "bold_pieces": {

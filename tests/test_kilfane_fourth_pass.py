@@ -74,9 +74,13 @@ def test_capitals_keep_their_room(style):
 @pytest.mark.parametrize('style', STYLES)
 def test_capitals_before_lowercase_keep_their_room(style):
     """T F P (and every capital) before lowercase: T h was 12/13/14/10 in the four styles, P i 17/10/13/10, the Bold's
-    P f 8 and T b 8. A capital before a lowercase letter keeps 30 units."""
+    P f 8 and T b 8. A capital before a lowercase letter keeps 30 units, 20 in the bolds: at 30 their A l, T h, F h and
+    F l opened from +20/+25 to +45 and A b, T b to +60, wider than two l (the final review)."""
+    bold = 'Bold' in style
     worst = min((clearance(style, a + b), a + b) for a in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' for b in 'abcdefghijklmnopqrstuvwxyzíḃḟĥ')
-    assert worst[0] >= 28, worst
+    assert worst[0] >= (18 if bold else 28), worst
+    if bold:
+        assert max(kern(style, p) for p in ('Al', 'Th', 'Fh', 'Fl')) <= 40, [(p, kern(style, p)) for p in ('Al', 'Th', 'Fh', 'Fl')]
 
 
 def mid_white(style, pair):

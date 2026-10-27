@@ -458,20 +458,25 @@ def approx_sign(tilde, L, t, yc, d, white):
 # o's heavier side. A ring grows inward as far as the letter inside it keeps its white (RING_WHITE of the ring: the
 # white it has, but no more than the upper share and no less than the lower, the sloped styles' hair of weight
 # allowed for); what it cannot take inward goes half outward and half inward, the letter drawn smaller at its own
-# weight where it must be (Carrick's @, RING_OUT). °'s counter keeps the ring's own weight across where it had that,
-# and never less than DEGREE_HOLE of it; ¤'s at least CURRENCY_HOLE: they grow outward rather than close.
+# weight where it must be (Carrick's @, RING_OUT). ¤'s counter keeps at least CURRENCY_HOLE of its ring: it grows
+# outward rather than close. The final review found that rule too much for the figure-size signs, which grew past the
+# figures (© ® up to 784 tall against 690) or into bullets (Carrick's ° 149 to 324 tall): © and ® keep the figures'
+# height and take SIGN_RING_SHARE (a finishing pass's) of the o inward, the letters drawn smaller where they must be;
+# ° grows outward to no more than DEGREE_SIZE of the figures' height, its counter never narrower than its ring
+# (DEGREE_HOLE), so it is as heavy as a ring of its size can be where half the o is more than that.
 RING_WHITE = (0.20, 0.45)
 RING_OUT = 0.5
-DEGREE_HOLE = 0.7
+DEGREE_HOLE = 1.0
+DEGREE_SIZE = 0.30
 CURRENCY_HOLE = 1.5
 
 
-def ring_weight(f, P, rt):
-    """A ring's weight: rt, or RING_SHARE of the o's heavier side (two units over, for the grid and the slope) where
-    that is heavier; in a sloped style as much more as its narrowing takes from a ring's sides where a glyph keeps
-    the narrowing alone (Tuam's ©). The o is measured once a style, on its own o (a bold that draws its small signs
-    from the Regular's letters still measures the bold's)."""
-    share = getattr(f, 'RING_SHARE', None)
+def ring_weight(f, P, rt, share=None):
+    """A ring's weight: rt, or RING_SHARE (or `share`) of the o's heavier side (two units over, for the grid and the
+    slope) where that is heavier; in a sloped style as much more as its narrowing takes from a ring's sides where a
+    glyph keeps the narrowing alone (Tuam's ©). The o is measured once a style, on its own o (a bold that draws its
+    small signs from the Regular's letters still measures the bold's)."""
+    share = share or getattr(f, 'RING_SHARE', None)
     if not share:
         return rt
     if getattr(f, 'ring_o', None) is None:
@@ -495,28 +500,27 @@ def _slope_allowance(f):
     return (1 - build2.CONDENSE) * f.S if f.italic else 0.0
 
 
-def ring_letters(f, key, cx, cy, R, rt, w, makes, sizing=None):
+def ring_letters(f, key, cx, cy, R, rt, w, makes, hold=False):
     """The ring of © ® or @ (outer radius R, rt thick, centred on cx, cy) drawn w thick, and the letters inside it:
-    `makes` are functions k -> the letter drawn k times as large about the centre at its own weight (1: as drawn);
-    `sizing` names those the ring is sized for (default all: a pass that keeps only some of its signs). A style
-    keeps the largest ring any of its passes needs for each key (a bold draws its letters again at other weights;
-    build_original_study.bold_signs draws ® again once © has its ring). Returns (outer radius, [letters])."""
+    `makes` are functions k -> the letter drawn k times as large about the centre at its own weight (1: as drawn).
+    A style keeps the largest ring any of its passes needs for each key (a bold draws its letters again at other
+    weights). With `hold` the ring keeps its outer radius (© and ®, at the figures' height): all it gains goes
+    inward, the letters drawn smaller at their own weight, and scaled whole where that would shut an opening
+    (Carrick's cut c). Returns (outer radius, [letters])."""
     lo, hi = RING_WHITE
     least = 16.0 + 2 * _slope_allowance(f)      # an opening within reach of closing (a bold's crack, the slope) may not narrow
     geom = f.__dict__.setdefault('ring_geom', {})
     whites = [R - rt - _far(m(1.0), cx, cy) for m in makes]
     keep = [max(lo * w + _slope_allowance(f), min(wn, hi * w)) for wn in whites]
-    sized = [i for i in range(len(makes)) if sizing is None or sizing[i]]
-    if not sized:                                 # a pass that keeps none of these signs leaves the ring as it is
-        R2 = geom.get(key, R + RING_OUT * (w - rt))
-        return R2, [_smaller(m, R2 - w - k, cx, cy, least)[0] for m, k in zip(makes, keep)]
+    if hold:
+        return R, [_smaller(m, R - w - k, cx, cy, least)[0] for m, k in zip(makes, keep)]
     added = w - rt
-    room = min(whites[i] - keep[i] for i in sized)
+    room = min(wn - k for wn, k in zip(whites, keep))
     free = min(max(room, 0.0), added)
     rest = added - free + max(-room, 0.0)
     R2 = max(R + RING_OUT * rest, geom.get(key, 0.0))            # half of what it cannot take inward goes outward
     far_out = max(R + rest, R2)                                   # all of it: no letter drawn smaller
-    fits = lambda R_: all(_smaller(makes[i], R_ - w - keep[i], cx, cy, least)[1] for i in sized)
+    fits = lambda R_: all(_smaller(m, R_ - w - k, cx, cy, least)[1] for m, k in zip(makes, keep))
     if not fits(R2):
         # a letter drawn that much smaller would shut or narrow an opening: the ring goes further out instead
         for _ in range(8):
@@ -594,17 +598,29 @@ def _ring_sides(p):
     return min(h[0] - b[0], b[2] - h[2], h[1] - b[1], b[3] - h[3]), min(h[2] - h[0], h[3] - h[1]), hole
 
 
-def heavier_ring(f, P, p):
+def heavier_ring(f, P, p, top):
     """A plain ring (the degree sign, the sheet's or the builder's) at the ring weight: grown outward and inward by
-    its own outline, inward only as far as its counter keeps the new weight across (where it was as wide; never less
-    than DEGREE_HOLE of it), with the sloped styles' hair of weight, the rest outward; its top stays where it stood."""
-    import bolden
+    its own outline, inward only as far as its counter keeps the new weight across (DEGREE_HOLE of it, with the
+    sloped styles' hair of weight; a narrower counter is opened to that), the rest outward, but to no more than
+    DEGREE_SIZE of the figures' height `top` (or its own height, if more): where that is too little, the ring is as
+    heavy as fits. Its top stays where it stood."""
+    import bolden, build2
     side, span, hole = _ring_sides(p)
+    b = bounds(p); room = max(0.0, (DEGREE_SIZE * top - (b[3] - b[1])) / 2)
+    # the counter the ring needs: its weight across and two units for the grid, and in a sloped style what its
+    # narrowing takes, the hair of weight from the counter and the ring's sides both, the counter narrowed with the rest
+    k, a = (build2.CONDENSE if f.italic else 1.0), _slope_allowance(f)
+    grow = lambda w_: (e := min(w_ - side, (span - (DEGREE_HOLE * w_ + 2 + 2 * a) / k) / 2), w_ - side - e)
     w = ring_weight(f, P, side)
+    if grow(w)[1] > room:
+        lo, hi = side, w                                  # the heaviest ring that grows outward no more than room
+        for _ in range(20):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if grow(mid)[1] <= room else (lo, mid)
+        w = lo
     if w <= side + 0.25:
         return p
-    added = w - side; keep = max(DEGREE_HOLE * w, min(span, w)) + _slope_allowance(f)
-    e_in = min(added, (span - keep) / 2); e_out = added - e_in
+    e_in, e_out = grow(w)
     solid = pathops.simplify(hole, fix_winding=True, keep_starting_points=False, clockwise=False)
     outer = SH.union(p, solid)
     hole2 = bolden.erode(solid, e_in, e_in) if e_in > 0 else bolden.grow(solid, -e_in, -e_in)
@@ -858,13 +874,12 @@ def make_symbols(f):
             return memo[k]
         return make
     makes = [ringed(P['c'], 0.58), ringed(rsrc, 0.50 if not f.cfg['unicase'] else 0.62)]
-    w = ring_weight(f, P, rt)
+    w = ring_weight(f, P, rt, getattr(f, 'SIGN_RING_SHARE', None))
     if w > rt:
-        # the ring at the o's weight (RING_SHARE), one for © and ®, standing on the baseline
-        only = getattr(f, 'rings_kept', None)        # a pass that keeps only some of its signs sizes the ring for those
-        R2, (cc, rg) = ring_letters(f, 'copyright', R, R, R, rt, w, makes,
-                                    sizing=None if only is None else [n in only for n in ('copyright', 'registered')])
-        band = ring(R, R2, R2, w); cc, rg = translate(cc, 0, R2 - R), translate(rg, 0, R2 - R)
+        # the ring at its share of the o's weight (SIGN_RING_SHARE), one for © and ®, at the figures' height: it
+        # grows inward, the letters drawn smaller where they must be
+        R2, (cc, rg) = ring_letters(f, 'copyright', R, R, R, rt, w, makes, hold=True)
+        band = ring(R, R2, R2, w)
         put('copyright', SH.union(band, cc), 'ring at the o\'s weight + c')
         put('registered', SH.union(band, rg), 'ring at the o\'s weight + r')
     else:
@@ -887,7 +902,7 @@ def make_symbols(f):
     else:
         deg, how = ring(0.15 * xh, top - 0.15 * xh, 0.15 * xh, 0.45 * t), 'small ring'
     if getattr(f, 'RING_SHARE', None):
-        heavy = heavier_ring(f, P, deg)                    # at the o's weight, its counter kept open
+        heavy = heavier_ring(f, P, deg, top)               # toward the o's weight, its counter kept open
         if heavy is not deg:
             deg, how = heavy, how + ' at the o\'s weight'
     put('degree', deg, how)
