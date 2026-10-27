@@ -178,6 +178,15 @@ def test_rings_keep_their_counters_and_letters_clear(ps, st):
         assert min(white(rg, q) for q in rest) >= 0.15 * min(sides), (st, n, [white(rg, q) for q in rest], sides)
         own = topology(outline(ps, st, src))
         assert topology(outline(ps, st, n)) == (own[0] + 1, own[1] + 1), (st, n, topology(outline(ps, st, n)), own)
+        # its counters as open as its own letter's at that size (Carrick's ® r, drawn smaller at its own weight,
+        # kept 0.13 of its bowl): the inner letter's least counter at least 0.4 of the letter's, scaled to its height
+        holes = lambda p: sorted(-area(c) for c in contours(p) if area(c) < 0)
+        inner, mine = pathops.Path(), outline(ps, st, src)
+        for q in rest:
+            q.draw(inner.getPen())
+        k = (lambda b, c: (b[3] - b[1]) / (c[3] - c[1]))(bounds(inner), bounds(mine))
+        for a, b in zip(holes(mine), holes(inner)):
+            assert b >= 0.4 * k * k * a, (st, n, b, a, k)
     for n, share in (('degree', 1.0), ('currency', 1.4)):
         rg, sides, span, rest = ring_parts(ps, st, n)
         assert not rest and topology(outline(ps, st, n)) == (1, 1) and span >= share * min(sides), (st, n, span, sides)

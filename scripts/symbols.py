@@ -461,10 +461,12 @@ def approx_sign(tilde, L, t, yc, d, white):
 # weight where it must be (Carrick's @, RING_OUT). ¤'s counter keeps at least CURRENCY_HOLE of its ring: it grows
 # outward rather than close. The final review found that rule too much for the figure-size signs, which grew past the
 # figures (© ® up to 784 tall against 690) or into bullets (Carrick's ° 149 to 324 tall): © and ® keep the figures'
-# height and take SIGN_RING_SHARE (a finishing pass's) of the o inward, the letters drawn smaller where they must be;
-# ° grows outward to no more than DEGREE_SIZE of the figures' height, its counter never narrower than its ring
-# (DEGREE_HOLE), so it is as heavy as a ring of its size can be where half the o is more than that.
+# height and take SIGN_RING_SHARE (a finishing pass's) of the o inward, the letters drawn smaller where they must be
+# (held_ring), at their own weight only while each counter keeps HOLD_COUNTER of its area at its new size, past that
+# scaled whole; ° grows outward to no more than DEGREE_SIZE of the figures' height, its counter never narrower than
+# its ring (DEGREE_HOLE), so it is as heavy as a ring of its size can be where half the o is more than that.
 RING_WHITE = (0.20, 0.45)
+HOLD_COUNTER = 0.6
 RING_OUT = 0.5
 DEGREE_HOLE = 1.0
 DEGREE_SIZE = 0.30
@@ -500,20 +502,16 @@ def _slope_allowance(f):
     return (1 - build2.CONDENSE) * f.S if f.italic else 0.0
 
 
-def ring_letters(f, key, cx, cy, R, rt, w, makes, hold=False):
-    """The ring of © ® or @ (outer radius R, rt thick, centred on cx, cy) drawn w thick, and the letters inside it:
+def ring_letters(f, key, cx, cy, R, rt, w, makes):
+    """The ring of @ (outer radius R, rt thick, centred on cx, cy) drawn w thick, and the letters inside it:
     `makes` are functions k -> the letter drawn k times as large about the centre at its own weight (1: as drawn).
     A style keeps the largest ring any of its passes needs for each key (a bold draws its letters again at other
-    weights). With `hold` the ring keeps its outer radius (© and ®, at the figures' height): all it gains goes
-    inward, the letters drawn smaller at their own weight, and scaled whole where that would shut an opening
-    (Carrick's cut c). Returns (outer radius, [letters])."""
+    weights). Returns (outer radius, [letters])."""
     lo, hi = RING_WHITE
     least = 16.0 + 2 * _slope_allowance(f)      # an opening within reach of closing (a bold's crack, the slope) may not narrow
     geom = f.__dict__.setdefault('ring_geom', {})
     whites = [R - rt - _far(m(1.0), cx, cy) for m in makes]
     keep = [max(lo * w + _slope_allowance(f), min(wn, hi * w)) for wn in whites]
-    if hold:
-        return R, [_smaller(m, R - w - k, cx, cy, least)[0] for m, k in zip(makes, keep)]
     added = w - rt
     room = min(wn - k for wn, k in zip(whites, keep))
     free = min(max(room, 0.0), added)
@@ -531,10 +529,40 @@ def ring_letters(f, key, cx, cy, R, rt, w, makes, hold=False):
     return R2, [_smaller(m, R2 - w - k, cx, cy, least)[0] for m, k in zip(makes, keep)]
 
 
-def _smaller(m, lim, cx, cy, least):
+def held_ring(f, cx, cy, R, rt, w, makes):
+    """The ring of © and ® (outer radius R, rt thick, centred on cx, cy) drawn w thick at the same outer radius, all
+    it gains taken inward, and the letters inside it (`makes`, as for ring_letters), each keeping its white as there:
+    drawn smaller where it must be, at its own weight as far as it keeps its openings and HOLD_COUNTER of each
+    counter, the rest scaled whole (Carrick's cut c). A letter in one piece whose mouth is already narrower than an
+    opening may safely be (Céilí's bold r, 12 to 14 units, which the slope's hair and the grid would shut) is not
+    drawn smaller: the ring takes its white down to RING_WHITE's lower share and no further. A style keeps the
+    lightest ring any of its passes allows (a bold draws © again with the whole stem, ® with its small glyphs'
+    weight). Returns (ring weight, [letters])."""
+    import bolden, kilfane_studio as KS
+    lo, hi = RING_WHITE; a = _slope_allowance(f)
+    least = 16.0 + 2 * a
+    geom = f.__dict__.setdefault('ring_geom', {})
+    w = min(w, geom.get('held', w))
+    whites = [R - rt - _far(m(1.0), cx, cy) for m in makes]
+    fixed = []
+    for m, wn in zip(makes, whites):
+        p = m(1.0)
+        fixed.append(len(bolden.components(p)) == 1 and (o := KS.opening_fast(p)) is not None and o < least)
+        if fixed[-1]:
+            w = min(w, (rt + wn - a) / (1 + lo))
+    w = geom['held'] = max(w, rt)
+    if w <= rt + 0.25:
+        return rt, [m(1.0) for m in makes]
+    keep = [lo * w + a if fx else max(lo * w + a, min(wn, hi * w)) for wn, fx in zip(whites, fixed)]
+    return w, [_smaller(m, R - w - k, cx, cy, least, HOLD_COUNTER)[0] for m, k in zip(makes, keep)]
+
+
+def _smaller(m, lim, cx, cy, least, hole=None):
     """The letter m(k) drawn small enough to come no further than lim from (cx, cy): at its own weight as far as it
     keeps its openings, the rest by scaling it whole, its weight with it (Carrick's c, whose cut a heavier pen would
-    shut). Returns (letter, whether it keeps the drawing's pieces, counters and narrowest opening)."""
+    shut). With `hole`, at its own weight only as far as each counter also keeps that share of its area as drawn at
+    that size (Carrick's ® r, whose bowl the pen all but filled). Returns (letter, whether it keeps the drawing's
+    pieces, counters and narrowest opening)."""
     p = m(1.0)
     def own(lim_):                                   # at its own weight, its far point lim_ from the centre
         s = 1.0; q = p
@@ -548,14 +576,15 @@ def _smaller(m, lim, cx, cy, least):
     far0 = _far(p, cx, cy)
     if far0 <= lim + 0.25:
         return p, True
+    ok = lambda q, lim_: _keeps_openings(p, q, least) and (hole is None or _keeps_counters(p, q, hole * (lim_ / far0) ** 2))
     q = own(lim)
-    if _keeps_openings(p, q, least):
+    if ok(q, lim):
         return q, True
     # as small at its own weight as its openings allow (between lim and as drawn), then scaled whole the rest
     a, b = lim, far0
     for _ in range(6):
         mid = (a + b) / 2
-        a, b = (a, mid) if _keeps_openings(p, own(mid), least) else (mid, b)
+        a, b = (a, mid) if ok(own(mid), mid) else (mid, b)
     q = whole(own(b) if b < far0 - 0.25 else p, lim)
     return q, _keeps_openings(p, q, least)
 
@@ -577,13 +606,26 @@ def _keeps_openings(p, q, least=16.0):
     return all(w >= least for w in whites(q)) and (b is None or b >= least)
 
 
-def _topology(p):
-    """(pieces, counters) of an outline."""
+def _keeps_counters(p, q, share):
+    """Whether each counter of q, the letter p drawn smaller, keeps `share` of the area of p's (largest with largest)."""
+    holes = lambda r: sorted(-a for a in _areas(r) if a < 0)
+    hp, hq = holes(p), holes(q)
+    return len(hp) == len(hq) and all(b >= share * a for a, b in zip(hp, hq))
+
+
+def _areas(p):
+    """The signed area of each contour of an outline (counters negative)."""
     from glyphs import contours
     from fontTools.pens.areaPen import AreaPen
     a = []
     for c in contours(SH.union(p)):
         ap = AreaPen(); c.draw(ap); a.append(ap.value)
+    return a
+
+
+def _topology(p):
+    """(pieces, counters) of an outline."""
+    a = _areas(p)
     return sum(v > 0 for v in a), sum(v < 0 for v in a)
 
 
@@ -878,8 +920,8 @@ def make_symbols(f):
     if w > rt:
         # the ring at its share of the o's weight (SIGN_RING_SHARE), one for © and ®, at the figures' height: it
         # grows inward, the letters drawn smaller where they must be
-        R2, (cc, rg) = ring_letters(f, 'copyright', R, R, R, rt, w, makes, hold=True)
-        band = ring(R, R2, R2, w)
+        w, (cc, rg) = held_ring(f, R, R, R, rt, w, makes)
+        band = ring(R, R, R, w)
         put('copyright', SH.union(band, cc), 'ring at the o\'s weight + c')
         put('registered', SH.union(band, rg), 'ring at the o\'s weight + r')
     else:
