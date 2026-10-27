@@ -1,8 +1,8 @@
 import { $, $$, FAMILY, NAME } from './util.js';
 
-// The research studies beside the release they are rebuilding: each letter printed in
-// two inks, green for the released font and orange for the latest study, so the two
-// can be compared by eye. No archive pixels are shown.
+// The research study each release is built from, beside the release: each letter printed in
+// two inks, green for the released font and orange for the study as drawn, before the
+// finishing passes, so the two can be compared by eye. No archive pixels are shown.
 
 const KIND = { letters: 'letters', outlines: 'letters', marks: 'accent marks', punctuation: 'punctuation' };
 
@@ -16,12 +16,12 @@ export async function init(root, data) {
   const outlines = info.glyphs.length > 0;
 
   const intro = outlines
-    ? `<b>${latest.family}</b> redraws ${name} from better reproductions in the William Curran Archive at the National Irish Visual Arts Library. It is work in progress, not a release. Green is the released ${family}; orange is the study. Where they agree, the inks print dark.`
+    ? `Since 3.0 the released ${family} is built from <b>${latest.family}</b>, which redraws ${name} from better reproductions in the William Curran Archive at the National Irish Visual Arts Library; finishing passes then settle its outlines, signs and spacing. Green is the release; orange is the study as drawn. Where they agree, the inks print dark.`
     : `<b>${latest.family}</b> keeps ${family}'s outlines as released and adjusts only its spacing; better sources for its letters are still being sought. It is work in progress, not a release.`;
 
-  // Closed until asked for: the faces come first, the work in progress after.
+  // Closed until asked for: the faces come first, the study after.
   root.innerHTML = `<details class="study-more">
-    <summary><span class="study-sum-t"><span class="f-${face}" lang="ga">staidéar</span><span>Work in progress · from the archive</span></span><span class="study-sum-k">${latest.family}</span></summary>
+    <summary><span class="study-sum-t"><span class="f-${face}" lang="ga">staidéar</span><span>The study behind the release · from the archive</span></span><span class="study-sum-k">${latest.family}</span></summary>
     ${outlines ? `<div class="toy-bar"><div class="toy-controls" role="group" aria-label="Which ${family} to show">
         <button type="button" class="tog" data-show="both" aria-pressed="true">Both, overprinted</button>
         <button type="button" class="tog" data-show="release" aria-pressed="false">Release</button>

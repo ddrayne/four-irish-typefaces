@@ -400,21 +400,21 @@ export function compose(P, layoutId) {
 }
 
 // ---------------------------------------------------------------- ready-made posters
-// Irish phrases and proverbs, each in a layout, inks and faces that suit it.
+// Irish proverbs, places and history, each in a layout, inks and faces that suit it.
 export const PRESETS = [
   { name: 'Céilí mór anocht', head: 'Céilí mór anocht', sub: 'Halla an pharóiste · a naoi a chlog', foot: 'Fáilte roimh chách · All welcome',
     layout: 'sun', a: ['tuam'], b: ['ceili'], inks: ['pink', 'medium-blue'], paper: 'natural' },
-  { name: 'Oíche Shamhna', head: 'Oíche\nShamhna', sub: 'Bairín breac, tine chnámh agus púcaí', foot: 'Halloween · 31 Deireadh Fómhair',
+  { name: 'Brú na Bóinne', head: 'Brú na\nBóinne', sub: 'Tógadh timpeall 3200 RC · Built about 3200 BC', foot: 'Grianstad an gheimhridh · the winter solstice',
     layout: 'shadow', a: ['tuam'], b: ['tuam'], inks: ['orange', 'black'], paper: 'natural' },
   { name: 'Tús maith leath na hoibre', head: 'Tús maith leath na hoibre', sub: 'A good start is half the work.', foot: 'Seanfhocal · Irish proverb',
     layout: 'stack', a: ['carrick'], b: ['kilfane'], inks: ['green', 'orange'], paper: 'natural' },
-  { name: 'Fáilte', head: 'Fáilte', sub: 'Céad míle fáilte · A hundred thousand welcomes', foot: 'Kilfane · William Curran · 1978',
+  { name: 'Leabhar Cheanannais', head: 'Leabhar Cheanannais', sub: 'The Book of Kells · the four Gospels, written about 800', foot: 'Coláiste na Tríonóide, Baile Átha Cliath',
     layout: 'initial', a: ['kilfane', 'Bold'], b: ['kilfane'], inks: ['teal', 'red'], paper: 'white' },
   { name: 'Ceithre chló', head: 'ceithre\nchló', sub: 'Céilí · Carrick · Kilfane · Tuam Uncial', foot: 'Design an Irish Typeface · 1978',
     layout: 'two', a: ['ceili'], b: ['tuam'], inks: ['pink', 'teal'], paper: 'natural' },
   { name: 'Ní neart go cur le chéile', head: 'Ní neart go cur le chéile', sub: 'There is no strength without unity', foot: 'Seanfhocal · Irish proverb',
     layout: 'repeat', a: ['tuam'], b: ['ceili'], inks: ['blue', 'pink'], paper: 'white' },
-  { name: 'Sláinte', head: 'Sláinte', sub: 'Seisiún ceoil · Dé hAoine', foot: 'Ceol beo · Live music',
+  { name: 'Cath Chluain Tarbh', head: '1014', sub: 'Cath Chluain Tarbh · Aoine an Chéasta, 23 Aibreán 1014', foot: 'Brian Bóramha · Ard-Rí na hÉireann',
     layout: 'tiles', a: ['carrick'], b: ['carrick'], inks: ['yellow', 'purple'], paper: 'white' },
   { name: 'Is glas iad na cnoic', head: 'Is glas iad na cnoic i bhfad uainn', sub: 'Faraway hills are green', foot: 'Seanfhocal · Irish proverb',
     layout: 'halftone', a: ['ceili'], b: ['ceili', 'Bold'], inks: ['green', 'federal-blue'], paper: 'sky' },
