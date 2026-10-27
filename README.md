@@ -1,4 +1,4 @@
-# Four Irish Typefaces: digital revival, version 3.000
+# Four Irish Typefaces: digital revival, version 3.100
 
 **Céilí · Carrick · Kilfane · Tuam Uncial**
 
@@ -35,7 +35,25 @@ not serve them to other sites.
 Open `index.html` to see and test the fonts in a browser. It's a live type tester
 with style pickers, stylistic-set toggles and character grids.
 
-## What's new in 3.000
+## What's new in 3.100
+
+- **Finished.** Independent type reviews went over every face and every style, and each defect they
+  found is corrected by a recorded rule (`research/`, each face's `judged-edits.json` and README):
+  outlines settled on the grid with smooth joins and few points; the bolds' accents, rules, small
+  signs and figures drawn with the bold's pen; signs (# % ‰ £ $ ¢ ≈ © ® ° ¤ @ and the brackets)
+  redrawn to sit with each face's letters and figures; spacing and kerning corrected where words ran
+  together or gaped (Tuam Uncial's word space is half its n, 448 instead of 320).
+- **Irish lenition and stacked accents.** The ponc stands clear of b, d and f in Carrick and Tuam
+  Uncial, and b, d, f + U+0307 compose to ḃ ḋ ḟ. Combining marks now stack on one another (`mkmk`)
+  and stand clear of their letters; U+0323 (combining dot below) is added.
+- **Kilfane's capitals.** A `case` feature sets dashes, guillemets, colon, bullets, @ and ¡ ¿ for
+  capitals. Browsers do not turn it on with `text-transform: uppercase`: use
+  `font-feature-settings: "case"`.
+- Names are unchanged. The line box is a little taller in Kilfane (1023/−204, was 999/−214) and Tuam
+  Uncial (951/−258, was 936/−264), and Carrick's moves up (988/−213, was 965/−235), so text set at
+  `line-height: normal` moves slightly. See `FONTLOG.txt` for the details by face.
+
+## What was new in 3.000
 
 - **Redrawn from the 1978 originals.** Every face is now built from the original specimens and
   Letraset production sheets in the National Irish Visual Arts Library, not the photocopied flyer:
@@ -141,10 +159,10 @@ with style pickers, stylistic-set toggles and character grids.
 
 | Family | Styles | Code points | Glyphs | WOFF2 per style | Features |
 |---|---|---|---|---|---|
-| Kilfane Digital | Regular, Italic, Bold, Bold Italic | 402 | 458 | 50–55 KB | kern, mark, ccmp, salt, aalt, ss01 Roman forms, ss02 Insular forms |
-| Tuam Uncial Digital | Regular, Italic | 398 | 262 | 30–31 KB | kern, mark, ccmp |
-| Carrick Digital | Regular, Italic | 400 | 262 | 33–34 KB | kern, mark, ccmp |
-| Céilí Digital | Regular, Italic, Bold, Bold Italic | 408 | 317 | 35–40 KB | kern, mark, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
+| Kilfane Digital | Regular, Italic, Bold, Bold Italic | 403 | 472 | 55–66 KB | kern, mark, mkmk, ccmp, case, salt, aalt, ss01 Roman forms, ss02 Insular forms |
+| Tuam Uncial Digital | Regular, Italic | 399 | 263 | 30–33 KB | kern, mark, mkmk, ccmp |
+| Carrick Digital | Regular, Italic | 401 | 263 | 39 KB | kern, mark, mkmk, ccmp |
+| Céilí Digital | Regular, Italic, Bold, Bold Italic | 409 | 318 | 36–39 KB | kern, mark, mkmk, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
 
 Files are named `Family-Style` (`KilfaneDigital-BoldItalic.woff2`, `TuamUncialDigital-Italic.otf`).
 
@@ -163,6 +181,10 @@ Files are named `Family-Style` (`KilfaneDigital-BoldItalic.woff2`, `TuamUncialDi
 `<b>`, `<i>`, `font-weight: 700` and `font-style: italic` select the drawn styles. In Carrick and
 Tuam Uncial bold text keeps the face's one (already black) weight; use the italic, colour or size
 for emphasis there.
+
+Kilfane's `case` feature raises dashes, guillemets, the colon, bullets and @ to the capitals'
+middle. Browsers do not apply it with `text-transform: uppercase`, so ask for it:
+`.caps { text-transform: uppercase; font-feature-settings: "case"; }`.
 
 Install the OTF or TTF on your computer for desktop apps. Stylistic sets are under:
 
@@ -248,9 +270,9 @@ Award wording follows the [original competition brochure](https://nival.contentd
   guillemets « » ‹ ›, dashes, … • · † ‡ ′ ″ and ¡ ¿.
 - **Symbols.** `# % ‰ * @ & § ¶ © ® ™ ° µ ¬ | ¦ \ _ ^ ~`, the currencies £ $ € ¢ ¥ ¤,
   and the maths signs + − × ÷ = ≠ ≈ < > ≤ ≥ ±. The maths signs share one width.
-- **Combining marks.** U+0300–U+030C, U+0312 and U+0326–U+0328 have GPOS mark
-  positioning, so decomposed text (e + ◌́) renders correctly. `ccmp` swaps i and j
-  for their dotless forms under top marks.
+- **Combining marks.** U+0300–U+030C, U+0312, U+0323 and U+0326–U+0328 have GPOS mark
+  positioning, so decomposed text (e + ◌́) renders correctly, and `mkmk` stacks one mark on
+  another. `ccmp` swaps i and j for their dotless forms under top marks.
 - **Accents.** Kilfane's and Carrick's are the ones printed on their Letraset sheets (see
   *Details found on the sheet*). Tuam Uncial's fada is its own, from the flyer's á é í ó ú.
   Céilí's are drawn in its pen stroke.

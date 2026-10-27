@@ -267,6 +267,11 @@ are font units.
   ring is now at least half the o, 113 (Italic 119; ¤ and @ gain 7, 0.64 of the figure stem). © and ® grow outward,
   550 to 674 tall (Italic 700): the c's 5-unit cut and the r's joins would close if the letters were made smaller,
   so they stay as drawn, 23 to 32 from the ring. ° has a counter of 80 by 87 (53 by 60 before) and ¤ keeps its 223.
+  The final review found that too much: © and ® stood well above the figures and ° (149 to 324 tall) read as a
+  bullet or º at text sizes. © and ® keep their 550 with a ring of 0.4 of the o grown inward, 91 (Italic 95), the
+  c and r scaled whole where a heavier pen would shut their cuts and bowl (c 312 to 250 tall, r 262 to 214; Italic
+  240 and 206), 23 to 28 from the ring (`symbols.held_ring`). ° is no taller than 0.3 of the figures, 165, its
+  ring 51 (Italic 45) and its counter as wide (51, Italic 52) (`heavier_ring`).
 - **Combining marks.** The ponc's anchor was the only top anchor, so the marks followed it, and t (whose flag
   rises over the x-height) took its marks 22 above it where the other letters stand 43 to 48; there was no mkmk
   (x + circumflex + acute: 172 into each other), no anchor on a precomposed letter, the comma below ran 68 to 83

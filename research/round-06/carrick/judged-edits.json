@@ -69,9 +69,13 @@
     0.2,
     0.45
    ],
-   "degree_hole": 0.7,
+   "degree_hole": 1.0,
+   "degree_size": 0.3,
+   "sign_share": 0.4,
+   "hold_counter": 0.6,
    "currency_hole": 1.5,
-   "why": "the third pass drew ¤ and @ in the figures' weight (106, 0.6 of the figure stem) and they are the model; © ® ° were still rings of 40 to 52 beside an o of 223; every ring is now at least half the o, 113 (Italic 119; ¤ and @ gain 7); © and ® grow outward, 550 to 674 tall (Italic 700), because the c's 5-unit cut and the r's joins would close if the letters were made smaller, so they stay as drawn, 23 to 32 from the ring; ° has a counter of 80 by 87 (53 by 60 before), ¤ keeps its 223"
+   "why": "the third pass drew ¤ and @ in the figures' weight (106, 0.6 of the figure stem) and they are the model; © ® ° were still rings of 40 to 52 beside an o of 223; every ring is now at least half the o, 113 (Italic 119; ¤ and @ gain 7); © and ® grow outward, 550 to 674 tall (Italic 700), because the c's 5-unit cut and the r's joins would close if the letters were made smaller, so they stay as drawn, 23 to 32 from the ring; ° has a counter of 80 by 87 (53 by 60 before), ¤ keeps its 223",
+   "final_review": "the final review found © and ® standing well above the figures (674 and 700 against 550) and ° 149 to 324 tall, two of the bullet, read as a dot or º at text sizes: © and ® keep their 550 with a ring of 0.4 of the o grown inward, 91 (Italic 95), the c and r scaled whole where a heavier pen would shut their cuts and bowl (c 312 to 250 tall, r 262 to 214; Italic 240, 206), 23 to 28 from the ring; ° is no taller than 0.3 of the figures, 165, its ring 51 (Italic 45) and its counter as wide, 51 (52) (symbols.held_ring, heavier_ring)"
   },
   "marks": {
    "added": [

@@ -331,6 +331,12 @@ The pass across all four faces that the third pass left these to. One rule for a
   half the o does not. The c, r and a inside are as drawn; © and ® grow from 565 to 584 tall (Italic 587, Bold
   634, Bold Italic 656, where the r's 12-unit crack may not narrow) and the Bold Italic @'s a, 4 units from its
   ring, is 18 clear. ° keeps a counter of 64 (it was 89; Bold 79) and ¤ one of 238 (269; Bold 176).
+  The final review found the figure-size signs had outgrown the figures (© and ® up to 656 tall against the
+  figures' 565, the Bold's ° 162 to 269 tall, twice the bullet), so they are drawn again (`symbols.held_ring`,
+  `heavier_ring`): © and ® keep the figures' 565, their ring at 0.4 of the o grown inward, 51 (Italic 54), the c
+  and r drawn 0.95 to 1.0 as large. In the bolds the r, whose 12 to 14-unit mouth the slope and the grid would shut
+  if it were drawn smaller, holds the ring to the white it leaves: 66 in the Bold, 61 in the Bold Italic.
+  ° is no taller than 0.3 of the figures, 170, with a ring of 51 to 56 and a counter as wide (57 to 59).
 - **Combining marks.** There was no mkmk (x + circumflex + acute: 140 into each other), no anchor on a
   precomposed letter, the comma below ran 90 units into j's descender and 26 into g's, the bold's g took its top
   marks 42 above it (Bold Italic 40) where ĝ has 48, and U+0323 had no glyph. Every top mark now stands at least

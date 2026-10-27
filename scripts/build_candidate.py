@@ -77,11 +77,13 @@ def build(face, traces, version):
         TTF_UNSPECK = True
         # The fifth pass, shared by the four faces (research/*/judged-edits.json, "fifth_pass"): ≈ drawn at the rules'
         # weight and the ='s spacing, its waves 0.7 of the ='s white apart (symbols.approx_sign); the rings of © ® @ ° ¤
-        # at least half the o's heavier side (symbols.ring_weight, ring_letters, heavier_ring); and combining marks
-        # that stack, the dot above on an anchor of its own, top and bottom anchors clear of the letter, anchors on the
-        # precomposed letters and U+0323 (build2.Font2.stack_anchors)
+        # at least half the o's heavier side (symbols.ring_weight, ring_letters, heavier_ring), but © and ® at the
+        # figures' height with 0.4 of it, and ° no taller than 0.3 of the figures, its counter as wide as its ring;
+        # and combining marks that stack, the dot above on an anchor of its own, top and bottom anchors clear of the
+        # letter, anchors on the precomposed letters and U+0323 (build2.Font2.stack_anchors)
         APPROX_WHITE = 0.7
         RING_SHARE = 0.5
+        SIGN_RING_SHARE = 0.4
         MARK_STACKS = True
 
         def snap(self):

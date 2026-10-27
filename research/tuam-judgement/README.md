@@ -177,6 +177,10 @@ One rule for all four faces corrects each of three defects (`scripts/symbols.py`
 - **Rings.** © ® @ ° ¤ had rings of 50 to 77 beside an o of 216; each is now at least half of it, 110 (Italic 109
   to 115). © and ® grow outward (690 to 773 tall; Italic 784) and @ (807 to 839), their letters as drawn, 31 to 35
   from the ring; ° has a counter of 77 (63 before) and ¤ one of 165 (237).
+  The final review found © and ® taller than the figures and ° (163 to 297 tall) twice the bullet: © and ® keep the
+  figures' 690 with a ring of 0.4 of the o grown inward, 88, the c and r drawn 0.92 to 0.95 as large and 29 to 31
+  from it (`symbols.held_ring`); ° is no taller than 0.3 of the figures, 207, its ring 68 (Italic 61) and its
+  counter as wide (71, Italic 74) (`heavier_ring`).
 - **Combining marks.** The ponc construction sets ḃ's and ḋ's dot beside the ascender and ḟ's 60 above its stem,
   and the ponc's anchor was the only top anchor, so every top mark followed it: a diaeresis on b or d stood 64 and
   58 units into the ascender, and every mark stood 60 over f where it stands 30 over h, k and l. There was no mkmk

@@ -328,14 +328,14 @@ def study_class(face,traces):
                 if not names:continue
                 # the same constructions drawn again with the bold's whole stem (and the rings' weight as before)
                 P,t0=self.P,self.hyphen_thick
-                self.P,self.hyphen_thick,self.small_weight_now,self.rings_kept=dict(P),t,1.0,set(names)
+                self.P,self.hyphen_thick,self.small_weight_now=dict(P),t,1.0
                 try:symbols.make_symbols(self)
-                finally:heavy,self.P,self.hyphen_thick,self.small_weight_now,self.rings_kept=self.P,P,t0,None,None
+                finally:heavy,self.P,self.hyphen_thick,self.small_weight_now=self.P,P,t0,None
                 for n in names:
                     P[n]=heavy[n];self.made[n]+=', at the bold\'s full stem'
             if getattr(self,'RING_SHARE',None) and 'copyright' in full.get('in_rings',()):
-                # the fifth pass: © and ® share one ring (symbols.ring_letters), which the c at the whole stem may have
-                # grown: the ® is drawn again in it, its r as before
+                # the fifth pass: © and ® share one ring (symbols.ring_letters): the ® is drawn again at the rings'
+                # weight beside the © at the whole stem, its r as before
                 P,t0=self.P,self.hyphen_thick
                 self.P,self.hyphen_thick=dict(P),ring_rule
                 try:symbols.make_symbols(self)

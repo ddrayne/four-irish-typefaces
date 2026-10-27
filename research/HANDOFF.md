@@ -83,13 +83,16 @@ outline once from the drawing with its smooth joins kept, runs h's foot straight
 
 **All four faces: the fifth finishing pass**, one rule for every face, recorded as `fifth_pass` in each face's
 judged-edits.json and README and checked by `tests/test_fifth_pass.py`. ≈ is drawn at the ='s rule weight and
-spacing, centred on the math axis (`symbols.approx_sign`). The rings of © ® @ ° ¤ are at least half the o's heavier
-side, growing outward where the letters inside would close (`symbols.ring_weight`, `ring_letters`, `heavier_ring`).
+spacing, centred on the math axis (`symbols.approx_sign`). The rings of @ ¤ are at least half the o's heavier
+side, growing outward where the letters inside would close (`symbols.ring_weight`, `ring_letters`). The final
+review found that too much for the figure-size signs: © and ® keep the figures' height with 0.4 of the o, growing
+inward and drawing their letters smaller (`SIGN_RING_SHARE`, `ring_letters(hold=True)`), and ° grows to no more than
+0.3 of the figures with its counter as wide as its ring (`heavier_ring`, `DEGREE_SIZE`, `DEGREE_HOLE`).
 Combining marks clear their letters and stack: the dot above keeps the ponc's anchor (the Irish dotted letters and
 base + U+0307 are unchanged), every other top mark stands the accents' gap from the letter's ink, precomposed
 letters carry anchors, an mkmk feature stacks marks, the comma and dot below clear the descenders, and U+0323 is
 added (`build2.Font2.stack_anchors`). `scripts/build_candidate.py` switches it on (`APPROX_WHITE`, `RING_SHARE`,
-`MARK_STACKS`) for the release only.
+`SIGN_RING_SHARE`, `MARK_STACKS`) for the release only.
 
 [Round 4](round-04/README.md), Céilí Study 3: Four named original
 punctuation pieces replace the legacy cluster as construction inputs. Period,

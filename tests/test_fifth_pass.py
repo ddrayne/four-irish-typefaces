@@ -129,23 +129,49 @@ def ring_parts(ps, st, name):
 
 
 @pytest.mark.parametrize('ps,st', ALL)
-def test_rings_take_half_the_o(ps, st):
+def test_rings_take_the_o(ps, st):
     """The rings were hairlines beside the letters: ring against the o's side, Kilfane's © 0.34, Tuam's © 0.31 and @ 0.36,
-    Céilí's 0.39 (its Bold's ° 37 -> 41 and @ 57 -> 63 units for a stem 108 -> 169), Carrick's © ® 0.23. Every ring of
-    © ® @ ° ¤ is now at least half the o's heavier side."""
+    Céilí's 0.39 (its Bold's ° 37 -> 41 and @ 57 -> 63 units for a stem 108 -> 169), Carrick's © ® 0.23 and ° 0.18. Every
+    ring of @ ¤ is now at least half the o's heavier side, those of © ® (which keep the figures' height) 0.4 of it, and
+    °'s half of it or as near as a ring of its size comes with its counter as wide (a third of its height, less the
+    sloped styles' narrowing). In Céilí's bolds the r of ®, whose 12 to 14-unit mouth the slope and the grid would
+    shut, is not drawn smaller, and their © ® ring takes the white it leaves: 55 -> 66 (Bold Italic 61)."""
     o = o_side(ps, st)
-    names = ['copyright', 'registered', 'at', 'degree', 'currency'] + (['at.case'] if ps == 'KilfaneDigital' else [])
-    for n in names:
+    for n in ['at', 'currency'] + (['at.case'] if ps == 'KilfaneDigital' else []):
         rg, sides, span, rest = ring_parts(ps, st, n)
         assert min(sides) >= 0.5 * o, (st, n, sides, o)
+    held = ps == 'CeiliDigital' and 'Bold' in st
+    for n in ('copyright', 'registered'):
+        rg, sides, span, rest = ring_parts(ps, st, n)
+        assert min(sides) >= (1.1 * 55 if held else 0.4 * o), (st, n, sides, o)
+    rg, sides, span, rest = ring_parts(ps, st, 'degree'); b = bounds(rg)
+    assert min(sides) >= min(0.5 * o, (b[3] - b[1]) / 3 - 15), (st, sides, o, b)
+
+
+@pytest.mark.parametrize('ps,st', ALL)
+def test_the_figure_signs_keep_the_figures_height(ps, st):
+    """At half the o the rings grew © and ® past the figures (Carrick's 550 to 674 tall, Italic 700; Tuam's 690 to 773,
+    Italic 784; Céilí's Bold 565 to 634) and ° into a dot beside the figures, twice the bullet (Carrick's 149 to 324
+    tall, Tuam's 163 to 297, Céilí's Bold 162 to 269): © and ® stand from the baseline to the figures' height, the top of
+    º, and ° hangs from it, no taller than 0.3 of it, a bold's no more than 1.15 times its Regular's."""
+    top = bounds(outline(ps, st, 'ordmasculine'))[3]
+    for n in ('copyright', 'registered'):
+        b = bounds(outline(ps, st, n))
+        assert abs(b[1]) <= 2 and abs(b[3] - top) <= 2, (st, n, b, top)
+    b = bounds(outline(ps, st, 'degree'))
+    assert abs(b[3] - top) <= 2 and b[3] - b[1] <= 0.31 * top, (st, b, top)
+    if 'Bold' in st:
+        r = bounds(outline(ps, st.replace('Bold', '').strip() or 'Regular', 'degree'))
+        assert b[3] - b[1] <= 1.15 * (r[3] - r[1]), (st, b, r)
 
 
 @pytest.mark.parametrize('ps,st', ALL)
 def test_rings_keep_their_counters_and_letters_clear(ps, st):
     """A heavier ring must not close a counter or crowd its letter: the c of ©, the r of ® and the a of @ stand clear of
     their ring (Céilí's Bold Italic a stood 4 units from it) and keep the pieces and counters of the font's own letter
-    (Carrick's c and Tuam's r keep their cuts, Céilí's bold r its open bowl), ° stays a ring (its counter at least 0.6 of
-    its ring) and ¤'s counter at least 1.4 of its ring; © and ® share one ring."""
+    (Carrick's c and Tuam's r keep their cuts, Céilí's bold r its open bowl), ° stays a ring (its counter as wide as its
+    ring, the final review's rule: at 0.6 of it Carrick's read as a dot at text sizes) and ¤'s counter at least 1.4 of
+    its ring; © and ® share one ring."""
     def topology(p):
         a = [area(c) for c in contours(p)]
         return sum(v > 0 for v in a), sum(v < 0 for v in a)
@@ -155,7 +181,16 @@ def test_rings_keep_their_counters_and_letters_clear(ps, st):
         assert min(white(rg, q) for q in rest) >= 0.15 * min(sides), (st, n, [white(rg, q) for q in rest], sides)
         own = topology(outline(ps, st, src))
         assert topology(outline(ps, st, n)) == (own[0] + 1, own[1] + 1), (st, n, topology(outline(ps, st, n)), own)
-    for n, share in (('degree', 0.6), ('currency', 1.4)):
+        # its counters as open as its own letter's at that size (Carrick's ® r, drawn smaller at its own weight,
+        # kept 0.13 of its bowl): the inner letter's least counter at least 0.4 of the letter's, scaled to its height
+        holes = lambda p: sorted(-area(c) for c in contours(p) if area(c) < 0)
+        inner, mine = pathops.Path(), outline(ps, st, src)
+        for q in rest:
+            q.draw(inner.getPen())
+        k = (lambda b, c: (b[3] - b[1]) / (c[3] - c[1]))(bounds(inner), bounds(mine))
+        for a, b in zip(holes(mine), holes(inner)):
+            assert b >= 0.4 * k * k * a, (st, n, b, a, k)
+    for n, share in (('degree', 1.0), ('currency', 1.4)):
         rg, sides, span, rest = ring_parts(ps, st, n)
         assert not rest and topology(outline(ps, st, n)) == (1, 1) and span >= share * min(sides), (st, n, span, sides)
     # one ring (a sloped style may narrow one of them without its hair of weight, as Tuam's keeps © narrow)

@@ -135,9 +135,13 @@
     0.2,
     0.45
    ],
-   "degree_hole": 0.7,
+   "degree_hole": 1.0,
+   "degree_size": 0.3,
+   "sign_share": 0.4,
+   "hold_counter": 0.6,
    "currency_hole": 1.5,
-   "why": "the rings of © ® @ ° ¤ were 50 to 77 beside an o of 216; each is now at least half of it, 110 (Italic 109 to 115), © and ® grown outward (690 to 773 tall, Italic 784) and @ (807 to 839) with their letters as drawn, 31 to 35 from the ring; ° has a counter of 77 (63 before), ¤ one of 165 (237)"
+   "why": "the rings of © ® @ ° ¤ were 50 to 77 beside an o of 216; each is now at least half of it, 110 (Italic 109 to 115), © and ® grown outward (690 to 773 tall, Italic 784) and @ (807 to 839) with their letters as drawn, 31 to 35 from the ring; ° has a counter of 77 (63 before), ¤ one of 165 (237)",
+   "final_review": "the final review found © and ® taller than the figures (773, Italic 784, against 690) and ° 163 to 297 tall, twice the bullet: © and ® keep the figures' 690 with a ring of 0.4 of the o grown inward, 88, the c and r drawn 0.92 to 0.95 as large and 29 to 31 from it; ° is no taller than 0.3 of the figures, 207, its ring 68 (Italic 61) and its counter as wide, 71 (74) (symbols.held_ring, heavier_ring)"
   },
   "marks": {
    "added": [
