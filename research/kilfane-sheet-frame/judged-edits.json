@@ -210,9 +210,13 @@
     0.2,
     0.45
    ],
-   "degree_hole": 0.7,
+   "degree_hole": 1.0,
+   "degree_size": 0.3,
+   "sign_share": 0.4,
+   "hold_counter": 0.6,
    "currency_hole": 1.5,
-   "why": "the rings of © ® @ ° ¤ were hairlines of 31 to 43 (Bold 53 to 66) beside an o whose heavier side is 109 (Bold 160); each ring is now at least half of it, 56 (Italic 59 to 61, Bold 82 to 83, Bold Italic 86 to 87), grown inward as far as the c, r and a inside it leave room (© and ® stay 700 tall in the Regular and Italic, 709 and 714 in the Bold and Bold Italic) and outward beyond that, the letters kept as drawn and clear of the ring (the a of @ 33 from it in the Regular, 18 to 35 in the other styles); ° keeps a counter of 0.7 of its ring (56 by 64), ¤ one of 1.5 times it (237); at.case is @ on the capitals' middle"
+   "why": "the rings of © ® @ ° ¤ were hairlines of 31 to 43 (Bold 53 to 66) beside an o whose heavier side is 109 (Bold 160); each ring is now at least half of it, 56 (Italic 59 to 61, Bold 82 to 83, Bold Italic 86 to 87), grown inward as far as the c, r and a inside it leave room (© and ® stay 700 tall in the Regular and Italic, 709 and 714 in the Bold and Bold Italic) and outward beyond that, the letters kept as drawn and clear of the ring (the a of @ 33 from it in the Regular, 18 to 35 in the other styles); ° keeps a counter of 0.7 of its ring (56 by 64), ¤ one of 1.5 times it (237); at.case is @ on the capitals' middle",
+   "final_review": "the final review found the bolds' © and ® taller than the figures (709, 714) and their ° grown from 174 to 235 by 239 (Bold Italic 254), heavier than the bullet beside it: © and ® keep the figures' 700 with a ring of 0.4 of the o grown inward, 45 (Italic 48, Bold 66, Bold Italic 69), the c and R as drawn; ° is no taller than 0.3 of the figures, 187 (Italic 207, Bold 210, Bold Italic 211), its counter as wide as its ring (ring 55 to 66, counter 58 to 68) (symbols.held_ring, heavier_ring)"
   },
   "marks": {
    "added": [

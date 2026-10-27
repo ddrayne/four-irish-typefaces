@@ -156,6 +156,10 @@ A fifth pass, shared by the four faces, corrects three defects a fourth independ
   86 to 87), grown inward as far as the c, r and a leave room (© and ® stay 700 tall in the Regular and Italic, 709
   and 714 in the Bold styles) and outward beyond that, the letters as drawn and clear of the ring (the Regular's a
   33 from its ring); ° keeps a counter of 0.7 of its ring (56 by 64), ¤ one of 1.5 times it (237). at.case follows @.
+  The final review found the bolds' © and ® taller than the figures (709 and 714) and their ° twice its old size
+  (174 to 235 by 239, Bold Italic 254): © and ® keep the figures' 700 with a ring of 0.4 of the o grown inward (45,
+  Italic 48, Bold 66, Bold Italic 69), the c and R as drawn; ° is no taller than 0.3 of the figures (187, Italic
+  207, Bold 210, Bold Italic 211), its counter as wide as its ring (ring 55 to 66, counter 58 to 68).
 - **Combining marks** (judged). Every top mark used the ponc's anchor, there was no mkmk (x + circumflex + acute
   set the acute 154 units into the circumflex), no precomposed letter had anchors, the comma below ran 49 to 108
   units into the descenders of f g j y, and U+0323 had no glyph. The dot above keeps its anchor, so ḃ ċ ḋ ḟ ġ ṁ ṗ ṡ

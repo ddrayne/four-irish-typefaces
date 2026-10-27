@@ -133,16 +133,19 @@ def test_rings_take_the_o(ps, st):
     """The rings were hairlines beside the letters: ring against the o's side, Kilfane's © 0.34, Tuam's © 0.31 and @ 0.36,
     Céilí's 0.39 (its Bold's ° 37 -> 41 and @ 57 -> 63 units for a stem 108 -> 169), Carrick's © ® 0.23 and ° 0.18. Every
     ring of @ ¤ is now at least half the o's heavier side, those of © ® (which keep the figures' height) 0.4 of it, and
-    °'s half of it or as near as a ring of its size comes with its counter as wide (a third of its height)."""
+    °'s half of it or as near as a ring of its size comes with its counter as wide (a third of its height, less the
+    sloped styles' narrowing). In Céilí's bolds the r of ®, whose 12 to 14-unit mouth the slope and the grid would
+    shut, is not drawn smaller, and their © ® ring takes the white it leaves: 55 -> 66 (Bold Italic 61)."""
     o = o_side(ps, st)
     for n in ['at', 'currency'] + (['at.case'] if ps == 'KilfaneDigital' else []):
         rg, sides, span, rest = ring_parts(ps, st, n)
         assert min(sides) >= 0.5 * o, (st, n, sides, o)
+    held = ps == 'CeiliDigital' and 'Bold' in st
     for n in ('copyright', 'registered'):
         rg, sides, span, rest = ring_parts(ps, st, n)
-        assert min(sides) >= 0.4 * o, (st, n, sides, o)
+        assert min(sides) >= (1.1 * 55 if held else 0.4 * o), (st, n, sides, o)
     rg, sides, span, rest = ring_parts(ps, st, 'degree'); b = bounds(rg)
-    assert min(sides) >= min(0.5 * o, (b[3] - b[1]) / 3 - 10), (st, sides, o, b)
+    assert min(sides) >= min(0.5 * o, (b[3] - b[1]) / 3 - 15), (st, sides, o, b)
 
 
 @pytest.mark.parametrize('ps,st', ALL)

@@ -159,10 +159,10 @@ with style pickers, stylistic-set toggles and character grids.
 
 | Family | Styles | Code points | Glyphs | WOFF2 per style | Features |
 |---|---|---|---|---|---|
-| Kilfane Digital | Regular, Italic, Bold, Bold Italic | 402 | 458 | 50–55 KB | kern, mark, ccmp, salt, aalt, ss01 Roman forms, ss02 Insular forms |
-| Tuam Uncial Digital | Regular, Italic | 398 | 262 | 30–31 KB | kern, mark, ccmp |
-| Carrick Digital | Regular, Italic | 400 | 262 | 33–34 KB | kern, mark, ccmp |
-| Céilí Digital | Regular, Italic, Bold, Bold Italic | 408 | 317 | 35–40 KB | kern, mark, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
+| Kilfane Digital | Regular, Italic, Bold, Bold Italic | 403 | 472 | 55–66 KB | kern, mark, mkmk, ccmp, case, salt, aalt, ss01 Roman forms, ss02 Insular forms |
+| Tuam Uncial Digital | Regular, Italic | 399 | 263 | 30–33 KB | kern, mark, mkmk, ccmp |
+| Carrick Digital | Regular, Italic | 401 | 263 | 39 KB | kern, mark, mkmk, ccmp |
+| Céilí Digital | Regular, Italic, Bold, Bold Italic | 409 | 318 | 36–39 KB | kern, mark, mkmk, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
 
 Files are named `Family-Style` (`KilfaneDigital-BoldItalic.woff2`, `TuamUncialDigital-Italic.otf`).
 
