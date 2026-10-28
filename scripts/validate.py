@@ -2,12 +2,13 @@
 
   * the OpenType Sanitizer (as in Chrome and Firefox) on every font file;
   * Font Bakery's universal profile per family, family checks included;
-  * every glyph printed on the flyer against the scan (flyer-glyph-audit.md);
+  * every glyph printed on the flyer against the scan (flyer-glyph-audit.md), and where each regular's glyph
+    registers on it (flyer-registration.json, for the showcase's flyer);
   * the traced outlines over the scan, and the large-sample weight check.
 
 usage: python scripts/validate.py [--no-fontbakery]
 """
-import glob, os, subprocess, sys
+import glob, json, os, subprocess, sys
 import numpy as np
 from PIL import Image
 import paths
@@ -60,9 +61,10 @@ def flyer_audit():
            'an open question in the proof). Carrick is about a tenth lighter (−9%), and its figures and ? follow its own',
            'specimen, N513. Kilfane and Tuam Uncial are within a few per cent in weight and differ in detail, where their',
            'better prints differ from this copy.', '']
-    total = []
+    total, placed = [], {}
     for key in ('ceili', 'carrick', 'kilfane', 'tuam'):
-        rows, _ = audit_glyph.audit(key, fontpath=os.path.join(FONTDIR, 'otf', f'{CFG[key]["ps"]}-Regular.otf'))
+        placed[key] = {}
+        rows, _ = audit_glyph.audit(key, fontpath=os.path.join(FONTDIR, 'otf', f'{CFG[key]["ps"]}-Regular.otf'), placed=placed[key])
         rows.sort(key=lambda r: r[1])
         v = [r[1] for r in rows if r[0] != 'semicolon']; total += v
         out += [f'## {FAMS[key]}', '', f'{len(v)} glyphs, mean overlap {np.mean(v):.3f}' +
@@ -73,6 +75,10 @@ def flyer_audit():
             out.append(f'| `{n}` | {iou:.3f} | {miss:.2f} | {extra:.2f} | {area:+.1f}% | {note} |')
         out.append('')
     open(os.path.join(DOCS, 'flyer-glyph-audit.md'), 'w').write('\n'.join(out))
+    # where each regular's glyph registers on the scan, for the showcase's flyer (scripts/showcase.py, release_data)
+    with open(os.path.join(DOCS, 'flyer-registration.json'), 'w') as fh:
+        json.dump(dict(version=VERSION, faces=placed), fh, ensure_ascii=False, indent=1, sort_keys=True)
+        fh.write('\n')
     print(f'flyer audit: {len(total)} glyphs, mean overlap {np.mean(total):.3f}')
 
 

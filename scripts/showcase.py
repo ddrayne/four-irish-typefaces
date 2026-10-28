@@ -9,6 +9,8 @@ data generated from the fonts and sources:
   data/site.json    per face: styles, character map, stylistic sets; Unicode names;
                     the flyer audit (overlap per glyph); where each face sits on the flyer
   data/traced.json  every traced flyer glyph as an SVG path in scan pixels (the page reads the points back from it)
+  data/release.json the same glyphs of each released Regular, registered on the scan as the flyer audit registers
+                    them (docs/validation/flyer-registration.json), with each one's overlap with the print
   data/outlines/    each released style's glyphs as outlines, metrics and kerning, for the poster maker
 
 --artifact also writes build/showcase-artifact/: the same site with the page split
@@ -25,6 +27,7 @@ DEST = os.path.join(paths.BUILD, 'showcase')
 WOFF2 = os.path.join(paths.ROOT, 'fonts', 'woff2')
 OTF = os.path.join(paths.ROOT, 'fonts', 'otf')
 AUDIT = os.path.join(paths.ROOT, 'docs', 'validation', 'flyer-glyph-audit.md')
+REGISTRATION = os.path.join(paths.ROOT, 'docs', 'validation', 'flyer-registration.json')
 ORDER = ['ceili', 'carrick', 'kilfane', 'tuam']
 STYLE = {'Regular': (400, 'normal'), 'Italic': (400, 'italic'), 'Bold': (700, 'normal'), 'Bold Italic': (700, 'italic')}
 HEADINGS = {'Céilí': 'ceili', 'Carrick': 'carrick', 'Kilfane': 'kilfane', 'Tuam Uncial': 'tuam'}
@@ -185,6 +188,44 @@ def audit_data():
         if m and face:
             audit[face]['glyphs'][m.group(1)] = float(m.group(2))
     return audit
+
+
+def svg_path(rec):
+    """A RecordingPen's outline as SVG path data (two decimals) and its bounds."""
+    d, xs, ys = [], [], []
+    for op, args in rec:
+        for x, y in args:
+            xs.append(x); ys.append(y)
+        if op in ('moveTo', 'lineTo'):
+            (x, y), = args
+            d.append(f'{op[0].upper()}{x:.2f} {y:.2f}')
+        elif op in ('curveTo', 'qCurveTo'):
+            d.append(('C' if op == 'curveTo' else 'Q') + ' '.join(f'{x:.2f} {y:.2f}' for x, y in args))
+        elif op in ('closePath', 'endPath'):
+            d.append('Z')
+    return ''.join(d), [round(min(xs), 2), round(min(ys), 2), round(max(xs), 2), round(max(ys), 2)]
+
+
+def release_data():
+    """Each released Regular's flyer glyphs on the scan, where the flyer audit registers them (scripts/validate.py writes
+    the registration with the audit): {face: [{n, d, b, o}]}, d an SVG path in scan pixels, o its overlap with the print."""
+    from fontTools.pens.recordingPen import RecordingPen
+    from fontTools.pens.transformPen import TransformPen
+    reg = json.load(open(REGISTRATION, encoding='utf-8'))
+    if reg['version'] != VERSION:
+        print(f'warning: the flyer registration is for {reg["version"]}, not {VERSION}: run scripts/validate.py', file=sys.stderr)
+    out = {}
+    for k in ORDER:
+        gs = TTFont(os.path.join(OTF, f'{FONTS[k]["ps"]}-Regular.otf')).getGlyphSet()
+        out[k] = []
+        for n, r in sorted(reg['faces'][k].items()):
+            if r['g'] not in gs:
+                continue
+            rec = RecordingPen()       # font units to scan pixels: ((x - x0) / s + bx + dx, b0 + dy - y / s)
+            gs[r['g']].draw(TransformPen(rec, (1 / r['s'], 0, 0, -1 / r['s'], r['bx'] + r['dx'] - r['x0'] / r['s'], r['b0'] + r['dy'])))
+            d, b = svg_path(rec.value)
+            out[k].append(dict(n=n, d=d, b=b, o=r['iou']))
+    return out
 
 
 def traced_data():
@@ -465,6 +506,7 @@ def build():
         json.dumps(obj, ensure_ascii=False, separators=(',', ':')))
     dump(site, 'site.json')
     dump(glyphs, 'traced.json')
+    dump(release_data(), 'release.json')
     outline_data(DEST)
     social(DEST)
     zip_href = RELEASE_ZIP

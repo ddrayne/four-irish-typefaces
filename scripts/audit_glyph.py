@@ -29,7 +29,10 @@ def font_polys(gs, name):
     return flatten(rec.value, steps=24)
 
 
-def audit(font, only=None, fontpath=None):
+def audit(font, only=None, fontpath=None, placed=None):
+    """The rows of the audit (and its sheets); with `placed`, a dict, each glyph's registration on the scan too:
+    font glyph name, scale, ink left edge and the line's baseline, so that a font point (x, y) lands at scan
+    ((x - x0) / s + bx + dx, b0 + dy - y / s)."""
     cfg = FONTS[font]; s = SCALE[font]
     fontpath = fontpath or f'{OUT}/{cfg["ps"]}-Regular.otf'
     tt = TTFont(fontpath); gs = tt.getGlyphSet()
@@ -63,6 +66,9 @@ def audit(font, only=None, fontpath=None):
         best = max((fit(dx, dy) for dx in np.arange(-2, 2.01, 0.25) for dy in np.arange(-1.5, 1.51, 0.25)), key=lambda t: t[0])
         best = max([best] + [fit(best[1] + a, best[2] + b) for a in (-0.125, 0, 0.125) for b in (-0.125, 0, 0.125)], key=lambda t: t[0])
         iou, dx, dy, m, xf = best
+        if placed is not None:
+            placed[name] = dict(g=fname, s=s, x0=round(float(X0), 3), bx=round(float(r['b'][0]), 3), b0=round(float(b0), 3),
+                                dx=round(float(dx), 3), dy=round(float(dy), 3), iou=round(float(iou), 3))
         scan_only = target & ~m; font_only = m & ~target
         # thickness of disagreement: how far (source px) the worst miss reaches into each region
         depth = lambda a: float(ndi.distance_transform_edt(a).max() / F) if a.any() else 0.0

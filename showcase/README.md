@@ -60,6 +60,8 @@ repository, so the site always shows the current release and research:
 - `data/site.json`: each face's styles, character map and stylistic sets, Unicode
   names, the per-glyph overlap scores from `docs/validation/flyer-glyph-audit.md`,
   where each face sits on the flyer, and the research studies
+- `data/release.json`: the same glyphs of each released Regular, registered on the scan as the flyer audit
+  registers them (`docs/validation/flyer-registration.json`), with each one's overlap with the print
 - `data/traced.json`: every traced flyer glyph as an SVG path in scan pixels
 - `data/outlines/<Family>-<Style>.json`: every glyph of each released style as outlines,
   with its advance and ink bounds, the flattened kerning and the stylistic sets, for the

@@ -147,6 +147,11 @@
         <button type="button" class="tog" data-ev-mode="points" aria-pressed="false">Points</button>
         <button type="button" class="tog" data-ev-mode="wipe" aria-pressed="false">Compare</button>
       </div>
+      <div class="ev-modes ev-sets" role="group" aria-label="Which letters to show">
+        <span class="ev-sets-l mono">Letters</span>
+        <button type="button" class="tog" data-ev-set="trace" aria-pressed="true">First tracing</button>
+        <button type="button" class="tog" data-ev-set="release" aria-pressed="false">{{V}}</button>
+      </div>
     </div>
     <ol class="ev-steps">
       <li class="ev-step" data-view="flyer">
@@ -162,17 +167,18 @@
       <li class="ev-step" data-view="wipe">
         <p class="ev-num mono">Compare</p>
         <h3>Print and tracing</h3>
-        <p>Drag across the picture: the 1978 print, toner specks and all, on one side of the line, the first tracing filled in on the other.</p>
+        <p>Drag across the picture: the 1978 print, toner specks and all, on one side of the line, the first tracing filled in on the other. Switch the letters to {{V}} to set today's fonts against the same print.</p>
       </li>
       <li class="ev-step" data-view="sheet">
         <p class="ev-num mono">S53909</p>
         <h3>A photograph of the transfer sheet</h3>
         <p>At the foot of the flyer is a photograph of Kilfane's transfer sheet, with the same letters printed dozens of times. Its fine print reads <span class="mono">©1973</span>, five years before the competition. That may be where the 1973 dates in some references come from, but a printed copyright line does not date the sheet itself.</p>
       </li>
-      <li class="ev-step" data-view="flyer">
+      <li class="ev-step" data-view="release">
         <p class="ev-num mono">Since 3.0</p>
         <h3>Drawn again from the originals</h3>
         <p>A photocopy at 97 dots per inch loses too much, so the fonts are now drawn from better prints in William Curran's archive at the National Irish Visual Arts Library. Kilfane comes from its <a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/516/">alphabet specimen</a>, with its capitals averaged over every impression on its <a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/517/">transfer sheets</a>; Carrick from its <a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/513/">alphabet</a> and the impressions on its <a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/514/">transfer sheets</a>; Tuam Uncial and Céilí from a sharper <a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/46/">scan of this flyer</a>, averaged with the clean offset print in the <a href="https://nival.contentdm.oclc.org/digital/collection/p21086coll129/id/45/">competition brochure</a>.</p>
+        <p>In pink, the {{V}} letters, set where the print has them. Tuam Uncial and Kilfane follow this copy closely. Céilí is drawn about a fifth heavier than it, and Carrick a little lighter, with its figures from its own specimen. Hover a letter for its overlap with the print, or compare it with the wipe.</p>
       </li>
     </ol>
   </div>

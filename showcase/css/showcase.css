@@ -300,6 +300,10 @@ body::after {
 .ev-paths.fill path { fill: rgba(0, 159, 88, .32); }
 .ev-paths.score path { stroke: none; }
 .ev-paths path.hot { stroke: #FF6A1F; stroke-width: 2.5; }
+.ev-paths.rel path { stroke: #E33B87; }
+.ev-paths.rel.fill path { fill: rgba(227, 59, 135, .3); }
+.ev-sets { align-items: center; }
+.ev-sets-l { font-size: .8rem; text-transform: uppercase; color: var(--ink-2); margin-right: 4px; }
 .ev-handles line { stroke: #FF6A1F; stroke-width: 1; vector-effect: non-scaling-stroke; }
 .ev-handles circle { fill: #F4F2EA; stroke: #FF6A1F; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
 .ev-handles rect { fill: #009F58; stroke: #F4F2EA; stroke-width: 1; vector-effect: non-scaling-stroke; }
