@@ -1,8 +1,9 @@
-import { $, $$, reduced, easeInOut, clamp } from './util.js';
+import { $, $$, reduced, easeInOut, clamp, NAME } from './util.js';
 
 // The flyer, scrolled through as evidence. The scan is drawn with its real pixels
-// (no smoothing), and the outlines traced from it are drawn on top in the same
-// coordinates, so what you see is exactly the match between print and font.
+// (no smoothing), and the outlines traced from it, or the released letters registered
+// on it, are drawn on top in the same coordinates, so what you see is exactly the match
+// between print and font.
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const el = (name, attrs = {}) => {
@@ -27,9 +28,13 @@ const pad = (b, f, min = 0) => {
 export async function init(section, data) {
   const img = $('image', section);
   img.setAttribute('href', img.dataset.href);     // the scan loads with this section, not with the page
-  const traced = await fetch('data/traced.json').then((r) => r.json());
+  // the first tracing (versions up to 2.1) and the released letters, each glyph where it sits on the scan
+  const [traced, release] = await Promise.all(['traced', 'release'].map((f) => fetch(`data/${f}.json`).then((r) => r.json())));
+  const SETS = { trace: traced, release };
   // each glyph's points, read back from its path data: [x, y, on-curve]
-  for (const face of Object.keys(traced)) for (const gl of traced[face]) gl.p = pointsOf(gl.d);
+  for (const S of Object.values(SETS)) for (const face of Object.keys(S)) for (const gl of S[face]) gl.p = pointsOf(gl.d);
+  const V = data.v;
+  let set = 'trace';
   const { regions, w: FW, h: FH } = data.flyer;
   const svg = $('.ev-svg', section);
   const stage = $('[data-ev-stage]', section);
@@ -37,9 +42,13 @@ export async function init(section, data) {
   const tip = $('[data-ev-tip]', section);
   const g = { boxes: $('.ev-boxes', svg), paths: $('.ev-paths', svg), handles: $('.ev-handles', svg), marks: $('.ev-marks', svg) };
   const modeBtns = $$('[data-ev-mode]', section);
+  const setBtns = $$('[data-ev-set]', section);
 
-  const glyphsIn = (face, rect) => (traced[face] || []).filter((gl) => gl.b[2] > rect[0] && gl.b[0] < rect[2] && gl.b[3] > rect[1] && gl.b[1] < rect[3]);
+  const glyphsIn = (face, rect) => (SETS[set][face] || []).filter((gl) => gl.b[2] > rect[0] && gl.b[0] < rect[2] && gl.b[3] > rect[1] && gl.b[1] < rect[3]);
   const find = (face, name) => (traced[face] || []).find((gl) => gl.n === name);
+  const union = (...rs) => [Math.min(...rs.map((r) => r[0])), Math.min(...rs.map((r) => r[1])), Math.max(...rs.map((r) => r[2])), Math.max(...rs.map((r) => r[3]))];
+  // how closely each face's released letters match this print (the flyer audit's mean overlap)
+  const overlap = (faces) => faces.map((f) => `${NAME[f]} ${data.audit?.[f]?.mean?.toFixed(3) ?? '–'}`).join(' · ');
   const focusGlyph = find('kilfane', 'G') || traced.kilfane[0];
 
   const VIEWS = {
@@ -47,13 +56,14 @@ export async function init(section, data) {
     cut: { rect: pad(regions.kilfane, 0.04), face: 'kilfane', mode: 'boxes', cap: () => `Kilfane · ${traced.kilfane.length} glyphs cut out` },
     trace: { rect: pad(focusGlyph.b, 0.55), face: 'kilfane', mode: 'points', focus: focusGlyph, cap: () => `Kilfane ${focusGlyph.n} · ${focusGlyph.p.filter((p) => p[2]).length} points` },
     wipe: { rect: pad(regions.carrick, 0.03), mode: 'wipe', cap: () => 'Left: the 1978 print · right: the traced outlines' },
+    release: { rect: pad(union(regions.kilfane, regions.tuam), 0.03), face: ['kilfane', 'tuam'], mode: 'outline', set: 'release', cap: () => 'Kilfane and Tuam Uncial on the flyer' },
     sheet: { rect: [170, 960, 600, 1110], mode: 'scan', marks: [{ x: 398, y: 1040.5, rx: 11, ry: 5.5, rot: -12, label: '©1973' }, { x: 735, y: 962, rx: 34, ry: 11, rot: -9, label: 'S53909' }], cap: () => 'Sheet S53909 · photographed on the flyer' },
   };
 
   let vb = [0, 0, FW, FH];
   let view = VIEWS.flyer, mode = 'scan', anim = 0;
 
-  // The wipe: every traced outline, filled, over paper, clipped to the right of a line.
+  // The wipe: every outline of the letters shown, filled, over paper, clipped to the right of a line.
   let frac = 0.5;
   const defs = el('defs');
   const clip = el('clipPath', { id: 'ev-clip' });
@@ -62,7 +72,12 @@ export async function init(section, data) {
   const wipe = el('g', { class: 'ev-wipe', display: 'none' });
   const wipeArt = el('g', { 'clip-path': 'url(#ev-clip)' });
   wipeArt.appendChild(el('rect', { x: -FW, y: -FH, width: FW * 3, height: FH * 3, fill: '#F4F2EA' }));
-  for (const face of Object.keys(traced)) for (const gl of traced[face]) wipeArt.appendChild(el('path', { d: gl.d, fill: '#15160F' }));
+  const wipeSets = {};
+  for (const [k, S] of Object.entries(SETS)) {
+    wipeSets[k] = el('g', { display: k === set ? 'inline' : 'none' });
+    for (const face of Object.keys(S)) for (const gl of S[face]) wipeSets[k].appendChild(el('path', { d: gl.d, fill: '#15160F' }));
+    wipeArt.appendChild(wipeSets[k]);
+  }
   const wipeLine = el('line', { class: 'ev-wipe-line' });
   const wipeKnob = el('circle', { class: 'ev-wipe-knob' });
   wipe.append(wipeArt, wipeLine, wipeKnob);
@@ -122,6 +137,7 @@ export async function init(section, data) {
     const frag = document.createDocumentFragment();
     for (const gl of list) {
       const p = el('path', { d: gl.d, pathLength: 1, 'data-n': gl.n, 'data-face': gl.face });
+      if (gl.o != null) p.dataset.o = gl.o.toFixed(3);
       if (cls?.fill) p.style.fill = cls.fill(gl);
       if (cls?.hot === gl.n) p.classList.add('hot');
       frag.appendChild(p);
@@ -146,11 +162,22 @@ export async function init(section, data) {
     g.handles.appendChild(frag);
   }
 
+  function caption(pool) {
+    const faces = [].concat(view.face || []);
+    if (mode === 'wipe') return `Left: the 1978 print · right: ${set === 'release' ? `the ${V} letters` : 'the first tracing'}`;
+    if (set === 'release' && (mode === 'outline' || mode === 'points') && faces.length) {
+      const focus = mode === 'points' && view.focus && pool.find((p) => p.n === view.focus.n);
+      return focus ? `${NAME[faces[0]]} ${focus.n} · ${V} · ${focus.p.filter((p) => p[2]).length} points` : `${V} on the print · overlap ${overlap(faces)}`;
+    }
+    if (mode === 'outline' && view !== VIEWS.cut && faces.length) return `The first tracing · ${faces.map((f) => NAME[f]).join(' · ')}`;
+    return view.cap();
+  }
+
   function render() {
     clear();
-    const face = view.face;
+    const faces = [].concat(view.face || []);
     const rect = view.rect;
-    const pool = face ? glyphsIn(face, pad(rect, 0.3)).map((gl) => ({ ...gl, face })) : [];
+    const pool = faces.flatMap((face) => glyphsIn(face, pad(rect, 0.3)).map((gl) => ({ ...gl, face })));
     if (mode === 'boxes') {
       pool.forEach((gl, i) => {
         const r = el('rect', { x: gl.b[0] - 0.8, y: gl.b[1] - 0.8, width: gl.b[2] - gl.b[0] + 1.6, height: gl.b[3] - gl.b[1] + 1.6 });
@@ -159,6 +186,7 @@ export async function init(section, data) {
       });
       requestAnimationFrame(() => requestAnimationFrame(() => g.boxes.classList.add('show')));
     } else if (mode === 'outline' || mode === 'points') {
+      g.paths.classList.toggle('rel', set === 'release');
       drawPaths(pool);
       if (mode === 'points') {
         const fg = view.focus && pool.find((p) => p.n === view.focus.n) ? [view.focus] : pool.slice(0, 6);
@@ -167,12 +195,14 @@ export async function init(section, data) {
       requestAnimationFrame(() => requestAnimationFrame(() => g.paths.classList.add('show')));
     }
     wipe.setAttribute('display', mode === 'wipe' ? 'inline' : 'none');
+    for (const [k, w] of Object.entries(wipeSets)) w.setAttribute('display', k === set ? 'inline' : 'none');
     svg.classList.toggle('wiping', mode === 'wipe');
     if (mode === 'wipe') placeWipe();
     (view.marks || []).forEach(mark);
     sizeHandles();
     modeBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.evMode === mode || (mode === 'boxes' && b.dataset.evMode === 'outline'))));
-    cap.textContent = view.cap();
+    setBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.evSet === set)));
+    cap.textContent = caption(pool);
   }
 
   function mark(m) {
@@ -185,6 +215,7 @@ export async function init(section, data) {
   function show(name) {
     view = VIEWS[name] || VIEWS.flyer;
     mode = view.mode;
+    set = view.set || 'trace';
     render();
     zoomTo(view.rect);
   }
@@ -196,6 +227,15 @@ export async function init(section, data) {
     else {
       if (!view.face) { view = { ...VIEWS.cut, mode: m }; zoomTo(view.rect); }
       mode = m;
+    }
+    render();
+  }));
+  // Which letters the outlines, points and wipe show: the first tracing or the release.
+  setBtns.forEach((b) => b.addEventListener('click', () => {
+    set = b.dataset.evSet;
+    if (mode === 'scan' || mode === 'boxes') {
+      if (!view.face) { view = { ...VIEWS.cut, mode: 'outline' }; zoomTo(view.rect); }
+      mode = 'outline';
     }
     render();
   }));
@@ -212,11 +252,11 @@ export async function init(section, data) {
   svg.addEventListener('pointercancel', () => { wiping = false; });
   svg.addEventListener('pointermove', (e) => { if (mode === 'wipe' && (wiping || e.pointerType === 'mouse')) wipeAt(e); });
 
-  // Hover a traced glyph for its name.
+  // Hover a glyph for its name (and a released letter for its overlap with the print).
   svg.addEventListener('pointermove', (e) => {
     const p = e.target.closest?.('path');
-    if (!p) { tip.hidden = true; return; }
-    tip.textContent = p.dataset.n;
+    if (!p || !p.dataset.n) { tip.hidden = true; return; }
+    tip.textContent = p.dataset.o ? `${p.dataset.n} · overlap ${p.dataset.o}` : p.dataset.n;
     tip.hidden = false;
   });
   svg.addEventListener('pointerleave', () => { tip.hidden = true; });
