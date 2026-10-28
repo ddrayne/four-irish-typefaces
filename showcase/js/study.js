@@ -16,7 +16,7 @@ export async function init(root, data) {
   const outlines = info.glyphs.length > 0;
 
   const intro = outlines
-    ? `Since 3.0 the released ${family} is built from <b>${latest.family}</b>, which redraws ${name} from better reproductions in the William Curran Archive at the National Irish Visual Arts Library; finishing passes then settle its outlines, signs and spacing. Green is the release; orange is the study as drawn. Where they agree, the inks print dark.`
+    ? `Since 3.0 the released ${family} is built from <b>${latest.family}</b>, which redraws ${name} from better reproductions in the William Curran Archive at the National Irish Visual Arts Library; finishing passes then settle its outlines, signs and spacing. Green is the release; orange is the study as drawn. Where they agree, the inks print dark. The study's sources, measurements and corrections are in its <a href="${data.repo}/tree/main/research/${latest.round}">research notes on GitHub</a>.`
     : `<b>${latest.family}</b> keeps ${family}'s outlines as released and adjusts only its spacing; better sources for its letters are still being sought. It is work in progress, not a release.`;
 
   // Closed until asked for: the faces come first, the study after.

@@ -477,8 +477,10 @@ def social(dest):
 
 # The fonts are published as GitHub release assets (.github/workflows/release.yml builds them from the
 # version's tag): this site does not host them for download or for other sites to link.
-RELEASES = 'https://github.com/ddrayne/four-irish-typefaces/releases'
+REPO = 'https://github.com/ddrayne/four-irish-typefaces'
+RELEASES = f'{REPO}/releases'
 RELEASE_ZIP = f'{RELEASES}/download/v{VERSION}/four-irish-typefaces-fonts-v{VERSION}.zip'
+RELEASE_NOTES = f'{RELEASES}/tag/v{VERSION}'
 
 def build():
     if os.path.exists(DEST):
@@ -500,7 +502,7 @@ def build():
         shutil.copy(path, os.path.join(DEST, 'fonts', file))
         css += '@font-face{font-family:"%s";src:url("../fonts/%s") format("woff2");font-weight:400;font-style:normal;font-display:swap}\n' % (family, file)
     open(os.path.join(DEST, 'css', 'faces.css'), 'w', encoding='utf-8').write(css)
-    site = dict(v=VERSION, order=ORDER, faces=faces, names=names, audit=audit_data(), studies=studies,
+    site = dict(v=VERSION, repo=REPO, order=ORDER, faces=faces, names=names, audit=audit_data(), studies=studies,
                 flyer=dict(w=803, h=1125, regions=regions))
     dump = lambda obj, fn: open(os.path.join(DEST, 'data', fn), 'w', encoding='utf-8').write(
         json.dumps(obj, ensure_ascii=False, separators=(',', ':')))
@@ -518,7 +520,7 @@ def build():
     # which most sharing services require; without it they stay relative.
     site_url = os.environ.get('SITE_URL', '').rstrip('/')
     html = open(os.path.join(DEST, 'index.html'), encoding='utf-8').read()
-    html = html.replace('{{V}}', VERSION).replace('{{SITE}}', site_url + '/' if site_url else '').replace('{{ZIP}}', zip_href)
+    html = html.replace('{{V}}', VERSION).replace('{{SITE}}', site_url + '/' if site_url else '').replace('{{ZIP}}', zip_href).replace('{{NOTES}}', RELEASE_NOTES).replace('{{REPO}}', REPO)
     open(os.path.join(DEST, 'index.html'), 'w', encoding='utf-8').write(html)
     print('built', DEST)
 
