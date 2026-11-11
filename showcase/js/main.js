@@ -77,3 +77,25 @@ for (const host of $$('[data-alts]')) {
     }
   }
 }
+
+// A link to a section far down the page: the sections above it take their real height only as they come
+// into view, so the smooth scroll lands short of where it aimed (the Try link stopped 2,800 px above its
+// section). When the scroll settles, the section is put where the link promised, and again if it moved.
+addEventListener('click', (e) => {
+  const a = e.target.closest?.('a[href^="#"]');
+  const id = a && a.getAttribute('href').slice(1);
+  const target = id && !id.includes('/') && document.getElementById(id);
+  if (!target) return;
+  const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  let tries = 0, last = null, still = 0;
+  const settle = () => {
+    const top = target.getBoundingClientRect().top;
+    if (top === last) still++; else { still = 0; last = top; }
+    if (still < 3) return void setTimeout(settle, 80);            // still scrolling, or the page still growing
+    if (Math.abs(top - pad) > 24 && tries++ < 4) {
+      target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      still = 0; last = null; setTimeout(settle, 120);
+    }
+  };
+  setTimeout(settle, 200);
+});
