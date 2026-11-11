@@ -25,12 +25,27 @@ const parts = [
   ['.shop', './shopfront.js'],
   ['.poster', './poster.js'],
   ['.glyphs', './glyphs.js'],
+  ['.prov', './provenance.js'],
 ];
 for (const [sel, mod, near] of parts) {
   const el = $(sel);
   if (!el) continue;
   onNear(near ? $(near) : el, () => import(mod).then((m) => m.init(el, data)).catch((err) => console.error(mod, err)));
 }
+
+// A link to one glyph's provenance (#provenance/kilfane/G) names no element: go to the map, which loads and reads it.
+const toProvenance = () => {
+  const el = location.hash.startsWith('#provenance/') && $('.prov');
+  if (!el) return;
+  // parts above it load as the page passes them and push it down: hold it until the page settles or the reader moves
+  const go = () => el.scrollIntoView({ behavior: 'instant' });
+  const ro = new ResizeObserver(go);
+  const stop = () => ro.disconnect();
+  go(); ro.observe(document.body); setTimeout(stop, 3000);
+  for (const ev of ['wheel', 'touchstart', 'keydown', 'pointerdown']) addEventListener(ev, stop, { once: true, passive: true });
+};
+addEventListener('hashchange', toProvenance);
+toProvenance();
 
 // The research panels (closed disclosures, opened on request) add a line to the page when
 // they appear, so build them straight away, while the reader is still near the top.
