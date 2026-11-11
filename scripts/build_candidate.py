@@ -92,6 +92,10 @@ def build(face, traces, version):
         # clear in every direction, not only across (study_spacing.clear_round)
         DOTLESS_ALTS = {'dotlessj': ('j.alt1',)} if face == 'ceili' else {}
         CLEAR_ROUND = True
+        # A candidate only (BARS=1 in the environment; not the release until it is judged): the bars of đ ð ħ ł ŧ at
+        # half the stem in Kilfane, Carrick and Tuam, and Céilí's bars and ø stroke cut by the pen, not rounded
+        BAR_SHARE = 0.5 if os.environ.get('BARS') and face != 'ceili' else None
+        BAR_CUT = bool(os.environ.get('BARS')) and face == 'ceili'
 
         def snap(self):
             super().snap()

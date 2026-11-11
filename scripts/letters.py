@@ -31,7 +31,7 @@ def clip(p, x0=-1e4, y0=-1e4, x1=1e4, y1=1e4):
 
 
 def bar(f, x0, x1, yc, t):
-    st = f.style
+    st = 'chisel' if getattr(f, 'BAR_CUT', False) else f.style     # a pen face cuts its bars' ends (Céilí)
     if st == 'round':
         return SH.capsule(x0 + t / 2, x1 - t / 2, yc, t)
     if st == 'chisel':
@@ -55,6 +55,11 @@ def make_letters(f):
     # (Céilí's bold, whose rules are drawn heavier than its pen's crossbars: build_original_study.py)
     w = getattr(f, 'crossbar_weight', None) or f.hyphen_thick
     t_bar = 0.62 * w if f.style != 'round' else 0.7 * w
+    # BAR_SHARE (a finishing pass): the bars of đ ð ħ ł ŧ take that share of the stem, the weight of the face's own
+    # crossbars at their thinnest, where 0.62 of the hyphen left them a hairline across a black letter
+    t_light = t_bar
+    if getattr(f, 'BAR_SHARE', None):
+        t_bar = max(t_bar, f.BAR_SHARE * S)
     cases = [('', xh, asc)] if f.cfg['unicase'] else [('', xh, asc), ('UC', cap, cap)]
 
     # --- æ œ (and Æ Œ): overlap the right stroke of the first letter with the second
@@ -71,7 +76,7 @@ def make_letters(f):
             continue
         x0, y0, x1, y1 = bounds(P[base]); ext = 0.06 * top
         st = SH.wedge((x0 - 0.02 * top, y0 - ext), (x1 + 0.02 * top, y1 + ext), 0.21 * S, 0.21 * S,
-                      rounded=(f.style == 'round'))
+                      rounded=(f.style == 'round' and not getattr(f, 'BAR_CUT', False)))
         P[name] = SH.union(P[base], st); made[name] = f'{base}+stroke'
 
     # --- đ ð Đ Ð: bar across the ascender / left stem
@@ -82,6 +87,26 @@ def make_letters(f):
         P['dcroat'] = SH.union(P['d'], bar(f, s0 - 0.55 * w - 0.05 * xh, s1 + 0.55 * w + 0.05 * xh, yb, t_bar))
         P['eth'] = SH.union(P['d'], SH.rotate(bar(f, s0 - 0.55 * w - 0.05 * xh, s1 + 0.55 * w + 0.05 * xh, yb, t_bar),
                                               14, (s0 + s1) / 2, yb))
+        if getattr(f, 'BAR_SHARE', None):
+            # the heavier bar must leave the letter's openings as they are: Tuam's d is cut open at the top of its
+            # bowl, and the sloped bar's low end closed the cut. The bar gives up weight until the d keeps
+            # its pieces and counters, with 12 units to spare
+            def topology(q):
+                from fontTools.pens.areaPen import AreaPen
+                a = []
+                for c in contours(pathops.simplify(q, fix_winding=True, keep_starting_points=False, clockwise=False)):
+                    ap = AreaPen(); c.draw(ap); a.append(ap.value)
+                return sum(v > 0 for v in a), sum(v < 0 for v in a)
+            import bolden
+            clear = lambda q: topology(bolden.grow(q, 6.0, 6.0))       # and by 12 units, not by a hair
+            want = topology(P['d']), clear(P['d'])
+            # the bar is lightened step by step towards the release's weight, where it crossed clear; only then drawn in
+            tries = [(1.0, t_light + j * (t_bar - t_light)) for j in (1.0, 0.75, 0.5, 0.25, 0.0)] + [(k, t_light) for k in (0.8, 0.6, 0.4, 0.2, 0.0)]
+            for k, t in tries:
+                e = SH.union(P['d'], SH.rotate(bar(f, s0 - k * (0.55 * w + 0.05 * xh), s1 + 0.55 * w + 0.05 * xh, yb, t),
+                                               14, (s0 + s1) / 2, yb))
+                if (topology(e), clear(e)) == want:
+                    P['eth'] = e; break
         made['dcroat'] = 'd+bar'; made['eth'] = 'd+slanted bar'
     if not f.cfg['unicase']:
         D = P['D']; yb = 0.48 * cap; s0, s1 = stem_at(D, yb, 'left')
