@@ -327,6 +327,19 @@ def main():
         # load every face before measuring: document.fonts.ready alone can resolve before a font is asked for
         page.evaluate('Promise.all([...document.fonts].map(f => f.load())).then(() => document.fonts.ready).then(() => true)')
         page.evaluate(FIT)
+        # a wide face's text can run a few lines over its page and print a nearly empty sheet: the page's last text
+        # block then gives up whole sentences until the page holds (a proof shows the setting, not the whole text)
+        trimmed = page.evaluate('''() => { const room = 263 * 96 / 25.4, out = [];
+            document.querySelectorAll('.page').forEach((pg, i) => { const paras = [...pg.querySelectorAll('.para')].reverse();
+                let n = 0, went = true;
+                while (pg.getBoundingClientRect().height > room && went) { went = false;
+                    for (const para of paras) {             // the last block first, then each before it, a sentence a turn
+                        if (pg.getBoundingClientRect().height <= room) break;
+                        const cut = para.textContent.replace(/\\s*[^.?!]+[.?!]?\\s*$/, '');
+                        if (cut.trim() && cut !== para.textContent) { para.textContent = cut; n++; went = true; } } }
+                if (n) out.push([i + 1, n]); }); return out; }''')
+        if trimmed:
+            print('shortened to fit: ' + ', '.join(f'page {i} by {n} sentence{"s" * (n > 1)}' for i, n in trimmed))
         page.pdf(path=str(args.out), prefer_css_page_size=True, print_background=True, display_header_footer=True,
                  header_template='<span></span>', footer_template=footer)
         browser.close()
