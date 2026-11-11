@@ -347,6 +347,32 @@ The pass across all four faces that the third pass left these to. One rule for a
   within 6.1 units (Bold) and 0.8 (Bold Italic). It moves along the line until it stands the comma's gap (0.06
   x-height) clear: 34.0 and 32.3. The Regular's 50.1 and the Italic's 43.3 are unchanged.
 
+## The sixth pass (the scorecard, shared by the four faces)
+
+`scripts/scorecard.py` measures the shaped fonts: every letter with every combining mark, the true distance between
+every pair of text characters, the line box, and the evenness of spacing in prose. On 3.100 it found two defects in
+every face, corrected by one rule each ([judged-edits.json](judged-edits.json), `sixth_pass`; `tests/test_sixth_pass.py`). No outline changes.
+
+- **Mark anchors on every letter.** The letters built from the face's parts (Ð Þ ß ð þ Đ đ Ħ ħ Ĳ ĳ ĸ Ŀ ŀ Ł ł Ŋ ŋ Ŧ ŧ ſ) had no
+  anchors, so a combining mark typed after one was not placed: 148 to 168 letter and mark pairs overlapped per
+  style, and none does now (`build2.Font2.anchors`, `ANCHOR_LETTERS`). ſ takes l's rules, its marks over the stem in every weight; a mark below one of these letters hangs under the
+  middle of its foot and is never moved along the baseline.
+- **Clear in every direction.** The builder kept 8 units between two letters across each level line; a tip passing above
+  or below another came closer. 0 to 6 pairs per style stood under 8 units (the closest, 7] in the Bold Italic, at 6.1); each
+  is measured again with a disc and opened by the least 5-unit step (14 to 30 of 17,161 text pairs per style
+  change, by 5 to 10 units; `study_spacing.clear_round`). A pair that would need more than 30 units is one
+  letter overhanging the other and keeps its kerning.
+- **Reviewed.** An independent review of the first build, from the fonts alone, found a dot below ŋ pushed into the
+  following letter and Céilí's ſ gaping by up to 170 units before d and 7; both rules were corrected as above and are
+  tested. What it found and what is left is under `review` in the record.
+- **ĵ follows the alternate j.** With ss03 on, j took its alternate form but ĵ, and j with a combining mark, kept the
+  default. The alternate j has no dot, so it is also the alternate of the dotless j: `jcircumflex.alt1` is built and
+  the set swaps it (`build2.Font2.DOTLESS_ALTS`).
+
+Left as they are, with the scorecard's numbers: a few rare accented letters still rise above the line box, by the
+builder's design (the box is set from Irish, Scottish Gaelic, Welsh and Western European text; the clipping box covers
+every glyph). Here Ĥ by 24 units and the ss01 š and ŝ by 8. The built letters ł đ ŀ do not yet follow the ss03 alternates of l and d.
+
 ## Not changed
 
 The frame (every letter's size and place is Study 3's: the overlap fit to Study 3, recorded as

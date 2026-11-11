@@ -56,27 +56,27 @@ fontbakery version: 1.1.0
 
 * ⚠️ **WARN** <p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
 <p>The following glyphs do not have the recommended number of contours:</p>
-<pre><code>- Glyph name: at	Contours detected: 4	Expected: 2
+<pre><code>- Glyph name: three	Contours detected: 2	Expected: 1
 
-- Glyph name: e	Contours detected: 1	Expected: 2
+- Glyph name: five	Contours detected: 2	Expected: 1
 
-- Glyph name: g	Contours detected: 1	Expected: 2 or 3
+- Glyph name: eight	Contours detected: 1	Expected: 3
+
+- Glyph name: at	Contours detected: 3	Expected: 2
+
+- Glyph name: a	Contours detected: 1	Expected: 2
+
+- Glyph name: c	Contours detected: 2	Expected: 1
+
+- Glyph name: j	Contours detected: 3	Expected: 2
+
+- Glyph name: m	Contours detected: 3	Expected: 1
 
 - Glyph name: p	Contours detected: 1	Expected: 2
 
 - Glyph name: r	Contours detected: 2	Expected: 1
 
-- Glyph name: germandbls	Contours detected: 2	Expected: 1
-
-- Glyph name: ae	Contours detected: 2	Expected: 3
-
-- Glyph name: egrave	Contours detected: 2	Expected: 3
-
-- Glyph name: eacute	Contours detected: 2	Expected: 3
-
-- Glyph name: ecircumflex	Contours detected: 2	Expected: 3
-
-- 42 more.
+- 122 more.
 </code></pre>
 <p>Use -F or --full-lists to disable shortening of long lists.</p>
  [code: contour-count]
@@ -132,27 +132,27 @@ fontbakery version: 1.1.0
 
 * ⚠️ **WARN** <p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
 <p>The following glyphs do not have the recommended number of contours:</p>
-<pre><code>- Glyph name: at	Contours detected: 4	Expected: 2
+<pre><code>- Glyph name: three	Contours detected: 2	Expected: 1
 
-- Glyph name: e	Contours detected: 1	Expected: 2
+- Glyph name: five	Contours detected: 2	Expected: 1
 
-- Glyph name: g	Contours detected: 1	Expected: 2 or 3
+- Glyph name: eight	Contours detected: 1	Expected: 3
+
+- Glyph name: at	Contours detected: 3	Expected: 2
+
+- Glyph name: a	Contours detected: 1	Expected: 2
+
+- Glyph name: c	Contours detected: 2	Expected: 1
+
+- Glyph name: j	Contours detected: 3	Expected: 2
+
+- Glyph name: m	Contours detected: 3	Expected: 1
 
 - Glyph name: p	Contours detected: 1	Expected: 2
 
 - Glyph name: r	Contours detected: 2	Expected: 1
 
-- Glyph name: germandbls	Contours detected: 2	Expected: 1
-
-- Glyph name: ae	Contours detected: 2	Expected: 3
-
-- Glyph name: egrave	Contours detected: 2	Expected: 3
-
-- Glyph name: eacute	Contours detected: 2	Expected: 3
-
-- Glyph name: ecircumflex	Contours detected: 2	Expected: 3
-
-- 42 more.
+- 122 more.
 </code></pre>
 <p>Use -F or --full-lists to disable shortening of long lists.</p>
  [code: contour-count]

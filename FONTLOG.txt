@@ -34,6 +34,19 @@ named above.
 ChangeLog
 ---------
 
+3.101 (2026-11-11)
+- Combining marks on every letter. The letters built from each face's parts (ð þ đ ħ ĳ ĸ ŀ ł ŋ ŧ ß ſ
+  and their capitals) had no mark anchors, so a combining accent typed after one fell across the
+  letter; they now place marks as the other letters do. No letter and mark overlap in any style (148
+  to 251 pairs did in each).
+- Every pair of letters, figures and punctuation stands at least 8 units clear in every direction,
+  not only across: 4 to 42 pairs in each style open by 5 to 15 units (Kilfane's k before j stood 5.0
+  units off, Carrick's y before j 5.6, Tuam Uncial's ( before j 6.5).
+- Céilí: with the alternate j of ss03, ĵ and j with a combining mark take the alternate form too
+  (one new glyph).
+- No outline, advance, line box or name changes; scripts/scorecard.py measures each release the
+  same way, and research/scorecard/ keeps the results.
+
 3.100 (2026-10-27)
 - Finishing passes on every face after independent type reviews. Outlines are settled on the unit
   grid with smooth joins, nodes at extremes and no slivers; each correction and its reason is in

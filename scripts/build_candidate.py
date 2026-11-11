@@ -85,6 +85,13 @@ def build(face, traces, version):
         RING_SHARE = 0.5
         SIGN_RING_SHARE = 0.4
         MARK_STACKS = True
+        # The sixth pass (research/*/judged-edits.json, "sixth_pass"): every mapped letter carries mark anchors, the
+        # built letters ð þ đ ħ ĳ ĸ ŀ ł ŋ ŧ ß ſ among them (build2.Font2.anchors)
+        ANCHOR_LETTERS = True
+        # ... Céilí's ĵ follows its ss03 j, which has no dot (build2.Font2.DOTLESS_ALTS), and every pair stands 8 units
+        # clear in every direction, not only across (study_spacing.clear_round)
+        DOTLESS_ALTS = {'dotlessj': ('j.alt1',)} if face == 'ceili' else {}
+        CLEAR_ROUND = True
 
         def snap(self):
             super().snap()
@@ -182,6 +189,19 @@ def build(face, traces, version):
 
         def finish_traced(self):
             super().finish_traced()
+            lighten = os.environ.get('CEILI_LIGHTEN') if face == 'ceili' else None
+            if lighten:
+                # An experiment only, never the release (research/print-model): the finished traced letters lose
+                # `across` font units from each edge of an upright stem and `up` from each level edge, to compare
+                # weights side by side. Dots, the hyphen and other thin pieces stay as they are.
+                import bolden, pathops
+                across, up = (float(v) for v in lighten.split(','))
+                for n, q in list(self.P.items()):
+                    if build2.bounds(q) is None:
+                        continue
+                    e = pathops.simplify(bolden.erode(q, across, up), fix_winding=True, keep_starting_points=False, clockwise=False)
+                    if build2.bounds(e) is not None and abs(bolden.area(e)) > 0.5 * abs(bolden.area(q)):
+                        self.P[n] = e
             if face == 'kilfane':
                 import kilfane_studio
                 kilfane_studio.shapes(self)
@@ -284,8 +304,12 @@ def main():
         ap.error('--traces needs exactly one face')
     if len(faces) > 1:
         # build2 reads TRACED when it is imported, so each face is built in a fresh interpreter
-        for face in faces:
-            subprocess.run([sys.executable, __file__, face, *(['--version', args.version] if args.version else []), '--output', str(args.output)], check=True)
+        # (and the faces are independent, so they build side by side: the bytes do not depend on the order)
+        jobs = [subprocess.Popen([sys.executable, __file__, face, *(['--version', args.version] if args.version else []),
+                                  '--output', str(args.output)]) for face in faces]
+        failed = [face for face, job in zip(faces, jobs) if job.wait() != 0]
+        if failed:
+            sys.exit(f'build failed: {", ".join(failed)}')
         return
     traces = args.traces.resolve() if args.traces else ROOT / LATEST[faces[0]]
     os.environ['OUT'] = str(args.output.resolve())

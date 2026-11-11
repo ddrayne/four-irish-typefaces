@@ -91,6 +91,17 @@ letters carry anchors, an mkmk feature stacks marks, the comma and dot below cle
 added (`build2.Font2.stack_anchors`). `scripts/build_candidate.py` switches it on (`APPROX_WHITE`, `RING_SHARE`,
 `SIGN_RING_SHARE`, `MARK_STACKS`) for the release only.
 
+**All four faces: the sixth pass (3.101)**, from the scorecard (`scripts/scorecard.py`, `research/scorecard/`), recorded as
+`sixth_pass` in each face's judged-edits.json and README and checked by `tests/test_sixth_pass.py`. Every mapped letter
+carries mark anchors, the built letters ð þ đ ħ ĳ ĸ ŀ ł ŋ ŧ ß ſ among them (`build2.Font2.anchors`, `ANCHOR_LETTERS`); every
+pair stands 8 units clear in every direction (`study_spacing.clear_round`); Céilí's ĵ follows its ss03 j
+(`DOTLESS_ALTS`). No outline changes. `build_candidate.py` now builds the four faces side by side.
+
+**The prints' ink gain ([research/print-model](print-model/README.md)).** A measurement, not a candidate: each print's
+gain is measured on Kilfane and Carrick, whose sheets survive, and taken off Céilí. Céilí's drawn stem comes out near
+90 units (estimates 83 to 98) against the release's 108. The direction is well supported, the amount is not; the
+weight is the user's call and has not been changed. The same method puts Tuam's stems 3 to 9 units per edge lighter.
+
 [Round 4](round-04/README.md), Céilí Study 3: Four named original
 punctuation pieces replace the legacy cluster as construction inputs. Period,
 comma and opposed quotes come from N45; 64 derived glyphs change, including dotted

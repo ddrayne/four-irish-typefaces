@@ -112,7 +112,8 @@ def marks(f):
     cm = f.cmap
     mks = sorted(cp for cp in cm if unicodedata.category(chr(cp)) == 'Mn' and cp not in JOINING)
     bases = sorted(cp for cp in cm if unicodedata.category(chr(cp)) in ('Lu', 'Ll', 'Lo'))
-    unanchored, hits, n = set(), [], 0
+    unanchored, hits, n, nxt = set(), [], 0, []
+    after = [c for c in 'jpgnlf' if ord(c) in cm]
     for b in bases:
         for m in mks:
             g = f.shape(chr(b) + chr(m))
@@ -129,8 +130,17 @@ def marks(f):
             area = abs(x.area) if x.bounds else 0
             if area > 4:
                 hits.append((chr(b), f'{m:04X}', int(round(area))))
+            for c in after:                              # and the mark must not land on the letter that follows
+                g3 = f.shape(chr(b) + chr(m) + c)
+                if len(g3) != 3:
+                    continue
+                x3 = pathops.op(f.outline(g3[1][0], g3[0][1] + g3[1][2], g3[1][3]), f.outline(g3[2][0], g3[0][1] + g3[1][1] + g3[2][2]),
+                                pathops.PathOp.INTERSECTION, fix_winding=True)
+                if x3.bounds and abs(x3.area) > 4:
+                    nxt.append((chr(b) + c, f'{m:04X}', int(round(abs(x3.area)))))
     return dict(pairs=n, colliding=len(hits), letters_colliding=''.join(sorted({h[0] for h in hits})),
-                unanchored=''.join(sorted(unanchored)), worst=sorted(hits, key=lambda h: -h[2])[:12])
+                unanchored=''.join(sorted(unanchored)), worst=sorted(hits, key=lambda h: -h[2])[:12],
+                on_next_letter=len(nxt), on_next_worst=sorted(nxt, key=lambda h: -h[2])[:12])
 
 
 def pair_gap(f, a, b, rows=NEAR // GRID):
@@ -254,7 +264,7 @@ def score(path):
 
 
 def headline(s):
-    return dict(mark_collisions=s['marks']['colliding'], letters_without_anchor=len(s['marks']['unanchored']),
+    return dict(mark_collisions=s['marks']['colliding'], marks_on_next_letter=s['marks'].get('on_next_letter'), letters_without_anchor=len(s['marks']['unanchored']),
                 pairs_touching=s['pairs']['touching'], pairs_near=s['pairs']['near'],
                 above_linebox=len(s['linebox']['above']), below_linebox=len(s['linebox']['below']),
                 clipped=len(s['linebox']['clipped']), rhythm_cv=s['rhythm'].get('cv'))

@@ -24,7 +24,7 @@ from letters import make_letters, stem_at, clip
 from symbols import make_symbols
 
 OUT = paths.FONTS
-VERSION = '3.100'
+VERSION = '3.101'
 CC0 = 'https://creativecommons.org/publicdomain/zero/1.0/'
 RELEASE_DATE = '2026-10-25'          # stamped into head.created/modified, so a rebuild is byte-identical
 import calendar as _cal, time as _time
@@ -460,6 +460,17 @@ class Font2:
     # above and below their marks; stacked marks stand on one another at the accents' gap (mkmk); and U+0323, the
     # combining dot below, is built. Off for the research studies.
     MARK_STACKS = False
+    # Mark anchors on every letter the font maps, not only the single letters and æ œ ø: the letters built from the
+    # face's parts (ð þ đ ħ ĳ ĸ ŀ ł ŋ ŧ ß ſ and their capitals) had none, so a combining mark typed after one was not
+    # placed at all and fell across the letter. Each takes the same rules as the letter it is named in ANCHOR_AS for
+    # (ſ as l, its marks over the stem in every weight; ĸ as an x-height letter), or its own name's (đ as d, ħ as h, ł as l). Off for the
+    # release up to 3.100 and for the research studies.
+    ANCHOR_LETTERS = False
+    # Alternates of i and j that have no dot of their own (Céilí's ss03 j) are also the alternates of the dotless
+    # letter: the accented letters built on it get the alternate form too (ĵ), and the set swaps the dotless letter,
+    # so j + a combining mark follows it. {dotless glyph: (alternates,)}; empty for the release up to 3.100.
+    DOTLESS_ALTS = {}
+    ANCHOR_AS = {'longs': 'l', 'kgreenlandic': 'x'}
 
     def finish_traced(self):
         """Redraw each traced outline from its source-pixel scale up (finish.refit, where a source
@@ -928,7 +939,7 @@ class Font2:
             gap *= 1.4
         return translate(m, cx - acx, t + gap - b0)
 
-    def bottom_clear(self, base, marks):
+    def bottom_clear(self, base, marks, sideways=True):
         """(dx, dy) for bottom marks hung under a letter (MARK_STACKS): where one beside a descender comes closer to the
         letter than the comma below stands under the baseline (0.06 x-height), it moves along the baseline, within
         the letter's foot, until it stands that gap clear; where it cannot, it hangs below the descender as from a
@@ -950,7 +961,7 @@ class Font2:
         gap = least
         lo, hi = ink_x_extent(base, -0.02 * xh, 0.18 * xh)
         mb = bounds(SH.union(*marks)); cx = (mb[0] + mb[2]) / 2
-        for step in np.arange(2.0, 0.6 * xh, 2.0):
+        for step in np.arange(2.0, 0.6 * xh, 2.0) if sideways else ():
             for dx in (step, -step):
                 if lo <= cx + dx <= hi and worst(dx, 0) >= gap:
                     return float(dx), 0.0
@@ -1008,7 +1019,7 @@ class Font2:
             if base not in P:
                 continue
             name = gname(cp)
-            for bn in [base] + alts.get(base, []):
+            for bn in [base] + alts.get(base, []) + [a for a in self.DOTLESS_ALTS.get(base, ()) if a in P]:
                 path = P[bn]; acc_top = None; out = path
                 kk = kinds
                 if cp == 0x165 and bounds(path)[3] >= self.xh * 1.15:
@@ -1021,7 +1032,7 @@ class Font2:
                     if k not in BOTTOM:
                         acc_top = bounds(mk)[3]
                     out = SH.union(out, mk)
-                gn = name + bn[len(base):] if bn != base else name
+                gn = name if bn == base else name + (bn[len(base):] if bn.startswith(base) else '.' + bn.split('.', 1)[1])
                 P[gn] = out; self.comp[gn] = bn; self.comp_marks[gn] = list(kk)
                 if 'caronvert' in kk:
                     self.widen.add(gn)
@@ -1214,9 +1225,17 @@ class Font2:
         self.top_anchor, self.bottom_anchor = {}, {}
         bases = [n for n in self.final if n not in self.mark_glyphs and n not in self.comp and
                  (len(n.split('.')[0]) == 1 and n[0].isalpha() or n in ('dotlessi', 'dotlessj', 'ae', 'oe', 'oslash', 'AE', 'OE'))]
+        if self.ANCHOR_LETTERS:
+            import unicodedata
+            named = {g for cp, g in self.cm.items() if unicodedata.category(chr(cp)) in ('Lu', 'Ll', 'Lo')}
+            late = sorted(n for n in self.final if n not in bases and n not in self.mark_glyphs and n not in self.comp
+                          and n.split('.')[0] in named and bounds(self.final[n]) is not None)
+            bases += late; self.anchored_late = set(late)
+        self.anchored_late = getattr(self, 'anchored_late', set())
+        self.anchor_model = lambda n: self.ANCHOR_AS.get(n.split('.')[0], n) if self.ANCHOR_LETTERS else n
         for n in bases:
             p = self.final[n]; upper = n[0].isupper() and not self.cfg['unicase']
-            m = self.attach(n, p, 'acute', False)       # marks are lowercase-sized in the mark feature
+            m = self.attach(self.anchor_model(n), p, 'acute', False)       # marks are lowercase-sized in the mark feature
             mb = bounds(m); src = bounds(self.marks['acute'])
             self.top_anchor[n] = (int(round((mb[0] + mb[2]) / 2)), int(round(mb[1])))
             lo, hi = ink_x_extent(p, -0.02 * xh, 0.18 * xh)
@@ -1266,15 +1285,18 @@ class Font2:
             m = self.attach(n, p, 'dot', False); b = bounds(m)
             return (int(round((b[0] + b[2]) / 2)), int(round(b[1])))
         under = [translate(self.final[name[k]], -self.mark_anchor[name[k]][1], 0) for k in ('commabelow', 'dotbelow') if k in name]
-        def bottom(p, x):
-            dx, dy = self.bottom_clear(p, [translate(m, x, 0) for m in under])
+        def bottom(p, x, sideways=True):
+            dx, dy = self.bottom_clear(p, [translate(m, x, 0) for m in under], sideways)
             return (int(round(x + dx)), int(round(dy)))
         self.ponc_anchor = {}
         for n in bases:
-            p = self.final[n]
-            self.ponc_anchor[n] = ponc(n, p) if n.split('.')[0] in moved else self.top_anchor[n]
-            self.top_anchor[n] = top(n, p)
-            self.bottom_anchor[n] = bottom(p, self.bottom_anchor[n][0])
+            p = self.final[n]; m = self.anchor_model(n)
+            self.ponc_anchor[n] = ponc(m, p) if m.split('.')[0] in moved else self.top_anchor[n]
+            self.top_anchor[n] = top(m, p)
+            # a letter anchored by ANCHOR_LETTERS keeps its mark under the middle of its foot, hung below a descender
+            # where it must: moved along the baseline, ŋ's dot stood past its advance and into the next letter, and
+            # ĳ's under the i in one style and the j in another
+            self.bottom_anchor[n] = bottom(p, self.bottom_anchor[n][0], sideways=n not in self.anchored_late)
         # the precomposed letters: a mark typed after one stands over its top marks (or under its bottom ones)
         lowest = max(bounds(m)[3] for m in under) if under else 0.0        # the stacking marks' tops, from their anchor
         for n, bn in self.comp.items():
@@ -1306,6 +1328,10 @@ class Font2:
         for n, bn in self.comp.items():
             if bn == b and n + suffix in self.final:
                 out.append((n, n + suffix))
+        for dotless, alts in self.DOTLESS_ALTS.items():
+            if alt in alts and dotless in self.final:
+                out.append((dotless, alt))
+                out += [(n, n + suffix) for n, bn in self.comp.items() if bn == dotless and n + suffix in self.final]
         return out
 
     def features(self):

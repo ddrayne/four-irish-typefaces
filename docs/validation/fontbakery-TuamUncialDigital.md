@@ -56,27 +56,27 @@ fontbakery version: 1.1.0
 
 * ⚠️ **WARN** <p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
 <p>The following glyphs do not have the recommended number of contours:</p>
-<pre><code>- Glyph name: at	Contours detected: 6	Expected: 2
+<pre><code>- Glyph name: percent	Contours detected: 3	Expected: 4 or 5
 
-- Glyph name: s	Contours detected: 3	Expected: 1
+- Glyph name: zero	Contours detected: 1	Expected: 2 or 3
 
-- Glyph name: section	Contours detected: 4	Expected: 2
+- Glyph name: five	Contours detected: 2	Expected: 1
 
-- Glyph name: germandbls	Contours detected: 4	Expected: 1
+- Glyph name: eight	Contours detected: 2	Expected: 3
 
-- Glyph name: aring	Contours detected: 3	Expected: 4
+- Glyph name: at	Contours detected: 3	Expected: 2
 
-- Glyph name: sacute	Contours detected: 4	Expected: 2
+- Glyph name: a	Contours detected: 1	Expected: 2
 
-- Glyph name: scircumflex	Contours detected: 4	Expected: 2
+- Glyph name: b	Contours detected: 1	Expected: 2
 
-- Glyph name: scedilla	Contours detected: 3	Expected: 1 or 2
+- Glyph name: d	Contours detected: 1	Expected: 2
 
-- Glyph name: scaron	Contours detected: 4	Expected: 2
+- Glyph name: f	Contours detected: 2	Expected: 1
 
-- Glyph name: uni0219	Contours detected: 4	Expected: 2
+- Glyph name: g	Contours detected: 1	Expected: 2 or 3
 
-- 13 more.
+- 163 more.
 </code></pre>
 <p>Use -F or --full-lists to disable shortening of long lists.</p>
  [code: contour-count]
@@ -132,27 +132,27 @@ fontbakery version: 1.1.0
 
 * ⚠️ **WARN** <p>This check inspects the glyph outlines and detects the total number of contours in each of them. The expected values are infered from the typical ammounts of contours observed in a large collection of reference font families. The divergences listed below may simply indicate a significantly different design on some of your glyphs. On the other hand, some of these may flag actual bugs in the font such as glyphs mapped to an incorrect codepoint. Please consider reviewing the design and codepoint assignment of these to make sure they are correct.</p>
 <p>The following glyphs do not have the recommended number of contours:</p>
-<pre><code>- Glyph name: at	Contours detected: 4	Expected: 2
+<pre><code>- Glyph name: percent	Contours detected: 3	Expected: 4 or 5
 
-- Glyph name: s	Contours detected: 3	Expected: 1
+- Glyph name: zero	Contours detected: 1	Expected: 2 or 3
 
-- Glyph name: section	Contours detected: 4	Expected: 2
+- Glyph name: five	Contours detected: 2	Expected: 1
 
-- Glyph name: germandbls	Contours detected: 4	Expected: 1
+- Glyph name: eight	Contours detected: 2	Expected: 3
 
-- Glyph name: sacute	Contours detected: 4	Expected: 2
+- Glyph name: at	Contours detected: 3	Expected: 2
 
-- Glyph name: scircumflex	Contours detected: 4	Expected: 2
+- Glyph name: a	Contours detected: 1	Expected: 2
 
-- Glyph name: scedilla	Contours detected: 3	Expected: 1 or 2
+- Glyph name: b	Contours detected: 1	Expected: 2
 
-- Glyph name: scaron	Contours detected: 4	Expected: 2
+- Glyph name: d	Contours detected: 1	Expected: 2
 
-- Glyph name: uni0219	Contours detected: 4	Expected: 2
+- Glyph name: f	Contours detected: 2	Expected: 1
 
-- Glyph name: uni1E61	Contours detected: 4	Expected: 2
+- Glyph name: g	Contours detected: 1	Expected: 2 or 3
 
-- 9 more.
+- 163 more.
 </code></pre>
 <p>Use -F or --full-lists to disable shortening of long lists.</p>
  [code: contour-count]

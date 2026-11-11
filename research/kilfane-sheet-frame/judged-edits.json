@@ -268,5 +268,186 @@
     "at.case"
    ]
   }
+ },
+ "sixth_pass": {
+  "about": "A scorecard of the released fonts (scripts/scorecard.py, research/scorecard/3.100.json), measured from the shaped fonts, found two defects shared by the four faces and one of Céilí's. Each is corrected by one rule, switched on for the release by scripts/build_candidate.py (ANCHOR_LETTERS, CLEAR_ROUND, DOTLESS_ALTS); the study fonts do not change. No outline changes. Measurements are font units, from the 3.100 and 3.101 fonts; tests/test_sixth_pass.py.",
+  "anchors": {
+   "letters": "ªµºÐØÞßðþĐđĦħĲĳĸĿŀŁłŉŊŋŦŧſ",
+   "rule": "build2.Font2.anchors: every letter the font maps carries top, bottom and ponc anchors, placed by the rules its base letter follows (ANCHOR_AS: ſ as l, its marks over the stem in every weight; ĸ as an x-height letter; đ as d, ħ as h, ł as l by name). A mark below one of these letters hangs under the middle of its foot, below a descender where it must, never moved along the baseline",
+   "overlapping_pairs_before": {
+    "Bold": 245,
+    "BoldItalic": 251,
+    "Italic": 237,
+    "Regular": 237
+   },
+   "overlapping_pairs_after": {
+    "Bold": 0,
+    "BoldItalic": 0,
+    "Italic": 0,
+    "Regular": 0
+   },
+   "why": "the letters built from the face's parts had no mark anchor, so a combining mark typed after one was not placed and fell across the letter (ł + U+0301: the acute stood inside the stem); every letter + mark pair now stands clear, as the single letters' did since the fifth pass. The cedilla and ogonek join their letter by design and are not counted."
+  },
+  "clearance": {
+   "least": 8,
+   "margin": 1.0,
+   "rule": "study_spacing.clear_round, after protect_kerning: each pair is measured with a disc of 9 units (8 and a unit for the grid the outlines settle on afterwards) on every line within its reach, a sloped style as its slope will move the lines; a pair that fails opens by the least 5-unit kerning step that clears it; a pair that would need more than 30 units is one letter overhanging the other and keeps its kerning",
+   "pairs_under_8_before": {
+    "Bold": 8,
+    "BoldItalic": 10,
+    "Italic": 10,
+    "Regular": 8
+   },
+   "closest_before": {
+    "Bold": [
+     "kj",
+     4.4
+    ],
+    "BoldItalic": [
+     "kj",
+     7.0
+    ],
+    "Italic": [
+     "kj",
+     6.3
+    ],
+    "Regular": [
+     "kj",
+     5.0
+    ]
+   },
+   "pairs_under_8_after": {
+    "Bold": 0,
+    "BoldItalic": 0,
+    "Italic": 0,
+    "Regular": 0
+   },
+   "text_pairs_rekerned": {
+    "Bold": {
+     "of": 17161,
+     "changed": 42,
+     "by": [
+      5,
+      15
+     ],
+     "examples": [
+      "kj",
+      "gj",
+      "lJ",
+      "nJ",
+      "vy",
+      "z?",
+      "A)",
+      "P?",
+      "V)",
+      "2?",
+      "7k",
+      "Á)"
+     ]
+    },
+    "BoldItalic": {
+     "of": 17161,
+     "changed": 38,
+     "by": [
+      5,
+      10
+     ],
+     "examples": [
+      "kj",
+      "a?",
+      "gj",
+      "kx",
+      "kX",
+      "lx",
+      "lX",
+      "nJ",
+      "qj",
+      "t?",
+      "vy",
+      "v?"
+     ]
+    },
+    "Italic": {
+     "of": 17161,
+     "changed": 34,
+     "by": [
+      5,
+      10
+     ],
+     "examples": [
+      "kj",
+      "jj",
+      "lx",
+      "lJ",
+      "lX",
+      "lZ",
+      "C?",
+      "P?",
+      "7l",
+      "Ċ?",
+      "Ṗ?",
+      "îT"
+     ]
+    },
+    "Regular": {
+     "of": 17161,
+     "changed": 19,
+     "by": [
+      5,
+      15
+     ],
+     "examples": [
+      "kj",
+      "jj",
+      "lx",
+      "lJ",
+      "nJ",
+      "îT",
+      "îV",
+      "îṪ",
+      "ñJ",
+      ";j",
+      "(j",
+      "[j"
+     ]
+    }
+   },
+   "why": "the builder kept 8 units between two letters across each level line, so a tip passing just above or below another came closer than 8 in a straight line; the clearance now holds in every direction",
+   "limit": 30
+  },
+  "changed": {
+   "outlines": 0,
+   "why": "no outline, advance, line box or name differs from 3.100 in any style (every glyph compared); the mark feature gains the anchors above and the kerning the pairs above"
+  },
+  "review": {
+   "what": "an independent review of the first build of this pass, from the fonts alone, against 3.100",
+   "found": [
+    "a mark below ŋ, moved along the baseline clear of the tail, stood past the letter's advance and into a following j (Kilfane Regular: 7,900 square units); ĳ's stood under the i in one style and the j in another",
+    "pairs where one letter overhangs the next gaped: Céilí's ſ before d (ss03) opened by 170 units and ſ before 7 by 165, since no shift across clears an overhang"
+   ],
+   "corrected": "marks below the newly anchored letters are not moved sideways (stack_anchors, bottom_clear sideways=False), and the clearance leaves a pair that would need more than 30 units as 3.100 had it (clear_round limit); both are tested",
+   "left": {
+    "mark_meets_next_letter": {
+     "Bold": [
+      49,
+      57
+     ],
+     "BoldItalic": [
+      59,
+      67
+     ],
+     "Italic": [
+      54,
+      62
+     ],
+     "Regular": [
+      51,
+      59
+     ]
+    },
+    "why": "3.100 and 3.101 counts of letter + mark + next letter (j p g n l f) whose mark and next letter overlap. Nearly all are a mark below a narrow letter (i, l, J) before j, whose tail runs under it; ł and ſ now join that class because their marks are placed at last. Rare in any language; left for a pass on kerning across marks",
+    "also": "pairs outside the text set still under 8 units (Kilfane's « before ĵ with the case feature, 4.9 to 6.3; D before đ in the Italic, 7.2; Céilí Bold Italic's ſ before y, 7.3), and the built letters that do not follow a stylistic set's alternate of their base (Céilí ss03: đ ð ŀ ł ĳ; Kilfane ss01: ð đ ŀ ł ŧ)"
+   }
+  }
  }
 }

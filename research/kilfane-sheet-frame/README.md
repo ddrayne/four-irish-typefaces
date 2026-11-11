@@ -167,6 +167,29 @@ A fifth pass, shared by the four faces, corrects three defects a fourth independ
   (45 to 46, as on á); precomposed letters carry their own anchors and mkmk stacks marks 46 apart; the comma and the
   new dot below stand at least 21 clear (f̦ 31, g̦ 35, under the descender).
 
+### The sixth pass (the scorecard, shared by the four faces)
+
+`scripts/scorecard.py` measures the shaped fonts: every letter with every combining mark, the true distance between
+every pair of text characters, the line box, and the evenness of spacing in prose. On 3.100 it found two defects in
+every face, corrected by one rule each ([judged-edits.json](judged-edits.json), `sixth_pass`; `tests/test_sixth_pass.py`). No outline changes.
+
+- **Mark anchors on every letter.** The letters built from the face's parts (Ð Ø Þ ß ð þ Đ đ Ħ ħ Ĳ ĳ ĸ Ŀ ŀ Ł ł Ŋ ŋ Ŧ ŧ ſ) had no
+  anchors, so a combining mark typed after one was not placed: 237 to 251 letter and mark pairs overlapped per
+  style, and none does now (`build2.Font2.anchors`, `ANCHOR_LETTERS`). ſ takes l's rules, its marks over the stem in every weight; a mark below one of these letters hangs under the
+  middle of its foot and is never moved along the baseline.
+- **Clear in every direction.** The builder kept 8 units between two letters across each level line; a tip passing above
+  or below another came closer. 8 to 10 pairs per style stood under 8 units (the closest, kj in the Bold, at 4.4); each
+  is measured again with a disc and opened by the least 5-unit step (19 to 42 of 17,161 text pairs per style
+  change, by 5 to 15 units; `study_spacing.clear_round`). A pair that would need more than 30 units is one
+  letter overhanging the other and keeps its kerning.
+- **Reviewed.** An independent review of the first build, from the fonts alone, found a dot below ŋ pushed into the
+  following letter and Céilí's ſ gaping by up to 170 units before d and 7; both rules were corrected as above and are
+  tested. What it found and what is left is under `review` in the record.
+
+Left as they are, with the scorecard's numbers: a few rare accented letters still rise above the line box, by the
+builder's design (the box is set from Irish, Scottish Gaelic, Welsh and Western European text; the clipping box covers
+every glyph). The Bold's comma below reaches 5 to 8 units under the line box.
+
 ## Reproduce
 
 ```sh

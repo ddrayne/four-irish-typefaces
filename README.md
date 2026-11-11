@@ -1,4 +1,4 @@
-# Four Irish Typefaces: digital revival, version 3.100
+# Four Irish Typefaces: digital revival, version 3.101
 
 **Céilí · Carrick · Kilfane · Tuam Uncial**
 
@@ -34,7 +34,17 @@ not serve them to other sites.
 Open `index.html` to see and test the fonts in a browser. It's a live type tester
 with style pickers, stylistic-set toggles and character grids.
 
-## What's new in 3.100
+## What's new in 3.101
+
+- **Accents on every letter.** A combining accent typed after ð þ đ ħ ĳ ĸ ŀ ł ŋ ŧ ß or ſ was not placed
+  and fell across the letter. Every letter now carries mark anchors, and no letter and combining mark
+  overlap in any style.
+- **Clear in every direction.** Pairs were kept 8 units apart across; a few tips passing above or below
+  one another came closer (Kilfane's k before j, 5 units). 4 to 42 pairs per style open by 5 to 15 units.
+- **Céilí's ĵ follows its alternate j** (ss03).
+- Outlines, advances, line boxes and names are unchanged from 3.100.
+
+## What was new in 3.100
 
 - **Finished.** Independent type reviews went over every face and every style, and each defect they
   found is corrected by a recorded rule (`research/`, each face's `judged-edits.json` and README):
@@ -161,7 +171,7 @@ with style pickers, stylistic-set toggles and character grids.
 | Kilfane Digital | Regular, Italic, Bold, Bold Italic | 403 | 472 | 55–66 KB | kern, mark, mkmk, ccmp, case, salt, aalt, ss01 Roman forms, ss02 Insular forms |
 | Tuam Uncial Digital | Regular, Italic | 399 | 263 | 30–33 KB | kern, mark, mkmk, ccmp |
 | Carrick Digital | Regular, Italic | 401 | 263 | 39 KB | kern, mark, mkmk, ccmp |
-| Céilí Digital | Regular, Italic, Bold, Bold Italic | 409 | 318 | 36–39 KB | kern, mark, mkmk, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
+| Céilí Digital | Regular, Italic, Bold, Bold Italic | 409 | 319 | 36–39 KB | kern, mark, mkmk, ccmp, salt, aalt, ss01 Insular r and s, ss02 Uncial A and N, ss03 Alternate a d e j l v |
 
 Files are named `Family-Style` (`KilfaneDigital-BoldItalic.woff2`, `TuamUncialDigital-Italic.otf`).
 
