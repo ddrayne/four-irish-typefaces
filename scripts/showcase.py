@@ -12,6 +12,8 @@ data generated from the fonts and sources:
   data/release.json the same glyphs of each released Regular, registered on the scan as the flyer audit registers
                     them (docs/validation/flyer-registration.json), with each one's overlap with the print
   data/outlines/    each released style's glyphs as outlines, metrics and kerning, for the poster maker
+  data/provenance/  per face: every glyph of the released Regular with where its shape comes from, the evidence
+                    recorded for it and the judged corrections that name it (scripts/showcase_provenance.py)
 
 --artifact also writes build/showcase-artifact/: the same site with the page split
 into the form the Artifact viewer expects and the fonts inlined as data URIs.
@@ -510,6 +512,8 @@ def build():
     dump(glyphs, 'traced.json')
     dump(release_data(), 'release.json')
     outline_data(DEST)
+    import showcase_provenance
+    showcase_provenance.build(DEST)
     social(DEST)
     zip_href = RELEASE_ZIP
     # copies keep their source modes; a web server needs to read every file

@@ -486,6 +486,48 @@
   </div>
 </section>
 
+<!-- ============================================================ provenance -->
+<section class="prov" id="foinsi" aria-labelledby="prov-h">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-ga f-carrick" lang="ga" data-ov>foinsí</p>
+      <h2 class="sec-en" id="prov-h">Where each letter comes from</h2>
+      <p class="sec-note">Every glyph of the four regulars, marked by where its shape comes from. Choose one to see the print behind it, what was measured, and each correction made since. The italics and bolds are not on the map: every one of them is 2026 work.</p>
+    </header>
+    <div class="pv-bar">
+      <div class="g-faces" role="radiogroup" aria-label="Typeface" data-pv-faces></div>
+      <div class="pv-filters">
+        <label class="sel"><span class="vh">Source print</span><select data-pv-src><option value="">Any print</option></select></label>
+        <label class="sel"><span class="vh">Basis of the tracing</span><select data-pv-basis>
+          <option value="">Any basis</option>
+          <option value="sheet">Many impressions</option>
+          <option value="two">Two prints</option>
+          <option value="one">One print</option>
+        </select></label>
+        <button type="button" class="tog" data-pv-fixed aria-pressed="false">Corrected</button>
+        <button type="button" class="tog" data-pv-dis aria-pressed="false" hidden>Prints disagree</button>
+      </div>
+    </div>
+    <div class="pv-legend" role="group" aria-label="Classes to show" data-pv-legend>
+      <button type="button" class="pv-key" data-pv-class="a" aria-pressed="true"><span class="pv-sw" data-c="a" aria-hidden="true"></span><span><b>Traced</b> from a 1978 print <span class="mono" data-pv-n="a"></span></span></button>
+      <button type="button" class="pv-key" data-pv-class="r" aria-pressed="true"><span class="pv-sw" data-c="r" aria-hidden="true"></span><span><b>Built</b> from the prints <span class="mono" data-pv-n="r"></span></span></button>
+      <button type="button" class="pv-key" data-pv-class="m" aria-pressed="true"><span class="pv-sw" data-c="m" aria-hidden="true"></span><span><b>Modern</b>, drawn to match <span class="mono" data-pv-n="m"></span></span></button>
+    </div>
+    <p class="pv-count mono" data-pv-count role="status"></p>
+    <div class="pv-layout">
+      <div class="pv-map" role="listbox" aria-label="Glyphs of the regular. Arrow keys move, Enter opens the details." data-pv-map></div>
+      <article class="pv-detail" data-pv-detail tabindex="-1" aria-label="The chosen glyph"></article>
+    </div>
+    <dl class="pv-defs">
+      <div><dt><span class="pv-sw" data-c="a" aria-hidden="true"></span>Traced</dt><dd>The outline is a tracing of printed ink: a letter, figure or sign as a 1978 print shows it.</dd></div>
+      <div><dt><span class="pv-sw" data-c="r" aria-hidden="true"></span>Built</dt><dd>Not printed in this form. Made from traced letters, or from accents and punctuation lifted from the prints.</dd></div>
+      <div><dt><span class="pv-sw" data-c="m" aria-hidden="true"></span>Modern</dt><dd>Drawn in 2026 to sit with the face. Nothing in its shape is traced; at most its weight is taken from the prints.</dd></div>
+      <div><dt>Basis</dt><dd>How many prints stand behind a tracing: many impressions of one transfer sheet, two prints, or one. It is a count, not a score. The prints all reproduce one drawing, so more of them means less print noise, not independent proof.</dd></div>
+    </dl>
+    <div class="pv-more" data-pv-more></div>
+  </div>
+</section>
+
 <!-- ============================================================ people -->
 <section class="people" id="daoine" aria-labelledby="people-h">
   <div class="wrap">

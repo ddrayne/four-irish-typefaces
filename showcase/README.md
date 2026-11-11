@@ -24,6 +24,7 @@ plate and the poster maker's blue wall are art-directed, the same in both themes
 | Posters | `js/poster.js` | A two-ink risograph poster: ten ready-made posters with Irish phrases to start from, ten layouts, a face, style and alternates for each ink, fourteen inks, six papers, six sheet sizes, three finishes; saved as a PNG at print size, or as clean vectors (SVG, and a PDF with each ink's plate on its own page) |
 | Tester | `js/tester.js` | Type in any face and style, with the stylistic sets, or in the research studies |
 | Shopfront | `js/shopfront.js` | Your name gilded over a painted Irish shopfront, in any face and paint |
+| Provenance | `js/provenance.js` | Every glyph of each Regular on a map, marked as traced from a 1978 print, built from the prints or modern; for the chosen glyph, the print behind it (linked to its catalogue record), what the research recorded and each judged correction that names it. `#provenance/kilfane/G` links to one glyph |
 | Characters | `js/glyphs.js` | Every character with its Unicode name, beside the same character in the other faces, its alternates and the study's drawing |
 
 ### The poster maker
@@ -66,6 +67,11 @@ repository, so the site always shows the current release and research:
 - `data/outlines/<Family>-<Style>.json`: every glyph of each released style as outlines,
   with its advance and ink bounds, the flattened kerning and the stylistic sets, for the
   poster maker (read from `fonts/otf/`)
+- `data/provenance/<face>.json`: per glyph of the released Regular, its class, the builder's record of how
+  it is made, the evidence recorded for its trace and the judged corrections that list it, read by
+  `scripts/showcase_provenance.py` from the latest study's `*.provenance.json`, `traces/evidence.json` and
+  `judged-edits.json`; fetched only when the provenance map comes near. What those files do not say is
+  shown as not recorded
 - `img/social.png`, `img/icon.svg`, `img/apple-touch-icon.png`, drawn from the fonts
 
 The download buttons link to the GitHub release of the current version.
