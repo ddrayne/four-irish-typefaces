@@ -11,13 +11,11 @@ Digital**, are independent digitisations of them, not the original type: the "Di
 keeps them apart from the 1978 faces. They were first digitised from a scan of the competition's "Four
 Irish Typefaces" flyer; since 3.000 they are drawn from better prints of the originals in the National
 Irish Visual Arts Library. They are completed to roughly 400 characters each so they work on the web and
-in any app. Further original-source research, a source register and the separately
-named candidates are in [research/](research/README.md). The latest
-[round 5](research/round-05/README.md) recovers Carrick's original mark components,
-following [round 4](research/round-04/README.md) for Céilí's original punctuation.
-[Round 3](research/round-03/README.md) reconstructs Tuam and Céilí from larger
-original reproductions, following [round 2](research/round-02/README.md), which
-improved Kilfane's marks, Carrick's outlines and pair spacing across all four faces.
+in any app. The original-source research, a source register and the separately
+named study of each face are in [research/](research/README.md). The release is built from
+[Kilfane Study 5](research/kilfane-sheet-frame/README.md), [Carrick Study 3](research/round-06/README.md),
+[Tuam Uncial Study 3](research/tuam-judgement/README.md) and [Céilí Study 4](research/ceili-judgement/README.md),
+each with its judged corrections recorded beside it.
 Agents continuing this work should start with [the handoff](research/HANDOFF.md)
 and [the shared plan and work queue](docs/superpowers/plans/2026-10-25-continuation.md).
 Modern revival fonts are excluded as design references for this research.
@@ -109,7 +107,7 @@ with style pickers, stylistic-set toggles and character grids.
 - **Every glyph on the flyer was checked, one at a time.** Each of the 224 glyphs printed on the
   flyer was registered on the scan to an eighth of a pixel and compared with the print. The mean
   overlap (intersection over union of the filled shapes) is 0.948: Kilfane 0.953, Tuam Uncial
-  0.952, Carrick 0.959, Céilí 0.928. The full table is `specimen/validation/flyer-glyph-audit.md`,
+  0.952, Carrick 0.959, Céilí 0.928. The full table is `docs/validation/flyer-glyph-audit.md` (now regenerated for the current release),
   and the test page shows every comparison.
 - **The accents were on the flyer.** The cluster beside Kilfane's and Carrick's alphabets, which
   1.000 and 1.100 kept as a "knotwork ornament" at U+E000, is each transfer sheet's set of loose
@@ -240,9 +238,10 @@ Award wording follows the [original competition brochure](https://nival.contentd
   for historical context in the [source register](research/source-register.json),
   and are not design references for the original-source reconstruction.
 
-> **Sources and caveat.** This environment could run web searches but could not open
-> pages or download images (network policy). The facts above come from search-result
-> extracts, so treat them as reported and verify them before publication. Sources:
+> **Sources and caveat.** The award wording, the sheet numbers and sizes, and the printer are read from
+> the brochure and the leaflet themselves (NIVAL, linked above and in [research/](research/README.md)).
+> The biographical notes and the uses marked "reportedly" come from the secondary sources below and
+> have not been checked against primary records. Sources:
 > Fonts In Use pages for [Céilí](https://fontsinuse.com/typefaces/205971/ceili),
 > [Kilfane](https://fontsinuse.com/typefaces/248201/kilfane),
 > [Carrick](https://fontsinuse.com/typefaces/248202/carrick),
@@ -351,7 +350,7 @@ The same glyph appears on the sheet at two or three sizes. Fitting stem width ag
 size gives the toner spread the photocopy added, and that spread was removed.
 
 The result was checked against the independent 48–60pt samples printed on the sheet
-(`specimen/validation/large-sample-overlay.png`):
+(`docs/validation/large-sample-overlay.png`):
 
 | Face | Stem width vs sample | Shape overlap (IoU) |
 |---|---|---|
@@ -418,7 +417,7 @@ reconstructions:
 |---|---|
 | OpenType Sanitizer (OTS, as used by Chrome and Firefox) | All 48 font files pass |
 | Every flyer glyph against the scan | 224 glyphs, mean overlap 0.865 after registration (`docs/validation/flyer-glyph-audit.md`). Up to 2.101 the fonts were traced from this scan (0.948); since 3.000 they follow better prints, so it is a cross-check: Céilí is drawn about a fifth heavier than this photocopy, Carrick about a tenth lighter |
-| Font Bakery universal profile, run per family | Zero FAIL and zero ERROR in all four families, including the family checks (the online name-registry check was skipped; it needs network access). The remaining WARNs are informational (`alt_caron` asks for a manual check of ď ľ ť; `contour_count` flags glyphs that differ from typical fonts by design, such as Kilfane's insular r). Reports are in `specimen/validation/`. |
+| Font Bakery universal profile, run per family | Zero FAIL and zero ERROR in all four families, including the family checks (the online name-registry check was skipped; it needs network access). The remaining WARNs are informational (`alt_caron` asks for a manual check of ď ľ ť; `contour_count` flags glyphs that differ from typical fonts by design, such as Kilfane's insular r). Reports are in `docs/validation/`. |
 | Style linking | Every file's names, style bits, weight class, italic angle, caret slope, `STAT` and CFF data agree with its style; all styles of a family share line metrics and the same characters |
 | Bold against regular | Every glyph's pieces and counters compared: none lost or merged, except Céilí's 6, which joins by design |
 | Accents in the italics and bolds | Decomposed sequences (a + ◌́ and so on) render like the precomposed letters in all twelve fonts |
@@ -426,9 +425,12 @@ reconstructions:
 
 ## Limitations
 
-- These are reconstructions from a roughly 100 dpi photocopy. The 1.100 redraw makes them
-  clean at poster sizes, but details smaller than about a twentieth of the x-height (the
-  exact shape of a serif tip, say) are interpretation, not measurement.
+- These are reconstructions from prints, not from the artwork. Kilfane and Carrick are drawn from
+  photographs of their Letraset production sheets (many impressions of each letter, averaged) and
+  their alphabet specimens; Tuam Uncial and Céilí have no production sheet and are drawn from two
+  printed reproductions about 250 to 360 dpi, so their weight is a calibration between prints and
+  detail below about one source pixel (roughly 9 font units) is interpretation, not measurement.
+  Each face's study in `research/` says what is attested and what is judged.
 - The italics and bolds are new designs in the spirit of the regulars, not facsimiles: the
   designers drew neither. Carrick and Tuam Uncial have no bold. There is no Greek or Cyrillic.
 - ẞ (capital sharp s) is not included.
@@ -468,7 +470,7 @@ The fonts are built from `sources/` by the scripts in `scripts/`. Everything gen
 
 ```sh
 make setup        # a Python 3.13 venv with the pinned tools (needs ttfautohint on PATH)
-make fonts        # build every style of every face into build/fonts (about a minute and a half)
+make fonts        # build every style of every face into build/fonts (the four faces side by side; about 15 minutes on four cores)
 make test         # the release checks: OTS, style linking, coverage, shaping, topology
 make release      # fonts/, css/ and index.html from build/fonts
 make validate     # Font Bakery per family and the flyer audit into docs/validation

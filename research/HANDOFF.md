@@ -2,18 +2,15 @@
 
 ## Active state
 
-PR #1 merged into `main` on 25 October 2026 as
-`573d554871d92a934aea333089b96c4b1237eba2`. All 123 tests pass on the merged
-checkout, which also includes other contributors' 2.010 release and showcase work.
-Research candidates remain separate. Read the
-[shared continuation plan and work queue](../docs/superpowers/plans/2026-10-25-continuation.md)
-for task ownership, dependencies, acceptance checks and release boundaries.
-Next task: C1, Carrick N514 e/f evidence decision; currently unassigned.
-Original source access is now reproducible through
-[SOURCE-ACCESS.md](SOURCE-ACCESS.md): `python scripts/fetch_sources.py` retrieves
-23 registered original/source files, excluding modern revivals, and verifies
-their sizes and SHA-256 hashes. All 23 cached originals were checked; a fresh
-N514 JPEG download also matched. Source-containing archive files remain local.
+Release 3.100 is built from the latest study of each face (below) by `scripts/build_candidate.py`, with the
+finishing passes recorded in each face's `judged-edits.json`. The paragraphs below are in the order the work
+was done; where one says "latest" or "next", the later paragraphs supersede it. C1 and C2 of the
+[shared continuation plan](../docs/superpowers/plans/2026-10-25-continuation.md) are done (round 6).
+Original source access is reproducible through [SOURCE-ACCESS.md](SOURCE-ACCESS.md):
+`python scripts/fetch_sources.py` retrieves the registered original/source files, excluding modern revivals,
+and verifies their sizes and SHA-256 hashes. Source-containing archive files remain local.
+`python scripts/scorecard.py` measures any folder of fonts the same way (mark placement, pair clearances,
+line box, evenness of spacing in prose); `research/scorecard/` keeps each release's result.
 
 **Latest: [round 5](round-05/README.md), Carrick Study 2.** Ten isolated N513 mark
 components recovered; two touching groups remain unassigned. Diaeresis stays
